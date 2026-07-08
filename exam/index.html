@@ -214,6 +214,15 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
   <h1 class="pg">成績紀錄</h1>
   <p class="lead">所有測驗結果保存在本機瀏覽器（localStorage），可隨時點「檢視」重看該次逐題檢討。</p>
   <div id="history-body"></div>
+  <div class="card" style="margin-top:22px">
+    <h2>💾 資料備份</h2>
+    <p class="sub">成績紀錄、錯題本與每題筆記僅存於此瀏覽器，各裝置互不相通。可匯出成 JSON 備份檔，到其他裝置（如手機）匯入延續紀錄。匯入採<b>合併</b>方式：不會刪除既有資料，重複項目以較新者為準。</p>
+    <div class="btnrow">
+      <button class="btn primary" onclick="exportData()">⬇ 匯出備份</button>
+      <button class="btn" onclick="document.getElementById('import-file').click()">⬆ 匯入備份</button>
+      <input type="file" id="import-file" accept=".json,application/json" class="hidden" onchange="importData(this)">
+    </div>
+  </div>
 </div>
 
 <!-- ============ 考試進行中 ============ -->
@@ -261,7 +270,7 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
 
 <footer>
   題庫來源：iPAS 公告試題（官方答案）；解析為依官方學習指引撰寫之學習整理，非官方標準解析。<br>
-  本網站為離線學習工具，成績與錯題僅儲存於本機瀏覽器。
+  本網站為離線學習工具，成績與錯題僅儲存於本機瀏覽器；可於「成績紀錄」頁匯出／匯入備份以跨裝置延續紀錄。
 </footer>
 
 <script src="data/questions.js"></script>
@@ -702,6 +711,60 @@ function viewHistory(i){
   if(!rec)return;
   renderResult(rec); nav("result");
   document.querySelectorAll(".topbar nav button").forEach(b=>b.classList.remove("active"));
+}
+
+/* ================= 資料備份（匯出／匯入成績、錯題本、筆記） ================= */
+function exportData(){
+  const data={app:"ipas-exam-backup", version:1, exportedAt:new Date().toISOString(),
+    history:getHistory(), wrongbook:getWrong(), notes:getNotes()};
+  const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+  const d=new Date(), p=n=>String(n).padStart(2,"0");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`iPAS模擬考備份_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+}
+function importData(input){
+  const f=input.files&&input.files[0];
+  input.value=""; // 清空以允許重選同一檔案
+  if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let d;
+    try{d=JSON.parse(reader.result);}catch(e){alert("匯入失敗：檔案不是有效的 JSON。");return;}
+    if(!d||d.app!=="ipas-exam-backup"||!Array.isArray(d.history)||typeof d.wrongbook!=="object"||typeof d.notes!=="object"){
+      alert("匯入失敗：格式不符，請選擇由本系統「匯出備份」產生的檔案。");return;
+    }
+    const nH=d.history.length, nW=Object.keys(d.wrongbook||{}).length, nN=Object.keys(d.notes||{}).length;
+    const when=d.exportedAt?new Date(d.exportedAt).toLocaleString("zh-TW"):"未知時間";
+    if(!confirm(`備份內容：成績 ${nH} 筆、錯題 ${nW} 題、筆記 ${nN} 則（匯出於 ${when}）。\n\n將與現有紀錄合併，不會刪除既有資料；重複項目以較新者為準。確定匯入？`))return;
+    // 成績：以 日期+標題 去重合併，新→舊排序，沿用上限 200 筆
+    const h=getHistory(), seen=new Set(h.map(r=>`${r.date}|${r.title}`));
+    d.history.forEach(r=>{
+      if(r&&typeof r.date==="number"&&Array.isArray(r.detail)&&!seen.has(`${r.date}|${r.title}`)){h.push(r);seen.add(`${r.date}|${r.title}`);}
+    });
+    h.sort((a,b)=>b.date-a.date);
+    store.set(HKEY,h.slice(0,200));
+    // 錯題本：僅收錄題庫存在的題目，次數取較大、時間取較新
+    const w=getWrong();
+    Object.entries(d.wrongbook||{}).forEach(([id,v])=>{
+      if(!v||!QMAP[id])return;
+      const cur=w[id]||{count:0,last:0};
+      w[id]={count:Math.max(cur.count||0,v.count||1), last:Math.max(cur.last||0,v.last||0)};
+    });
+    store.set(WKEY,w);
+    // 筆記：同題以較新的為準
+    const n=getNotes();
+    Object.entries(d.notes||{}).forEach(([id,v])=>{
+      if(!v||!v.text||!QMAP[id])return;
+      if(!n[id]||(v.ts||0)>(n[id].ts||0)) n[id]={text:String(v.text),ts:v.ts||Date.now()};
+    });
+    store.set(NKEY,n);
+    updateWbBadge(); renderHistory();
+    alert("匯入完成 ✅");
+  };
+  reader.readAsText(f);
 }
 
 /* ================= 工具 ================= */
