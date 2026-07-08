@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPAS AI 應用規劃師 — 模擬考系統</title>
+<style>
+:root{
+  --ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f4f6f9;--card:#ffffff;
+  --brand:#0f4c81;--brand-soft:#e8f1f8;
+  --jr:#b45309;--jr-soft:#fdf1e3;
+  --md:#7c3aed;--md-soft:#f3ecfe;
+  --ok:#15803d;--ok-soft:#ecfdf3;--bad:#b91c1c;--bad-soft:#fef2f2;--warn:#b45309;--warn-soft:#fff7e6;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;}
+button{font-family:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(15,76,129,.25);}
+.topbar .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:10px 20px;flex-wrap:wrap;}
+.topbar .logo{font-weight:700;font-size:17px;margin-right:14px;letter-spacing:.02em}
+.topbar .logo small{font-weight:400;opacity:.8;margin-left:6px;font-size:12px}
+.topbar nav{display:flex;gap:4px;flex-wrap:wrap}
+.topbar nav button{background:transparent;border:none;color:#e6eef7;font-size:14.5px;padding:7px 14px;border-radius:8px;}
+.topbar nav button:hover{background:rgba(255,255,255,.14)}
+.topbar nav button.active{background:#fff;color:var(--brand);font-weight:700}
+.page{max-width:1100px;margin:0 auto;padding:28px 20px 60px;}
+h1.pg{font-size:24px;margin:6px 0 4px}
+p.lead{color:var(--muted);margin:0 0 22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:0 1px 3px rgba(16,24,40,.05);}
+.card h2{margin:0 0 4px;font-size:18px}
+.card .sub{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.lv{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 11px;border-radius:999px;color:#fff;margin-bottom:8px}
+.lv.jr{background:var(--jr)} .lv.md{background:var(--md)}
+.subject-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 4px;border-top:1px solid var(--line);flex-wrap:wrap}
+.subject-row:first-of-type{border-top:none}
+.subject-row .name{font-weight:600;font-size:15px}
+.subject-row .name small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 13px;font-size:13.5px;color:var(--ink);}
+.btn:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600}
+.btn.primary:hover{filter:brightness(1.12)}
+.btn.ghost{border:none;background:transparent;color:var(--muted)}
+.btn.ghost:hover{color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.big{padding:10px 22px;font-size:15px;border-radius:10px}
+/* ===== 對話框 ===== */
+dialog{border:none;border-radius:14px;padding:26px 28px;max-width:460px;width:92%;box-shadow:0 20px 60px rgba(16,24,40,.3)}
+dialog::backdrop{background:rgba(15,23,42,.45)}
+dialog h3{margin:0 0 6px;font-size:18px}
+dialog p{color:var(--muted);font-size:14px;margin:6px 0 14px}
+dialog label{display:block;font-size:14px;margin:10px 0 4px;font-weight:600}
+dialog select,dialog input[type=number]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-family:inherit}
+dialog .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+/* ===== 考試頁 ===== */
+.exam-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.exam-head .title{font-size:17px;font-weight:700}
+.exam-head .title small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.timer{font-variant-numeric:tabular-nums;font-size:21px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 16px}
+.timer.danger{color:var(--bad);border-color:var(--bad);background:var(--bad-soft);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.55}}
+.exam-body{display:grid;grid-template-columns:1fr 250px;gap:18px;align-items:start}
+@media(max-width:900px){.exam-body{grid-template-columns:1fr}}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.qcard .meta{font-size:12.5px;color:var(--muted);margin-bottom:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qcard .stem{font-size:16.5px;font-weight:600;margin:0 0 18px;white-space:pre-wrap}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;margin:9px 0;cursor:pointer;transition:all .12s;font-size:15px;background:#fff}
+.opt:hover{border-color:var(--brand);background:var(--brand-soft)}
+.opt .tag{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13.5px;color:var(--muted)}
+.opt.sel{border-color:var(--brand);background:var(--brand-soft)}
+.opt.sel .tag{background:var(--brand);border-color:var(--brand);color:#fff}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.correct .tag{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .tag{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.locked{cursor:default}
+.exp-box{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:14.5px}
+.exp-box .lab{font-weight:700;color:var(--warn);margin-right:6px}
+.exam-nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;position:sticky;top:70px}
+.panel h4{margin:0 0 10px;font-size:14px;color:var(--muted)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:6px}
+.qgrid button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 0;font-size:13px;position:relative}
+.qgrid button.answered{background:var(--brand);border-color:var(--brand);color:#fff}
+.qgrid button.cur{outline:2.5px solid var(--warn);outline-offset:1px}
+.qgrid button.flagged::after{content:"⚑";position:absolute;top:-8px;right:-3px;font-size:11px;color:var(--bad)}
+.qgrid button.rv-ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.qgrid button.rv-bad{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.panel .stat{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.9}
+.flagbtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.flagbtn.on{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:600}
+/* ===== 成績單 ===== */
+.score-hero{display:flex;gap:26px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:20px}
+.score-ring{width:130px;height:130px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;flex:none}
+.score-ring .n{font-size:38px;font-weight:800;line-height:1}
+.score-ring .t{font-size:12px;opacity:.85;margin-top:4px}
+.score-facts{flex:1;min-width:220px}
+.score-facts .verdict{font-size:21px;font-weight:800;margin-bottom:4px}
+.score-facts .verdict.pass{color:var(--ok)} .score-facts .verdict.fail{color:var(--bad)}
+.score-facts div.row{font-size:14.5px;color:var(--muted)}
+.filters{display:flex;gap:6px;margin:18px 0 12px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 16px;font-size:13.5px}
+.filters button.active{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.rq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:12px 0}
+.rq .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.rq .stem{font-weight:600;margin:0 0 10px;font-size:15.5px}
+.rq ul{list-style:none;margin:0;padding:0}
+.rq li{padding:5px 10px;border-radius:7px;margin:3px 0;font-size:14.5px}
+.rq li.official{background:var(--ok-soft);border-left:3.5px solid var(--ok);font-weight:600}
+.rq li.yours-wrong{background:var(--bad-soft);border-left:3.5px solid var(--bad)}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:2px 9px;margin-left:6px}
+.badge.ok{background:var(--ok-soft);color:var(--ok)}
+.badge.bad{background:var(--bad-soft);color:var(--bad)}
+.badge.na{background:#eef1f5;color:var(--muted)}
+/* ===== 筆記 ===== */
+.note-box{margin-top:10px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px;padding:10px 16px;font-size:14px}
+.note-box .lab{font-weight:700;color:var(--brand);margin-right:6px}
+.note-box .txt{white-space:pre-wrap}
+.note-box .edit{float:right;border:none;background:transparent;color:var(--muted);font-size:12.5px;padding:2px 6px}
+.note-box .edit:hover{color:var(--brand)}
+.note-box textarea{width:100%;min-height:76px;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;font-family:inherit;line-height:1.6;resize:vertical;background:var(--card);color:var(--ink)}
+.note-add{border:1px dashed var(--line);background:transparent;border-radius:8px;padding:4px 12px;font-size:13px;color:var(--muted);margin-top:10px}
+.note-add:hover{border-color:var(--brand);color:var(--brand)}
+/* ===== 表格 ===== */
+table.list{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);font-size:14px}
+table.list th,table.list td{padding:9px 13px;border-bottom:1px solid var(--line);text-align:left}
+table.list th{background:var(--brand-soft);color:var(--brand);font-size:13px}
+table.list tr:last-child td{border-bottom:none}
+.empty{color:var(--muted);text-align:center;padding:44px 10px;background:#fff;border:1.5px dashed var(--line);border-radius:14px;font-size:14.5px}
+/* ===== 課程卡 ===== */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.course-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;border-top:4px solid var(--brand)}
+.course-card.jr{border-top-color:var(--jr)} .course-card.md{border-top-color:var(--md)}
+.course-card h3{margin:2px 0 2px;font-size:16px}
+.course-card .sub{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.course-card a{display:inline-block;text-decoration:none;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:6px 13px;color:var(--ink);margin:3px 6px 3px 0}
+.course-card a:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.notice{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:8px;padding:10px 16px;font-size:13.5px;color:#6b4d10;margin:16px 0}
+footer{max-width:1100px;margin:0 auto;padding:18px 20px 34px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+.hidden{display:none!important}
+kbd{background:#eef1f5;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 6px;font-size:12px;font-family:inherit}
+/* ===== 深色模式（右上角按鈕切換，選擇存於 localStorage） ===== */
+.topbar .theme-btn{margin-left:auto;background:rgba(255,255,255,.14);border:none;color:#fff;border-radius:8px;padding:6px 11px;font-size:15px;line-height:1.4}
+.topbar .theme-btn:hover{background:rgba(255,255,255,.28)}
+[data-theme="dark"]{
+  --ink:#d9e0eb;--muted:#8f9bad;--line:#2b3447;--bg:#0d1220;--card:#141b2a;
+  --brand-soft:#152a40;
+  --jr-soft:#2b2210;--md-soft:#251a3e;
+  --ok-soft:#12301d;--ok:#3fbf74;--bad-soft:#3a1717;--bad:#ef6b6b;--warn-soft:#2b2210;--warn:#e3a63c;
+  color-scheme:dark;
+}
+[data-theme="dark"] .btn,[data-theme="dark"] .timer,[data-theme="dark"] .opt,
+[data-theme="dark"] .qgrid button,[data-theme="dark"] .flagbtn,[data-theme="dark"] .score-hero,
+[data-theme="dark"] .filters button,[data-theme="dark"] .rq,[data-theme="dark"] table.list,
+[data-theme="dark"] .empty,[data-theme="dark"] .course-card,[data-theme="dark"] .qcard,
+[data-theme="dark"] .panel{background:var(--card)}
+[data-theme="dark"] .filters button.active{color:#0d1220}
+[data-theme="dark"] dialog{background:var(--card);color:var(--ink)}
+[data-theme="dark"] kbd{background:#1d2637}
+[data-theme="dark"] .badge.na{background:#1d2637}
+[data-theme="dark"] .notice{color:#e3c27a}
+[data-theme="dark"] .card{box-shadow:none}
+</style>
+<script>
+(function(){var t;try{t=localStorage.getItem('ipas-theme')}catch(e){}
+if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+document.documentElement.setAttribute('data-theme',t);})();
+function toggleTheme(){var d=document.documentElement,t=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',t);try{localStorage.setItem('ipas-theme',t)}catch(e){}syncThemeBtn();}
+function syncThemeBtn(){var b=document.getElementById('theme-btn');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';b.textContent=dark?'☀️':'🌙';b.title=dark?'切換為淺色模式':'切換為深色模式';}
+document.addEventListener('DOMContentLoaded',syncThemeBtn);
+</script>
+</head>
+<body>
+
+<div class="topbar"><div class="inner">
+  <span class="logo">iPAS AI 應用規劃師<small>模擬考系統</small></span>
+  <nav>
+    <button data-view="home" class="active" onclick="nav('home')">模擬考</button>
+    <button data-view="courses" onclick="nav('courses')">課程教材</button>
+    <button data-view="wrongbook" onclick="nav('wrongbook')">錯題本 <span id="wb-count"></span></button>
+    <button data-view="history" onclick="nav('history')">成績紀錄</button>
+  </nav>
+  <button class="theme-btn" id="theme-btn" type="button" onclick="toggleTheme()" title="切換深淺色">🌙</button>
+</div></div>
+
+<!-- ============ 首頁：模擬考選擇 ============ -->
+<div class="page" id="view-home">
+  <h1 class="pg">選擇科目開始測驗</h1>
+  <p class="lead">題庫共 <b id="bank-total"></b> 題，全數取自 iPAS 官方公告試題（含官方答案），解析為學習整理。每題 2 分、滿分 100、70 分及格。</p>
+  <div class="grid2" id="subject-cards"></div>
+  <div class="notice">💡 模式說明 — <b>全真模擬</b>：隨機抽 50 題、60 分鐘倒數、交卷後才對答案。<b>歷屆原卷</b>：依原始梯次卷面順序作答。<b>快速練習</b>：自訂題數、每題作答後立即顯示答案與解析。作答時可用鍵盤 <kbd>1</kbd>–<kbd>4</kbd> 選答、<kbd>←</kbd><kbd>→</kbd> 換題、<kbd>F</kbd> 標記。</div>
+</div>
+
+<!-- ============ 課程 ============ -->
+<div class="page hidden" id="view-courses">
+  <h1 class="pg">課程教材</h1>
+  <p class="lead">以官方學習指引編製的離線 HTML 教材。「完整教材」供系統性學習，「考前重點」為考前速記＋歷屆試題逐題解析。</p>
+  <div class="course-grid" id="course-grid"></div>
+  <div class="notice">📚 延伸資源：<a href="https://ipd.nat.gov.tw/ipas/certification/AIAP/learning-resources" target="_blank">iPAS 官方學習資源</a>｜<a href="https://ipd.nat.gov.tw/ipas/certification/AIAP/exam-info" target="_blank">考試資訊</a>｜<a href="https://aimfg.org.tw/" target="_blank">製造業 AI 升級引擎</a>。引用學習指引內容前，建議先核對<b>勘誤表</b>（見 學習資源/初級|中級/勘誤表/）。</div>
+</div>
+
+<!-- ============ 錯題本 ============ -->
+<div class="page hidden" id="view-wrongbook">
+  <h1 class="pg">錯題本</h1>
+  <p class="lead">曾答錯的題目會自動收錄於此。在「錯題重練」中答對即自動移除；也可手動移除。</p>
+  <div id="wrongbook-body"></div>
+</div>
+
+<!-- ============ 成績紀錄 ============ -->
+<div class="page hidden" id="view-history">
+  <h1 class="pg">成績紀錄</h1>
+  <p class="lead">所有測驗結果保存在本機瀏覽器（localStorage），可隨時點「檢視」重看該次逐題檢討。</p>
+  <div id="history-body"></div>
+</div>
+
+<!-- ============ 考試進行中 ============ -->
+<div class="page hidden" id="view-exam">
+  <div class="exam-head">
+    <div class="title" id="exam-title"></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="timer" id="exam-timer">--:--</div>
+      <button class="btn primary" onclick="confirmSubmit()">交卷</button>
+      <button class="btn ghost" onclick="abandonExam()">放棄</button>
+    </div>
+  </div>
+  <div class="exam-body">
+    <div>
+      <div class="qcard" id="qcard"></div>
+      <div class="exam-nav">
+        <button class="btn big" id="btn-prev" onclick="move(-1)">← 上一題</button>
+        <button class="btn big" id="btn-next" onclick="move(1)">下一題 →</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>答題卡</h4>
+      <div class="qgrid" id="qgrid"></div>
+      <div class="stat" id="exam-stat"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 成績單 / 檢討 ============ -->
+<div class="page hidden" id="view-result">
+  <h1 class="pg">考後檢討</h1>
+  <div id="result-body"></div>
+</div>
+
+<!-- ============ 對話框：開始測驗設定 ============ -->
+<dialog id="dlg-start">
+  <h3 id="dlg-title"></h3>
+  <p id="dlg-sub"></p>
+  <div id="dlg-fields"></div>
+  <div class="actions">
+    <button class="btn" onclick="document.getElementById('dlg-start').close()">取消</button>
+    <button class="btn primary" id="dlg-go">開始測驗</button>
+  </div>
+</dialog>
+
+<footer>
+  題庫來源：iPAS 公告試題（官方答案）；解析為依官方學習指引撰寫之學習整理，非官方標準解析。<br>
+  本網站為離線學習工具，成績與錯題僅儲存於本機瀏覽器。
+</footer>
+
+<script src="data/questions.js"></script>
+<script>
+/* ================= 資料層 ================= */
+const SUBJECTS = [
+  {level:"初級", no:1, name:"人工智慧基礎概論"},
+  {level:"初級", no:2, name:"生成式AI應用與規劃"},
+  {level:"中級", no:1, name:"人工智慧技術應用規劃"},
+  {level:"中級", no:2, name:"大數據處理分析與應用"},
+  {level:"中級", no:3, name:"機器學習技術與應用"},
+];
+const COURSE_FILES = {
+  "初級-1": {full:"初級_科目1_人工智慧基礎概論.html", cram:"初級_科目1_考前重點與試題解析.html"},
+  "初級-2": {full:"初級_科目2_生成式AI應用與規劃.html", cram:"初級_科目2_考前重點與試題解析.html"},
+  "中級-1": {full:"中級_科目1_人工智慧技術應用規劃.html", cram:"中級_科目1_考前重點與試題解析.html"},
+  "中級-2": {full:"中級_科目2_大數據處理分析與應用.html", cram:"中級_科目2_考前重點與試題解析.html"},
+  "中級-3": {full:"中級_科目3_機器學習技術與應用.html", cram:"中級_科目3_考前重點與試題解析.html"},
+};
+const COURSE_BASE = "../materials/";
+const QMAP = Object.fromEntries(QUESTION_BANK.map(q=>[q.id,q]));
+const poolOf = (level,no)=>QUESTION_BANK.filter(q=>q.level===level&&q.subject===no);
+const sessionsOf = pool=>[...new Set(pool.map(q=>q.session))];
+
+/* ================= 儲存層 ================= */
+const store = {
+  get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},
+  set(k,v){localStorage.setItem(k,JSON.stringify(v))}
+};
+const HKEY="ipas_history", WKEY="ipas_wrongbook", NKEY="ipas_notes";
+const getHistory=()=>store.get(HKEY,[]);
+const getWrong=()=>store.get(WKEY,{});
+const getNotes=()=>store.get(NKEY,{});
+function setNote(qid,text){const n=getNotes(); if(text)n[qid]={text,ts:Date.now()}; else delete n[qid]; store.set(NKEY,n);}
+function addWrong(qid){const w=getWrong(); w[qid]=w[qid]||{count:0}; w[qid].count++; w[qid].last=Date.now(); store.set(WKEY,w); updateWbBadge();}
+function removeWrong(qid){const w=getWrong(); delete w[qid]; store.set(WKEY,w); updateWbBadge();}
+function updateWbBadge(){const n=Object.keys(getWrong()).length; document.getElementById("wb-count").textContent=n?`(${n})`:"";}
+
+/* ================= 導覽 ================= */
+const VIEWS=["home","courses","wrongbook","history","exam","result"];
+function nav(v){
+  if(exam && exam.active && v!=="exam"){ if(!confirm("測驗進行中，離開將不保留本次作答。確定離開？")) return; endTimer(); exam=null; }
+  VIEWS.forEach(x=>document.getElementById("view-"+x).classList.toggle("hidden",x!==v));
+  document.querySelectorAll(".topbar nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  if(v==="wrongbook") renderWrongbook();
+  if(v==="history") renderHistory();
+  window.scrollTo(0,0);
+}
+
+/* ================= 首頁 ================= */
+function renderHome(){
+  document.getElementById("bank-total").textContent=QUESTION_BANK.length;
+  const holder=document.getElementById("subject-cards");
+  const byLevel={"初級":[],"中級":[]};
+  SUBJECTS.forEach(s=>byLevel[s.level].push(s));
+  holder.innerHTML=Object.entries(byLevel).map(([level,subs])=>{
+    const cls=level==="初級"?"jr":"md";
+    return `<div class="card">
+      <span class="lv ${cls}">${level}</span>
+      ${subs.map(s=>{
+        const pool=poolOf(s.level,s.no);
+        const sessions=sessionsOf(pool);
+        return `<div class="subject-row">
+          <div class="name">科目 ${s.no}｜${s.name}<small>題庫 ${pool.length} 題（${sessions.join("、")}）</small></div>
+          <div class="btnrow">
+            <button class="btn primary" onclick="dlgMock('${s.level}',${s.no})">全真模擬</button>
+            <button class="btn" onclick="dlgPast('${s.level}',${s.no})">歷屆原卷</button>
+            <button class="btn" onclick="dlgPractice('${s.level}',${s.no})">快速練習</button>
+          </div>
+        </div>`;
+      }).join("")}
+    </div>`;
+  }).join("");
+}
+
+/* ================= 課程 ================= */
+function renderCourses(){
+  const g=document.getElementById("course-grid");
+  g.innerHTML=`<div class="course-card"><h3>📖 教材首頁</h3><div class="sub">全部教材導覽</div><a href="${COURSE_BASE}index.html" target="_blank">開啟教材首頁</a></div>`+
+  SUBJECTS.map(s=>{
+    const f=COURSE_FILES[`${s.level}-${s.no}`];
+    const pool=poolOf(s.level,s.no);
+    return `<div class="course-card ${s.level==="初級"?"jr":"md"}">
+      <h3>${s.level}・科目 ${s.no}</h3>
+      <div class="sub">${s.name}｜歷屆 ${pool.length} 題</div>
+      <a href="${COURSE_BASE}${f.full}" target="_blank">📖 完整教材</a>
+      <a href="${COURSE_BASE}${f.cram}" target="_blank">🎯 考前重點＋解析</a>
+    </div>`;
+  }).join("");
+}
+
+/* ================= 開始測驗對話框 ================= */
+const dlg=document.getElementById("dlg-start");
+function openDlg(title,sub,fieldsHTML,onGo){
+  document.getElementById("dlg-title").textContent=title;
+  document.getElementById("dlg-sub").textContent=sub;
+  document.getElementById("dlg-fields").innerHTML=fieldsHTML;
+  document.getElementById("dlg-go").onclick=()=>{onGo(); dlg.close();};
+  dlg.showModal();
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function dlgMock(level,no){
+  const s=SUBJECTS.find(x=>x.level===level&&x.no===no);
+  openDlg(`全真模擬｜${level} 科目${no} ${s.name}`,
+    "隨機抽出 50 題並打亂順序，倒數計時，交卷後才顯示答案。",
+    `<label>作答時間</label><select id="f-min"><option value="60" selected>60 分鐘（正式考試）</option><option value="45">45 分鐘</option><option value="30">30 分鐘</option><option value="0">不計時</option></select>`,
+    ()=>{
+      const min=+document.getElementById("f-min").value;
+      const qids=shuffle(poolOf(level,no)).slice(0,50).map(q=>q.id);
+      startExam({qids, mode:"mock", instant:false, seconds:min*60,
+        title:`全真模擬｜${level} 科目${no} ${s.name}`, level, subject:no});
+    });
+}
+function dlgPast(level,no){
+  const s=SUBJECTS.find(x=>x.level===level&&x.no===no);
+  const sessions=sessionsOf(poolOf(level,no));
+  openDlg(`歷屆原卷｜${level} 科目${no} ${s.name}`,
+    "依原始卷面題序作答完整一梯次試卷。",
+    `<label>選擇梯次</label><select id="f-session">${sessions.map(x=>`<option>${x}</option>`).join("")}</select>
+     <label>作答時間</label><select id="f-min"><option value="60" selected>60 分鐘（正式考試）</option><option value="45">45 分鐘</option><option value="0">不計時</option></select>`,
+    ()=>{
+      const ses=document.getElementById("f-session").value;
+      const min=+document.getElementById("f-min").value;
+      const qids=poolOf(level,no).filter(q=>q.session===ses).sort((a,b)=>a.no-b.no).map(q=>q.id);
+      startExam({qids, mode:"past", instant:false, seconds:min*60,
+        title:`歷屆原卷｜${level} 科目${no}・${ses}`, level, subject:no, session:ses});
+    });
+}
+function dlgPractice(level,no){
+  const s=SUBJECTS.find(x=>x.level===level&&x.no===no);
+  const pool=poolOf(level,no);
+  openDlg(`快速練習｜${level} 科目${no} ${s.name}`,
+    "隨機抽題、不計時，每題作答後立即顯示官方答案與解析。",
+    `<label>題數（題庫共 ${pool.length} 題）</label><select id="f-n"><option>10</option><option selected>20</option><option>30</option><option>50</option></select>`,
+    ()=>{
+      const n=+document.getElementById("f-n").value;
+      const qids=shuffle(pool).slice(0,n).map(q=>q.id);
+      startExam({qids, mode:"practice", instant:true, seconds:0,
+        title:`快速練習｜${level} 科目${no} ${s.name}`, level, subject:no});
+    });
+}
+function startWrongRetry(level,no){
+  const w=getWrong();
+  let qs=Object.keys(w).map(id=>QMAP[id]).filter(Boolean);
+  if(level) qs=qs.filter(q=>q.level===level&&q.subject===no);
+  if(!qs.length){alert("目前沒有符合的錯題。");return;}
+  const qids=shuffle(qs).map(q=>q.id);
+  startExam({qids, mode:"retry", instant:true, seconds:0,
+    title:`錯題重練${level?`｜${level} 科目${no}`:"（全部錯題）"}`, level:level||"混合", subject:no||0});
+}
+
+/* ================= 考試引擎 ================= */
+let exam=null, timerId=null;
+function startExam(cfg){
+  exam={...cfg, active:true, idx:0, answers:{}, flags:new Set(), locked:new Set(),
+        start:Date.now(), remain:cfg.seconds};
+  nav("exam");
+  document.getElementById("exam-title").innerHTML=
+    `${cfg.title}<small>${cfg.qids.length} 題・${cfg.instant?"即時對答":"交卷後對答"}${cfg.seconds?`・限時 ${cfg.seconds/60} 分鐘`:"・不計時"}</small>`;
+  renderQ(); renderGrid(); startTimer();
+}
+function startTimer(){
+  endTimer();
+  const el=document.getElementById("exam-timer");
+  if(!exam.seconds){ // 正向計時
+    timerId=setInterval(()=>{ if(!exam)return;
+      el.textContent=fmtTime(Math.floor((Date.now()-exam.start)/1000)); },500);
+    el.classList.remove("danger"); el.textContent="00:00"; return;
+  }
+  const deadline=exam.start+exam.seconds*1000;
+  const tick=()=>{ if(!exam)return;
+    const left=Math.max(0,Math.round((deadline-Date.now())/1000));
+    exam.remain=left;
+    el.textContent=fmtTime(left);
+    el.classList.toggle("danger",left<=300);
+    if(left<=0){ endTimer(); alert("時間到，系統自動交卷。"); finishExam(); }
+  };
+  tick(); timerId=setInterval(tick,500);
+}
+function endTimer(){if(timerId){clearInterval(timerId);timerId=null;}}
+const fmtTime=s=>`${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+function renderQ(){
+  const q=QMAP[exam.qids[exam.idx]];
+  const chosen=exam.answers[q.id];
+  const locked=exam.locked.has(q.id);
+  const showAns=exam.instant&&locked;
+  document.getElementById("qcard").innerHTML=`
+    <div class="meta">
+      <span>第 ${exam.idx+1} / ${exam.qids.length} 題</span>
+      <span>${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</span>
+      <button class="flagbtn ${exam.flags.has(q.id)?"on":""}" onclick="toggleFlag()">⚑ ${exam.flags.has(q.id)?"已標記":"標記"}</button>
+    </div>
+    <p class="stem">${esc(q.stem)}</p>
+    ${Object.entries(q.opts).map(([L,t])=>{
+      let cls="opt";
+      if(showAns){ cls+=" locked";
+        if(q.answer.includes(L)) cls+=" correct";
+        else if(chosen===L) cls+=" wrong";
+      } else if(chosen===L) cls+=" sel";
+      return `<div class="${cls}" onclick="choose('${L}')"><span class="tag">${L}</span><span>${esc(t)}</span></div>`;
+    }).join("")}
+    ${showAns?`<div class="exp-box"><span class="lab">官方答案：${q.answer}${chosen===q.answer?"　✔ 答對":"　✘ 答錯"}</span><br>${esc(q.exp)}</div>`:""}`;
+  document.getElementById("btn-prev").disabled=exam.idx===0;
+  document.getElementById("btn-next").textContent=exam.idx===exam.qids.length-1?"已是最後一題":"下一題 →";
+  document.getElementById("btn-next").disabled=exam.idx===exam.qids.length-1;
+  renderGrid();
+}
+function choose(L){
+  const q=QMAP[exam.qids[exam.idx]];
+  if(exam.instant&&exam.locked.has(q.id))return; // 已作答鎖定
+  exam.answers[q.id]=L;
+  if(exam.instant){
+    exam.locked.add(q.id);
+    const correct=q.answer.includes(L);
+    if(!correct) addWrong(q.id);
+    else if(exam.mode==="retry") removeWrong(q.id);
+  }
+  renderQ();
+  if(!exam.instant && exam.idx<exam.qids.length-1) setTimeout(()=>{if(exam)move(1);},160);
+}
+function toggleFlag(){
+  const id=exam.qids[exam.idx];
+  exam.flags.has(id)?exam.flags.delete(id):exam.flags.add(id);
+  renderQ();
+}
+function move(d){
+  if(!exam)return;
+  const n=exam.idx+d;
+  if(n<0||n>=exam.qids.length)return;
+  exam.idx=n; renderQ();
+}
+function jump(i){exam.idx=i;renderQ();}
+function renderGrid(){
+  const g=document.getElementById("qgrid");
+  g.innerHTML=exam.qids.map((id,i)=>{
+    const cls=["","answered","flagged","cur"].filter((c,k)=>
+      k===1?exam.answers[id]:k===2?exam.flags.has(id):k===3?i===exam.idx:false).join(" ");
+    return `<button class="${cls}" onclick="jump(${i})">${i+1}</button>`;
+  }).join("");
+  const done=Object.keys(exam.answers).length;
+  document.getElementById("exam-stat").innerHTML=
+    `已作答 <b>${done}</b> / ${exam.qids.length}<br>未作答 <b>${exam.qids.length-done}</b>　標記 <b>${exam.flags.size}</b>`;
+}
+function confirmSubmit(){
+  const left=exam.qids.length-Object.keys(exam.answers).length;
+  if(left>0 && !confirm(`還有 ${left} 題未作答，確定交卷？`))return;
+  finishExam();
+}
+function abandonExam(){
+  if(!confirm("確定放棄本次測驗？作答將不保留。"))return;
+  endTimer(); exam=null; nav("home");
+}
+function finishExam(){
+  endTimer();
+  const e=exam; e.active=false;
+  const usedSec=Math.min(Math.floor((Date.now()-e.start)/1000), e.seconds||1e9);
+  let correct=0;
+  const detail=e.qids.map(id=>{
+    const q=QMAP[id], your=e.answers[id]||"", ok=your&&q.answer.includes(your);
+    if(ok)correct++;
+    if(!e.instant){ // 模擬/原卷模式：交卷時登錄錯題
+      if(your&&!ok) addWrong(id);
+    }
+    return {id, your, ok, flagged:e.flags.has(id)};
+  });
+  const rec={date:Date.now(), title:e.title, mode:e.mode, level:e.level, subject:e.subject,
+             total:e.qids.length, correct, usedSec, seconds:e.seconds,
+             score: e.qids.length===50 ? correct*2 : null,
+             detail};
+  const h=getHistory(); h.unshift(rec); store.set(HKEY,h.slice(0,200));
+  exam=null;
+  renderResult(rec);
+  nav("result");
+  document.querySelectorAll(".topbar nav button").forEach(b=>b.classList.remove("active"));
+}
+
+/* ================= 檢討頁 ================= */
+let curFilter="all";
+function renderResult(rec){
+  const pct=Math.round(rec.correct/rec.total*100);
+  const score=rec.score!=null?rec.score:pct;
+  const pass=score>=70;
+  const ringColor = pass?"var(--ok)":"var(--bad)";
+  const wrongN=rec.detail.filter(d=>d.your&&!d.ok).length;
+  const blankN=rec.detail.filter(d=>!d.your).length;
+  document.getElementById("result-body").innerHTML=`
+    <div class="score-hero">
+      <div class="score-ring" style="background:${ringColor}">
+        <span class="n">${score}</span><span class="t">${rec.score!=null?"分（滿分100）":"% 答對率"}</span>
+      </div>
+      <div class="score-facts">
+        <div class="verdict ${pass?"pass":"fail"}">${rec.score!=null?(pass?"✔ 通過（70 分及格）":"✘ 未通過（70 分及格）"):(pass?"✔ 表現良好":"再加油！")}</div>
+        <div class="row">${esc(rec.title)}</div>
+        <div class="row">答對 ${rec.correct}／${rec.total} 題・答錯 ${wrongN} 題・未作答 ${blankN} 題</div>
+        <div class="row">用時 ${fmtTime(rec.usedSec)}${rec.seconds?`／${rec.seconds/60} 分鐘`:""}・${new Date(rec.date).toLocaleString("zh-TW")}</div>
+        <div class="btnrow" style="margin-top:12px">
+          <button class="btn primary" onclick="nav('home')">再考一次</button>
+          <button class="btn" onclick="startWrongRetry()">錯題重練</button>
+          <button class="btn" onclick="nav('wrongbook')">查看錯題本</button>
+        </div>
+      </div>
+    </div>
+    <h2 style="font-size:18px;margin:26px 0 0">逐題檢討</h2>
+    <div class="filters" id="rv-filters">
+      ${[["all","全部"],["wrong","答錯"],["blank","未作答"],["flagged","已標記"],["correct","答對"],["noted","有筆記"]].map(([k,t])=>
+        `<button data-f="${k}" class="${k==="all"?"active":""}" onclick="setFilter('${k}',this)">${t}</button>`).join("")}
+    </div>
+    <div id="rv-list"></div>`;
+  curFilter="all";
+  window._curRec=rec;
+  renderReviewList();
+}
+function setFilter(f,btn){
+  curFilter=f;
+  document.querySelectorAll("#rv-filters button").forEach(b=>b.classList.toggle("active",b===btn));
+  renderReviewList();
+}
+function renderReviewList(){
+  const rec=window._curRec;
+  const items=rec.detail.map((d,i)=>({...d,i})).filter(d=>{
+    if(curFilter==="wrong")return d.your&&!d.ok;
+    if(curFilter==="blank")return !d.your;
+    if(curFilter==="flagged")return d.flagged;
+    if(curFilter==="correct")return d.ok;
+    if(curFilter==="noted")return !!getNotes()[d.id];
+    return true;
+  });
+  const holder=document.getElementById("rv-list");
+  if(!items.length){holder.innerHTML=`<div class="empty">此分類沒有題目。</div>`;return;}
+  holder.innerHTML=items.map(d=>{
+    const q=QMAP[d.id];
+    if(!q)return "";
+    const badge=d.ok?`<span class="badge ok">答對</span>`:d.your?`<span class="badge bad">答錯</span>`:`<span class="badge na">未作答</span>`;
+    return `<div class="rq">
+      <div class="top"><p class="stem">${d.i+1}. ${esc(q.stem)} ${badge}${d.flagged?'<span class="badge na">⚑</span>':""}</p></div>
+      <ul>${Object.entries(q.opts).map(([L,t])=>{
+        let cls=""; if(q.answer.includes(L))cls="official"; else if(d.your===L)cls="yours-wrong";
+        return `<li class="${cls}">(${L}) ${esc(t)}${q.answer.includes(L)?"　← 官方答案":d.your===L?"　← 你的作答":""}</li>`;
+      }).join("")}</ul>
+      <div class="exp-box"><span class="lab">解析</span>${esc(q.exp)}</div>
+      ${noteBlock(q.id,"rv")}
+      <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</div>
+    </div>`;
+  }).join("");
+}
+
+/* ================= 每題筆記（存於 localStorage，跨測驗共用）
+   ctx 為所在頁面前綴（rv=檢討頁、wb=錯題本），避免兩頁同題時 DOM id 重複 ================= */
+function noteBlock(qid,ctx){
+  const n=getNotes()[qid];
+  if(n)return `<div class="note-box" id="note-${ctx}-${qid}">
+    <button class="edit" onclick="editNote('${ctx}','${qid}')">✏️ 編輯</button>
+    <span class="lab">📝 我的筆記</span>
+    <div class="txt">${esc(n.text)}</div></div>`;
+  return `<div id="note-${ctx}-${qid}"><button class="note-add" onclick="editNote('${ctx}','${qid}')">📝 加入筆記</button></div>`;
+}
+function editNote(ctx,qid){
+  const n=getNotes()[qid], el=document.getElementById(`note-${ctx}-${qid}`);
+  if(!el)return;
+  el.outerHTML=`<div class="note-box" id="note-${ctx}-${qid}">
+    <span class="lab">📝 我的筆記</span>
+    <textarea id="note-ta-${ctx}-${qid}" placeholder="記下解題思路、易混淆概念、記憶口訣⋯（僅儲存於本機瀏覽器；清空內容儲存即刪除筆記）">${esc(n?n.text:"")}</textarea>
+    <div class="btnrow" style="margin-top:8px;justify-content:flex-end">
+      <button class="btn" onclick="cancelNote('${ctx}','${qid}')">取消</button>
+      <button class="btn primary" onclick="saveNote('${ctx}','${qid}')">儲存</button>
+    </div></div>`;
+  const ta=document.getElementById(`note-ta-${ctx}-${qid}`);
+  ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length);
+}
+function saveNote(ctx,qid){
+  setNote(qid,document.getElementById(`note-ta-${ctx}-${qid}`).value.trim());
+  refreshNote(ctx,qid);
+  // 檢討頁若正停在「有筆記」分類，重整列表反映增刪
+  if(ctx==="rv"&&curFilter==="noted")renderReviewList();
+}
+function cancelNote(ctx,qid){refreshNote(ctx,qid);}
+function refreshNote(ctx,qid){const el=document.getElementById(`note-${ctx}-${qid}`); if(el)el.outerHTML=noteBlock(qid,ctx);}
+
+/* ================= 錯題本 ================= */
+function renderWrongbook(){
+  const w=getWrong();
+  const ids=Object.keys(w).sort((a,b)=>w[b].last-w[a].last);
+  const holder=document.getElementById("wrongbook-body");
+  if(!ids.length){holder.innerHTML=`<div class="empty">目前沒有錯題 🎉　完成任何測驗後，答錯的題目會自動收錄。</div>`;return;}
+  // 依科目分組統計
+  const groups={};
+  ids.forEach(id=>{const q=QMAP[id]; if(!q)return; const k=`${q.level}-科目${q.subject} ${q.subjectName}`; (groups[k]=groups[k]||[]).push(id);});
+  holder.innerHTML=`
+    <div class="btnrow" style="margin-bottom:16px">
+      <button class="btn primary" onclick="startWrongRetry()">全部錯題重練（${ids.length} 題）</button>
+      ${SUBJECTS.map(s=>{
+        const n=ids.filter(id=>QMAP[id]&&QMAP[id].level===s.level&&QMAP[id].subject===s.no).length;
+        return n?`<button class="btn" onclick="startWrongRetry('${s.level}',${s.no})">${s.level}科${s.no}（${n}）</button>`:"";
+      }).join("")}
+      <button class="btn ghost" onclick="if(confirm('清空整本錯題本？')){store.set('${WKEY}',{});updateWbBadge();renderWrongbook();}">清空錯題本</button>
+    </div>`+
+    ids.map(id=>{
+      const q=QMAP[id]; if(!q)return "";
+      return `<div class="rq">
+        <div class="top">
+          <p class="stem">${esc(q.stem)} <span class="badge bad">錯 ${w[id].count} 次</span></p>
+          <button class="btn ghost" title="移除" onclick="removeWrong('${id}');renderWrongbook()">✕ 移除</button>
+        </div>
+        <ul>${Object.entries(q.opts).map(([L,t])=>
+          `<li class="${q.answer.includes(L)?"official":""}">(${L}) ${esc(t)}${q.answer.includes(L)?"　← 官方答案":""}</li>`).join("")}</ul>
+        <div class="exp-box"><span class="lab">解析</span>${esc(q.exp)}</div>
+        ${noteBlock(id,"wb")}
+        <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</div>
+      </div>`;
+    }).join("");
+}
+
+/* ================= 成績紀錄 ================= */
+const MODE_NAME={mock:"全真模擬",past:"歷屆原卷",practice:"快速練習",retry:"錯題重練"};
+function renderHistory(){
+  const h=getHistory();
+  const holder=document.getElementById("history-body");
+  if(!h.length){holder.innerHTML=`<div class="empty">尚無測驗紀錄。回「模擬考」頁開始第一次測驗吧！</div>`;return;}
+  holder.innerHTML=`
+    <table class="list">
+      <tr><th>日期</th><th>測驗</th><th>模式</th><th>成績</th><th>答對</th><th>用時</th><th></th></tr>
+      ${h.map((r,i)=>`<tr>
+        <td>${new Date(r.date).toLocaleString("zh-TW",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})}</td>
+        <td>${esc(r.title)}</td>
+        <td>${MODE_NAME[r.mode]||r.mode}</td>
+        <td>${r.score!=null?`<b style="color:${r.score>=70?"var(--ok)":"var(--bad)"}">${r.score} 分</b>`:Math.round(r.correct/r.total*100)+"%"}</td>
+        <td>${r.correct}/${r.total}</td>
+        <td>${fmtTime(r.usedSec)}</td>
+        <td><button class="btn" onclick="viewHistory(${i})">檢視</button></td>
+      </tr>`).join("")}
+    </table>
+    <div style="margin-top:14px"><button class="btn ghost" onclick="if(confirm('清除全部成績紀錄？')){store.set('${HKEY}',[]);renderHistory();}">清除全部紀錄</button></div>`;
+}
+function viewHistory(i){
+  const rec=getHistory()[i];
+  if(!rec)return;
+  renderResult(rec); nav("result");
+  document.querySelectorAll(".topbar nav button").forEach(b=>b.classList.remove("active"));
+}
+
+/* ================= 工具 ================= */
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+document.addEventListener("keydown",e=>{
+  if(!exam||!exam.active)return;
+  if(e.target.tagName==="SELECT"||e.target.tagName==="INPUT")return;
+  const q=QMAP[exam.qids[exam.idx]];
+  const letters=Object.keys(q.opts);
+  if(/^[1-9]$/.test(e.key)&&letters[+e.key-1])choose(letters[+e.key-1]);
+  else if(/^[a-eA-E]$/.test(e.key)&&e.key.toUpperCase()!=="F"&&letters.includes(e.key.toUpperCase()))choose(e.key.toUpperCase());
+  else if(e.key==="ArrowLeft")move(-1);
+  else if(e.key==="ArrowRight")move(1);
+  else if(e.key.toUpperCase()==="F")toggleFlag();
+});
+window.addEventListener("beforeunload",e=>{ if(exam&&exam.active){e.preventDefault();e.returnValue="";} });
+
+/* ================= 初始化 ================= */
+renderHome(); renderCourses(); updateWbBadge();
+</script>
+</body>
+</html>

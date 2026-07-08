@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>初級科目1 人工智慧基礎概論 — iPAS AI 應用規劃師教材</title>
+<style>
+:root{--accent:#0e7c66;--accent-soft:#e6f4f0;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="#scope">本科評鑑範圍</a>
+    <a href="#chap1">一、人工智慧概念</a>
+    <a class="sub" href="#sec1-1">AI 的定義與分類</a>
+    <a class="sub" href="#sec1-2">AI 應用領域</a>
+    <a class="sub" href="#sec1-3">AI 技術架構</a>
+    <a class="sub" href="#sec1-4">資料處理與分析（技術底層）</a>
+    <a class="sub" href="#sec1-5">演算法：搜尋、排序與常見演算法</a>
+    <a class="sub" href="#sec1-6">機器學習與深度學習概觀</a>
+    <a class="sub" href="#sec1-7">生成式 AI 的訓練流程</a>
+    <a class="sub" href="#sec1-8">AI 治理概念</a>
+    <a href="#chap2">二、資料處理與分析概念</a>
+    <a class="sub" href="#sec2-1">統計測量數</a>
+    <a class="sub" href="#sec2-2">機率模型與統計方法分類</a>
+    <a class="sub" href="#sec2-3">假設檢定</a>
+    <a class="sub" href="#sec2-4">EDA 與 CDA</a>
+    <a class="sub" href="#sec2-5">資料隱私與安全</a>
+    <a href="#chap3">三、機器學習概念</a>
+    <a class="sub" href="#sec3-1">機器學習基本原理</a>
+    <a class="sub" href="#sec3-2">三大學習類型</a>
+    <a class="sub" href="#sec3-3">機器學習實現流程</a>
+    <a href="#chap4">四、鑑別式 AI 與生成式 AI 概念</a>
+    <a class="sub" href="#sec4-1">基本原理與差異</a>
+    <a class="sub" href="#sec4-2">鑑別式 AI 模型</a>
+    <a class="sub" href="#sec4-3">生成式 AI 模型</a>
+    <a class="sub" href="#sec4-4">技術差異比較</a>
+    <a class="sub" href="#sec4-5">整合應用</a>
+    <a href="#refs">附錄：參考書目</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">初級 · 科目 1</span>
+      <h1>人工智慧基礎概論</h1>
+      <p class="sub">iPAS AI 應用規劃師認證 · 依官方學習指引編製</p>
+    </header>
+
+    <section id="scope">
+      <h2 class="chap" style="background:var(--accent)">本科評鑑範圍</h2>
+      <p>本指引說明初級「AI 應用規劃師」科目一「人工智慧基礎概論」之考試內容。本科共含四大評鑑主題，幫助考生掌握人工智慧基礎知識，奠定未來應用與規劃的基石。各章節並附練習評量供自我檢視。</p>
+      <table>
+        <thead><tr><th>評鑑主題</th><th>主要內容</th></tr></thead>
+        <tbody>
+          <tr><td>人工智慧概念</td><td>AI 的定義與分類、AI 治理概念</td></tr>
+          <tr><td>資料處理與分析概念</td><td>資料基本概念與來源、資料整理與分析流程、資料隱私與安全</td></tr>
+          <tr><td>機器學習概念</td><td>機器學習基本原理、常見的機器學習模型</td></tr>
+          <tr><td>鑑別式 AI 與生成式 AI 概念</td><td>鑑別式 AI 與生成式 AI 的基本原理、鑑別式 AI 與生成式 AI 的整合應用</td></tr>
+        </tbody>
+      </table>
+      <div class="box note"><span class="tag">職能定位</span>初級 AI 應用規劃師需了解 AI 工具的特性並具備使用經驗，以協助企業規劃與推動 AI 技術或工具導入；依企業部門業務需求，評估並選擇適合的 AI 工具或解決方案，應用於內部流程或產品生命週期，並整合跨部門團隊共同制定與執行 AI 導入計畫（開發、部署及後續優化）。此職能基準範圍為跨產業適用。</div>
+    </section>
+
+    <!-- ============ 第三章 3.1 ============ -->
+    <h2 class="chap" id="chap1">一、人工智慧概念</h2>
+
+    <h3 id="sec1-1">AI 的定義與分類</h3>
+    <div class="box def"><span class="tag">定義</span><span class="term">人工智慧（Artificial Intelligence, AI）</span>是一種旨在模擬人類智慧的技術，使機器能夠執行原本需要人類智慧才能完成的任務，如學習、推理、解決問題、感知環境等。</div>
+    <p>近十年來，隨著軟硬體技術進步、計算能力提升、開放資料普及，以及數據的多樣性、品質與規模增長，加上演算法與機器學習的不斷精進，人工智慧的發展突飛猛進。</p>
+    <h4>依功能分類</h4>
+    <table>
+      <thead><tr><th>類型</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>分析型 AI</td><td>主要用於洞悉數據模式，分析和處理大量數據，以提供有價值的見解。</td></tr>
+        <tr><td>預測型 AI</td><td>基於歷史資料和數據，預測未來的趨勢和行為，常應用於市場預測、風險評估等領域。</td></tr>
+        <tr><td>生成型 AI</td><td>近年快速發展的 AI 類型，可根據使用者輸入的提示詞（prompt），生成各類素材，包括文字、語音、圖像和影片。</td></tr>
+      </tbody>
+    </table>
+    <div class="box key"><span class="tag">重點</span>在企業運營中，AI 的應用通常集中於幾個主要目標：提高效率、增強決策能力、提供個人化服務以及促進創新。生成式 AI 自 2022 年快速發展以來，透過使用者輸入的提示詞（prompt）能高效生成多種素材形式，大幅改變了許多行業的工作型態。</div>
+
+    <h3 id="sec1-2">AI 應用領域</h3>
+    <p>人工智慧技術的多樣化應用正在迅速改變各行各業的運作模式，主要應用領域與實例如下：</p>
+    <table>
+      <thead><tr><th>領域</th><th>具體應用</th></tr></thead>
+      <tbody>
+        <tr><td>醫療保健</td><td>疾病診斷（分析 X 光、MRI 等醫學影像輔助診斷）、藥物研發（藥物分子結構模擬）、個人化醫療（依基因、生活習慣與醫療記錄量身訂制治療方案）。</td></tr>
+        <tr><td>金融</td><td>風險評估（分析信用記錄與金融行為提升貸款審核準確性）、欺詐檢測（實時監控交易、偵測異常）、自動交易（快速分析市場數據進行高頻交易）。</td></tr>
+        <tr><td>製造業</td><td>自動化生產（機器人與 AI 結合執行重複任務）、品質控制（影像辨識檢測產品缺陷）、預測性維護（分析設備運行數據提前預防故障）。</td></tr>
+        <tr><td>交通</td><td>自動駕駛（結合感測器與導航實現精準控制與路徑規劃）、交通流量預測（分析歷史與即時數據提供動態管理）。</td></tr>
+        <tr><td>娛樂</td><td>遊戲開發（生成自適應角色與情節）、虛擬現實（AI 與 VR 結合創造沉浸環境）、內容推薦（依用戶偏好推薦音樂、影視及文章）。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec1-3">AI 技術架構</h3>
+    <p>人工智慧的實現依賴於一個多層次的架構，從基礎技術到應用開發，最終落地於實際場景。主要構成分為三層：</p>
+    <h4>（1）技術底層</h4>
+    <p>提供必要的計算能力、數據支撐與核心演算法，主要包含以下要素：</p>
+    <table>
+      <thead><tr><th>要素</th><th>說明與技術</th></tr></thead>
+      <tbody>
+        <tr><td>資料處理與分析<br>(Data Processing and Analysis)</td><td>AI 的核心在於數據，包括數據清理、整合、儲存及分析。關鍵技術如 ETL（Extract, Transform, Load）流程、資料庫管理及大數據處理平台（如 Hadoop、Spark）。</td></tr>
+        <tr><td>演算法<br>(Algorithm)</td><td>AI 的邏輯基石，用於解決問題及提供決策支援。常見如迴歸分析、分類演算法、決策樹（Decision Tree）與基因演算法（Genetic Algorithm）。</td></tr>
+        <tr><td>機器學習<br>(Machine Learning)</td><td>透過資料訓練模型來預測或分類，常見如監督式學習、非監督式學習與強化學習。</td></tr>
+        <tr><td>深度學習<br>(Deep Learning)</td><td>構建於人工神經網路之上，適用於非結構化數據，如語音辨識、影像處理與自然語言處理（NLP）；常見框架包括 TensorFlow、PyTorch。</td></tr>
+        <tr><td>專家系統<br>(Expert System)</td><td>基於規則與知識庫，模擬人類專家的決策過程，廣泛應用於醫療診斷、財務分析等專業領域。</td></tr>
+      </tbody>
+    </table>
+    <h4>（2）開發應用</h4>
+    <p>將基礎技術轉化為實際功能與服務的關鍵階段，涵蓋模型設計、訓練、測試及部署等環節，目標是讓 AI 技術解決特定業務需求並提升效率與價值。</p>
+    <h4>（3）實際運用</h4>
+    <ul>
+      <li><span class="term">設計行業解決方案</span>：將 AI 應用於具體場景，如智慧醫療、智慧物流及智慧製造。</li>
+      <li><span class="term">打造產品與服務</span>：開發基於 AI 的商業化產品，如語音助理、推薦演算法及智慧監控系統。</li>
+      <li><span class="term">優化業務流程</span>：透過 AI 實現業務流程優化，提高企業運營效率及競爭力。</li>
+    </ul>
+
+    <h3 id="sec1-4">資料處理與分析（技術底層）</h3>
+    <p>資料（數據）處理與分析是 AI 項目中的基礎階段，旨在將原始數據轉化為高品質且適合分析的格式。此階段包括數據蒐集、清洗、轉換與分析，目標是確保數據的品質、一致性與可用性。</p>
+
+    <h4>（1）數據蒐集（Data Collection）</h4>
+    <p><strong>A. 數據結構類型分類</strong></p>
+    <table>
+      <thead><tr><th>類型</th><th>說明</th><th>常見格式／來源</th></tr></thead>
+      <tbody>
+        <tr><td>結構化數據<br>(Structured Data)</td><td>具有清晰且固定結構，通常以行列形式儲存，便於直接查詢與分析。</td><td>關聯式資料庫（MySQL、PostgreSQL）、規範化電子表格。</td></tr>
+        <tr><td>半結構化數據<br>(Semi-structured Data)</td><td>具有一定結構標籤，但格式靈活，無需嚴格遵循固定架構；適用於描述複雜的層次化數據。</td><td>XML、JSON、CSV。</td></tr>
+        <tr><td>非結構化數據<br>(Unstructured Data)</td><td>無固定結構，需經過處理和解析後才能分析；適合多媒體或自由文本。</td><td>圖片、影像、音訊、文字（如電子郵件、文章）。</td></tr>
+      </tbody>
+    </table>
+    <p><strong>B. 常見數據蒐集方法</strong></p>
+    <ul>
+      <li><span class="term">問卷與調查</span>：透過線上或線下方式直接從目標受眾蒐集第一手數據，常用於市場研究、用戶回饋蒐集或行為洞察。</li>
+      <li><span class="term">自有產品數據</span>：來自企業開發或運營的產品／設備數據，通常與用戶互動相關，如自有網站、App、智慧手錶、汽車等。</li>
+      <li><span class="term">外部公開數據蒐集</span>：透過 API 調用獲取公開數據（如政府資料開放平臺 API），或利用網路爬蟲（Web Scraping）擷取網站公開數據。</li>
+      <li><span class="term">外部付費數據購買</span>：與第三方數據提供商合作，購買專業數據集補充內部數據（如市場調查、人口統計數據）。</li>
+      <li><span class="term">網路爬蟲（Web Scraping）</span>：抓取網站公開數據，如商品價格、使用者評論或新聞文章。</li>
+    </ul>
+
+    <h4>（2）數據清洗（Data Cleaning）</h4>
+    <p>目的是解決數據中的遺缺值、重複值、錯誤值與不一致性問題，確保數據的完整性與可靠性。</p>
+    <table>
+      <thead><tr><th>問題類型</th><th>處理方式</th></tr></thead>
+      <tbody>
+        <tr><td>遺缺值<br>(Missing Value)</td><td>填補遺缺值（平均值、中位數、眾數等統計方法，或插補法 Interpolation／迴歸預測模型）；或刪除記錄（遺缺占比高或不可修復時，須謹慎評估對樣本代表性的影響）。</td></tr>
+        <tr><td>重複值<br>(Duplicate Value)</td><td>透過主鍵、唯一識別碼或關鍵欄位識別重複；保留一份正確記錄，刪除其他重複項。</td></tr>
+        <tr><td>錯誤值<br>(Error/Invalid Value)</td><td>檢測並修正明顯錯誤值，例如超出合理範圍的數值（年齡 -5 歲）、拼寫錯誤（Taiwan 記成 Taiwwn）。</td></tr>
+        <tr><td>離群值<br>(Outlier Value)</td><td>遠離大多數其他數據點的異常值，可能是有意義的數據而非錯誤；須依業務需求與分析目標採取適當策略。</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（3）數據轉換（Data Transformation）</h4>
+    <ul>
+      <li><span class="term">數據格式轉換</span>：將數據從一種格式轉換為另一種（如 CSV 轉 JSON）。</li>
+      <li><span class="term">數據類型轉換</span>：將數據從一種類型轉換為另一種（如字串轉數值）。</li>
+      <li><span class="term">數據正規化／標準化</span>：將數值縮放到特定範圍（如 [0,1] 或 -1 至 1），消除單位影響，使數據在模型中具有可比性。</li>
+      <li><span class="term">數據離散化</span>：將連續型數據轉換為離散區間或類別（如將年齡分為「青年」「中年」「老年」）。</li>
+      <li><span class="term">數據縮減</span>：透過特徵選擇、特徵提取或降維（如主成分分析 PCA）減少數據維度或體積，提高效率並節省儲存空間。</li>
+    </ul>
+
+    <h4>（4）數據分析（Data Analysis）</h4>
+    <p>運用統計方法、機器學習及其他技術，從處理後數據中提取洞察。依分析目的可分為四種主要方法：</p>
+    <p><strong>A. 敘述性分析（Descriptive Analysis）</strong>——描述數據的基本特徵和分佈情況。常用統計指標與圖表如下（各有其優缺點）：</p>
+    <table>
+      <thead><tr><th>指標／圖表</th><th>說明</th><th>優點</th><th>缺點</th></tr></thead>
+      <tbody>
+        <tr><td>平均值 (Mean)</td><td>所有值相加後除以個數，代表平均水平。</td><td>計算簡單、易於理解。</td><td>受極端值（離群值）影響較大。</td></tr>
+        <tr><td>中位數 (Median)</td><td>按大小排列後位於中間的值（偶數取中間兩數平均）。</td><td>不受極端值影響，較能反映中心趨勢。</td><td>對數據分布變動性不敏感。</td></tr>
+        <tr><td>標準差 (Standard Deviation)</td><td>衡量數據分散程度，越大越分散。</td><td>量化分散程度，可比較不同組。</td><td>計算較複雜，受極端值影響。</td></tr>
+        <tr><td>百分位數 (Percentile)</td><td>分為 100 份，第 p 百分位數指有 p% 數據小於或等於它。</td><td>詳細描述分佈，不受極端值影響。</td><td>計算較複雜，大數據集計算量大。</td></tr>
+        <tr><td>直方圖 (Histogram)</td><td>將連續數據分組（bin），以矩形高度表示各組個數。</td><td>直觀展示分布、集中趨勢、分散與異常值。</td><td>組間隔選擇會影響外觀。</td></tr>
+        <tr><td>散佈圖 (Scatter plot)</td><td>展示兩變量之間的關係。</td><td>直觀顯示相關性，可發現異常值。</td><td>數據點過多時圖形擁擠。</td></tr>
+        <tr><td>折線圖 (Line chart)</td><td>顯示數據隨時間或連續變量的變化趨勢。</td><td>清晰展示趨勢，易於比較不同時間點。</td><td>較不適合展示類別型數據。</td></tr>
+      </tbody>
+    </table>
+    <p><strong>B. 探索性分析（Exploratory Analysis）</strong>——無需預設假設，透過多角度探索數據以發現模式、關聯與異常：</p>
+    <ul>
+      <li><span class="term">散佈圖矩陣（Scatter Plot Matrix）</span>：展示多變量兩兩相關性，適合高維數據初步探索。</li>
+      <li><span class="term">熱圖（Heatmap）</span>：以色彩強度展示項目間關聯程度，常用於相關分析。</li>
+      <li><span class="term">平行坐標圖（Parallel Coordinates Plot）</span>：適合分析高維數據，展示多變量趨勢與模式。</li>
+      <li><span class="term">箱型圖／盒鬚圖（Box Plot）</span>：展示分佈情況，突出離群值與中位數等特徵。</li>
+      <li><span class="term">相關性分析（Correlation Analysis）</span>：測量兩變量相關性，如皮爾森相關係數（Pearson Correlation Coefficient）。</li>
+      <li><span class="term">聚類分析（Clustering Analysis）</span>：將數據分為組群，組內相似、組間差異大，如 K 均值聚類（K-Means）、層次聚類（Hierarchical Clustering）。</li>
+      <li><span class="term">主成分分析（PCA）</span>：減少維度同時保留大部分訊息，便於視覺化或進一步分析。</li>
+      <li><span class="term">異常檢測（Anomaly Detection）</span>：識別不符合預期的異常點，如金融交易詐欺偵測。</li>
+    </ul>
+    <p><strong>C. 診斷性分析（Diagnostic Analysis）</strong>——探究特定現象或結果的根本原因，通常基於敘述性分析結果：</p>
+    <ul>
+      <li><span class="term">鑽取／向下分析（Drill-down Analysis）</span>：從宏觀逐層深入細節，逐步鎖定問題範圍（如銷售下降時依地區、產品、時間段分析）。</li>
+      <li><span class="term">關聯分析（Association Analysis）</span>：分析項目間的共現關係，如 Apriori 演算法（「啤酒與尿布的關聯性」），用於推薦系統發掘購買關聯。</li>
+      <li><span class="term">因果分析（Causal Analysis）</span>：分析變量間因果關係，避免混淆相關性與因果性；方法如因果圖、隨機試驗（A/B 測試）。</li>
+    </ul>
+    <p><strong>D. 預測性分析（Predictive Analysis）</strong>——使用歷史數據預測未來事件或趨勢，常基於統計方法與機器學習模型：</p>
+    <table>
+      <thead><tr><th>模型類型</th><th>方法</th><th>應用場景</th></tr></thead>
+      <tbody>
+        <tr><td>迴歸模型 (Regression)</td><td>線性迴歸、多元迴歸、邏輯迴歸等</td><td>房地產價格、銷售額、天氣變化預測。</td></tr>
+        <tr><td>分類模型 (Classification)</td><td>決策樹、隨機森林、支援向量機（SVM）、深度學習（神經網路）</td><td>信用風險評估、疾病診斷、用戶行為預測。</td></tr>
+        <tr><td>時間序列模型 (Time Series)</td><td>ARIMA、SARIMA、LSTM</td><td>銷售預測、需求規劃、股票價格預測。</td></tr>
+        <tr><td>集成學習方法 (Ensemble)</td><td>隨機森林（Random Forest）、梯度提升機（GBM）、極限梯度提升（XGBoost）</td><td>結合多個模型提高預測準確性。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec1-5">演算法：搜尋、排序與常見演算法</h3>
+    <p>演算法（Algorithm）在機器學習與 AI 中扮演關鍵角色，特別是在搜尋與排序方面，廣泛應用於資訊檢索、資料庫管理與數據處理。</p>
+    <h4>常見搜尋演算法</h4>
+    <ul>
+      <li><span class="term">線性搜尋（Linear / Sequential Search）</span>：從第一個元素開始逐個與目標比較，找到即成功，遍歷完仍未找到則失敗。</li>
+      <li><span class="term">二分搜尋（Binary Search）</span>：先比較中間元素，相等即成功；目標較小則搜左半部，較大則搜右半部，重複至找到或範圍為空。</li>
+      <li><span class="term">深度優先搜尋（DFS）</span>：在圖形或樹狀結構中，從起點沿一條路徑儘可能深入，到葉節點或已訪問節點後回溯。</li>
+      <li><span class="term">廣度優先搜尋（BFS）</span>：從起點先訪問所有相鄰節點，再逐層擴散。</li>
+    </ul>
+    <h4>幾種常見且應用廣泛的演算法</h4>
+    <ul>
+      <li><span class="term">線性迴歸（Linear Regression）</span>：預測連續數值輸出（房價、銷售額、股價）。原理為假設輸入與輸出存在線性關係，找出最佳直線（或高維超平面）擬合資料。優點為簡單、效率高；缺點是只能捕捉線性關係。</li>
+      <li><span class="term">邏輯迴歸（Logistic Regression）</span>：名稱含「迴歸」但實為分類演算法，使用 Sigmoid 函數將輸出轉換為 0~1 的機率值，通常設閾值（如 0.5）轉為類別。優點為簡單、輸出具機率意義；但僅能解二元分類，多類別需擴展。</li>
+      <li><span class="term">K-最近鄰演算法（KNN）</span>：基於實例的學習。對新樣本找出訓練集中最接近的 K 個鄰居；分類取多數類別，迴歸取平均值或中位數。</li>
+    </ul>
+
+    <h3 id="sec1-6">機器學習與深度學習概觀</h3>
+    <div class="box def"><span class="tag">定義</span><span class="term">機器學習（Machine Learning）</span>是一種透過數據訓練模型，使機器具備預測與分類能力的技術，常應用於文字辨識、語音辨識、圖像辨識等。一般而言，資料量愈大且經過完整處理，模型效果通常愈好。</div>
+    <h4>機器學習的步驟（簡述）</h4>
+    <ol>
+      <li><span class="term">準備訓練資料</span>：包含資料蒐集、過濾雜訊及前處理。</li>
+      <li><span class="term">訓練模型</span>：將準備好的資料輸入演算法並適度調整參數，使模型儘量符合資料之模式或分佈。</li>
+      <li><span class="term">測試及評估模型</span>：測試並評估效能並反覆訓練；經多次調校仍不佳時，或可改選其他模型重覆流程。</li>
+    </ol>
+    <h4>依訓練方式的三種學習方法</h4>
+    <table>
+      <thead><tr><th>方法</th><th>說明</th><th>典型任務／應用</th></tr></thead>
+      <tbody>
+        <tr><td>監督式學習<br>(Supervised Learning)</td><td>透過帶有標記（Labeled Data）的訓練數據學習輸入特徵與標記之間的關聯，不斷調整參數以提高對未知數據的預測準確度。</td><td>分類（垃圾郵件過濾、影像識別）與迴歸（房價預測、銷售額預測）。</td></tr>
+        <tr><td>非監督式學習<br>(Unsupervised Learning)</td><td>無需事先標記資料，自動從未標記數據中發掘潛在模式、結構或分群（Clustering）。</td><td>資料探索、特徵提取、數據降維；市場區隔、異常偵測、推薦系統、影像壓縮。</td></tr>
+        <tr><td>強化學習<br>(Reinforcement Learning, RL)</td><td>基於「回饋機制」，透過評分與獎勵制定讓 AI 自我評估、朝最大獎勵方向學習；核心是讓代理（Agent）透過與環境互動學習最佳行動策略。</td><td>需「試錯學習（Trial-and-Error）」與長期規劃的任務，如遊戲 AI、機器人控制、自動駕駛。</td></tr>
+      </tbody>
+    </table>
+    <h4>深度學習（Deep Learning, DL）</h4>
+    <p>深度學習是機器學習的子領域，透過多層次的人工神經網路，從大量文本、語音、影像等數據中自動學習特徵。神經網路由許多相互連結的神經元組成，每個神經元接收前一層輸出、經非線性轉換後傳遞給下一層；當大量數據反覆輸入，網路內部連接權重不斷調整，使模型自動提取深層且抽象的特徵。相較傳統機器學習，深度學習不需人類專家手動設計特徵。三大經典模型：</p>
+    <table>
+      <thead><tr><th>模型</th><th>結構／原理</th><th>優缺點</th><th>應用場景</th></tr></thead>
+      <tbody>
+        <tr><td>卷積神經網路<br>(CNN)</td><td>靈感來自動物視覺皮層，擅長圖像。結構含卷積層（提取局部特徵）、池化層（降維防過擬合）、全連接層（映射至輸出做分類／迴歸）。</td><td>優點：適合高維數據、參數量較少、能提取層次化特徵（從邊緣到物體形狀）。</td><td>影像辨識（人臉辨識、手寫數字 MNIST）、物件偵測（自駕障礙物）、圖像分割（醫學病變檢測）。</td></tr>
+        <tr><td>循環神經網路<br>(RNN)</td><td>專為序列數據設計，網路存在循環連接，能記憶序列中之前的資訊；改進版本有 LSTM（引入遺忘門、輸入門、輸出門解決梯度消失）、GRU（結構較簡單，效果相近）。</td><td>優點：捕捉長期依賴、支援變長序列。缺點：訓練易梯度消失／爆炸、長序列計算效率低。</td><td>自然語言處理（機器翻譯、文本生成）、語音辨識、時間序列分析（股價預測）。</td></tr>
+        <tr><td>生成對抗網路<br>(GAN)</td><td>由生成器（Generator，由隨機雜訊生成模擬樣本）與判別器（Discriminator，區分真實或生成）組成，透過對抗學習共同進步。</td><td>優點：生成高品質樣本、適用多領域、數據增強潛力大。缺點：訓練不穩定可能模式崩潰（Mode Collapse）、需大量計算資源。</td><td>圖像生成（草圖轉寫實圖）、文本生成、語音合成。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec1-7">生成式 AI 的訓練流程</h3>
+    <p>生成式人工智慧（Generative AI）是一種強大的自然語言處理模型，透過龐大的參數數量，根據使用者提供的提示詞生成連貫、有意義的文本回應。運作原理是：根據輸入提示詞，模型在大量文本訓練後建立的「文字機率分布」中尋找最可能接續的文字，逐字生成回應。一般而言，參數越多，越能捕捉語言的細微差異。訓練過程主要分為兩階段：</p>
+    <h4>（1）訓練階段</h4>
+    <p>模型在大量文本數據上訓練，學習語言的規律與模式，使其具備基本的語言理解與生成能力。</p>
+    <ul>
+      <li><strong>A. 數據準備</strong>：數據蒐集（蒐集大量高品質數據）、數據清洗（去除雜訊、異常值與不一致部分）、數據預處理（轉換為模型可處理格式，如文本轉數字向量）。</li>
+      <li><strong>B. 模型選擇與搭建</strong>：選擇適合任務的生成模型（GAN、變分自編碼器 VAE、Transformer 等），並搭建輸入層、隱藏層與輸出層。</li>
+      <li><strong>C. 模型訓練</strong>：設計損失函數衡量生成與真實數據的差異、選擇優化器（Adam、SGD）更新參數、迭代訓練直到模型收斂或達預定次數。</li>
+    </ul>
+    <h4>（2）微調階段</h4>
+    <p>在預訓練模型基礎上，使用特定領域或任務的數據進一步訓練，以提升特定任務表現。</p>
+    <ul>
+      <li><strong>A. 特定任務優化</strong>：調整超參數（學習率、批量大小等）、添加特定層（如文本生成任務加語言模型層）。</li>
+      <li><strong>B. 數據精調</strong>：使用與任務相關的數據集微調、透過數據增強（旋轉、翻轉等變換）增加多樣性、提高泛化能力。</li>
+    </ul>
+    <div class="box key"><span class="tag">重點</span>影響生成模型效果的因素：<strong>數據品質</strong>（數量、品質與多樣性具決定性影響）、<strong>模型結構</strong>（不同結構適合不同任務）、<strong>超參數設置</strong>（合理設置可加速收斂並提高效能）、<strong>計算資源</strong>（訓練大型生成模型需大量資源）。</div>
+
+    <h3 id="sec1-8">AI 治理概念</h3>
+    <div class="box note"><span class="tag">編註</span>「AI 治理概念」為本評鑑主題之列項。官方學習指引此小節之正文以圖示／練習題形式呈現（原文為圖示），以下依指引中與 AI 治理直接相關的練習與解析，整理其核心要點。</div>
+    <h4>AI 透明性（Transparency）</h4>
+    <p>為提升 AI 系統的透明性，適當措施為：規劃透過<strong>發布報告、技術文件或網站</strong>揭露 AI 系統的相關資訊（例如定期或不定期發布 AI 系統於各決策環節的決策流程），有助於提升 AI 系統的透明性。</p>
+    <h4>AI 治理中的國際合作</h4>
+    <p>在 AI 治理中，國際合作的重要性涵蓋多個面向：</p>
+    <ul>
+      <li><span class="term">統一 AI 發展標準</span>：確保不同國家在技術應用上的一致性與互操作性。</li>
+      <li><span class="term">避免 AI 技術的濫用</span>：透過跨國監管與政策協調，減少倫理與安全風險。</li>
+      <li><span class="term">促進 AI 技術的轉移</span>：幫助各國共享技術資源，縮小數位鴻溝。</li>
+    </ul>
+
+    <!-- 練習評量 3.1 -->
+    <h3 id="quiz1">練習評量（人工智慧概念）</h3>
+    <div class="box note"><span class="tag">自我檢測</span>
+    <ol>
+      <li>最適合訓練電腦下圍棋、自動駕駛等動態重複互動的問題？<strong>Ans (D) 強化學習</strong>——RL 讓代理透過與環境互動學習一系列動作以最大化累積獎勵，適合動態、複雜環境的決策。</li>
+      <li>關於 AI 的定義何者較正確？<strong>Ans (B)</strong>——AI 包括各種技術，例如機器學習、專家系統等；不限於深度學習，也不僅限於學術或單一領域。</li>
+      <li>提升 AI 系統透明性的適當措施？<strong>Ans (B)</strong>——透過發布報告、技術文件或網站揭露 AI 系統相關資訊。</li>
+      <li>何者不適合作為資料分布估計？<strong>Ans (C) 雷達圖</strong>——雷達圖主要比較多維度表現，無法直觀呈現機率密度；分布宜用直方圖等。</li>
+      <li>K-Means 中的 K 代表什麼？<strong>Ans (C) 所需劃分的群組數量</strong>。</li>
+      <li>深度學習中通常用來降低過擬合？<strong>Ans (D) 增加正則化項</strong>（如 L1、L2），使模型更簡單、提高泛化能力。</li>
+      <li>生成式 AI 最核心的能力？<strong>Ans (C) 生成新的、原創的內容</strong>。</li>
+      <li>生成式 AI 發展的重要技術基礎？<strong>Ans (B) 神經網路</strong>（尤其深度學習模型）。</li>
+      <li>關於 AI 何者較正確？<strong>Ans (B)</strong>——AI 涵蓋機器學習、深度學習、專家系統、NLP、計算機視覺等多種技術。</li>
+      <li>AI 治理中國際合作的重要性？<strong>Ans (D) 以上皆是</strong>（統一標準、避免濫用、促進技術轉移）。</li>
+    </ol>
+    </div>
+
+    <!-- ============ 第三章 3.2 ============ -->
+    <h2 class="chap" id="chap2">二、資料處理與分析概念</h2>
+    <p>在 AI 領域，資料處理與分析是至關重要的基礎，AI 模型的訓練和應用都高度依賴大量、高品質的資料。為了從海量資料中萃取有價值的資訊，統計學扮演不可或缺的角色——從基礎敘述統計到進階重抽樣與模擬技術，統計學是駕馭資料、獲得洞見的指南針。</p>
+
+    <h3 id="sec2-1">統計測量數</h3>
+    <p>統計測量數大致包含三種類型：<strong>中央趨勢的衡量、分散度的衡量及其他測量數</strong>。</p>
+    <h4>中央趨勢（Central Tendency）</h4>
+    <table>
+      <thead><tr><th>統計量</th><th>說明</th><th>特性／限制</th></tr></thead>
+      <tbody>
+        <tr><td>平均數 (Mean)</td><td>描述集中趨勢最常用的統計量，代表所有資料的「重心」。最常見為算術平均數（所有數值相加除以個數）；另有幾何平均數、調和平均數。</td><td>計算簡單、易理解，但容易受極端值影響。</td></tr>
+        <tr><td>中位數 (Median)</td><td>按數值大小排列後位於正中間的數值。</td><td>不易受極端值影響，更能反映典型水平；但複雜數學運算與統計推斷較不易操作。</td></tr>
+        <tr><td>眾數 (Mode)</td><td>一組資料中出現頻率最高的值。</td><td>不受極端值影響，可直接反映最常見類別／數值；但可能有多個或不存在。</td></tr>
+      </tbody>
+    </table>
+    <h4>分散度（Dispersion）</h4>
+    <p>用於衡量資料離散程度，主要用以尋找變異的原因與性質：</p>
+    <ul>
+      <li><span class="term">四分位數（Quartile）</span>：數值由小到大排列分成四等份，三個分割點即四分位數。</li>
+      <li><span class="term">全距（Range, R）</span>：最大值減最小值；僅考慮兩端、未考慮所有觀察值，無法精確反映分散且受極端值影響。</li>
+      <li><span class="term">四分位距（Interquartile Range, IQR）</span>：第三與第一四分位數之差，代表中間 50% 數據的範圍；與全距有同樣缺點。</li>
+      <li><span class="term">平均差（Mean Deviation）</span>：各觀察值與平均數之差距，數值越大表分散越高。</li>
+      <li><span class="term">標準差（Standard Deviation）</span>：衡量分散程度，越大表資料點離平均值越遠。品質管理中常用以評估產品或過程的穩定性，標準差越大表示品質越不穩定、良率越低。</li>
+    </ul>
+
+    <h3 id="sec2-2">機率模型與統計方法分類</h3>
+    <p>從母體抽取樣本時，因樣本的隨機性，樣本統計量與母體參數之間存在差異，稱為<span class="term">抽樣變異</span>。為量化此變異並進行推論，需引入<span class="term">機率模型（Probability Models）</span>，用以刻畫抽樣變異的特性，建立量化估計不確定性的框架，並進一步進行區間估計與假設檢定等統計推斷。</p>
+    <h4>常見統計方法分類</h4>
+    <table>
+      <thead><tr><th>無因果關係</th><th>有因果關係</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>敘述性統計、複選題分析、（多重）交叉分析、卡方檢定、主成份分析、因素分析、集群分析、（偏）相關分析</td>
+          <td>二元羅吉斯迴歸、區別分析、偏相關分析、迴歸分析、（多變量）變異數分析、偏最小平方迴歸</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec2-3">假設檢定（Hypothesis Testing）</h3>
+    <div class="box def"><span class="tag">流程</span>假說檢定之流程：<strong>猜想（假定）→ 蒐集資料 → 檢定 → 作決策（接受或拒絕猜想）</strong>。</div>
+    <table>
+      <thead><tr><th>名詞</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>統計假設 (hypothesis)</td><td>對母體分佈的陳述或推測。包含<strong>虛無假設（H<sub>0</sub>）</strong>（表示不存在顯著效果或差異，作為基準）與<strong>對立假設（H<sub>a</sub>／H<sub>1</sub>、K）</strong>（表示存在顯著效果或差異）。可再分為簡單假設（完全確定母體所有參數）與複合假設（僅對部分參數作假設）。</td></tr>
+        <tr><td>統計推論 (statistical inference)</td><td>導致接受或拒絕統計假設的步驟。</td></tr>
+        <tr><td>假設檢定 (testing hypothesis)</td><td>基於母體之一組隨機樣本 X，決定 H<sub>0</sub>、H<sub>a</sub> 中何者該拒絕。</td></tr>
+        <tr><td>接受域／拒絕域</td><td>接受域（acceptance region）：使 H<sub>0</sub> 被接受之集合；拒絕域（rejection region）：使 H<sub>0</sub> 被拒絕之集合。以 C 為拒絕域，若 χ∈C 則拒絕 H<sub>0</sub>。</td></tr>
+        <tr><td>顯著水準 (significance level)</td><td>α 稱為顯著水準（又稱檢定大小），常取 0.1、0.05 或 0.01。</td></tr>
+        <tr><td>檢定統計量 (test statistic)</td><td>樣本 X 的一個實值函數 T=T(X)，用以決定是否接受 H<sub>0</sub>。</td></tr>
+        <tr><td>p 值 (p-value)</td><td>在 H<sub>0</sub> 為真之下，檢定統計量落在比觀測值至少同樣極端區域之機率（又稱觀測大小）。若 p 值夠小（小於 α），則拒絕虛無假設。</td></tr>
+      </tbody>
+    </table>
+    <h4>檢定的兩類錯誤</h4>
+    <table>
+      <thead><tr><th></th><th>H<sub>0</sub> 為真</th><th>H<sub>0</sub> 為假</th></tr></thead>
+      <tbody>
+        <tr><td>接受 H<sub>0</sub></td><td>正確</td><td>Type II 錯誤（β）</td></tr>
+        <tr><td>拒絕 H<sub>0</sub></td><td>Type I 錯誤（α）</td><td>正確</td></tr>
+      </tbody>
+    </table>
+    <p>其中 α = P(拒絕 H<sub>0</sub> | H<sub>0</sub> 為真)；β = P(接受 H<sub>0</sub> | H<sub>a</sub> 為真)。<span class="box note" style="display:inline;padding:2px 8px">（原文表格中 Type I 錯誤標示為 α，此處依定義對應更正排列）</span></p>
+
+    <h3 id="sec2-4">探索性資料分析（EDA）與驗證性資料分析（CDA）</h3>
+    <p>依分析目的，資料分析可大致分為兩類：</p>
+    <table>
+      <thead><tr><th></th><th>探索性資料分析<br>(Exploratory Data Analysis, EDA)</th><th>驗證性資料分析<br>(Confirmatory Data Analysis, CDA)</th></tr></thead>
+      <tbody>
+        <tr><td>目的</td><td>無需預設假設，靈活開放地探索資料，發現潛在模式、關係與異常值；是一種「生成假設」的過程。</td><td>注重驗證研究者提出的假設，對探索階段發現的模式進行更深入挖掘。</td></tr>
+        <tr><td>時機</td><td>通常在研究初期、對資料特徵尚不熟悉時進行，為後續分析奠定基礎。</td><td>在 EDA 提出初步假設後，進行驗證階段。</td></tr>
+        <tr><td>方法</td><td>視覺化工具觀察分佈、提出初步假設。</td><td>分類、分群、相關性分析、預測模型；亦可結合定性分析深入探討。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec2-5">資料隱私與安全</h3>
+    <div class="box note"><span class="tag">編註</span>「資料隱私與安全」為本評鑑主題之列項。官方學習指引此小節之正文主要以圖示／參考文件形式呈現（原文為圖示）。指引附錄列出之相關參考規範包括：行政院《行政院及所屬機關（構）使用生成式 AI 參考指引（草案）》、金融業務電子化委員會《金融機構運用人工智慧技術作業規範》、科技部（現國科會）《人工智慧科研發展指引》、臺北市政府《臺北市政府使用人工智慧作業指引》等，可作為資料隱私與安全治理之延伸閱讀依據。</div>
+
+    <!-- 練習評量 3.2 -->
+    <h3 id="quiz2">練習評量（資料處理與分析概念）</h3>
+    <div class="box note"><span class="tag">自我檢測</span>
+    <ol>
+      <li>關於 K-means 何者「不」正確？<strong>Ans (D)</strong>——K-means 不適合直接處理類別型資料（其特性：隨機選取群集中心、依距離計算、易受離群值影響）。</li>
+      <li>品質管理中標準差顯著偏大通常意味？<strong>Ans (B)</strong>——生產過程波動大、產品品質不穩定。</li>
+      <li>何者「並非」K-means 的特點？<strong>Ans (B)</strong>。</li>
+      <li>CDA 相較 EDA 主要著重？<strong>Ans (B) 驗證先前生成的假設並深入挖掘</strong>。</li>
+      <li>哪種情況最適合用中位數描述集中趨勢？<strong>Ans (B)</strong>——含少數豪宅極端高價的房價數據（中位數不受極端值影響）。</li>
+      <li>平均數小於中位數，分布可能為？<strong>Ans (C) 負偏態分布</strong>（尾巴向左延伸）。</li>
+      <li>p 值 0.03、顯著水準 0.05？<strong>Ans (B)</strong>——0.03&lt;0.05 故拒絕虛無假設，有 95% 信心。</li>
+      <li>平均數大於中位數，分布可能為？<strong>Ans (C) 正偏態分布</strong>（尾巴向右延伸）。</li>
+      <li>關於四分位距（IQR）何者正確？<strong>Ans (C)</strong>——IQR 是 Q3 與 Q1 之差。</li>
+      <li>哪種情況最適合用眾數？<strong>Ans (B)</strong>——某產品銷量遠高於其他時，眾數能直接反映最受歡迎的產品。</li>
+    </ol>
+    </div>
+
+    <!-- ============ 第三章 3.3 ============ -->
+    <h2 class="chap" id="chap3">三、機器學習概念</h2>
+    <p>機器學習（Machine Learning）作為人工智慧的核心支柱，是一種基於數據驅動的方法，旨在讓計算機系統從經驗中學習並執行特定任務，無需依賴人為編寫的規則。它涵蓋三大主要類型：<strong>監督式學習、非監督式學習和強化學習</strong>。隨著演算法進化、大數據普及與計算能力提升，機器學習已從理論研究拓展到醫療、金融、交通、語音辨識、NLP、智慧推薦等各行各業。</p>
+    <div class="box note"><span class="tag">挑戰</span>機器學習仍面臨：數據品質不均衡、標記數據匱乏、模型解釋性與透明性不足、隱私保護與倫理責任爭議，以及偏見數據可能導致歧視性輸出。研究界與產業界需攜手打造更透明、公平且可靠的系統。</div>
+
+    <h3 id="sec3-1">機器學習基本原理</h3>
+    <p>機器學習的基本原理是利用數據中的模式與規律，透過演算法構建模型進行預測和決策；其目的是讓系統自動從數據中學習、在沒有明確指令下不斷改進效能。</p>
+    <ul>
+      <li><strong>A. 機器學習的特徵</strong>：基於數據的學習與自適應能力。透過分析大量歷史數據構建預測模型，並在新數據到來時動態更新（如醫療影像病變辨識、金融市場趨勢與信用風險評估）。</li>
+      <li><strong>B. 技術優勢</strong>：強大的自適應能力與廣泛應用場景；能處理結構化與非結構化數據（圖像、文本、語音），具高度可擴展性（如智慧推薦、自動駕駛、零售庫存與需求預測）。</li>
+      <li><strong>C. 挑戰與未來方向</strong>：數據品質（缺失、不平衡、雜訊）直接影響準確性；解釋性與透明性不足限制了在醫療、法律等領域的應用。未來將更注重提升模型的解釋性與公平性（視覺化技術、可解釋演算法、去偏演算法），並推動跨領域整合應用。</li>
+    </ul>
+
+    <h3 id="sec3-2">三大學習類型（常見機器學習模型）</h3>
+    <h4>（1）監督式學習（Supervised Learning）</h4>
+    <p>以「有標記的數據」為基礎，目標在學習輸入與輸出之間的映射關係。兩種主要任務為迴歸與分類：</p>
+    <ul>
+      <li><span class="term">線性迴歸</span>：迴歸任務的經典基礎演算法，透過擬合數據預測連續結果（如依房屋面積、地理位置預測房價）。</li>
+      <li><span class="term">支援向量機（SVM）</span>：分類常用工具，特別適合二元分類，透過建立最佳分類邊界（超平面）劃分類別（如醫學影像判別腫瘤良惡性）。</li>
+      <li><span class="term">神經網路（Neural Networks）</span>：模仿人腦神經元，能處理高度非線性與複雜數據（如語音辨識將音訊轉文字）。</li>
+    </ul>
+    <h4>（2）非監督式學習（Unsupervised Learning）</h4>
+    <p>不依賴標記資料，透過分析數據的內在結構尋找潛在模式。核心目標包括「聚類」與「降維」：</p>
+    <ul>
+      <li><span class="term">K 均值聚類（K-Means Clustering）</span>：將數據分為若干群組，組內高度相似（如市場區隔分析客戶購買行為）；亦用於異常檢測（如網路安全識別異常數據）。</li>
+      <li><span class="term">主成分分析（PCA）</span>：透過線性變換將高維數據壓縮到低維空間，同時保留主要訊息（如圖像壓縮、基因數據特徵提取）。</li>
+    </ul>
+    <h4>（3）強化學習（Reinforcement Learning）</h4>
+    <p>代理（Agent）透過探索環境執行不同行動，並依環境回饋不斷更新策略，反映「試錯學習」本質，核心目標是最大化<strong>累積獎勵（Cumulative Reward）</strong>。</p>
+    <p><strong>三個核心要素</strong>：</p>
+    <ul>
+      <li><span class="term">代理（Agent）</span>：負責進行決策和行動的學習系統。</li>
+      <li><span class="term">環境（Environment）</span>：代理所處的操作環境，會根據代理的行動提供回饋。</li>
+      <li><span class="term">獎勵（Reward）</span>：代理執行某行動後獲得的回饋，表示行動的好壞。</li>
+    </ul>
+    <p><strong>強化學習流程</strong>：</p>
+    <ol>
+      <li>初始狀態（Initial State）：代理從環境獲取當前狀態（State）。</li>
+      <li>選擇行動（Action Selection）：代理基於策略（Policy）選擇行動，可為隨機探索（Exploration）或基於經驗（Exploitation）。</li>
+      <li>執行行動（Action Execution）：環境根據行動返回新狀態（Next State）與獎勵（Reward）。</li>
+      <li>更新策略（Policy Update）：代理依結果更新決策策略，以最大化未來累積獎勵。</li>
+    </ol>
+    <p><strong>常見方法</strong>：</p>
+    <ul>
+      <li><span class="term">Q-Learning</span>：透過試錯找到最佳決策，核心是學習每個行動的長期價值（Q 值），不斷更新 Q 值形成最佳決策策略（如遊戲 AI 選最有利的下一步）。</li>
+      <li><span class="term">Deep Q-Learning（DQN）</span>：結合深度學習，以深度神經網路（DNN）近似 Q 值，解決狀態空間過大時 Q 表（Q-Table）不可行的問題；輸入為當前狀態、輸出為各行動的 Q 值，選 Q 值最高者執行。引入經驗回放（Experience Replay）與目標網路（Target Network）以穩定學習、減少震盪與過擬合。</li>
+    </ul>
+    <div class="box note"><span class="tag">應用範例</span>遊戲（AlphaGo 結合深度學習與強化學習自我對弈擊敗頂尖棋手；Atari 遊戲透過 DQN 達到甚至超越人類）、機器人控制（學習行走平衡、機械臂精準抓取）、自動駕駛（路徑規劃，動態計算最優路徑）。</div>
+
+    <h3 id="sec3-3">機器學習的實現流程</h3>
+    <p>機器學習的實現核心流程可分為三大階段：<strong>數據處理、模型訓練、模型評估與優化</strong>。</p>
+    <h4>（1）數據處理</h4>
+    <ul>
+      <li><strong>A. 數據清洗</strong>：處理遺缺值（均值填補、中位數／眾數填補、刪除法）與異常值（四分位距法、標準差法）。</li>
+      <li><strong>B. 數據標準化</strong>：將不同量級數據轉換到統一範圍。常用<span class="term">最小-最大標準化（Min-Max Scaling）</span>（映射到 0~1）與 <span class="term">Z-score 標準化</span>（轉換為均值 0、標準差 1 的分佈）。對梯度下降等對特徵尺度敏感的演算法尤為重要。</li>
+      <li><strong>C. 特徵選擇與降維</strong>：
+        <ul>
+          <li>特徵選擇：過濾法（Filter，如 Pearson 相關係數）、包裝法（Wrapper，如遞迴特徵消除 RFE）、嵌入法（Embedded，如 LASSO 正則化）。</li>
+          <li>降維：主成分分析（PCA）等，將冗餘特徵壓縮到低維空間。</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>（2）模型訓練</h4>
+    <ul>
+      <li><strong>A. 損失函數（Loss Function）</strong>：衡量模型預測值與實際目標之間的差異，損失值越高表示誤差越大。常見：均方誤差（MSE，用於迴歸）、交叉熵損失（Cross-Entropy Loss，用於分類）。</li>
+      <li><strong>B. 優化演算法</strong>：透過優化器最小化損失。批次梯度下降（BGD，基於整個數據集）、隨機梯度下降（SGD，每次一個樣本、速度快但收斂不穩）、Adam（結合動量法與 RMSProp，自適應學習率，目前最廣泛使用之一）。</li>
+      <li><strong>C. 過擬合防範</strong>：Regularization（L1、L2 懲罰項）、Early Stopping（驗證集表現下降時停止）、Data Augmentation（旋轉、翻轉擴展資料）。</li>
+    </ul>
+    <h4>（3）模型評估與優化</h4>
+    <ul>
+      <li><strong>A. 效能評估指標</strong>：準確率（Accuracy，適用平衡分類）、F1 分數（綜合精確率 Precision 與召回率 Recall，適合不平衡數據）、均方誤差（MSE，適用迴歸）。</li>
+      <li><strong>B. 交叉驗證</strong>：評估模型穩健性。<span class="term">K 折交叉驗證（K-Fold Cross-Validation）</span>將數據分成 K 個子集，每次取一個作測試、其餘作訓練，重複 K 次取平均，降低過擬合風險。</li>
+      <li><strong>C. 模型調參</strong>：網格搜索（Grid Search，逐一嘗試組合）、隨機搜索（Random Search，適合高維參數空間）、貝葉斯優化（Bayesian Optimization，依歷史結果逐步尋優）。</li>
+    </ul>
+
+    <!-- 練習評量 3.3 -->
+    <h3 id="quiz3">練習評量（機器學習概念）</h3>
+    <div class="box note"><span class="tag">自我檢測</span>
+    <ol>
+      <li>機器學習的三個核心要素？<strong>Ans (A) 數據、模型、損失函數</strong>。</li>
+      <li>何者屬監督式學習的特點？<strong>Ans (A) 數據集中包含標記訊息</strong>。</li>
+      <li>過擬合的主要原因？<strong>Ans (C) 模型過度學習數據中的雜訊</strong>。</li>
+      <li>交叉驗證的主要目的？<strong>Ans (C) 減少模型的過擬合風險</strong>。</li>
+      <li>梯度下降主要用於？<strong>Ans (B) 優化模型參數以最小化損失函數</strong>。</li>
+      <li>線性迴歸最適合解決？<strong>Ans (B) 銷售額預測</strong>（連續值問題）。</li>
+      <li>決策樹的最大優勢？<strong>Ans (B) 具有良好的可解釋性</strong>。</li>
+      <li>神經網路與傳統模型的主要區別？<strong>Ans (B) 透過多層結構學習複雜特徵</strong>。</li>
+      <li>關於 GAN 的描述何者正確？<strong>Ans (B) 由生成器和鑑別器組成</strong>。</li>
+      <li>隨機森林如何改進單一決策樹？<strong>Ans (B) 集成多棵隨機生成的決策樹並投票</strong>。</li>
+    </ol>
+    </div>
+
+    <!-- ============ 第三章 3.4 ============ -->
+    <h2 class="chap" id="chap4">四、鑑別式 AI 與生成式 AI 概念</h2>
+    <div class="box def"><span class="tag">定義</span><span class="term">鑑別式 AI（Discriminative AI, DAI）</span>專注於學習數據特徵與目標標記之間的條件機率 P(y|x)，主要用於分類與迴歸任務，典型模型如 SVM、邏輯迴歸、神經網路。<br><span class="term">生成式 AI（Generative AI, GAI）</span>專注於學習數據的聯合分佈 P(x,y) 或邊際分佈 P(x)，能生成具創新性的新數據樣本，典型模型如 GAN、變分自編碼器（VAE）、擴散模型（Diffusion Models）。</div>
+
+    <h3 id="sec4-1">基本原理與關鍵差異</h3>
+    <p>生成式 AI 基於啟發式的提示工程（Prompt Engineering）與生成內容的固有變異性（Inherent Variance），使用者會持續反覆調整輸入提示直到任務解決。<strong>生成新數據且基於相同輸入產生不同輸出</strong>，是生成式 AI 有別於鑑別式 AI 的主要目標。</p>
+    <div class="box key"><span class="tag">關鍵差異</span>
+      <ul style="margin:6px 0">
+        <li><span class="term">生成式 AI</span>：利用龐大的訓練數據生成多樣化內容（文本、圖像、音訊、影片），展現高度靈活性與創造力。</li>
+        <li><span class="term">鑑別式 AI</span>：基於數據分析尋找分類邊界（Boundary Determination），執行分類（Classification）、預測（Prediction）等任務，依賴預先訓練的演算法達成高效準確的決策。</li>
+      </ul>
+      差異核心在於「數據的角色與目標」：生成式 AI 在創新內容生成上表現出色，鑑別式 AI 則在精準分析與決策支持方面具有優勢。
+    </div>
+
+    <h3 id="sec4-2">鑑別式 AI 的原理與常見模型</h3>
+    <p>鑑別式 AI 透過學習條件機率 P(y|x) 進行預測，核心思想在於區分不同類別之間的差異，找到最適合分類或迴歸的邊界；不建構數據生成的內在機制。常用於醫學影像分類、信用風險評估、語音辨識、文本分類等，具良好解釋性與泛化能力。</p>
+    <table>
+      <thead><tr><th>模型</th><th>原理</th><th>應用場景</th></tr></thead>
+      <tbody>
+        <tr><td>邏輯迴歸<br>(Logistic Regression)</td><td>最簡單基礎的二元分類模型，透過 sigmoid 函數將線性輸出映射到 0~1 作為機率，超過閾值（如 0.5）即分類；以最大似然估計（MLE）學習最優參數。</td><td>醫療診斷（依年齡、血壓預測罹病可能）、市場營銷（預測購買轉換率）、金融風險評估（評估貸款違約風險）。</td></tr>
+        <tr><td>支援向量機<br>(SVM)</td><td>尋找最大化類別間隔的超平面以達最優分類；線性不可分時引入核函數（多項式核、高斯核）將數據映射到高維空間。</td><td>文本分類（垃圾郵件、情感分析）、圖像識別（人臉識別、物件分類）、生物資訊學（基因表達、蛋白質分類）。</td></tr>
+        <tr><td>決策樹<br>(Decision Tree)</td><td>基於樹形結構逐層劃分特徵空間形成分類規則；以資訊增益、吉尼係數或均方誤差選擇最佳劃分特徵（遞迴分割）。</td><td>醫療診斷（逐步排除無關疾病）、金融風險評估、行銷分析（個人化推薦策略）。</td></tr>
+        <tr><td>隨機森林<br>(Random Forest)</td><td>決策樹的集成學習，利用 Bootstrap 取樣構建多棵獨立決策樹，最終投票或平均；引入隨機性降低過擬合。</td><td>醫學影像分類、金融市場分析（股價預測、風險管理）、生態環境監測。</td></tr>
+        <tr><td>神經網路<br>(Neural Networks)</td><td>模擬生物神經系統的非線性模型，由輸入層、隱藏層、輸出層組成，透過激勵函數（Activation Function）與反向傳播（Backpropagation）調整權重以最小化損失。</td><td>語音辨識、自動駕駛（處理影像、雷達等多模態數據）、圖像辨識（MRI／CT 異常病變）。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec4-3">生成式 AI 的原理與常見模型</h3>
+    <p>生成式 AI 透過學習數據的聯合分佈 P(x,y) 或邊際分佈 P(x) 來生成新數據樣本，目標是模擬真實數據分佈並創建具真實感且多樣化的新樣本，能在無標記或數據稀缺時有效增強數據集。</p>
+    <table>
+      <thead><tr><th>模型</th><th>原理</th><th>應用場景</th></tr></thead>
+      <tbody>
+        <tr><td>生成對抗網路<br>(GAN)</td><td>由生成器（Generator，由隨機雜訊產生接近真實的數據）與鑑別器（Discriminator，區分真實與生成數據）組成；生成器努力「欺騙」鑑別器，鑑別器努力提高區分能力，透過動態對抗使生成器逐漸生成高品質數據。</td><td>圖像生成與修復（StyleGAN 生成真實人臉、補全缺損圖像）、風格遷移（照片轉油畫／動漫）、醫療影像生成（生成稀缺病理影像解決數據不平衡）、虛擬場景模擬（遊戲環境、VR 場景）。</td></tr>
+        <tr><td>變分自編碼器<br>(VAE)</td><td>基於機率生成模型，將數據映射到隱變量空間（Latent Space）並重建。含編碼器（Encoder，壓縮到低維隱變量空間學習潛在分佈）與解碼器（Decoder，從隱變量空間重建數據）；引入隨機變量與正則化平衡生成能力與穩定性。</td><td>數據修復與重建（修補損壞圖像／影片）、異常檢測（學習正常分佈識別異常，用於網路安全、工業故障）、數據生成、醫療數據增強。</td></tr>
+        <tr><td>擴散模型<br>(Diffusion Models)</td><td>基於逐步添加與去除雜訊的生成方法，適合高維數據。訓練階段向數據逐步添加雜訊轉為高斯雜訊；生成階段透過反向過程逐步去除雜訊重建真實樣本。</td><td>高品質圖像生成（高分辨率、細節豐富）、醫療影像合成（解決臨床數據稀缺）、文本到圖像生成（描述性文本轉圖像，用於數位內容、廣告設計）。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec4-4">鑑別式 AI 與生成式 AI 的技術差異</h3>
+    <table>
+      <thead><tr><th>面向</th><th>鑑別式 AI</th><th>生成式 AI</th></tr></thead>
+      <tbody>
+        <tr><td>模型目標</td><td>學習數據的決策邊界進行分類或預測，專注於區分不同類別（如辨識圖片是否含某物體、郵件是否為垃圾郵件）。</td><td>學習數據的內在分佈，並基於分佈生成新數據（如 ChatGPT 生成文本、DALL-E 生成圖片）。</td></tr>
+        <tr><td>輸出特性</td><td>分類標籤或數值預測，目的是做出準確決策／分類，而非產生新內容。</td><td>新的數據樣本（文字、音樂、影像、合成語音），具一定創新性與變異性。</td></tr>
+        <tr><td>應用場景</td><td>影像辨識（人臉、醫學影像診斷）、語音辨識（語音轉文字）、NLP（情感分析、語意理解）、風險評估（信用評級、金融詐欺偵測）。</td><td>內容生成（對話、藝術圖像）、風格轉換、數據增強（生成額外訓練數據提升泛化）、影音合成（Deepfake 虛擬角色）。</td></tr>
+        <tr><td>技術挑戰</td><td>數據偏見（Bias in Data）、過擬合（Overfitting）、標記成本（Labeling Cost）。</td><td>內容真實性（可能產生錯誤新聞或虛假圖片）、可控性（Controlability，輸出難精確控制）、計算成本（Computational Cost）。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec4-5">鑑別式 AI 與生成式 AI 的整合應用</h3>
+    <p>隨著應用場景日益複雜，兩者的整合成為突破技術瓶頸的重要途徑，可實現數據增強、模型泛化能力提升與多模態融合，特別在醫療、交通、金融、教育等領域具顯著價值。</p>
+    <h4>（1）整合應用的價值</h4>
+    <ul>
+      <li><span class="term">數據增強與分析的協同效應</span>：生成式 AI 生成多樣化數據（如 GAN 生成病變模擬影像、模擬不同市場條件的金融數據），鑑別式 AI 進一步分類、預測與分析，解決數據稀缺／不平衡並提高泛化效能與準確率。</li>
+      <li><span class="term">多模態數據的處理與應用</span>：生成式 AI 負責跨模態數據生成與轉換，鑑別式 AI 負責精確分類與決策（如自駕生成各種天氣／路況場景供訓練；智慧語音系統中生成式生成回應、鑑別式進行語音辨識與語意分析）。</li>
+      <li><span class="term">提升模型的泛化能力</span>：生成多樣化樣本擴展鑑別式 AI 的學習邊界（如教育領域模擬學生學習場景、智慧城市模擬突發事件生成應急數據）。</li>
+    </ul>
+    <h4>（2）整合應用的技術優勢</h4>
+    <ul>
+      <li><span class="term">數據生成與判斷的融合</span>：如醫療圖像診斷（GAN 生成病理影像訓練 CNN 提高分類準確性）、異常檢測（生成式模擬異常場景、鑑別式識別標記異常）。</li>
+      <li><span class="term">即時分析與回饋機制</span>：如自動駕駛（生成式模擬濃霧、冰雪路面，鑑別式即時環境識別與路徑規劃）、網路安全防禦（生成式模擬攻擊模式，鑑別式即時分析流量識別異常）。</li>
+      <li><span class="term">系統的靈活性與適應性</span>：如智慧客服（生成式生成多樣回應、鑑別式過濾不當內容）、內容生成與審核（生成式產出新聞／廣告文案、鑑別式進行合規性與品質檢測）。</li>
+    </ul>
+    <h4>（3）整合應用的挑戰與解決策略</h4>
+    <table>
+      <thead><tr><th>挑戰</th><th>說明與解決策略</th></tr></thead>
+      <tbody>
+        <tr><td>模型訓練穩定性</td><td>生成式 AI 常面臨模式崩潰與梯度消失。可採用 Wasserstein GAN（WGAN）等改進型模型提升穩定性，並引入自適應優化技術。</td></tr>
+        <tr><td>數據偏差與公平性</td><td>生成數據可能放大訓練數據偏差，導致鑑別決策不公平。解決方法：在生成過程引入去偏演算法，並強化數據審核機制，確保多樣性與代表性。</td></tr>
+        <tr><td>整合架構的設計與實現</td><td>涉及模型間通訊與數據共享。可採分層架構分別處理生成與分類任務、透過共享層即時交換資訊，並以動態學習框架隨數據分佈變化即時調整。</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 練習評量 3.4 -->
+    <h3 id="quiz4">練習評量（鑑別式 AI 與生成式 AI 概念）</h3>
+    <div class="box note"><span class="tag">自我檢測</span>
+    <ol>
+      <li>鑑別式 AI 的主要目標？<strong>Ans (C) 分類或迴歸數據</strong>（學習條件機率 P(y|x)）。</li>
+      <li>何者屬生成式 AI 使用之模型？<strong>Ans (C) 生成對抗網路（GAN）</strong>。</li>
+      <li>目前生成式 AI 主要應用「不」包括？<strong>Ans (C) 分類醫學影像</strong>（屬鑑別式 AI 範疇）。</li>
+      <li>GAN 的兩個核心組件？<strong>Ans (C) 生成器與鑑別器</strong>。</li>
+      <li>關於鑑別式 AI 何者較正確？<strong>Ans (B) 專注於數據的分類或迴歸任務</strong>。</li>
+      <li>醫學影像中兩者整合的主要目的？<strong>Ans (C) 提高診斷準確性和數據多樣性</strong>。</li>
+      <li>生成式 AI 支援鑑別式 AI 的典型案例？<strong>Ans (A) 模擬交通場景以訓練自動駕駛模型</strong>。</li>
+      <li>解決生成式模型訓練不穩定性的方法？<strong>Ans (B) 採用 Wasserstein GAN（WGAN）</strong>。</li>
+      <li>生成式 AI 的數據增強主要解決？<strong>Ans (B) 數據稀缺或不平衡</strong>。</li>
+      <li>未來整合兩者的關鍵方向？<strong>Ans (B) 開發更高效的整合框架</strong>。</li>
+    </ol>
+    </div>
+
+    <!-- ============ 附錄 ============ -->
+    <h2 class="chap" id="refs">附錄：本學習指引參考書目</h2>
+    <table>
+      <thead><tr><th>書名／文件</th><th>作者／單位</th><th>出版／版本</th></tr></thead>
+      <tbody>
+        <tr><td>大數據分析與資料挖礦 2/e</td><td>簡禎富、許嘉裕</td><td>前程文化</td></tr>
+        <tr><td>圖解 AI｜機器學習和深度學習的技術與原理</td><td>株式会社アイデミー（山口達輝、松田洋之 著；衛宮紘 譯）</td><td>碁峰</td></tr>
+        <tr><td>精通機器學習｜使用 Scikit-Learn, Keras 與 TensorFlow, 2/e</td><td>Aurélien Géron 著；賴屹民 譯</td><td>歐萊禮</td></tr>
+        <tr><td>數位治理韌性、AI、規管</td><td>彭芸、葉志良（主編）</td><td>翰蘆圖書</td></tr>
+        <tr><td>行政院及所屬機關（構）使用生成式 AI 參考指引（草案）</td><td>行政院</td><td>—</td></tr>
+        <tr><td>金融機構運用人工智慧技術作業規範</td><td>金融業務電子化委員會</td><td>113 年 3 月版</td></tr>
+        <tr><td>人工智慧科研發展指引</td><td>科技部（現為國科會）</td><td>108 年 9 月版</td></tr>
+        <tr><td>臺北市政府使用人工智慧作業指引</td><td>臺北市政府</td><td>113 年 9 月版</td></tr>
+        <tr><td>AI 自動化流程超 Easy：不寫程式 No code 也能聰明幹大事</td><td>施威銘研究室</td><td>旗標</td></tr>
+        <tr><td>Interim guidance on government use of public generative AI tools</td><td>Digital Transformation Agency, Australian Government</td><td>Nov. 22, 2023</td></tr>
+        <tr><td>Guidance to Civil Servants on Use of Generative AI</td><td>Cabinet Office of UK（GOV.UK）</td><td>Nov. 22, 2023</td></tr>
+        <tr><td>Generative AI Guidelines</td><td>City of San Jose</td><td>Sept. 23, 2023</td></tr>
+      </tbody>
+    </table>
+
+    <footer>
+      來源：經濟部產業人才能力鑑定 iPAS — 初級學習指引《人工智慧基礎概論》（科目一）。
+      本教材為學習整理，非官方教材或題庫；請以官方公告為準。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = -1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].offsetTop <= pos) current = i;
+    }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

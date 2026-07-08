@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人工智慧基礎概論 — 考前重點 + 歷屆試題解析</title>
+<style>
+:root{--accent:#b45309;--accent-soft:#fdf1e3;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:27px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+/* 題目卡片 */
+.q{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:16px 0;background:#fff;}
+.q .qno{font-weight:700;color:var(--accent);margin-right:6px;}
+.q .stem{font-weight:600;margin:0 0 10px;}
+.q .opts{list-style:none;padding:0;margin:0 0 10px;}
+.q .opts li{padding:3px 0;}
+.q .ans{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;margin:4px 0;font-size:14px;}
+.q .exp{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:15px;}
+.q .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc">
+<a href="index.html">← 回教材首頁</a>
+<h2>考前重點</h2>
+<a class="sub" href="#c1">3.1 人工智慧概念</a>
+<a class="sub" href="#c2">3.2 資料處理與分析概念</a>
+<a class="sub" href="#c3">3.3 機器學習概念</a>
+<a class="sub" href="#c4">3.4 鑑別式AI 與生成式AI</a>
+<a class="sub" href="#c5">AI 治理與法規速覽</a>
+<a class="sub" href="#c6">易混淆觀念對照表</a>
+<a class="sub" href="#c7">常見計算/公式速查</a>
+<h2>歷屆試題解析</h2>
+<a href="#e114">114 年第四梯次</a>
+<a href="#e115a">115 年第一次</a>
+<a href="#e115b">115 年第二次</a>
+</nav>
+<main>
+<header class="page">
+<span class="level">初級・科目一</span>
+<h1>人工智慧基礎概論 — 考前重點 + 歷屆試題解析</h1>
+<p class="sub">iPAS AI 應用規劃師　應考導向版本（考前重點 + 三梯次歷屆試題完整解析）</p>
+</header>
+
+<h2 class="chap" id="cram">區一・考前重點（Cram Sheet）</h2>
+
+<h3 id="c1">3.1 人工智慧概念</h3>
+
+<div class="box def"><span class="tag">定義</span><span class="term">人工智慧（Artificial Intelligence, AI）</span>：旨在模擬人類智慧的技術，使機器能執行原本需人類智慧才能完成的任務，如學習、推理、解決問題、感知環境等。</div>
+
+<h4>AI 依功能分類</h4>
+<ul>
+<li><span class="term">分析型 AI</span>：洞悉數據模式，分析與處理大量數據以提供有價值的見解。</li>
+<li><span class="term">預測型 AI</span>：基於歷史資料，預測未來趨勢與行為（市場預測、風險評估）。</li>
+<li><span class="term">生成型 AI</span>：近年快速發展，依使用者提示詞（prompt）生成文字、語音、圖像、影片等素材。生成式 AI 自 2022 年起快速發展。</li>
+</ul>
+
+<div class="box key"><span class="tag">高頻考點：能力範疇分類</span>
+<ul>
+<li><span class="term">弱 AI / 狹義 AI（Weak AI / Narrow AI）</span>：只能處理特定、限定範圍的任務，無法遷移至其他任務（目前絕大多數實務 AI 皆屬此類）。</li>
+<li><span class="term">強 AI（Strong AI）</span>：具備與人類相當的廣泛智慧。</li>
+<li><span class="term">通用人工智慧（AGI）</span>：能跨領域處理任意智慧任務。</li>
+<li><span class="term">超級人工智慧（ASI）</span>：全面超越人類智慧。</li>
+</ul></div>
+
+<h4>AI 主要應用領域（記實例）</h4>
+<table>
+<tr><th>領域</th><th>代表應用</th></tr>
+<tr><td>醫療保健</td><td>疾病診斷（醫學影像）、藥物研發、個人化醫療</td></tr>
+<tr><td>金融</td><td>風險評估、欺詐檢測、自動（高頻）交易</td></tr>
+<tr><td>製造業</td><td>自動化生產、品質控制（影像辨識檢測缺陷）、預測性維護</td></tr>
+<tr><td>交通</td><td>自動駕駛、交通流量預測</td></tr>
+<tr><td>娛樂</td><td>遊戲開發、虛擬實境、內容推薦</td></tr>
+</table>
+
+<h4>AI 技術架構與底層要素</h4>
+<ul>
+<li><span class="term">技術底層</span>：資料處理與分析（ETL、資料庫、Hadoop/Spark）、演算法（迴歸、分類、決策樹、基因演算法）、機器學習、深度學習（TensorFlow、PyTorch）、專家系統（規則與知識庫）。</li>
+<li><span class="term">開發應用</span>：模型設計、訓練、測試、部署。</li>
+<li><span class="term">實際運用</span>：設計行業解決方案、打造產品與服務、優化業務流程。</li>
+</ul>
+
+<h4>常見搜尋與排序演算法</h4>
+<ul>
+<li><span class="term">線性搜尋</span>：逐一比對，最慢。</li>
+<li><span class="term">二分搜尋</span>：須先排序，每次比較取中間值排除一半，效率高（log 級）。</li>
+<li><span class="term">DFS 深度優先</span>：沿一路徑深入再回溯；<span class="term">BFS 廣度優先</span>：逐層擴散。</li>
+</ul>
+
+<h3 id="c2">3.2 資料處理與分析概念</h3>
+
+<div class="box def"><span class="tag">資料結構類型（高頻）</span>
+<ul>
+<li><span class="term">結構化數據</span>：清晰固定結構、行列形式，如關聯式資料庫（MySQL、PostgreSQL）、規範化試算表。</li>
+<li><span class="term">半結構化數據</span>：有標籤但格式靈活，如 XML、JSON、CSV。</li>
+<li><span class="term">非結構化數據</span>：無固定結構，如圖片、影像、音訊、電子郵件、文章自由文本。</li>
+</ul></div>
+
+<h4>資料蒐集方法</h4>
+<ul>
+<li>問卷與調查、自有產品數據、外部公開數據（API、網路爬蟲 Web Scraping）、外部付費數據購買。</li>
+</ul>
+
+<h4>資料清洗（Data Cleaning）</h4>
+<ul>
+<li><span class="term">遺缺值</span>：填補（平均值/中位數/眾數/插補/預測模型）或刪除記錄。</li>
+<li><span class="term">重複值</span>：依主鍵/唯一識別碼識別並刪除多餘項。</li>
+<li><span class="term">錯誤值</span>：超出合理範圍（如年齡 -5）、拼字錯誤。</li>
+<li><span class="term">離群值（Outlier）</span>：遠離多數的異常值，可能有意義也可能是雜訊；需依業務判斷處理。</li>
+</ul>
+
+<h4>資料轉換（Data Transformation）</h4>
+<ul>
+<li>格式轉換（CSV→JSON）、類型轉換（字串→數值）、<span class="term">正規化/標準化</span>（縮放至 [0,1] 或 -1~1）、離散化（連續→區間/類別）、縮減（特徵選擇/提取/降維如 PCA）。</li>
+</ul>
+
+<h4>資料分析四大方法</h4>
+<table>
+<tr><th>類型</th><th>目的</th><th>方法/工具</th></tr>
+<tr><td>敘述性分析</td><td>描述基本特徵與分佈</td><td>平均值、中位數、標準差、百分位數；直方圖、散佈圖、折線圖</td></tr>
+<tr><td>探索性分析（EDA）</td><td>無預設假設探索模式、關聯、異常</td><td>散佈圖矩陣、熱圖、箱型圖、相關分析、聚類、PCA、異常檢測</td></tr>
+<tr><td>診斷性分析</td><td>探究現象根本原因</td><td>鑽取分析、關聯分析（Apriori）、因果分析（A/B 測試）</td></tr>
+<tr><td>預測性分析</td><td>以歷史預測未來</td><td>迴歸、分類、時間序列（ARIMA/LSTM）、集成（RF/GBM/XGBoost）</td></tr>
+</table>
+
+<div class="box key"><span class="tag">敘述統計重點</span>
+<ul>
+<li><span class="term">中央趨勢</span>：平均數（易受極端值影響）、中位數（不受極端值影響）、眾數（出現頻率最高，可多個或不存在）。</li>
+<li><span class="term">分散度</span>：四分位數、全距（受極端值影響）、四分位距 IQR=Q3−Q1（中間 50% 範圍，不受極端值影響）、平均差、標準差（越大越分散，品管中越大越不穩定）。</li>
+<li><span class="term">偏態判斷</span>：平均數＞中位數→正偏態（右尾）；平均數＜中位數→負偏態（左尾）；接近→對稱。</li>
+</ul></div>
+
+<div class="box def"><span class="tag">假設檢定</span>
+<ul>
+<li>虛無假設 H0（無顯著效果）、對立假設 Ha/H1（有顯著效果）。</li>
+<li>顯著水準 α（檢定大小，常取 0.1/0.05/0.01）＝拒絕真 H0 的機率＝型一錯誤（Type I）。</li>
+<li>型二錯誤 β＝接受假 H0 的機率。</li>
+<li><span class="term">p 值 &lt; α → 拒絕虛無假設</span>。例：p=0.03 &lt; 0.05 → 拒絕 H0，有 95% 信心支持對立假設。</li>
+</ul></div>
+
+<div class="box note"><span class="tag">EDA vs CDA</span>探索性資料分析（EDA）在研究初期、無預設假設下探索資料、生成假設；驗證性資料分析（CDA）著重驗證先前提出之假設並深入挖掘（分類、分群、相關性、預測模型）。</div>
+
+<h3 id="c3">3.3 機器學習概念</h3>
+
+<div class="box def"><span class="tag">三大核心要素</span><span class="term">數據（Data）、模型（Model）、損失函數（Loss Function）</span>。數據提供基礎、模型學規律、損失函數評估準確性並指導優化。</div>
+
+<h4>機器學習步驟</h4>
+<ol>
+<li>準備訓練資料（蒐集、過濾雜訊、前處理）。</li>
+<li>訓練模型（輸入演算法、調整參數使符合資料模式）。</li>
+<li>測試與評估模型（反覆訓練；不佳則改用其他模型）。</li>
+</ol>
+
+<table>
+<tr><th>學習類型</th><th>是否需標記</th><th>任務</th><th>代表</th></tr>
+<tr><td>監督式學習</td><td>需標記資料</td><td>分類、迴歸</td><td>線性迴歸、SVM、神經網路；垃圾郵件過濾、房價預測</td></tr>
+<tr><td>非監督式學習</td><td>不需標記</td><td>聚類、降維</td><td>K-Means、PCA；市場區隔、異常偵測</td></tr>
+<tr><td>強化學習</td><td>依環境回饋</td><td>序列決策（試錯）</td><td>Q-Learning、DQN；遊戲 AI、自駕、機器人</td></tr>
+<tr><td>半監督式學習</td><td>少量標記+大量未標記</td><td>分類等</td><td>標註成本高時（如醫療影像、作物病害）</td></tr>
+<tr><td>自監督式學習</td><td>資料本身產生訓練目標</td><td>表示學習</td><td>降低人工標註依賴；CLIP、DINO</td></tr>
+</table>
+
+<div class="box key"><span class="tag">強化學習三要素與探索/利用</span>代理（Agent）、環境（Environment）、獎勵（Reward）。核心目標是最大化累積獎勵。<span class="term">探索與利用權衡（Exploration vs. Exploitation）</span>：總推薦已知好的（利用）vs 嘗試未知（探索）。Q-Learning 用 Q 表；Deep Q-Learning 用深度神經網路近似 Q 值，解決高維狀態空間問題，並引入經驗回放與目標網路。</div>
+
+<h4>資料標準化（公式速查）</h4>
+<ul>
+<li><span class="term">Min-Max 標準化</span>：X_scaled = (X − X_min) / (X_max − X_min)，映射至 [0,1]。</li>
+<li><span class="term">Z-score 標準化</span>：X_scaled = (X − μ) / σ，均值 0、標準差 1。</li>
+</ul>
+
+<h4>損失函數與優化</h4>
+<ul>
+<li><span class="term">MSE 均方誤差</span>：迴歸任務。<span class="term">交叉熵 Cross-Entropy</span>：分類任務。</li>
+<li>優化器：批次梯度下降 BGD、隨機梯度下降 SGD、Adam（自適應學習率，最常用）。<span class="term">梯度下降</span>用於優化參數以最小化損失函數。</li>
+</ul>
+
+<h4>過擬合（Overfitting）防範</h4>
+<ul>
+<li>過擬合＝訓練表現好、測試表現差（過度學習雜訊）。</li>
+<li>防範：正則化（L1/L2）、Early Stopping、Data Augmentation、增加訓練資料、交叉驗證（K-Fold）。</li>
+</ul>
+
+<div class="box note"><span class="tag">L1 vs L2 正則化</span>L1（Lasso）：以權重<span class="term">絕對值</span>懲罰，對大係數懲罰較強，促使<span class="term">稀疏解（部分權重收斂為 0）</span>，可做特徵選擇。L2（Ridge）：以權重平方懲罰，使權重趨小但不為零。</div>
+
+<h4>常見機器學習模型</h4>
+<ul>
+<li><span class="term">線性迴歸</span>：連續數值預測（房價、銷售額）。</li>
+<li><span class="term">邏輯迴歸</span>：名為迴歸實為<span class="term">分類</span>，用 Sigmoid 輸出 0~1 機率，設閾值（如 0.5）分類，適二元分類。</li>
+<li><span class="term">KNN</span>：依最近 K 個鄰居投票（分類）或取平均（迴歸）。</li>
+<li><span class="term">決策樹</span>：可解釋性佳、不需標準化。</li>
+<li><span class="term">隨機森林</span>：集成多棵隨機決策樹並投票，降低過擬合、提升穩定性與泛化。</li>
+<li><span class="term">SVM</span>：找最大間隔超平面，核函數處理非線性；高維小樣本表現佳，大資料量運算成本高。</li>
+<li><span class="term">神經網路</span>：多層結構學習複雜非線性特徵。</li>
+</ul>
+
+<h4>深度學習三大經典模型</h4>
+<table>
+<tr><th>模型</th><th>擅長</th><th>結構/特性</th></tr>
+<tr><td>CNN 卷積神經網路</td><td>圖像/影像辨識、物件偵測、影像分割</td><td>卷積層、池化層、全連接層</td></tr>
+<tr><td>RNN 循環神經網路</td><td>序列/時間序列、語音、文本</td><td>有循環連接記憶前文；易梯度消失/爆炸；改進版 LSTM、GRU</td></tr>
+<tr><td>GAN 生成對抗網路</td><td>資料生成、影像生成</td><td>生成器 vs 判別器對抗學習；可能模式崩潰（Mode Collapse）</td></tr>
+</table>
+
+<div class="box note"><span class="tag">RNN → LSTM</span>RNN 處理長序列時前段資訊易遺失（梯度消失）。<span class="term">LSTM</span>透過遺忘門、輸入門、輸出門改善長期記憶問題。</div>
+
+<h4>模型評估指標</h4>
+<ul>
+<li><span class="term">準確率 Accuracy</span>：適平衡資料；不平衡時失真（全猜多數類仍高準確率）。</li>
+<li><span class="term">精確率 Precision</span>：預測為正中真正為正的比例。<span class="term">召回率 Recall</span>：實際為正中被找出的比例（重視「不漏掉」時用，如癌症篩檢、害蟲檢測）。</li>
+<li><span class="term">F1 分數</span>：精確率與召回率調和平均，適不平衡資料。</li>
+<li><span class="term">MSE/RMSE/R²</span>：迴歸任務。</li>
+</ul>
+
+<h3 id="c4">3.4 鑑別式 AI 與生成式 AI 概念</h3>
+
+<div class="box def"><span class="tag">核心區別（高頻）</span>
+<ul>
+<li><span class="term">鑑別式 AI（Discriminative）</span>：學習條件機率 P(y|x)，找分類邊界，做<span class="term">分類/迴歸/預測</span>。代表：邏輯迴歸、SVM、決策樹、隨機森林、神經網路、貝氏分類器、CRF。</li>
+<li><span class="term">生成式 AI（Generative）</span>：學習聯合分佈 P(x,y) 或邊際分佈 P(x)，<span class="term">生成新數據樣本</span>。代表：GAN、VAE、擴散模型、大型語言模型（LLM）。</li>
+</ul></div>
+
+<table>
+<tr><th>面向</th><th>鑑別式 AI</th><th>生成式 AI</th></tr>
+<tr><td>模型目標</td><td>學習決策邊界、區分類別</td><td>學習資料內在分佈、生成新內容</td></tr>
+<tr><td>輸出</td><td>分類標籤或數值預測</td><td>新的文字/圖像/音訊樣本</td></tr>
+<tr><td>應用</td><td>影像/語音辨識、NLP、風險評估</td><td>內容生成、風格轉換、資料增強、影音合成</td></tr>
+<tr><td>挑戰</td><td>資料偏見、過擬合、標記成本</td><td>內容真實性、可控性、計算成本</td></tr>
+</table>
+
+<h4>生成式 AI 常見模型</h4>
+<ul>
+<li><span class="term">GAN</span>：生成器+鑑別器對抗；StyleGAN 生成人臉、風格遷移、醫療影像生成。</li>
+<li><span class="term">VAE 變分自編碼器</span>：編碼器壓縮至潛在空間、解碼器重建；資料修復、<span class="term">異常檢測</span>（學正常分佈）、資料生成。</li>
+<li><span class="term">擴散模型</span>：逐步加雜訊再反向去雜訊；高品質圖像生成、文本到圖像。</li>
+</ul>
+
+<div class="box note"><span class="tag">整合應用</span>生成式 AI 生成多樣化/逼真資料（解決資料稀缺、不平衡），鑑別式 AI 分類預測；協同提升模型泛化能力。例：GAN 生成病理影像供 CNN 訓練；模擬攻擊流量提升資安偵測對未知攻擊的辨識力。穩定性問題可用 Wasserstein GAN（WGAN）改善。</div>
+
+<h3 id="c5">AI 治理與法規速覽</h3>
+<div class="box key"><span class="tag">高頻法規/治理考點</span>
+<ul>
+<li><span class="term">人在迴圈（Human-in-the-loop）</span>：AI 每個決策皆須人類審核批准。<span class="term">人在迴圈上（Human-over-the-loop）</span>：人類日常監督、必要時即時介入。<span class="term">人在迴圈外（Human-out-of-the-loop / out-of-the-loop on exception）</span>：平時不參與、僅異常時接手。</li>
+<li><span class="term">AI 倫理五大核心原則</span>：透明性、公平性、隱私性、安全性、問責性。（無法理解判斷依據→違反透明性；對特定族群誤判偏高→違反公平性；未告知納入再訓練→違反隱私性。）</li>
+<li><span class="term">《人工智慧基本法》草案（2025/9 行政院通過）</span>：創新實驗環境主要參考歐盟<span class="term">監理沙盒（Regulatory Sandbox）</span>；遇歧視疑慮應先進行偏誤影響評估並建立可解釋與申訴機制。</li>
+<li><span class="term">數位發展部 AI 產品與系統評測中心</span>生成式 AI 評測項目包含：當責性、可靠性、隱私及資安、公平性、資安等（「互動性」「效率性」非評測項目）；LLM 安全性常見指標：事實正確性、偏見與歧視、惡意與濫用可能性（「資料複雜性」非指標）。</li>
+<li><span class="term">《金融機構運用人工智慧技術作業規範》</span>：須建立內部治理架構、指定專責單位、辦理人才培育、了解生成式 AI 運作、高階主管/委員會監督（「每日公布運作狀況」非要求）。與消費者互動須揭露：是否為 AI 自動完成、適用對象與用途範圍、是否提供替代方案/申訴管道（「原始程式碼/完整訓練資料」非必揭露）。</li>
+<li><span class="term">隱私保護技術</span>：聯邦學習（Federated Learning，資料不外流仍可跨機構學習）、差分隱私、資料匿名化/去識別化（去除直接識別資訊、轉換可識別欄位）、傳輸加密+雙方身分驗證（防中間人攻擊）。</li>
+<li><span class="term">XAI 可解釋 AI</span>：LIME（局部、代理模型近似黑箱單筆預測，後處理 post-hoc）、SHAP（單一預測中各特徵貢獻分配）、顯著性圖 Saliency Map（標示輸入中影響大的區域/文字，適影像/NLP）、PDP 部分依賴圖（整體趨勢，無法判斷單一批次原因）、反事實解釋 Counterfactual（資料變動如何改變決策）。</li>
+</ul></div>
+
+<h3 id="c6">易混淆觀念對照表</h3>
+<table>
+<tr><th>概念 A</th><th>概念 B</th><th>關鍵差異</th></tr>
+<tr><td>監督式學習</td><td>非監督式學習</td><td>是否使用標記資料；前者分類/迴歸，後者聚類/降維</td></tr>
+<tr><td>邏輯迴歸</td><td>線性迴歸</td><td>邏輯迴歸是分類（Sigmoid 輸出機率）；線性迴歸是連續值預測</td></tr>
+<tr><td>鑑別式 AI</td><td>生成式 AI</td><td>P(y|x) 分類邊界 vs P(x,y)/P(x) 生成新樣本</td></tr>
+<tr><td>L1（Lasso）</td><td>L2（Ridge）</td><td>L1 產生稀疏解（權重歸零、可選特徵）；L2 使權重趨小不歸零</td></tr>
+<tr><td>精確率 Precision</td><td>召回率 Recall</td><td>Precision 重「報的準」；Recall 重「不漏掉」（癌症/害蟲檢測用 Recall）</td></tr>
+<tr><td>正偏態</td><td>負偏態</td><td>正偏：平均＞中位數（右尾）；負偏：平均＜中位數（左尾）</td></tr>
+<tr><td>EDA</td><td>CDA</td><td>EDA 探索生成假設；CDA 驗證既有假設</td></tr>
+<tr><td>One-hot 編碼</td><td>Label/Ordinal 編碼</td><td>無序類別用 One-hot（避免誤導大小關係）；有序類別才用序數編碼</td></tr>
+<tr><td>Q-Learning</td><td>Deep Q-Learning</td><td>Q 表 vs 深度神經網路近似 Q 值（解高維狀態）</td></tr>
+<tr><td>資料漂移 Data Drift</td><td>概念漂移 Concept Drift</td><td>Data Drift：輸入特徵分布改變；Concept Drift：輸入與輸出關係改變</td></tr>
+<tr><td>批次推論 Batch</td><td>即時推論 Real-time</td><td>Batch 重吞吐量、容忍延遲；Real-time 重低延遲回應</td></tr>
+<tr><td>RAG</td><td>Fine-tuning</td><td>RAG 外部知識庫即時更新不需重訓；Fine-tuning 需重新訓練</td></tr>
+</table>
+
+<h3 id="c7">常見計算/公式速查</h3>
+<table>
+<tr><th>項目</th><th>公式/規則</th></tr>
+<tr><td>Min-Max 標準化</td><td>X' = (X − X_min) / (X_max − X_min)，結果落在 [0,1]</td></tr>
+<tr><td>Z-score 標準化</td><td>X' = (X − μ) / σ，均值 0、標準差 1</td></tr>
+<tr><td>四分位距 IQR</td><td>IQR = Q3 − Q1（中間 50% 資料範圍）</td></tr>
+<tr><td>偏態判斷</td><td>平均＞中位數→正偏；平均＜中位數→負偏；相近→對稱</td></tr>
+<tr><td>p 值決策</td><td>p &lt; α → 拒絕 H0；p ≥ α → 不拒絕 H0</td></tr>
+<tr><td>型一/型二錯誤</td><td>α=P(拒絕H0|H0真)；β=P(接受H0|Ha真)</td></tr>
+<tr><td>KNN 分類</td><td>取最近 K 個鄰居中出現次數最多的類別</td></tr>
+<tr><td>二分搜尋次數</td><td>已排序 n 筆最多約 ⌈log₂(n+1)⌉ 次比較</td></tr>
+<tr><td>MSE</td><td>MSE = (1/n) Σ(yᵢ − ŷᵢ)²（迴歸用）</td></tr>
+</table>
+
+<h2 class="chap" id="e114">區二・114 年第四梯次（共 50 題）</h2>
+<p class="sub">考試日期：114 年 11 月 01 日。官方答案取自 iPAS 公告試題。</p>
+
+<div class="q" id="e114-q1">
+<p class="stem"><span class="qno">1.</span>在人工智慧系統的決策流程中，下列哪一種情境最符合「人在迴圈上（Human-over-the-loop）」所強調的監督機制？</p>
+<ul class="opts">
+<li>(A) AI 系統只能提供建議，人類需主動下達命令才能進行決策；</li>
+<li>(B) 人類對 AI 的運行進行日常監督，必要時可立即介入修正或干預；</li>
+<li>(C) 人類平時不參與 AI 的運作，僅在發生異常或重大錯誤時才接手控制；</li>
+<li>(D) AI 的所有判斷與行動在執行前，皆須經過人類逐一審核與批准</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>「人在迴圈上」強調人類在 AI 運作中保持監督地位，平時讓 AI 自主運行但隨時可介入修正。(A)(D) 描述「人在迴圈中（in-the-loop）」每步皆須人類介入；(C) 描述「人在迴圈外（out-of-the-loop）」僅異常才接手。</div>
+</div>
+
+<div class="q" id="e114-q2">
+<p class="stem"><span class="qno">2.</span>下列哪一種特徵工程技巧，最適合將「星期幾」和「24 小時制時間」這兩個欄位結合，以預測通勤時間？</p>
+<ul class="opts">
+<li>(A) One-hot 編碼（One-hot encoding）；</li>
+<li>(B) 正規化（Normalization）；</li>
+<li>(C) 特徵交叉（Feature Cross）；</li>
+<li>(D) 寬深模型（Wide and Deep）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>特徵交叉（Feature Cross）將兩個（含以上）特徵組合成新特徵，可捕捉「星期幾×時段」的交互效果（如週一早上 8 點通勤特別壅塞）。One-hot 僅做單一類別編碼、正規化僅縮放數值、寬深模型是模型架構而非特徵工程技巧。</div>
+</div>
+
+<div class="q" id="e114-q3">
+<p class="stem"><span class="qno">3.</span>關於 ETL（Extract-Transform-Load），下列敘述何者為正確？</p>
+<ul class="opts">
+<li>(A) E 表示將資料直接儲存至目標儲存庫；</li>
+<li>(B) ETL 的處理順序可以自由調整為 TEL；</li>
+<li>(C) L 表示將目標儲存庫經過反加密處理載入資料；</li>
+<li>(D) T 包括資料的清理與排序</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>ETL：Extract 萃取、Transform 轉換、Load 載入。T（轉換）階段包含資料清理、整合、排序、格式轉換等。(A) E 是萃取非儲存；(B) 順序為 E→T→L 不可任意調換；(C) L 是將處理後資料載入目標庫，與反加密無關。</div>
+</div>
+
+<div class="q" id="e114-q4">
+<p class="stem"><span class="qno">4.</span>關於資料正則化（Regularization）L1、L2 方法，下列敘述何者正確？</p>
+<ul class="opts">
+<li>(A) L1 權重個數愈多，愈可以提升模型的正確率；</li>
+<li>(B) L2 稱為 Lasso 正則化；</li>
+<li>(C) L1 運用減少權重的絕對值來控制模型的複雜度；</li>
+<li>(D) L2 較 L1 正則化方法會將特徵權重趨近於零</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>L1（Lasso）以權重絕對值作懲罰項控制複雜度，並使部分權重歸零產生稀疏解。(B) Lasso 是 L1 而非 L2；(D) 是 L1 較易將權重趨近於零（稀疏化），L2 只使權重趨小不歸零；(A) 權重個數多反而易過擬合。</div>
+</div>
+
+<div class="q" id="e114-q5">
+<p class="stem"><span class="qno">5.</span>在機器學習中，「偏差與變異權衡（Bias-Variance Tradeoff）」主要用來解決下列哪一類型的問題？</p>
+<ul class="opts">
+<li>(A) 因資料來源或收集方式限制，導致模型學習到的資訊不足；</li>
+<li>(B) 測試資料樣本與訓練資料高度重複，造成模型泛化能力評估失準；</li>
+<li>(C) 訓練資料中類別分布不均，使模型在少數類別上表現不佳；</li>
+<li>(D) 如何在模型偏差與變異之間取得平衡，以避免過度擬合或欠擬合</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>偏差-變異權衡探討模型複雜度：高偏差→欠擬合，高變異→過擬合，需取得平衡以提升泛化能力。(A) 屬資料不足、(B) 屬資料洩漏、(C) 屬類別不平衡，皆非此權衡概念所針對。</div>
+</div>
+
+<div class="q" id="e114-q6">
+<p class="stem"><span class="qno">6.</span>在 Lasso 模型中，L1 正則化（Regularization）導致參數收斂為零的原因為何？</p>
+<ul class="opts">
+<li>(A) L1 正則化忽略目標變數；</li>
+<li>(B) L1 對梯度有平滑作用；</li>
+<li>(C) L1 對大係數懲罰較強，促使稀疏解；</li>
+<li>(D) L1 會轉換損失函數為非凸形</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>L1 正則化的絕對值懲罰在最佳化時傾向將不重要特徵的權重壓縮至零，形成稀疏解，故可做特徵選擇。L1 仍考慮目標變數、不會使損失函數變非凸（仍為凸函數）。</div>
+</div>
+
+<div class="q" id="e114-q7">
+<p class="stem"><span class="qno">7.</span>貝氏分類器（Naive Bayes Classifier）常被應用於文字分類、垃圾郵件過濾等場景。依據模型特性，它最適合歸類於下列哪一類？</p>
+<ul class="opts">
+<li>(A) 透過直接學習輸入特徵與目標標籤之間的邊界或關係來進行分類的模型；</li>
+<li>(B) 透過建構資料的整體分布，並利用條件關係進行推斷和分類的模型；</li>
+<li>(C) 側重探索資料中樣本間的相似性，將資料自動分成不同群組的模型；</li>
+<li>(D) 透過試錯學習，根據行動結果的獎勵或懲罰來優化決策策略的模型</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>貝氏分類器建構資料的機率分布（先驗與條件機率），利用貝氏定理推斷後驗機率進行分類，屬生成式取向的方法。(A) 描述鑑別式模型（如 SVM）；(C) 描述聚類；(D) 描述強化學習。</div>
+</div>
+
+<div class="q" id="e114-q8">
+<p class="stem"><span class="qno">8.</span>為提升生成式 AI 系統回應的語境一致性，常會結合哪類模型技術？</p>
+<ul class="opts">
+<li>(A) 決策樹分類器（Decision Tree Classifier）；</li>
+<li>(B) 條件語言模型（Conditional Language Model）；</li>
+<li>(C) 強化學習 Q-learning 函數模型；</li>
+<li>(D) 基因演算法（Genetic Algorithm）</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>條件語言模型依據給定上下文（條件）生成後續文字，能維持語境一致性，是生成式 AI 文本生成的核心技術。決策樹、Q-learning、基因演算法皆非用於語境連貫的文本生成。</div>
+</div>
+
+<div class="q" id="e114-q9">
+<p class="stem"><span class="qno">9.</span>根據 2025 年 9 月行政院通過之《人工智慧基本法》草案，政府推動人工智慧之「創新實驗環境」制度，主要參考歐盟的何種制度？</p>
+<ul class="opts">
+<li>(A) Data Protection Impact Assessment；</li>
+<li>(B) Regulatory Sandbox；</li>
+<li>(C) AI Trust Label；</li>
+<li>(D) AI Ethics Review Board</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>「創新實驗環境」即監理沙盒（Regulatory Sandbox），在受監管的安全環境中容許創新實驗，源自歐盟等地的制度設計。(A) 是資料保護影響評估、(C)(D) 非沙盒制度。</div>
+</div>
+
+<div class="q" id="e114-q10">
+<p class="stem"><span class="qno">10.</span>根據《金融機構運用人工智慧技術作業規範》，金融機構須建立內部治理架構，並指定專責單位或人員負責推動及管理人工智慧事務，下列何者並非規範所明訂須落實的治理措施？</p>
+<ul class="opts">
+<li>(A) 辦理人工智慧人才培育；</li>
+<li>(B) 清楚了解生成式 AI 技術之運作模式；</li>
+<li>(C) 每日公布人工智慧系統運作狀況；</li>
+<li>(D) 指派高階主管或委員會進行監督管理</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>規範要求人才培育、了解技術運作、高階主管/委員會監督等治理措施，但並未要求「每日公布系統運作狀況」，此為過度且非規範明訂之義務，故為正解（選「並非」者）。</div>
+</div>
+
+<div class="q" id="e114-q11">
+<p class="stem"><span class="qno">11.</span>下列哪一類問題最適合使用非監督式學習（Unsupervised Learning）來處理？</p>
+<ul class="opts">
+<li>(A) 根據已標記的醫療影像訓練模型診斷疾病；</li>
+<li>(B) 根據使用者行為將用戶分群，以優化行銷策略；</li>
+<li>(C) 透過已知交通事故記錄預測未來事故發生機率；</li>
+<li>(D) 根據歷史股價預測未來股市的走勢</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>非監督式學習不需標籤，典型應用為分群（Clustering）。將用戶依行為分群屬聚類任務。(A) 有標記→監督式分類；(C)(D) 有目標值的預測→監督式迴歸/分類。</div>
+</div>
+
+<div class="q" id="e114-q12">
+<p class="stem"><span class="qno">12.</span>下列哪一種圖表最適合用來呈現並分析「兩個數值型變數」之間的關係，例如觀察身高與體重的相關性？</p>
+<ul class="opts">
+<li>(A) 散佈圖（Scatter Plot）；</li>
+<li>(B) 折線圖（Line Chart）；</li>
+<li>(C) 直方圖（Histogram）；</li>
+<li>(D) 長條圖（Bar Chart）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>散佈圖以每點代表一組（x,y）觀察值，最適合呈現兩數值變數的相關性。折線圖顯示趨勢、直方圖呈現單變數分布、長條圖比較類別數量。</div>
+</div>
+
+<div class="q" id="e114-q13">
+<p class="stem"><span class="qno">13.</span>下列哪一項應用情境與機器學習類型搭配正確？</p>
+<ul class="opts">
+<li>(A) 在醫療影像資料中，僅有少部分影像有專家標註診斷，其餘大多數影像未標註，研究者結合已標註與未標註資料來建立模型 — 監督式學習（Supervised Learning）；</li>
+<li>(B) 在自駕車模擬環境中，模型透過試駕獲得「是否安全通過路口」的獎勵或懲罰訊號，逐步調整決策策略 — 非監督式學習（Unsupervised Learning）；</li>
+<li>(C) 在顧客購買紀錄中，利用已知的「顧客是否流失」標籤，訓練模型以預測新顧客未來是否會流失 — 強化式學習（Reinforcement Learning）；</li>
+<li>(D) 在股票市場資料中，輸入歷史股價序列，嘗試將未來可能走勢劃分成若干「上升型、盤整型、下降型」群組，無需使用任何標籤 — 非監督式學習（Unsupervised Learning）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 無標籤分群為非監督式學習，搭配正確。(A) 少量標註+大量未標註應為半監督式學習；(B) 獎懲訊號試錯應為強化式學習；(C) 有標籤的分類預測應為監督式學習。</div>
+</div>
+
+<div class="q" id="e114-q14">
+<p class="stem"><span class="qno">14.</span>某企業分析團隊正在處理一組近兩年的營運與銷售數據，共有四個部門提出了各自的分析需求，請判斷哪一個最接近「預測性分析（Predictive Analysis）」的特性？</p>
+<ul class="opts">
+<li>(A) 視覺化所有產品線過去月銷售走勢與標準差，觀察其分佈情況與波動程度；</li>
+<li>(B) 藉由資料比對分析，找出去年母親節促銷失效的地區與品類組合；</li>
+<li>(C) 建構模型推算下一季的主力商品銷量，以規劃備貨與倉儲資源配置；</li>
+<li>(D) 透過熱圖分析廣告投放成本與訂單轉換率之間的潛在關聯性</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>預測性分析以歷史資料推算未來事件。(C) 推算下一季銷量屬之。(A) 描述過去分布→敘述性分析；(B) 找出失效原因→診斷性分析；(D) 探索關聯→探索性分析。</div>
+</div>
+
+<div class="q" id="e114-q15">
+<p class="stem"><span class="qno">15.</span>某模型使用 K-近鄰演算法（KNN）進行分類，K 設為 3。一筆新的測試資料輸入後，與其最接近的 3 筆資料的類別如下：鄰近樣本 1：類別 A；鄰近樣本 2：類別 B；鄰近樣本 3：類別 A。請問模型會將這筆資料預測為哪一類別？</p>
+<ul class="opts">
+<li>(A) 類別 A；</li>
+<li>(B) 類別 B；</li>
+<li>(C) 類別 A 與 B 各一半，無法分類；</li>
+<li>(D) 類別 A 或 B，視距離遠近加權而定</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>標準 KNN 以多數投票決定類別。3 個最近鄰中 A 佔 2 票、B 佔 1 票，故預測為 A。題目採標準（未加權）KNN，因此不取 (D)。</div>
+</div>
+
+<div class="q" id="e114-q16">
+<p class="stem"><span class="qno">16.</span>某團隊想採用循環神經網路（Recurrent Neural Network, RNN）建構長期氣候數據的預測模型，以下哪一項敘述最符合使用 RNN 可能會遇到的挑戰？</p>
+<ul class="opts">
+<li>(A) RNN 無法處理可變長度的序列輸入，因此在實務上限制極大；</li>
+<li>(B) RNN 在長序列訓練中可能出現梯度消失，影響模型效果；</li>
+<li>(C) RNN 無法捕捉時間上的依賴關係，因此預測準確度低；</li>
+<li>(D) RNN 只能用於分類任務，不能應用於時間序列預測</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>RNN 在處理長序列時易出現梯度消失/爆炸，難以保留早期資訊（故衍生 LSTM/GRU）。(A) RNN 可處理變長序列；(C) RNN 正是用來捕捉時間依賴；(D) RNN 可用於時間序列預測。</div>
+</div>
+
+<div class="q" id="e114-q17">
+<p class="stem"><span class="qno">17.</span>一間金融科技公司設計一款智慧投資系統，該系統會根據市場變化自動決定「買進」、「持有」或「賣出」的行動，並根據每次交易後的盈虧結果，逐步優化下一次的投資策略。整個過程中，系統不依賴事先標記的資料，而是根據歷次行動獲得的獎勵進行調整。請問此系統最可能採用哪一種學習方法？</p>
+<ul class="opts">
+<li>(A) 強化式學習（Reinforcement Learning）；</li>
+<li>(B) 監督式學習（Supervised Learning）；</li>
+<li>(C) 非監督式學習（Unsupervised Learning）；</li>
+<li>(D) 遷移學習（Transfer Learning）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>系統透過行動獲得獎勵（盈虧）回饋並逐步優化策略，符合強化學習的試錯與最大化累積獎勵特性。不依賴標記資料排除監督式；有獎懲機制與決策優化排除非監督式與遷移學習。</div>
+</div>
+
+<div class="q" id="e114-q18">
+<p class="stem"><span class="qno">18.</span>關於 Q-Learning 與 Deep Q-Learning，下列敘述何者最正確？</p>
+<ul class="opts">
+<li>(A) Q-Learning 與 Deep Q-Learning 的差異在於是否使用標記資料作為學習基礎；</li>
+<li>(B) Q-Learning 可處理任意維度的狀態空間，因此比 Deep Q-Learning 更靈活；</li>
+<li>(C) Deep Q-Learning 透過深度神經網路近似 Q 值，避免了 Q 表在高維空間中難以擴展的問題；</li>
+<li>(D) Deep Q-Learning 無法搭配經驗回放（Experience Replay），因為會導致樣本順序被打亂</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>Deep Q-Learning 以深度神經網路近似 Q 值，解決傳統 Q 表在高維狀態空間難以儲存/擴展的問題。(A) 兩者皆屬強化學習不依標記資料；(B) Q 表在高維反而不可行；(D) DQN 正是引入經驗回放穩定訓練。</div>
+</div>
+
+<div class="q" id="e114-q19">
+<p class="stem"><span class="qno">19.</span>在訓練機器學習模型時，若任務為預測房價，應選用下列哪一種損失函數（Loss Function）來衡量預測誤差？</p>
+<ul class="opts">
+<li>(A) 均方誤差（MSE）；</li>
+<li>(B) 交叉熵損失（Cross-Entropy Loss）；</li>
+<li>(C) Hinge 損失（Hinge Loss）；</li>
+<li>(D) KL 散度（Kullback-Leibler Divergence）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>房價預測為連續數值的迴歸任務，適用 MSE（均方誤差）。交叉熵與 Hinge 損失用於分類、KL 散度衡量機率分布差異，皆不適用於數值迴歸。</div>
+</div>
+
+<div class="q" id="e114-q20">
+<p class="stem"><span class="qno">20.</span>某醫院希望開發一個系統，根據患者的年齡、血壓與 BMI 等資訊，預測其罹患糖尿病的機率（0~1），並依據預測值是否超過 0.5 做出風險警示。下列哪一種模型最適合用於此分類任務？</p>
+<ul class="opts">
+<li>(A) 邏輯迴歸（Logistic Regression）；</li>
+<li>(B) 支援向量機（Support Vector Machine）；</li>
+<li>(C) 決策樹（Decision Tree）；</li>
+<li>(D) K 平均演算法（K-means）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>邏輯迴歸用 Sigmoid 函數輸出 0~1 機率，並可設閾值（0.5）做二元分類，完全符合「輸出機率並依 0.5 判斷」之需求。SVM、決策樹輸出非機率；K-means 是非監督分群。</div>
+</div>
+
+<div class="q" id="e114-q21">
+<p class="stem"><span class="qno">21.</span>某金融科技公司正開發一套違約風險預測系統，需大量處理不同客戶的財務特徵資料。考量到資料特徵數量眾多，且希望提升預測的穩定性與泛化能力，下列哪一種鑑別式 AI 模型最適合？</p>
+<ul class="opts">
+<li>(A) 邏輯迴歸（Logistic Regression）；</li>
+<li>(B) 支援向量機（Support Vector Machine）；</li>
+<li>(C) 決策樹（Decision Tree）；</li>
+<li>(D) 隨機森林（Random Forest）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>隨機森林為集成多棵決策樹並投票的方法，能處理大量特徵、降低過擬合、提升穩定性與泛化能力，符合需求。單一決策樹易過擬合；邏輯迴歸/SVM 在大量特徵與穩定性上不如集成法。</div>
+</div>
+
+<div class="q" id="e114-q22">
+<p class="stem"><span class="qno">22.</span>關於變分自編碼器（Variational Autoencoder, VAE）的運作流程，下列何者敘述最為正確？</p>
+<ul class="opts">
+<li>(A) 解碼器的任務是將低維壓縮向量分類為不同類別；</li>
+<li>(B) 編碼器將輸入資料轉換為可視化圖像以利模型學習；</li>
+<li>(C) 編碼器將資料轉換為潛在空間表示，解碼器再重建資料；</li>
+<li>(D) 編碼器利用最大邊際機率對資料進行異常點偵測</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>VAE 由編碼器（將輸入壓縮至潛在空間 Latent Space）與解碼器（從潛在空間重建資料）組成。(A) 解碼器是重建非分類；(B) 編碼器輸出潛在表示非可視化圖像；(D) 描述非 VAE 編碼器之核心功能。</div>
+</div>
+
+<div class="q" id="e114-q23">
+<p class="stem"><span class="qno">23.</span>下列何者不是我國數位發展部 AI 產品與系統評測中心對生成式 AI 的評測項目?</p>
+<ul class="opts">
+<li>(A) 當責性；</li>
+<li>(B) 可靠性；</li>
+<li>(C) 隱私及資安；</li>
+<li>(D) 互動性</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>評測中心對生成式 AI 的評測涵蓋當責性、可靠性、隱私及資安、公平性等面向，「互動性」並非其評測項目，故為正解（選「不是」者）。</div>
+</div>
+
+<div class="q" id="e114-q24">
+<p class="stem"><span class="qno">24.</span>在保持 GPT-OSS 模型架構不變的前提下，如果將模型參數量從 20 億提升至 120 億，並假設有足夠的訓練資料支撐，下列敘述何者最正確？</p>
+<ul class="opts">
+<li>(A) 模型參數增加會線性提升效能，且即使訓練資料不變也不會遇到瓶頸；</li>
+<li>(B) 參數越多模型推理越快，因為每層可以並行計算更多參數；</li>
+<li>(C) 較大的參數量能提升模型的表達能力與預測效能，但需足夠訓練資料支持；</li>
+<li>(D) 增加參數量不影響記憶體使用，只會影響計算速度</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>參數量增加可提升模型表達能力與效能，但須有足夠訓練資料支撐否則易過擬合。(A) 非線性提升且資料不足會遇瓶頸；(B) 參數多推理通常更慢；(D) 參數量增加會顯著增加記憶體使用。</div>
+</div>
+
+<div class="q" id="e114-q25">
+<p class="stem"><span class="qno">25.</span>在自然語言處理任務中，為了減少訓練語料中偏見對模型的影響，下列哪種資料處理策略屬於常見的「資料去偏（Data Debiasing）」做法？</p>
+<ul class="opts">
+<li>(A) 讓模型在訓練時隨機替換輸出，以抵消資料中存在的系統性偏差；</li>
+<li>(B) 增加模型的參數量，依賴更大的模型自動消除原始資料中的偏見；</li>
+<li>(C) 調整或擴充訓練語料，使不同群體或類型資料的比例更加平衡，避免模型過度偏向出現頻率高的類別；</li>
+<li>(D) 對訓練資料施加額外正則化或噪音，使模型在學習過程中對偏見敏感度降低</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>資料去偏的核心在於從資料源頭調整：平衡不同群體/類別的比例，避免模型偏向高頻類別。(A) 隨機替換輸出無法針對性去偏；(B) 增大模型不能自動消偏；(D) 加噪音/正則化主要防過擬合而非去偏。</div>
+</div>
+
+<div class="q" id="e114-q26">
+<p class="stem"><span class="qno">26.</span>在深度學習模型的微調（Fine-tuning）過程中，可能出現所謂的「災難性遺忘（Catastrophic Forgetting）」。此現象最可能造成哪種情況？</p>
+<ul class="opts">
+<li>(A) 由於計算資源或訓練步驟不足，模型在微調過程中無法完整收斂，導致學習效果受限；</li>
+<li>(B) 微調後模型的表現變得隨機，無法有效記憶新學到的模式與知識；</li>
+<li>(C) 微調後模型的部分權重產生偏移，導致模型無法針對較長的文字進行回應；</li>
+<li>(D) 模型過度適應微調的資料分佈，逐漸遺忘先前預訓練所獲得的廣泛知識，在原有任務或廣泛領域上表現變差</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>災難性遺忘指模型在學習新任務（微調）時，過度適應新資料分佈而遺忘先前預訓練習得的廣泛知識，導致在原任務上表現退化。其他選項描述的是收斂不足、隨機化或文字長度問題，皆非此現象定義。</div>
+</div>
+
+<div class="q" id="e114-q27">
+<p class="stem"><span class="qno">27.</span>在大型 Transformer 模型的效能優化過程中，常見的方法之一是「剪枝（Pruning）」。下列哪一項最符合該方法的核心概念？</p>
+<ul class="opts">
+<li>(A) 將模型中所有權重按比例縮小，使其值更接近零，以降低計算量；</li>
+<li>(B) 移除模型中影響較小或冗餘的部分權重參數，以減少模型大小並提升推理效率；</li>
+<li>(C) 在訓練時僅更新部分權重而將其他權重凍結，從而減少需要調整的參數數量；</li>
+<li>(D) 根據注意力分數動態跳過處理部分輸入 Token，以減少每次前向傳播的計算</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>剪枝（Pruning）移除影響較小或冗餘的權重，減少模型大小並提升推理效率。(A) 描述的是權重縮放/量化概念；(C) 是凍結部分參數的微調策略；(D) 是動態 Token 跳過機制，皆非剪枝。</div>
+</div>
+
+<div class="q" id="e114-q28">
+<p class="stem"><span class="qno">28.</span>對非常長的輸入序列進行推理（Inference），Transformer 模型推理的主要計算瓶頸通常是什麼？</p>
+<ul class="opts">
+<li>(A) 模型輸出層產生文本的過程，因為每生成一個詞都必須重新訓練整個模型一次；</li>
+<li>(B) 詞嵌入 (Embedding) 查找操作，因為其時間複雜度隨詞彙表大小指數級增長；</li>
+<li>(C) Softmax 函數的計算，因為對每個 Token 都需要執行繁重的運算；</li>
+<li>(D) 自注意力層的計算和其記憶體使用，因為注意力矩陣的大小隨序列長度呈平方級增長</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Transformer 自注意力機制需計算所有 Token 兩兩之間的關聯，注意力矩陣大小隨序列長度呈 O(n²) 平方級成長，是長序列推理的主要計算與記憶體瓶頸。(A) 生成不需重訓；(B) 嵌入查找為常數時間；(C) Softmax 非主要瓶頸。</div>
+</div>
+
+<div class="q" id="e114-q29">
+<p class="stem"><span class="qno">29.</span>在「可解釋人工智慧（Explainable AI, XAI）」領域中，LIME（Local Interpretable Model-agnostic Explanations）方法最核心的應用目的是什麼？</p>
+<ul class="opts">
+<li>(A) 解釋單一樣本（局部預測）的黑箱模型決策過程；</li>
+<li>(B) 全面提升黑箱模型整體的預測準確度；</li>
+<li>(C) 將黑箱模型轉換成完全可解釋的模型作為替代；</li>
+<li>(D) 用於生成大量擬真數據來替代訓練集</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>LIME 屬局部（Local）、模型無關（Model-agnostic）的後處理解釋方法，在單一樣本附近以簡單代理模型近似黑箱行為，解釋該筆預測的依據。它不提升準確度、不取代原模型、也不生成訓練資料。</div>
+</div>
+
+<div class="q" id="e114-q30">
+<p class="stem"><span class="qno">30.</span>在醫療診斷決策支援系統等高風險領域中，「可解釋人工智慧（Explainable AI, XAI）」的核心價值最主要呈現在哪個面向？</p>
+<ul class="opts">
+<li>(A) 透過提供可理解的決策依據，促進患者與醫療專業人員對系統診斷結果的信任與接受度；</li>
+<li>(B) 以可解釋性方法優化臨床資料蒐集與管理流程，從而降低整體醫療作業成本；</li>
+<li>(C) 利用解釋機制增強模型預測的統計顯著性與準確度，使其在研究及實務應用中更具科學性；</li>
+<li>(D) 透過提供透明化的運作過程，進而減輕臨床人員負擔，並提升醫療服務的整體效率</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>XAI 在高風險醫療領域的核心價值在於提供可理解的決策依據，建立醫護人員與患者對 AI 診斷的信任與接受度。(B) 降低成本、(C) 提升準確度、(D) 提升效率皆非 XAI 主要目的（XAI 本身不提升模型準確度）。</div>
+</div>
+
+<div class="q" id="e114-q31">
+<p class="stem"><span class="qno">31.</span>在金融科技公司的信貸決策系統中，導入反事實解釋（Counterfactual Explanation）時，實際部署往往伴隨技術與監管挑戰。下列哪一項最符合該情境下的核心挑戰？</p>
+<ul class="opts">
+<li>(A) 需要建立完整的客戶行為預測模型來估算建議改變的實施成本，並整合到現有的風險管理系統架構中；</li>
+<li>(B) 必須使用聯邦學習技術保護客戶隱私，同時在分散式環境中計算跨機構的反事實解釋結果；</li>
+<li>(C) 需要建構時間序列因果圖來處理客戶信用狀況的動態變化，並預測未來可能的信用評分軌跡；</li>
+<li>(D) 生成的反事實樣本必須滿足特徵間的因果約束和業務邏輯約束，同時確保建議的改變在現實中具有可操作性且符合公平放貸法規</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>反事實解釋告訴客戶「需改變哪些條件才能獲核准」，其核心挑戰在於：生成的反事實必須符合特徵間因果與業務邏輯約束、現實可操作（如不能建議「降低年齡」），且須符合公平放貸法規。其他選項為過度延伸或非核心挑戰。</div>
+</div>
+
+<div class="q" id="e114-q32">
+<p class="stem"><span class="qno">32.</span>在統計推論中，若樣本來自母體但呈現明顯偏態分布，且樣本數有限，下列哪一項策略最能減少推估母體參數的偏誤？</p>
+<ul class="opts">
+<li>(A) 直接使用樣本平均數與變異數估計母體參數，不做任何調整；</li>
+<li>(B) 增加樣本數並考慮使用分位數或中位數作為中心趨勢估計；</li>
+<li>(C) 將樣本隨機重新排列後，多次計算平均值以消除偏態影響；</li>
+<li>(D) 完全依賴樣本標準差來估計母體參數，忽略分布形態</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>偏態分布下平均數易受極端值拉扯產生偏誤，宜增加樣本數並改用對極端值不敏感的中位數或分位數作中心趨勢估計。(A)(D) 在偏態下仍用平均/標準差仍有偏誤；(C) 重排計算平均值無法改變偏態本質。</div>
+</div>
+
+<div class="q" id="e114-q33">
+<p class="stem"><span class="qno">33.</span>在工業物聯網架構中，進行設備預測性維護（Predictive Maintenance）時，若面對異常事件發生頻率極低、樣本高度不平衡的時間序列資料，下列哪一種方法最能兼顧模型穩定性與異常偵測效能？</p>
+<ul class="opts">
+<li>(A) 將每筆異常事件資料複製多次以提升模型對異常的辨識敏感度，搭配全序列訓練模型（如 LSTM）；</li>
+<li>(B) 對時間序列進行差分與標準化後，使用傳統監督式學習模型（如 SVM）進行分類訓練；</li>
+<li>(C) 使用經過時間序列特化的 SMOTE 技術生成異常樣本，以平衡異常與正常資料比例；</li>
+<li>(D) 採用基於重建誤差的自編碼器模型（Sequence-to-Sequence Autoencoder）進行異常偵測，並僅使用正常資料進行訓練</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>異常極稀少、樣本高度不平衡時，最穩健的做法是僅以正常資料訓練自編碼器學習正常模式，異常因重建誤差大而被偵測，不需異常標籤。(A) 單純複製易過擬合；(B) SVM 對極不平衡效果有限；(C) SMOTE 合成樣本在極端不平衡時可能引入虛假樣本。</div>
+</div>
+
+<div class="q" id="e114-q34">
+<p class="stem"><span class="qno">34.</span>在零售業進行客戶行為分析時，資料倉儲中發現多個欄位儲存相同的購買金額資訊（例如：amount_usd、total_price、transaction_value），但其單位、命名慣例及格式不一致，進而導致特徵工程階段混淆模型輸入。針對此種跨欄位語義重疊與結構冗餘問題，下列哪一種資料處理策略最合適且具實務可行性？</p>
+<ul class="opts">
+<li>(A) 利用資料探勘技術自動選擇資料集中對目標變數最敏感的欄位，其他欄位捨棄即可，避免過度清理干擾原始結構；</li>
+<li>(B) 保留所有相似欄位，交由高階模型（如 Gradient Boosting 或 Deep Learning）自動學習特徵關聯，無需手動處理；</li>
+<li>(C) 建立欄位命名標準，統一金額單位與格式，進行欄位正規化與語義合併，減少重複資訊影響特徵重要性估計；</li>
+<li>(D) 將重複欄位視為類別欄位，進行 One-hot 編碼（One-hot encoding）後輸入模型，以避免數值誤導模型學習過程</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>面對語義重疊、單位/格式不一致的冗餘欄位，最佳實務是建立命名標準、統一單位與格式、進行正規化與語義合併，消除重複資訊。(A) 直接捨棄可能漏失資訊；(B) 放任冗餘易扭曲特徵重要性；(D) 對金額欄做 One-hot 不合理。</div>
+</div>
+
+<div class="q" id="e114-q35">
+<p class="stem"><span class="qno">35.</span>某大型零售企業準備將商品推薦模型上線，專案團隊在檢視訓練資料時，發現部分商品類別（例如高價商品）樣本數量極少，而多數樣本集中於低價商品。若此不平衡問題未妥善處理，下列何種狀況最可能在實際推薦結果中發生？</p>
+<ul class="opts">
+<li>(A) 模型在預測時傾向輸出稀有類別，導致雖能捕捉到少數樣本，但精確率（Precision）顯著下降；</li>
+<li>(B) 模型由於類別分布不均，難以建立有效的線性分離邊界，進而無法收斂；</li>
+<li>(C) 模型過度聚焦於稀有類別樣本，導致對多數類別的預測能力下降，整體效能受損；</li>
+<li>(D) 模型學到的決策邊界主要由多數類別主導，忽視了稀有類別，造成該類別的召回率（Recall）大幅降低</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>類別不平衡時，模型傾向偏向多數類別，決策邊界由多數類別主導，導致稀有類別（高價商品）難以被正確識別，其召回率（Recall）大幅下降。(A)(C) 描述相反；(B) 不平衡不必然導致無法收斂。</div>
+</div>
+
+<div class="q" id="e114-q36">
+<p class="stem"><span class="qno">36.</span>某電商資料團隊要協助行銷部門規劃再行銷策略。目前取得資料包含使用者點擊、購買紀錄、流量來源與轉換率。若資料團隊希望先進行探索性資料分析（EDA），下列哪一項最符合 EDA 的做法？</p>
+<ul class="opts">
+<li>(A) 建立隨機森林模型，預測使用者是否會完成購買；</li>
+<li>(B) 使用 K-means 對使用者群進行分群並立即制定對應促銷策略；</li>
+<li>(C) 繪製各類流量來源對轉換率的關聯圖，尋找潛在關係；</li>
+<li>(D) 對不同購物路徑設定統計假設並進行雙樣本 t 檢定</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>EDA 強調無預設假設下以視覺化探索資料、發現潛在模式與關聯。(C) 繪製關聯圖尋找潛在關係正屬之。(A) 建模預測屬預測性分析；(B) 立即制定策略已超出探索；(D) 設假設做 t 檢定屬驗證性分析（CDA）。</div>
+</div>
+
+<div class="q" id="e114-q37">
+<p class="stem"><span class="qno">37.</span>某金融科技公司在利用歷史交易資料建立風險控管模型時，嘗試推估整體詐騙交易比例。近期發現，樣本間存在明顯的時間序列相關性，導致模型在實際偵測新交易時誤判率升高。若希望同時改善詐騙比例推估的準確性並提升模型的穩健性，下列哪一種做法最為合適？</p>
+<ul class="opts">
+<li>(A) 擴充樣本數量，以涵蓋更多潛在的詐騙型態，但維持既有的隨機抽樣方式不變；</li>
+<li>(B) 採取時間序列敏感的抽樣策略，例如依據交易時間區間進行分層，以保存原始的時間結構特性；</li>
+<li>(C) 將資料完全隨機打散，以降低序列相關性對模型訓練造成的影響；</li>
+<li>(D) 在模型評估時，針對相鄰時間區段進行誤差合併，以便用整體估計方式修正詐騙比例</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>資料具時間序列相關性時，應採時間敏感的抽樣（如依時間區間分層），保留時間結構特性，才能正確評估與推估。(A) 維持隨機抽樣未解決時間相關問題；(C) 隨機打散破壞時間依賴造成資料洩漏；(D) 誤差合併無法解決抽樣偏誤。</div>
+</div>
+
+<div class="q" id="e114-q38">
+<p class="stem"><span class="qno">38.</span>某公司建置基於檢索增強生成（RAG）的知識查詢系統，需同時兼顧查詢效能與資料的即時更新。近期發現回應內容偶爾過時，且每次更新文件都需完整重建索引，導致系統在更新期間無法服務。若要解決此問題並提升整體穩健性，下列哪項做法最適合？</p>
+<ul class="opts">
+<li>(A) 調整生成模型的回應隨機性參數，以降低答案偏差並提升一致性；</li>
+<li>(B) 提升檢索與索引的運算效能，以縮短查詢與更新所需時間；</li>
+<li>(C) 採用索引的增量或分段更新方式，使新資料能即時納入而不需全部重建；</li>
+<li>(D) 建立常見問題的標準答案集，透過快速檢索回應以降低模型負擔</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>問題核心在於「每次更新都需完整重建索引導致停機」，故採用增量/分段更新索引，使異動文件即時納入而不需全量重建，兼顧即時性與服務穩定。(A)(D) 未解決索引更新問題；(B) 提升效能仍須全量重建。</div>
+</div>
+
+<div class="q" id="e114-q39">
+<p class="stem"><span class="qno">39.</span>某醫院計畫開發住院日數預測模型，以協助病房調度。多數病人的住院日數集中在 3–7 天，但仍有少數重症患者因治療需求而住院日數明顯偏長。醫院希望採用一種合適的評估方式，既能兼顧大部分病人的預測準確度，也能確保對重症個案的預測維持穩健。下列哪一種方法最符合此需求？</p>
+<ul class="opts">
+<li>(A) 在模型檢核時，同時呈現平均絕對誤差（MAE）與重症子群的誤差指標；</li>
+<li>(B) 僅針對一般病人樣本進行交叉驗證，以避免重症個案拉高誤差；</li>
+<li>(C) 將所有病人的住院日數進行標準化處理，以減少數值範圍差異的影響；</li>
+<li>(D) 只採用單一的整體決定係數 (R²) 作為模型優劣的判斷依據</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>欲兼顧整體與重症子群，應同時檢視整體誤差指標（MAE）與重症子群的分群誤差，才能確保少數重要個案不被整體指標掩蓋。(B) 排除重症個案會忽略關鍵族群；(C) 標準化非評估方法；(D) 單一 R² 無法反映子群表現。</div>
+</div>
+
+<div class="q" id="e114-q40">
+<p class="stem"><span class="qno">40.</span>關於監督式學習（Supervised Learning）與非監督式學習（Unsupervised Learning）的目標，下列敘述何者錯誤？<br>
+1. 非監督式學習的核心在於發掘資料內在結構，例如分群、關聯規則與降維，而不依賴外部標籤。<br>
+2. 監督式學習的典型應用為分類與迴歸，通常不適合應用於異常偵測任務。<br>
+3. 非監督式學習若搭配少量標註資料，即會完全轉化為監督式學習。<br>
+4. 監督式學習仰賴已標註的資料集，透過最小化輸出與真實標籤之間的差距，學習輸入與目標之間的對應函數。<br>
+5. 所有監督式學習任務都必須要有大量完整標註資料，否則無法進行任何有效的模型訓練。<br>
+6. 非監督式學習不需要目標變數，僅透過輸入資料本身的特徵分布進行模式學習。</p>
+<ul class="opts">
+<li>(A) 3、5、6；</li>
+<li>(B) 1、4、6；</li>
+<li>(C) 2、4、6；</li>
+<li>(D) 2、3、5</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>錯誤敘述為 2、3、5：敘述 2 錯（監督式學習可用於異常偵測）；敘述 3 錯（搭配少量標註應為半監督式學習，非「完全轉化」）；敘述 5 錯（少量標註亦可訓練，如半監督/小樣本，非必須大量完整標註）。1、4、6 皆正確，故選 (D)。</div>
+</div>
+
+<div class="q" id="e114-q41">
+<p class="stem"><span class="qno">41.</span>一家旅遊平台希望建立模型，預測顧客下次是否會再次透過該平台訂房。資料包含：顧客 ID、年齡、旅遊次數、平均花費金額、主要交通方式（火車/飛機/自駕/公車）、會員等級（普通/進階/白金）、是否為海外旅遊等。下列哪一種特徵工程方法最適合處理「主要交通方式」欄位？</p>
+<ul class="opts">
+<li>(A) 布林轉換（Boolean Conversion）；</li>
+<li>(B) 序數編碼（Ordinal Encoding）；</li>
+<li>(C) 數值標準化（Numerical Standardization）；</li>
+<li>(D) One-hot 編碼（One-hot Encoding）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>「主要交通方式」是無序（無大小關係）的類別變數，應用 One-hot 編碼避免模型誤解為有序大小。(B) 序數編碼適用有序類別（如會員等級）；(A) 布林僅二值；(C) 標準化用於數值。</div>
+</div>
+
+<div class="q" id="e114-q42">
+<p class="stem"><span class="qno">42.</span>一家跨國醫療研究機構希望利用各地醫院的病患資料，建立一個能夠預測疾病早期風險的機器學習模型。由於各國法規限制，病患的原始資料無法集中到單一伺服器。在此情境下，下列哪一種方法最能同時滿足「各醫院保留資料不外流」與「模型仍能跨院學習」的需求？</p>
+<ul class="opts">
+<li>(A) 資料匿名化（Data Anonymization）；</li>
+<li>(B) 差分隱私（Differential Privacy）；</li>
+<li>(C) 聯邦學習（Federated Learning）；</li>
+<li>(D) 交叉驗證（Cross-validation）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>聯邦學習讓各機構在本地訓練、僅交換模型參數而非原始資料，達成「資料不外流」與「跨院共同學習」。(A) 匿名化仍需集中資料；(B) 差分隱私是加噪保護而非分散式訓練；(D) 交叉驗證是評估方法。</div>
+</div>
+
+<div class="q" id="e114-q43">
+<p class="stem"><span class="qno">43.</span>某公司欲建立員工離職風險預測模型，資料集中包含「年度績效分數」、「平均每月加班時數」、「年齡」等數值型特徵。由於各特徵的數值範圍差異極大（例如績效分數 1–5、加班時數 0–80、年齡 20–65），若直接輸入至使用梯度下降的邏輯迴歸(Logistic Regression)模型，可能導致模型收斂緩慢或權重偏斜。為提升模型訓練效率與準確度，下列哪一種特徵工程方法最適合應用於這些數值特徵？</p>
+<ul class="opts">
+<li>(A) 布林轉換（Boolean Conversion）；</li>
+<li>(B) 時間序列分解（Time Series Decomposition）；</li>
+<li>(C) One-hot 編碼（One-hot Encoding）；</li>
+<li>(D) 數值標準化（Numerical Standardization）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>各數值特徵量級差異大且使用梯度下降的模型對尺度敏感，應做數值標準化（如 Z-score）將特徵縮放至同一尺度，加速收斂並避免權重偏斜。(A)(C) 用於類別/二值；(B) 用於時間序列，皆不適用此情境。</div>
+</div>
+
+<div class="q" id="e114-q44">
+<p class="stem"><span class="qno">44.</span>在機器學習中，「叢集（Clustering）」方法最典型的應用情境是下列何者？</p>
+<ul class="opts">
+<li>(A) 根據歷史交易紀錄與已標註的詐欺案例，訓練模型來偵測未來的詐欺交易；</li>
+<li>(B) 使用醫療數據與病患的診斷標籤，建立模型以預測病人是否罹患特定疾病；</li>
+<li>(C) 根據顧客的消費行為與特徵，將顧客自動劃分為數個群組，以便進行差異化行銷；</li>
+<li>(D) 透過大量已標註影像，訓練深度學習模型來辨識照片中的物件種類</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>叢集（聚類）是非監督式學習，依資料相似性自動分群、不需標籤。(C) 依消費行為自動將顧客分群正屬之。(A)(B)(D) 皆使用已標註資料進行分類/預測，屬監督式學習。</div>
+</div>
+
+<div class="q" id="e114-q45">
+<p class="stem"><span class="qno">45.</span>某醫院研究團隊蒐集了大量病患的「收縮壓」數據，經檢驗後顯示此數值大致呈現常態分布。在進行後續模型分析前，研究人員希望妥善處理可能存在的極端血壓數值。下列哪一種做法最為合適？</p>
+<ul class="opts">
+<li>(A) 將所有極端偏高或偏低的血壓數據直接刪除，以保留最具代表性的病患樣本；</li>
+<li>(B) 使用對數轉換（Log Transformation），將數據壓縮至更接近常態，以降低極端值的影響；</li>
+<li>(C) 透過 Z 分數（Z-score）或標準差範圍檢測異常值，並依研究需求決定是否調整或移除；</li>
+<li>(D) 將檢測到的離群值以 Label Encoding 編碼，轉換為序號標籤以避免影響原始分布</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>資料已近常態分布時，宜以 Z-score 或標準差範圍客觀檢測離群值，再依研究需求決定調整或移除，較為謹慎。(A) 一律直接刪除可能損失有效資訊（極端血壓可能臨床有意義）；(B) 已近常態無需對數轉換；(D) Label Encoding 對數值離群值不合理。</div>
+</div>
+
+<div class="q" id="e114-q46">
+<p class="stem"><span class="qno">46.</span>某電商公司想預測用戶是否會購買特定商品，資料中包含多種用戶屬性與行為特徵。分析師希望選出對購買結果最有預測價值的特徵，以提升模型效能。下列哪一種描述最符合監督式特徵選擇（Supervised Feature Selection）的概念？</p>
+<ul class="opts">
+<li>(A) 根據特徵的整體分布、變異度或資訊量進行篩選，而不直接參考目標變數；</li>
+<li>(B) 評估每個特徵與目標變數之間的相關性，選擇對預測結果貢獻最大的特徵；</li>
+<li>(C) 使用模型評估特徵對預測結果的重要性，並保留對目標變數影響較大的欄位；</li>
+<li>(D) 將特徵透過降維方法（如 PCA）轉換為新特徵，再用於模型訓練</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>監督式特徵選擇的關鍵是「參考目標變數」，評估特徵與目標的相關性以選出最具預測價值者（過濾法）。(A) 不參考目標變數→非監督式；(C) 雖也參考目標但屬包裝/嵌入法，題目問「最符合監督式特徵選擇概念」之核心定義為以與目標相關性篩選，故選 (B)；(D) 是特徵提取/降維非特徵選擇。<div class="box note"><span class="tag">補充</span>(C) 利用模型重要性（嵌入/包裝法）同樣屬於監督式特徵選擇的範疇；本題官方以 (B)「相關性篩選」為標準答案，作答時以官方答案 B 為準。</div></div>
+</div>
+
+<div class="q" id="e114-q47">
+<p class="stem"><span class="qno">47.</span>在訓練神經網路時，為了提升模型收斂速度與穩定性，避免梯度消失或梯度爆炸，下列哪一種做法最常被使用？</p>
+<ul class="opts">
+<li>(A) 對輸入資料進行隨機旋轉或水平翻轉，以增加資料多樣性；</li>
+<li>(B) 選用 ReLU 或其變體作為隱藏層的啟動函數，以改善梯度傳播；</li>
+<li>(C) 減少樣本量提升訓練速度；</li>
+<li>(D) 對目標變數或特徵進行標準化</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>ReLU 及其變體在正區間梯度為常數，能有效緩解梯度消失，改善深層網路的梯度傳播與收斂。(A) 是資料增強（防過擬合）；(C) 減少樣本會降低學習能力；(D) 標準化有助收斂但對梯度消失/爆炸的針對性不如啟動函數選擇。</div>
+</div>
+
+<div class="q" id="e114-q48">
+<p class="stem"><span class="qno">48.</span>若希望檢視某一連續型數據的分布情形（如集中程度、偏態或是否呈現多峰），下列哪一種應用情境最適合使用直方圖（Histogram）來進行分析？</p>
+<ul class="opts">
+<li>(A) 探討顧客年齡資料的整體分布特徵，並檢視是否存在異常集中或分散現象；</li>
+<li>(B) 比較不同商品在各月份的銷售額變化趨勢，以觀察季節性波動；</li>
+<li>(C) 追蹤公司近一年營收的時間序列變化，以了解整體成長趨勢；</li>
+<li>(D) 檢視產品價格與月銷售量之間的關聯性，以評估是否具線性相關</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>直方圖呈現連續型單變數的分布（集中、分散、偏態、多峰）。(A) 探討年齡分布特徵正屬之。(B)(C) 觀察趨勢應用折線圖；(D) 檢視兩變數關聯應用散佈圖。</div>
+</div>
+
+<div class="q" id="e114-q49">
+<p class="stem"><span class="qno">49.</span>下列何者並非我國數位發展部 AI 產品與評測中心在評估大型語言模型安全性時，所指出的常見使用指標？</p>
+<ul class="opts">
+<li>(A) 資料複雜性；</li>
+<li>(B) 事實正確性；</li>
+<li>(C) 偏見與歧視；</li>
+<li>(D) 惡意與濫用可能性</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>LLM 安全性常見指標包含事實正確性、偏見與歧視、惡意與濫用可能性等。「資料複雜性」並非安全性評估指標，故為正解（選「並非」者）。</div>
+</div>
+
+<div class="q" id="e114-q50">
+<p class="stem"><span class="qno">50.</span>某雲端服務公司計畫將大型語言模型部署於線上系統，並以批次推論（Batch Inference）方式處理每日上百萬筆用戶請求。專案團隊在評估可能遇到的挑戰時，下列哪一項通常不會被視為批次推論階段的主要難題？</p>
+<ul class="opts">
+<li>(A) 如何確保訓練語料的涵蓋性與標註品質，以避免模型偏差影響輸出；</li>
+<li>(B) 當批次規模增大時，如何降低推論延遲並保持即時回應能力；</li>
+<li>(C) 在推論過程中，有效管理與分配龐大的輸入資料量以避免資源壅塞；</li>
+<li>(D) 在叢集環境中精確安排推論任務，以提升 GPU/TPU 等硬體資源的利用率</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>批次推論屬「部署/推論」階段，主要挑戰為延遲、資料量管理、硬體資源調度等（B、C、D）。(A) 訓練語料涵蓋性與標註品質屬「訓練」階段的議題，並非批次推論階段的難題，故為正解（選「不會」者）。</div>
+</div>
+
+<h2 class="chap" id="e115a">區二・115 年第一次（共 50 題）</h2>
+<p class="sub">考試日期：115 年 03 月 21 日。官方答案取自 iPAS 公告試題。</p>
+
+<div class="q" id="e115a-q1">
+<p class="stem"><span class="qno">1.</span>下列何者不屬於資料整合（Data Integration）的主要目的？</p>
+<ul class="opts">
+<li>(A) 統一不同來源資料的格式與欄位定義，以確保分析一致性；</li>
+<li>(B) 識別並處理重複資料，避免影響模型訓練結果；</li>
+<li>(C) 整併多來源資料，以提升資料完整性與應用價值；</li>
+<li>(D) 依資料保存政策延長原始資料留存期限，以利未來可能的分析需求</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>資料整合的目的在於格式統一、去重、整併多來源以提升價值（A、B、C）。(D) 延長資料留存期限屬資料保存政策，與資料整合目的無關，故為正解（選「不屬於」者）。</div>
+</div>
+
+<div class="q" id="e115a-q2">
+<p class="stem"><span class="qno">2.</span>某智慧城市專案導入 AI 技術，以優化垃圾收集路線調度並即時監測空氣品質變化。系統需持續蒐集環境數據（如 PM2.5、氣體濃度）與設備狀態（如垃圾桶滿溢度）。下列何種技術最直接支援上述需求？</p>
+<ul class="opts">
+<li>(A) 專家系統（Expert System）；</li>
+<li>(B) 決策支援系統（Decision Support System）；</li>
+<li>(C) 啟發式決策引擎（Heuristic Decision Engine）；</li>
+<li>(D) 感知器網路（Sensor Network）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>持續蒐集環境數據與設備狀態的需求，最直接由感知器網路（Sensor Network，分散佈署的感測器）支援。專家系統、決策支援系統、啟發式引擎著重於「決策/推理」而非資料感測蒐集。</div>
+</div>
+
+<div class="q" id="e115a-q3">
+<p class="stem"><span class="qno">3.</span>下列何者不符合非監督式學習（Unsupervised Learning）的典型特徵？</p>
+<ul class="opts">
+<li>(A) 模型可依據資料中的特徵相似性進行自動分群；</li>
+<li>(B) 訓練過程中不需仰賴事先定義的標籤資料；</li>
+<li>(C) 常用於探索資料的潛在結構或隱含模式；</li>
+<li>(D) 模型主要學習輸入特徵與既定目標標記之間的對應關係</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>非監督式學習不需標籤、依相似性分群、探索潛在結構（A、B、C）。(D) 學習輸入與「既定目標標記」之對應關係屬監督式學習的特徵，故為正解（選「不符合」者）。</div>
+</div>
+
+<div class="q" id="e115a-q4">
+<p class="stem"><span class="qno">4.</span>某保險公司建立 AI 理賠金額預測模型。歷史理賠資料經檢定後呈近似常態分佈，但仍存在少數極端高額案件。資料科學團隊在不破壞整體分佈特性的前提下，規劃進行離群值處理。下列何者最不適當？</p>
+<ul class="opts">
+<li>(A) 依統計準則（如 Z-score 或 IQR）評估後，再決定是否調整或處理極端值；</li>
+<li>(B) 採用截尾（Trimming）處理極端值，以提升模型穩定性；</li>
+<li>(C) 使用 One-hot 編碼（One-hot Encoding）將離群值轉換為類別特徵以改善數值穩定性；</li>
+<li>(D) 結合領域知識評估其合理性，再決定保留或修正</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>離群值處理的合理做法包含統計準則檢測（A）、截尾（B）、結合領域知識判斷（D）。(C) 對數值型離群值做 One-hot 編碼於概念上不合理且會破壞數值資訊，最不適當，故為正解（選「最不適當」者）。</div>
+</div>
+
+<div class="q" id="e115a-q5">
+<p class="stem"><span class="qno">5.</span>某銀行建立 AI 詐欺交易偵測模型。歷史交易資料中，詐欺樣本比例極低，導致模型訓練時偏向預測為「正常交易」。資料科學團隊評估採用 SMOTE（Synthetic Minority Over-sampling Technique）改善訓練資料分佈。下列何者最符合 SMOTE 技術的主要功能？</p>
+<ul class="opts">
+<li>(A) 透過隨機刪除部分正常交易資料，以降低類別失衡程度；</li>
+<li>(B) 依據少數類別樣本的特徵空間，合成產生新的少數類別樣本；</li>
+<li>(C) 調整模型的損失函數（Loss Function）權重，使誤判少數類別時的懲罰提高；</li>
+<li>(D) 以交叉驗證（Cross-validation）方式重新分割資料集，使各折資料類別比例一致</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>SMOTE（合成少數類別過採樣）在少數類別樣本的特徵空間中內插合成新的少數類別樣本，以平衡類別分布。(A) 是欠採樣（undersampling）；(C) 是調整損失權重（cost-sensitive）；(D) 是交叉驗證，皆非 SMOTE。</div>
+</div>
+
+<div class="q" id="e115a-q6">
+<p class="stem"><span class="qno">6.</span>資料科學團隊在模型訓練前，需對數值特徵進行正規化（Normalization）或標準化（Standardization）。為確保模型評估結果具真實性並避免資料洩漏（Data Leakage），下列何者為最適當的作法？</p>
+<ul class="opts">
+<li>(A) 於資料分割前，先對完整資料集計算統計量並進行標準化處理；</li>
+<li>(B) 先分割訓練資料（Training Data）和測試資料（Test Data），並各自獨立計算統計量後進行標準化；</li>
+<li>(C) 先分割訓練資料（Training Data）和測試資料（Test Data），僅以訓練資料計算統計量，再套用至測試資料；</li>
+<li>(D) 僅對訓練資料（Training Data）進行標準化處理，測試資料（Test Data）保持原始數值</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>避免資料洩漏的正確做法：先分割資料，僅用訓練資料計算統計量（均值、標準差），再以該統計量套用到測試資料。(A) 用完整資料計算會洩漏測試資訊；(B) 各自獨立計算造成尺度不一致；(D) 測試資料未轉換則尺度不一致。</div>
+</div>
+
+<div class="q" id="e115a-q7">
+<p class="stem"><span class="qno">7.</span>某電信公司建立機器學習模型預測用戶流失風險。資料中包含多個類別型特徵（Categorical Features），例如「資費方案類型」與「客戶地區」。為使模型能有效使用這些特徵，下列何者最直接用於將類別型特徵轉換為模型可處理的數值格式？</p>
+<ul class="opts">
+<li>(A) 資料分群（Data Clustering）；</li>
+<li>(B) 特徵交叉（Feature Cross）；</li>
+<li>(C) One-hot 編碼（One-hot Encoding）；</li>
+<li>(D) 寬深模型（Wide and Deep）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>One-hot 編碼直接將無序類別特徵轉換為模型可處理的數值（0/1）向量。(A) 分群是非監督任務；(B) 特徵交叉是組合特徵；(D) 寬深模型是模型架構，皆非「將類別轉數值」的直接方法。</div>
+</div>
+
+<div class="q" id="e115a-q8">
+<p class="stem"><span class="qno">8.</span>某零售企業在建置機器學習模型預測顧客購買機率時，資料同時包含大量稀疏類別特徵與數值型特徵。團隊希望模型既能學習過去已出現的特徵組合規律，也能對未出現的特徵組合做出合理預測。下列哪一種模型架構最適合此類需求？</p>
+<ul class="opts">
+<li>(A) 線性迴歸（Linear Regression）；</li>
+<li>(B) 決策樹（Decision Tree）；</li>
+<li>(C) 支援向量機（Support Vector Machine, SVM）；</li>
+<li>(D) 寬深模型（Wide and Deep）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>寬深模型（Wide and Deep）結合「寬」部分（記憶已出現的特徵組合，Memorization）與「深」部分（對未見組合的泛化，Generalization），最適合同時處理稀疏類別與數值特徵並兼顧記憶與泛化的需求。</div>
+</div>
+
+<div class="q" id="e115a-q9">
+<p class="stem"><span class="qno">9.</span>某影音串流平台建立神經網路模型，用於預測使用者最可能感興趣的影片類型。模型輸出層需將結果轉換為各類別的機率分佈，以便系統依機率高低推薦內容。下列哪一種函數最適合用於模型輸出層？</p>
+<ul class="opts">
+<li>(A) Softmax 函數（Softmax Function）；</li>
+<li>(B) Sigmoid 函數（Sigmoid Function）；</li>
+<li>(C) 線性函數（Linear Function）；</li>
+<li>(D) ReLU 函數（Rectified Linear Unit Function）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>多類別分類需將輸出轉為總和為 1 的機率分佈，Softmax 正適用於此。(B) Sigmoid 適二元分類或多標籤；(C) 線性函數用於迴歸輸出；(D) ReLU 是隱藏層啟動函數。</div>
+</div>
+
+<div class="q" id="e115a-q10">
+<p class="stem"><span class="qno">10.</span>某設計公司導入生成式 AI（Generative AI）工具，用於自動產生產品概念圖與風格草圖。為了讓系統能依據既有圖像資料產生具有變化且風格一致的新圖像，模型必須具備學習資料特性並生成新樣本的能力。下列哪一種模型技術或方法最符合上述需求？</p>
+<ul class="opts">
+<li>(A) 隱變量自編碼器（Variational Autoencoder, VAE）；</li>
+<li>(B) 隨機森林（Random Forest）；</li>
+<li>(C) K-近鄰演算法（K-Nearest Neighbors, KNN）；</li>
+<li>(D) 貝氏網路（Bayesian Network）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>VAE 是生成式模型，能學習資料的潛在分佈並生成具變化且風格一致的新樣本，符合「生成新圖像」需求。(B) 隨機森林與 (C) KNN 是鑑別式/分類模型；(D) 貝氏網路偏向推論而非高品質圖像生成。</div>
+</div>
+
+<div class="q" id="e115a-q11">
+<p class="stem"><span class="qno">11.</span>某企業導入生成式 AI（Generative AI）系統自動產出會議摘要，並規劃額外建置一套 AI 系統，用於評估摘要內容的正確性與完整性。下列何者為此 AI 系統的核心目標？</p>
+<ul class="opts">
+<li>(A) 自動新增專業名詞與技術指標；</li>
+<li>(B) 判斷摘要是否遺漏關鍵資訊或出現語意錯誤；</li>
+<li>(C) 調整語音轉文字結果；</li>
+<li>(D) 自動標註摘要的關鍵字與主題標籤</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>該評估系統的核心目標是評估摘要「正確性與完整性」，即判斷是否遺漏關鍵資訊或出現語意錯誤（B）。(A) 新增名詞、(C) 調整語音轉文字、(D) 標註關鍵字皆非評估正確性與完整性之核心目標。</div>
+</div>
+
+<div class="q" id="e115a-q12">
+<p class="stem"><span class="qno">12.</span>ChatGPT、Gemini 等對話型生成式 AI 工具所依據的基礎模型技術，下列何者正確？</p>
+<ul class="opts">
+<li>(A) 決策樹（Decision Tree）；</li>
+<li>(B) 大型語言模型（Large Language Model, LLM）；</li>
+<li>(C) 生成對抗網路（Generative Adversarial Network, GAN）；</li>
+<li>(D) 圖卷積網路（Graph Convolutional Network, GCN）</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>ChatGPT、Gemini 等對話型生成式 AI 以大型語言模型（LLM）為基礎，建構於 Transformer 架構。GAN 主要用於圖像生成、決策樹用於分類、GCN 用於圖結構資料，皆非對話型工具的基礎技術。</div>
+</div>
+
+<div class="q" id="e115a-q13">
+<p class="stem"><span class="qno">13.</span>根據《金融機構運用人工智慧技術作業規範》，金融機構於使用人工智慧提供金融服務並直接與消費者互動時，下列何者非必要揭露之資訊？</p>
+<ul class="opts">
+<li>(A) 該服務之 AI 模型原始程式碼；</li>
+<li>(B) 服務適用對象與用途範圍；</li>
+<li>(C) 該服務是否為 AI 自動完成；</li>
+<li>(D) 該服務是否提供替代方案</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>規範要求向消費者揭露：服務是否為 AI 自動完成、適用對象與用途範圍、是否提供替代方案等（B、C、D）。(A) AI 模型原始程式碼屬營業機密，並非必要揭露事項，故為正解（選「非必要」者）。</div>
+</div>
+
+<div class="q" id="e115a-q14">
+<p class="stem"><span class="qno">14.</span>下列哪一項「AI 技術應用與產業領域」的對應最為恰當？</p>
+<ul class="opts">
+<li>(A) 利用 AI 分析商場顧客購買紀錄以預測股票市場波動—智慧交通；</li>
+<li>(B) 使用 AI 進行設備故障預測與預防性維護—智慧製造；</li>
+<li>(C) 以 AI 模型融合即時氣象資料與乘客消費行為特徵，推薦會員升級優惠方案—智慧醫療；</li>
+<li>(D) 利用 AI 分析社群媒體互動以提升臨床診斷準確度—金融服務業</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>設備故障預測與預防性維護是智慧製造的典型應用，對應正確。(A) 顧客購買預測股市卻歸智慧交通、(C) 氣象+消費推薦卻歸智慧醫療、(D) 社群分析卻歸金融且宣稱提升臨床診斷，皆為技術與領域不對應的錯誤搭配。</div>
+</div>
+
+<div class="q" id="e115a-q15">
+<p class="stem"><span class="qno">15.</span>在資料處理中，下列何者屬於「結構化數據」的例子？</p>
+<ul class="opts">
+<li>(A) 儲存在 MySQL 資料庫中的訂單記錄；</li>
+<li>(B) 以 JSON 格式儲存的商品訂單資訊；</li>
+<li>(C) 用 XML 標註的產品目錄；</li>
+<li>(D) 儲存在純文字檔案中的客服對話紀錄</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>結構化數據具固定行列結構，儲存於關聯式資料庫（如 MySQL）的訂單記錄正屬之。(B) JSON、(C) XML 屬半結構化；(D) 純文字客服對話屬非結構化。</div>
+</div>
+
+<div class="q" id="e115a-q16">
+<p class="stem"><span class="qno">16.</span>關於敘述性統計指標，下列敘述何者最為正確？</p>
+<ul class="opts">
+<li>(A) 中位數（Median）能有效反映極端值對資料分佈的影響；</li>
+<li>(B) 標準差（Standard Deviation）越大，代表資料越集中；</li>
+<li>(C) 百分位數（Percentile）主要用於衡量資料在整體分布中的相對位置；</li>
+<li>(D) 平均值（Mean）適合描述偏態且包含離群值（Outliers）的資料</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>百分位數表示某值在整體分布中的相對位置（如第 90 百分位），(C) 正確。(A) 中位數不受極端值影響，無法反映極端值；(B) 標準差越大代表越分散非集中；(D) 偏態含離群值時平均數易失真，應用中位數。</div>
+</div>
+
+<div class="q" id="e115a-q17">
+<p class="stem"><span class="qno">17.</span>某企業資料分析人員需針對不同型態的數據選擇合適的視覺化工具。下列哪一種情境最適合使用直方圖（Histogram）？</p>
+<ul class="opts">
+<li>(A) 檢視顧客年齡資料在不同區間的集中情形；</li>
+<li>(B) 分析產品售價與銷售量之間的關聯程度；</li>
+<li>(C) 比較各產品類別的年度銷售總額；</li>
+<li>(D) 在地圖上標示各縣市加盟店的地理分布位置</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>直方圖呈現單一連續變數在各區間的分布與集中情形，(A) 檢視年齡分布正屬之。(B) 兩變數關聯用散佈圖；(C) 類別比較用長條圖；(D) 地理分布用地圖。</div>
+</div>
+
+<div class="q" id="e115a-q18">
+<p class="stem"><span class="qno">18.</span>某電商平台工程師需在已排序的價格清單中，快速定位指定價格是否存在，給定排序後陣列：arr = [3, 8, 14, 19, 21, 27, 33, 45, 52]。若搜尋目標值為 27，且採用標準二分搜尋（Binary Search）流程（每次比較後排除中位數），請問最多需要比較幾次即可找到目標？</p>
+<ul class="opts">
+<li>(A) 2 次；</li>
+<li>(B) 3 次；</li>
+<li>(C) 4 次；</li>
+<li>(D) 5 次</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>陣列共 9 筆。第 1 次比中間值（索引 4）=21，27&gt;21 取右半 [27,33,45,52]；第 2 次比中間值=33（或 45，視取法），27&lt;33 取左半 [27]；第 3 次比 27 命中。共需 3 次比較，故選 (B)。</div>
+</div>
+
+<div class="q" id="e115a-q19">
+<p class="stem"><span class="qno">19.</span>某物流公司導入強化式學習（Reinforcement Learning）優化車隊調度。模型在系統運行過程中，會依據不同配送狀態動態調整行動選擇方式，使決策結果逐步朝較佳績效收斂。上述模型在學習過程中的調整行為，最符合下列哪一項強化式學習核心機制？</p>
+<ul class="opts">
+<li>(A) 調整策略函數以改變行動選擇機率；</li>
+<li>(B) 更新訓練資料分布以降低模型偏差；</li>
+<li>(C) 重新分群狀態資料以識別決策類型；</li>
+<li>(D) 建立正確決策標籤進行誤差修正</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>強化學習依環境回饋逐步優化「策略（Policy）」，即調整策略函數來改變各行動的選擇機率，朝最大化獎勵收斂。(B) 是資料層面、(C) 是分群（非監督）、(D) 是監督式的標籤誤差修正，皆非強化學習核心機制。</div>
+</div>
+
+<div class="q" id="e115a-q20">
+<p class="stem"><span class="qno">20.</span>某團隊訓練影像分類模型，發現模型在訓練資料上的準確率達 98%，但在測試資料上僅有 72%。若團隊希望提升模型對新資料的適應能力，並增加訓練資料的多樣性，下列何者最適合？</p>
+<ul class="opts">
+<li>(A) 增加模型的深度與參數量，使模型學習更多細節；</li>
+<li>(B) 對訓練影像進行旋轉、翻轉等隨機變化；</li>
+<li>(C) 提高訓練速度，使模型更快完成學習；</li>
+<li>(D) 僅保留模型表現較好的訓練資料</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>訓練 98% 而測試 72% 為明顯過擬合，且題目明確要求「增加訓練資料多樣性」，故採資料增強（旋轉、翻轉）。(A) 增大模型會加劇過擬合；(C) 提高速度無助泛化；(D) 僅留好資料反而降低多樣性。</div>
+</div>
+
+<div class="q" id="e115a-q21">
+<p class="stem"><span class="qno">21.</span>某時尚品牌導入生成式 AI（Generative AI）技術，建立服裝設計輔助系統。系統需根據設計師輸入的風格條件，自動產生具有高度視覺品質、細節穩定且風格變化自然的服裝草圖。團隊特別重視生成結果的穩定性與多樣性控制能力。在此需求下，下列哪一種模型技術或方法較為適合？</p>
+<ul class="opts">
+<li>(A) 支援向量機（Support Vector Machine, SVM）；</li>
+<li>(B) 生成對抗網路（Generative Adversarial Network, GAN）；</li>
+<li>(C) 決策樹（Decision Tree）；</li>
+<li>(D) 擴散模型（Diffusion Model）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>擴散模型在高品質圖像生成上表現優異，能產出細節豐富、品質穩定且多樣性可控的圖像，最符合「高視覺品質、細節穩定、風格變化自然且重視穩定性」之需求。GAN 雖也可生成但訓練較不穩定（易模式崩潰）；SVM、決策樹非生成式模型。</div>
+</div>
+
+<div class="q" id="e115a-q22">
+<p class="stem"><span class="qno">22.</span>某製造業工廠規劃導入 AI 監控系統，持續分析設備感測數據（如溫度、震動與壓力）。系統需能在缺乏完整異常標註資料的情況下，辨識與一般運作型態顯著不同的狀態，並發出預警。在此需求下，下列何種技術較為適合？</p>
+<ul class="opts">
+<li>(A) 使用支援向量機（Support Vector Machine, SVM）建立異常分類模型；</li>
+<li>(B) 以決策樹（Decision Tree）學習異常類型的判斷規則；</li>
+<li>(C) 採用變分自編碼器（Variational Autoencoder, VAE）學習正常資料分佈；</li>
+<li>(D) 使用生成對抗網路（Generative Adversarial Network, GAN）直接預測異常標籤</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>缺乏異常標註時，可用 VAE 學習「正常資料分佈」，異常資料因重建誤差大而被偵測，不需異常標籤。(A) SVM、(B) 決策樹皆為監督式分類需標註；(D) GAN 並非「直接預測異常標籤」之工具。</div>
+</div>
+
+<div class="q" id="e115a-q23">
+<p class="stem"><span class="qno">23.</span>在 AI 推論服務架構設計中，「批次推論（Batch Inference）」與「即時推論（Real-time Inference）」常依任務特性選擇不同機制。下列關於兩者特性的敘述何者最正確？</p>
+<ul class="opts">
+<li>(A) 批次推論通常以同步請求方式回傳結果，以確保資料一致性；即時推論則多採非同步機制以提升系統吞吐量（Throughput）；</li>
+<li>(B) 批次推論多用於延遲容忍度較高的大規模資料處理，通常以吞吐量（Throughput）最佳化為優先；即時推論則著重於請求回應時間的穩定性與低延遲特性；</li>
+<li>(C) 批次推論因計算資源需求高，僅適用於影像類模型；即時推論則主要應用於結構化資料模型；</li>
+<li>(D) 即時推論為確保回應速度，通常限制為單筆資料輸入；批次推論則可支援同步多筆資料即時回傳</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>批次推論適合延遲容忍度高的大規模資料、以吞吐量為優先；即時推論重低延遲與回應穩定，(B) 正確。(A) 兩者同步/非同步描述顛倒；(C) 兩者皆不限特定資料型態；(D) 即時推論不限單筆、批次也非「即時回傳」。</div>
+</div>
+
+<div class="q" id="e115a-q24">
+<p class="stem"><span class="qno">24.</span>某企業導入大型語言模型作為客服助理。模型已具備穩定語言能力，但在回覆偏好一致性與組織規範遵循方面仍需優化，團隊因此規劃導入人類反饋強化學習（RLHF）流程，下列何者最不屬於 RLHF 階段的典型技術活動？</p>
+<ul class="opts">
+<li>(A) 透過人工評估方式建立偏好資料，使模型的不同候選輸出可反映人類主觀品質差異；</li>
+<li>(B) 訓練一個能依據人類偏好判斷輸出品質的模型，作為模型優化過程中的回饋依據；</li>
+<li>(C) 依據品質評估結果，調整模型生成策略，使其輸出更符合偏好導向的行為表現；</li>
+<li>(D) 以未標註語料為主進行長週期表示學習訓練，以提升模型基礎語言建模能力</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>RLHF 三步驟：建立人類偏好資料（A）、訓練獎勵模型（B）、依獎勵調整生成策略（C）。(D) 以未標註語料做長週期表示學習屬「預訓練」階段活動，非 RLHF，故為正解（選「最不屬於」者）。</div>
+</div>
+
+<div class="q" id="e115a-q25">
+<p class="stem"><span class="qno">25.</span>在大型語言模型（LLM）的推論服務中，常透過請求批次處理（Batching）來提升系統效能。關於批次處理（Batching）機制的影響，下列敘述何者最正確？</p>
+<ul class="opts">
+<li>(A) Batching 可提升加速器資源使用效率並增加整體吞吐量（Throughput），但在部分情境下可能對單筆請求延遲造成影響；</li>
+<li>(B) Batching 主要用於加快單筆請求回應時間；</li>
+<li>(C) Batching 的效益主要來自降低記憶體使用量，對於吞吐量（Throughput）與延遲表現影響有限；</li>
+<li>(D) Batching 在低併發（Concurrency）請求下，仍能明顯提升系統效能</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>批次處理將多筆請求合併運算，提升加速器（GPU/TPU）使用率與整體吞吐量，但等待湊批可能增加單筆請求延遲，(A) 正確。(B) 不會加快單筆回應；(C) 主要效益是吞吐量非降記憶體；(D) 低併發下湊批不足，效益有限。</div>
+</div>
+
+<div class="q" id="e115a-q26">
+<p class="stem"><span class="qno">26.</span>在可解釋 AI(Explainable AI, XAI) 的分類架構中，LIME（Local Interpretable Model-agnostic Explanations）屬於哪一類解釋技術？</p>
+<ul class="opts">
+<li>(A) 內建可解釋模型（Intrinsic Interpretability）：模型本身具有透明的決策結構；</li>
+<li>(B) 對話式解釋系統（Conversational AI Explainer）：透過互動對話提供模型解釋；</li>
+<li>(C) 後處理模型解釋（post-hoc）：對已訓練模型提供外部解釋；</li>
+<li>(D) 代理模型技術（Surrogate Model）：訓練另一個簡單模型來完全取代原黑盒模型進行推論</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>LIME 是針對「已訓練」黑箱模型提供外部解釋，屬後處理（post-hoc）解釋技術。(A) 內建可解釋是模型本身透明（如決策樹）；(D) LIME 雖用局部代理模型，但目的是「解釋」而非「完全取代原模型推論」，故 (D) 描述有誤，正解為 (C)。</div>
+</div>
+
+<div class="q" id="e115a-q27">
+<p class="stem"><span class="qno">27.</span>SHAP（SHapley Additive exPlanations）值常用於分析機器學習模型的輸出行為。下列何者最符合 SHAP 值所提供的資訊？</p>
+<ul class="opts">
+<li>(A) 模型在訓練過程中，各特徵對損失函數收斂速度的影響程度；</li>
+<li>(B) 依據特徵對模型整體準確率的影響，自動篩除低重要性變數；</li>
+<li>(C) 在單一預測結果中，各輸入特徵對最終輸出所產生的貢獻分配；</li>
+<li>(D) 透過調整特徵權重，使模型在推論階段降低計算複雜度</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>SHAP 基於博弈論 Shapley 值，量化單一預測中各輸入特徵對最終輸出的貢獻分配（正向/負向），(C) 正確。(A) 非收斂速度分析；(B) 非自動篩除變數；(D) 非降低計算複雜度。</div>
+</div>
+
+<div class="q" id="e115a-q28">
+<p class="stem"><span class="qno">28.</span>在金融業導入 AI 模型與可解釋性技術時，反事實解釋（Counterfactual Explanation）最符合下列哪一種應用？</p>
+<ul class="opts">
+<li>(A) 分析整體客戶群的信用風險分布，以預測未來違約率趨勢；</li>
+<li>(B) 回溯歷史呆帳案例，辨識造成違約的主要影響因素；</li>
+<li>(C) 分析在模型不變的前提下，客戶申請資料變動對授信決策結果的影響；</li>
+<li>(D) 依據客戶輪廓與行為資料，推薦最適合的金融商品以提升交叉銷售</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>反事實解釋探討「若改變輸入特徵，結果會如何不同」，(C) 分析客戶申請資料變動對授信決策的影響正屬之（如「收入再提高多少即可核准」）。(A) 是整體分布、(B) 是因素辨識、(D) 是推薦系統，皆非反事實解釋。</div>
+</div>
+
+<div class="q" id="e115a-q29">
+<p class="stem"><span class="qno">29.</span>在深度學習模型的分析與驗證過程中，研究人員有時會利用「顯著性圖（Saliency Map）」來輔助理解模型行為。下列何者最符合此技術的主要用途？</p>
+<ul class="opts">
+<li>(A) 量化各輸入特徵對模型整體預測準確度的平均影響程度；</li>
+<li>(B) 標示輸入資料中對單一預測結果影響較大的區域或部分；</li>
+<li>(C) 評估在不同模型參數設定下，預測結果的穩定性變化；</li>
+<li>(D) 比較不同模型架構在測試資料上的泛化能力差異</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>顯著性圖透過梯度等方式標示輸入（如影像像素、文字片段）中對「單一預測結果」影響較大的區域，(B) 正確。(A) 是整體特徵重要性（偏 SHAP）；(C) 是穩定性評估；(D) 是模型比較，皆非顯著性圖用途。</div>
+</div>
+
+<div class="q" id="e115a-q30">
+<p class="stem"><span class="qno">30.</span>某商業銀行想建立洗錢行為檢測系統，擁有過去 5 年的交易記錄，其中包含已確認的洗錢案例（標記為「異常」）和正常交易（標記為「正常」）。銀行希望系統能自動識別新交易是否為洗錢行為，請問使用下列哪一種機器學習方法最為適合？</p>
+<ul class="opts">
+<li>(A) 監督式學習的分類問題；</li>
+<li>(B) 非監督式學習的分群問題；</li>
+<li>(C) 強化式學習；</li>
+<li>(D) 非監督式學習的關聯規則挖掘</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>資料已有「異常/正常」標籤，且目標為判斷新交易類別，屬監督式學習的二元分類問題，(A) 正確。(B)(D) 非監督式不使用標籤、(C) 強化學習依環境回饋，皆與此「有標籤分類」情境不符。</div>
+</div>
+
+<div class="q" id="e115a-q31">
+<p class="stem"><span class="qno">31.</span>某農場收集了大量作物葉片影像，但只有 30% 的影像有病害類別標註，其餘 70% 的影像沒有任何標籤。農場希望充分利用所有資料來訓練病害識別模型。這種情況最適合使用哪一種學習方法？</p>
+<ul class="opts">
+<li>(A) 半監督式學習（Semi-supervised Learning）；</li>
+<li>(B) 監督式學習（Supervised Learning）；</li>
+<li>(C) 非監督式學習（Unsupervised Learning）；</li>
+<li>(D) 強化式學習（Reinforcement Learning）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>少量標註（30%）+大量未標註（70%）且欲「充分利用所有資料」，正是半監督式學習的典型情境。(B) 監督式僅能用標註資料、(C) 非監督式不用標籤、(D) 強化學習依回饋，皆無法同時善用兩類資料。</div>
+</div>
+
+<div class="q" id="e115a-q32">
+<p class="stem"><span class="qno">32.</span>某環保局想建立 AI 系統監測空氣品質，透過分析監測站攝影機拍攝的影像來識別煙霧。系統需要在影像中找出煙霧區域並標示其位置和範圍。這個應用主要屬於電腦視覺的哪個技術領域？</p>
+<ul class="opts">
+<li>(A) 影像分類，判斷影像中是否有煙霧；</li>
+<li>(B) 物件偵測，找出煙霧位置並用方框標示；</li>
+<li>(C) 影像分割，精確標示出煙霧的像素區域；</li>
+<li>(D) 人臉辨識，識別煙霧來源</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>需「精確標示煙霧區域與範圍」屬於像素級的影像分割（Segmentation），(C) 正確。(A) 影像分類僅判斷有無、(B) 物件偵測以方框（bounding box）框出位置但非精確區域、(D) 人臉辨識與此無關。</div>
+</div>
+
+<div class="q" id="e115a-q33">
+<p class="stem"><span class="qno">33.</span>某公車系統想預測各站點的到站時間，需要考慮歷史班次資料、即時路況、天氣等因素。由於路況變化複雜，傳統循環神經網路（Recurrent Neural Network, RNN）在建模時可能難以保留較早期的重要資訊。下列哪種架構最能解決這個問題？</p>
+<ul class="opts">
+<li>(A) 卷積神經網路（Convolutional Neural Network, CNN），利用卷積層捕捉局部特徵；</li>
+<li>(B) 自編碼器（Autoencoder, AE），先進行資料壓縮再重建；</li>
+<li>(C) 全連接神經網路（Fully Connected Neural Network, FCNN），增加隱藏層數量；</li>
+<li>(D) 長短期記憶網路（Long Short-Term Memory, LSTM），改善 RNN 的長期記憶問題</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>RNN 難保留早期資訊（長期依賴/梯度消失），LSTM 透過門控機制（遺忘門、輸入門、輸出門）改善長期記憶問題，(D) 正確。CNN 適圖像、AE 用於壓縮重建、FCNN 不擅長序列依賴，皆非最佳解。</div>
+</div>
+
+<div class="q" id="e115a-q34">
+<p class="stem"><span class="qno">34.</span>某保險公司每月處理約 50 萬筆理賠申請，希望建立 AI 系統自動識別可疑的詐欺案件。由於公司內部缺乏 AI 專業人員，且需要快速上線驗證效果，IT 資訊主管正在評估不同的 AI 平台解決方案。在去識別化個人隱私資料後，下列哪一種平台類型最適合該公司的需求？</p>
+<ul class="opts">
+<li>(A) 從零開始建立深度學習框架並自行訓練模型；</li>
+<li>(B) 採用開源機器學習框架進行客製化模型開發；</li>
+<li>(C) 使用雲端 AutoML 平台進行自動化模型訓練；</li>
+<li>(D) 購買現成的詐欺偵測軟體套件直接部署</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>缺乏 AI 專業人員且需快速上線驗證，雲端 AutoML 平台能自動化建模、降低技術門檻並可依自家資料客製，最符合需求。(A)(B) 需高度專業且耗時；(D) 現成套件難貼合自家詐欺型態。</div>
+</div>
+
+<div class="q" id="e115a-q35">
+<p class="stem"><span class="qno">35.</span>某市政府規劃釋出市民用電資料供學術研究使用，資料內容包含用電紀錄與部分人口統計欄位。考量資料可能涉及可識別個人之資訊，且須符合個人資料保護相關規範，下列哪一種資料處理方式最為適當？</p>
+<ul class="opts">
+<li>(A) 提供完整資料集並透過合約約定研究用途與保密責任；</li>
+<li>(B) 僅保留用電數值資料，移除所有其他欄位以避免識別風險；</li>
+<li>(C) 對具識別風險的資料欄位進行轉換處理，並移除直接識別資訊；</li>
+<li>(D) 僅將資料加密後提供，確保資料在傳輸過程中的安全性</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>去識別化的最佳實務是移除直接識別資訊並對具識別風險欄位做轉換（如概化、雜湊），兼顧隱私保護與資料可用性，(C) 正確。(A) 提供完整資料風險高；(B) 移除所有欄位損失研究價值；(D) 加密僅保護傳輸，解密後仍可識別。</div>
+</div>
+
+<div class="q" id="e115a-q36">
+<p class="stem"><span class="qno">36.</span>某電子製造公司建置 AI 視覺檢測系統，用於辨識 PCB 電路板製程缺陷。系統在影像判讀任務上表現穩定，但其模型設計與訓練目標皆侷限於特定應用範圍，無法直接遷移至其他營運決策任務。依人工智慧能力範疇分類，下列何者最符合該系統特性？</p>
+<ul class="opts">
+<li>(A) 弱 AI（Weak AI/Narrow AI）；</li>
+<li>(B) 強 AI（Strong AI）；</li>
+<li>(C) 通用人工智慧（Artificial General Intelligence, AGI）；</li>
+<li>(D) 超級人工智慧（Artificial Superintelligence, ASI）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>系統僅針對特定任務（PCB 缺陷檢測）且無法遷移至其他任務，屬弱 AI / 狹義 AI（Narrow AI），(A) 正確。強 AI、AGI 具跨領域通用智慧、ASI 全面超越人類，皆超出此單一任務系統範疇。</div>
+</div>
+
+<div class="q" id="e115a-q37">
+<p class="stem"><span class="qno">37.</span>某紡織製造公司導入 AI 系統進行布料瑕疵檢測，每天需處理來自 30 條產線的影像資料，包括高解析度照片、感測器數值、生產參數記錄等多種格式。該公司收集的資料量從每日 2GB 增長至 50GB，且需在布料離開產線前的 3 秒內完成瑕疵判定。近期團隊發現系統在尖峰時段容易出現判定延遲，影響製程節奏。若要優先改善此問題，下列哪一種做法最適合？</p>
+<ul class="opts">
+<li>(A) 擴充資料儲存容量，以因應長期資料累積需求；</li>
+<li>(B) 強化即時資料處理與推論計算資源配置，以降低延遲風險；</li>
+<li>(C) 調整資料格式標準，以降低跨來源整合複雜度；</li>
+<li>(D) 增加資料驗證與清理機制，以提升資料品質穩定性</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>核心問題是「尖峰時段判定延遲、須 3 秒內完成」，屬即時運算瓶頸，應優先強化即時資料處理與推論計算資源（如擴充運算資源/加速器），(B) 正確。(A) 儲存、(C) 格式整合、(D) 資料品質皆非延遲的直接成因。</div>
+</div>
+
+<div class="q" id="e115a-q38">
+<p class="stem"><span class="qno">38.</span>某果園管理公司計畫導入 AI 系統協助農民判斷蘋果成熟度，透過分析果實特徵資訊，評估成熟狀態並自動判斷採收時機。根據 AI 應用領域的分類，這個系統主要屬於哪一個應用領域？</p>
+<ul class="opts">
+<li>(A) 自然語言處理（Natural Language Processing）；</li>
+<li>(B) 電腦視覺（Computer Vision）；</li>
+<li>(C) 語音識別（Speech Recognition）；</li>
+<li>(D) 推薦系統（Recommendation System）</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>透過分析果實外觀特徵（影像）判斷成熟度，屬電腦視覺應用，(B) 正確。NLP 處理文字、語音識別處理語音、推薦系統做個人化推薦，皆與影像辨識任務不符。</div>
+</div>
+
+<div class="q" id="e115a-q39">
+<p class="stem"><span class="qno">39.</span>某企業評估於不同業務場景導入機器學習技術。下列哪一項應用情境與機器學習類型的搭配最為適當？</p>
+<ul class="opts">
+<li>(A) 在醫療影像分析中，同時運用少量已標註資料與大量未標註影像進行模型訓練—監督式學習（Supervised Learning）；</li>
+<li>(B) 在智慧推薦系統中，利用顧客是否點擊的歷史標籤資料預測未來偏好—非監督式學習（Unsupervised Learning）；</li>
+<li>(C) 在詐欺交易分析中，模型透過錯誤判斷所產生的損失作為回饋訊號，持續調整策略—監督式學習（Supervised Learning）；</li>
+<li>(D) 在股價資料分析中，將歷史價格變動模式劃分為若干趨勢型態，且未使用人工標註—非監督式學習（Unsupervised Learning）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 無標註、依模式分群屬非監督式學習，搭配正確。(A) 少量標註+大量未標註應為半監督式；(B) 有點擊標籤預測偏好應為監督式；(C) 以損失回饋調整策略應為強化式學習，故 (D) 為正解。</div>
+</div>
+
+<div class="q" id="e115a-q40">
+<p class="stem"><span class="qno">40.</span>某製造業公司建置機器學習模型，用於預測產品是否為瑕疵品。實際生產資料中，瑕疵品比例極低，大多數樣本皆為正常品。模型測試時發現，即使模型多數預測為正常品，仍可獲得很高的整體準確率。在此情境下，若希望更有效衡量模型對瑕疵品的辨識能力，下列何者較適合作為主要評估指標？</p>
+<ul class="opts">
+<li>(A) F1-score；</li>
+<li>(B) 均方誤差（Root Mean Squared Error, RMSE）；</li>
+<li>(C) 準確率（Accuracy）；</li>
+<li>(D) 判定係數（R², Coefficient of Determination）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>類別極不平衡時，準確率會因多數類別而失真，應改用兼顧精確率與召回率的 F1-score 衡量少數類別（瑕疵品）辨識能力，(A) 正確。(B) RMSE、(D) R² 用於迴歸；(C) Accuracy 在不平衡資料下失真。</div>
+</div>
+
+<div class="q" id="e115a-q41">
+<p class="stem"><span class="qno">41.</span>在大型語言模型（LLM）的效能優化中，Flash Attention 常被用來改善 Transformer 注意力機制的運算效率。關於 Flash Attention 的主要效益，下列敘述何者最正確？</p>
+<ul class="opts">
+<li>(A) 透過忽略影響較小的注意力權重，減少模型需要計算的關聯數量，以降低運算成本；</li>
+<li>(B) 透過調整注意力計算與資料處理方式，減少中間結果的儲存需求，進而改善速度與資源使用效率；</li>
+<li>(C) 透過增加注意力計算的並行程度，使模型可同時處理更多注意力頭部；</li>
+<li>(D) 透過將注意力結果暫存於高速快取記憶體，以避免重複計算造成延遲</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>Flash Attention 透過重新安排注意力計算流程（分塊計算、減少對中間注意力矩陣的存取與儲存），降低記憶體存取需求，提升速度與資源效率，(B) 正確。(A) 是稀疏注意力（忽略小權重）；(C) 是並行化；(D) 是快取，皆非 Flash Attention 核心機制。</div>
+</div>
+
+<div class="q" id="e115a-q42">
+<p class="stem"><span class="qno">42.</span>某企業建置基於檢索增強生成（RAG）的法遵知識輔助系統，用於整合法規條文、內控制度與歷史函釋文件。系統運行後發現，每當法規更新或新增解釋文件時，需重新建立完整索引，導致更新期間系統暫停服務，且部分回應偶有引用舊版內容的情形。若希望在兼顧查詢效率的同時提升知識更新彈性與系統穩定性，下列何者最適合？</p>
+<ul class="opts">
+<li>(A) 提升模型推論資源配置，以維持高流量查詢時的回應效能；</li>
+<li>(B) 調整語言模型的輸出限制機制，以降低生成內容與法規不一致的風險；</li>
+<li>(C) 建立固定法規問答對照表，以規則化方式優先回應常見問題；</li>
+<li>(D) 導入可支援增量更新的索引管理方式，使異動文件可即時反映於檢索結果</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>問題核心是「每次更新需全量重建索引造成停機與引用舊版」，故導入支援增量更新的索引管理，使異動文件即時反映於檢索結果，(D) 正確。(A) 提升資源、(B) 調整輸出、(C) 固定問答表皆未解決索引更新彈性問題。</div>
+</div>
+
+<div class="q" id="e115a-q43">
+<p class="stem"><span class="qno">43.</span>關於機器學習不同的學習模式，下列敘述何者錯誤？<br>
+1. 監督式學習（Supervised Learning）透過已標註資料學習輸入與目標之間的對應關係，常見任務包含分類與數值預測。<br>
+2. 非監督式學習（Unsupervised Learning）雖不需標註資料，但通常需預先定義每筆資料的正確輸出類別以利模型收斂。<br>
+3. 半監督式學習（Semi-supervised Learning）在訓練過程中僅利用未標註資料進行特徵學習，並不涉及標註資料。<br>
+4. 自監督式學習（Self-supervised Learning）的訓練方式與監督式學習相同，皆需人工逐筆提供標註資料。<br>
+5. 強化式學習（Reinforcement Learning）透過與環境互動並依據回饋訊號調整策略，以優化決策行為。<br>
+6. 自監督式學習（Self-supervised Learning）通常利用資料本身產生訓練目標，以降低對人工標註資料的依賴。</p>
+<ul class="opts">
+<li>(A) 2、3、6；</li>
+<li>(B) 2、4、5；</li>
+<li>(C) 1、3、6；</li>
+<li>(D) 2、3、4</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>錯誤敘述為 2、3、4：敘述 2 錯（非監督式不需預先定義正確輸出類別）；敘述 3 錯（半監督式同時用標註與未標註資料，非「僅未標註」）；敘述 4 錯（自監督式利用資料本身產生標籤，不需人工逐筆標註）。1、5、6 皆正確，故選 (D)。</div>
+</div>
+
+<div class="q" id="e115a-q44">
+<p class="stem"><span class="qno">44.</span>某零售業者建立顧客行為預測模型，資料集中包含「年消費金額」、「平均單筆交易金額」及「會員年資」等數值型特徵。資料分析顯示，部分金額特徵呈現高度偏態分布，少數樣本的數值顯著高於多數觀測值。為降低極端值對模型學習穩定性的影響，下列哪一種特徵工程方法最適合？</p>
+<ul class="opts">
+<li>(A) 對數轉換（Log Transformation）；</li>
+<li>(B) 區間化（Binning）；</li>
+<li>(C) One-hot 編碼（One-hot Encoding）；</li>
+<li>(D) 隨機重抽樣（Random Resampling）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>金額特徵高度右偏且有極端高值時，對數轉換能壓縮數值尺度、使分布更接近常態並降低極端值影響，(A) 最適合。(B) 區間化會損失數值資訊；(C) One-hot 用於類別；(D) 重抽樣用於樣本不平衡而非特徵偏態。</div>
+</div>
+
+<div class="q" id="e115a-q45">
+<p class="stem"><span class="qno">45.</span>某團隊訓練深層神經網路模型時，發現訓練誤差長時間幾乎未下降，模型參數更新幅度極小，呈現學習停滯現象。若研判問題與梯度傳遞效率有關，下列何者最適合的改善策略？</p>
+<ul class="opts">
+<li>(A) 延長模型訓練時間，使模型有更多機會調整參數；</li>
+<li>(B) 增加訓練樣本數量，以提升模型學習能力；</li>
+<li>(C) 調整模型中的啟動函數設定，以改善訓練過程的穩定性；</li>
+<li>(D) 簡化模型結構，以降低模型過度擬合的可能性</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>訓練誤差不降、參數更新幅度極小是典型梯度消失現象，與啟動函數密切相關，改用 ReLU 等啟動函數可改善梯度傳遞，(C) 正確。(A) 延長時間無助於梯度消失；(B) 增加樣本非根因；(D) 簡化結構針對過擬合而非梯度問題。</div>
+</div>
+
+<div class="q" id="e115a-q46">
+<p class="stem"><span class="qno">46.</span>某市政府建置城市治理資料平台，需整合交通車流偵測資料、路口監視器影像，以及民眾透過陳情系統提交的文字通報。由於各類資料格式、儲存方式與資料型態差異甚大，導致資料清理與整合成本顯著增加。就大數據特性而言，此專案最主要面臨下列哪一項挑戰？</p>
+<ul class="opts">
+<li>(A) Volume；</li>
+<li>(B) Velocity；</li>
+<li>(C) Variety；</li>
+<li>(D) Veracity</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>整合數值、影像、文字等「多種格式與型態」差異甚大的資料，正是大數據 Variety（多樣性）的挑戰，(C) 正確。Volume 指資料量、Velocity 指產生速度、Veracity 指資料真實性/品質，皆非此處主要問題。</div>
+</div>
+
+<div class="q" id="e115a-q47">
+<p class="stem"><span class="qno">47.</span>某企業規劃導入 AI 技術支援多項資料分析任務中，下列何種屬於結構化預測（Structured Prediction）問題？</p>
+<ul class="opts">
+<li>(A) 判斷一封電子郵件是否為垃圾郵件；</li>
+<li>(B) 預測未來一週的產品需求量；</li>
+<li>(C) 預測客戶是否可能流失；</li>
+<li>(D) 為語音內容轉換後的文字進行逐詞標註</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>結構化預測的輸出是具內部結構/相依關係的物件（如序列標註）。(D) 為文字逐詞標註（序列標註，詞與詞間有依賴）屬之。(A)(C) 是二元分類、(B) 是數值迴歸，輸出皆為單一值非結構化輸出。</div>
+</div>
+
+<div class="q" id="e115a-q48">
+<p class="stem"><span class="qno">48.</span>某物流公司想導入 AI 以提升營運效率，評估不同資料型態與模型架構。下列哪一種應用情境最適合採用卷積神經網路（Convolutional Neural Network, CNN）作為主要模型架構？</p>
+<ul class="opts">
+<li>(A) 依據包裹每日掃描紀錄的時間序列，預測下週各倉庫的進貨量波動；</li>
+<li>(B) 根據客服對話逐句內容的先後順序，判斷客訴是否可能升級為申訴案件；</li>
+<li>(C) 根據倉庫監視器影像，自動辨識貨架是否缺貨並標示缺貨區域位置；</li>
+<li>(D) 依據車隊 GPS 路徑點的連續軌跡，預測下一段可能行駛路線</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>CNN 擅長處理影像的空間特徵，(C) 根據監視器影像辨識貨架缺貨並標示區域正屬之。(A) 時間序列、(B) 文字序列、(D) 軌跡序列皆為序列資料，較適合 RNN/LSTM 而非 CNN。</div>
+</div>
+
+<div class="q" id="e115a-q49">
+<p class="stem"><span class="qno">49.</span>某 AI 科技公司在工業缺陷檢測領域已有成熟的辨識產品經驗。現欲與新客戶合作開發一項類似產品的表面瑕疵檢測系統，但因新產品量產不久，標註樣本極為稀少且專家標註成本高昂。在不大幅增加標註預算的前提下，下列哪一種做法最能利用該公司既有的技術優勢來提升模型表現？</p>
+<ul class="opts">
+<li>(A) 增加模型參數規模，使模型具備更強表達能力；</li>
+<li>(B) 透過資料增強（Data Augmentation）擴展影像變化，以提升模型穩定性；</li>
+<li>(C) 重新蒐集大量影像並進行完整人工標註；</li>
+<li>(D) 採用遷移學習（Transfer Learning），利用既有預訓練模型進行調整</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>公司已有成熟缺陷辨識模型且新任務標註稀少，最能善用既有技術優勢的是遷移學習：以既有預訓練模型為基礎微調至新產品，(D) 正確。(A) 增大模型在小資料下易過擬合；(B) 資料增強有幫助但未善用「既有技術優勢」；(C) 重新大量標註違反「不大幅增加標註預算」前提。</div>
+</div>
+
+<div class="q" id="e115a-q50">
+<p class="stem"><span class="qno">50.</span>某醫院使用機器學習模型篩檢癌症患者。模型預測結果會決定哪些病人需要進一步檢查。院方非常重視盡量找出所有可能的癌症患者，即希望降低漏診（Missed Diagnosis）風險，即便這可能增加一些誤判。下列哪一個評估指標最能反映模型找出癌症患者的能力？</p>
+<ul class="opts">
+<li>(A) 精準率（Precision）；</li>
+<li>(B) 召回率（Recall）；</li>
+<li>(C) 假陽性率（False Positive Rate）；</li>
+<li>(D) ROC-AUC 曲線</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>「盡量找出所有癌症患者、降低漏診」即重視不漏掉真正陽性，對應召回率（Recall = 真陽性/實際陽性），(B) 正確。(A) Precision 重「報的準」、(C) 假陽性率衡量誤報、(D) ROC-AUC 是整體區辨力綜合指標，皆非直接反映「找出患者」能力。</div>
+</div>
+
+<h2 class="chap" id="e115b">區二・115 年第二次（共 50 題）</h2>
+<p class="sub">考試日期：115 年 05 月 16 日。官方答案取自 iPAS 公告試題。</p>
+
+<div class="q" id="e115b-q1">
+<p class="stem"><span class="qno">1.</span>某地方政府委託資料科學團隊，針對選舉期間的社群媒體貼文進行大規模輿情分析，目標是了解選民對各政策議題的態度傾向。團隊規劃整合多種 AI 技術以提升分析涵蓋率。下列哪一種技術組合最符合上述需求，且不涉及對特定個人的身份辨識？</p>
+<ul class="opts">
+<li>(A) 情感分析結合關鍵詞提取，分析貼文內容的立場與高頻議題詞彙；</li>
+<li>(B) 文本分類結合人臉辨識，辨識發文者身份後再進行政治立場分類；</li>
+<li>(C) 語音辨識結合影像辨識，將選舉造勢影片轉換為可分析的文字資料，並進行內容整理與主題歸納；</li>
+<li>(D) 推薦系統結合社群圖譜分析，針對個別使用者預測其投票選擇</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>輿情分析目標是了解態度傾向且「不涉及個人身份辨識」，以情感分析+關鍵詞提取分析貼文立場與高頻議題最合適，(A) 正確。(B) 人臉辨識、(D) 針對個人預測投票皆涉及個人身份辨識；(C) 偏離文字輿情分析需求。</div>
+</div>
+
+<div class="q" id="e115b-q2">
+<p class="stem"><span class="qno">2.</span>某物流公司正在規劃導入 AI 系統以優化多項業務流程，包含異常包裹偵測、路線自動規劃與倉儲揀貨效率提升。技術團隊在評估過程中，針對不同任務的資料特性與學習目標，討論應採用哪種機器學習方式。請問下列對於各學習方式的敘述，何者有誤？</p>
+<ul class="opts">
+<li>(A) 監督式學習（Supervised Learning）適合用於異常包裹偵測，前提是須備有大量已標註為正常或異常的歷史資料；</li>
+<li>(B) 非監督式學習（Unsupervised Learning）可用於分析倉儲揀貨動線的潛在分群，但無法直接預測特定行為的對錯；</li>
+<li>(C) 強化學習（Reinforcement Learning）適合應用於路線規劃，模型透過反覆嘗試與環境回饋，逐步找出最佳配送策略；</li>
+<li>(D) 非監督式學習（Unsupervised Learning）可用於異常包裹偵測，並能在缺乏標註資料的情況下，準確判斷每筆資料是否屬於特定異常類別</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 有誤：非監督式學習可在無標註下偵測「偏離正常」的異常，但無法「準確判斷屬於特定異常類別」（分類需標籤）。(A)(B)(C) 對各學習方式的描述皆正確，故選 (D)。</div>
+</div>
+
+<div class="q" id="e115b-q3">
+<p class="stem"><span class="qno">3.</span>某電子製造公司在產線上導入 AI 系統，自動判斷電路板是否存在焊接瑕疵，並取代人工目視檢查。該系統需處理大量產品外觀影像，並在高產量環境下短時間內完成品質判定。下列何者最不符合此應用所展現的 AI 核心技術能力？</p>
+<ul class="opts">
+<li>(A) 自然語言處理（Natural Language Processing）；</li>
+<li>(B) 電腦視覺（Computer Vision）；</li>
+<li>(C) 異常偵測（Anomaly Detection）；</li>
+<li>(D) 診斷性分析（Diagnostic Analytics）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>焊接瑕疵影像檢測涉及電腦視覺（B）、異常偵測（C），並可進行診斷性分析（D）。(A) 自然語言處理處理文字/語言，與外觀影像檢測無關，最不符合，故為正解（選「最不符合」者）。</div>
+</div>
+
+<div class="q" id="e115b-q4">
+<p class="stem"><span class="qno">4.</span>某金融科技公司的交易系統，在毫秒等級的時間內持續掃描跨市場價格差異、分析大量即時報價，並自動執行交易指令。系統架構師在技術選用評估時，需確認該系統於即時交易決策中最核心依賴的 AI 能力。下列何者最能正確說明其核心 AI 能力？</p>
+<ul class="opts">
+<li>(A) 透過自然語言處理技術分析財經新聞語意，作為輔助性市場情緒指標；</li>
+<li>(B) 快速分析龐大市場數據並在極短時間內識別交易機會，驅動自動化交易決策；</li>
+<li>(C) 運用生成對抗網路模擬極端市場情境，預先產出各類黑天鵝事件的應對策略；</li>
+<li>(D) 透過推薦系統技術，根據投資人歷史交易行為推薦最適合的投資組合標的</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>毫秒級掃描價差、即時分析報價並自動下單，其核心能力是「快速分析龐大市場數據、即時識別交易機會並驅動自動化交易」，(B) 正確。(A) NLP 新聞分析、(C) GAN 情境模擬、(D) 推薦投資組合皆為輔助或非即時交易決策的核心能力。</div>
+</div>
+
+<div class="q" id="e115b-q5">
+<p class="stem"><span class="qno">5.</span>某地方政府導入 AI 系統審核低收入補助資格。系統已通過內部測試且準確率高，但民間團體指出不同族群核准率差異顯著。政府表示該系統由專業廠商開發，且未接獲大量申訴。依《人工智慧基本法》精神，下列何者為最適當之優先作法？</p>
+<ul class="opts">
+<li>(A) 要求廠商提出無歧視聲明，並持續觀察；</li>
+<li>(B) 提升模型整體準確率，以降低錯誤影響；</li>
+<li>(C) 進行偏誤影響評估並建立可解釋與申訴機制；</li>
+<li>(D) 因尚無大量申訴，暫不調整現行制度</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>不同族群核准率差異顯著代表潛在歧視/偏誤，依基本法公平性與問責精神，應進行偏誤影響評估並建立可解釋與申訴機制，(C) 正確。(A) 僅聲明不足、(B) 提升整體準確率無法解決群體公平性、(D) 以無申訴為由不調整皆不適當。</div>
+</div>
+
+<div class="q" id="e115b-q6">
+<p class="stem"><span class="qno">6.</span>某 AI 新創公司申請 AI 系統認證，並聲稱其產品已通過我國「AI 產品與系統評測中心」之生成式 AI 評測。下列何者不屬於該中心之評測項目？</p>
+<ul class="opts">
+<li>(A) 資安（Secure）；</li>
+<li>(B) 公平性（Fair）；</li>
+<li>(C) 效率性（Efficiency）；</li>
+<li>(D) 可靠性（Reliability）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>評測中心對生成式 AI 的評測涵蓋資安、公平性、可靠性、當責性、隱私等面向（A、B、D）。(C) 效率性並非其評測項目，故為正解（選「不屬於」者）。</div>
+</div>
+
+<div class="q" id="e115b-q7">
+<p class="stem"><span class="qno">7.</span>某媒體集團計畫自行訓練一套生成式 AI 系統，用於自動產出新聞摘要與評論內容。在專案啟動會議中，法務與技術團隊共同討論如何從訓練階段就降低模型產出有害或偏頗內容的風險，並兼顧內容的多元性與公平性。請問下列哪一項措施最應該在模型訓練階段優先落實？</p>
+<ul class="opts">
+<li>(A) 確保訓練資料來源多元，並經過嚴格的內容清洗與偏見過濾，以減少模型學習到有害或偏頗資訊的風險；</li>
+<li>(B) 完全避免使用任何外部文本資料，以降低模型學習到不當內容的可能性；</li>
+<li>(C) 僅使用公司內部的新聞稿與公告進行訓練，確保資料來源可控且符合企業立場；</li>
+<li>(D) 限制模型僅能產出固定格式的內容，從輸出端約束模型避免生成不當資訊</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>欲在「訓練階段」降低有害/偏頗風險並兼顧多元與公平，應從資料源頭著手：確保資料來源多元並嚴格清洗、偏見過濾，(A) 正確。(B) 完全不用外部資料會限縮多元性；(C) 僅用內部資料易偏頗；(D) 從輸出端限制格式非訓練階段措施。</div>
+</div>
+
+<div class="q" id="e115b-q8">
+<p class="stem"><span class="qno">8.</span>某保險公司規劃推出一套 AI 核保輔助系統，針對線上投保申請進行初步風險評估並自動回覆審核結果。系統開發完成後，依據金融機構運用人工智慧技術作業規範，系統在正式與消費者互動前，必須確認相關揭露義務已落實。請問下列何者不屬於該規範要求金融機構必要揭露的事項？</p>
+<ul class="opts">
+<li>(A) 詳細公開本系統所採用的機器學習模型架構與完整訓練資料內容；</li>
+<li>(B) 說明本服務的適用對象與用途範圍，使消費者了解系統的使用限制與服務邊界；</li>
+<li>(C) 說明當消費者對 AI 核保結果有異議時，是否提供人工複核或申訴管道；</li>
+<li>(D) 告知消費者本次核保審查結果係由 AI 系統自動完成，非人工逐案審核</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>規範要求揭露：適用對象與用途範圍（B）、申訴/人工複核管道（C）、是否為 AI 自動完成（D）。(A) 詳細公開模型架構與完整訓練資料屬營業機密，並非必要揭露事項，故為正解（選「不屬於」者）。</div>
+</div>
+
+<div class="q" id="e115b-q9">
+<p class="stem"><span class="qno">9.</span>某大型醫院導入 AI 輔助診斷系統，用於分析病患的電子病歷與影像資料並提供疾病風險評分。系統上線後，院方陸續收到三類回饋：①放射科醫師反映無法理解系統判斷某病患為高風險的依據與理由；②數位治理委員會發現系統對特定族裔病患的誤診率顯著偏高；③資訊安全部門指出部分病患個資在未告知當事人的情況下被納入模型再訓練。依據 AI 倫理五大核心原則，上述三類問題分別對應哪一項原則的違反？</p>
+<ul class="opts">
+<li>(A) ①違反安全性、②違反問責性、③違反透明性；</li>
+<li>(B) ①違反隱私性、②違反安全性、③違反公平性；</li>
+<li>(C) ①違反公平性、②違反透明性、③違反問責性；</li>
+<li>(D) ①違反透明性、②違反公平性、③違反隱私性</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>①無法理解判斷依據→違反透明性；②對特定族裔誤診率偏高→違反公平性；③未告知即納入再訓練→違反隱私性。三者依序對應透明性、公平性、隱私性，故選 (D)。</div>
+</div>
+
+<div class="q" id="e115b-q10">
+<p class="stem"><span class="qno">10.</span>某市政府環保局計畫建立空氣品質監測 AI 系統，需整合全市 5 萬個感測器的即時數據（每秒產生大量資料記錄），並持續接收氣象、交通與工廠排放等資料，且需即時處理持續產生的資料。就大數據特性分析，下列何者最能說明此專案面臨的主要挑戰組合？</p>
+<ul class="opts">
+<li>(A) Volume 與 Velocity，因為資料量龐大且持續高速產生；</li>
+<li>(B) Variety 與 Veracity，因為資料來源多元且需確保正確性；</li>
+<li>(C) Velocity 與 Value，因為需即時判斷資料是否具有分析價值；</li>
+<li>(D) Volume 與 Value，因為需從大量資料中篩選出有用資訊</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>5 萬感測器「每秒產生大量資料」且需「即時處理持續產生的資料」，同時涉及資料量龐大（Volume）與高速產生/即時處理（Velocity），(A) 正確。題幹強調量大與即時，故非 Variety/Veracity/Value 組合。</div>
+</div>
+
+<div class="q" id="e115b-q11">
+<p class="stem"><span class="qno">11.</span>某保險公司建立理賠風險預測模型時，資料科學家在特徵選擇階段提出以「性別」作為預測愛滋病毒感染風險的輸入特徵之一。資料治理委員會在審查特徵清單時，對此提出異議。下列哪一項理由最能說明「以性別預測愛滋病毒感染風險」是不適當的原因？</p>
+<ul class="opts">
+<li>(A) 性別為類別型變數，需進行編碼轉換才能輸入模型，增加前處理複雜度；</li>
+<li>(B) 性別特徵在資料集中可能存在缺失值，影響模型訓練的穩定性；</li>
+<li>(C) 以性別作為感染風險的代理特徵，會強化對特定族群的歧視性標籤，違反公平性原則；</li>
+<li>(D) 性別特徵與感染風險之間的統計相關性有限，可能降低模型預測效能</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>以性別作為感染風險的代理特徵，會強化對特定族群的歧視性標籤，違反 AI 倫理的公平性原則，這是最關鍵的不適當原因，(C) 正確。(A) 編碼複雜度、(B) 缺失值、(D) 相關性皆為技術層面，非此爭議的倫理核心。</div>
+</div>
+
+<div class="q" id="e115b-q12">
+<p class="stem"><span class="qno">12.</span>某製造業導入 AI 進行生產排程，需整合 ERP（企業資源規劃系統）訂單資料、設備感測器產生的連續數值紀錄，以及維修技師手寫異常描述（掃描為 PDF）。資料治理主管需判斷三類資料的型態。下列何者最能正確對應其資料型態？</p>
+<ul class="opts">
+<li>(A) ERP 訂單資料為半結構化、感測器數值為結構化、維修文字描述為非結構化；</li>
+<li>(B) ERP 訂單資料為結構化、感測器數值為結構化、維修文字描述為非結構化；</li>
+<li>(C) ERP 訂單資料為結構化、感測器數值為非結構化、維修文字描述為半結構化；</li>
+<li>(D) 三者皆屬結構化資料，因為都可以轉換為數值格式後進行分析</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>ERP 訂單資料（資料庫行列）為結構化；感測器連續數值紀錄為結構化；維修技師手寫描述掃描為 PDF（自由文本/影像）為非結構化。三者對應結構化、結構化、非結構化，(B) 正確。</div>
+</div>
+
+<div class="q" id="e115b-q13">
+<p class="stem"><span class="qno">13.</span>某銀行建立機器學習模型預測客戶的貸款違約風險。資料集中有一個「職業類別」欄位，包含「工程師、教師、業務、自由業」等類別。工程師計劃將此欄位進行編碼處理後直接輸入線性模型。下列哪一種編碼方式最可能導致模型錯誤解讀類別之間的關係？</p>
+<ul class="opts">
+<li>(A) One-Hot Encoding；</li>
+<li>(B) Binary Encoding；</li>
+<li>(C) Target Encoding；</li>
+<li>(D) Label Encoding</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>「職業類別」為無序類別，Label Encoding 將其轉為 1、2、3、4 等序號，會讓線性模型誤解類別間存在大小/順序關係，最可能導致錯誤解讀，(D) 正確。One-hot 不引入順序、Binary/Target Encoding 對線性模型誤導較小。</div>
+</div>
+
+<div class="q" id="e115b-q14">
+<p class="stem"><span class="qno">14.</span>某能源公司以過去三年每小時用電資料建立需求預測模型，並以 5-fold 交叉驗證評估，但上線後誤差偏高。技術主管認為問題出在資料分割方式。下列何者最能說明使用標準 k-fold 交叉驗證的根本問題？</p>
+<ul class="opts">
+<li>(A) k-fold 交叉驗證需要的計算資源過大，不適合處理三年以上的長期資料；</li>
+<li>(B) k-fold 交叉驗證會隨機分割資料，使訓練集中可能包含比測試集更晚的時間點，破壞時間依賴性；</li>
+<li>(C) k-fold 交叉驗證的折數設定過少，應改為 10-fold 以提升驗證穩定性；</li>
+<li>(D) k-fold 交叉驗證僅適用於分類問題，不適合電力需求這類連續數值預測任務</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>時間序列資料若用標準 k-fold 隨機分割，訓練集可能含有比測試集更晚的時間點，造成「用未來預測過去」的資料洩漏並破壞時間依賴性，(B) 正確。時間序列應用時間序列交叉驗證。(A)(C)(D) 皆非根本問題。</div>
+</div>
+
+<div class="q" id="e115b-q15">
+<p class="stem"><span class="qno">15.</span>某醫療院所建置病患再住院風險預測模型，特徵包含「年齡」、「體重」、「血壓數值」及「診斷類別代碼」等，資料科學家考慮是否需對數值特徵進行標準化（Standardization）處理。下列何種模型對特徵尺度最不敏感、最適合在不進行標準化的情況下直接使用上述特徵進行訓練？</p>
+<ul class="opts">
+<li>(A) 線性迴歸（Linear Regression）；</li>
+<li>(B) 支援向量機（Support Vector Machine）；</li>
+<li>(C) K 近鄰演算法（K-Nearest Neighbors）；</li>
+<li>(D) 決策樹（Decision Tree）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>決策樹依特徵閾值逐節點分割，不依賴特徵間距離或尺度，對特徵尺度最不敏感，可不標準化直接使用，(D) 正確。SVM、KNN 依距離計算對尺度高度敏感；線性迴歸（含梯度下降）亦受尺度影響。</div>
+</div>
+
+<div class="q" id="e115b-q16">
+<p class="stem"><span class="qno">16.</span>某企業集團在多個領域導入 AI 技術，應用於不同業務場景。請問下列哪一項最符合異常檢測（Anomaly Detection）的主要應用目標？</p>
+<ul class="opts">
+<li>(A) 分析客戶的消費行為資料，將客群依偏好進行分群，以制定差異化行銷策略；</li>
+<li>(B) 根據歷史交易與客戶資料，建立模型預測未來可能發生違約的客戶；</li>
+<li>(C) 彙整企業各部門的營運數據，建立儀表板供管理層追蹤關鍵績效指標（KPI）的變化；</li>
+<li>(D) 從設備感測資料中，即時偵測出與正常運作模式顯著偏離的訊號，以預警可能發生的故障</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>異常檢測的目標是偵測「與正常模式顯著偏離」的訊號，(D) 從感測資料偵測偏離以預警故障正屬之。(A) 是分群、(B) 是違約預測（分類）、(C) 是 KPI 儀表板（敘述性分析），皆非異常檢測。</div>
+</div>
+
+<div class="q" id="e115b-q17">
+<p class="stem"><span class="qno">17.</span>某交通局計劃將公車乘客刷卡資料提供給學術機構進行通勤模式研究，該資料包含卡號、上下車時間、路線編號等欄位，且需保留跨時間追蹤同一乘客行為能力。為保護乘客隱私，下列哪種處理方式最符合個人資料保護法的去識別化要求？</p>
+<ul class="opts">
+<li>(A) 將卡號欄位全部刪除，僅保留上下車時間與路線編號；</li>
+<li>(B) 對卡號進行 MD5 雜湊處理，並保留對照表供查詢；</li>
+<li>(C) 將資料彙總為每日各路線總乘客數統計；</li>
+<li>(D) 將卡號替換為隨機編號，且不保留任何對應關係</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>需「保留跨時間追蹤同一乘客」又要去識別化，最佳做法是將卡號替換為固定的隨機假名編號（同一卡號對應同一編號）且不保留對應關係，(D) 正確。(A) 刪除卡號無法追蹤同一乘客；(B) 保留對照表仍可還原身份；(C) 彙總統計無法追蹤個別行為。</div>
+</div>
+
+<div class="q" id="e115b-q18">
+<p class="stem"><span class="qno">18.</span>某工業感測器回傳溫度時序資料，約 5% 出現遺漏值，確認為短暫失聯所致，非設備異常。資料工程師需在不引入虛假異常的前提下進行補值。考量資料具時間連續性，下列何種填補方式最為合適？</p>
+<ul class="opts">
+<li>(A) 將遺漏值全數填補為 0；</li>
+<li>(B) 以前後時間點的觀測值進行線性插補；</li>
+<li>(C) 填補整份資料的平均值；</li>
+<li>(D) 直接刪除包含遺漏值的時間點</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>溫度時序資料具時間連續性，以前後時間點觀測值做線性插補最能保留趨勢且不引入虛假異常，(B) 正確。(A) 填 0 製造異常突降；(C) 全域平均忽略時間趨勢；(D) 刪除時間點破壞序列連續性。</div>
+</div>
+
+<div class="q" id="e115b-q19">
+<p class="stem"><span class="qno">19.</span>某溫室農場開發 AI 系統自動識別作物葉片上的害蟲種類，測試結果顯示：在 1000 張測試影像中，系統正確識別出 80 隻害蟲，但誤判了 20 張正常葉片為有害蟲，同時漏檢了 10 隻實際存在的害蟲。對於害蟲檢測這個關鍵任務，下列哪個評估指標最需要優先關注？</p>
+<ul class="opts">
+<li>(A) 召回率（Recall）；</li>
+<li>(B) 精確率（Precision）；</li>
+<li>(C) 準確率（Accuracy）；</li>
+<li>(D) F1 分數（F1-Score）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>害蟲檢測最忌「漏檢（漏掉實際害蟲）」，應優先關注召回率（Recall = 真陽性/(真陽性+漏檢)），確保盡量不漏掉害蟲，(A) 正確。Precision 重誤報、Accuracy 在不平衡下失真、F1 為綜合指標，皆非此關鍵任務的優先指標。</div>
+</div>
+
+<div class="q" id="e115b-q20">
+<p class="stem"><span class="qno">20.</span>某跨國企業需透過網路將各國子公司之敏感資料傳輸至總部進行模型訓練。資訊安全主管要求在傳輸過程中防範中間人攻擊，避免資料遭竊取或竄改。在不影響系統跨國即時傳輸效率之前提下，下列哪一項措施最能有效降低此風險？</p>
+<ul class="opts">
+<li>(A) 在接收端加強存取權限與身分驗證，限制只有授權人員可讀取資料；</li>
+<li>(B) 在資料傳輸過程中進行加密，並確認雙方身分以確保通訊安全；</li>
+<li>(C) 將資料拆分為多個部分分批傳送，降低單次資料外洩風險；</li>
+<li>(D) 改用離線備援方式進行跨國資料交換，以降低網路攻擊風險</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>防範中間人攻擊（竊取/竄改）的核心是傳輸加密+雙方身分驗證（如 TLS），(B) 正確。(A) 接收端權限無法防傳輸途中攔截；(C) 分批傳送不能防竄改；(D) 離線交換影響即時傳輸效率，違反前提。</div>
+</div>
+
+<div class="q" id="e115b-q21">
+<p class="stem"><span class="qno">21.</span>關於深度學習（Deep Learning），下列敘述何者最為正確？</p>
+<ul class="opts">
+<li>(A) 深度學習模型通常需要人工設計特徵，以提升模型表現；</li>
+<li>(B) 深度學習主要應用於資料壓縮與特徵轉換，較少用於預測任務；</li>
+<li>(C) 深度學習透過多層神經網路，能自動從大量資料中學習抽象特徵；</li>
+<li>(D) 深度學習模型通常不需要大量資料即可達到良好效果，適合資料量有限的情境</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>深度學習透過多層神經網路自動從大量資料學習深層抽象特徵，不需人工設計特徵，(C) 正確。(A) 深度學習正是免去人工特徵工程；(B) 廣泛用於預測；(D) 通常需大量資料才有良好效果。</div>
+</div>
+
+<div class="q" id="e115b-q22">
+<p class="stem"><span class="qno">22.</span>某企業於不同業務場景導入 AI 應用。下列關於其應用情境與機器學習類型的敘述，何者正確？</p>
+<ul class="opts">
+<li>(A) 客服對話分析中，同時使用少量標註資料與大量未標註資料進行訓練，屬於監督式學習（Supervised Learning）；</li>
+<li>(B) 商品分類系統依據顧客購買行為自動將商品分群，且未使用任何標註資料，屬於監督式學習（Supervised Learning）；</li>
+<li>(C) 自動駕駛系統根據操作結果的回饋持續調整決策策略，屬於非監督式學習（Unsupervised Learning）；</li>
+<li>(D) 使用者行為分析中，依據瀏覽與點擊模式將使用者分群，且未使用標註資料，屬於非監督式學習（Unsupervised Learning）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 未使用標註、依模式分群屬非監督式學習，搭配正確。(A) 少量標註+大量未標註應為半監督式；(B) 自動分群且無標註應為非監督式；(C) 依回饋調整策略應為強化式學習，故 (D) 為正解。</div>
+</div>
+
+<div class="q" id="e115b-q23">
+<p class="stem"><span class="qno">23.</span>某房仲業者委託 AI 團隊開發一套房價預測系統，希望根據物件坪數、屋齡、樓層與地段等條件，自動估算每間房屋的成交價格，供業務人員作為議價參考依據。下列哪一種指標最適合在系統上線前評估模型的預測準確程度？</p>
+<ul class="opts">
+<li>(A) 均方誤差（MSE）；</li>
+<li>(B) 精確率（Precision）；</li>
+<li>(C) F1 分數（F1 Score）；</li>
+<li>(D) 召回率（Recall）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>房價估算是連續數值的迴歸任務，適用 MSE（均方誤差）衡量預測值與實際成交價的誤差，(A) 正確。Precision、Recall、F1 皆用於分類任務，不適用於數值迴歸。</div>
+</div>
+
+<div class="q" id="e115b-q24">
+<p class="stem"><span class="qno">24.</span>某電商平台導入強化學習（Reinforcement Learning）技術優化商品推薦策略，AI 代理（AI Agent）會根據使用者的點擊與購買行為持續調整推薦內容。技術團隊在討論中發現，系統面臨一個核心挑戰：若 AI Agent 總是推薦過去表現良好的商品，可能會錯失發掘更高潛力商品的機會；但若頻繁嘗試未知商品，又可能影響短期的推薦成效與使用者體驗。請問上述情境敘述的是強化學習中哪一個核心問題？</p>
+<ul class="opts">
+<li>(A) 探索與利用的權衡（Exploration vs. Exploitation）；</li>
+<li>(B) 偏差與變異的權衡（Bias vs. Variance）；</li>
+<li>(C) 梯度爆炸與消失（Vanishing and Exploding Gradients）；</li>
+<li>(D) 過擬合與欠擬合（Overfitting and Underfitting）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>「總推薦已知好的（利用 Exploitation）vs 嘗試未知潛力商品（探索 Exploration）」正是強化學習的探索與利用權衡，(A) 正確。(B) 偏差變異、(C) 梯度問題、(D) 過/欠擬合皆非此情境描述的核心問題。</div>
+</div>
+
+<div class="q" id="e115b-q25">
+<p class="stem"><span class="qno">25.</span>某語音辨識系統需分析長時間的語音序列，發現當句子較長時，模型難以保留長時間序列中的前段資訊，導致辨識準確度下降。為改善此問題，下列何種模型最適合？</p>
+<ul class="opts">
+<li>(A) 長短期記憶網路（LSTM）；</li>
+<li>(B) 循環神經網路（RNN）；</li>
+<li>(C) 卷積神經網路（CNN）；</li>
+<li>(D) 生成式對抗網路（GAN）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>長序列前段資訊難保留是 RNN 的長期依賴/梯度消失問題，LSTM 透過門控機制改善長期記憶，最適合，(A) 正確。(B) RNN 正是問題本身；(C) CNN 適圖像；(D) GAN 用於生成，皆不適合。</div>
+</div>
+
+<div class="q" id="e115b-q26">
+<p class="stem"><span class="qno">26.</span>某大型連鎖超市建置生鮮商品損耗預測模型，以減少報廢損失。資料庫中共有 120 萬筆銷售紀錄，但僅有約 8 萬筆資料標記為「正常銷售」或「損耗發生」，其餘資料均未標註。在標註資源有限的情況下，團隊希望提升模型預測表現。請問下列哪一種機器學習方式最適合此情境？</p>
+<ul class="opts">
+<li>(A) 監督式學習（Supervised Learning），以 8 萬筆已標註資料訓練分類模型，捨棄其餘 112 萬筆無標註資料；</li>
+<li>(B) 半監督式學習（Semi-supervised Learning），同時利用少量已標註資料學習分類邊界，並從大量無標註資料中學習資料整體分布特性；</li>
+<li>(C) 非監督式學習（Unsupervised Learning），對全部 120 萬筆資料進行自動分群，再由專家事後人工確認各群所代表的損耗類型；</li>
+<li>(D) 強化學習（Reinforcement Learning），讓模型在每次預測後依據實際損耗結果作為回饋訊號，持續調整損耗預警策略</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>少量標註（8 萬）+大量未標註（112 萬）且欲「善用所有資料」，半監督式學習可同時利用標註資料學分類邊界、未標註資料學整體分布，最適合，(B) 正確。(A) 捨棄 112 萬筆浪費資料；(C) 純分群未善用標籤；(D) 強化學習不符此預測情境。</div>
+</div>
+
+<div class="q" id="e115b-q27">
+<p class="stem"><span class="qno">27.</span>某製造業評估在不同場景導入 AI，包含：（甲）依據設備感測器數值判斷是否出現異常；（乙）依據客服對話內容判斷客戶情緒；（丙）依據產品影像輪廓直接進行瑕疵分類。下列哪一種情境最適合以自編碼器（Autoencoder）作為主要模型架構？</p>
+<ul class="opts">
+<li>(A) 甲；</li>
+<li>(B) 乙；</li>
+<li>(C) 丙；</li>
+<li>(D) 甲與丙</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>自編碼器常用於異常偵測：學習正常資料分佈，異常因重建誤差大而被偵測。（甲）判斷設備感測數值是否異常最適合，(A) 正確。（乙）情緒分類偏 NLP 監督式；（丙）瑕疵分類偏 CNN 監督式，皆非自編碼器的典型最適場景。</div>
+</div>
+
+<div class="q" id="e115b-q28">
+<p class="stem"><span class="qno">28.</span>某 AI 團隊正在訓練一個深度神經網路，用於辨識工廠產線上的瑕疵零件。工程師發現訓練過程中損失函數震盪幅度大，且不同批次資料造成模型學習方向不穩定。為改善此問題，團隊在各隱藏層加入 Batch Normalization 機制。請問此調整在訓練階段最主要的作用為何？</p>
+<ul class="opts">
+<li>(A) 將輸入影像標準化，使不同類別的特徵分布更加一致；</li>
+<li>(B) 自動調整模型權重初始化方式，以避免訓練初期震盪；</li>
+<li>(C) 增加模型隱藏層的非線性能力，以提升分類精度上限；</li>
+<li>(D) 降低不同批次輸入造成的內部特徵分布變動，使梯度更新更穩定</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Batch Normalization 對每層的批次輸入做正規化，降低內部協變量偏移（不同批次造成的內部特徵分布變動），使梯度更新更穩定、加速收斂，(D) 正確。(A) 僅針對輸入層非各隱藏層；(B) 非調整初始化；(C) 非增加非線性能力。</div>
+</div>
+
+<div class="q" id="e115b-q29">
+<p class="stem"><span class="qno">29.</span>某 AI 研究團隊採用 GRPO（Group Relative Policy Optimization）作為一種基於強化學習的模型優化方法，用於提升大型語言模型的表現。請問 GRPO 最適合用來強化模型在哪一類任務上的表現？</p>
+<ul class="opts">
+<li>(A) 判斷客服留言的情緒傾向，將每則訊息快速歸類為正面、負面或中性；</li>
+<li>(B) 將客服電話錄音即時轉換為文字，供後續人工審閱使用；</li>
+<li>(C) 針對數學應用題或邏輯謎題，逐步推導出正確解答；</li>
+<li>(D) 分析商品圖片的外觀特徵，自動辨識類別與品項</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>GRPO 是基於強化學習的策略優化方法，特別適合強化 LLM 在需「逐步推理」的任務（如數學、邏輯推導）上的表現，可依結果正確與否給予回饋優化推理過程，(C) 正確。(A) 情緒分類、(B) 語音轉文字、(D) 影像辨識皆非 GRPO 強化推理之主要適用任務。</div>
+</div>
+
+<div class="q" id="e115b-q30">
+<p class="stem"><span class="qno">30.</span>某法律科技公司開發一套合約風險審查系統，可自動分析合約內容並標示潛在的高風險條款。律師在使用過程中，希望了解模型做出風險判斷的依據，因此系統導入顯著性圖（Saliency Map）作為可解釋 AI 的方法。請問在此自然語言處理（Natural Language Processing, NLP）應用情境中，顯著性圖主要用來標示什麼？</p>
+<ul class="opts">
+<li>(A) 合約中各段落之間的語意相似程度，協助辨識重複或可能矛盾的條款；</li>
+<li>(B) 模型在進行預測時，輸入文字中對結果影響程度較高的文字片段；</li>
+<li>(C) 不同版本合約之間的文字差異，用以標示新增或修改的條款位置；</li>
+<li>(D) 模型在訓練資料中學習到的高頻詞彙，反映常見的風險相關用語</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>顯著性圖在 NLP 中標示「輸入文字中對預測結果影響程度較高的文字片段」，協助理解模型判斷依據，(B) 正確。(A) 是語意相似度、(C) 是版本差異比對、(D) 是高頻詞彙統計，皆非顯著性圖用途。</div>
+</div>
+
+<div class="q" id="e115b-q31">
+<p class="stem"><span class="qno">31.</span>某製造業 AI 品質預測模型採用部分依賴圖（Partial Dependence Plots, PDP）分析特徵影響效果。資料科學家希望了解「溫度特徵」對良品率的整體影響趨勢，但主管進一步詢問，是否能用 PDP 判斷某一筆瑕疵產品批次資料中，溫度是否為主要原因。下列何者最能說明 PDP 在此情境中的限制？</p>
+<ul class="opts">
+<li>(A) PDP 無法顯示模型的預測準確率；</li>
+<li>(B) PDP 僅能反映模型輸出結果，無法提供任何特徵影響的資訊；</li>
+<li>(C) PDP 僅能用於單一特徵分析，無法同時考慮多個特徵的影響；</li>
+<li>(D) PDP 僅呈現整體趨勢，無法判斷單一批次的原因</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>PDP 呈現特徵對預測的「整體/平均」影響趨勢，屬全域解釋，無法解釋「單一個案（某批次）」的原因，(D) 正確。(A) 準確率非 PDP 用途但非此處限制重點；(B) PDP 正是提供特徵影響資訊；(C) PDP 可做雙特徵分析，敘述不準確。</div>
+</div>
+
+<div class="q" id="e115b-q32">
+<p class="stem"><span class="qno">32.</span>某銀行使用 LIME（Local Interpretable Model-agnostic Explanations）來解釋其信貸審核模型的決策結果。分析師在閱讀解釋報告時，看到系統建立了一個簡化模型來近似原模型在該筆資料附近的行為。下列何者最能說明 LIME 中代理模型（Surrogate model）的意義？</p>
+<ul class="opts">
+<li>(A) 一個全局解釋所有預測的線性代理模型；</li>
+<li>(B) 用於產生擾動資料的資料生成機制；</li>
+<li>(C) 一種獨立訓練的生成式模型，用於輔助預測；</li>
+<li>(D) 用於擬合原黑箱模型在目標實例附近的預測行為</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>LIME 的代理模型是在「目標實例附近（局部）」以簡單模型擬合原黑箱模型的預測行為，提供局部解釋，(D) 正確。(A) LIME 是局部非全局；(B) 擾動資料是手段非代理模型本身；(C) 代理模型用於解釋非生成式輔助預測。</div>
+</div>
+
+<div class="q" id="e115b-q33">
+<p class="stem"><span class="qno">33.</span>小明在 2025 年使用 AI 模型，將自己的照片轉換為公仔風格影像。該模型在維持生成品質的同時，也能在模型規模較大的情況下兼顧運算效率。下列何者最能敘述此模型可能採用的設計方式？</p>
+<ul class="opts">
+<li>(A) 基於單一稠密 Transformer 架構，每次運算都使用全部模型參數；</li>
+<li>(B) 採用稀疏專家混合（Sparse Mixture-of-Experts）架構，每次僅使用部分模型來提升效率；</li>
+<li>(C) 採用生成對抗網路（GAN），透過兩個模型互相比較來提升影像品質；</li>
+<li>(D) 採用卷積神經網路（CNN），直接進行影像轉換</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>「模型規模大卻能兼顧運算效率」的關鍵設計是稀疏專家混合（Sparse MoE）：總參數量龐大但每次推理僅啟用部分專家，(B) 正確。(A) 稠密架構每次用全部參數效率較低；(C)(D) GAN/CNN 與「大規模兼顧效率」之描述不對應。</div>
+</div>
+
+<div class="q" id="e115b-q34">
+<p class="stem"><span class="qno">34.</span>CLIP 與 DINO 皆屬於自監督學習（Self-supervised Learning）模型，但其訓練資料來源有所不同。下列何者最能正確敘述兩者在訓練資料型態上的差異？</p>
+<ul class="opts">
+<li>(A) 皆使用有標註圖像資料進行監督式學習；</li>
+<li>(B) 皆使用未標註圖像資料進行自監督學習；</li>
+<li>(C) CLIP 使用圖像與文字配對資料，DINO 使用未標註圖像資料；</li>
+<li>(D) CLIP 使用未標註圖像資料，DINO 使用圖像與文字配對資料</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>CLIP 以大量「圖像與文字配對」資料學習圖文對應；DINO 則以「未標註圖像」進行自監督學習，(C) 正確。(A) 兩者非傳統監督式；(B) CLIP 有圖文配對非純未標註圖像；(D) 兩者描述顛倒。</div>
+</div>
+
+<div class="q" id="e115b-q35">
+<p class="stem"><span class="qno">35.</span>某企業導入大型語言模型（LLM）進行長篇法規文件的問答查詢。使用者反映，當問題需整合文件中較不相關的資訊時，模型回答的連貫性與準確性明顯下降。技術團隊認為此現象與模型架構特性有關。下列何者最能說明傳統 Transformer 在此情境下的限制？</p>
+<ul class="opts">
+<li>(A) 模型在推理時僅能依賴固定長度的上下文窗口，無法同時處理分散於全文的資訊；</li>
+<li>(B) 模型能記住的內容取決於訓練語料，推理時遇到新內容可能無法應對；</li>
+<li>(C) Transformer 在長序列處理時效率下降，但仍可完整處理所有輸入內容；</li>
+<li>(D) 每次推理後 Transformer 都需重新訓練才能記住新的資訊</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>傳統 Transformer 受限於固定長度的上下文窗口（Context Window），當需整合分散於全文（超出窗口）的資訊時無法同時處理，導致連貫性與準確性下降，(A) 正確。(B) 是泛化問題、(C) 稱「仍可完整處理」與限制矛盾、(D) 推理不需重訓，皆不準確。</div>
+</div>
+
+<div class="q" id="e115b-q36">
+<p class="stem"><span class="qno">36.</span>小明剛加入一間電商公司擔任 AI 專案的業務窗口，在與技術團隊的交接會議中，工程師說明模型訓練時，會持續比對預測值與實際值之間的差距，並透過一套機制逐步調整模型內部參數，直到預測結果趨於穩定為止。請問工程師敘述的是深度學習中哪個元件的功能？</p>
+<ul class="opts">
+<li>(A) 優化器（Optimizer）；</li>
+<li>(B) 資料前處理模組；</li>
+<li>(C) 模型架構；</li>
+<li>(D) 激活函數（Activation Function）</li>
+</ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>「依預測值與實際值差距（損失）逐步調整模型參數直到穩定」正是優化器（Optimizer，如梯度下降、Adam）的功能：依損失梯度更新參數以最小化損失，(A) 正確。(B) 前處理、(C) 模型架構、(D) 激活函數皆非「依誤差調整參數」的元件。</div>
+</div>
+
+<div class="q" id="e115b-q37">
+<p class="stem"><span class="qno">37.</span>某醫療 AI 系統使用深度學習模型分析胸腔 X 光影像，判斷患者是否罹患肺炎。醫院評估委員會要求系統必須能夠標示「影像中哪些區域對本次診斷判斷影響最大」，以供放射科醫師進行審核確認。下列哪一種可解釋 AI 技術最能直接滿足「標示影像中對預測結果影響最大的區域」此一需求？</p>
+<ul class="opts">
+<li>(A) LIME（Local Interpretable Model-agnostic Explanations）；</li>
+<li>(B) SHAP（SHapley Additive exPlanations）；</li>
+<li>(C) 部分依賴圖（Partial Dependence Plot, PDP）；</li>
+<li>(D) 顯著性圖（Saliency Map）</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>「直接標示影像中對預測影響最大的區域」正是顯著性圖（Saliency Map）的核心用途，以熱區突顯關鍵像素，(D) 正確。LIME/SHAP 偏特徵層級解釋、PDP 呈現整體趨勢，對「影像區域標示」不如顯著性圖直接。</div>
+</div>
+
+<div class="q" id="e115b-q38">
+<p class="stem"><span class="qno">38.</span>某電商平台希望偵測異常評論行為，例如大量重複貼文或疑似機器人生成的評論。由於此類異常樣本難以事先完整標記，系統主要依據大量正常評論的分布來識別偏離行為。下列哪一種機器學習框架最能滿足此系統的設計需求？</p>
+<ul class="opts">
+<li>(A) 非監督式學習（Unsupervised Learning）的關聯規則挖掘，從評論中找出常見字詞組合；</li>
+<li>(B) 監督式學習（Supervised Learning）的二元分類，從已標記資料學習分類模型；</li>
+<li>(C) 半監督式學習（Semi-supervised Learning）的異常偵測，辨識偏離正常分布的評論行為；</li>
+<li>(D) 強化學習（Reinforcement Learning），透過回饋機制優化評論判斷策略</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>異常樣本難完整標記、主要依「正常評論分布」識別偏離，符合半監督式異常偵測（以正常資料學分布、偵測偏離），(C) 正確。(A) 關聯規則非異常偵測核心；(B) 監督式需完整標記與題意不符；(D) 強化學習不適此情境。</div>
+</div>
+
+<div class="q" id="e115b-q39">
+<p class="stem"><span class="qno">39.</span>在命名實體辨識（Named Entity Recognition, NER）任務中，模型需根據整句文字判斷每個詞的標籤，並考慮詞與詞之間的關聯性。若採用 Conditional Random Field（CRF）作為模型，下列何者最能描述其模型類型？</p>
+<ul class="opts">
+<li>(A) 生成式模型（Generative Model）；</li>
+<li>(B) 無監督模型（Unsupervised Model）；</li>
+<li>(C) 鑑別式模型（Discriminative Model）；</li>
+<li>(D) 自迴歸模型（Autoregressive Model）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>CRF 直接建模條件機率 P(標籤序列|輸入序列)，學習輸入與標籤之間的條件關係以做序列標註，屬鑑別式模型（Discriminative Model），(C) 正確。生成式模型建模聯合分佈；CRF 是監督式且非自迴歸生成。</div>
+</div>
+
+<div class="q" id="e115b-q40">
+<p class="stem"><span class="qno">40.</span>某音樂串流平台希望開發一套 AI 系統，能根據平台上累積的大量歌曲資料，自動生成具有不同風格變化的全新旋律，供創作者作為靈感參考。平台技術長在評估方案時強調，系統不能只是播放或拼接既有歌曲片段，也不能僅進行資料的重建，而是要真正學習音樂的結構與風格，並創作出從未出現過的新旋律。請問下列哪一種模型技術最符合此需求？</p>
+<ul class="opts">
+<li>(A) K-近鄰演算法（K-Nearest Neighbors, KNN）；</li>
+<li>(B) 自編碼器（Autoencoder）；</li>
+<li>(C) 生成對抗網路（GAN）；</li>
+<li>(D) 隨機森林（Random Forest）</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>需「學習音樂結構與風格並創作全新旋律」屬生成任務，GAN 為生成式模型能學習資料分佈並生成原創新樣本，(C) 正確。(A) KNN、(D) 隨機森林是鑑別式/分類；(B) 自編碼器偏重建（題目明確排除「僅重建」），故 GAN 最符合。</div>
+</div>
+
+<div class="q" id="e115b-q41">
+<p class="stem"><span class="qno">41.</span>某資安公司正在評估導入機器學習模型來偵測網路流量中的異常連線行為。技術團隊在比較各種演算法時，其中一位工程師建議採用支援向量機（SVM）。請問下列何者最正確敘述支援向量機的特性？</p>
+<ul class="opts">
+<li>(A) 擅長處理大規模非結構化資料，且模型訓練完成後可自動適應新進資料而無需重新建模；</li>
+<li>(B) 透過多個模型的集體決策來提升預測穩定性，在資料量不足時仍能維持一定的準確率；</li>
+<li>(C) 在高維度且樣本數相對有限的情境下表現良好，但當訓練資料量龐大時運算成本會顯著上升；</li>
+<li>(D) 具備強大的特徵自動萃取能力，特別適合影像與語音等需要逐層抽象化處理的複雜任務</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>SVM 在高維度、樣本數相對有限的情境表現良好，但資料量龐大時訓練運算成本顯著上升，(C) 正確。(A) SVM 無法自動適應新資料；(B) 集體決策是集成法（如隨機森林）特性；(D) 自動特徵萃取是深度學習特性，皆非 SVM。</div>
+</div>
+
+<div class="q" id="e115b-q42">
+<p class="stem"><span class="qno">42.</span>下列哪一項是可解釋人工智慧（XAI）領域，LIME（Local Interpretable Model-agnostic Explanations）最可能被用於的情境？</p>
+<ul class="opts">
+<li>(A) 分析即時通訊系統中訊息傳輸效率的瓶頸；</li>
+<li>(B) 建立機制以強化系統中的資料安全與隱私保護；</li>
+<li>(C) 當某筆貸款申請被模型拒絕時，分析該筆資料中各項因素與結果之間的關聯；</li>
+<li>(D) 監控並優化推薦系統的回應速度與系統效能，以提升整體使用體驗</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>LIME 提供「單筆預測」的局部解釋，(C) 分析某筆貸款被拒時各因素與結果的關聯正屬其典型應用。(A) 傳輸效率、(B) 資安隱私、(D) 系統效能皆與模型解釋無關。</div>
+</div>
+
+<div class="q" id="e115b-q43">
+<p class="stem"><span class="qno">43.</span>某信用評分公司導入 SHAP（SHapley Additive exPlanations）框架分析機器學習模型的輸出行為。分析師希望了解：「對於某位特定申請人被評為高風險的信用評分，各項輸入特徵分別對這個評分結果貢獻了多少」。下列哪一項最能正確說明 SHAP Shapley 值在此情境中所提供的資訊？</p>
+<ul class="opts">
+<li>(A) 各特徵在模型訓練過程中對結果穩定性的影響程度；</li>
+<li>(B) 此申請人的各項特徵，分別讓風險評分上升或下降的影響程度；</li>
+<li>(C) 各特徵在所有客戶資料中對整體預測準確度的影響程度；</li>
+<li>(D) 各特徵在模型中被使用的頻率</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>SHAP 量化「該特定申請人」各特徵對其評分結果的貢獻（讓風險評分上升或下降的方向與幅度），屬局部解釋，(B) 正確。(A) 訓練穩定性、(C) 整體準確度（全域）、(D) 使用頻率皆非 SHAP 值對單一個案的解釋資訊。</div>
+</div>
+
+<div class="q" id="e115b-q44">
+<p class="stem"><span class="qno">44.</span>某金融集團評估將大型語言模型導入客服與風控系統，團隊採用如 120B 參數等級的超大型語言模型以確保回應品質。請問下列何者最能說明企業在正式環境部署超大型語言模型時，最需要優先考量的因素？</p>
+<ul class="opts">
+<li>(A) 模型參數量龐大，導致每次輸出結果差異極大，難以符合金融業對回應一致性的要求；</li>
+<li>(B) 超大型模型無法支援批次處理，在高併發的客服場景下將造成嚴重的服務瓶頸；</li>
+<li>(C) 推理延遲較高且運算資源消耗龐大，每次請求成本遠高於小型模型，需在模型效能與營運成本之間審慎權衡；</li>
+<li>(D) 模型會依任務複雜度自動調整運算資源配置，因此不需特別考量推理成本</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>部署超大型 LLM 最需優先考量的是推理延遲高、運算資源消耗大、每次請求成本高，須在效能與營運成本間權衡，(C) 正確。(A) 參數多不等於輸出差異極大；(B) 超大模型仍可批次處理；(D) 模型不會自動調配資源使成本可忽略。</div>
+</div>
+
+<div class="q" id="e115b-q45">
+<p class="stem"><span class="qno">45.</span>某智慧交通系統在城市主要路口安裝監視攝影機，需即時識別畫面中的汽車、機車、公車等不同車輛類型，並統計各路口的車輛流量以支援號誌控制優化。下列哪一種神經網路架構最適合處理此類影像中的物件類型識別任務？</p>
+<ul class="opts">
+<li>(A) 循環神經網路（RNN），適合處理序列資料；</li>
+<li>(B) 卷積神經網路（CNN），適合處理影像資料；</li>
+<li>(C) 長短期記憶網路（LSTM），適合處理長期依賴；</li>
+<li>(D) 多層感知機（MLP），將輸入資料轉換為數值後進行分類</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>監視攝影機畫面的車輛類型識別屬影像物件辨識，CNN 擅長提取影像空間特徵，最適合，(B) 正確。(A) RNN、(C) LSTM 適序列資料、(D) MLP 處理影像效率與效果遠不如 CNN。</div>
+</div>
+
+<div class="q" id="e115b-q46">
+<p class="stem"><span class="qno">46.</span>AutoSkill 框架的主要目標是什麼？</p>
+<ul class="opts">
+<li>(A) 建立一個降低對大型語言模型（LLM）依賴的自動化系統；</li>
+<li>(B) 透過持續更新模型參數來提升任務表現；</li>
+<li>(C) 將重複的互動經驗轉化為可重複使用的明確技能模組；</li>
+<li>(D) 透過檢索外部知識來改善模型回應品質</li>
+</ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>AutoSkill 框架的主要目標是將重複的互動經驗萃取、轉化為可重複使用的明確技能模組（skill），供後續任務調用，(C) 正確。(A) 降低 LLM 依賴、(B) 更新模型參數、(D) 檢索外部知識（偏 RAG）皆非其核心目標。</div>
+</div>
+
+<div class="q" id="e115b-q47">
+<p class="stem"><span class="qno">47.</span>某大型語言模型（LLM）在訓練過程中，研究人員發現模型在生成文本時，長期集中產生少數幾種相似的回應形式，缺乏多樣性。下列何者最能說明此現象及其可能原因？</p>
+<ul class="opts">
+<li>(A) 過度擬合（Overfitting）；</li>
+<li>(B) 模式崩潰（Mode Collapse）；</li>
+<li>(C) 梯度消失（Vanishing Gradient）；</li>
+<li>(D) 模型收斂速度（Convergence Rate）</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>生成模型「長期集中產生少數幾種相似輸出、缺乏多樣性」正是模式崩潰（Mode Collapse）的典型現象，(B) 正確。(A) 過擬合是訓練好測試差、(C) 梯度消失是學習停滯、(D) 收斂速度是訓練快慢，皆非此「輸出多樣性不足」現象。</div>
+</div>
+
+<div class="q" id="e115b-q48">
+<p class="stem"><span class="qno">48.</span>某電商平台建置機器學習模型，用於預測用戶在瀏覽特定商品後的購買機率。模型上線初期表現穩定，但維運團隊在定期審查中發現兩種不同情形：<br>
+情形甲：模型上線半年後恰逢消費趨勢轉變，過去高購買意願的用戶行為模式（如長時間停留商品頁）不再是強烈的購買訊號，即便輸入特徵分布與訓練期相近，模型預測準確率仍明顯下降。<br>
+情形乙：平台新增了行動裝置端的入口，新用戶的年齡分布、裝置類型與使用時段特徵與原訓練資料差異顯著，導致模型對這批用戶的預測偏差增大。<br>
+下列哪一項最能正確對應兩種情形所屬的模型劣化類型？</p>
+<ul class="opts">
+<li>(A) 甲為資料漂移（Data Drift）、乙為概念漂移（Concept Drift）；</li>
+<li>(B) 甲為概念漂移（Concept Drift）、乙為資料漂移（Data Drift）；</li>
+<li>(C) 甲為模型過擬合（Overfitting）、乙為資料漂移（Data Drift）；</li>
+<li>(D) 甲與乙均屬概念漂移（Concept Drift），因為兩者都導致模型預測準確率下降</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>情形甲：輸入特徵分布相近但「特徵與目標的關係改變」（行為不再代表購買意願）→概念漂移（Concept Drift）。情形乙：「輸入特徵分布顯著改變」（新用戶年齡/裝置分布不同）→資料漂移（Data Drift）。故甲為概念漂移、乙為資料漂移，(B) 正確。</div>
+</div>
+
+<div class="q" id="e115b-q49">
+<p class="stem"><span class="qno">49.</span>某資安公司目前以鑑別式 AI 偵測已知網路攻擊。為因應新型變種攻擊，研究人員計劃利用生成式 AI 模擬可能的攻擊流量，並納入防禦模型訓練。下列何者最能說明此做法對鑑別式 AI 防禦模型的主要助益？</p>
+<ul class="opts">
+<li>(A) 生成式 AI 可取代真實攻擊資料，降低蒐集成本；</li>
+<li>(B) 生成式 AI 可直接負責防禦決策，取代原有模型；</li>
+<li>(C) 模擬攻擊資料可使模型自動轉為生成式架構；</li>
+<li>(D) 將模擬攻擊納入訓練，可提升模型對未知攻擊的辨識能力</li>
+</ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>生成式 AI 模擬新型/變種攻擊流量作為資料增強，納入訓練可擴充鑑別式模型的學習邊界，提升對未知（新型）攻擊的辨識與泛化能力，(D) 正確。(A) 是輔助非「取代」真實資料；(B) 生成式不負責防禦決策；(C) 鑑別式不會因此轉為生成式架構。</div>
+</div>
+
+<div class="q" id="e115b-q50">
+<p class="stem"><span class="qno">50.</span>某企業已部署一套預訓練大型語言模型作為內部知識問答系統，主要用於查詢人資、財務與法遵相關的內部規範。由於公司內規每月都會滾動更新，管理層要求系統在文件更新後必須能立即反映最新內容，不能等待模型重新訓練。技術團隊正在評估應採用檢索增強生成（RAG）還是微調（Fine-tuning）來因應此需求。請問下列哪一項評估最為正確？</p>
+<ul class="opts">
+<li>(A) 採用 Fine-tuning 較為適合，只要定期將更新後的內規文件加入訓練資料，模型便能即時反映最新規範內容；</li>
+<li>(B) 採用 RAG 較為適合，將更新後的文件同步至外部知識庫，模型即可在不重新訓練的情況下立即查詢最新內容；</li>
+<li>(C) 採用 Fine-tuning 較為適合，因為模型經過內規語料訓練後，回應品質會優於透過 RAG 生成的答案；</li>
+<li>(D) 兩者皆可達成需求，差異僅在於建置成本高低，與系統能否即時反映更新內容無關</li>
+</ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>需求是「文件更新後立即反映、不等待重新訓練」，RAG 將更新文件同步至外部知識庫即可即時查詢、無需重訓，最適合，(B) 正確。(A)(C) Fine-tuning 需重新訓練無法即時反映；(D) 兩者在「即時反映更新」上有本質差異，並非僅成本不同。</div>
+</div>
+
+<footer>
+<p>官方答案取自 iPAS 公告試題（114 年第四梯次、115 年第一次、115 年第二次「人工智慧基礎概論」公告試題），不可更改。各題【解析】為依官方學習指引內容所做之學習整理，非官方標準解析，僅供研讀參考。</p>
+<p>考前重點忠實取自官方學習指引《AI 應用規劃師（初級）科目一 人工智慧基礎概論》學習指引擷取內容整理。</p>
+</footer>
+
+</main>
+</div>
+<script src="glossary.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級科目2 大數據處理分析與應用 — iPAS AI 應用規劃師教材</title>
+<style>
+:root{--accent:#4338ca;--accent-soft:#eef0ff;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+.formula{background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:"Cambria Math","Segoe UI",serif;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="#scope">本科評鑑範圍</a>
+    <a href="#chap2">第二章 考科內容</a>
+    <a href="#chap3">第三章 機率統計基礎</a>
+    <a class="sub" href="#sec31">3.1 敘述性統計與資料摘要技術</a>
+    <a class="sub" href="#sec32">3.2 機率分佈與資料分佈模型</a>
+    <a class="sub" href="#sec33">3.3 假設檢定與統計推論</a>
+    <a href="#chap4">第四章 大數據處理技術</a>
+    <a class="sub" href="#sec41">4.1 數據收集與清理</a>
+    <a class="sub" href="#sec42">4.2 數據儲存與管理</a>
+    <a class="sub" href="#sec43">4.3 數據處理技術與工具</a>
+    <a href="#chap5">第五章 大數據分析方法與工具</a>
+    <a class="sub" href="#sec51">5.1 統計學在大數據中的應用</a>
+    <a class="sub" href="#sec52">5.2 常見的大數據分析方法</a>
+    <a class="sub" href="#sec53">5.3 數據可視化工具</a>
+    <a href="#chap6">第六章 大數據在人工智慧之應用</a>
+    <a class="sub" href="#sec61">6.1 大數據與機器學習</a>
+    <a class="sub" href="#sec62">6.2 大數據在鑑別式AI 的應用</a>
+    <a class="sub" href="#sec63">6.3 大數據在生成式AI 的應用</a>
+    <a class="sub" href="#sec64">6.4 隱私保護、安全與合規</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 2</span>
+      <h1>大數據處理分析與應用</h1>
+      <p class="sub">iPAS AI 應用規劃師認證 · 依官方學習指引編製</p>
+    </header>
+
+    <p>本教材依據經濟部產業人才能力鑑定 iPAS「AI 應用規劃師」中級學習指引<strong>科目二：大數據處理分析與應用</strong>編製，涵蓋「機率統計基礎」、「大數據處理技術」、「大數據分析方法與工具」與「大數據在人工智慧之應用」四大評鑑主題。協助考生建立數據處理與分析的核心能力，理解從資料取得、清洗、分析到應用於 AI 模型的完整流程。</p>
+
+    <!-- ============ 本科評鑑範圍 ============ -->
+    <h2 class="chap" id="scope">本科評鑑範圍（第一章 考試科目與評鑑內容）</h2>
+
+    <div class="box def">
+      <span class="tag">職能基準｜AI 應用規劃師</span>
+      了解 AI 工具的特性及具備使用經驗，以協助企業規劃與推動 AI 技術或工具導入；根據企業部門業務需求，評估並選擇適合的 AI 工具或解決方案，應用於內部流程或產品生命週期；整合跨部門團隊，共同制定與執行 AI 導入計畫，進行開發、部署及後續優化。此職能基準範圍為跨產業適用。
+    </div>
+
+    <p>本科目（科目代碼 <code>L22 大數據處理分析與應用</code>）於官方能力鑑定架構下，包含四個評鑑主題（L221～L224），其下細分為十四項評鑑內容：</p>
+
+    <table>
+      <thead><tr><th>代碼</th><th>評鑑主題</th><th>評鑑內容（細項）</th></tr></thead>
+      <tbody>
+        <tr><td>L221</td><td>機率統計基礎</td><td>L22101 敘述性統計與資料摘要技術<br>L22102 機率分佈與資料分佈模型<br>L22103 假設檢定與統計推論</td></tr>
+        <tr><td>L222</td><td>大數據處理技術</td><td>L22201 數據收集與清理<br>L22202 數據儲存與管理<br>L22203 數據處理技術與工具</td></tr>
+        <tr><td>L223</td><td>大數據分析方法與工具</td><td>L22301 統計學在大數據中的應用<br>L22302 常見的大數據分析方法<br>L22303 數據可視化工具</td></tr>
+        <tr><td>L224</td><td>大數據在人工智慧之應用</td><td>L22401 大數據與機器學習<br>L22402 大數據在鑑別式 AI 中的應用<br>L22403 大數據在生成式 AI 中的應用<br>L22404 大數據隱私保護、安全與合規</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box note">
+      <span class="tag">學習目標</span>
+      建立數據處理與分析的核心能力，理解從資料取得、清洗、分析到應用於 AI 模型的完整流程，培養結合理論與實務的數據知識概念與技術應用能力，強化 AI 應用規劃上的整體思維與實作能力。
+    </div>
+
+    <!-- ============ 第二章 ============ -->
+    <h2 class="chap" id="chap2">第二章 考科內容</h2>
+    <p>本指引說明中級「AI 應用規劃師」科目二之考試內容，包含「大數據處理分析與應用」之四項評鑑主題：<span class="term">機率統計基礎</span>、<span class="term">大數據處理技術</span>、<span class="term">大數據分析方法與工具</span>與<span class="term">大數據在人工智慧之應用</span>。整體脈絡循著資料生命週期：先以統計理論奠基（第三章），再進入資料工程的收集、儲存與處理（第四章），接著進行分析與可視化（第五章），最後將資料應用於 AI 模型的開發、鑑別式／生成式任務與治理合規（第六章）。</p>
+
+    <!-- ============ 第三章 ============ -->
+    <h2 class="chap" id="chap3">第三章 機率統計基礎</h2>
+    <p>在進行資料分析或建構人工智慧模型之前，對機率與統計的基本觀念必不可少。大數據雖因「資料量、新增/更新速度、內容/格式種類」多元而形成巨大潛力，但若欠缺嚴謹的統計基礎，往往只能停留在表面觀察或簡單趨勢推測。本章協助資料使用者達成三件事：</p>
+    <ul>
+      <li><strong>確立資料基準</strong>：透過描述統計與分佈模型掌握整體特徵、偵測離群值或偏態。</li>
+      <li><strong>評估隨機性與不確定性</strong>：理解機率分佈與參數估計概念，客觀判斷樣本是否具代表性。</li>
+      <li><strong>進行嚴謹的推論與檢定</strong>：透過假設檢定與信賴區間，對資料背後的真實機制做出科學假說與合理推論。</li>
+    </ul>
+
+    <h3 id="sec31">3.1 敘述性統計與資料摘要技術</h3>
+    <div class="box def">
+      <span class="tag">定義｜敘述性統計 (Descriptive Statistics)</span>
+      一套用來彙整、整理並呈現現有資料的技術，著重於「將資料本身做最直接的總結與可視化」。其目的不在於做母體推論，而在於快速、清晰地了解樣本資料中的重要特徵或潛在模式。
+    </div>
+    <p>敘述性統計通常分為三大面向：</p>
+    <ul>
+      <li><strong>集中趨勢 (Central Tendency)</strong>：透過平均數 (Mean)、眾數 (Mode)、中位數 (Median) 刻畫資料「最常見或核心的位置」。</li>
+      <li><strong>離散量度 (Variability/Dispersion)</strong>：透過變異數 (Variance)、標準差 (SD)、全距 (Range)、四分位距 (IQR) 量化資料分散程度。標準差大代表波動大、更分散。</li>
+      <li><strong>分佈形狀 (Shape)</strong>：如偏度 (Skewness) 與峰度 (Kurtosis)，觀察分佈是否對稱、尾部厚度。</li>
+    </ul>
+
+    <h4>（1）集中趨勢測量</h4>
+    <table>
+      <thead><tr><th>指標</th><th>意義</th><th>優勢</th><th>侷限</th></tr></thead>
+      <tbody>
+        <tr><td>算術平均 (Arithmetic Mean)</td><td>全部樣本數值總和除以樣本筆數，展現整體水準</td><td>計算容易、概念直覺、普及度高</td><td>對極端值敏感；無法呈現分散度</td></tr>
+        <tr><td>幾何平均 (Geometric Mean)</td><td>適用成長率、報酬率等乘積效應情況</td><td>真實反映連續乘積的累積效應；對百分比/比率更具代表性</td><td>需資料皆為正值（&gt;0）；解釋較不直覺</td></tr>
+        <tr><td>調和平均 (Harmonic Mean)</td><td>常用於速率類數據（如行駛速度、油耗）</td><td>對速率/效率類數據較合理；需逆值加權時更準確</td><td>不能有零或負值；非速率環境意義不顯著</td></tr>
+        <tr><td>眾數 (Mode)</td><td>樣本中出現頻率最高的值</td><td>適用類別資料；易於解釋（最受歡迎）</td><td>連續資料需先分桶；多峰值時定義複雜</td></tr>
+        <tr><td>中位數 (Median)</td><td>排序後中間位置值，對極端值不敏感</td><td>有效對抗極端值（收入、房價分析）</td><td>無法呈現離散度</td></tr>
+      </tbody>
+    </table>
+    <div class="formula">算術平均 = (x₁ + x₂ + … + xₙ) / n　｜　幾何平均 = (∏xᵢ)^(1/n)　｜　調和平均 = n / Σ(1/xᵢ)</div>
+    <div class="formula">中位數：n 為奇數時 = x₍₍ₙ₊₁₎/₂₎；n 為偶數時 = ( x₍ₙ/₂₎ + x₍ₙ/₂₊₁₎ ) / 2</div>
+
+    <h4>（2）離散程度測量</h4>
+    <p><strong>A. 變異數 (Variance) 與標準差 (Standard Deviation)</strong>：變異數是資料偏離平均數的程度；標準差是變異數的平方根，單位與原資料相同。標準差大表示變化幅度大、較分散。</p>
+    <div class="formula">變異數 σ² = (1/N) Σ(xᵢ − μ)²　｜　標準差 σ = √[ (1/N) Σ(xᵢ − μ)² ]</div>
+    <p>優勢：量化資料穩定性，為風險或不確定性提供清晰衡量。侷限：對離群值極為敏感；分佈偏斜時需搭配其他指標。</p>
+
+    <p><strong>B. 全距、四分位距 (IQR)、四分位數 (Quartiles)</strong></p>
+    <ul>
+      <li><strong>全距 (Range)</strong>：最大值與最小值之差，簡單易懂但易受單一極端值影響。</li>
+      <li><strong>四分位距 IQR = Q3 − Q1</strong>：Q3 為第三四分位數（75% 位置），Q1 為第一四分位數（25% 位置）。</li>
+      <li><strong>四分位數</strong>：將資料分為四等份的三個切點。Q1（下四分位數，25% 資料小於此值）、Q2（中位數，50%）、Q3（上四分位數，75% 資料小於此值）。</li>
+    </ul>
+    <p>優勢：適合處理含離群值的資料，能準確反映集中分佈範圍。侷限：可過濾極端值，但不提供分佈的具體細節。</p>
+
+    <p><strong>C. 箱形圖 (Box Plot)</strong>：又稱盒鬚圖，是 EDA（探索性資料分析）階段可視化集中趨勢與離散程度的工具。組成包含：</p>
+    <ul>
+      <li><strong>中位數 (Q2)</strong>：箱中水平線，將資料分成兩等份。</li>
+      <li><strong>Q1 / Q3</strong>：盒子的下/上邊界。</li>
+      <li><strong>IQR</strong>：盒子內部範圍（中間 50% 數據），IQR 大表示變異性大。</li>
+      <li><strong>鬚 (Whiskers)</strong>：表示「正常分佈範圍」，一般計算上鬚 = Q3 + 1.5×IQR，下鬚 = Q1 − 1.5×IQR。所稱「最大/最小值」是不含離群值者。</li>
+      <li><strong>離群值 (Outliers)</strong>：超出 Q1 − 1.5×IQR 或 Q3 + 1.5×IQR 的資料，通常以圓點或星形標註。</li>
+    </ul>
+    <p>應用：資料分佈檢視、異常值檢測、比較不同資料集。優勢：直觀展示集中度、分佈範圍與異常值，無需繁瑣計算。侷限：無法顯示精確形狀（如多峰分佈）。</p>
+
+    <h4>（3）分佈形狀：偏度與峰度</h4>
+    <p><strong>偏度 (Skewness)</strong>：衡量資料分佈對稱程度，反映是否存在長尾。</p>
+    <table>
+      <thead><tr><th>類型</th><th>偏度值</th><th>特徵與範例</th></tr></thead>
+      <tbody>
+        <tr><td>正偏態（右偏態 Right-skewed）</td><td>&gt; 0</td><td>右側尾部更長，主體集中於左側。常見於收入、房價、故障時間（如某城市房價偏度 2.5，少數豪宅拉高平均）。</td></tr>
+        <tr><td>負偏態（左偏態 Left-skewed）</td><td>&lt; 0</td><td>左側尾部更長，主體集中於右側。如某設備壽命偏度 −1.8（早期故障少數低值拉低平均）。</td></tr>
+        <tr><td>接近對稱</td><td>≈ 0</td><td>趨近理想常態分佈（如某工廠產品重量偏度 0.1）。</td></tr>
+      </tbody>
+    </table>
+    <p><strong>峰度 (Kurtosis)</strong>：衡量分佈「尾部與峰頂的尖銳程度」。以 Pearson 定義、常態峰度標準 3 說明：</p>
+    <table>
+      <thead><tr><th>類型</th><th>峰度值</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>高峰 (Leptokurtic)</td><td>&gt; 3</td><td>比常態更集中於中心，極端值更多。模型外推或異常檢測需特別留意風險。</td></tr>
+        <tr><td>中峰 (Mesokurtic)</td><td>≈ 3</td><td>接近常態分佈，可作為比較其他分佈的參照。</td></tr>
+        <tr><td>扁平 (Platykurtic)</td><td>&lt; 3</td><td>分佈較分散、較平坦，極端值較少。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec32">3.2 機率分佈與資料分佈模型</h3>
+    <div class="box def">
+      <span class="tag">定義｜機率分佈 (Probability Distribution)</span>
+      描述隨機變數的所有可能值及其相應機率的數學函數。可用於理解與預測隨機現象，並用來計算風險、優化資源配置等。
+    </div>
+
+    <h4>（1）兩個重要數值：期望值與變異數</h4>
+    <ul>
+      <li><strong>期望值 (Expected Value, E(X))</strong>：隨機變數的加權平均值，代表長期平均或中心位置。</li>
+      <li><strong>變異數 (Variance, Var(X))</strong>：衡量取值的分散程度，數值越大表示越分散。</li>
+      <li><strong>標準差</strong>：變異數的平方根，單位與原資料相同。</li>
+    </ul>
+    <div class="formula">離散：E(X) = Σ xᵢ·P(xᵢ)；Var(X) = Σ (xᵢ − E(X))²·P(xᵢ)</div>
+    <div class="formula">連續：E(X) = ∫ x·f(x) dx；Var(X) = ∫ (x − E(X))²·f(x) dx，其中 f(x) 為機率密度函數 (PDF)</div>
+
+    <h4>（2）兩種類型</h4>
+    <ul>
+      <li><strong>離散型機率分佈</strong>：隨機變數值有限或可數（如擲骰子 1~6、每日訂單數）。以<span class="term">機率質量函數 (PMF)</span> 描述每一特定取值的機率，PMF 總和等於 1。</li>
+      <li><strong>連續型機率分佈</strong>：隨機變數值無限且連續（如身高、體重、時間、溫度）。以<span class="term">機率密度函數 (PDF)</span> 描述取值範圍內的機率：P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx。</li>
+    </ul>
+    <p><strong>機率分佈的應用</strong>：風險管理（金融資產風險與報酬）、品質控制（製造業常態分佈描述測量數據）、預測分析（銷售/需求預測）。</p>
+
+    <h4>（3）常見離散型分佈</h4>
+    <table>
+      <thead><tr><th>分佈</th><th>定義</th><th>E(X) / Var(X)</th><th>應用 / 侷限</th></tr></thead>
+      <tbody>
+        <tr><td>伯努利分佈 (Bernoulli)</td><td>單次試驗只有兩種結果（成功/失敗），為二項分佈在 n=1 的特例</td><td>E=p；Var=p(1−p)</td><td>品質檢測合格與否、是否點擊廣告；僅適用單次試驗</td></tr>
+        <tr><td>二項分佈 (Binomial)</td><td>固定 n 次獨立試驗中成功次數 X，每次成功機率 p</td><td>E=np；Var=np(1−p)</td><td>n 則廣告的點擊/購買次數、n 個產品中合格數；須試驗獨立且 p 固定</td></tr>
+        <tr><td>泊松分佈 (Poisson)</td><td>固定時間或空間內事件發生次數，平均發生率 λ</td><td>E=λ；Var=λ</td><td>來電量、網站訪問、設備故障；須 λ 固定</td></tr>
+      </tbody>
+    </table>
+    <div class="formula">二項：P(X=k) = C(n,k) pᵏ (1−p)ⁿ⁻ᵏ，C(n,k)=n!/[k!(n−k)!]　｜　泊松：P(X=k) = λᵏ e⁻ᵏ / k!</div>
+
+    <h4>（4）常見連續型分佈</h4>
+    <table>
+      <thead><tr><th>分佈</th><th>定義與特徵</th><th>E(X) / Var(X)</th><th>應用 / 侷限</th></tr></thead>
+      <tbody>
+        <tr><td>常態分佈 (Normal)</td><td>對稱鐘形曲線，由均值 μ 與標準差 σ 決定。依中央極限定理 (CLT)，樣本量夠大時獨立同分佈隨機變數之和/平均趨近常態</td><td>E=μ；Var=σ²</td><td>身高體重、股價波動、t/z 檢定；偏態或重尾、極端值多時不適用</td></tr>
+        <tr><td>指數分佈 (Exponential)</td><td>描述事件間隔/等待時間，具記憶性 (Memoryless)</td><td>E=1/λ；Var=1/λ²</td><td>客服來電間隔、機器壽命、排隊理論；須發生率固定，否則改用 Weibull</td></tr>
+        <tr><td>卡方分佈 (Chi-square)</td><td>常態分佈的平方和，為偏態分佈，自由度 k 增加時趨近常態</td><td>E=k；Var=2k</td><td>適配度檢定、獨立性檢定、齊一性檢定；k 小時準確度受限</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">注意｜自由度 (Degrees of Freedom, df)</span>
+      指計算統計量時「可以自由變動的資料點數量」。例如計算樣本標準差時使用了樣本平均值作為已知量，便減少一個自由度。自由度大小會影響檢定結果、分佈形狀及其精確度。
+    </div>
+
+    <h4>（5）分佈擬合與資料建模</h4>
+    <div class="box def">
+      <span class="tag">定義｜分佈擬合 (Distribution Fitting)</span>
+      找出一個合適的數學模型（分佈）來描述收集到的資料。通常透過數學方法（如最大似然估計）找出分佈參數，使其最好地貼合資料。<br><strong>資料建模</strong>則將擬合後的分佈應用到現實問題（預測、風險分析、決策），或為機器學習模型提供更準確的資料特徵。
+    </div>
+    <p><strong>關鍵步驟與考量：</strong></p>
+    <ul>
+      <li><strong>資料型態確認</strong>：先判斷離散型（計數變數，如每日故障次數）或連續型（測量變數，如病患等待時間）。</li>
+      <li><strong>模型候選選擇</strong>：偏態或長尾資料可考慮對數常態或重尾分佈（如 t 分佈）；事件稀少且獨立可選泊松分佈。</li>
+      <li><strong>獨立性與固定率假設</strong>：二項與泊松假設試驗獨立且機率/發生率固定。實務需檢查假設，如以自相關 (Autocorrelation) 分析確認獨立性。</li>
+    </ul>
+
+    <h3 id="sec33">3.3 假設檢定與統計推論</h3>
+    <div class="box def">
+      <span class="tag">定義｜統計推論 (Statistical Inference)</span>
+      以樣本資料為基礎，對整體母體特徵進行科學性推估的程序。可概略分為兩大核心分支：參數估計 (Parameter Estimation) 與假設檢定 (Hypothesis Testing)。
+    </div>
+
+    <table>
+      <thead><tr><th>項目</th><th>參數估計</th><th>假設檢定</th></tr></thead>
+      <tbody>
+        <tr><td>目的</td><td>推測母體參數的「值」或「區間」</td><td>驗證某個關於母體參數的「主張」是否成立</td></tr>
+        <tr><td>重點問題</td><td>這個母體參數大約是多少？</td><td>是否有足夠證據拒絕一個假設？</td></tr>
+        <tr><td>輸出結果</td><td>點估計值與信賴區間（如 95% CI）</td><td>p 值、檢定統計量，依顯著水準決定是否拒絕 H₀</td></tr>
+        <tr><td>例子</td><td>估計平均體重 68 公斤，95% CI 為 [66, 70]</td><td>檢定運動課程能否降低體重，p=0.03 &lt; 0.05，拒絕 H₀</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（1）參數估計</h4>
+    <ul>
+      <li><strong>點估計 (Point Estimation)</strong>：以樣本計算單一數值作為母體參數的最佳估計（如以樣本平均數估計母體平均數）。無法反映不確定性。</li>
+      <li><strong>區間估計 (Interval Estimation)</strong>：提供數值範圍（信賴區間 Confidence Interval）。95% 信賴區間的正確意義是：若以相同方式重複大量抽樣並各建立信賴區間，預期約 95% 的區間會包含母體真實參數值（並非「母體參數有 95% 機率落在某特定區間」）。</li>
+    </ul>
+
+    <h4>（2）假設檢定流程</h4>
+    <ol>
+      <li>明確定義虛無假設 (H₀) 與對立假設 (H₁)</li>
+      <li>選擇適當的檢定方法與檢定統計量</li>
+      <li>決定顯著水準 (α)</li>
+      <li>計算檢定統計量與 p 值</li>
+      <li>比較顯著水準並進行決策</li>
+    </ol>
+
+    <table>
+      <thead><tr><th>項目</th><th>虛無假設 H₀</th><th>對立假設 H₁</th></tr></thead>
+      <tbody>
+        <tr><td>定義</td><td>原始主張、現狀、無差異或無效果</td><td>欲驗證的新主張，代表差異/效果/變化存在</td></tr>
+        <tr><td>功能</td><td>檢定的基準起點</td><td>與 H₀ 相反；若 H₀ 被拒絕則支持 H₁</td></tr>
+        <tr><td>結論邏輯</td><td>無法拒絕不代表接受，僅表示證據不足</td><td>拒絕 H₀ 代表支持 H₁，有統計意義</td></tr>
+        <tr><td>實例（藥物）</td><td>新藥與安慰劑效果相同</td><td>新藥效果不同於安慰劑</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>顯著水準 α</strong>：事前設定的可接受錯誤機率上限，即型一錯誤 (Type I Error) 發生的上限。</p>
+    <ul>
+      <li><strong>α = 0.05</strong>：最普遍標準（容許 5% 錯誤拒絕）。</li>
+      <li><strong>α = 0.01</strong>：更嚴格（1%），用於錯誤代價極高的情境（藥物、安全、高金額決策）。</li>
+      <li><strong>α = 0.10</strong>：較寬鬆，用於初步探索、假說生成。</li>
+    </ul>
+    <div class="box key">
+      <span class="tag">重點｜α 與 p 值的差異</span>
+      顯著水準 (α) 是事前設定的判斷門檻；p 值是觀察樣本後計算出的機率，衡量資料與虛無假設的相符程度。結論依「p 值是否小於 α」而定。在多重比較或大數據情境下，未調整地重複檢定會大幅提升整體型一錯誤風險，常以 Bonferroni 校正法控制。
+    </div>
+    <p><strong>p 值定義</strong>：在虛無假設為真的情況下，觀察到與實際樣本相同或更極端結果出現的機率。p 值越小，越支持拒絕 H₀。<br><strong>決策</strong>：p ≤ α → 拒絕 H₀（資料足夠支持 H₁）；p &gt; α → 無法拒絕 H₀（不代表 H₀ 為真，只是證據不足）。</p>
+
+    <h4>（3）兩種錯誤類型</h4>
+    <table>
+      <thead><tr><th>真實情況 ＼ 決策</th><th>保留 H₀</th><th>拒絕 H₀</th></tr></thead>
+      <tbody>
+        <tr><td>H₀ 為真</td><td>正確判斷（機率 1 − α）</td><td>型一錯誤（誤判，機率 = α）</td></tr>
+        <tr><td>H₀ 為假</td><td>型二錯誤（漏判，機率 = β）</td><td>正確判斷（檢定力，機率 = 1 − β）</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><strong>型一錯誤 (Type I)</strong>：H₀ 為真卻錯誤拒絕（「本無差異誤判為有差異」），由 α 控制。如無效新藥被誤認有效並核准。</li>
+      <li><strong>型二錯誤 (Type II)</strong>：H₁ 為真卻未能拒絕 H₀（「有差異誤以為沒差異」），機率以 β 表示。檢定力 = 1 − β。樣本數不足、變異大、效應小時檢定力降低。</li>
+      <li><strong>平衡與取捨</strong>：降低 α 可減少型一錯誤，但會提高型二錯誤。可透過事前樣本數規劃與檢定力分析 (Power Analysis) 配置 α、β 與樣本數的關係。</li>
+    </ul>
+
+    <h4>（4）常見統計檢定方法</h4>
+    <p><strong>A. 平均數的差異檢定</strong>（連續變數，符合常態與變異數齊一性）</p>
+    <table>
+      <thead><tr><th>檢定</th><th>用途與適用</th><th>H₀</th><th>注意事項</th></tr></thead>
+      <tbody>
+        <tr><td>單樣本 t 檢定</td><td>樣本平均與已知值 μ₀ 是否有差異（母體 σ 未知、n&lt;30）</td><td>μ = μ₀</td><td>不適用比例/名目/順序資料；若 σ 已知用 Z 檢定；方向須事先設定</td></tr>
+        <tr><td>獨立樣本 t 檢定</td><td>兩組獨立樣本平均是否有差異（如男 vs 女）</td><td>μ₁ = μ₂</td><td>須先檢查變異數是否相等（Levene/F-test），不等用 Welch 檢定；不可用於前後測</td></tr>
+        <tr><td>成對樣本 t 檢定</td><td>同一個體兩種情況下的差值（如治療前後）</td><td>μ_d = 0</td><td>核心在「差值」推論；須檢查差值分佈近似常態</td></tr>
+        <tr><td>單因子變異數分析 (One-way ANOVA)</td><td>三組以上獨立樣本平均是否有差異</td><td>μ₁ = μ₂ = … = μk</td><td>顯著僅表示「至少一組不同」，需事後檢定（如 Tukey HSD）；僅兩組應用 t 檢定</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>對立假設的三種方向</strong>（以單樣本為例）：雙尾檢定（μ ≠ μ₀，不論方向）、左尾檢定（μ &lt; μ₀，是否變小）、右尾檢定（μ &gt; μ₀，是否變大）。檢定方向須事先設定，不能事後依結果選擇。</p>
+
+    <p><strong>B. 比例或類別變數的比較</strong></p>
+    <table>
+      <thead><tr><th>檢定</th><th>用途</th><th>H₀</th><th>注意事項</th></tr></thead>
+      <tbody>
+        <tr><td>單樣本比例檢定</td><td>樣本比例是否與預期比例 p₀ 有差異</td><td>p = p₀</td><td>須二元分類；常態近似條件 n·p₀≥5 且 n·(1−p₀)≥5，否則用精確二項檢定</td></tr>
+        <tr><td>雙樣本比例檢定</td><td>兩獨立樣本比例是否有差異（A/B 測試）</td><td>p₁ = p₂</td><td>須二元分類且獨立；樣本事件太少用 Fisher's exact test</td></tr>
+        <tr><td>卡方檢定 (Chi-square)</td><td>獨立性檢定（兩類別變數是否相關）、適合度檢定（觀察 vs 預期分佈）</td><td>變數獨立 / 觀察與預期分佈相同</td><td>須獨立觀測；預期頻數應 ≥5；用原始計數而非比例；有顯著不代表關係強（搭配 Cramér's V）</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>C. 相關性分析</strong></p>
+    <ul>
+      <li><strong>皮爾森相關檢定 (Pearson)</strong>：評估兩連續變數的線性相關。r 介於 −1 與 +1（r&gt;0 正相關、r&lt;0 負相關、r≈0 無線性關係）。H₀：ρ=0。須線性、近似常態、無重大離群值、觀測獨立。<strong>顯著不代表因果</strong>；僅偵測線性關係。</li>
+      <li><strong>斯皮爾曼等級相關檢定 (Spearman)</strong>：非參數法，衡量等級（排名）關聯，不要求線性或常態，適用順序資料、偏態或含離群值。係數 rs 介於 −1 與 +1。H₀：ρs=0。衡量的是<strong>單調關係</strong>而非線性。</li>
+    </ul>
+
+    <p><strong>D. 非參數檢定</strong>（適用非常態或順序資料）</p>
+    <ul>
+      <li><strong>Mann-Whitney U 檢定</strong>：比較兩組獨立樣本中位數，為獨立樣本 t 檢定的替代。H₀：兩組來自相同分佈。注意：基於中位數與排名，非平均數比較；須檢查分佈型態相似性。</li>
+      <li><strong>Kruskal-Wallis 檢定</strong>：比較三組以上獨立樣本中位數，為 One-way ANOVA 的替代。H₀：所有群組來自同一分佈或中位數相等。顯著後仍需事後檢定（如 Dunn's test）；配對設計應用 Friedman 檢定。</li>
+    </ul>
+
+    <div class="box note">
+      <span class="tag">第三章 自我檢核（重點觀念）</span>
+      敘述統計的目的是「概括並整理資料特徵」，不涉及推論；二項分佈是典型離散型分佈；極端值多時用中位數代表集中趨勢；標準差衡量資料平均偏離中心值的程度；p &lt; 顯著水準時應「拒絕虛無假設」；中央極限定理指「樣本平均數」的分佈趨近常態，而非原始資料本身變為常態。
+    </div>
+
+    <!-- ============ 第四章 ============ -->
+    <h2 class="chap" id="chap4">第四章 大數據處理技術</h2>
+    <p>當資料規模從數千筆擴展至數百萬、數十億筆，傳統處理流程便難以應對。本章介紹資料從收集、清理，到儲存與運算的完整流程，核心涵蓋三個子章節：數據收集與清理、數據儲存與管理、數據處理技術與工具。</p>
+
+    <h3 id="sec41">4.1 數據收集與清理</h3>
+    <p>資料品質直接影響後續分析結果的準確性與可解釋性。大數據環境下來源多樣（感測器、API、網站日誌、使用者行為、社群貼文、爬蟲），結構可能為結構化、半結構化或非結構化。</p>
+
+    <h4>（1）常見資料來源與蒐集方式</h4>
+    <table>
+      <thead><tr><th>來源</th><th>特性</th><th>蒐集方式</th><th>挑戰</th></tr></thead>
+      <tbody>
+        <tr><td>感測器與 IoT 設備</td><td>高頻率、連續、時間序列、量大</td><td>即時串流協議（MQTT、Apache Kafka）+ 邊緣運算</td><td>傳輸穩定性與低延遲、高併發資料流</td></tr>
+        <tr><td>系統日誌與使用者行為</td><td>半結構化/非結構化，反映行為與效能</td><td>批次傳輸（Flume、Logstash）或即時管線（Apache NiFi）至 HDFS/Elasticsearch</td><td>格式不一致需標準化；高頻日誌造成儲存壓力</td></tr>
+        <tr><td>API 與外部資料交換</td><td>半結構化（JSON/XML），結構靈活</td><td>RESTful API + ETL 工具（Airflow、Talend）</td><td>速率限制、認證；格式變化需動態調整解析</td></tr>
+        <tr><td>網路爬蟲與開放資料</td><td>公開資料、結構化/半結構化</td><td>爬蟲框架（Scrapy、BeautifulSoup）或 API 下載</td><td>反爬機制限制；開放資料品質參差</td></tr>
+        <tr><td>企業內部營運系統</td><td>結構化（ERP/CRM/POS），品質穩定、更新頻率低</td><td>批次匯出（SQL、CSV）或資料倉儲整合（Snowflake、BigQuery）</td><td>跨部門格式/命名差異；歷史資料遺漏</td></tr>
+      </tbody>
+    </table>
+    <p><strong>蒐集關鍵考量</strong>：更新頻率（即時/批次）、格式轉換、即時性、資料品質、隱私與合規（GDPR、CCPA）。</p>
+
+    <h4>（2）常見的資料品質問題類型</h4>
+    <table>
+      <thead><tr><th>問題</th><th>定義</th><th>影響</th><th>處理策略</th></tr></thead>
+      <tbody>
+        <tr><td>缺失值 (Missing Data)</td><td>欄位缺少值；可分 MCAR（完全隨機）、MAR（隨機）、MNAR（非隨機）</td><td>樣本偏差，影響推論與模型訓練</td><td>填補（均值/中位數/KNN）、刪除（缺失率低）、保留（用可處理缺失的算法如隨機森林）</td></tr>
+        <tr><td>異常值 (Outliers)</td><td>偏離主體分佈的極端值（輸入錯誤或真實罕見事件）</td><td>扭曲均值/標準差，影響檢定與迴歸</td><td>偵測（IQR、Z 分數、孤立森林）；依領域知識保留/修正/移除</td></tr>
+        <tr><td>重複值 (Duplicates)</td><td>同一觀察單位多次出現</td><td>高估頻次或總量，影響權重分配</td><td>以唯一識別碼偵測；移除或合併去重</td></tr>
+        <tr><td>一致性錯誤 (Inconsistency)</td><td>單位/命名/格式不統一（「臺北市」vs「台北市」）</td><td>無法正確聚合或比較</td><td>標準化格式（如統一 YYYY-MM-DD）、命名與單位</td></tr>
+        <tr><td>邏輯錯誤 (Logical Errors)</td><td>符合格式但違反邏輯（出生年 1890、體溫 43°C）</td><td>模型失效或推論錯誤</td><td>定義邏輯檢查規則（年齡 0-120、金額≥0）；結合領域專家審查</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（3）資料品質指標</h4>
+    <ul>
+      <li><strong>缺失率 (Missing Rate)</strong>：各欄位空值比例。</li>
+      <li><strong>唯一值比率 (Uniqueness Rate)</strong>：評估重複紀錄；主鍵重複會破壞正確性。</li>
+      <li><strong>一致性比率 (Consistency Rate)</strong>：檢查格式、單位、命名是否統一。</li>
+      <li><strong>異常值比率 (Outlier Rate)</strong>：偏離正常分佈或上下限的比例（Z-score、IQR）。</li>
+      <li><strong>完整性比率 (Completeness Rate)</strong>：觀察對象是否具備足夠資料描述。</li>
+    </ul>
+
+    <h3 id="sec42">4.2 數據儲存與管理</h3>
+    <p>當資料規模從 GB、TB 擴展至 PB 甚至 EB 級，須採可橫向擴充、具容錯、備援與高效查詢能力的架構。</p>
+
+    <h4>（1）三種資料型態與儲存</h4>
+    <table>
+      <thead><tr><th>型態</th><th>說明與來源</th><th>儲存方式</th><th>優勢 / 限制</th></tr></thead>
+      <tbody>
+        <tr><td>結構化資料</td><td>明確欄位定義與固定型別（ERP/CRM/POS）</td><td>關聯式資料庫 RDBMS（MySQL、PostgreSQL、Oracle）</td><td>支援 SQL、ACID；但結構固定、不靈活</td></tr>
+        <tr><td>半結構化資料</td><td>具層次與標記（JSON、XML、YAML）</td><td>文件型 NoSQL（MongoDB）、ElasticSearch、資料湖</td><td>格式彈性高；缺結構約束、查詢需自定</td></tr>
+        <tr><td>非結構化資料</td><td>文字、圖片、音訊、影片、PDF</td><td>物件儲存（S3、MinIO）、分散式檔案系統（HDFS）+ metadata 管理</td><td>容量大；難直接搜尋比對，需外部標註</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（2）分散式儲存與資料湖架構</h4>
+    <p><strong>分散式儲存 (Distributed Storage)</strong>：將資料切分為多個區塊分散儲存在多節點，具副本機制、冗餘設計與故障轉移。主要特性：</p>
+    <ul>
+      <li><strong>橫向擴充 (Scalability)</strong>：增加節點擴充容量與效能。</li>
+      <li><strong>容錯容災</strong>：多副本、分散式一致性協議（Paxos、Raft）。</li>
+      <li><strong>高並行與分散存取</strong>：多用戶同時讀寫，分區並行查詢。</li>
+      <li><strong>資料本地性 (Data Locality)</strong>：資料存放與計算節點相近（如 Hadoop MapReduce）。</li>
+    </ul>
+    <p>常見平台：HDFS、Amazon S3、Google Cloud Storage、Ceph、GlusterFS。</p>
+    <div class="box def">
+      <span class="tag">定義｜資料湖 (Data Lake)</span>
+      以原始格式儲存各類資料（結構化、半結構化、非結構化）的架構。核心特性：保留原始資料、支援多種格式（CSV/JSON/Avro/Parquet/影像等）、<span class="term">Schema-on-Read</span>（使用時才套用結構）。<br><strong>資料湖倉 (Data Lakehouse)</strong>：結合資料湖的彈性儲存與資料倉儲的結構化查詢及治理能力。常見工具：Delta Lake、Apache Iceberg、Apache Hudi、AWS Lake Formation、Azure Data Lake、Google BigLake。
+    </div>
+
+    <h4>（3）儲存效能優化與查詢加速</h4>
+    <ul>
+      <li><strong>分區儲存 (Partitioning)</strong>：以時間/地區/用戶類型水平切分，縮小掃描範圍。</li>
+      <li><strong>壓縮技術 (Compression)</strong>：列式格式（Parquet、ORC）+ 壓縮演算法（Snappy、ZSTD）降低磁碟與 I/O。</li>
+      <li><strong>儲存分層 (Storage Tiering)</strong>：依資料熱度分熱/冷資料，存於 SSD/HDD/雲端。</li>
+      <li><strong>欄位裁剪與投影 (Column Pruning)</strong>：僅載入必要欄位。</li>
+      <li><strong>物化檢視 (Materialized View)</strong>：預計算並快取重複性查詢結果。</li>
+      <li><strong>索引建構</strong>：倒排索引、文字索引加快條件查詢。</li>
+      <li><strong>查詢引擎優化</strong>：Spark Catalyst Optimizer、Presto CBO（成本導向最佳化器）。</li>
+      <li><strong>資源管控與查詢隔離</strong>：查詢優先順序與資源限制（Databricks、Athena、BigQuery）。</li>
+    </ul>
+
+    <h4>（4）資料一致性與版本管理</h4>
+    <table>
+      <thead><tr><th>一致性策略</th><th>說明</th><th>適用</th></tr></thead>
+      <tbody>
+        <tr><td>強一致性 (Strong Consistency)</td><td>寫入後所有讀取即時取得最新狀態，結合 ACID</td><td>交易型應用（金融、帳務）；Delta Lake、Apache Iceberg</td></tr>
+        <tr><td>最終一致性 (Eventual Consistency)</td><td>短時間內非同步，最終趨於一致；以即時性換取高吞吐</td><td>資料湖、大型物件儲存（S3、HDFS）</td></tr>
+        <tr><td>寫入順序控制與鎖定</td><td>版本控制、時間戳記、寫入排程；單一寫入者原則</td><td>多資料來源同時寫入</td></tr>
+      </tbody>
+    </table>
+    <div class="box key">
+      <span class="tag">重點｜ACID 四大特性</span>
+      <strong>A 原子性 (Atomicity)</strong>：交易全做完或全不做。<strong>C 一致性 (Consistency)</strong>：交易前後資料保持邏輯一致。<strong>I 隔離性 (Isolation)</strong>：並行交易彼此不干擾。<strong>D 持久性 (Durability)</strong>：提交後變更永久保存，系統當機也不遺失。
+    </div>
+    <p><strong>資料版本控制</strong>：版本標記與變更紀錄（v1、v2）、資料快照與版本回溯。Delta Lake 的 Time Travel、Apache Hudi 的 Incremental Query 可查詢過往版本，支援 AI 應用的可重現性 (reproducibility)。</p>
+
+    <h4>（5）資料治理與存取控管</h4>
+    <p><strong>元資料管理 (Metadata Management)</strong>：元資料是「描述資料本身的資料」（來源、格式、欄位定義、時間、依存關係）。可建立資料目錄 (Data Catalog)，達成資料血緣追蹤 (Data Lineage)、自動化資料探索、跨部門欄位定義對齊。</p>
+    <table>
+      <thead><tr><th>模型</th><th>控管依據</th><th>優點</th><th>適用情境</th></tr></thead>
+      <tbody>
+        <tr><td>RBAC（基於角色）</td><td>使用者所屬角色（工程師、分析師、主管）</td><td>邏輯清楚、實作簡單</td><td>中小企業、部門制組織</td></tr>
+        <tr><td>ABAC（基於屬性）</td><td>使用者屬性、資料屬性與環境條件</td><td>控管彈性高、細緻動態授權</td><td>大型企業、高安全性情境</td></tr>
+        <tr><td>PBAC（基於策略）</td><td>預先定義的複合策略規則（如 OPA、Rego）</td><td>統一控管多系統、支援複雜條件</td><td>雲端平台、跨系統整合</td></tr>
+        <tr><td>DAC（自主存取）</td><td>資料擁有者自行決定</td><td>彈性高、快速開發</td><td>研發團隊、開發環境、小型專案</td></tr>
+      </tbody>
+    </table>
+    <p><strong>存取稽核與合規紀錄</strong>：記錄操作日誌、存取者身份/角色/時間戳記/來源設備，可匯出稽核報告（GDPR、CCPA）。</p>
+    <div class="box note">
+      <span class="tag">注意｜Zero Trust（零信任）架構</span>
+      主張「不預設信任任何人與裝置」。應用於資料治理：最小權限原則 (Least Privilege)、動態授權管理 (Just-In-Time Access)、持續驗證 (Continuous Authentication)、資源導向防護 (Microsegmentation)。
+    </div>
+
+    <h3 id="sec43">4.3 數據處理技術與工具</h3>
+    <h4>（1）資料準備與轉換</h4>
+    <ul>
+      <li><strong>資料型別轉換與欄位整理</strong>：類型強制轉換（str→datetime、int→float）、欄位重命名（cust_id→customer_id）、欄位重組（合併完整地址）、統一 ISO 8601 時間格式。</li>
+      <li><strong>分箱 (Binning)</strong>：將連續變數離散化。方法有等寬分箱、等頻分箱（分位數）、K-Means 分箱。分類重組則合併過少類別為「Other」、對高基數欄位降維。</li>
+    </ul>
+    <p><strong>編碼轉換 (Encoding)</strong>：</p>
+    <table>
+      <thead><tr><th>方法</th><th>做法</th><th>適用</th><th>優點 / 風險</th></tr></thead>
+      <tbody>
+        <tr><td>Label Encoding（標籤編碼）</td><td>類別對應整數編號</td><td>有序類別（教育程度、服務等級）</td><td>快速、省空間；誤用於無序類別會被誤解為數值意義</td></tr>
+        <tr><td>One-hot Encoding（獨熱編碼）</td><td>每類別新增一欄（1/0）</td><td>無序類別（城市、產品類型）</td><td>保留完整資訊；高基數時維度爆炸</td></tr>
+        <tr><td>Target Encoding（目標編碼）</td><td>以類別在目標變數上的統計量（如平均轉換率）取代</td><td>高基數且與目標高度關聯</td><td>保留目標資訊、不致維度爆炸</td></tr>
+      </tbody>
+    </table>
+    <p><strong>標準化 (Standardization) 與正規化 (Normalization)</strong>（特徵縮放，對 KNN、梯度下降模型、正則化模型尤其重要）：</p>
+    <table>
+      <thead><tr><th>方法</th><th>做法</th><th>優點 / 限制</th></tr></thead>
+      <tbody>
+        <tr><td>Min-Max Normalization</td><td>線性縮放至 0~1</td><td>保留分佈比例、易解釋；對極端值敏感</td></tr>
+        <tr><td>Z-score Standardization</td><td>轉為平均 0、標準差 1</td><td>適用常態資料；對極端值與偏態仍敏感</td></tr>
+        <tr><td>Robust Scaling</td><td>以中位數與 IQR 縮放</td><td>對極端值高度抵抗；轉換後不保證標準分佈</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（2）特徵工程</h4>
+    <div class="box note">
+      <span class="tag">注意｜資料洩漏 (Data Leakage)</span>
+      使用聚合特徵或目標編碼時，需謹慎使用交叉驗證或時間窗口劃分，避免將未來/目標資訊洩漏進訓練特徵。資料增強須適當掌握強度，以免過度變形影響準確度。
+    </div>
+    <ul>
+      <li><strong>特徵選擇 (Feature Selection)</strong>：
+        <ul>
+          <li><strong>Filter 法（過濾法）</strong>：以統計量/相關係數（皮爾森、卡方、ANOVA）獨立篩選。速度快但無法考慮特徵交互。</li>
+          <li><strong>Wrapper 法（包裝法）</strong>：以模型表現為標準（RFE、前向/後向選擇）。精確但計算成本高、易過擬合。</li>
+          <li><strong>Embedded 法（嵌入法）</strong>：模型訓練中內建選擇（決策樹重要性、Lasso/Ridge 正則化）。</li>
+        </ul>
+      </li>
+      <li><strong>特徵衍生與聚合</strong>：交互特徵（消費頻率 × 平均金額 = 年度消費總額）、時間特徵（星期、假日、Recency）、聚合特徵（最近三個月平均交易額）。</li>
+      <li><strong>資料增強 (Data Augmentation)</strong>：圖像（翻轉、旋轉、裁剪、色彩變換）、文字（同義字替換、隨機插入/刪除/交換）、時序（加噪音、Scaling/Jittering、視窗裁切）、表格（SMOTE 合成少數樣本，用於不平衡分類如詐欺偵測）。</li>
+    </ul>
+
+    <h4>（3）分散式運算框架</h4>
+    <table>
+      <thead><tr><th>框架</th><th>處理模式</th><th>適用情境</th><th>優點 / 缺點</th></tr></thead>
+      <tbody>
+        <tr><td>Apache Hadoop (MapReduce)</td><td>批次處理</td><td>離線作業、日誌彙總、歷史資料分析</td><td>成熟穩定、容錯強、易擴充；速度較慢、不適合即時</td></tr>
+        <tr><td>Apache Spark</td><td>記憶體內運算（批次+即時微批次）</td><td>大規模快速批次、機器學習（MLlib）</td><td>速度快、函式庫豐富；記憶體需求高</td></tr>
+        <tr><td>Apache Flink</td><td>原生即時串流（也支援批次）</td><td>高頻即時事件（風險偵測、即時推薦、IoT）</td><td>真正即時、高吞吐、狀態一致性佳；生態系較小</td></tr>
+        <tr><td>Apache Beam</td><td>統一批次與串流抽象模型</td><td>跨平台、雲端與本地混合架構</td><td>可移植性強（可用 Flink/Spark/Dataflow）；抽象層高、上手難</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（4）資料處理管線 (Data Pipeline)</h4>
+    <p><strong>設計原則</strong>：可重現性 (Reproducibility)、容錯性與回復、擴充性與彈性、監控與可觀測性。<strong>架構類型</strong>：批次管線、即時管線、混合管線。</p>
+    <table>
+      <thead><tr><th>工具</th><th>特點</th><th>優勢 / 缺點</th></tr></thead>
+      <tbody>
+        <tr><td>Apache Airflow</td><td>Python 編寫，豐富 Operators 與排程</td><td>開源、靈活、社群活躍；維護部署複雜</td></tr>
+        <tr><td>Luigi</td><td>Spotify 開源 Python 模組，架構清晰</td><td>易上手、部署快；功能單純、監控有限</td></tr>
+        <tr><td>Prefect</td><td>現代化設計，強容錯與監控</td><td>強錯誤處理、即時監控、友善 UI；完整功能需付費雲端</td></tr>
+        <tr><td>Kubeflow Pipelines</td><td>以 Kubernetes 為基礎，專注 ML/AI 流程</td><td>原生整合 K8s 生態；安裝複雜、學習曲線陡</td></tr>
+      </tbody>
+    </table>
+    <p><strong>自動化要點</strong>：任務拆解與模組化、版本控管與 CI/CD（Git、GitHub Actions、Jenkins）、監控與警示（Grafana、Prometheus + Slack/電郵）、容器化與彈性擴充（Docker、Kubernetes）。</p>
+
+    <div class="box note">
+      <span class="tag">第四章 自我檢核（重點觀念）</span>
+      感測器/機台資料屬高頻、串流型；缺失值以遺漏值補全 (Imputation) 處理；半結構化 JSON/XML 適合文件型 NoSQL；分散式儲存核心是跨節點切分與冗餘備援；即時監控交易異常用串流處理系統；特徵衍生目的是建立更具意義/可解釋性的變數；資料湖支援多樣型態且不需預先定義結構；資料驗證的目的是檢查格式與邏輯是否正確。
+    </div>
+
+    <!-- ============ 第五章 ============ -->
+    <h2 class="chap" id="chap5">第五章 大數據分析方法與工具</h2>
+    <p>本章承接前兩章，將準備好的資料導入統計模型、分析方法與視覺化工具，萃取洞察並支援決策與預測。涵蓋統計學在大數據中的應用、常見的大數據分析方法、數據可視化工具。</p>
+
+    <h3 id="sec51">5.1 統計學在大數據中的應用</h3>
+    <p>進入大數據時代後，傳統統計方法多建立在嚴謹抽樣、獨立觀測與固定母體的前提，但這些假設在大數據環境中常被破壞（樣本非隨機、資料為即時紀錄、樣本規模達數億筆）。</p>
+
+    <h4>（1）大數據下敘述統計的挑戰與限制</h4>
+    <ul>
+      <li><strong>運算資源與即時計算限制</strong>：資料無法完全載入記憶體，靜態計算無法滿足串流連續更新。</li>
+      <li><strong>長尾分佈與偏態造成失真</strong>：平均數無法準確反映中心趨勢，需搭配中位數/分位數。</li>
+      <li><strong>多型態資料難統一計算</strong>：文字、圖片、影音、Log 不具明確數值欄位。</li>
+      <li><strong>離群值掩蓋與偵測敏感度下降</strong>：少數異常事件（如詐欺僅占 0.01%）被龐大資料稀釋。</li>
+      <li><strong>資料動態變化與時間敏感性</strong>：靜態描述僅適用固定時間點快照。</li>
+    </ul>
+
+    <h4>（2）大數據統計推論的限制與風險</h4>
+    <table>
+      <thead><tr><th>限制</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>樣本非隨機，偏誤被放大</td><td>系統自動擷取資料造成結構性偏誤 (Structural Bias)；資料量越大偏誤反被「強化」並看似穩定</td></tr>
+        <tr><td>p 值膨脹 (p-value inflation)</td><td>樣本數極大時，即使差異微小也產生極小 p 值（看似「顯著」但無實際意義）。應搭配效果量 (effect size)、信賴區間與實務意義判斷</td></tr>
+        <tr><td>多重檢定增加偽陽性</td><td>同時對大量變數檢定，整體偽陽性 (False Positives) 大增（1000 次檢定約 50 筆假顯著）。以 Bonferroni 修正或 FDR 控制（Benjamini-Hochberg）處理</td></tr>
+        <tr><td>樣本非獨立性破壞推論基礎</td><td>同一對象多次出現具高度相關，低估變異、使信賴區間過窄</td></tr>
+        <tr><td>母體定義不清</td><td>平台自動蒐集資料無法清楚界定代表群體，導致外推錯誤與過度一般化</td></tr>
+        <tr><td>系統與資源限制</td><td>Bootstrap、Permutation Test、Bayesian Estimation 依賴大量重複抽樣，成本高昂</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（3）統計學的實務應用情境</h4>
+    <ul>
+      <li><strong>市場行銷與顧客行為</strong>：邏輯迴歸預測購買機率、t/卡方檢定比較行銷方案（結合 Cohen's d 避免 p 值膨脹）、K-means 顧客分群。</li>
+      <li><strong>金融風險與信貸</strong>：ARIMA 預測資產價格、蒙地卡羅模擬風險、邏輯迴歸預測違約。</li>
+      <li><strong>健康醫療</strong>：生存分析（Kaplan-Meier、Cox 迴歸）、假設檢定比較療效（結合 FDR 調整）。</li>
+      <li><strong>製造業品質管理</strong>：統計製程管制 (SPC) 與控制圖（X-bar）、ARIMA 預測維修、MAD 法異常檢測。</li>
+      <li><strong>網路安全</strong>：行為分佈模型（常態分佈 + Z 分數）、核密度估計識別 DDoS、滑動視窗統計即時警示。</li>
+      <li><strong>社會科學與政策</strong>：多變量迴歸、抽樣加權與置信區間校正非隨機抽樣偏誤。</li>
+      <li><strong>智慧城市與 IoT</strong>：近似分位數（t-digest）、時空統計模型（空間自迴歸）。</li>
+    </ul>
+
+    <h3 id="sec52">5.2 常見的大數據分析方法</h3>
+    <p>與傳統分析相比，大數據分析強調：可擴展性 (Scalability)、異質性 (Heterogeneity)、即時性 (Real-time)、近似性 (Approximation)。</p>
+
+    <h4>（1）近似描述性統計</h4>
+    <p>在可容忍誤差範圍內快速計算代表性統計量，以達到實用水準的效率與可擴展性。</p>
+    <table>
+      <thead><tr><th>技術</th><th>功能</th><th>應用情境</th></tr></thead>
+      <tbody>
+        <tr><td>t-digest</td><td>高效估算中位數與任意分位數，支援串流增量更新與分散式合併</td><td>百萬筆訂單金額分位數、網路流量 99th percentile</td></tr>
+        <tr><td>Histogram Sketch</td><td>建立近似直方圖，快速呈現密度與集中特性</td><td>用戶活躍度直方圖、感測器數據分佈</td></tr>
+        <tr><td>Count-Min Sketch</td><td>估計項目出現頻率，記憶體用量極低</td><td>熱門商品點擊排行、高頻訪問 IP 檢測</td></tr>
+        <tr><td>Online Mean/Variance (Welford's Method)</td><td>逐筆更新均值與變異數，無需儲存歷史資料</td><td>IoT 即時均值監控、金融交易變異數</td></tr>
+      </tbody>
+    </table>
+    <p><strong>平台支援</strong>：Apache Spark（<code>approxQuantile()</code>、<code>summary()</code>）、Google BigQuery（<code>APPROX_QUANTILES()</code>、<code>APPROX_COUNT_DISTINCT()</code>）、PostgreSQL + tdigest 擴充套件。</p>
+
+    <h4>（2）時序分析</h4>
+    <table>
+      <thead><tr><th>類別</th><th>方法</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td>趨勢與平滑</td><td>移動平均 (Moving Average)、指數平滑 (Exponential Smoothing)</td><td>提取長期趨勢、消除短期波動；計算簡單、記憶體需求低</td></tr>
+        <tr><td>統計建模</td><td>ARIMA（自迴歸+差分+移動平均）、SARIMA（加入季節性）</td><td>線性趨勢與週期性數據；模型解釋性強</td></tr>
+        <tr><td>進階預測</td><td>Prophet（Meta 開源）、LSTM、Transformer</td><td>Prophet 自動處理節慶/缺失值；深度學習捕捉長期依賴與非線性，但成本高</td></tr>
+      </tbody>
+    </table>
+    <p><strong>工具</strong>：Spark + MLlib、TimescaleDB（PostgreSQL 時序擴充）、Meta Prophet、Meta Kats。<strong>應用</strong>：金融市場、能源/設備管理、智慧製造與供應鏈、電商與行銷活動。</p>
+
+    <h4>（3）網路分析 (Network Analysis)</h4>
+    <p>研究關聯資料中的節點關係、結構特徵與資訊傳播。<strong>核心元素</strong>：節點 (Node)、邊 (Edge)；圖屬性有向 (Directed)、加權 (Weighted)、動態 (Dynamic)。</p>
+    <table>
+      <thead><tr><th>類別</th><th>技術</th></tr></thead>
+      <tbody>
+        <tr><td>中心性分析 (Centrality)</td><td>Degree（連結數）、Betweenness（資訊中介）、Closeness（平均距離）、PageRank</td></tr>
+        <tr><td>社群偵測 (Community Detection)</td><td>Louvain（最大化模組度）、Label Propagation、Modularity Maximization</td></tr>
+        <tr><td>鏈結預測 (Link Prediction)</td><td>共同鄰居、Jaccard 係數、圖神經網路 (GNN)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>工具</strong>：Spark GraphX/GraphFrames、Neo4j（Cypher 查詢語言）、NetworkX/iGraph、Gephi。<strong>應用</strong>：社群意見擴散、推薦系統、客戶分群、詐欺偵測。</p>
+
+    <h4>（4）文字分析 (Text Analytics)</h4>
+    <p><strong>預處理</strong>：斷詞 (Tokenization)、去除標點、轉小寫、停用詞過濾、詞形還原 (Lemmatization，還原至詞典形式並考慮詞性)、詞幹提取 (Stemming，截斷至詞幹不考慮詞性)。</p>
+    <table>
+      <thead><tr><th>特徵轉換</th><th>方法</th></tr></thead>
+      <tbody>
+        <tr><td>傳統方法</td><td>TF（詞頻）、TF-IDF（詞頻-逆文檔頻率，突出關鍵詞、降低常見詞影響）</td></tr>
+        <tr><td>嵌入式方法</td><td>Word2Vec、GloVe（詞共現矩陣）、FastText（考慮子詞）</td></tr>
+        <tr><td>深度語意嵌入</td><td>BERT、RoBERTa（Transformer，捕捉上下文語意）</td></tr>
+      </tbody>
+    </table>
+    <p><strong>任務</strong>：分類（情感分析、主題分類）、分群（LDA）、資訊擷取（NER 命名實體辨識、關鍵字抽取）。<strong>工具</strong>：Spark NLP、spaCy、Hugging Face Transformers、Gensim。</p>
+
+    <h4>（5）地理空間分析 (Geospatial Analysis)</h4>
+    <p><strong>資料型態</strong>：點資料（GPS 座標）、線資料（道路）、面資料（行政區域）。<strong>挑戰</strong>：空間異質性（需地理加權迴歸 GWR）、空間自相關 (Spatial Autocorrelation)、資料規模龐大。</p>
+    <ul>
+      <li><strong>熱點分析</strong>：Kernel Density Estimation (KDE)、Getis-Ord Gi*。</li>
+      <li><strong>空間群聚</strong>：K-Means（含座標）、DBSCAN（密度導向）。</li>
+      <li><strong>地理加權迴歸 (GWR)</strong>：建立地點特有迴歸模型。</li>
+      <li><strong>空間插值</strong>：由已知點預測未知地點數值。</li>
+    </ul>
+    <p><strong>工具</strong>：GeoPandas、ArcGIS/QGIS、Apache Sedona、PostGIS。<strong>應用</strong>：商業選址、物流最佳化、環境監控、智慧城市治理。</p>
+
+    <h4>（6）異常偵測 (Anomaly Detection)</h4>
+    <p><strong>特性與挑戰</strong>：資料不平衡（異常占比極低）、即時性要求高、多型態資料並存、可解釋性需求。</p>
+    <table>
+      <thead><tr><th>類別</th><th>方法</th></tr></thead>
+      <tbody>
+        <tr><td>統計方法</td><td>Z-score / IQR 閾值法、移動視窗指標</td></tr>
+        <tr><td>密度與距離</td><td>Local Outlier Factor (LOF)、KNN-based Anomaly Score</td></tr>
+        <tr><td>樹模型</td><td>Isolation Forest（隨機切分隔離異常點）、Random Cut Forest（Amazon）</td></tr>
+      </tbody>
+    </table>
+    <p><strong>工具</strong>：PyOD、Spark + MLlib、Elasticsearch + ML module、AWS SageMaker/Azure ML。<strong>應用</strong>：金融詐欺、設備故障預警、網路安全、客戶行為。</p>
+
+    <h3 id="sec53">5.3 數據可視化工具</h3>
+    <h4>（1）視覺化方法（依資料型態）</h4>
+    <table>
+      <thead><tr><th>資料型態</th><th>圖表</th><th>原理與適用</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3">數值型分佈</td><td>直方圖 (Histogram)</td><td>分區間以柱高表示頻次；展示分佈形狀（區間數選擇影響結果）</td></tr>
+        <tr><td>箱型圖 (Boxplot)</td><td>展示中位數、Q1/Q3、鬚、離群值；適合多組比較（無法顯示多峰）</td></tr>
+        <tr><td>KDE 曲線</td><td>核函數估計機率密度，平滑曲線顯示分佈輪廓（對 bandwidth 敏感）</td></tr>
+        <tr><td rowspan="3">變數關聯</td><td>散佈圖 (Scatter Plot)</td><td>二維座標展示兩變數關係，搭配趨勢線（點過多需透明度處理）</td></tr>
+        <tr><td>相關係數矩陣</td><td>皮爾森相關係數以熱力圖呈現；檢視共線性（僅限線性）</td></tr>
+        <tr><td>熱力圖 (Heatmap)</td><td>顏色漸層表示變數值或密度（對顏色選擇敏感）</td></tr>
+        <tr><td rowspan="3">類別型比較</td><td>長條圖 (Bar Chart)</td><td>柱高比較不同類別（類別過多視覺擁擠）</td></tr>
+        <tr><td>堆疊長條圖</td><td>同時展示總量與比例結構（子類別過多難辨識）</td></tr>
+        <tr><td>圓餅圖 (Pie Chart)</td><td>扇形面積表示比例，適合少量類別（5-6 類以內）</td></tr>
+        <tr><td>時間序列</td><td>折線圖 (Line Chart)</td><td>連續線條表示時間趨勢或週期（多條線重疊難辨識）</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">（原文各圖表附有圖示範例）</p>
+
+    <h4>（2）平台工具分類</h4>
+    <table>
+      <thead><tr><th>類別</th><th>代表工具</th><th>特性</th></tr></thead>
+      <tbody>
+        <tr><td>工具內建報表</td><td>Google Sheets、Microsoft Excel</td><td>無需程式設計、雲端協作；圖表種類與客製化有限，不適合大規模</td></tr>
+        <tr><td>自行搭建（程式庫）</td><td>Python（Matplotlib、Seaborn、Plotly、Altair）、R（ggplot2、Shiny）、JS（D3.js、Vega-Lite、Chart.js）</td><td>程式化控制、高度客製化，適合資料科學家</td></tr>
+        <tr><td>半商業化 / 輕量 BI</td><td>Metabase、Redash、Apache Superset、Grafana</td><td>開源免費版 + 付費增值；Web 介面與 SQL 查詢</td></tr>
+        <tr><td>商業化平台</td><td>Tableau、Power BI、Google Looker、Qlik Sense、SAP Lumira</td><td>拖拉式操作、權限管理、企業級穩定性（多需付費）</td></tr>
+      </tbody>
+    </table>
+    <p><strong>依呈現方式</strong>：靜態圖表（報告/出版）、動態圖表（強調時間/排序變動）、互動式儀表板（篩選、點擊、個人化檢視）。</p>
+
+    <h4>（3）實務應用與設計原則</h4>
+    <p><strong>應用示例</strong>：零售電商（折線/長條/熱力圖監控銷售與顧客）、製造業（折線圖+儀表圖+熱力圖即時監控設備，Grafana+InfluxDB）、金融詐欺（散佈/熱力/折線圖+互動篩選）、健康醫療（折線/堆疊長條/時間軸圖追蹤診療）、智慧城市（地理熱力圖+互動式地圖，GeoPandas/Mapbox）。</p>
+    <div class="box key">
+      <span class="tag">重點｜五項視覺化設計原則</span>
+      <strong>原則一</strong>：以閱讀者為中心（依目標對象需求設計）。<strong>原則二</strong>：圖表類型符合資料型態與目的（比較用長條、趨勢用折線、比例用堆疊、關聯用散佈）。<strong>原則三</strong>：簡化資訊、去除冗餘（減少 3D 效果等視覺雜訊）。<strong>原則四</strong>：合理使用顏色與標示（綠=成長、紅=下降；關鍵資訊視覺強化）。<strong>原則五</strong>：支援互動與探索（點擊、篩選、依角色動態切換）。
+    </div>
+
+    <div class="box note">
+      <span class="tag">第五章 自我檢核（重點觀念）</span>
+      類別變數分佈用長條圖；網站每日訪客趨勢用折線圖；兩變數線性關係用相關係數；社群互動結構用圖論分析；TF-IDF 用於辨識關鍵詞並排除常見詞；異常偵測典型應用為信用卡詐騙；降維用 PCA（主成分分析）；找購買組合規則用關聯規則分析（Apriori）；箱型圖以特殊符號標記異常值；比對品牌名稱用命名實體識別 (NER)。
+    </div>
+
+    <!-- ============ 第六章 ============ -->
+    <h2 class="chap" id="chap6">第六章 大數據在人工智慧之應用</h2>
+    <p>人工智慧已從模型架構創新進入規模化應用階段。在 AI 實作中，資料不再只是分析對象，更是模型學習邏輯的一部分。本章涵蓋大數據與機器學習、鑑別式 AI、生成式 AI、隱私保護與合規四個子節。</p>
+
+    <h3 id="sec61">6.1 大數據與機器學習</h3>
+    <h4>（1）大數據五大特性（5V）對機器學習流程的衝擊</h4>
+    <table>
+      <thead><tr><th>特性</th><th>挑戰</th><th>因應策略</th></tr></thead>
+      <tbody>
+        <tr><td>Volume（規模大）</td><td>資料無法一次載入記憶體</td><td>分批載入 (Mini-Batch)、取樣、分散式儲存（HDFS）+ Parquet；Spark MLlib、Horovod、TensorFlow MultiWorker；Streaming Confusion Matrix / Streaming AUC 評估</td></tr>
+        <tr><td>Variety（型態多樣）</td><td>結構化/半結構化/非結構化並存</td><td>多模態處理：詞嵌入（Word2Vec/GloVe/BERT）、CNN 提取影像、時序分析音訊；對齊 (Alignment) 與融合 (Fusion)；資料湖 + Iceberg/Delta Lake 統一整合</td></tr>
+        <tr><td>資料品質與偏態</td><td>類別不平衡、標註錯誤、雜訊、冗餘</td><td>類別加權、欠/過抽樣（SMOTE）、弱標註與主動學習、資料清理；用 F1-score、Balanced Accuracy、Macro AUC；公平性評估（Demographic Parity、Equalized Odds）</td></tr>
+        <tr><td>Velocity（流動快速）</td><td>毫秒至秒級即時預測</td><td>串流處理 (Stream Processing)、近即時模型更新、增量學習（Perceptron、SGDClassifier、River）；Kafka、Flink、Spark Streaming、Kinesis/Pub-Sub/Event Hub；模型輪換 + A/B 測試 / Canary Release</td></tr>
+        <tr><td>Veracity & Integration（來源異質）</td><td>格式/可信度/語意不一致，數據漂移</td><td>Schema Mapping、資料編目 (Data Catalog)、資料來源追蹤 (Data Lineage)、版本控制（Delta Lake、LakeFS）；漂移偵測（KS Test、KL Divergence）+ Evidently/WhyLabs</td></tr>
+        <tr><td>Value（價值密度低）</td><td>有意義訊息比例極低、長尾樣本被掩蓋</td><td>特徵選擇與維度縮減（Lasso、PCA）、高資訊密度抽樣、自動化 EDA（Sweetviz、Pandas Profiling）、主動學習聚焦標註</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">注意｜數據漂移與概念漂移</span>
+      <strong>數據漂移 (Data Drift)</strong>：資料分佈在時間上的變化（如消費行為改變）。<strong>概念漂移 (Concept Drift)</strong>：資料與標籤之間的關聯改變（如詐騙模式變異）。兩者若未即時察覺，將造成模型效能迅速惡化。
+    </div>
+
+    <h4>（2）模型訓練加速</h4>
+    <p><strong>分散式訓練架構</strong>：</p>
+    <ul>
+      <li><strong>資料並行 (Data Parallelism)</strong>：資料分批至多節點，各用相同模型副本，合併梯度更新全域參數。適合影像分類、NLP。</li>
+      <li><strong>模型並行 (Model Parallelism)</strong>：大型模型不同部分分配至不同節點。適合 GPT、BERT 等超大模型。</li>
+      <li><strong>混合式並行 (Hybrid Parallelism)</strong>：結合資料並行與模型並行。</li>
+    </ul>
+    <p><strong>效能最佳化策略</strong>：硬體加速（GPU/TPU、SageMaker、Vertex AI）、混合精度訓練 (Mixed Precision，FP32+FP16)、梯度累積與梯度壓縮（Top-k Sparsification、Quantization）、Early Stopping 與 Checkpointing。</p>
+    <p><strong>進階情境</strong>：資料管線優化（TFRecord、Parquet、tf.data API）、預訓練 (Pre-training) + 微調 (Fine-tuning) 兩階段、持續/線上學習（須避免災難性遺忘 Catastrophic Forgetting）。</p>
+
+    <h4>（3）端對端機器學習流程（MLOps）</h4>
+    <table>
+      <thead><tr><th>階段</th><th>重點</th></tr></thead>
+      <tbody>
+        <tr><td>資料整合與處理管線</td><td>整合 IoT/Weblog/CRM 至資料湖；Spark/Airflow/Kubeflow 自動化處理；版本控管（Delta Lake、MLflow Tracking）</td></tr>
+        <tr><td>模型訓練與驗證</td><td>自動化 Pipeline（SageMaker Pipeline、Vertex AI、Kubeflow）；MLflow、W&amp;B 實驗追蹤；多模型/多階段流程（If-Then Routing）</td></tr>
+        <tr><td>模型部署與上線</td><td>Batch Serving / Online (API) Serving / Streaming Inference；容器化（Docker + Kubernetes）+ A/B 測試、藍綠部署</td></tr>
+        <tr><td>持續監控與維運</td><td>監控準確率/延遲/錯誤率、偵測 Data/Concept Drift；門檻觸發自動重訓 + CI/CD；MLOps 跨團隊整合</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec62">6.2 大數據在鑑別式 AI 的應用</h3>
+    <div class="box def">
+      <span class="tag">定義｜鑑別式 AI (Discriminative AI)</span>
+      著重於「區分」、「分類」與「預測」，學習資料間的判別界線（決策邊界）。是企業實務最常導入的 AI 類型，如產品推薦、詐欺偵測、疾病診斷、客戶流失預測、內容分類。
+    </div>
+
+    <h4>（1）常見應用情境</h4>
+    <table>
+      <thead><tr><th>領域</th><th>任務目標</th><th>常見模型</th><th>主要挑戰</th></tr></thead>
+      <tbody>
+        <tr><td>金融與風險管理</td><td>信用評分、詐欺偵測、反洗錢 (AML)</td><td>邏輯迴歸、隨機森林、GNN、XGBoost/LightGBM</td><td>資料不平衡（需 SMOTE）、隱私保護、異常值影響</td></tr>
+        <tr><td>零售與電商推薦</td><td>顧客流失預測、客戶分群、商品分類/價格預測</td><td>決策樹/隨機森林、LSTM、多模態（CLIP）</td><td>多來源資料一致性、標註成本、即時性（Kafka）</td></tr>
+        <tr><td>客服與文本分類</td><td>對話分類、情感分析、內容過濾</td><td>Naive Bayes、SVM、BERT/RoBERTa、正規表示式</td><td>標註品質一致性、語言多樣性（在地化）、資料品質</td></tr>
+        <tr><td>醫療與健康科技</td><td>疾病預測診斷、理賠異常分析、臨床決策支援</td><td>CNN（ResNet/VGG）、隨機森林/XGBoost、多模態（CNN+BERT）</td><td>資料隱私（加密）、標註成本高（主動學習）、異常值</td></tr>
+        <tr><td>資安與異常偵測</td><td>登入異常、惡意流量分類、釣魚郵件分類</td><td>孤立森林、LSTM、BERT、正規表示式</td><td>資料不平衡（SMOTE）、即時性（Kafka）、重複值</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（2）輸入資料型態</h4>
+    <ul>
+      <li><strong>結構化資料</strong>：ERP/CRM/POS 的交易、屬性；欄位明確，直接轉表格特徵。</li>
+      <li><strong>半結構化資料</strong>：JSON/XML API、伺服器日誌、點擊流；需解析 (Parsing) 或展平 (Flattening)。</li>
+      <li><strong>非結構化資料</strong>：文字、影像、聲音；需特徵萃取轉為數值表示。</li>
+      <li><strong>多模態資料</strong>：結合多型態（用戶屬性+評論+圖片）；需多輸入架構或特徵級融合。</li>
+    </ul>
+
+    <h4>（3）資料標註策略</h4>
+    <table>
+      <thead><tr><th>策略</th><th>定義</th><th>優點 / 限制</th></tr></thead>
+      <tbody>
+        <tr><td>人工標註</td><td>專人標註</td><td>準確度高（適合需專業知識任務）；成本高、難擴展</td></tr>
+        <tr><td>弱監督式標註 (Weak Supervision)</td><td>用規則、啟發式或第三方資料（如情緒詞典）自動生成標籤</td><td>速度快、成本低；誤標風險高，需後續清理</td></tr>
+        <tr><td>群眾外包 (Crowdsourcing)</td><td>透過平台（Amazon MTurk、Appen）分散給大量非專業者</td><td>成本低、速度快；品質參差，需一致性檢查</td></tr>
+        <tr><td>主動式學習 (Active Learning)</td><td>模型挑選低置信度樣本優先交人工標註</td><td>減少標註量；需初始資料與迭代訓練，門檻較高</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（4）跨來源整合挑戰</h4>
+    <p>主鍵不一致（不同系統 ID 定義不同）、時間戳記與時區對齊（UTC vs 台北時間）、資料更新頻率不一致（即時串流 vs 批次同步）、資料品質不均（缺失、格式、單位不統一）。資料品質直接影響統計推論：缺失值影響均值估計與 t 檢定、異常值放大誤差、重複值高估權重、一致性錯誤影響 ANOVA、邏輯錯誤導致學習錯誤模式。</p>
+
+    <h3 id="sec63">6.3 大數據在生成式 AI 的應用</h3>
+    <div class="box def">
+      <span class="tag">定義｜生成式 AI (Generative AI)</span>
+      核心能力為「根據大量資料學習表徵，再據此產生新的內容」（LLM、圖像生成、音樂合成、影片創作）。相較鑑別式 AI，對資料需求更「開放性」與「語意驅動」，關注語料多元性與資訊的完整語境維度。
+    </div>
+
+    <h4>（1）資料選擇對生成內容品質的影響</h4>
+    <table>
+      <thead><tr><th>面向</th><th>說明與風險</th></tr></thead>
+      <tbody>
+        <tr><td>資料多樣性</td><td>是否涵蓋不同模態、語言風格、主題與使用情境；缺乏多樣性會生成單調、無法適應新場景的內容</td></tr>
+        <tr><td>資料代表性與偏誤風險</td><td>偏誤類型：性別與族群偏誤（醫師預設男性）、地區與文化偏誤、社經地位偏誤、資料來源平台偏誤。會導致系統性偏見 (Systematic Bias)</td></tr>
+        <tr><td>資料品質與內容正確性</td><td>語法、格式、真實性、無雜訊；低品質導致語意混亂、視覺失真</td></tr>
+        <tr><td>資料時效性與更新</td><td>須反映當前環境；缺乏近期流行語（「斜槓青年」「元宇宙」「碳中和」）會無法正確理解使用</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（2）典型應用情境</h4>
+    <ul>
+      <li><strong>語言生成</strong>：自動文本撰寫（新聞摘要、商品描述）、客製化對話系統（智慧客服、虛擬助理）、程式碼生成與補全。</li>
+      <li><strong>圖像生成</strong>：廣告與設計輔助（產品圖、風格轉換、去背）、AI 藝術創作、視覺模擬。</li>
+      <li><strong>多模態生成</strong>：文字生成圖像（DALL·E）、圖像生成文字、視訊與語音合成、跨模態互動內容。</li>
+      <li><strong>資料增強與模擬訓練資料 (Synthetic Data)</strong>：增補訓練資料解決樣本不足/不平衡、模擬罕見情境（詐欺、感測器故障）、強化模型魯棒性。</li>
+    </ul>
+
+    <h3 id="sec64">6.4 大數據隱私保護、安全與合規</h3>
+    <p>大數據雖能強化模型效能，但也放大了資料再識別風險、資料濫用與不當自動化決策的後果。即使刪除姓名，仍可能透過裝置資訊、地理位置或行為軌跡重新識別個人。</p>
+
+    <h4>（1）個資識別風險</h4>
+    <ul>
+      <li><strong>直接識別資訊</strong>：姓名、身分證號、電話、裝置 ID。</li>
+      <li><strong>準識別資訊</strong>：性別、出生年月、郵遞區號、瀏覽紀錄（組合後可指向個人）。</li>
+      <li><strong>敏感資料</strong>：健康紀錄、信用狀況、宗教信仰。</li>
+    </ul>
+    <p><strong>風險來源</strong>：橫向比對（結合外部資料）、時間軸拼接（行為軌跡推斷身份）、保護不足（僅形式移除識別資訊）。違反《個人資料保護法》可能面臨罰款（原文案例：醫療 AI 使用未匿名化病歷遭罰款 30 萬元）。</p>
+
+    <h4>（2）資料匿名化技術</h4>
+    <p><strong>基礎匿名化技術（PII 移除/模糊）</strong>：</p>
+    <table>
+      <thead><tr><th>技術</th><th>定義</th><th>優點 / 限制</th></tr></thead>
+      <tbody>
+        <tr><td>遮蔽 (Masking)</td><td>以符號/假數據替換部分內容（王○○、A12******89）</td><td>簡單快速、保留格式；易被推測還原</td></tr>
+        <tr><td>雜湊處理 (Hashing)</td><td>單向雜湊（SHA-256）生成不可逆字串</td><td>不可逆、安全性高、支援一致比對；短 ID 易受彩虹表攻擊</td></tr>
+        <tr><td>泛化 (Generalization)</td><td>降低精度（生日→1980 年代、地址→台北市）</td><td>保留分佈特性；精度損失影響分析</td></tr>
+        <tr><td>資料分桶 (Bucketing)</td><td>連續數值轉離散區間（收入→50K–60K）</td><td>保留趨勢、降低識別風險；過細分桶仍可能暴露</td></tr>
+        <tr><td>隨機擾動 (Noise Injection)</td><td>加入小幅隨機噪音（薪資 50,000→50,123）</td><td>保留統計特性（均值、方差）；噪音幅度需平衡</td></tr>
+      </tbody>
+    </table>
+    <p><strong>進階隱私強化技術 (PETs)</strong>：</p>
+    <table>
+      <thead><tr><th>技術</th><th>定義</th><th>優點 / 限制</th></tr></thead>
+      <tbody>
+        <tr><td>K-匿名 / L-多樣性 / T-接近性</td><td>K-匿名：每筆資料在準識別欄位上至少與 K-1 筆相同；L-多樣性：敏感欄位至少 L 種值；T-接近性：敏感欄位分佈與整體接近</td><td>結構化資料保護效果顯著；計算複雜、對非結構化效果有限</td></tr>
+        <tr><td>差分隱私 (Differential Privacy)</td><td>查詢/訓練中加入嚴格控制的隨機噪音（拉普拉斯/高斯），使單筆資料存在與否對結果影響微乎其微（如 DPSGD）</td><td>提供數學保證；噪音可能降低精度</td></tr>
+        <tr><td>聯邦學習 (Federated Learning)</td><td>各客戶端本地訓練，僅傳送參數更新（梯度）至中央整合</td><td>資料保留本地、降低外洩；傳輸成本高、需防參數逆向推導</td></tr>
+        <tr><td>同態加密 (Homomorphic Encryption)</td><td>在加密數據上直接運算，解密後結果與明文一致</td><td>全程保密、強安全保證；計算效率低（FHE 需高效能硬體）</td></tr>
+      </tbody>
+    </table>
+
+    <h4>（3）合規資料處理</h4>
+    <div class="box key">
+      <span class="tag">重點｜合規資料處理的基本原則（GDPR / CCPA / 台灣個資法）</span>
+      <strong>合法性、正當性與透明性</strong>（明確告知蒐集目的）；<strong>目的限制原則</strong>（後續使用不得超出原目的）；<strong>資料最小化原則</strong>（僅蒐集所需最少資料）；<strong>保存期限限制</strong>（逾期刪除或匿名化）；<strong>可追蹤與可刪除性</strong>（被遺忘權）。
+    </div>
+    <p><strong>AI 訓練資料取得的合法依據</strong>：明確同意 (Explicit Consent)、契約履行必要、公共利益或學術研究（須經 IRB 審查）、非個人資料（經匿名化/去識別化，須定期做重識別風險測試）。</p>
+
+    <h4>（4）企業內部 AI 與資料治理</h4>
+    <ul>
+      <li><strong>制定治理政策</strong>：資料使用範圍與限制、AI 倫理準則（公平、非歧視、透明）、跨境傳輸規範、政策定期更新（納入生成式 AI 倫理）。</li>
+      <li><strong>跨部門治理組織</strong>：資料治理委員會（法務/資安/資料科學/業務）、AI 責任角色（Chief AI Officer、Data Steward）。</li>
+      <li><strong>生命週期流程</strong>：資料登記與資產盤點（Data Catalog）、模型透明性紀錄 (Model Card)、權限控管與審核流程。</li>
+      <li><strong>技術與自動化治理工具</strong>：資料稽核與追蹤系統、敏感資料偵測工具、模型監控系統（偵測偏誤與概念漂移）。</li>
+      <li><strong>強化內部文化與教育訓練</strong>：定期合規訓練、將合規納入績效與開發流程、強化舉報與回饋機制。</li>
+    </ul>
+
+    <div class="box note">
+      <span class="tag">第六章 自我檢核（重點觀念）</span>
+      鑑別式 AI 專注於資料分類與預測決策邊界；混合精度訓練（16-bit + 32-bit）加速並省記憶體；結構化輸入要產出自然語言用語言生成模型；生成式 AI 品質關鍵在訓練樣本的多樣性與語境一致性；避免使用敏感欄位用資料匿名化；強化隱私保護用差分隱私；醫療資料須取得合法授權與病患同意並執行隱私強化；確保合規可追溯用資料版本管理與操作紀錄制度；模型落地持續合規需導入 AI 治理框架與跨部門監管；解決資料與運算資源不對稱用分散式訓練與硬體加速架構。
+    </div>
+
+    <footer>
+      來源：經濟部產業人才能力鑑定 iPAS — 中級學習指引 大數據處理分析與應用。
+      本教材為學習整理，非官方教材或題庫；請以官方公告為準。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 80, current = -1;
+    for (var i=0;i<targets.length;i++){
+      if (targets[i] && targets[i].offsetTop <= pos) current = i;
+    }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if (current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

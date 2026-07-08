@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPAS AI 應用規劃師 — 學習網站</title>
+<style>
+  :root{
+    --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --sub:#64748b;
+    --border:#e2e8f0; --exam:#4f46e5; --mat:#059669; --shadow:0 1px 3px rgba(15,23,42,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f172a; --card:#1e293b; --text:#f1f5f9; --sub:#94a3b8;
+      --border:#334155; --exam:#818cf8; --mat:#34d399; --shadow:0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+  main{max-width:860px;margin:0 auto;padding:48px 20px 32px;flex:1;width:100%}
+  h1{font-size:28px;letter-spacing:.5px}
+  .tagline{color:var(--sub);margin:10px 0 36px;font-size:15px;line-height:1.7}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  a.card{display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 24px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;border-top:4px solid var(--accent)}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(15,23,42,.12)}
+  .card .icon{font-size:34px}
+  .card h2{font-size:20px;margin:12px 0 8px}
+  .card p{color:var(--sub);font-size:14px;line-height:1.7}
+  .card .go{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--accent)}
+  .card.exam{--accent:var(--exam)}
+  .card.mat{--accent:var(--mat)}
+  .note{margin-top:36px;padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--sub);line-height:1.8}
+  .note a{color:var(--exam)}
+  footer{text-align:center;padding:18px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<main>
+  <h1>🎓 iPAS AI 應用規劃師 學習網站</h1>
+  <p class="tagline">經濟部產業人才能力鑑定「AI 應用規劃師」（初級／中級）備考資源：線上模擬考與自製 HTML 教材，手機、電腦皆可使用。</p>
+
+  <div class="cards">
+    <a class="card exam" href="exam/">
+      <div class="icon">📝</div>
+      <h2>模擬考系統</h2>
+      <p>600 題歷屆公告試題題庫。全真模擬、歷屆原卷、快速練習、錯題本、成績紀錄與每題筆記（紀錄存於瀏覽器）。</p>
+      <span class="go">進入模擬考 →</span>
+    </a>
+    <a class="card mat" href="materials/">
+      <div class="icon">📖</div>
+      <h2>學習教材</h2>
+      <p>依官方學習指引整理的詳盡教材：初級 2 科、中級 3 科，各含完整教材與考前重點＋歷屆試題逐題解析。</p>
+      <span class="go">開始學習 →</span>
+    </a>
+  </div>
+
+  <p class="note">
+    本站為個人學習整理，非 iPAS 官方網站；試題答案採 iPAS 公告試題，解析為學習整理。官方學習指引、勘誤表與試題 PDF 請至
+    <a href="https://ipd.nat.gov.tw/ipas/certification/AIAP/learning-resources" target="_blank" rel="noopener">iPAS 官方學習資源頁面</a>下載，並以官方公告之評鑑主題與簡章為準。
+  </p>
+</main>
+<footer>來源：經濟部產業人才能力鑑定 iPAS · AI 應用規劃師認證</footer>
+</body>
+</html>

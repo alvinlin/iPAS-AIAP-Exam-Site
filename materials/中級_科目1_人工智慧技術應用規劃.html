@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級科目1 人工智慧技術應用規劃 — iPAS AI 應用規劃師教材</title>
+<style>
+:root{--accent:#4338ca;--accent-soft:#eef0ff;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="#scope">本科評鑑範圍</a>
+    <a href="#chap3">第三章 AI 相關技術應用</a>
+    <a class="sub" href="#sec31">3.1 自然語言處理 NLP</a>
+    <a class="sub" href="#sec32">3.2 電腦視覺 CV</a>
+    <a class="sub" href="#sec33">3.3 生成式 AI</a>
+    <a class="sub" href="#sec34">3.4 多模態 AI</a>
+    <a href="#chap4">第四章 AI 導入評估規劃</a>
+    <a class="sub" href="#sec41">4.1 AI 導入評估</a>
+    <a class="sub" href="#sec42">4.2 AI 導入規劃</a>
+    <a class="sub" href="#sec43">4.3 AI 風險管理</a>
+    <a href="#chap5">第五章 AI 技術應用與系統部署</a>
+    <a class="sub" href="#sec51">5.1 數據準備與模型選擇</a>
+    <a class="sub" href="#sec52">5.2 系統集成與部署</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 1</span>
+      <h1>人工智慧技術應用規劃</h1>
+      <p class="sub">iPAS AI 應用規劃師認證 · 依官方學習指引編製</p>
+    </header>
+
+    <!-- ===================== 本科評鑑範圍 ===================== -->
+    <h2 class="chap" id="scope">本科評鑑範圍</h2>
+    <p>本科目（科目代碼 <span class="term">L21 人工智慧技術應用與規劃</span>）為中級「AI 應用規劃師」科目一，旨在幫助考生掌握人工智慧技術應用知識概念，奠定未來應用與規劃的基石。其評鑑主題涵蓋「AI 相關技術應用」、「AI 導入評估規劃」與「AI 技術應用與系統部署」三大主題。</p>
+
+    <div class="box def">
+      <span class="tag">職能基準｜AI 應用規劃師</span>
+      <p><strong>工作描述：</strong>了解 AI 工具的特性及具備使用經驗，以協助企業規劃與推動 AI 技術或工具導入；根據企業部門業務需求，評估並選擇適合的 AI 工具或解決方案，應用於內部流程或產品生命週期；整合跨部門團隊，共同制定與執行 AI 導入計畫，進行開發、部署及後續優化。</p>
+      <p><strong>基準級別：</strong>5（職能基準範圍為跨產業適用）。</p>
+    </div>
+
+    <h3 id="scope-table">評鑑主題與評鑑內容對照</h3>
+    <table>
+      <thead><tr><th>評鑑主題</th><th>評鑑內容（代碼）</th></tr></thead>
+      <tbody>
+        <tr><td>L211 AI 相關技術應用</td><td>L21101 自然語言處理技術與應用<br>L21102 電腦視覺技術與應用<br>L21103 生成式 AI 技術與應用<br>L21104 多模態人工智慧應用</td></tr>
+        <tr><td>L212 AI 導入評估規劃</td><td>L21201 AI 導入評估<br>L21202 AI 導入規劃<br>L21203 AI 風險管理</td></tr>
+        <tr><td>L213 AI 技術應用與系統部署</td><td>L21301 數據準備與模型選擇<br>L21302 AI 技術系統集成與部署</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">學習範圍說明</span>
+      <p>本科聚焦 AI 技術的「應用與規劃」層面。與本科相關但屬於其他科目的內容：大數據收集／儲存／分析等資料處理技術，於《大數據處理分析與應用》詳述；機器學習與深度學習之深入技術原理，於《機器學習技術與應用》詳述。</p>
+    </div>
+
+    <!-- ===================== 第三章 ===================== -->
+    <h2 class="chap" id="chap3">第三章 AI 相關技術應用</h2>
+    <p>組織在導入人工智慧時需先理解各種核心技術的特點、應用範疇與成熟度，再與業務需求進行對應與結合。本章從實務上常見的 AI 子領域切入，包括<span class="term">自然語言處理（Natural Language Processing, NLP）</span>、<span class="term">電腦視覺（Computer Vision, CV）</span>、<span class="term">生成式 AI</span>、<span class="term">多模態 AI</span>，說明它們各自能發揮關鍵價值的情境。</p>
+
+    <!-- 3.1 NLP -->
+    <h3 id="sec31">3.1 自然語言處理技術與應用（NLP）</h3>
+    <p>自然語言處理賦予機器理解、處理並生成自然語言的能力，是連接人類與機器溝通的橋樑。2022 年底 OpenAI 推出的 ChatGPT 以對話式 AI（Conversational AI）形式引起全球矚目，推動各行業對 NLP 應用的探索。</p>
+
+    <div class="box def">
+      <span class="tag">定義｜NLP 與其核心任務層次</span>
+      <p>NLP 使電腦能「理解、處理並產生」自然語言。核心目標可簡化為三個任務層次：</p>
+      <ul>
+        <li><strong>理解（Understand）</strong>：解析語法結構與語意，辨識語者意圖、情緒與知識。</li>
+        <li><strong>處理（Process）</strong>：將語言轉換為電腦可操作的結構，如特徵向量、語法樹、標注格式。</li>
+        <li><strong>生成（Generate）</strong>：根據情境與目標自動產出自然、流暢且具邏輯的文字或語音。</li>
+      </ul>
+    </div>
+
+    <h4>NLP、NLU 與 NLG 的關係</h4>
+    <table>
+      <thead><tr><th>概念</th><th>角色定位</th><th>範疇</th><th>常見任務</th></tr></thead>
+      <tbody>
+        <tr><td>自然語言處理 NLP</td><td>總稱</td><td>整合所有讓機器理解、處理、產生語言的技術</td><td>對話系統、機器翻譯、語音助理</td></tr>
+        <tr><td>自然語言理解 NLU</td><td>NLP 的「理解」階段</td><td>理解輸入語言的語意與結構，分析使用者意圖</td><td>意圖辨識、命名實體辨識（NER）、情感分析</td></tr>
+        <tr><td>自然語言生成 NLG</td><td>NLP 的「產出」階段</td><td>將資料或語意轉換為自然語言文字進行表達</td><td>自動摘要、回應生成、報告撰寫</td></tr>
+      </tbody>
+    </table>
+
+    <h4>技術演進脈絡（四階段）</h4>
+    <table>
+      <thead><tr><th>時期</th><th>技術階段</th><th>核心特徵</th><th>代表技術／模型</th></tr></thead>
+      <tbody>
+        <tr><td>1980s–1990s</td><td>規則式方法（Rule-based）</td><td>手動設計語法規則與詞彙辭典</td><td>ELIZA、專家系統</td></tr>
+        <tr><td>1990s–2010</td><td>統計語言模型（Statistical LM）</td><td>使用大量語料訓練機率模型</td><td>N-gram、HMM、CRF</td></tr>
+        <tr><td>2010–2018</td><td>深度學習模型（Deep Learning）</td><td>使用神經網路處理語言序列</td><td>RNN、LSTM、GRU</td></tr>
+        <tr><td>2018–至今</td><td>預訓練語言模型（Pre-trained LM）</td><td>大規模語料預訓練＋下游微調</td><td>BERT、GPT、RoBERTa、T5</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><strong>規則式方法</strong>：高可解釋性，但完全依賴專家知識、擴展性差、維護成本高。代表 ELIZA（關鍵詞比對）、專家系統。</li>
+      <li><strong>統計語言模型</strong>：能自動學習語言統計結構，但缺乏深度語意理解、依賴大量標注、難捕捉長距離依賴。代表 N-gram、HMM、CRF。</li>
+      <li><strong>深度學習時代</strong>：RNN／LSTM／GRU 能捕捉長距離依賴，不再依賴人工特徵；但訓練需大量算力、難並行、訓練時間長。RNN 易遇梯度消失。</li>
+      <li><strong>預訓練語言模型</strong>：2017 年 Transformer 提出自注意力機制（Self-Attention），解決長距離依賴並可並行運算；以「預訓練＋微調（Fine-tuning）」為策略。BERT 採雙向 Transformer 編碼器＋遮蔽語言模型（MLM）；GPT 採單向自迴歸生成。限制是運算資源需求極高。</li>
+    </ul>
+
+    <h4>NLP 前處理</h4>
+    <p>自然語言資料具非結構化性、語意模糊與語境多變，前處理是 NLP 項目成功與否的第一道防線。常見技術：</p>
+    <table>
+      <thead><tr><th>處理步驟</th><th>說明</th><th>常見工具與技巧</th></tr></thead>
+      <tbody>
+        <tr><td>分詞（Tokenization）</td><td>將文字拆解為單字、詞組或子詞，作為基本處理單位</td><td>基於空白、斷詞字典或子詞分解（如 BPE）</td></tr>
+        <tr><td>詞性標注（POS Tagging）</td><td>標記每個詞的語法角色（名詞、動詞、形容詞等）</td><td>常用於語法分析、命名實體辨識</td></tr>
+        <tr><td>詞形還原（Lemmatization）</td><td>將單詞還原為字典形式（running → run）</td><td>保留語意一致性，適合語意分析</td></tr>
+        <tr><td>詞幹提取（Stemming）</td><td>去除詞尾變化取得詞幹（connections → connect）</td><td>速度快但準確性低於 Lemmatization</td></tr>
+        <tr><td>停用詞移除（Stopword Removal）</td><td>去除 is、the、at 等語意貢獻低的高頻詞</td><td>降低資料維度、提升關鍵詞比重</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">注意｜中文分詞與停用詞取捨</span>
+      <p>中文、日文等無空白語言通常需斷詞字典或模型輔助切詞。分詞錯誤（如將「自然語言處理」切成「自然／語言／處理」）會影響後續分析。停用詞移除在資訊檢索常用，但對話生成／語法分析時有時需保留以維持語句完整與語氣自然。</p>
+    </div>
+
+    <h4>文字表示（向量化）技術比較</h4>
+    <p>大多數模型只能運算數字，文字須先轉為向量（Vector）或張量（Tensor），稱為「詞彙向量化」或「文字表示學習」。技術從統計方法（tf-idf）演進至分布式向量（Word2Vec），再到上下文敏感的動態詞向量（BERT Embeddings）。</p>
+    <table>
+      <thead><tr><th>表示類型</th><th>技術代表</th><th>分布特性</th><th>語境特性</th><th>優點</th><th>限制</th></tr></thead>
+      <tbody>
+        <tr><td>純離散表示</td><td>One-hot Encoding、Bag of Words</td><td>非分布式</td><td>非語境型</td><td>結構簡單、易實作，適入門</td><td>向量稀疏、無語意、維度高</td></tr>
+        <tr><td>統計型表示</td><td>TF-IDF</td><td>非分布式</td><td>非語境型</td><td>能反映詞彙重要性、效果穩定</td><td>忽略上下文與語序、無法處理多義詞</td></tr>
+        <tr><td>統計共現表示</td><td>N-grams</td><td>有限分布性</td><td>上下文敏感（短範圍）</td><td>可表示語序與詞組共現</td><td>長句效果差、資料稀疏、無法捕捉長距依賴</td></tr>
+        <tr><td>靜態詞嵌入</td><td>Word2Vec、GloVe、FastText</td><td>分布式</td><td>非語境型</td><td>可表示語意結構、向量可運算、訓練成本低</td><td>每詞僅一向量、忽略上下文</td></tr>
+        <tr><td>語境型詞嵌入</td><td>ELMo、BERT、GPT</td><td>分布式</td><td>動態語境型</td><td>語意精準、支援上下文、處理多義詞佳</td><td>模型大、需高算力與記憶體</td></tr>
+      </tbody>
+    </table>
+    <div class="box def">
+      <span class="tag">關鍵術語辨析</span>
+      <ul>
+        <li><strong>語境型 vs 非語境型</strong>：語境型（如 BERT、ELMo）的詞向量會隨上下文動態改變，可解決多義詞（如 bank 指銀行或河岸）；非語境型（如 Word2Vec、GloVe）每詞固定一向量。</li>
+        <li><strong>分布式 vs 非分布式</strong>：分布式表示依語料庫中其他詞彙的關聯學習，語意相近詞在向量空間中位置接近；非分布式（如 One-hot）將每詞映射為獨立固定向量，無法表達語意關聯。</li>
+        <li><strong>詞嵌入（Word Embedding）</strong>：將詞彙轉為含語意資訊的數字向量，基於語料庫共現關係學習。</li>
+      </ul>
+    </div>
+    <ul>
+      <li><strong>One-hot Encoding</strong>：高維向量中僅對應詞位為 1，其餘為 0；向量稀疏、無語意關聯、不考慮詞序。</li>
+      <li><strong>Bag of Words（BoW）</strong>：以詞頻向量表示文件，忽略詞序與語法。例：語料 [dog, cat, fish]，「dog dog cat」→ [2,1,0]。</li>
+      <li><strong>tf-idf</strong>：結合詞頻（TF）與逆文件頻率（IDF）衡量詞彙資訊價值。<br>
+        <code>TF(t,d) = 詞 t 在文件 d 中出現次數 / 文件 d 總詞數</code>；<code>IDF(t,D) = log( |D| / 含 t 的文件數 )</code>；<code>tf-idf = TF × IDF</code>。例：D=1000、AI 出現於 10 篇、某文件 100 詞中 AI 出現 3 次 → TF=0.03、IDF=log(100)≈2、tf-idf≈0.06。</li>
+      <li><strong>N-grams</strong>：將連續 N 個詞組成特徵單位以保留詞序。Bi-grams（"I love machine learning",2）={(I,love),(love,machine),(machine,learning)}。N 過大時維度急增、稀疏。</li>
+      <li><strong>Word2Vec</strong>（Google,2013）：兩種架構——<strong>CBOW</strong>（以上下文預測中心詞，訓練快、適小語料）與 <strong>Skip-gram</strong>（以中心詞預測上下文，對低頻詞更有效）。能進行語意運算：<code>king - man + woman ≈ queen</code>。</li>
+      <li><strong>GloVe</strong>（Stanford,2014）：利用整體語料庫共現矩陣＋矩陣分解學習靜態向量。</li>
+      <li><strong>FastText</strong>（Facebook,2016）：將詞視為子詞（subwords / n-gram）集合，可處理未見過的新詞（OOV）。例：playing → pla, lay, ayi, yin, ing。</li>
+      <li><strong>ELMo</strong>（2018）：基於雙向 LSTM 的語境型詞嵌入。</li>
+      <li><strong>BERT</strong>（Google,2018）：雙向 Transformer 編碼器＋MLM；擅長理解類任務（問答、分類、NER）。</li>
+      <li><strong>GPT</strong>（OpenAI）：單向自迴歸 Transformer；擅長生成任務，可搭配提示詞（Prompt）。</li>
+    </ul>
+
+    <h4>深度學習在 NLP 中的應用</h4>
+    <table>
+      <thead><tr><th>模型</th><th>特點</th><th>優點</th><th>限制</th></tr></thead>
+      <tbody>
+        <tr><td>RNN</td><td>每步輸出依賴前一步狀態</td><td>能處理時間序列與語序</td><td>訓練不穩定、梯度消失嚴重</td></tr>
+        <tr><td>LSTM</td><td>引入記憶單元與門控機制</td><td>能捕捉長距離依賴、較穩定</td><td>結構複雜、訓練耗時</td></tr>
+        <tr><td>GRU</td><td>精簡版 LSTM</td><td>運算較快、效果接近 LSTM</td><td>對長序列仍有限制</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Transformer 核心概念（2017，Google）：</strong></p>
+    <ul>
+      <li><strong>Self-Attention（自注意力）</strong>：可同時考慮整段輸入序列，依各詞關聯程度加權，捕捉長距離依賴。</li>
+      <li><strong>Encoder-Decoder 架構</strong>：Encoder 將輸入轉為語意向量，Decoder 逐步產生目標輸出；適合機器翻譯、摘要、文字改寫等 Seq2Seq 任務。</li>
+      <li><strong>全平行架構（Fully Parallel）</strong>：一次處理整個序列、並列計算注意力分數，訓練速度大幅提升、適合 GPU/TPU。</li>
+    </ul>
+
+    <h4>預訓練語言模型與強化技術</h4>
+    <ul>
+      <li><strong>Prompt-based Learning</strong>：將任務轉化為填空或問答格式，利用模型原有語言理解能力，無需繁重再訓練。</li>
+      <li><strong>少樣本學習（Few-shot）</strong>：提供少量示例即可提升模型在新任務的表現。</li>
+      <li><strong>零樣本學習（Zero-shot）</strong>：無任何示例即可基於既有理解推理（如直接以 Prompt 讓 GPT 將郵件分類）。</li>
+      <li><strong>檢索增強生成（RAG, Retrieval-Augmented Generation）</strong>：結合外部知識檢索與語言生成，提升背景知識要求高的任務準確性。</li>
+      <li><strong>低秩自適應（LoRA, Low-Rank Adaptation）</strong>：向原模型添加輕量級參數，在不大量重訓的情況下高效微調，適合資源有限或邊緣部署。</li>
+    </ul>
+
+    <h4>NLP 應用情境與實務案例</h4>
+    <ul>
+      <li><strong>文字分類</strong>：垃圾郵件偵測、商品評論分類（正／負／中立）、客服請求分流。</li>
+      <li><strong>情感分析</strong>：社群輿情監控、顧客滿意度調查。</li>
+      <li><strong>對話系統（Chatbot）</strong>：任務導向（訂票、訂位、查天氣）與開放式（如 ChatGPT）兩類。</li>
+      <li><strong>文字生成與總結</strong>：新聞摘要、廣告標題、自動報表；須注意語意一致性、邏輯性與事實性。</li>
+      <li><strong>機器翻譯</strong>：商業文件、客服支援、文化交流；專業領域（法律、醫療）對準確性要求高。</li>
+      <li><strong>其他</strong>：命名實體辨識（NER）、關係抽取（Relation Extraction，用於建構知識圖譜）。</li>
+    </ul>
+
+    <h4>NLP 技術挑戰與風險（三層）</h4>
+    <table>
+      <thead><tr><th>風險層級</th><th>主要風險</th><th>處理機制</th></tr></thead>
+      <tbody>
+        <tr><td>資料層</td><td>資料隱私（個資外洩）、標註與品質風險（標註不一致、資料偏見）、資料授權與版權風險</td><td>匿名化／去識別化、標註審查與多重標註、確保資料來源授權與版權檢查</td></tr>
+        <tr><td>模型層</td><td>模型偏見（性別／種族／文化）、公平性評估不足</td><td>以 WEAT（Word Embedding Association Test）檢測詞向量偏見、資料平衡、納入公平性指標與人工覆核</td></tr>
+        <tr><td>應用層</td><td>語意理解限制（諷刺、方言、多義詞）、部署與維運風險、生成內容風險（模型幻覺 Hallucination）</td><td>語境型詞向量＋常識推理、回饋與再訓練／版本控制、事實檢查與人工審核、風險預告聲明</td></tr>
+      </tbody>
+    </table>
+    <div class="box def">
+      <span class="tag">去識別化 vs 匿名化</span>
+      <ul>
+        <li><strong>去識別化（De-identification）</strong>：遮蔽或替換可直接辨識資訊，但仍保有與原始個體連結的潛在可能。方法：代碼替換（Pseudonymization）、資料抽象化（Generalization）、資料遮罩（Masking，如 王X明）。</li>
+        <li><strong>匿名化（Anonymization）</strong>：徹底移除可辨識資訊，處理後無法再連結特定個體。方法：徹底刪除辨識欄位、資料隨機化、聚合處理（Aggregation）。</li>
+      </ul>
+    </div>
+    <div class="box note">
+      <span class="tag">模型幻覺（Model Hallucination）</span>
+      <p>指生成模型產生虛假、誤導或完全虛構、不基於訓練資料或現實的內容。例如回答「法國的首都在柏林」——語法正確但資訊錯誤。在醫療、法律、金融等高風險領域尤需事實檢查與人工審核。</p>
+    </div>
+
+    <!-- 3.2 CV -->
+    <h3 id="sec32">3.2 電腦視覺技術與應用（CV）</h3>
+    <p>電腦視覺讓機器具備「看懂世界」的能力，從影像或影片中自動辨識、分析並理解資訊。早期依賴人工設計特徵與傳統影像處理，2012 年 AlexNet 在 ImageNet 大幅提升分類準確度後，深度學習（特別是 CNN）主導了 CV 的發展。</p>
+
+    <h4>CV 主要任務類型</h4>
+    <table>
+      <thead><tr><th>任務類型</th><th>說明</th><th>常見應用情境</th></tr></thead>
+      <tbody>
+        <tr><td>影像分類（Image Classification）</td><td>判斷影像屬於哪一類別</td><td>商品辨識、醫療影像診斷、社群內容分類</td></tr>
+        <tr><td>物件偵測（Object Detection）</td><td>辨識是否存在特定物件並標示位置（邊界框）</td><td>自動駕駛、安防監控、人流偵測</td></tr>
+        <tr><td>語意分割（Semantic Segmentation）</td><td>將每一像素標註為對應語意類別</td><td>城市街景理解、農作物分類、醫學影像</td></tr>
+        <tr><td>實例分割（Instance Segmentation）</td><td>除語意標註外還分辨同類別不同實體</td><td>自駕車多目標辨識、AR 虛實分離、精密製造檢測</td></tr>
+        <tr><td>影像生成與合成</td><td>以生成模型合成新影像（文字生圖、風格轉換）</td><td>設計輔助、遊戲開發、產出訓練資料</td></tr>
+      </tbody>
+    </table>
+
+    <h4>技術演進三階段</h4>
+    <ul>
+      <li><strong>特徵工程主導（1980s–2010）</strong>：邊緣偵測（Canny）、特徵點偵測（SIFT、SURF、ORB）、色彩與紋理分析、傳統分類器（SVM、KNN、隨機森林）。受限於人工選擇特徵。</li>
+      <li><strong>CNN 革命（2012–2020）</strong>：自動學習圖像特徵，網路架構演進（VGGNet、GoogLeNet、ResNet、DenseNet）；拓展至物件偵測（YOLO、Faster R-CNN）、語意分割（FCN、U-Net）、人臉辨識（FaceNet）。</li>
+      <li><strong>多模態與生成式 AI 融合（2020–至今）</strong>：CLIP（圖文對齊）、Vision Transformer（ViT）、DALL·E／Stable Diffusion／Midjourney（文字生圖）、SAM（Segment Anything Model，Meta）。</li>
+    </ul>
+
+    <h4>影像標註與資料前處理</h4>
+    <table>
+      <thead><tr><th>任務類型</th><th>標註方式</th><th>工具範例</th></tr></thead>
+      <tbody>
+        <tr><td>影像分類</td><td>類別標籤（Label）</td><td>LabelImg、Label Studio</td></tr>
+        <tr><td>物件偵測</td><td>邊界框（Bounding Box）</td><td>CVAT、Roboflow</td></tr>
+        <tr><td>語意分割</td><td>每個像素分割標籤</td><td>LabelMe、SuperAnnotate</td></tr>
+        <tr><td>實例分割</td><td>像素遮罩＋實例 ID</td><td>VGG Image Annotator</td></tr>
+        <tr><td>關鍵點標註</td><td>身體節點／特定點座標</td><td>COCO Annotator</td></tr>
+        <tr><td>文字辨識（OCR）</td><td>區塊框選＋文字內容</td><td>Tesseract Trainer、LabelImg OCR 模式</td></tr>
+      </tbody>
+    </table>
+    <p><strong>進階標註：</strong>語意與實例分割深度結合、自動化標註（Auto-labeling）、半監督式學習與主動學習。標註準則應確保一致性、細節準確度與品質控制（如雙重標註）。</p>
+    <p><strong>影像前處理：</strong>圖像尺寸處理（Resize／Padding／Cropping）、正規化（Pixel Normalization）、像素增強（直方圖均衡化、Gamma 校正）、噪聲去除（平滑／邊緣保留濾波）、色彩空間轉換（RGB↔Grayscale、HSV）、資料擴增（Data Augmentation：翻轉、旋轉、裁剪、模糊、色彩偏移）、序列統一。進階：資料清洗、分層抽樣（Stratified Sampling）、圖像編碼（轉張量或嵌入向量）。</p>
+
+    <h4>CV 關鍵技術與常用模型</h4>
+    <p><strong>影像分類流程：</strong>資料收集與標註 → 資料預處理 → 模型選擇（常用 CNN）→ 訓練與評估（指標：準確度 Accuracy、Top-5 Error）。</p>
+    <div class="box def">
+      <span class="tag">CNN 基本架構</span>
+      <ul>
+        <li><strong>卷積層</strong>：以卷積核提取局部特徵，生成特徵圖（Feature Map）。</li>
+        <li><strong>池化層</strong>：降維（如 Max Pooling），減少計算量、增強泛化。</li>
+        <li><strong>激活層</strong>：引入非線性（如 ReLU）。</li>
+        <li><strong>全連接層</strong>：整合特徵為一維向量進行分類。</li>
+        <li><strong>輸出層</strong>：常用 Softmax 轉為類別機率。</li>
+      </ul>
+    </div>
+    <ul>
+      <li><strong>知名 CNN：</strong>LeNet（早期、手寫數字）、AlexNet（2012 里程碑，ReLU＋Dropout）、VGG（深度＋3×3 小卷積核）、ResNet（殘差結構，可達 152 層、解決梯度消失）。</li>
+      <li><strong>物件偵測：</strong>YOLO（迴歸式、速度快、適即時）、Faster R-CNN（RPN 候選框、準確度高但較慢）、SSD（多尺度、速度與準確度平衡）。</li>
+      <li><strong>影像分割：</strong>FCN（全卷積＋上採樣）、U-Net（編解碼器＋跳躍連接，適醫療影像）、Mask R-CNN（Faster R-CNN 擴展＋遮罩分支，實例分割）。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">IoU（Intersection over Union）</span>
+      <p><code>IoU = 重疊區域(Intersection) / 聯集區域(Union)</code>，範圍 0–1，越接近 1 越準確；物件偵測中常以 0.5 或 0.7 為成功門檻。例：真實框 100、預測框 80、重疊 40 → Union=100+80−40=140 → IoU=40/140≈0.286。</p>
+    </div>
+    <p>影像分類評估指標：準確率（Accuracy）、Top-5 錯誤率、混淆矩陣（Confusion Matrix）。</p>
+
+    <h4>CV 應用情境</h4>
+    <ul>
+      <li><strong>監控與安全</strong>：人臉辨識（檢測→特徵提取→比對）、車牌辨識（ANPR）、隱私與合規（GDPR、HIPAA）、即時推論。</li>
+      <li><strong>醫療影像診斷</strong>：影像分類（CT/MRI 診斷）、影像分割（U-Net 定位腫瘤）、需專業醫師標註與醫療隱私法規。</li>
+      <li><strong>智慧製造與零售</strong>：工業瑕疵偵測、商品行為分析、邊緣運算與即時回饋、顧客行為追蹤（熱點圖 Heatmap）。</li>
+      <li><strong>其他</strong>：AR／VR、自動駕駛（車道線偵測、物件偵測、多模態融合：影像＋雷達＋LiDAR）。</li>
+    </ul>
+
+    <h4>CV 技術挑戰與風險</h4>
+    <ul>
+      <li><strong>資料隱私與合規</strong>：影像含個人識別資料（PII），人臉資料屬敏感個資；對策含匿名化／去識別化（臉部遮蔽、模糊）、合法授權告知、資料保存與刪除政策。</li>
+      <li><strong>偏見與模型可靠度</strong>：來源不平衡、標註偏誤、拍攝條件偏差；失準影響含誤檢（False Positive）與漏檢（False Negative）；對策含偏見診斷測試（Bias Audit）、數據平衡與重加權、可信度指標（AUC、精確度、召回率）。</li>
+      <li><strong>部署與維運</strong>：GPU/TPU 資源限制（輕量化模型如 MobileNet、YOLOv5-Nano）、批次處理延遲、版本管理、資料漂移（Data Drift）；對策含 MLOps（CI/CD＋持續監控）、影像品質監測、容錯與回退機制。</li>
+    </ul>
+
+    <!-- 3.3 生成式 AI -->
+    <h3 id="sec33">3.3 生成式 AI 技術與應用</h3>
+    <p>生成式 AI 能根據輸入產生全新內容。NVIDIA 黃仁勳於 2025 年 CES 指出 AI 的四個演進階段：<strong>感知 AI（Perception AI）→ 生成式 AI（Generative AI）→ 代理式 AI（Agentic AI）→ 物理 AI（Physical AI）</strong>，生成式 AI 代表第二個重要階段。</p>
+
+    <h4>生成式 AI vs 鑑別式 AI</h4>
+    <table>
+      <thead><tr><th>特徵</th><th>生成式 AI（Generative）</th><th>鑑別式 AI（Discriminative）</th></tr></thead>
+      <tbody>
+        <tr><td>目標</td><td>生成新資料樣本（文本、圖像、音訊）</td><td>分類、辨識或預測，分配標籤</td></tr>
+        <tr><td>工作方式</td><td>學習資料分佈並生成新樣本</td><td>學習資料特徵並進行預測／分類</td></tr>
+        <tr><td>模型例子</td><td>GPT、VAE、GAN、Diffusion Models</td><td>SVM、決策樹、隨機森林、Logistic 迴歸</td></tr>
+        <tr><td>輸出</td><td>新的資料點或內容（圖像、文字）</td><td>類別標籤或數值預測</td></tr>
+        <tr><td>例子</td><td>ChatGPT（文本）、DALL·E（圖像）</td><td>ResNet（圖像分類）、HMM（語音辨識）</td></tr>
+      </tbody>
+    </table>
+    <p><strong>應用類型：</strong>文本生成、圖像生成、語音與音樂生成、影片生成、多模態生成。技術體系含 LLM、Diffusion Models、GAN、VAE，搭配提示工程、微調與少樣本學習。</p>
+
+    <h4>技術演進五階段</h4>
+    <table>
+      <thead><tr><th>階段</th><th>時間</th><th>核心技術</th><th>代表模型</th><th>特徵與限制</th></tr></thead>
+      <tbody>
+        <tr><td>初期階段</td><td>2013–2015</td><td>VAE、RNN</td><td>VAE</td><td>生成模糊、訓練困難</td></tr>
+        <tr><td>GAN 時代</td><td>2014–2020</td><td>對抗訓練</td><td>DCGAN、StyleGAN</td><td>高寫實性、不穩定（模式崩潰 Mode Collapse）</td></tr>
+        <tr><td>Transformer 崛起</td><td>2017 年起</td><td>自注意力機制</td><td>BERT、GPT</td><td>高效語境建模、NLP 主導</td></tr>
+        <tr><td>擴散與多模態</td><td>2020 年起</td><td>擴散模型、多模態對齊</td><td>Stable Diffusion、DALL·E</td><td>高品質、多模態整合</td></tr>
+        <tr><td>巨型模型與 Agent 化</td><td>2023 年起</td><td>巨型參數、工具整合</td><td>GPT-4、Gemini</td><td>自主性、任務導向</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">模型運作原理重點</span>
+      <ul>
+        <li><strong>VAE</strong>：利用變分推斷學習資料潛在分佈，從噪聲重建內容。</li>
+        <li><strong>GAN</strong>（Ian Goodfellow,2014）：生成器（Generator）與判別器（Discriminator）對抗訓練；限制為訓練不穩定、模式崩潰。</li>
+        <li><strong>擴散模型（Diffusion）</strong>：透過逐步去噪（Denoising）從隨機噪聲生成細節豐富圖像（如 DDPM、Stable Diffusion）。</li>
+        <li><strong>巨型模型與 Agentic</strong>：指令驅動（Instruction Tuning）、工具鏈整合（API 調用、RAG、記憶），朝自主代理人演進。</li>
+      </ul>
+    </div>
+
+    <h4>(1) 文本生成</h4>
+    <p>常見工具／平台：GPT 系列、ChatGPT、Claude（Anthropic，強調長上下文與價值對齊）、Gemini（Google DeepMind，跨模態）、開源模型（LLaMA、Mistral、Command-R）。應用：自動化客服、郵件撰寫、法律／醫療文書、程式碼補全（GitHub Copilot）、教學內容生成。</p>
+    <p><strong>挑戰：</strong>真實性與一致性（避免幻覺）、長文本邏輯連貫。評估指標：</p>
+    <table>
+      <thead><tr><th>指標</th><th>核心目標</th><th>優勢</th><th>局限</th><th>適用情境</th></tr></thead>
+      <tbody>
+        <tr><td>BLEU</td><td>詞彙相似度（n-gram 重疊＋簡短懲罰）</td><td>自動化、計算快速</td><td>忽略語意與流暢性</td><td>機器翻譯、文本生成</td></tr>
+        <tr><td>ROUGE</td><td>摘要資訊召回（ROUGE-N／L／S）</td><td>關注關鍵內容覆蓋</td><td>無法衡量創新性</td><td>自動摘要、問答</td></tr>
+        <tr><td>人工評估</td><td>流暢性與準確性</td><td>捕捉語意與語用</td><td>主觀性強、成本高</td><td>對話、創意寫作</td></tr>
+      </tbody>
+    </table>
+
+    <h4>(2) 圖像生成</h4>
+    <p>常見模型：Diffusion Models（Stable Diffusion、DALL·E 2、Imagen）、GAN（StyleGAN、BigGAN）、ControlNet／InstructPix2Pix（控制姿態、邊緣、局部修改）。工具平台：Midjourney（Discord／官網、高美學）、Stable Diffusion WebUI（開源本地、支援 LoRA 與 ControlNet）、Adobe Firefly（整合 Photoshop／Illustrator）、Canva AI（低門檻）。應用：品牌視覺、社群圖文、遊戲角色與場景、影片預視化、藝術風格模仿。</p>
+
+    <h4>(3) 語音合成（TTS, Text-to-Speech）</h4>
+    <p>常用模型：Tacotron 2 與 FastSpeech 2（Seq2Seq；FastSpeech 2 為非自迴歸）、VITS（VAE＋GAN 端到端）、Whisper（OpenAI，主為語音辨識 STT，常與 TTS 搭配）。工具平台：ElevenLabs、Microsoft Azure TTS、Google Cloud TTS、Amazon Polly。</p>
+    <p><strong>挑戰：</strong>情感表達自然度、多語言適應性、倫理風險（語音複製 Clone）。<strong>關鍵指標：</strong>MOS（Mean Opinion Score，1–5 分人工評估自然度）、WER（Word Error Rate）、生成延遲。</p>
+
+    <h4>生成式 AI 風險與未來趨勢</h4>
+    <ul>
+      <li><strong>潛在風險：</strong>內容真偽與資訊可信度、智慧財產權與授權爭議、偏見放大與倫理風險、深偽（Deepfake）濫用、可控性與輸出不確定性。</li>
+      <li><strong>技術趨勢：</strong>多模態生成崛起、可控生成與提示工程深化、小型化與邊緣部署、模型對齊與安全防護（RLHF、紅隊測試 Red Teaming）、法規制定與全球治理（EU AI Act、美國 AI 政策框架）。</li>
+    </ul>
+
+    <!-- 3.4 多模態 -->
+    <h3 id="sec34">3.4 多模態人工智慧應用</h3>
+    <p>多模態 AI（Multimodal AI）能同時處理並整合不同模態的資料（文字、影像、語音、感測訊號），強調跨模態訊息的理解、融合與應用。例如 GPT-4 具文字與圖像輸入能力，Meta 的 ImageBind 將多種模態映射至統一向量空間。</p>
+
+    <div class="box def">
+      <span class="tag">定義與核心技術</span>
+      <p>多模態 AI 指能同時處理兩種以上資料模態（Modality）的系統。常見模態：文字（離散、語意強）、影像（空間資訊與顏色紋理）、語音／音訊（時間序列與情緒線索）、感測器資料（連續變化）。核心技術為<strong>跨模態表示學習（Cross-modal Embeddings）</strong>，將不同模態映射至相同語意空間。CLIP 即以對比學習（Contrastive Learning）同時訓練影像與文字嵌入向量。</p>
+    </div>
+
+    <h4>技術演進三階段</h4>
+    <ul>
+      <li><strong>早期：</strong>特徵拼接（Feature Concatenation）＋傳統 ML（SVM、決策樹）；無法處理語意對齊。</li>
+      <li><strong>深度學習：</strong>各模態專屬網路（CNN 處理影像、RNN 處理文字／語音）＋融合層（Fusion Layer）。</li>
+      <li><strong>當前：</strong>Transformer 與自注意力驅動的統一架構（M3AE、Flamingo、BLIP-2），採多層次對齊與視覺-語言融合（Vision-Language Fusion）。</li>
+    </ul>
+
+    <h4>常見模型與工具</h4>
+    <ul>
+      <li><strong>CLIP</strong>（OpenAI,2021）：以對比學習實現圖文語意對齊，使用約 4 億對圖文資料；圖片編碼器（ViT 或 ResNet）＋文字編碼器（Transformer），以對比損失共同優化。功能：圖文匹配、圖文檢索、圖片標題生成。優勢：零樣本（Zero-shot）能力強。限制：複雜情境細節理解有限、訓練資料偏見。</li>
+      <li><strong>語音模態整合流程：</strong>ASR（語音辨識，如 Whisper）→ NLU（語意理解，如 BERT／GPT）→ 任務執行與回應（TTS）。應用：語音助理、語音搜尋、客服、跨語言互動（TTS＋NMT）。</li>
+      <li><strong>感測資料融合（Sensor Fusion）：</strong>早期融合（Early Fusion，資料層級）與晚期融合（Late Fusion，特徵層級）。應用：智慧城市、智慧醫療、自動駕駛與機器人。挑戰：資料同步、模型複雜度。</li>
+      <li><strong>BLIP / BLIP-2</strong>（Salesforce）：強化圖文問答（VQA）與生成。<strong>Flamingo</strong>（DeepMind）：少樣本學習。<strong>M3AE</strong>：遮罩預訓練多模態自編碼器。</li>
+    </ul>
+
+    <h4>應用情境</h4>
+    <ul>
+      <li><strong>醫療：</strong>整合影像（CT/MRI）、電子病歷（EMR）、生理訊號（ECG、血糖、血壓）提供診斷支援。指標：Accuracy、假陽性率、報告 ROUGE。</li>
+      <li><strong>零售與顧客行為：</strong>整合攝影機影像、POS 紀錄、評論與社群回饋。指標：推薦 Precision、動線 IoU、情感 F1。</li>
+      <li><strong>虛實整合與沉浸式：</strong>支援語音、文字、表情、姿勢與 3D 模型同步（虛擬人偶 Avatar）。指標：回應延遲 Latency、語音 WER、姿勢辨識準確率。</li>
+    </ul>
+
+    <h4>風險與未來趨勢</h4>
+    <ul>
+      <li><strong>資料對齊與標註：</strong>時間／語意同步難、標註成本高、高品質資料稀缺。對策：時序對齊（DTW）、自動標註（弱監督、生成模型）、分散式儲存與資料版本控制。</li>
+      <li><strong>運算與部署：</strong>需大量 GPU/TPU；對策：模型壓縮（剪枝 Pruning、量化 Quantization、知識蒸餾）、LoRA、混合部署、硬體加速（TensorRT、OpenVINO）。</li>
+      <li><strong>隱私與法規：</strong>處理敏感個資、Deepfake 風險；對策：匿名化＋端到端加密、對抗訓練＋生成內容檢測、遵循 GDPR／個資法。</li>
+      <li><strong>未來趨勢：</strong>統一架構、即時與低資源部署、自我監督學習（Self-supervised）、與代理式 AI 整合、法規與倫理框架建置。</li>
+    </ul>
+
+    <!-- ===================== 第四章 ===================== -->
+    <h2 class="chap" id="chap4">第四章 AI 導入評估規劃</h2>
+    <p>企業正從「是否導入 AI」進入「如何有效導入 AI」的轉折點。本章關注策略、流程與組織層級的導入規劃（不涉及具體模型訓練細節），核心問題包括：我們需不需要 AI？是否值得投入資源？要如何導入？是否準備好了？有哪些潛在風險？</p>
+
+    <!-- 4.1 -->
+    <h3 id="sec41">4.1 AI 導入評估</h3>
+    <p>AI 導入評估的核心目的是判斷導入是否具有實質價值與可行性，從需求面、技術面、財務面與風險面建立評估框架。</p>
+
+    <h4>導入需求與可行性評估</h4>
+    <ul>
+      <li><strong>業務需求與痛點分析</strong>：透過利益關係人（Stakeholders）訪談、流程觀察與資料分析，勾勒「現況流程（As-Is）」與「理想流程（To-Be）」差距。著眼點：哪些流程可作為 AI 目標（重複性高、規則清晰、數據驅動）、是否有流程瓶頸或服務缺口、是否有需提升的 KPI。</li>
+      <li><strong>技術可行性初探</strong>：資料品質（Data Quality，完整性／一致性／代表性與標註）、IT 能力與系統整合性（伺服器、頻寬、雲端、資料倉儲）、AI 適配性（監督式／非監督式／強化式／生成式之選擇）。</li>
+      <li><strong>成本與效益初步評估</strong>：成本組成（人力、訓練、資料清洗、模型開發、系統整合、顧問／授權）；效益量化以財務模型估算。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">財務評估指標</span>
+      <ul>
+        <li><strong>ROI（投資報酬率）</strong>：<code>ROI =（投資回報 − 投資成本）/ 投資成本 × 100%</code>。越高代表每單位投入帶來回報越多。</li>
+        <li><strong>NPV（淨現值）</strong>：<code>NPV = Σ(每期現金流 /(1+折現率)^期數) − 初期投資</code>。NPV 為正代表專案具價值。</li>
+        <li><strong>Payback Period（回收期）</strong>：<code>回收期 = 初期投資成本 / 每年淨現金流</code>。越短風險越低；但未考慮時間價值，宜與 NPV 搭配。</li>
+      </ul>
+    </div>
+
+    <h4>組織成熟度與導入條件盤點</h4>
+    <ul>
+      <li><strong>數位與資料成熟度</strong>：數位成熟度（ERP、CRM、資料倉儲）、資料治理（Data Governance：正確性、可追溯性、權限控管）、資料取得流程（API、ETL、自動化資料流）。</li>
+      <li><strong>團隊能力與跨部門協作</strong>：組織能力（核心人才或培訓規劃）、跨部門協作（統一窗口與專案負責人）、導入推動責任單位（AI 專案辦公室／數位轉型小組）。</li>
+      <li><strong>資源與預算支持</strong>：資源盤點、預算與來源規劃、導入條件（試辦環境、測試資料、專責團隊）。</li>
+    </ul>
+
+    <h4>風險與合規初探</h4>
+    <ul>
+      <li><strong>法規遵循與資料隱私</strong>：個資法（台灣 PDPA）、GDPR（歐盟）；資料隱私、跨境傳輸與外包風險、侵權與版權風險。</li>
+      <li><strong>技術風險與模型穩定性</strong>：資料缺口與品質不足、模型穩定性（Model Stability）、黑箱風險與可解釋性、產出內容不確定性。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">可解釋 AI（XAI, Explainable AI）</span>
+      <p>讓使用者理解模型如何做出預測或決策的技術。目標：增強信任、協助理解模型行為與偏誤、支援合規與審核。應用情境：醫療診斷、金融風控、人才招聘／教育、公部門／法務（需法律可審查性與問責）。</p>
+    </div>
+    <ul>
+      <li><strong>組織文化與變革阻力</strong>：組織變革（員工抗拒）、決策文化與數據信任度、跨部門配合問題。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">風險矩陣與風險等級</span>
+      <p><strong>風險矩陣（Risk Matrix）</strong>：將「發生可能性（Likelihood）」與「影響程度（Impact）」交叉評估的二維矩陣（常見 3×3 或 5×5）。<strong>風險等級（Risk Level）= 發生機率 × 影響程度</strong>，分為低風險（可接受、監控）、中風險（需規劃對策）、高風險（優先處理，必要時迴避或延後導入）。</p>
+    </div>
+    <p><strong>初步風險緩解：</strong>風險矩陣排序、風險緩解策略（Mitigation，如委外保固合約、AI 顧問、資料清理）、保障機制與風險轉移（保險、第三方、概念驗證 POC）。</p>
+
+    <h4>概念驗證（POC, Proof of Concept）設計與評估</h4>
+    <ul>
+      <li><strong>POC 條件設計</strong>：範圍清晰風險可控、具代表性業務流程、資料與技術資源具初步條件、利益關係人支持度高。</li>
+      <li><strong>效能指標與回饋收集</strong>：量化評估（準確率、處理速度、錯誤率、成本節省，與既有 KPI 比較）、質性評估（問卷、訪談、使用日誌）。</li>
+      <li><strong>初步導入可行性判斷</strong>：技術適配性、預期效益驗證、組織接受度、問題與瓶頸辨識。</li>
+    </ul>
+
+    <!-- 4.2 -->
+    <h3 id="sec42">4.2 AI 導入規劃</h3>
+    <p>導入規劃將「可行性與價值潛力」轉化為「具體可執行的規劃行動」，是高度依賴組織條件與資源狀態的策略性工作，須具備高度彈性（不同產業／部門優先順序不同）。</p>
+
+    <h4>導入規劃的核心原則</h4>
+    <ul>
+      <li><strong>情境／目的導向</strong>：依產業特性與業務需求定義目標與範疇。</li>
+      <li><strong>資源盤點</strong>：評估現有資料、技術人力與預算，確保專案規模與資源匹配。</li>
+      <li><strong>彈性調整</strong>：因應需求改變或技術瓶頸動態調整時程與策略。</li>
+    </ul>
+
+    <h4>資源盤點與配置</h4>
+    <p><strong>人力資源角色與職責：</strong>專案負責人（Project Manager，協調進度與里程碑）、資料工程師（收集／清理／整合，ETL）、AI 模型開發者（建模、TensorFlow／PyTorch）、UI/UX 設計師、業務顧問（連結技術與業務）、系統架構師（技術架構與部署）、測試工程師（驗證效能與穩定性）。</p>
+    <p><strong>硬體資源：</strong>GPU 伺服器（如 NVIDIA A100）、雲端平台（AWS、Google Cloud、Azure）、本地運算設備（資料敏感場景）。<strong>開發工具與框架：</strong>Python、TensorFlow、PyTorch、Spark／Hadoop、Git 版本控制。</p>
+
+    <h4>任務分解與時程設計</h4>
+    <ul>
+      <li><strong>甘特圖（Gantt Chart）</strong>：以時間為橫軸、任務為縱軸，呈現時間安排、重疊區段與關鍵路徑（Critical Path）。常見階段：問題定義與需求訪談 → 資料準備與標註 → 模型設計與訓練 → 驗證測試與反饋 → 部署與落地。</li>
+      <li><strong>工作分解結構（WBS）</strong>：由上而下將複雜任務拆為子任務，每一子任務定義責任角色、預期成果、所需資源與預估時長。</li>
+      <li><strong>短衝（Sprint）／敏捷開發（Scrum）</strong>：適合 AI 原型開發與快速迭代（見下方）。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">Scrum 框架｜三角色、五活動、三產出</span>
+      <p><strong>角色：</strong>Product Owner（產品負責人，維護 Product Backlog）、Scrum Master（敏捷教練，移除障礙）、Development Team（跨職能開發團隊）。</p>
+      <p><strong>活動：</strong>Sprint Planning（規劃會議）、Daily Scrum（每日站會，約 15 分）、Sprint（短衝，通常 1–4 週、常見 2 週）、Sprint Review（展示成果）、Sprint Retrospective（回顧檢討）。</p>
+      <p><strong>產出（Artifacts）：</strong>Product Backlog（產品待辦清單）、Sprint Backlog（本次任務清單）、Increment（可交付成果）。</p>
+    </div>
+    <p><strong>跨部門協作機制：</strong>協作流程設計（明確責任）、例行同步節奏（每週例會）、共用工具平台（Jira／Trello、Notion／Confluence、Slack／Teams）。</p>
+
+    <h4>任務追蹤工具比較</h4>
+    <table>
+      <thead><tr><th>工具</th><th>特性</th><th>適用情境</th></tr></thead>
+      <tbody>
+        <tr><td>Trello</td><td>輕量看板（Kanban），簡單易用、視覺化</td><td>小型團隊或初期原型；缺進階自動化與依賴管理</td></tr>
+        <tr><td>Asana</td><td>任務分層、時間軸、跨專案整合</td><td>需跨部門協作的專案；初期需花時間建立結構</td></tr>
+        <tr><td>JIRA</td><td>問題追蹤、工作流自訂、敏捷支援（Scrum/Kanban）</td><td>技術團隊主導；非技術人員有學習曲線</td></tr>
+        <tr><td>ClickUp</td><td>結合看板與結構化，檢查清單、里程碑、整合外部工具</td><td>中型專案；選項多可能增加設定複雜度</td></tr>
+      </tbody>
+    </table>
+
+    <h4>AI 導入模式的選擇</h4>
+    <table>
+      <thead><tr><th>模式</th><th>優勢</th><th>挑戰／考量</th></tr></thead>
+      <tbody>
+        <tr><td>選用現有商業服務（Low-code／No-code）</td><td>快速部署、技術門檻低、靈活</td><td>彈性有限、長期訂閱成本、資料隱私風險</td></tr>
+        <tr><td>內部技術團隊開發</td><td>掌控力強、適應性高、保留技術自主</td><td>需充足技術基礎、初期成本高、招聘與設備投入大</td></tr>
+        <tr><td>委外開發</td><td>專業性與執行效率高、縮短時程</td><td>需注意合約管理（交付範圍、時程）與資料安全風險</td></tr>
+      </tbody>
+    </table>
+
+    <h4>導入成果驗證與彙整</h4>
+    <p><strong>POC 驗證</strong>：設定明確目標（如「測試推薦模型是否提升銷售 5%」）、涵蓋資料準備到模型測試全流程、小範圍測試與快速迭代（Rapid Iteration，每次 1–2 週）。驗證指標：技術效能（準確率、延遲）、商業價值（成本節省、業務增長）、使用者回饋。</p>
+    <p><strong>規劃成果整合：</strong>導入規劃文件（Implementation Plan）、專案成果彙整報告（Planning Summary）、甘特圖與時程規劃、資源估算與成本預算表、利害關係人審查紀錄（Stakeholder Review）。</p>
+
+    <!-- 4.3 -->
+    <h3 id="sec43">4.3 AI 風險管理</h3>
+    <p>AI 風險管理應為導入流程中的前瞻性與持續性機制，貫穿規劃、開發、測試、部署及運維，形成全生命週期風險治理體系，並透過 AI 治理（AI Governance）架構維持長期管理。</p>
+
+    <h4>風險類型與識別</h4>
+    <table>
+      <thead><tr><th>風險層</th><th>風險類型</th><th>常見問題</th></tr></thead>
+      <tbody>
+        <tr><td>技術層</td><td>資料品質風險</td><td>資料遺漏（Missing Data）、資料偏頗（Data Bias）、不正確標註、資料漂移（Data Drift）</td></tr>
+        <tr><td>技術層</td><td>模型穩定性風險</td><td>模型漂移（Model Drift）、過擬合（Overfitting）、概念漂移（Concept Drift）</td></tr>
+        <tr><td>組織人力層</td><td>跨部門溝通／技能短缺／變革抵制</td><td>資訊不透明、技能落差、人才流動、內部文化抗拒</td></tr>
+        <tr><td>法規層</td><td>個資隱私／產業監管／侵權風險</td><td>未符法規（GDPR、個資法、HIPAA、PCI-DSS）、未授權使用第三方資料</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">漂移概念辨析</span>
+      <ul>
+        <li><strong>資料漂移（Data Drift）</strong>：輸入資料的分佈隨時間改變。</li>
+        <li><strong>模型漂移（Model Drift）</strong>：模型預測準確度隨時間變差。</li>
+        <li><strong>概念漂移（Concept Drift）</strong>：資料背後的潛在關係或模式隨時間改變。</li>
+        <li><strong>過擬合（Overfitting）</strong>：訓練資料表現佳但對未見資料無法正確預測，缺乏泛化能力。</li>
+      </ul>
+    </div>
+
+    <h4>法規與合規性評估</h4>
+    <div class="box def">
+      <span class="tag">GDPR（歐盟通用資料保護規則）主要權利與原則</span>
+      <ul>
+        <li>刪除權／遺忘權（第 17 條）、修正權（第 16 條）、資料可攜權（第 20 條）。</li>
+        <li>反對自動化決策權（第 22 條，可要求人工介入）、查閱權（第 15 條，30 日內回覆）、處理限制權（第 18 條）。</li>
+        <li>同意原則（第 6 條，明確且可撤回）、資料最小化原則（第 5 條）、問責制（第 5、24 條）、資料保護影響評估（DPIA）。</li>
+      </ul>
+    </div>
+    <ul>
+      <li><strong>PDPA（台灣個資法）</strong>：收集與使用需特定目的並明確告知，資料主體可查閱／複製／更正／刪除、可要求停止處理，企業須實施安全維護措施。</li>
+      <li><strong>CDPA（美國消費者資料保護法，如維吉尼亞州）</strong>：查閱／修正／刪除／可攜權，透明隱私政策，敏感資料更嚴格保護。</li>
+      <li><strong>產業專用規範：</strong>HIPAA（美國健康保險，技術／實體／行政性保護措施）、PCI-DSS（支付卡，防火牆、加密 TLS/AES、多因素認證、弱點掃描與滲透測試）、台灣金融科技創新實驗條例（FinTech Sandbox）、醫療器材管理法（TFDA）、電信管理法（NCC）、智慧財產權法（TIPO）。</li>
+    </ul>
+
+    <h4>偏見（Bias）與倫理（Ethics）</h4>
+    <p><strong>偏見來源與類型：</strong>資料分布不均（Imbalanced Data）、歷史偏見（Historical Bias）、標註偏見（Labeling Bias）、演算法偏見（Algorithmic Bias）。<strong>歧視性結果影響：</strong>弱勢群體歧視、企業品牌與信譽損害。</p>
+    <div class="box key">
+      <span class="tag">四大 AI 倫理原則</span>
+      <ul>
+        <li><strong>透明度（Transparency）</strong>：說明模型運作邏輯、決策依據與可能結果。</li>
+        <li><strong>可解釋性（Explainability）</strong>：提供足夠資訊讓使用者理解決策過程。</li>
+        <li><strong>公平性（Fairness）</strong>：避免對特定群體產生歧視，最小化偏差。</li>
+        <li><strong>問責性（Accountability）</strong>：建立明確責任體系，出錯能快速識別並修正。</li>
+      </ul>
+      <p>參考來源：歐盟《人工智慧倫理指導原則》（AI HLEG,2019）、OECD《人工智慧高級準則》（2019）、聯合國／UNESCO、全球人工智慧聯盟（GPAI）、ISO/IEC 標準。</p>
+    </div>
+    <p><strong>企業內部倫理治理框架：</strong>倫理委員會（Ethics Committee，跨領域）、AI 審查流程（Ethical Review Process，部署前進行）、內部教育訓練、透明度與對外溝通。</p>
+
+    <h4>風險緩解策略與工具</h4>
+    <table>
+      <thead><tr><th>策略</th><th>說明</th><th>範例</th></tr></thead>
+      <tbody>
+        <tr><td>迴避（Avoidance）</td><td>不執行相關活動，從根本避免風險</td><td>誤診風險過高暫緩 AI 診斷專案；無法符合隱私法規則取消雲端部署</td></tr>
+        <tr><td>轉移（Transfer）</td><td>透過第三方承擔潛在損失</td><td>購買 AI 系統故障保險；與供應商簽訂 SLA 約定賠償</td></tr>
+        <tr><td>緩解（Mitigation）</td><td>主動降低風險發生機率或影響（最常見）</td><td>資料清洗提升準確率；資料加密與合規培訓通過 HIPAA</td></tr>
+        <tr><td>接受（Acceptance）</td><td>影響低且控管不划算者，接受並監控</td><td>小規模資料漂移僅影響 1% 準確率，接受並日常監控</td></tr>
+      </tbody>
+    </table>
+    <p><strong>風險管理計畫（Risk Management Plan）：</strong>風險識別與評估結果、風險對應措施、責任人與分工、監控與回報機制。</p>
+    <div class="box def">
+      <span class="tag">MLOps 風險監控情境</span>
+      <ul>
+        <li><strong>模型漂移監控</strong>：準確率下降時自動觸發重新訓練。</li>
+        <li><strong>資料漂移監控</strong>：新輸入與原訓練分佈顯著差異時發出警告。</li>
+        <li><strong>效能異常警示</strong>：依預警閾值（如錯誤率 &gt; 5%）即時通知。</li>
+        <li><strong>自動重新訓練（Auto-retraining）</strong>：偵測效能下降或漂移時自動重訓更新模型。</li>
+      </ul>
+    </div>
+
+    <!-- ===================== 第五章 ===================== -->
+    <h2 class="chap" id="chap5">第五章 AI 技術應用與系統部署</h2>
+    <p>本章將 AI 從概念性構思轉變為實際可用、穩定且具價值的系統，涵蓋資料品質掌控、模型選擇與調整，以及與現有業務系統整合（MLOps 流程、雲端部署、系統監控與維護）。</p>
+
+    <!-- 5.1 -->
+    <h3 id="sec51">5.1 數據準備與模型選擇</h3>
+    <div class="box key">
+      <span class="tag">GIGO</span>
+      <p>「垃圾進，垃圾出（Garbage In, Garbage Out, GIGO）」——資料品質直接影響 AI 模型的可靠性與準確度。</p>
+    </div>
+
+    <h4>資料收集與清理</h4>
+    <p><strong>內部資料來源：</strong>ERP（銷售、庫存、採購、財務）、CRM（顧客互動與回饋）、機台資料（Machine Data，智慧製造關鍵資產）、使用者行為資料（POS、Web/App、IoT）、內部報表與流程紀錄。<strong>外部資料來源：</strong>開放資料（政府平台、社群 API、氣象）、Web Scraping（需注意條款與合規）、商業資料庫（Refinitiv、Statista、Experian）。</p>
+    <p><strong>清理常見處理：</strong></p>
+    <ul>
+      <li><strong>缺失值（Missing Values）</strong>：平均／中位數填補、前後值填補（Forward/Backward Fill）、插值法（Interpolation）；缺失比例過高則刪欄或模型推估。</li>
+      <li><strong>重複值（Duplicate）</strong>：針對主鍵檢查，以 <code>.drop_duplicates()</code> 去重。</li>
+      <li><strong>異常值（Outliers）</strong>：Z-score、IQR；或 Isolation Forest、LOF。</li>
+    </ul>
+    <div class="box def">
+      <span class="tag">資料品質評估指標</span>
+      <p>完整性（Completeness）、一致性（Consistency，如年齡不應為負）、準確性（Accuracy）、即時性（Timeliness）、唯一性（Uniqueness）。</p>
+    </div>
+
+    <h4>資料標註與特徵工程</h4>
+    <ul>
+      <li><strong>數值特徵轉換</strong>：正規化（Normalization，縮放至 0–1）、標準化（Standardization，Z-score，均值 0 標準差 1，適合需計算梯度的模型）。</li>
+      <li><strong>類別特徵處理</strong>：獨熱編碼（One-hot，無序分類）、標籤編碼（Label Encoding，有序類別）。</li>
+      <li><strong>時間與結構特徵擴增</strong>：時間戳擷取週期性特徵；文字處理（TF-IDF、詞向量）。</li>
+      <li><strong>特徵選擇（Feature Selection）</strong>：資訊增益（Information Gain）、皮爾森相關係數、L1 正則化（Lasso）。</li>
+      <li><strong>降維（Dimensionality Reduction）</strong>：PCA（保留最大方差方向）、t-SNE／UMAP（視覺化）。</li>
+      <li><strong>自動特徵工程（Auto Feature Engineering）</strong>：AutoML 工具（Google AutoML、H2O.ai、AutoKeras、TPOT）自動創建、篩選特徵與檢測互動作用；優勢為加速流程、降低門檻、提升效能。</li>
+    </ul>
+
+    <h4>模型選擇策略</h4>
+    <table>
+      <thead><tr><th>類型</th><th>常見演算法</th><th>應用情境</th></tr></thead>
+      <tbody>
+        <tr><td>監督式－迴歸（Regression）</td><td>線性迴歸、決策樹迴歸、隨機森林迴歸、梯度提升樹</td><td>銷售量預測、房價預測（連續數值）</td></tr>
+        <tr><td>監督式－分類（Classification）</td><td>邏輯迴歸、決策樹、隨機森林、SVM、KNN、梯度提升樹</td><td>垃圾郵件識別、疾病診斷、客戶流失預測、金融風險評估</td></tr>
+        <tr><td>非監督式（Unsupervised）</td><td>K-means、DBSCAN、階層式分群、PCA</td><td>顧客分群、異常偵測、特徵壓縮與視覺化</td></tr>
+        <tr><td>深度學習（Deep Learning）</td><td>CNN、RNN（LSTM/GRU）、Transformer</td><td>醫療影像、智慧客服／語音助理、自動駕駛、金融風險</td></tr>
+        <tr><td>強化式學習（Reinforcement）</td><td>Q-learning、DQN、Policy Gradient、PPO</td><td>自駕車控制、智慧倉儲物流、資源調度、遊戲 AI（AlphaGo）</td></tr>
+        <tr><td>生成式模型（Generative）</td><td>GAN、VAE、擴散模型（Diffusion）</td><td>影像與藝術生成、語音與文本合成、資料補全與模擬</td></tr>
+      </tbody>
+    </table>
+    <div class="box note">
+      <span class="tag">演算法重點補充</span>
+      <ul>
+        <li><strong>K-means</strong>：須事先給定 K 值，對初始點與異常值敏感；<strong>DBSCAN</strong>：密度分群，可發現任意形狀群集並標示雜訊，不需預先給定群集數。</li>
+        <li><strong>強化式學習要素</strong>：智能體（Agent）、行動（Action）、狀態（State）、獎勵（Reward）；PPO 平衡策略更新幅度與學習效率。</li>
+        <li><strong>生成式</strong>：GAN 訓練不穩定可能模式崩潰；VAE 樣本平滑但細節較弱；擴散模型品質高但生成慢、成本高。</li>
+      </ul>
+    </div>
+
+    <!-- 5.2 -->
+    <h3 id="sec52">5.2 AI 技術系統集成與部署</h3>
+    <p>模型若僅停留在實驗環境便無法產生商業價值。AI 部署的複雜性來自動態性與資料敏感性（效能隨資料變化衰退、需彈性更新與監控、更高可說明性與合規要求）。部署是涵蓋開發、測試、部署、監控、回訓與優化的完整流程。</p>
+
+    <h4>系統集成</h4>
+    <ul>
+      <li><strong>資料來源與資料管線整合</strong>：從資料倉儲（Data Warehouse）、資料湖（Data Lake）、IoT 感測資料、第三方 API 取得資料，建立資料管線（Data Pipeline：擷取、轉換、清理、入庫）。</li>
+      <li><strong>企業內部系統整合</strong>：將模型輸出整合回 ERP、CRM、POS、MES 等核心系統。</li>
+      <li><strong>API 與平台接軌</strong>：封裝為 RESTful API（或 gRPC、Webhooks），納入容錯、快取與負載管理。</li>
+      <li><strong>安全與權限控管</strong>：OAuth2／JWT 身份驗證、角色權限分級、API Gateways 日誌與流量控管。</li>
+      <li><strong>跨雲與異質系統整合</strong>：以中介整合層或服務中樞（Service Mesh）統一管理資料同步與服務調用，避免資訊孤島。</li>
+    </ul>
+
+    <h4>系統架構設計</h4>
+    <ul>
+      <li><strong>微服務架構（Microservices）</strong>：拆分為小型獨立部署服務；優點含易隔離錯誤、跨團隊並行、彈性調整資源；挑戰為介接標準化與分散式管理複雜度。</li>
+      <li><strong>容器化與編排</strong>：Docker（封裝應用與依賴，跨平台一致）＋Kubernetes（容器編排、資源調度、故障恢復）；實作原則含滾動更新（Rolling Update）、自動擴縮（Autoscaling）、負載平衡（Load Balancing）。</li>
+      <li><strong>模型服務化與 API 封裝</strong>：以 Flask、FastAPI、TensorFlow Serving 封裝為 HTTP/REST 推論服務，支援多版本管理（Model Versioning）。</li>
+      <li><strong>可擴充與高可用性</strong>：冗餘部署（Redundancy）、容錯切換（Failover）。</li>
+    </ul>
+
+    <h4>部署模式</h4>
+    <table>
+      <thead><tr><th>模式</th><th>優勢</th><th>適用情境</th><th>挑戰</th></tr></thead>
+      <tbody>
+        <tr><td>公有雲（Public Cloud：AWS／Azure／GCP）</td><td>資源彈性、部署快、按量付費</td><td>新創、中大型 AI 專案、跨地區、GPU 密集訓練</td><td>法規遵循、資料主權、供應商鎖定</td></tr>
+        <tr><td>私有雲（Private Cloud：OpenStack／VMware）</td><td>資安可控、資料不外流、可定制</td><td>政府、金融、醫療等高保護需求</td><td>建置維運成本高、擴展性受限</td></tr>
+        <tr><td>邊緣運算（Edge Computing）</td><td>即時反應、降低延遲、提升隱私</td><td>工業設備監控、智慧城市、車聯網</td><td>運算資源有限、更新與同步需額外設計</td></tr>
+        <tr><td>混合部署（Hybrid）</td><td>兼顧運算、反應速度與資料保護</td><td>雲端訓練＋邊緣即時推論</td><td>系統整合難、需良好同步機制</td></tr>
+      </tbody>
+    </table>
+
+    <h4>MLOps 與持續維運</h4>
+    <p>MLOps 是 DevOps 在 AI 領域的延伸，將模型訓練、測試、部署與監控持續整合與自動化。</p>
+    <ul>
+      <li><strong>CI/CD</strong>：CI（程式碼／資料變動觸發訓練與測試、整合單元測試與準確率驗證）；CD（通過門檻自動部署，支援 A/B 測試或藍綠部署 Blue-Green Deployment）。</li>
+      <li><strong>模型版本控管</strong>：MLflow（管理 ML 全流程、實驗記錄）、DVC（Data Version Control，資料集與模型版本追蹤）。</li>
+      <li><strong>模型監控與回饋</strong>：監控模型漂移、資料漂移、錯誤率／延遲／吞吐量；設觸發門檻（如準確率下降 5%）啟動再訓練（Retraining Pipeline），以熱更新（Hot Swap）或滾動更新替換版本；可視化與預警（Prometheus + Grafana）。</li>
+    </ul>
+
+    <h4>成效追蹤與優化</h4>
+    <ul>
+      <li><strong>三層級 KPI</strong>：系統層級（推論延遲 Latency、吞吐量 Throughput、可用率 Uptime、資源使用率）、應用層級（CTR、Accuracy、F1-Score、異常偵測精確度）、業務層級（轉換率、成本節省、客戶留存率、ROI）。</li>
+      <li><strong>回收週期（Feedback Loop）</strong>：每日監控效能、每週收集錯誤樣本與回饋、每月重新評估或確認 retraining。建議採「技術指標＋業務指標」雙軌制。</li>
+      <li><strong>模型更新與優化</strong>：版本管理與滾動更新（搭配藍綠部署、金絲雀部署 Canary Deployment）、再訓練與資料再標註、使用者與業務回饋（Human-in-the-Loop）、AutoML／在線學習（Online Learning）。</li>
+    </ul>
+
+    <h4>跨部門整合</h4>
+    <ul>
+      <li><strong>明確部門角色</strong>：業務與行銷（提供需求與績效指標）、客服與營運（回收互動案例與異常）、法務與風險（資料隱私、公平性、風險揭露審查）、資訊部門（部署、權限、API 整合、維運）。</li>
+      <li><strong>常態溝通與決策</strong>：定期召開 AI 專案工作小組、推動共用績效指標、建立快速協調與決策通道。</li>
+      <li><strong>AI 納入組織治理</strong>：設立 AI 治理委員會、內部 AI 產品經理／協調人員、跨部門培訓與教育機制。</li>
+    </ul>
+
+    <footer>
+      來源：經濟部產業人才能力鑑定 iPAS — 中級學習指引 人工智慧技術應用規劃（科目一，L21 人工智慧技術應用與規劃）。
+      本教材為學習整理，非官方教材或題庫；請以官方公告為準。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+  function onScroll(){
+    var pos = window.scrollY + 120, current = null;
+    targets.forEach(function(t){ if(t.offsetTop <= pos) current = t; });
+    links.forEach(function(a){
+      a.style.background=''; a.style.color='';
+      if(current && a.getAttribute('href')==='#'+current.id){ a.style.background='var(--accent-soft)'; a.style.color='var(--accent)'; }
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

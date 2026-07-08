@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大數據處理分析與應用 — 考前重點 + 歷屆試題解析</title>
+<style>
+:root{--accent:#9333ea;--accent-soft:#f6edfe;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:27px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+/* 題目卡片 */
+.q{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:16px 0;background:#fff;}
+.q .qno{font-weight:700;color:var(--accent);margin-right:6px;}
+.q .stem{font-weight:600;margin:0 0 10px;}
+.q .opts{list-style:none;padding:0;margin:0 0 10px;}
+.q .opts li{padding:3px 0;}
+.q .ans{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;margin:4px 0;font-size:14px;}
+.q .exp{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:15px;}
+.q .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc">
+<a href="index.html">← 回教材首頁</a>
+<h2>考前重點</h2>
+<a class="sub" href="#c-desc">敘述性統計與資料摘要</a>
+<a class="sub" href="#c-dist">機率分佈與資料分佈模型</a>
+<a class="sub" href="#c-infer">假設檢定與統計推論</a>
+<a class="sub" href="#c-collect">數據收集與清理</a>
+<a class="sub" href="#c-store">數據儲存與管理</a>
+<a class="sub" href="#c-proc">數據處理技術與工具</a>
+<a class="sub" href="#c-stat">統計學在大數據中的應用</a>
+<a class="sub" href="#c-method">常見大數據分析方法</a>
+<a class="sub" href="#c-viz">數據可視化工具</a>
+<a class="sub" href="#c-ml">大數據與機器學習</a>
+<a class="sub" href="#c-disc">鑑別式 / 生成式 AI 應用</a>
+<a class="sub" href="#c-privacy">隱私保護、安全與合規</a>
+<a class="sub" href="#c-compare">易混淆觀念對照表</a>
+<a class="sub" href="#c-formula">常見計算 / 公式速查</a>
+<h2>歷屆試題解析</h2>
+<a href="#e114b">114 年第二梯次（50 題）</a>
+<a href="#e115a">115 年第一次（50 題）</a>
+</nav>
+<main>
+<header class="page">
+<span class="level">中級・科目 2</span>
+<h1>大數據處理分析與應用 — 考前重點 + 歷屆試題解析</h1>
+<p class="sub">iPAS AI 應用規劃師｜考前重點忠實取自官方學習指引，試題逐題完整收錄、官方答案 + 學習解析</p>
+</header>
+
+<!-- ===================== 區一：考前重點 ===================== -->
+
+<h2 class="chap" id="cram">區一：考前重點（Cram Sheet）</h2>
+
+<h3 id="c-desc">3.1 敘述性統計與資料摘要技術</h3>
+<div class="box def"><span class="tag">定義</span><span class="term">敘述性統計（Descriptive Statistics）</span>著重「把資料本身做最直接的總結與可視化」，目的<strong>不在母體推論</strong>，而在快速了解樣本特徵。三大面向：集中趨勢、離散量度、分佈形狀。</div>
+
+<h4>（1）集中趨勢（Central Tendency）</h4>
+<table>
+<tr><th>指標</th><th>意義與適用</th><th>特性</th></tr>
+<tr><td>算術平均（Mean）</td><td>總和÷筆數，反映整體水準</td><td>計算直覺；<strong>對極端值敏感</strong></td></tr>
+<tr><td>幾何平均（Geometric）</td><td>成長率、報酬率等乘積效應</td><td>需全部為正值，不可有負或零</td></tr>
+<tr><td>調和平均（Harmonic）</td><td>速率、效率類（如平均速度）</td><td>不可有零或負值</td></tr>
+<tr><td>眾數（Mode）</td><td>出現頻率最高值；類別資料佳</td><td>連續資料需先分桶</td></tr>
+<tr><td>中位數（Median）</td><td>排序後中間值</td><td><strong>對極端值不敏感</strong>，偏態資料首選</td></tr>
+</table>
+
+<h4>（2）離散程度（Variability）</h4>
+<ul>
+<li><span class="term">變異數 σ²</span>：資料偏離平均的程度；<span class="term">標準差 σ</span>：變異數平方根，單位與原資料相同。σ 大→分散；σ 小→集中。對離群值敏感。</li>
+<li><span class="term">全距（Range）</span>：最大值−最小值，受單一極端值影響大。</li>
+<li><span class="term">四分位距 IQR = Q3 − Q1</span>：中間 50% 資料範圍；對離群值穩健。Q1=25%、Q2=中位數=50%、Q3=75%。</li>
+</ul>
+<div class="box key"><span class="tag">高頻考點 — 箱形圖（Box Plot）</span>
+上鬚 = Q3 + 1.5×IQR、下鬚 = Q1 − 1.5×IQR；超出鬚範圍者視為<strong>離群值（以圓點/星號單獨標記）</strong>。箱形圖中的「最大/最小值」指<strong>不含離群值</strong>的鬚端值，不一定是資料集真正極值。箱形圖無法呈現多峰分佈形狀。</div>
+
+<h4>（3）分佈形狀 — 偏度與峰度</h4>
+<table>
+<tr><th>指標</th><th>數值</th><th>意義</th></tr>
+<tr><td>正偏態（右偏 Right-skewed）</td><td>Skewness &gt; 0</td><td>右尾長，主體偏左；如收入、房價（少數高值拉高平均）</td></tr>
+<tr><td>負偏態（左偏 Left-skewed）</td><td>Skewness &lt; 0</td><td>左尾長，主體偏右</td></tr>
+<tr><td>對稱</td><td>Skewness ≈ 0</td><td>近似常態</td></tr>
+<tr><td>高峰 Leptokurtic</td><td>Kurtosis &gt; 3</td><td>尖峰重尾、極端值多</td></tr>
+<tr><td>中峰 Mesokurtic</td><td>Kurtosis ≈ 3</td><td>近似常態（Pearson 定義基準 3）</td></tr>
+<tr><td>扁平 Platykurtic</td><td>Kurtosis &lt; 3</td><td>平坦輕尾、極端值少</td></tr>
+</table>
+
+<h3 id="c-dist">3.2 機率分佈與資料分佈模型</h3>
+<div class="box def"><span class="tag">定義</span><span class="term">機率分佈</span>描述隨機變數所有可能值及其機率。兩個重要數值：<strong>期望值 E(X)</strong>（加權平均、中心位置）與<strong>變異數 Var(X)</strong>（分散程度）。離散用 <strong>PMF</strong>（質量函數，總和=1）；連續用 <strong>PDF</strong>（密度函數，區間積分=機率）。</div>
+
+<h4>常見機率分佈速查</h4>
+<table>
+<tr><th>分佈</th><th>型態</th><th>E(X)</th><th>Var(X)</th><th>用途</th></tr>
+<tr><td>伯努利 Bernoulli</td><td>離散</td><td>p</td><td>p(1−p)</td><td>單次二元試驗（成功/失敗）</td></tr>
+<tr><td>二項 Binomial</td><td>離散</td><td>np</td><td>np(1−p)</td><td>n 次獨立試驗成功次數</td></tr>
+<tr><td>泊松 Poisson</td><td>離散</td><td>λ</td><td>λ</td><td>固定時間/空間內事件發生次數（如來電量）</td></tr>
+<tr><td>常態 Normal</td><td>連續</td><td>μ</td><td>σ²</td><td>鐘形對稱；中央極限定理基礎</td></tr>
+<tr><td>指數 Exponential</td><td>連續</td><td>1/λ</td><td>1/λ²</td><td>事件間隔/等待時間；具無記憶性</td></tr>
+<tr><td>卡方 Chi-square</td><td>連續</td><td>k</td><td>2k</td><td>適配度/獨立性檢定；k=自由度</td></tr>
+</table>
+<div class="box key"><span class="tag">陷阱 — 常態近似二項</span>當 <strong>np ≥ 5 且 n(1−p) ≥ 5</strong> 時，二項分佈才可用常態分佈近似（非「只要 n 大」就行）。卜瓦松適用條件：事件彼此獨立、平均發生率 λ 固定、發生機率與時間長短成正比。若<strong>變異數 &gt; 平均數</strong>（過度離散），卜瓦松不適用，改用<strong>負二項分佈</strong>。</div>
+<div class="box note"><span class="tag">中央極限定理（CLT）</span>當樣本數夠大，獨立同分佈隨機變數的<strong>總和或平均數</strong>分佈會趨近常態 —— 但<strong>原始資料本身的分佈不會因此變成常態</strong>。</div>
+
+<h3 id="c-infer">3.3 假設檢定與統計推論</h3>
+<table>
+<tr><th>分支</th><th>目的</th><th>輸出</th></tr>
+<tr><td>參數估計</td><td>推測母體參數的值或區間</td><td>點估計 + 信賴區間（如 95% CI）</td></tr>
+<tr><td>假設檢定</td><td>驗證某主張是否成立</td><td>檢定統計量、p 值，依 α 決策</td></tr>
+</table>
+<div class="box def"><span class="tag">流程</span>① 設定 H₀（虛無/現狀無差異）與 H₁（對立/有差異）② 選檢定方法與統計量 ③ 決定顯著水準 α ④ 計算統計量與 p 值 ⑤ 比較決策：<strong>p ≤ α 拒絕 H₀</strong>（支持 H₁）；p &gt; α 無法拒絕 H₀（證據不足，非證明 H₀ 為真）。</div>
+<div class="box key"><span class="tag">α 與 p 值（必考區別）</span>α 是<strong>事前</strong>設定的判斷門檻（型一錯誤上限）；p 值是觀察資料後<strong>計算</strong>出的機率。常見 α=0.05（普遍）、0.01（嚴格，如藥物安全）、0.10（探索）。95% 信賴區間正確解讀：重複抽樣下約 95% 的區間會涵蓋真實母體參數（非「參數有 95% 機率落在此區間」）。</div>
+
+<h4>型一 / 型二錯誤</h4>
+<table>
+<tr><th></th><th>H₀ 為真</th><th>H₀ 為假</th></tr>
+<tr><td>保留 H₀</td><td>正確（1−α）</td><td>型二錯誤 β（漏判）</td></tr>
+<tr><td>拒絕 H₀</td><td>型一錯誤 α（誤判/偽陽性）</td><td>正確＝檢定力 1−β</td></tr>
+</table>
+<div class="box note"><span class="tag">取捨</span>降低 α 可減少型一錯誤，但會提高型二錯誤。多重檢定時用 <strong>Bonferroni 校正</strong>控制整體錯誤率。降低 α（如 0.05→0.01）的直接效果是<strong>降低型一錯誤（偽陽性）</strong>。</div>
+
+<h4>檢定方法選擇對照</h4>
+<table>
+<tr><th>情境</th><th>方法</th></tr>
+<tr><td>一組樣本 vs 已知值</td><td>單樣本 t 檢定</td></tr>
+<tr><td>兩組獨立樣本平均</td><td>獨立樣本 t 檢定（變異數不等用 Welch）</td></tr>
+<tr><td>同一批人前後測（差值）</td><td>成對/配對樣本 t 檢定</td></tr>
+<tr><td>三組以上平均</td><td>單因子變異數分析 ANOVA（顯著需事後檢定 Tukey）</td></tr>
+<tr><td>兩組比例</td><td>雙樣本比例 Z 檢定</td></tr>
+<tr><td>類別變數關聯/分佈</td><td>卡方檢定（獨立性 / 適合度，期望頻數 ≥5）</td></tr>
+<tr><td>兩連續變數線性關係</td><td>皮爾森相關（需常態、線性）</td></tr>
+<tr><td>順序/非常態/有離群值</td><td>斯皮爾曼等級相關、Mann-Whitney U、Kruskal-Wallis</td></tr>
+<tr><td>母體標準差已知</td><td>Z 檢定（而非 t 檢定）</td></tr>
+</table>
+<div class="box key"><span class="tag">Z 分數（Z-Score）</span>Z = (x − μ) / σ，表示資料點偏離平均幾個標準差。Z=2 → 高於平均 2 個標準差；Z=−2 → 低於平均 2 個標準差。常以 |Z| ≥ 3（或 2）判定異常值。</div>
+
+<h3 id="c-collect">4.1 數據收集與清理</h3>
+<table>
+<tr><th>資料來源</th><th>特性 / 蒐集方式</th></tr>
+<tr><td>感測器/IoT</td><td>高頻、連續、時間序列；MQTT、Kafka 串流 + 邊緣運算</td></tr>
+<tr><td>系統日誌/行為紀錄</td><td>半/非結構化；Flume、Logstash、NiFi</td></tr>
+<tr><td>API/外部交換</td><td>JSON、XML；RESTful + ETL（Airflow、Talend）</td></tr>
+<tr><td>網路爬蟲/開放資料</td><td>Scrapy、BeautifulSoup；品質參差需清理</td></tr>
+<tr><td>企業內部系統</td><td>ERP/CRM/POS 結構化；批次匯出 + 資料倉儲</td></tr>
+</table>
+<div class="box def"><span class="tag">五大資料品質問題</span>① <strong>缺失值</strong>（MCAR/MAR/MNAR；補值 Imputation、刪除、保留）② <strong>異常值</strong>（IQR、Z-score、孤立森林偵測）③ <strong>重複值</strong>（唯一 ID 偵測去重）④ <strong>一致性錯誤</strong>（格式/單位/命名不統一→標準化）⑤ <strong>邏輯錯誤</strong>（值合格式但違邏輯，如年齡 200；定義規則檢查）。</div>
+<div class="box note"><span class="tag">品質指標</span>缺失率、唯一值比率、一致性比率、異常值比率、完整性比率。</div>
+
+<h3 id="c-store">4.2 數據儲存與管理</h3>
+<table>
+<tr><th>資料型態</th><th>儲存方式</th></tr>
+<tr><td>結構化（表格/ERP/CRM）</td><td>關聯式 RDBMS（MySQL、PostgreSQL）；支援 SQL、ACID</td></tr>
+<tr><td>半結構化（JSON/XML）</td><td>文件型 NoSQL（MongoDB）、ElasticSearch、資料湖</td></tr>
+<tr><td>非結構化（文字/影像/音訊）</td><td>物件儲存（S3、MinIO）、分散式檔案系統（HDFS）+ metadata</td></tr>
+</table>
+<div class="box def"><span class="tag">分散式儲存特性</span>橫向擴充（Scalability）、容錯容災（多副本、Paxos/Raft）、高並行、資料本地性。代表：HDFS、S3、GCS、Ceph。<br><strong>資料湖（Data Lake）</strong>：原始格式儲存、多型態、Schema-on-Read（讀取時才套結構）。<strong>資料湖倉（Lakehouse）</strong>：結合湖的彈性 + 倉儲的結構化治理（Delta Lake、Iceberg、Hudi）。</div>
+<div class="box key"><span class="tag">ACID（必背）</span><strong>A 原子性</strong>：全做完或全不做（Rollback）｜<strong>C 一致性</strong>：交易前後符合完整性規則｜<strong>I 隔離性</strong>：並行交易互不干擾｜<strong>D 持久性</strong>：提交後永久保存。<br>一致性策略：<strong>強一致性</strong>（即時最新，金融交易）vs <strong>最終一致性</strong>（容許延遲，S3/HDFS 高可用）。</div>
+<div class="box note"><span class="tag">效能優化</span>分區儲存（Partitioning）、壓縮（Parquet/ORC + Snappy/ZSTD）、儲存分層（熱/冷）、欄位裁剪、物化檢視、索引。權限控管：RBAC（角色）、ABAC（屬性）、PBAC（策略）、DAC（自主）。<strong>Sharding（分片）</strong>：水平分割資料以提升擴展性與負載均衡。</div>
+
+<h3 id="c-proc">4.3 數據處理技術與工具</h3>
+<h4>資料準備與轉換</h4>
+<ul>
+<li><strong>分箱（Binning）</strong>：等寬、等頻（分位數）、K-Means 分箱。</li>
+<li><strong>編碼</strong>：Label Encoding（有序，誤用於無序會產生虛假順序）、One-Hot（無序，高基數會維度爆炸）、Target Encoding（高基數、與目標相關；需防資料洩漏）。</li>
+<li><strong>縮放</strong>：Min-Max（壓至 0–1，對極端值敏感）、Z-score 標準化（平均 0 標準差 1）、<strong>Robust Scaling（用中位數與 IQR，對離群值穩健）</strong>。</li>
+</ul>
+<div class="box def"><span class="tag">特徵工程</span>特徵選擇：Filter（相關係數/卡方/ANOVA，快）、Wrapper（RFE，準但慢）、Embedded（Lasso/樹重要性）。特徵衍生：交互、時間、聚合特徵。資料增強：影像翻轉旋轉、文字同義替換、SMOTE（不平衡資料合成少數樣本）。須防<strong>資料洩漏（Data Leakage）</strong>。</div>
+<table>
+<tr><th>分散式框架</th><th>特性</th></tr>
+<tr><td>Hadoop (MapReduce)</td><td>批次處理、成熟穩定容錯強、速度慢</td></tr>
+<tr><td>Spark</td><td>記憶體內運算、快、支援批次/即時/ML（MLlib）</td></tr>
+<tr><td>Flink</td><td>原生即時串流、低延遲、狀態管理佳</td></tr>
+<tr><td>Beam</td><td>統一批次+串流抽象模型、可移植多後端</td></tr>
+</table>
+<div class="box note"><span class="tag">資料管線工具</span>Airflow（功能強、Python）、Luigi（輕量）、Prefect（現代化監控）、Kubeflow Pipelines（ML 導向、K8s）。設計原則：可重現性、容錯回復、擴充彈性、監控可觀測性。</div>
+
+<h3 id="c-stat">5.1 統計學在大數據中的應用</h3>
+<div class="box key"><span class="tag">大數據統計推論六大陷阱（必考）</span>① 樣本非隨機 → 結構性偏誤被放大（資料越大越偏）② 樣本數大 → <strong>p 值膨脹</strong>（極小差異也顯著，需搭配效果量 effect size、信賴區間）③ 多重檢定 → 偽陽性增加（Bonferroni、FDR/Benjamini-Hochberg）④ 樣本非獨立 → 信賴區間過窄、誤判顯著 ⑤ 母體定義不清 → 推論對象模糊 ⑥ 系統資源限制 → Bootstrap、Permutation 等模擬方法成本高。</div>
+
+<h3 id="c-method">5.2 常見大數據分析方法</h3>
+<ul>
+<li><strong>近似統計</strong>（在容忍誤差內快速估算）：t-digest（分位數/中位數）、Histogram Sketch、Count-Min Sketch（頻率）、Welford's Method（線上均值/變異數）。平台：Spark <code>approxQuantile()</code>、BigQuery <code>APPROX_QUANTILES()</code>。</li>
+<li><strong>時序分析</strong>：移動平均、指數平滑（趨勢平滑）；ARIMA、SARIMA（統計建模）；Prophet、LSTM/Transformer（進階預測）。</li>
+<li><strong>網路/圖分析</strong>：節點(Node)、邊(Edge)；中心性（Degree、Betweenness、Closeness、PageRank）；社群偵測（Louvain、Label Propagation）；鏈結預測。「按讚」等帶屬性互動宜存為<strong>邊的屬性</strong>。知識圖譜宜用 <strong>RDF 三元組</strong>（主-謂-賓）。</li>
+<li><strong>文字分析</strong>：預處理（斷詞 Tokenization、去停用詞、詞形還原 Lemmatization 考慮詞性、詞幹提取 Stemming 截斷）；特徵（TF-IDF 突顯關鍵詞抑制常見詞、Word2Vec/GloVe、BERT）；任務（情感分析、NER 命名實體識別、LDA 主題）。</li>
+<li><strong>地理空間</strong>：點/線/面資料；空間異質性（GWR）、空間自相關；KDE 熱點、DBSCAN、Getis-Ord Gi*。工具 GeoPandas、PostGIS、Apache Sedona。</li>
+<li><strong>異常偵測</strong>：Z-score/IQR、LOF、KNN、Isolation Forest、Random Cut Forest。應用：信用卡詐欺、設備故障、入侵偵測。</li>
+<li><strong>降維</strong>：PCA（線性，保留最大變異；<strong>須先標準化</strong>避免大量級欄位主導）、SVD（可分解長方形矩陣，LSA 應用）。</li>
+<li><strong>關聯規則</strong>：Apriori；支援度 Support=P(A∩B)、信賴度 Confidence=P(B|A)、提升度 <strong>Lift=P(A∩B)/[P(A)P(B)]</strong>（=1 獨立、&gt;1 正相關、&lt;1 負相關）。</li>
+</ul>
+
+<h3 id="c-viz">5.3 數據可視化工具</h3>
+<table>
+<tr><th>目的</th><th>圖表</th></tr>
+<tr><td>數值分佈</td><td>直方圖、箱型圖（異常值單獨標記）、KDE 曲線</td></tr>
+<tr><td>變數關聯</td><td>散佈圖、相關係數矩陣、熱力圖（Heatmap）</td></tr>
+<tr><td>類別比較/比例</td><td>長條圖、堆疊長條圖、圓餅圖（≤5–6 類）</td></tr>
+<tr><td>時間趨勢</td><td>折線圖</td></tr>
+</table>
+<div class="box note"><span class="tag">工具與原則</span>自建：Matplotlib/Seaborn/Plotly、ggplot2、D3.js。半商業 BI：Metabase、Superset、Grafana（時序）。商業：Tableau、Power BI、Looker。設計原則：以閱讀者為中心、圖表匹配資料型態、簡化去冗餘、合理用色、支援互動。Tufte 資料密度：有限空間呈現盡可能多的有效資料並維持可讀性。<strong>陷阱：y 軸截斷（不從 0 開始）會放大實際差異、造成視覺誤導。</strong></div>
+
+<h3 id="c-ml">6.1 大數據與機器學習</h3>
+<div class="box def"><span class="tag">大數據 5V</span><strong>Volume</strong>（規模，分批載入/Parquet/分散式訓練）、<strong>Variety</strong>（多型態，多模態特徵+資料湖）、<strong>Velocity</strong>（速度，串流/增量學習）、<strong>Veracity</strong>（真實性/整合，Schema Mapping/Data Lineage、防資料漂移）、<strong>Value</strong>（價值密度低，特徵選擇/降維/主動學習）。</div>
+<div class="box key"><span class="tag">不平衡資料（高頻）</span>處理：類別加權（Class Weight / Cost-sensitive）、欠/過抽樣、<strong>SMOTE</strong>。評估<strong>不可只看 Accuracy</strong>（永遠預測多數類即可達高準確率但召回為 0），應用 F1、Balanced Accuracy、<strong>PR-AUC、Recall</strong>。零容忍攔截 → 最大化 Recall（降低 Threshold）。</div>
+<div class="box note"><span class="tag">訓練加速與部署</span>分散式訓練：資料並行、模型並行、混合並行。優化：GPU/TPU、混合精度（FP16+FP32）、梯度累積/壓縮、Early Stopping、Checkpointing。部署：Batch/Online(API)/Streaming Inference；容器化 + K8s + A/B/藍綠。MLOps：監控資料漂移/概念漂移、自動重訓。大批次泛化差（易收斂至 local minima）。<strong>交叉驗證須用分層 K-Fold</strong>（不平衡）或<strong>病患/群組分組</strong>（避免洩漏）；時序資料用前進式驗證、勿隨機切分。<strong>SMOTE/特徵篩選/標準化須在切分後、僅用訓練集，否則資料洩漏使評估虛高。</strong></div>
+
+<h3 id="c-disc">6.2/6.3 鑑別式 / 生成式 AI 應用</h3>
+<table>
+<tr><th></th><th>鑑別式 AI</th><th>生成式 AI</th></tr>
+<tr><td>核心</td><td>分類、預測、決策邊界</td><td>學習表徵後產生新內容</td></tr>
+<tr><td>資料需求</td><td>標註標準格式</td><td>開放、語意驅動、語料多元</td></tr>
+<tr><td>常見模型</td><td>邏輯迴歸、隨機森林、XGBoost、CNN、GNN</td><td>LLM、Diffusion、GAN、Transformer</td></tr>
+<tr><td>關鍵挑戰</td><td>不平衡、標註成本、樣本偏差</td><td>多樣性、代表性/偏誤、品質、時效性</td></tr>
+</table>
+<div class="box note"><span class="tag">資料標註策略</span>人工（準、貴）、弱監督（規則/詞典、快但誤標）、群眾外包（便宜、品質參差）、<strong>主動學習</strong>（挑低置信度樣本人工標，省成本）。生成式資料選擇四面向：多樣性、代表性（避免性別/族群/地區/平台偏誤）、品質正確性、時效性。</div>
+
+<h3 id="c-privacy">6.4 大數據隱私保護、安全與合規</h3>
+<div class="box def"><span class="tag">識別風險</span>直接識別（姓名、身分證、裝置 ID）、準識別（性別+生日+郵遞區號組合可再識別）、敏感資料（健康、信用、信仰）。風險來源：橫向比對、時間軸拼接、保護不足。</div>
+<table>
+<tr><th>技術</th><th>說明</th></tr>
+<tr><td>遮蔽 Masking</td><td>部分替換（王○○）；易被推測還原</td></tr>
+<tr><td>雜湊 Hashing</td><td>單向不可逆（SHA-256）；短 ID 易遭彩虹表</td></tr>
+<tr><td>泛化 Generalization</td><td>降精度（1987-03-12→1980 年代）</td></tr>
+<tr><td>分桶 / 隨機擾動</td><td>離散區間 / 加噪音（保留統計特性）</td></tr>
+<tr><td>K-匿名 / L-多樣性 / T-接近性</td><td>準識別欄至少 K-1 筆相同；敏感欄多樣性；分佈接近</td></tr>
+<tr><td>差分隱私 DP</td><td>加嚴格控制噪音，提供數學保證；可組合可量化</td></tr>
+<tr><td>聯邦學習 Federated</td><td>本地訓練僅傳參數，原始資料不外洩</td></tr>
+<tr><td>同態加密 HE</td><td><strong>加密狀態下直接運算</strong>，解密結果與明文一致；雲端不解密即可計算</td></tr>
+</table>
+<div class="box key"><span class="tag">合規原則</span>GDPR / CCPA / 台灣個資法：合法正當透明、目的限制、資料最小化、保存期限、可追蹤可刪除（被遺忘權）。合法依據：明確同意、契約必要、公共利益/學術研究、非個人資料（去識別後）。<strong>成員推斷攻擊</strong>（Membership Inference）：靠模型對訓練樣本高信心輸出判斷是否屬訓練集；以差分隱私/降低輸出信心防禦。治理：資料治理委員會、Model Card、跨部門監管流程。</div>
+
+<h3 id="c-compare">易混淆觀念對照表</h3>
+<table>
+<tr><th>A</th><th>B</th><th>關鍵差異</th></tr>
+<tr><td>敘述統計</td><td>推論統計</td><td>整理呈現資料 vs 由樣本推估母體</td></tr>
+<tr><td>平均數</td><td>中位數</td><td>對極端值敏感 vs 穩健（偏態用中位數）</td></tr>
+<tr><td>顯著水準 α</td><td>p 值</td><td>事前門檻 vs 事後計算機率</td></tr>
+<tr><td>型一錯誤</td><td>型二錯誤</td><td>誤判（無差判有差/偽陽 α）vs 漏判（有差判無差 β）</td></tr>
+<tr><td>Label Encoding</td><td>One-Hot Encoding</td><td>有序類別 vs 無序類別（高基數爆炸）</td></tr>
+<tr><td>Min-Max / Z-score</td><td>Robust Scaling</td><td>對極端值敏感 vs 用中位數+IQR 穩健</td></tr>
+<tr><td>強一致性</td><td>最終一致性</td><td>即時最新 vs 容許短暫延遲</td></tr>
+<tr><td>資料湖</td><td>資料倉儲</td><td>原始多型態 Schema-on-Read vs 結構化預定義</td></tr>
+<tr><td>Lemmatization</td><td>Stemming</td><td>還原詞典形（考慮詞性）vs 截斷詞幹</td></tr>
+<tr><td>Accuracy</td><td>PR-AUC / Recall / F1</td><td>不平衡資料下 Accuracy 失效，需後者</td></tr>
+<tr><td>獨立樣本 t 檢定</td><td>成對樣本 t 檢定</td><td>不同個體兩組 vs 同一批前後測差值</td></tr>
+<tr><td>匿名化</td><td>同態加密</td><td>去除/模糊識別資訊 vs 密文上直接運算</td></tr>
+</table>
+
+<h3 id="c-formula">常見計算 / 公式速查</h3>
+<table>
+<tr><th>項目</th><th>公式 / 規則</th></tr>
+<tr><td>Z 分數</td><td>Z = (x − μ) / σ</td></tr>
+<tr><td>標準差</td><td>σ = √[ Σ(xᵢ−μ)² / N ]</td></tr>
+<tr><td>IQR / 離群值界</td><td>IQR=Q3−Q1；下界 Q1−1.5×IQR、上界 Q3+1.5×IQR</td></tr>
+<tr><td>二項 E/Var</td><td>E=np、Var=np(1−p)；常態近似條件 np≥5 且 n(1−p)≥5</td></tr>
+<tr><td>卜瓦松 / 指數</td><td>Poisson E=Var=λ；Exponential E=1/λ、Var=1/λ²</td></tr>
+<tr><td>卡方 E/Var</td><td>E=k、Var=2k（k 為自由度）</td></tr>
+<tr><td>提升度 Lift</td><td>Lift = P(A∩B)/[P(A)×P(B)]；=1 獨立</td></tr>
+<tr><td>檢定力</td><td>Power = 1 − β</td></tr>
+<tr><td>決策規則</td><td>p ≤ α → 拒絕 H₀；p &gt; α → 無法拒絕 H₀</td></tr>
+</table>
+<div class="box note"><span class="tag">範例（114-Q16）</span>交易金額 3200，μ=2000，σ=400 → Z=(3200−2000)/400=<strong>3</strong>，達 |Z|≥3 標記為異常值。</div>
+
+<!-- ===================== 區二：歷屆試題解析 ===================== -->
+
+<h2 class="chap" id="e114b">114 年第二梯次 中級 第二科 大數據處理分析與應用（50 題）</h2>
+<p class="sub">考試日期：114 年 11 月 08 日｜選擇題 + 程式題，官方答案逐題照列。</p>
+
+<div class="q" id="e114b-q1">
+<p class="stem"><span class="qno">1.</span>若某數據點的 Z 分數（Z-Score）= 2，請問代表下列哪一種意涵？</p>
+<ul class="opts"><li>(A) 代表該數據點之原始數值為 2</li><li>(B) 該數據點比平均值低 2 個標準差</li><li>(C) 代表數據為異常值</li><li>(D) 該數據點比平均值高 2 個標準差</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Z=(x−μ)/σ，正值表示高於平均，Z=2 即高於平均 2 個標準差。(B) 方向相反；(C) 一般以 |Z|≥3 才判異常；(A) Z 非原始值。</div>
+</div>
+
+<div class="q" id="e114b-q2">
+<p class="stem"><span class="qno">2.</span>使用 Python 的 pandas 處理商品銷售數據（變數 df）時，若需計算「總銷售額」欄位的敘述性統計量（平均值、標準差等），應使用下列哪一種語法？</p>
+<ul class="opts"><li>(A) df['總銷售額'].sum()</li><li>(B) df['總銷售額'].describe()</li><li>(C) df['總銷售額'].sort_values()</li><li>(D) df['總銷售額'].stats()</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span><code>describe()</code> 一次回傳 count、mean、std、min、四分位數、max 等敘述統計。(A) 僅總和、(C) 排序、(D) 無此方法。</div>
+</div>
+
+<div class="q" id="e114b-q3">
+<p class="stem"><span class="qno">3.</span>附圖為某資料之分佈圖，此圖資料之偏態（Skewness）值較有可能為下列哪個選項？</p>
+<ul class="opts"><li>(A) Skewness &lt; 0</li><li>(B) Skewness &gt; 0</li><li>(C) Skewness = 0</li><li>(D) 無法計算 Skewness</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>依官方答案為左偏（負偏態，Skewness&lt;0），即左側尾部較長、主體偏右。偏度判讀：右尾長→正偏；左尾長→負偏。</div>
+</div>
+
+<div class="q" id="e114b-q4">
+<p class="stem"><span class="qno">4.</span>累積分佈函數（CDF）可用於描述隨機變數的機率分佈特性，其數學定義為下列何者？</p>
+<ul class="opts"><li>(A) PDF 的平均值</li><li>(B) PDF 的積分</li><li>(C) PDF 的離散總和</li><li>(D) PDF 的標準差</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>連續型 CDF 為 PDF 由 −∞ 至 x 的積分 F(x)=∫f(t)dt，表示 X ≤ x 的累積機率。</div>
+</div>
+
+<div class="q" id="e114b-q5">
+<p class="stem"><span class="qno">5.</span>在資料前處理時，若使用 Label Encoding 將類別變數轉為數字型態，下列何者為最常見的潛在風險？</p>
+<ul class="opts"><li>(A) 無法處理缺值</li><li>(B) 會引入類別之間的虛假順序關係</li><li>(C) 無法擴展至新資料</li><li>(D) 記憶體佔用過高</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>Label Encoding 把類別映射為整數，若用於無序（Nominal）資料，模型會誤解為有大小順序，造成偏誤。無序類別應用 One-Hot。</div>
+</div>
+
+<div class="q" id="e114b-q6">
+<p class="stem"><span class="qno">6.</span>關於類別型與數值型資料格式的處理，下列敘述何者「不正確」？</p>
+<ul class="opts"><li>(A) One-Hot 編碼將類別轉為多維二元向量，適用無序類別，但高基數下可能維度爆炸</li><li>(B) Label Encoding 以整數表示類別，若用於無序資料可能被誤解為數值大小關係</li><li>(C) 標準化使平均為 0、標準差為 1，可改善距離型演算法收斂速度，並同時將數值範圍壓縮至 0 至 1 之間</li><li>(D) 對連續變數分箱可提升可解釋性，但分段未依分佈設計可能造成資訊損失或邊界偏誤</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>(C) 錯在「同時壓縮至 0 至 1」——那是 Min-Max 正規化的特性；Z-score 標準化使平均 0、標準差 1，但<strong>不保證</strong>範圍落在 0–1。(A)(B)(D) 皆正確。</div>
+</div>
+
+<div class="q" id="e114b-q7">
+<p class="stem"><span class="qno">7.</span>在資料庫 ACID 特性中，下列何者為「原子性（Atomicity）」的正確定義？</p>
+<ul class="opts"><li>(A) 所有資料欄位必須為相同型別</li><li>(B) 每次交易需以批次方式執行</li><li>(C) 交易不可分割，需完全成功或完全失敗</li><li>(D) 系統會自動同步交易資料至所有節點</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>原子性＝交易中所有操作「全做完或全不做」，中間不可只執行部分，失敗即回復（Rollback）。</div>
+</div>
+
+<div class="q" id="e114b-q8">
+<p class="stem"><span class="qno">8.</span>資料科學家利用「銷售金額」與「瀏覽次數」計算新變數「銷售金額/瀏覽次數」，此動作屬於哪一類特徵工程方法？</p>
+<ul class="opts"><li>(A) 特徵選擇</li><li>(B) 特徵衍生</li><li>(C) 特徵轉換</li><li>(D) 分箱處理</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>由既有欄位透過數學運算產生新特徵屬於特徵衍生（Feature Derivation/交互特徵）。(A) 是從現有特徵中挑選；(C) 是型態/尺度轉換；(D) 是離散化。</div>
+</div>
+
+<div class="q" id="e114b-q9">
+<p class="stem"><span class="qno">9.</span>在數值特徵標準化時，若資料中存在極端值（Outliers），下列哪一種方法最適合使用？</p>
+<ul class="opts"><li>(A) Min-Max 正規化</li><li>(B) Z-score 標準化</li><li>(C) 穩健縮放（Robust Scaling）</li><li>(D) 標準分箱</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>Robust Scaling 以中位數與 IQR 縮放，對離群值高度抵抗。Min-Max 與 Z-score 皆對極端值敏感。</div>
+</div>
+
+<div class="q" id="e114b-q10">
+<p class="stem"><span class="qno">10.</span>下列哪一種情境最適合應用異常偵測（Anomaly Detection）技術？</p>
+<ul class="opts"><li>(A) 根據歷史銷售預測旺季供貨短缺以調整庫存</li><li>(B) 透過信用風險模型預測顧客是否違約以輔助核貸</li><li>(C) 即時分析金融交易流，偵測與平常明顯不同的可疑交易</li><li>(D) 監控登入次數，預測次日登入量變化趨勢</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>異常偵測在於辨識偏離正常行為的觀測值，金融可疑交易即典型應用。(A)(D) 為預測、(B) 為分類，皆非異常偵測。</div>
+</div>
+
+<div class="q" id="e114b-q11">
+<p class="stem"><span class="qno">11.</span>若一家公司需即時監控大量物聯網裝置的異常行為，下列哪一種組合最適合？</p>
+<ul class="opts"><li>(A) 傳統關聯式資料庫 + 圖形視覺化</li><li>(B) 批次資料處理 + 雲端備份</li><li>(C) 大數據平台 + 即時資料分析技術</li><li>(D) Word 文件 + 手動標註</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>IoT 高頻串流且需即時偵測異常，須大數據平台搭配串流/即時分析（Kafka、Spark/Flink Streaming）。(A)(B) 偏批次與傳統，(D) 不可行。</div>
+</div>
+
+<div class="q" id="e114b-q12">
+<p class="stem"><span class="qno">12.</span>處理分類問題時，若某類樣本數明顯少於其他類別，採用隨機過採樣（Random Oversampling）平衡資料比例，最常造成下列哪一種問題？</p>
+<ul class="opts"><li>(A) 增加過擬合風險</li><li>(B) 降低模型收斂速度</li><li>(C) 減少資料總筆數</li><li>(D) 導致訓練資料欄位缺失</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>隨機過採樣重複複製少數類樣本，模型反覆學到相同樣本，易過擬合。(C) 反而增加筆數。</div>
+</div>
+
+<div class="q" id="e114b-q13">
+<p class="stem"><span class="qno">13.</span>下列何者為同態加密（Homomorphic Encryption）技術的核心特性？</p>
+<ul class="opts"><li>(A) 將資料轉為匿名識別碼以隱藏身分</li><li>(B) 對資料標準化以提升模型精度</li><li>(C) 自動偵測與排除異常值</li><li>(D) 可直接在加密狀態下進行數據運算</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>同態加密允許在密文上直接運算（加、乘），解密後結果與明文一致，確保資料全程加密。(A) 為匿名化。</div>
+</div>
+
+<div class="q" id="e114b-q14">
+<p class="stem"><span class="qno">14.</span>某組資料共 10 項標籤：A,A,A,A,A,B,B,B,B,B（僅 A、B 兩種），這組資料的「正規化吉尼不純度（Normalized Gini impurity）」為何？</p>
+<ul class="opts"><li>(A) 0</li><li>(B) 0.42</li><li>(C) 0.84</li><li>(D) 1</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Gini = 1 − Σpᵢ² = 1 − (0.5²+0.5²) = 0.5（兩類各半，為最大值）。二元時最大 Gini=0.5，正規化（除以最大值 0.5）後為 1，代表完全混雜。</div>
+</div>
+
+<div class="q" id="e114b-q15">
+<p class="stem"><span class="qno">15.</span>客服中心平均每小時約 20 通來電，每分鐘來電數不固定（0、1、2…），事件彼此獨立、短時間發生機率與時間長短成正比。若要描述「每分鐘接到幾通來電」，下列哪一種分佈最適合？</p>
+<ul class="opts"><li>(A) 均勻分佈</li><li>(B) 指數分佈</li><li>(C) 卜瓦松分佈（Poisson）</li><li>(D) 常態分佈</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>固定時間區間內計數事件、獨立、發生率固定 → 卜瓦松分佈。指數分佈描述的是「事件間隔時間」而非次數。</div>
+</div>
+
+<div class="q" id="e114b-q16">
+<p class="stem"><span class="qno">16.</span>以 Z 分數監控交易異常，平均 2,000 元、標準差 400 元，某筆交易 3,200 元，以 |Z| ≥ 3 判為異常值，下列判斷何者最為正確？</p>
+<ul class="opts"><li>(A) 該筆 Z 分數為 3，應標記為異常值</li><li>(B) Z 分數為 2.5，屬合理變異</li><li>(C) Z 分數為 2，顯示標準差估計過高</li><li>(D) Z 分數為 1.5，無須納入異常檢測</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>Z=(3200−2000)/400=3，達 |Z|≥3 門檻，標記為異常值。</div>
+</div>
+
+<div class="q" id="e114b-q17">
+<p class="stem"><span class="qno">17.</span>電商以「會員等級（一般、白金、黑卡）」建模，採梯度提升樹（Gradient Boosting Tree），特徵編碼時應特別注意下列何種情況？</p>
+<ul class="opts"><li>(A) 應優先 One-Hot Encoding，以減少類別相依性與記憶體</li><li>(B) 直接 Label Encoding 可能使模型誤判類別間有順序，導致特徵重要性偏誤</li><li>(C) Target Encoding 會自動消除過擬合風險</li><li>(D) 類別少時建議先用 PCA 降維</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>若會員等級無明確線性順序卻直接 Label Encoding，樹模型分裂時可能誤用編碼大小，造成偏誤。(C) Target Encoding 反而有洩漏/過擬合風險；(A) One-Hot 不必然減記憶體；(D) 三類別不需 PCA。</div>
+</div>
+
+<div class="q" id="e114b-q18">
+<p class="stem"><span class="qno">18.</span>分散式資料庫多節點交易時，若一節點錯誤但系統仍確保不出現部分更新、最終一致，下列何者最能說明此現象？</p>
+<ul class="opts"><li>(A) 原子性（Atomicity）確保交易全部成功或全部回復（Rollback）</li><li>(B) 一致性（Consistency）確保完成後資料符合完整性規則</li><li>(C) 隔離性（Isolation）避免多交易同時存取相同資料</li><li>(D) 持久性（Durability）確保提交後結果永久保留</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>「不出現部分更新、要嘛全成功要嘛回復」正是原子性。(B) 一致性是符合規則、(C) 隔離性是並行不干擾、(D) 持久性是提交後不遺失。</div>
+</div>
+
+<div class="q" id="e114b-q19">
+<p class="stem"><span class="qno">19.</span>製造企業上萬台 IoT 感測器需毫秒級回應異常並保留完整資料供後續訓練，若希望兼顧即時性、資料完整性與可擴展性，下列哪種資料流程設計最符合？</p>
+<ul class="opts"><li>(A) 感測器→雲端 API Gateway→分散式資料庫→批次特徵工程→模型推論</li><li>(B) 感測器→MQTT Broker→雲端資料倉儲→即時儀表板→模型再訓練</li><li>(C) 感測器→邊緣運算節點→流式資料處理框架→雲端資料湖→模型推論</li><li>(D) 感測器→本地快取層→RESTful API→雲端報表系統→模型批次更新</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>邊緣運算降低延遲、流式處理框架保即時、雲端資料湖容納完整多型態資料供後續訓練，兼顧三項需求。(A)(D) 偏批次，(B) 倉儲不利原始完整保存。</div>
+</div>
+
+<div class="q" id="e114b-q20">
+<p class="stem"><span class="qno">20.</span>銀行欲將信用風險模型部署雲端，因敏感資料要求雲端服務商在「不解密原始資料」下仍能執行運算，最適合採用下列哪項技術？</p>
+<ul class="opts"><li>(A) 上傳前匿名化，僅保留可識別代碼供比對</li><li>(B) 雜湊函數轉換，確保可追蹤但無法還原</li><li>(C) 資料本地化，將所有訓練限於內部伺服器</li><li>(D) 同態加密（Homomorphic Encryption），雲端直接在加密資料上運算，解密後結果與原始一致</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>「不解密即可運算」正是同態加密的定義。(A)(B) 仍需處理明文/無法運算；(C) 未用雲端運算能力。</div>
+</div>
+
+<div class="q" id="e114b-q21">
+<p class="stem"><span class="qno">21.</span>依 Edward Tufte 的數據密度（Data Density）原則，要在單一頁面呈現多區域、多產品線銷售趨勢並讓主管快速掌握，下列哪種設計最符合？</p>
+<ul class="opts"><li>(A) 將每區域分成多張獨立折線圖避免重疊</li><li>(B) 用顏色區分產品線，於同一圖整合多區域趨勢線，保持比例一致且標註清晰</li><li>(C) 移除所有輔助線與標籤，僅留主要折線</li><li>(D) 改為表格形式取代圖表</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>資料密度強調有限空間內呈現盡可能多的有效資料且維持可讀性 → 同一圖整合多維趨勢、清楚標註。(A) 分散降低密度，(C) 過度簡化失資訊，(D) 表格非視覺化。</div>
+</div>
+
+<div class="q" id="e114b-q22">
+<p class="stem"><span class="qno">22.</span>投資研究員欲以單一圖表快速呈現四檔股票報酬率間的關聯強度與方向，下列哪種視覺化最適合？</p>
+<ul class="opts"><li>(A) 為每檔股票各繪直方圖比較分佈</li><li>(B) 任兩檔繪散佈圖加趨勢線</li><li>(C) 雙軸折線圖同時顯示四檔股價</li><li>(D) 熱力圖（Heatmap）配合相關係數矩陣</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>相關係數矩陣 + 熱力圖能在單一圖中以顏色呈現多變數兩兩相關的強度與正負方向，最適合。(B) 一次僅兩檔；(C) 看不出相關。</div>
+</div>
+
+<div class="q" id="e114b-q23">
+<p class="stem"><span class="qno">23.</span>以單樣本 t 檢定檢驗「新策略後平均月銷售額是否與原本 100 萬不同」，α=0.05，結果 p=0.08，95% 信賴區間 [95 萬, 108 萬]。下列敘述何者正確？</p>
+<ul class="opts"><li>(A) 因 p &lt; 0.05，可拒絕虛無假設</li><li>(B) 若顯著水準改為 0.10，仍不顯著</li><li>(C) 因 100 萬落在信賴區間內，無法拒絕虛無假設</li><li>(D) 信賴區間寬度僅與顯著水準有關</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>虛無值 100 萬落在 95% CI [95,108] 內，與 p=0.08&gt;0.05 一致，無法拒絕 H₀。(A) p&gt;0.05 不能拒絕；(B) p=0.08&lt;0.10 反而顯著；(D) 寬度還受樣本變異與樣本數影響。</div>
+</div>
+
+<div class="q" id="e114b-q24">
+<p class="stem"><span class="qno">24.</span>企業以大量客服紀錄與產品評論（含非結構化文字、影像、表格）訓練語言模型，希望在不降效能下提升資料處理效率與一致性，下列哪種策略最適合？</p>
+<ul class="opts"><li>(A) 建立資料湖結構，以 Apache Spark 或 Ray 進行分散式預處理與特徵抽取，再串接訓練管線</li><li>(B) 單節點高效能伺服器搭配批次模式集中執行清理</li><li>(C) 將所有文字轉向量並以資料庫索引直接餵入訓練</li><li>(D) 用生成式模型先自動清理資料再輸入下游</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>多型態大規模資料宜以資料湖統一儲存、分散式框架（Spark/Ray）平行預處理並串接 Pipeline，兼顧效率與一致性。(B) 單節點難擴展；(C)(D) 易失資訊或引入噪音。</div>
+</div>
+
+<div class="q" id="e114b-q25">
+<p class="stem"><span class="qno">25.</span>箱型圖顯示 IQR 極小但上鬚很長、高金額區有多筆離群值，欲凸顯不同消費層級差異，下列哪種視覺化最有助？</p>
+<ul class="opts"><li>(A) 以對數刻度繪製箱型圖或長條圖，放大高金額族群差異</li><li>(B) 移除所有離群值確保集中分布</li><li>(C) 採等距分箱分群</li><li>(D) 改以折線圖觀察時間趨勢</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>長尾、右偏資料用對數刻度可壓縮大值範圍、放大層級間差異。(B) 移除離群值反而抹除高消費層級資訊；(C) 等距分箱不利偏態；(D) 與層級無關。</div>
+</div>
+
+<div class="q" id="e114b-q26">
+<p class="stem"><span class="qno">26.</span>串流影音平台用關聯規則學習：同時觀看兩類型者佔 12%，觀看科幻者中 50% 也看超英，Lift=1.8。下列推論何者最正確？</p>
+<ul class="opts"><li>(A) Support 過低，代表規則無任何商業價值</li><li>(B) Lift &gt; 1 表示兩類型無關，僅隨機重疊</li><li>(C) Confidence 為 50%，代表觀看科幻者有明顯傾向觀看超英</li><li>(D) 同時觀看僅 12%，代表兩類型互相排斥</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>Confidence=P(超英|科幻)=50%，且 Lift=1.8&gt;1 表示正向關聯（非隨機、非排斥），故觀看科幻者有明顯接著看超英的傾向。(B)(D) 對 Lift/排斥的解讀錯誤。</div>
+</div>
+
+<div class="q" id="e114b-q27">
+<p class="stem"><span class="qno">27.</span>每日上億筆交易採「近似分位數（Approximate Quantile）」摘要統計，下列何者最能正確反映該技術核心目的？</p>
+<ul class="opts"><li>(A) 確保每個分位值完全精確，即使計算較長</li><li>(B) 利用機器學習模型預測分位數位置</li><li>(C) 僅能對結構化資料批次處理，無法應用於即時資料流</li><li>(D) 在可容忍誤差範圍內，快速估算分位值以支援即時分析</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>近似統計（如 t-digest）在可容忍誤差下快速、低記憶體估算分位數，支援大規模/串流即時分析。(A) 並非追求完全精確；(C) 正可用於串流。</div>
+</div>
+
+<div class="q" id="e114b-q28">
+<p class="stem"><span class="qno">28.</span>在高維度（&gt;500 維）資料上用 DBSCAN，卻發現所有點皆被判為雜訊（Noise），最可能的原因為？</p>
+<ul class="opts"><li>(A) 高維下距離變化趨同，導致 ε（Epsilon）閾值選擇失效</li><li>(B) 使用錯誤的距離函數</li><li>(C) MinPts 參數設得太小</li><li>(D) 資料過度標準化導致特徵消失</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>維度詛咒下，高維空間中任兩點距離趨於相近，使密度概念失效、ε 難以設定，DBSCAN 難形成核心點，全判為雜訊。</div>
+</div>
+
+<div class="q" id="e114b-q29">
+<p class="stem"><span class="qno">29.</span>用 PCA 降維，輸入「交易金額(~10⁵)、交易次數(~10¹)、年齡(~10²)」，直接帶入後 PC1 幾乎由交易金額主導。下列何者最合理？</p>
+<ul class="opts"><li>(A) 正常現象，金額變異大應主導</li><li>(B) 改用特徵選擇法可自動解決量級問題</li><li>(C) 可刪除「交易金額」欄位以平衡影響</li><li>(D) PCA 前應先標準化（Standardization），避免數值尺度差異造成特徵偏誤</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>PCA 對尺度敏感，量級大的變數會主導主成分。應先標準化（Z-score）使各變數同尺度。(A) 是被量級誤導；(C) 刪欄位損失資訊。</div>
+</div>
+
+<div class="q" id="e114b-q30">
+<p class="stem"><span class="qno">30.</span>欲衡量「廣告預算」與「銷售金額」線性關係的強度與方向（散佈圖明顯線性、無明顯離群值），下列哪種方法最適合？</p>
+<ul class="opts"><li>(A) 均方根誤差 RMSE</li><li>(B) 共變異數（Covariance）</li><li>(C) 皮爾森相關係數（Pearson）</li><li>(D) 平均絕對誤差 MAE</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>皮爾森相關係數 r∈[−1,1] 同時量化線性關係的強度與方向，且資料線性、無離群值符合其前提。(B) 共變異數受尺度影響無標準範圍；(A)(D) 為誤差指標。</div>
+</div>
+
+<div class="q" id="e114b-q31">
+<p class="stem"><span class="qno">31.</span>每位顧客點擊視為伯努利試驗，p=0.4，推播 5,000 位顧客欲以常態分佈近似「成功點擊總數」分佈，下列哪項判斷最合理？</p>
+<ul class="opts"><li>(A) 因樣本數極大，可直接以常態分佈近似二項分佈</li><li>(B) 只有當 np 與 n(1−p) 皆大於 5 時，才能以常態分佈作近似</li><li>(C) 常態近似只適用於 p=0.5</li><li>(D) 無論樣本數多大，二項分佈都不能以常態分佈近似</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>二項常態近似需滿足 np≥5 且 n(1−p)≥5。本題 np=2000、n(1−p)=3000 皆遠大於 5，雖可近似但「能否近似」的判斷準則正是 (B)。(A) 漏掉條件、(C)(D) 錯誤。</div>
+</div>
+
+<div class="q" id="e114b-q32">
+<p class="stem"><span class="qno">32.</span>電信導入生成式 AI 客服，發現模型可能在回答中生成真實姓名、電話、交易資訊。為符合個資法與生成式 AI 安全隱私，下列哪項最符合實務與法規原則？</p>
+<ul class="opts"><li>(A) 訓練前進行匿名化或偽匿名化，並建立輸出內容稽核機制</li><li>(B) 改以強化學習微調模型，使其學習避免產出真實資訊</li><li>(C) 採同態加密加密所有文字輸入，確保模型無法辨識個資</li><li>(D) 僅設定回覆時不顯示用戶姓名即可視為隱私防護完成</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>源頭匿名化/偽匿名化處理訓練資料 + 輸出端稽核，是最符合資料最小化與合規的雙重防護。(B) 不可靠、(C) 同態加密用於密文運算非此情境、(D) 僅遮名不足以防再識別。</div>
+</div>
+
+<div class="q" id="e114b-q33">
+<p class="stem"><span class="qno">33.</span>報酬率資料分佈明顯非對稱且多次極端損失，傳統常態假設模型無法準確反映風險，希望在不依賴常態假設下捕捉極端情況，下列哪種方法最合適？</p>
+<ul class="opts"><li>(A) 線性迴歸，以常態分佈殘差為基礎</li><li>(B) 以平均數與標準差估計波動範圍</li><li>(C) 將資料裁剪至 ±3σ 內以排除異常值</li><li>(D) 分位數回歸（Quantile Regression），聚焦尾部分位以評估極端風險</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>分位數回歸不假設常態、可直接建模尾部分位（如 5%、95%），適合捕捉極端損失。(A)(B) 仍依賴常態/均值-標準差；(C) 裁掉極端值反而忽略真正風險。</div>
+</div>
+
+<div class="q" id="e114b-q34">
+<p class="stem"><span class="qno">34.</span>圖形資料庫建模社群資料，每筆「按讚」含時間戳記與裝置類型，欲保留使用者與貼文互動關係並能查詢按讚屬性，下列哪種設計最合適？</p>
+<ul class="opts"><li>(A) 將「按讚」視為節點，與使用者建立邊</li><li>(B) 將「按讚」資訊作為邊的屬性儲存，連結使用者與被按讚貼文節點</li><li>(C) 把「按讚」資訊直接寫入使用者節點作為屬性</li><li>(D) 建立「按讚紀錄表」存入關聯式資料庫</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>使用者與貼文為節點，「按讚」是兩者間的互動關係，宜建為連結兩節點的邊，並把時間/裝置等存為<strong>邊的屬性</strong>，便於查詢互動屬性。</div>
+</div>
+
+<div class="q" id="e114b-q35">
+<p class="stem"><span class="qno">35.</span>建構知識圖譜整合研究報告、專利與專家知識，支援語意查詢與關聯推理，希望良好語意擴展性與高效推理，下列哪種圖模型設計最合適？</p>
+<ul class="opts"><li>(A) 僅以節點與邊表示，所有資訊放在節點屬性</li><li>(B) 將資料建為 RDF 三元組（Subject–Predicate–Object）</li><li>(C) 用文件型資料庫儲存內容，以標籤連接節點</li><li>(D) 關聯式資料庫儲存對應關係，搭配預建索引</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>知識圖譜的標準語意表示為 RDF 三元組（主-謂-賓），具良好語意擴展性與推理能力（可結合本體 Ontology/SPARQL）。其他選項在語意推理上較受限。</div>
+</div>
+
+<div class="q" id="e114b-q36">
+<p class="stem"><span class="qno">36.</span>線性迴歸分析 Y 與 X，Y 分佈明顯右偏且變異數隨 X 增大而增加（異質變異），為滿足模型假設並提升配適，下列哪種前處理最合適？</p>
+<ul class="opts"><li>(A) 對 X 進行標準化</li><li>(B) 對 Y 進行 Box–Cox 轉換</li><li>(C) 對資料進行一次差分</li><li>(D) 將 Y 中變異較大的樣本移除</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>Box–Cox 轉換可同時校正 Y 的右偏與異質變異，使其更接近常態並穩定變異，滿足線性迴歸假設。(A) 標準化不改變偏態；(C) 差分用於時序；(D) 移除樣本損資訊。</div>
+</div>
+
+<div class="q" id="e114b-q37">
+<p class="stem"><span class="qno">37.</span>罕見疾病分類模型，確診樣本不到 1% 且短期無法取得更多資料，欲提升少數類偵測能力又避免過擬合，下列哪種策略最合理？</p>
+<ul class="opts"><li>(A) 對少數類隨機過採樣</li><li>(B) 對多數類隨機欠採樣</li><li>(C) 使用 SMOTE 生成合成少數類樣本後再訓練</li><li>(D) 僅調整決策閾值以提升召回率</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>SMOTE 以插值合成新的少數類樣本（非單純複製），相較隨機過採樣更能提升少數類辨識且降低過擬合。(A) 重複樣本易過擬合；(B) 欠採樣在樣本本就少時損失多數類資訊。</div>
+</div>
+
+<div class="q" id="e114b-q38">
+<p class="stem"><span class="qno">38.</span>製造廠各抽 100 件，原線良率 95%、新線 97%，欲檢定兩條生產線良率差異是否具統計意義，下列哪種方法最合適？</p>
+<ul class="opts"><li>(A) 雙樣本平均數 t 檢定</li><li>(B) 雙比例 Z 檢定（Two-proportion Z-test）</li><li>(C) 卡方檢定</li><li>(D) 變異數分析 ANOVA</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>比較兩組「比例（良率）」差異，且樣本夠大滿足常態近似，宜用雙樣本比例 Z 檢定。(A) t 檢定比平均數而非比例；(D) ANOVA 用於三組以上平均數。（卡方亦可分析比例，但官方答案為 B。）</div>
+</div>
+
+<div class="q" id="e114b-q39">
+<p class="stem"><span class="qno">39.</span>腫瘤分類模型資料 80% 為良性，直接用 5-fold 交叉驗證可能造成評估偏差，為避免此問題，下列哪種作法最合適？</p>
+<ul class="opts"><li>(A) 降低 K 值以減少交叉驗證次數</li><li>(B) 改用拔靴法（Bootstrap）</li><li>(C) 調整測試集使良性比例更高以模擬真實分佈</li><li>(D) 使用分層交叉驗證（Stratified K-Fold），確保每折類別比例一致</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>類別不平衡時，分層 K-Fold 在每折維持與整體相同的類別比例，避免某折缺少少數類導致評估偏差。(A)(B)(C) 皆未解決折內比例失衡問題。</div>
+</div>
+
+<div class="q" id="e114b-q40">
+<p class="stem"><span class="qno">40.</span>參考附圖虛擬程式碼，最可能描述何種驗證法？</p>
+<ul class="opts"><li>(A) Hold-out 驗證</li><li>(B) 留一交叉驗證 LOOCV</li><li>(C) K-fold 交叉驗證</li><li>(D) 拔靴法（Bootstrap）驗證</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>依官方答案為 LOOCV：每次留 1 筆當驗證、其餘 N−1 筆訓練，重複 N 次。其特徵為「迴圈次數 = 樣本數、每次驗證集僅 1 筆」。</div>
+</div>
+
+<div class="q" id="e114b-q41">
+<p class="stem"><span class="qno">41.</span>參考附圖虛擬程式碼，最可能描述何種演算法？</p>
+<ul class="opts"><li>(A) K-means 分群</li><li>(B) 高斯混合模型分群 GMM</li><li>(C) 階層式分群</li><li>(D) DBSCAN 分群</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>依官方答案為 K-means：典型流程為「初始化 k 個質心 → 將點指派至最近質心 → 重新計算質心 → 重複至收斂」。此「指派-更新質心」迭代為 K-means 標誌。</div>
+</div>
+
+<div class="q" id="e114b-q42">
+<p class="stem"><span class="qno">42.</span>生產線每小時瑕疵品數符合卜瓦松分佈（平均每小時 5 個），附圖程式碼展示資料處理，下列敘述何者正確？</p>
+<ul class="opts"><li>(A) lambda_poisson = 5 表示每小時最多 5 個瑕疵品</li><li>(B) poisson.pmf(5, lambda_poisson) 表示小於 5 個瑕疵品的機率</li><li>(C) 卜瓦松分佈的適用條件為事件彼此獨立，且平均發生率固定</li><li>(D) poisson.cdf(10, 5) 表示大於或等於 10 個瑕疵品的機率</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>卜瓦松前提即「事件獨立、平均發生率固定」。(A) λ 是平均非最大值；(B) pmf(5) 是「恰好 5 個」的機率；(D) cdf(10) 是「≤10 個」的累積機率。</div>
+</div>
+
+<div class="q" id="e114b-q43">
+<p class="stem"><span class="qno">43.</span>（vgsales 情境）載入後 Year 欄位型態為 float64 而非整數，哪些原因可能導致？原因A：有缺失值 NaN 使整欄轉浮點；原因B：年份原為字串轉換出錯變浮點；原因C：Pandas 預設將所有數值讀為 float64；原因D：年份含小數點(如 2006.0) 被視為浮點。</p>
+<ul class="opts"><li>(A) 原因 B、原因 C</li><li>(B) 原因 A、原因 D</li><li>(C) 原因 A、原因 B、原因 D</li><li>(D) 原因 C、原因 D</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>原因A 正確：欄位有 NaN 時 Pandas 會把整數欄自動升為 float64。原因D 正確：值帶小數(2006.0) 自然為浮點。原因B 字串轉換出錯會報錯或維持 object 而非靜默變 float；原因C 錯，Pandas 會盡量以 int 讀純整數欄。故選 A、D。</div>
+</div>
+
+<div class="q" id="e114b-q44">
+<p class="stem"><span class="qno">44.</span>（承上）欲將 Year 轉為整數型態以利年份趨勢分析，考慮可能含 NaN，最合適的轉換方式為？</p>
+<ul class="opts"><li>(A) data['Year'].astype(int)</li><li>(B) data['Year'].fillna(0).astype(int)</li><li>(C) data['Year'].fillna(1).astype(int)</li><li>(D) data['Year'].astype('Int64')</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Pandas 的可空整數型別 <code>'Int64'</code>（大寫 I）允許保留 NaN（&lt;NA&gt;）並轉整數，不需填補錯誤值。(A) 對 NaN 會報錯；(B)(C) 用 0 或 1 填補會污染年份資料。</div>
+</div>
+
+<div class="q" id="e114b-q45">
+<p class="stem"><span class="qno">45.</span>（承上）欲統計每個平台的全球銷售總額並以長條圖呈現，最能正確實現的程式碼為？</p>
+<ul class="opts"><li>(A) data.groupby("Platform")["Global_Sales"].sum().plot(kind="bar")</li><li>(B) data.groupby("Platform")["Global_Sales"].count().plot(kind="bar")</li><li>(C) data["Platform"].value_counts().plot(kind="bar")</li><li>(D) data.groupby("Platform")["Global_Sales"].mean().plot(kind="bar")</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>要「銷售總額」需 groupby 平台後對 Global_Sales 做 <code>sum()</code>。(B) count 為筆數、(C) value_counts 為平台出現次數、(D) mean 為平均非總額。</div>
+</div>
+
+<div class="q" id="e114b-q46">
+<p class="stem"><span class="qno">46.</span>（承上）欲以 seaborn 長條圖比較北美、歐洲、日本及其他地區的整體銷售總額比例，正確的程式碼為？</p>
+<ul class="opts"><li>(A) sns.countplot(x=[四地區欄位], data=data)</li><li>(B) sns.lineplot(x="Platform", y=[四地區欄位], data=data)</li><li>(C) sns.barplot(x="variable", y="value", data=pd.melt(data, value_vars=[四地區欄位]), estimator=sum)</li><li>(D) sns.histplot(data[[四地區欄位]])</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>先用 <code>pd.melt</code> 將四個地區欄位轉為長格式（variable/value），再以 <code>barplot</code> 搭配 <code>estimator=sum</code> 對各地區加總繪長條圖。(A) countplot 計次、(B) lineplot 不適、(D) histplot 為分佈圖。</div>
+</div>
+
+<div class="q" id="e114b-q47">
+<p class="stem"><span class="qno">47.</span>（承上）欲找出北美（NA）銷售前五名遊戲並以 seaborn 條狀圖呈現，正確的程式碼為？</p>
+<ul class="opts"><li>(A) sns.barplot(x="NA_Sales", y="Name", data=data.head(5))</li><li>(B) sns.barplot(x="Name", y="NA_Sales", data=data.nlargest(5, "NA_Sales"))</li><li>(C) sns.lineplot(x="Name", y="NA_Sales", data=data.nlargest(5, "NA_Sales"))</li><li>(D) sns.countplot(x="Name", y="NA_Sales", data=data)</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>需先用 <code>nlargest(5, "NA_Sales")</code> 取 NA 銷售前五名，再以 barplot 繪製。(A) head(5) 僅取前五列非前五名；(C) lineplot 不適合類別；(D) countplot 不能同時指定 x、y 為此用法。</div>
+</div>
+
+<div class="q" id="e114b-q48">
+<p class="stem"><span class="qno">48.</span>（marketing 情境）根據 describe 結果，下列何者正確？</p>
+<ul class="opts"><li>(A) 資料集個數為 199 筆，變數個數為 4 個</li><li>(B) sales 變數的中位數是 16.827</li><li>(C) facebook 變數的第三四分位數(Q3) 是 11.94</li><li>(D) youtube 變數的第一四分位數(Q1) 是 89.25</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>依官方答案，describe 輸出中 youtube 欄 25%（Q1）值為 89.25。其餘選項與輸出表中對應的筆數、中位數（50%）或 Q3 數值不符。應對照 describe 表中 count、50%、25%、75% 列逐一核對。</div>
+</div>
+
+<div class="q" id="e114b-q49">
+<p class="stem"><span class="qno">49.</span>（承上）計算各變數遺漏值(NaN)個數，下列何者正確？選項A: df.isnull().sum()；選項B: df.isNaN().sum()；選項C: df.isna().sum()；選項D: df.isnan().sum()</p>
+<ul class="opts"><li>(A) 選項 D</li><li>(B) 選項 B、選項 C、選項 D</li><li>(C) 選項 A、選項 C</li><li>(D) 選項 A、選項 B、選項 C</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>Pandas 偵測缺失值的正確方法為 <code>isnull()</code> 與其別名 <code>isna()</code>，兩者等價。<code>isNaN()</code>、<code>isnan()</code> 非 Pandas DataFrame 方法（會報錯）。故正確為 A、C。</div>
+</div>
+
+<div class="q" id="e114b-q50">
+<p class="stem"><span class="qno">50.</span>（承上，已填補遺漏值）參考執行結果，下列何者正確？A：reg = LinearRegression().fit(y, X)；B：reg = LinearRegression().fit(X, y)；C：print(reg.coef_) 結果含截距等 4 個係數；D：sm.OLS(X2, y).fit()；E：所有迴歸係數在 α=0.05 下皆顯著；F：截距項係數值為 3.5561</p>
+<ul class="opts"><li>(A) B、C、F</li><li>(B) B、F</li><li>(C) A、C、D、F</li><li>(D) B、E</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>B 正確：scikit-learn 語法為 <code>fit(X, y)</code>（特徵在前、目標在後）。F 正確：依輸出截距為 3.5561。C 錯：<code>reg.coef_</code> 只含各特徵係數、不含截距（截距在 <code>intercept_</code>），3 個特徵應為 3 個係數；A 參數順序顛倒；D 的 OLS 參數順序應為 (y, X2)；E 未必所有係數皆顯著。故僅 B、F。</div>
+</div>
+
+<h2 class="chap" id="e115a">115 年第一次 中級 第二科 大數據處理分析與應用（50 題）</h2>
+<p class="sub">考試日期：115 年 05 月 23 日｜選擇題 + 程式題，官方答案逐題照列。</p>
+
+<div class="q" id="e115a-q1">
+<p class="stem"><span class="qno">1.</span>以盒鬚圖比較三城市房價：城市A 盒子很短但鬚很長、城市B 盒子很長且對稱、城市C 中位數明顯偏向盒子下方。依統計圖形判讀原則，下列敘述何者正確？</p>
+<ul class="opts"><li>(A) 城市A 中段房價集中但存在極端值；城市C 中位數偏低，資料呈右偏分布</li><li>(B) 城市A 房價集中且離群值少；城市C 資料呈左偏分布</li><li>(C) 城市B 的盒子較長代表房價變異較大；城市C 呈左偏分布</li><li>(D) 盒鬚圖無法判斷偏態，需搭配直方圖才能得出以上結論</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>城市A 盒子短（IQR 小、中段集中）但鬚長（有極端值）；城市C 中位數靠盒子下方 → 上半部拉得長 → 右偏（正偏）。故 (A) 正確。(B)(C) 對城市C 偏態判讀相反；(D) 盒鬚圖可判偏態。</div>
+</div>
+
+<div class="q" id="e115a-q2">
+<p class="stem"><span class="qno">2.</span>下圖為吉尼不純度公式，於決策樹用於評估節點分裂品質。關於吉尼不純度，下列敘述何者「不正確」？</p>
+<ul class="opts"><li>(A) 公式中的 pᵢ 代表第 i 類在該節點中的樣本數，並直接帶入公式計算</li><li>(B) 公式中的 k 代表節點內資料的類別數量</li><li>(C) 吉尼不純度衡量節點內類別混雜程度，數值越高代表越混雜</li><li>(D) 當節點內所有樣本屬同一類別（完全純淨）時，吉尼不純度為 0</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>(A) 錯：pᵢ 是第 i 類的<strong>機率/比例</strong>（=該類樣本數 ÷ 總數），不是樣本數本身直接帶入。Gini=1−Σpᵢ²，(B)(C)(D) 皆正確。</div>
+</div>
+
+<div class="q" id="e115a-q3">
+<p class="stem"><span class="qno">3.</span>預測「每小時客服來電數量」，平均每小時 12 通、事件獨立、發生率穩定，應優先考慮哪個分布？若實際變異數明顯大於平均數，應如何調整？</p>
+<ul class="opts"><li>(A) 常態分布；變異數偏大改用 t 分布</li><li>(B) 卜瓦松分布；變異數&gt;平均數時改用負二項分布（Negative Binomial）</li><li>(C) 卜瓦松分布；變異數偏大時增加樣本數即可修正</li><li>(D) 二項分布；變異數偏大改用卜瓦松分布</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>計數型、獨立、發生率固定 → 卜瓦松（E=Var=λ）。當資料<strong>過度離散（Var&gt;Mean）</strong>違反卜瓦松假設時，改用負二項分布。(C) 增加樣本數無法修正過度離散；(A)(D) 分佈選擇錯誤。</div>
+</div>
+
+<div class="q" id="e115a-q4">
+<p class="stem"><span class="qno">4.</span>評估三種學習率對同一模型驗證損失，各重複訓練 10 次形成三組獨立樣本，近似常態、變異數相近。欲判斷三組平均損失是否顯著不同，同時避免多次兩兩比較提高第一類錯誤，最適合的統計方法為？</p>
+<ul class="opts"><li>(A) 單因子變異數分析（One-Way ANOVA）</li><li>(B) 獨立樣本 t 檢定</li><li>(C) 卡方獨立性檢定</li><li>(D) Wilcoxon 符號等級檢定</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>三組以上獨立樣本、常態且變異數齊一，比較平均數差異用單因子 ANOVA，一次整體檢定可避免多重兩兩 t 檢定累積型一錯誤。(B) 只比兩組；(C) 用於類別；(D) 非參數且為配對用。</div>
+</div>
+
+<div class="q" id="e115a-q5">
+<p class="stem"><span class="qno">5.</span>監控輸入特徵分布，以 Z-score 判斷異常並設 |Z|≥2 觸發警示。某特徵 Z-score 為 −2（特徵近似常態），實務判讀此值最可能代表什麼？</p>
+<ul class="opts"><li>(A) 該特徵值低於歷史平均值 2 個標準差</li><li>(B) 該特徵值高於歷史平均值 2 個標準差</li><li>(C) 該特徵值等於歷史平均值</li><li>(D) Z-score 為負值代表位於母體分布之外，無法以常態解釋</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>Z=−2 表示低於平均 2 個標準差，達 |Z|≥2 警示門檻。(B) 方向相反；(C) Z=0 才等於平均；(D) 負 Z 完全可用常態解釋。</div>
+</div>
+
+<div class="q" id="e115a-q6">
+<p class="stem"><span class="qno">6.</span>「女士品茶」實驗中，女士宣稱能分辨 8 杯奶茶中哪 4 杯先加牛奶，以 α=0.05 進行假說檢定，下列敘述何者「不正確」？</p>
+<ul class="opts"><li>(A) H₀ 為「女士無此能力（隨機猜測）」，H₁ 為「女士確實有此能力」</li><li>(B) 在 α=0.05 下，若完全答對其 p 值約 1/70≈0.014，小於顯著水準，可達統計顯著</li><li>(C) 若完全答對且 p&lt;α，則拒絕虛無假說，統計上支持女士有此能力</li><li>(D) 若未完全答對，則「接受虛無假說」，代表確認女士無此能力</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 錯：無法拒絕 H₀ 只代表「證據不足」，<strong>不等於</strong>接受 H₀、更不能「確認」女士無能力。(A)(B)(C) 正確（C(8,4)=70，全對機率 1/70≈0.014&lt;0.05）。</div>
+</div>
+
+<div class="q" id="e115a-q7">
+<p class="stem"><span class="qno">7.</span>招募 40 名高血壓患者，於導入 AI 推薦系統前後各測一次收縮壓（近似常態），欲判斷同一批患者用藥調整前後血壓是否顯著差異，應選用哪種統計檢定？</p>
+<ul class="opts"><li>(A) 獨立樣本 t 檢定</li><li>(B) 成對樣本 t 檢定（Paired Samples t-test）</li><li>(C) 單因子變異數分析</li><li>(D) 魏克遜符號等級檢定</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>同一批人前後測（前後配對），檢定差值是否為 0，用成對樣本 t 檢定。(A) 用於兩組不同個體；(C) 三組以上；(D) 為非參數，資料近似常態時優先用成對 t。</div>
+</div>
+
+<div class="q" id="e115a-q8">
+<p class="stem"><span class="qno">8.</span>咖啡店宣稱平均外送 36 分鐘、母體標準差 16 分鐘，抽 9 筆訂單平均 40 分鐘。採右尾 Z 檢定（H₁: μ&gt;36），α=0.05（臨界值 1.645），Z 值與檢定結果為何？</p>
+<ul class="opts"><li>(A) Z ≈ 0.08，拒絕虛無假說</li><li>(B) Z ≈ 0.08，不拒絕虛無假說</li><li>(C) Z ≈ 0.75，拒絕虛無假說</li><li>(D) Z ≈ 0.75，不拒絕虛無假說</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>Z=(40−36)/(16/√9)=4/(16/3)=4/5.333≈0.75。但本題官方答案為 B（Z≈0.08）。無論取 0.08 或 0.75，皆 &lt; 臨界值 1.645，故結論一致：<strong>不拒絕虛無假說</strong>。<div class="box note"><span class="tag">補充</span>依標準誤 σ/√n=16/3≈5.33 計算 Z≈0.75；選項 0.08 可能為原題公式/數值設定差異，但「不拒絕 H₀」的結論不受影響，仍以官方答案 B 為準。</div></div>
+</div>
+
+<div class="q" id="e115a-q9">
+<p class="stem"><span class="qno">9.</span>新藥臨床試驗將顯著水準由 α=0.05 降至 α=0.01，在新藥療效安全試驗情境下，此調整對統計檢定的直接影響為何？</p>
+<ul class="opts"><li>(A) 降低型二錯誤（β）發生機率，減少未能偵測有效藥物的風險</li><li>(B) 降低型一錯誤（α，偽陽性）發生機率，減少將無效藥物誤判為有效進入後續高成本試驗的風險</li><li>(C) 增加樣本數以提升統計功效，改善估計精度</li><li>(D) 降低數值誤差，提高 p 值精確度</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>α 直接控制型一錯誤上限，降低 α 即降低偽陽性（誤判無效藥為有效）的風險。代價是型二錯誤上升（(A) 方向相反）。(C)(D) 與調整 α 無直接因果。</div>
+</div>
+
+<div class="q" id="e115a-q10">
+<p class="stem"><span class="qno">10.</span>籃球員受傷預測模型（原始 280 特徵），訓練集 AUC 0.94、測試集僅 0.68（嚴重過擬合）。處理：第一步於全體資料(含測試集) 計算相關係數移除高相關特徵；第二步依重要性篩選後重訓，測試集 AUC 升至 0.81。關於此流程，下列何者最正確？</p>
+<ul class="opts"><li>(A) 使用相關係數篩選方向正確，主要問題在門檻設定過高</li><li>(B) 在全體資料(含測試集) 進行特徵篩選會造成資料洩漏，且線性相關無法捕捉非線性關係</li><li>(C) 篩選後需重新對測試集標準化，否則影響表現</li><li>(D) 測試集表現提升代表過擬合已解決，可直接部署</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>在含測試集的全體資料上做特徵篩選會讓測試集資訊洩漏進選擇過程，使評估虛高；且皮爾森相關僅捕捉線性關係，無法反映非線性。(D) 0.81 仍是受洩漏影響的樂觀估計，不可直接部署。</div>
+</div>
+
+<div class="q" id="e115a-q11">
+<p class="stem"><span class="qno">11.</span>電信續約預測有兩類別特徵：「客服評價」5 等級具順序、「居住縣市」22 類無順序。分別用 Logistic Regression 與 XGBoost，下列哪個編碼方案最適當？</p>
+<ul class="opts"><li>(A) 兩模型皆將兩特徵 One-Hot，保留全部欄位用相同特徵矩陣</li><li>(B) LR 將客服評價做 Ordinal、居住縣市以歷史續約率編碼且於切分前計算；XGBoost 兩特徵皆 Ordinal</li><li>(C) LR 將客服評價做 Ordinal、居住縣市做 One-Hot 並 Drop First；XGBoost 將客服評價 Ordinal、居住縣市以類別型態輸入並啟用 enable_categorical</li><li>(D) 兩模型均將客服評價以平均續約率編碼、居住縣市先 One-Hot 再 PCA 降維</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>有序特徵用 Ordinal 保留順序；無序高基數特徵在 LR 用 One-Hot（Drop First 避共線性），在 XGBoost 可直接以原生類別型態（enable_categorical）處理。(B) 切分前算續約率會洩漏；(A) 對有序特徵丟失順序；(D) 編碼+PCA 不必要且易洩漏。</div>
+</div>
+
+<div class="q" id="e115a-q12">
+<p class="stem"><span class="qno">12.</span>需處理 50GB CSV（遠超記憶體），直接 pd.read_csv() 出現 OOM，在不改用分散式框架前提下，下列哪個參數最能有效解決？</p>
+<ul class="opts"><li>(A) nrows=10000：限制僅讀前 N 筆</li><li>(B) usecols=0.5：隨機載入 50% 欄位</li><li>(C) chunksize=10000：分批讀取逐批處理，避免一次載入整檔</li><li>(D) dtype：指定欄位型別以降低記憶體</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span><code>chunksize</code> 讓 read_csv 回傳可迭代物件，分批讀入逐批處理，徹底避免一次載入整個 50GB 檔案。(A) 只讀前段會遺漏資料；(B) usecols 不接受比例語法；(D) dtype 有幫助但無法根本解決超記憶體規模。</div>
+</div>
+
+<div class="q" id="e115a-q13">
+<p class="stem"><span class="qno">13.</span>電商重構商品架構需支援三系統：商品後台處理結構化+半結構化並支援複雜查詢；推薦系統儲存 1,536 維向量並高效相似度搜尋；即時庫存要求 ACID 且延遲&lt;10ms。哪種資料庫架構最適合？</p>
+<ul class="opts"><li>(A) 全部用關聯式，以 JSON 欄位儲存巢狀、延伸套件支援向量、Row-level Lock 處理庫存</li><li>(B) 商品用文件型資料庫、向量搜尋用專用向量資料庫、庫存用關聯式，各系統依需求選最適資料庫</li><li>(C) 全部用文件型資料庫統一處理</li><li>(D) 商品與向量用搜尋引擎型資料庫，以文件更新處理庫存扣減</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>三種需求差異大，宜採「多型資料庫（Polyglot Persistence）」：文件型存彈性商品資料、專用向量資料庫做高效相似度搜尋、關聯式保證庫存 ACID 與低延遲。單一資料庫(A)(C)(D) 難同時滿足全部效能與一致性需求。</div>
+</div>
+
+<div class="q" id="e115a-q14">
+<p class="stem"><span class="qno">14.</span>PB 級資料單一節點已無法負荷，採分片（Sharding）策略。下列何者為 Sharding 設計的主要目的？</p>
+<ul class="opts"><li>(A) 增加資料備份數量以提升安全性</li><li>(B) 將查詢結果預先計算以降低延遲</li><li>(C) 將資料水平分割以提升擴展性與負載均衡</li><li>(D) 將資料壓縮以減少儲存成本</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>Sharding（分片）將資料<strong>水平切分</strong>到多節點，提升擴展性與負載均衡。(A) 是副本/備援；(B) 是物化檢視；(D) 是壓縮。</div>
+</div>
+
+<div class="q" id="e115a-q15">
+<p class="stem"><span class="qno">15.</span>大規模影像處理出現嚴重過擬合（訓練 99%、驗證 72%）。在不改模型架構前提下，下列哪一項「資料處理層面」調整最無法改善過擬合、甚至可能惡化？</p>
+<ul class="opts"><li>(A) 加入資料增強（Data Augmentation），訓練時動態生成多樣化影像</li><li>(B) 擴充資料來源，收集更多不同場景條件影像以提升分布多樣性</li><li>(C) 為提升吞吐量，預先將影像轉為固定特徵並快取，反覆使用相同訓練資料加速</li><li>(D) 資料清理，移除標註錯誤或品質不佳影像</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>(C) 預先固定特徵並反覆使用相同資料，等於減少資料多樣性、移除增強的隨機性，無助甚至加劇過擬合。(A)(B)(D) 增加多樣性/清理錯誤標註皆有助緩解過擬合。</div>
+</div>
+
+<div class="q" id="e115a-q16">
+<p class="stem"><span class="qno">16.</span>以奇異值分解（SVD）對使用者-商品評分矩陣做 LSA。關於 SVD 數學性質，下列何者「不正確」？</p>
+<ul class="opts"><li>(A) SVD 只能分解方陣，無法應用於行列數不相等的長方形矩陣</li><li>(B) SVD 常用於降維，透過保留最大的 k 個奇異值近似原始矩陣（截斷 SVD）</li><li>(C) SVD 比 PCA 更一般化，PCA 可視為對共變異數矩陣的特殊 SVD 運算</li><li>(D) LSA 是 SVD 在文字-文件矩陣上的應用，透過截斷 SVD 捕捉詞語與文件潛在語意</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>(A) 錯：SVD 可分解<strong>任意 m×n 長方形矩陣</strong>（這正是相對特徵分解的優勢），使用者-商品矩陣本身即非方陣。(B)(C)(D) 皆正確描述。</div>
+</div>
+
+<div class="q" id="e115a-q17">
+<p class="stem"><span class="qno">17.</span>ICU 敗血症預測（敗血症僅 3.2%），資料有：血氧 10–30 分鐘連續缺失、血壓感測器隨時間系統性偏高（漂移）、標註時間 ±2 小時誤差、不同病患基準差異大。下列何種資料處理與建模最適當？</p>
+<ul class="opts"><li>(A) 缺失以整體平均填補、不處理漂移、標註區間擴大至 8 小時、評估用 ROC-AUC</li><li>(B) 線性插值、過長缺失刪除、Z-score 標準化處理漂移、交叉驗證隨機切分（未避免同病患同時出現於訓練與測試）</li><li>(C) 刪除所有含缺失資料、Min-Max 正規化、未考慮病患差異直接建模、用 Accuracy、分層 K-Fold</li><li>(D) 缺失採前向填補並加缺失指標特徵、以 72 小時滾動中位數校正漂移、處理標註雜訊、以個別病患基準建模、交叉驗證採病患分組、評估用 PR-AUC 與 Recall</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 全面正確：前向填補+缺失指標保留時序資訊、滾動中位數校正感測器漂移、按病患基準建模、<strong>病患分組交叉驗證</strong>避免同病患資料洩漏、不平衡資料用 PR-AUC/Recall。(A)(B)(C) 分別有未處理漂移、隨機切分洩漏、刪資料+Accuracy 失準等缺陷。</div>
+</div>
+
+<div class="q" id="e115a-q18">
+<p class="stem"><span class="qno">18.</span>用關聯規則學習分析購物籃。關於支援度、信賴度、提升度，下列敘述何者正確？</p>
+<ul class="opts"><li>(A) 信賴度=P(A∩B)，即 A 與 B 同時出現的機率，範圍[0,1]</li><li>(B) 支援度=P(B|A)，即 A 出現時 B 也出現的條件機率，範圍[0,1]</li><li>(C) 提升度=P(A∩B)/[P(A)×P(B)]，範圍固定在[0,1]之間</li><li>(D) 提升度=1 表示 A 與 B 獨立，&lt;1 為負相關，&gt;1 為正向關聯，因此提升度並非數值愈大即代表關聯愈強</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 正確：Lift=1 獨立、&gt;1 正相關、&lt;1 負相關，且 Lift 範圍可大於 1（非固定 0–1）。(A) 寫反——P(A∩B) 是支援度；(B) P(B|A) 是信賴度；(C) Lift 範圍非[0,1]。</div>
+</div>
+
+<div class="q" id="e115a-q19">
+<p class="stem"><span class="qno">19.</span>下圖表為某時段 8 筆訂單交易紀錄，執行 Apriori，設定最低支援度為 3，最終保留的最大頻繁項目集為何？</p>
+<ul class="opts"><li>(A) {A}</li><li>(B) {A, D}</li><li>(C) {A, B, E}</li><li>(D) {B, E}</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>依官方答案，在最低支援度（計數）≥3 的門檻下，唯一同時滿足且為最大的頻繁項目集為 {B, E}（B 與 E 共同出現次數 ≥3，且其超集不再滿足門檻）。Apriori 由頻繁 1-項集逐層擴展，保留通過支援度門檻的最大集。</div>
+</div>
+
+<div class="q" id="e115a-q20">
+<p class="stem"><span class="qno">20.</span>反詐欺模型在正常 99.5%、詐欺 0.5% 的嚴重不平衡資料訓練，若僅以整體準確率（Accuracy）作為模型選擇唯一指標，最可能產生什麼嚴重問題？</p>
+<ul class="opts"><li>(A) 模型訓練時間會因不平衡大幅增加</li><li>(B) 一個永遠預測為正常的模型即可達 99.5% 準確率，但詐欺召回率為 0%，使準確率失去判別能力</li><li>(C) 不平衡會導致訓練出現梯度爆炸</li><li>(D) 不平衡會直接導致過擬合使測試集下降</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>極度不平衡下，全部猜「正常」即可達 99.5% Accuracy，卻完全抓不到詐欺（Recall=0），故 Accuracy 失去判別力，應改用 PR-AUC、Recall、F1。(A)(C)(D) 非不平衡的直接後果。</div>
+</div>
+
+<div class="q" id="e115a-q21">
+<p class="stem"><span class="qno">21.</span>於 Spark 叢集對 10 億筆使用者行為紀錄計算整體標準差，下列哪種策略在分散式環境中最正確且有效率？</p>
+<ul class="opts"><li>(A) collect() 全部傳回 Driver 本機記憶體後用 statistics.stdev() 計算</li><li>(B) 先全域排序（sortBy）再取中間值計算變異數</li><li>(C) 輸出為 CSV 再以 Excel STDEV 計算</li><li>(D) 使用 DataFrame.agg({'col':'stddev'}) 或 RDD.aggregate()，由各 Executor 計算局部統計量再彙總</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>分散式正解是各 Executor 計算局部統計量（count、sum、平方和）再彙總，避免將海量資料拉回單機。(A) collect() 會撐爆 Driver；(B) 排序與標準差無關且昂貴；(C) Excel 無法處理 10 億筆。</div>
+</div>
+
+<div class="q" id="e115a-q22">
+<p class="stem"><span class="qno">22.</span>連鎖便利商店建立 500 間門市未來 14 天日銷售預測（3 年資料），具週期性、年度季節性、長期成長趨勢，並含已知節日與不定期事件（颱風）。關於資料切分與建模策略，何者最適當？</p>
+<ul class="opts"><li>(A) 隨機切分(80/20)、傳統時間序列模型、刪除節日資料、以 RMSE 評估</li><li>(B) 依時間切分(最後 90 天為測試)、用具季節性的時間序列模型並加節日，不處理不定期事件，以 MAPE 評估</li><li>(C) 依時間切分並採前進式驗證（Walk-Forward），結合時間序列分解與機器學習，加入時間/滯後/滾動統計特徵，納入節日與不定期事件，以 RMSE 與 MAPE 評估</li><li>(D) 依時間切分、直接用深度學習不做特徵工程、所有門市共用模型、以 MAE 評估</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>時序資料須依時間切分並用前進式驗證；結合分解與 ML、加入時間/滯後/滾動特徵與節日及不定期事件，並用多指標(RMSE+MAPE) 評估最完整。(A) 隨機切分洩漏未來、刪節日失資訊；(B) 未處理不定期事件；(D) 缺特徵工程。</div>
+</div>
+
+<div class="q" id="e115a-q23">
+<p class="stem"><span class="qno">23.</span>ROC 曲線由單一分類模型在不同閾值下形成，以 TPR 為縱軸、FPR 為橫軸。下圖四條曲線中，何者最不可能是 ROC 曲線？</p>
+<ul class="opts"><li>(A) 水平線 A</li><li>(B) 曲線 B</li><li>(C) 曲線 C</li><li>(D) 斜直線 D</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>ROC 曲線須單調不下降、由 (0,0) 到 (1,1)。依官方答案，曲線 C 違反此性質（如出現下凹/非單調或落在對角線下方且形狀不符），最不可能是合法 ROC 曲線。對角線 D 代表隨機猜測仍為合法 ROC。</div>
+</div>
+
+<div class="q" id="e115a-q24">
+<p class="stem"><span class="qno">24.</span>評估客戶滿意度評分(1–5，含明顯離群值) 與退款率(連續比例) 的相關性，比較皮爾森、斯皮爾曼、肯德爾相關係數。下列敘述何者「不正確」？</p>
+<ul class="opts"><li>(A) 皮爾森衡量兩連續變數線性關係；斯皮爾曼與肯德爾基於排名，對非線性單調關係也適用</li><li>(B) 斯皮爾曼計算公式等價於皮爾森，只是將原始數值替換為排名後代入</li><li>(C) 與肯德爾相比，斯皮爾曼對離群值的穩健度更強</li><li>(D) 三者數值範圍皆相同，均在[-1, 1]之間</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>(C) 不正確：肯德爾(Kendall τ) 基於一致/不一致對的計數，對離群值與小樣本通常<strong>更穩健</strong>，並非斯皮爾曼比肯德爾更穩健。(A)(B)(D) 皆正確（斯皮爾曼＝對排名做皮爾森）。</div>
+</div>
+
+<div class="q" id="e115a-q25">
+<p class="stem"><span class="qno">25.</span>信用卡詐欺偵測（詐欺約 0.3%），模型測試 99.6% Accuracy 被認定高效，但上線後幾乎攔不到詐欺且大量誤判。經查資料極度不平衡卻仍以 Accuracy 為主要指標。下列何者為最適當改善方向？</p>
+<ul class="opts"><li>(A) 持續優化 Accuracy 以提升整體分類正確率</li><li>(B) 改用精確率（Precision）作為主要評估指標以降低誤報</li><li>(C) 引入 Class Weight 或 Cost-sensitive Learning 調整損失函數</li><li>(D) 移除少數類資料以提升模型穩定性與收斂速度</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>不平衡資料的根本對策是讓模型對少數類更敏感——引入類別權重或成本敏感學習調整損失函數。(A) Accuracy 本就失準；(B) 單看 Precision 仍不足（需兼顧 Recall）；(D) 移除少數類更糟。</div>
+</div>
+
+<div class="q" id="e115a-q26">
+<p class="stem"><span class="qno">26.</span>將訂單 UNIX 時間戳記（連續數值）轉換為「早晨/下午/夜晚」三個有序區間類別，此種將連續數值轉為有序類別的操作，最精確的名稱為何？</p>
+<ul class="opts"><li>(A) 特徵離散化（Feature Discretization）</li><li>(B) 特徵縮放（Feature Scaling）</li><li>(C) 數據降維（Dimensionality Reduction）</li><li>(D) One-Hot 編碼</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>把連續變數切成區間類別即特徵離散化（即分箱 Binning 的一般稱呼）。(B) 縮放是改尺度非離散化；(C) 降維減特徵數；(D) One-Hot 是把類別轉二元向量。</div>
+</div>
+
+<div class="q" id="e115a-q27">
+<p class="stem"><span class="qno">27.</span>單一頁面同時呈現 1,000 位使用者的留存率、活躍程度與付費轉換率三項指標供決策層快速掌握。依 Tufte 的資料密度（Data Density）概念，下列何者最符合此原則的設計方向？</p>
+<ul class="opts"><li>(A) 將 1,000 筆分散至多張圖表(每張約 100 筆) 避免過載</li><li>(B) 移除所有圖例、軸標籤與輔助線等非資料墨水使版面最簡潔</li><li>(C) 加入大量裝飾性元素(色塊、陰影、3D) 使視覺更豐富</li><li>(D) 在有限頁面空間呈現盡可能多的有效資料資訊，同時維持可讀性與清楚的視覺層次</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>資料密度＝有限空間內呈現最多有效資料且維持可讀性。(A) 分散降低密度；(B) 過度移除必要標籤反損可讀性；(C) 裝飾屬「圖表垃圾(chartjunk)」應避免。</div>
+</div>
+
+<div class="q" id="e115a-q28">
+<p class="stem"><span class="qno">28.</span>比較三廣告管道轉換率 A:3.2%、B:3.8%、C:4.0%，設計圖表時將 y 軸刻意截斷（不從 0 開始）放大視覺差異，此做法最可能產生的問題為？</p>
+<ul class="opts"><li>(A) 提升資料解析效率並減少認知負擔</li><li>(B) 增強小幅差異的可視化辨識能力</li><li>(C) 造成視覺誤導並放大實際差異感</li><li>(D) 提升圖表計算準確性與數據正確性</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>y 軸截斷會使微小差異看起來巨大，造成視覺誤導、扭曲讀者對實際差異的判斷，是常見的誤導性圖表手法。(B) 雖技術上放大差異但屬負面誤導非正當「辨識」；(A)(D) 不正確。</div>
+</div>
+
+<div class="q" id="e115a-q29">
+<p class="stem"><span class="qno">29.</span>儀表板需呈現「模型推論延遲(ms) 隨時間的變化趨勢」以監控 SLA（P99&lt;200ms）。在圖表類型選擇上，下列哪種最適合呈現連續數值隨時間變化的趨勢？</p>
+<ul class="opts"><li>(A) 面積圖（Area Chart）</li><li>(B) 散佈圖（Scatter Plot）</li><li>(C) 長條圖（Bar Chart）</li><li>(D) 折線圖（Line Plot）</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>連續數值隨時間的趨勢最適合折線圖。(A) 面積圖偏重累積量；(B) 散佈圖看關聯；(C) 長條圖比較類別。</div>
+</div>
+
+<div class="q" id="e115a-q30">
+<p class="stem"><span class="qno">30.</span>5,000 萬筆訓練資料，比較 Batch Size=32 與 4096，發現大批次訓練較快但泛化較差。從最佳化理論角度，下列何者為最合理解釋？</p>
+<ul class="opts"><li>(A) 大批次計算量過大，GPU 無法有效處理</li><li>(B) 大批次梯度估計更穩定，但容易收斂至局部極小值（Local Minima），導致泛化較差</li><li>(C) 小批次因隨機性高更容易發生梯度爆炸</li><li>(D) 批次大小與泛化無關，問題出在學習率設定</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>大批次梯度估計穩定但隨機性低，傾向收斂至「尖銳(sharp)」的局部極小值，泛化較差；小批次的噪音反而有助逃離尖銳極小、找到較平坦解。(A)(C)(D) 解釋不符最佳化理論。</div>
+</div>
+
+<div class="q" id="e115a-q31">
+<p class="stem"><span class="qno">31.</span>A 團隊做信用評分、B 團隊做詐欺偵測，皆需「使用者過去 30 天交易行為」資料但各自做特徵工程。以公司整體管理角度，導入統一管理與共用特徵（Feature Store）的主要目的為？</p>
+<ul class="opts"><li>(A) 模型推論延遲過高導致線上回應不符即時性需求</li><li>(B) 降低跨團隊重複開發的維護成本</li><li>(C) 訓練資料儲存空間不足造成歷史保存與批次效率問題</li><li>(D) 模型版本管理混亂導致部署與回溯困難</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>統一特徵管理（Feature Store）讓多團隊共用一致的特徵定義與運算，主要目的是消除重複開發、降低維護成本並確保一致性。(A)(C)(D) 非共用特徵的核心訴求。</div>
+</div>
+
+<div class="q" id="e115a-q32">
+<p class="stem"><span class="qno">32.</span>貸款違約預測（違約僅 1.6%），流程：先對「整體資料」用 SMOTE 過採樣，再做訓練/測試切分，訓練 LightGBM，測試 AUC-ROC 0.91。審查時，下列何者為使測試集評估結果失真的主要原因？</p>
+<ul class="opts"><li>(A) SMOTE 不適合金融違約場景，應一律用 class_weight 而非過採樣</li><li>(B) SMOTE 在訓練/測試切分「之前」即對全體執行，導致合成樣本資訊洩漏至測試集，使 AUC-ROC 0.91 虛高而不可信</li><li>(C) AUC-ROC 在 1.6% 不平衡下過度樂觀，應改用 PR-AUC，其餘流程均正確</li><li>(D) LightGBM 已內建處理不平衡，與 SMOTE 同用造成少數類過度補償</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>關鍵錯誤是「先 SMOTE 再切分」——合成的少數類樣本可能與測試集樣本高度相關，造成資訊洩漏，使測試 AUC 虛高。正確做法是<strong>切分後僅對訓練集</strong>做 SMOTE。(A)(C)(D) 雖各有部分道理但非「使評估失真」的主因。</div>
+</div>
+
+<div class="q" id="e115a-q33">
+<p class="stem"><span class="qno">33.</span>線上書店多類別書籍推薦（8 類），依年齡、性別、過去偏好評分預測下次購買主題，資料數十萬筆，除準確率外需考量訓練效率、可擴充性、快速訓練與線上部署。下列哪種方法最適合此情境？</p>
+<ul class="opts"><li>(A) 多類別羅吉斯迴歸（Multinomial Logistic Regression）</li><li>(B) SVM 搭配 One-vs-One</li><li>(C) K-means 分群後將群集標籤作為分類結果</li><li>(D) PCA 後以最大主成分作為分類依據</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>多類別羅吉斯迴歸訓練高效、可擴充、易線上部署且原生支援多類別，符合「準確率+效率+部署」綜合需求。(B) SVM One-vs-One 在 8 類需訓練 28 個分類器、大資料下慢；(C)(D) 為非監督/降維，非分類器。</div>
+</div>
+
+<div class="q" id="e115a-q34">
+<p class="stem"><span class="qno">34.</span>電商二元分類（高銷量 1 / 低銷量 0），依價格區間、品牌、顏色、材質分類，並希望輸出可解釋的機率（如 P=0.73）。下列哪種方法最適合？</p>
+<ul class="opts"><li>(A) K-means 分群</li><li>(B) 決策樹迴歸</li><li>(C) 羅吉斯迴歸（Logistic Regression）</li><li>(D) 線性迴歸</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>羅吉斯迴歸專為二元分類設計，透過 Sigmoid 輸出 0–1 的機率值且具可解釋性。(A) 非監督分群；(B) 迴歸非分類；(D) 線性迴歸輸出可能超出 0–1，不適合機率。</div>
+</div>
+
+<div class="q" id="e115a-q35">
+<p class="stem"><span class="qno">35.</span>以 Transformer 做文本分類，發現模型對詞語順序變化不夠敏感。在 Transformer 架構中，位置編碼（Positional Encoding）的主要作用為？</p>
+<ul class="opts"><li>(A) 在詞嵌入中加入隨機擾動以提升泛化</li><li>(B) 在注意力機制加入遮罩限制只關注部分詞語</li><li>(C) 將輸入序列轉為可同時運算的向量以提升計算效率</li><li>(D) 在詞的向量表示中加入位置資訊，使模型能區分序列中不同位置的詞語</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Transformer 的自注意力本身不含順序資訊，位置編碼將每個位置的資訊加入詞向量，使模型能區分詞語順序。(A) 是擾動/正則；(B) 是 Masking；(C) 是平行運算特性。</div>
+</div>
+
+<div class="q" id="e115a-q36">
+<p class="stem"><span class="qno">36.</span>為電商資料湖（數百億筆點擊）設計系統，需讓非技術行銷人員以自然語言查詢（如「上月台北市購買 3C 的女性轉換率」），同時高精確、可擴展、支援資料庫層級權限控管與查詢審計，並確保結果可由資料庫引擎精確執行。下列何者為最適合的系統架構？</p>
+<ul class="opts"><li>(A) 協同過濾（Collaborative Filtering）：根據歷史查詢推薦相似問題答案，無法執行新問題即時計算</li><li>(B) 檢索增強生成（RAG）：讓 LLM 檢索資料後生成回答，但無法可靠執行大規模數值聚合與精確統計查詢</li><li>(C) 生成對抗網路（GAN）：用於生成合成資料，不適合即時查詢與資料庫聚合</li><li>(D) Text-to-SQL Agent：由 LLM 將自然語言轉為 SQL，交由分散式資料庫執行，兼顧自然語言彈性與查詢精確性</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>Text-to-SQL 將自然語言轉成 SQL 由資料庫引擎精確執行，能做精確聚合統計、套用資料庫權限與審計，最符合需求。(A) 協同過濾用於推薦；(B) RAG 生成式回答無法保證精確數值聚合；(C) GAN 與查詢無關。</div>
+</div>
+
+<div class="q" id="e115a-q37">
+<p class="stem"><span class="qno">37.</span>信用評分模型開放 API 查詢，資安團隊警告可能遭成員推斷攻擊（Membership Inference Attack）。下列何者最準確說明攻擊原理與對應防禦？</p>
+<ul class="opts"><li>(A) 利用模型對訓練樣本的高信心輸出判斷其是否屬於訓練集；以差分隱私或降低輸出信心防禦</li><li>(B) 利用查詢次數與回應頻率差異判斷資料是否在訓練集；以限制查詢次數防禦</li><li>(C) 透過模型輸出推測輸入的敏感特徵；以限制輸出資訊防禦</li><li>(D) 透過大量查詢建立替代模型模擬目標模型；以限制模型存取防禦</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>成員推斷攻擊利用模型對「曾見過的訓練樣本」通常輸出更高信心的特性，判斷某筆資料是否在訓練集中；防禦以差分隱私或降低/校準輸出信心。(C) 是屬性推斷；(D) 是模型萃取攻擊。</div>
+</div>
+
+<div class="q" id="e115a-q38">
+<p class="stem"><span class="qno">38.</span>評估三種去識別化技術：K 匿名、差分隱私合成資料、亂數回應機制。下列敘述何者「不正確」？</p>
+<ul class="opts"><li>(A) K 匿名主要用於表格資料，確保每筆記錄在準識別符組合上至少與 K-1 筆相同，防止個體被唯一識別</li><li>(B) 差分隱私合成資料是在發布統計查詢或訓練模型時直接對原始資料加入雜訊，以確保單一個體加入或移除不會顯著改變輸出</li><li>(C) 亂數回應機制讓受訪者以機率性方式回答敏感問題，賦予答案的可否認性（Plausible Deniability）</li><li>(D) 三種技術中，只有差分隱私提供可組合且可量化的隱私保證，K 匿名與亂數回應在面對背景知識攻擊或多次查詢時保護能力有限</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>(B) 描述有誤：差分「隱私」是對<strong>查詢結果或機制輸出</strong>加入校準噪音以提供保證；而「差分隱私<strong>合成資料</strong>」是先以 DP 機制學習資料分佈再產生<strong>全新的合成資料集</strong>供發布，並非「直接對原始資料加噪音發布」。(A)(C)(D) 皆正確。</div>
+</div>
+
+<div class="q" id="e115a-q39">
+<p class="stem"><span class="qno">39.</span>（程式題）建構自動化資料清洗管線，撰寫補齊缺失欄位的 Python 函式（如圖）。當此函式連續處理兩筆獨立資料（row1 與 row2）後，第二筆資料 row2['tags'] 的內容會為何？</p>
+<ul class="opts"><li>(A) ["checked", "tags"]</li><li>(B) []</li><li>(C) ["checked", "checked"]</li><li>(D) 拋出 KeyError 錯誤，因字典中沒有 tags 鍵值</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>此為 Python 經典陷阱：函式以<strong>可變物件（list）作為預設參數</strong>，預設值只在函式定義時建立一次並被多次呼叫共享。第一筆 append "checked" 後，該 list 殘留；第二筆再 append "checked"，故 row2['tags'] 為 ["checked", "checked"]。正解：預設值應用 None 並在函式內初始化。</div>
+</div>
+
+<div class="q" id="e115a-q40">
+<p class="stem"><span class="qno">40.</span>（程式題）下圖為一段分類演算法的 pseudocode，最可能對應下列哪一種演算法？</p>
+<ul class="opts"><li>(A) K-近鄰（KNN）</li><li>(B) K-means 分群</li><li>(C) 支援向量機（SVM）</li><li>(D) 隨機森林分類器</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>依官方答案為 KNN：典型流程為「計算待測點與所有訓練點的距離 → 取最近 k 個鄰居 → 以多數決決定類別」，無訓練階段、屬惰性學習(lazy learning)，此即 KNN 標誌。</div>
+</div>
+
+<div class="q" id="e115a-q41">
+<p class="stem"><span class="qno">41.</span>（driver 情境）檢視 daily_earnings 統計量：mean=223.41、50%=128.55、max=4500。發現約 5% 遺失值，欲建線性迴歸預測收入，為盡量保留原分布特性並降低補值偏差，下列哪種處理最合理？</p>
+<ul class="opts"><li>(A) fillna(mean)</li><li>(B) fillna(median)</li><li>(C) fillna(max)</li><li>(D) 直接刪除所有遺失資料，因數值欄位不適合補值</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>mean(223) 遠大於 median(128) 且 max 高達 4500，顯示資料<strong>右偏、有極端值</strong>。此時用中位數補值較不受極端值拉扯、較能保留原分布中心，偏差小於用平均。(C) 用 max 嚴重失真；(D) 刪 5% 資料非必要且損資訊。</div>
+</div>
+
+<div class="q" id="e115a-q42">
+<p class="stem"><span class="qno">42.</span>（承上）將 region(A/B/C) 以 Label Encoding 轉為 1/2/3，線性迴歸對 C 區（=3）明顯高估，顯示模型誤解編碼為線性大小關係。若不得修改編碼（須維持 1/2/3），但希望從演算法層面降低此誤解風險，下列何者最適合作為替代模型？</p>
+<ul class="opts"><li>(A) 羅吉斯迴歸</li><li>(B) Ridge 迴歸</li><li>(C) 支援向量機（SVM）搭配線性核函數</li><li>(D) 隨機森林（Random Forest）</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>隨機森林（樹模型）以「是否 ≤ 某閾值」做分裂，不假設編碼值具線性大小意義，能容忍 Label Encoding 對無序類別的影響。(A)(B)(C) 皆為線性模型，仍會把 1/2/3 當線性數值，無法解決誤解。</div>
+</div>
+
+<div class="q" id="e115a-q43">
+<p class="stem"><span class="qno">43.</span>（承上）極少數司機（約 0.05%）竄改 gps_ping_rate 騙補貼。新進人員稱「整體準確率高達 99.95%，可直接上線」。資深工程師質疑，下列何者「不是」其提出質疑的合理理由？</p>
+<ul class="opts"><li>(A) 此類極度不平衡資料中，即使模型永遠預測所有司機皆正常，整體準確率仍可能高達 99.95%</li><li>(B) 報告未呈現召回率（Recall），模型可能無法有效辨識真正的外掛司機</li><li>(C) 異常偵測問題不可使用分類模型處理，僅能使用分群或離群值方法</li><li>(D) 對少數類比例極低的問題，若僅觀察 Accuracy，可能忽略模型對異常樣本的實際偵測能力</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>(C) 是錯誤陳述（非合理質疑理由）：異常偵測<strong>可以</strong>用監督式分類模型處理（只要有標註），並非「僅能用分群/離群值方法」。(A)(B)(D) 皆為合理質疑——不平衡下 Accuracy 失真、缺 Recall 無法評估抓詐能力。</div>
+</div>
+
+<div class="q" id="e115a-q44">
+<p class="stem"><span class="qno">44.</span>（承上）營運長目標：「對作弊零容忍，即使誤凍結部分正常司機帳號後續可人工覆核，但不能放過任何真正的外掛司機。」調整決策機率門檻（預設 0.5）時，應採取何種策略最合理？</p>
+<ul class="opts"><li>(A) 選擇使對作弊者的召回率（Recall）最大化的門檻，通常代表應降低 Threshold</li><li>(B) 選擇使精確率（Precision）最大化的門檻，通常代表應提高 Threshold</li><li>(C) 固定使用 Threshold=0.5，因調整門檻將破壞訓練平衡</li><li>(D) 選擇使特異度（Specificity）達 100% 的門檻，確保正常司機不會被誤判</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>「不能放過任何外掛司機」＝盡量不漏抓＝最大化 Recall（召回率），對應<strong>降低</strong>判正門檻使更多可疑者被標記。誤凍結正常者(降低 Precision/特異度) 可接受並交人工覆核。(B)(D) 與目標相反；(C) 固定門檻無法達零容忍。</div>
+</div>
+
+<div class="q" id="e115a-q45">
+<p class="stem"><span class="qno">45.</span>（電商交易情境）欲找出「總貢獻營收最高的前 3 名客戶」，下列 Pandas 程式碼何者最為精確且高效？</p>
+<ul class="opts"><li>(A) df.sort_values('Revenue', ascending=False).head(3)['CustomerID']</li><li>(B) df.groupby('CustomerID')['Revenue'].max().head(3)</li><li>(C) df.groupby('CustomerID')['Revenue'].sum().nlargest(3)</li><li>(D) df.value_counts('CustomerID').head(3)</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>「總貢獻營收」需先 groupby 客戶後 <code>sum()</code> 加總，再以 <code>nlargest(3)</code> 取前三。(A) 只看單筆最高營收非總額；(B) max 為單客最大單筆；(D) value_counts 計交易次數非營收。</div>
+</div>
+
+<div class="q" id="e115a-q46">
+<p class="stem"><span class="qno">46.</span>（承上）若只想計算「Electronics」這個特定分類的平均營收，下列何者為最佳語法？</p>
+<ul class="opts"><li>(A) df[df['Category'] == 'Electronics']['Revenue'].mean()</li><li>(B) df['Category' == 'Electronics']['Revenue'].mean()</li><li>(C) df.loc['Electronics', 'Revenue'].mean()</li><li>(D) df.filter(items=['Electronics'])['Revenue'].mean()</li></ul>
+<span class="ans">答案：A</span>
+<div class="exp"><span class="lab">解析</span>正確為布林索引：<code>df[df['Category']=='Electronics']</code> 篩出該分類列再對 Revenue 取 mean。(B) 'Category'=='Electronics' 先比較兩字串得 False，語法錯誤；(C) loc 用標籤索引非條件；(D) filter(items) 篩的是欄/列標籤非值。</div>
+</div>
+
+<div class="q" id="e115a-q47">
+<p class="stem"><span class="qno">47.</span>（承上）想將 customers 表的 Region 欄加入 df，且「只保留在 customers 表中有對應資料的交易紀錄」，下列哪種合併方式最正確？</p>
+<ul class="opts"><li>(A) pd.concat([df, customers], axis=1)</li><li>(B) pd.merge(df, customers, on='CustomerID', how='outer')</li><li>(C) pd.merge(df, customers, on='CustomerID', how='inner')</li><li>(D) df.join(customers, on='CustomerID')</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span>「只保留兩邊都有對應」即<strong>內部合併 inner join</strong>，依 CustomerID 合併。(A) concat 按位置拼接易錯位；(B) outer 會保留無對應的列(產生 NaN)；(D) join 預設用索引、需額外設定且非取交集。</div>
+</div>
+
+<div class="q" id="e115a-q48">
+<p class="stem"><span class="qno">48.</span>（程式題）對特徵 X 用 StandardScaler 標準化（已 scaler = StandardScaler()），下列哪種寫法可正確完成資料標準化？</p>
+<ul class="opts"><li>(A) X_norm = scaler.transform(X)</li><li>(B) X_norm = scaler.fit(X)</li><li>(C) X_norm = scaler.fit_transform(X)</li><li>(D) X_norm = fit_transform(scaler)</li></ul>
+<span class="ans">答案：C</span>
+<div class="exp"><span class="lab">解析</span><code>fit_transform(X)</code> 一步完成「學習均值/標準差」並「轉換」回傳標準化結果。(A) transform 前需先 fit 否則未學參數；(B) fit 只學參數回傳 scaler 本身非轉換結果；(D) 語法錯誤。</div>
+</div>
+
+<div class="q" id="e115a-q49">
+<p class="stem"><span class="qno">49.</span>（程式題）已完成前處理，欲建分類模型，流程為：① 切分訓練/測試集 ② 建立羅吉斯迴歸模型 ③ 以訓練資料 fit。下列哪一組 Pandas / Scikit-learn 程式碼流程最為正確？</p>
+<ul class="opts"><li>(A) 選項 A</li><li>(B) 選項 B</li><li>(C) 選項 C</li><li>(D) 選項 D</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>依官方答案為選項 B：正確流程為先以 <code>train_test_split(X, y, ...)</code> 切分，建立 <code>LogisticRegression()</code>，再以<strong>訓練集</strong> <code>model.fit(X_train, y_train)</code> 擬合（特徵在前、目標在後，且僅用訓練集 fit）。其餘選項在參數順序、用測試集 fit 或語法上有誤。</div>
+</div>
+
+<div class="q" id="e115a-q50">
+<p class="stem"><span class="qno">50.</span>（程式題）參考下圖程式碼，下列描述何者正確？</p>
+<ul class="opts"><li>(A) cm 表示混淆矩陣，橫列表測試集的預測值</li><li>(B) 混淆矩陣對角線數值皆大於非對角線數值表示模型過度擬合</li><li>(C) f1_score 參數 average="weighted" 表示計算平均 f1_score</li><li>(D) f1_score 計算時採用各類別精確率（Precision）與召回率（Recall）的調和平均，並加權考量類別不平衡性</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>(D) 正確：F1 是 Precision 與 Recall 的調和平均；<code>average="weighted"</code> 會依各類別樣本數加權，考量類別不平衡。(A) 混淆矩陣慣例橫列為真實、縱行為預測（sklearn 預設）；(B) 對角線大代表分類正確、非過擬合徵兆；(C) weighted 並非單純算術平均而是加權平均。</div>
+</div>
+
+<footer>
+<p>官方答案取自 iPAS 經濟部產業人才能力鑑定公告試題（114 年第二梯次、115 年第一次「中級・第二科 大數據處理分析與應用」）。各題【答案】採 PDF 內官方答案字母，未經更改。</p>
+<p>【解析】與「考前重點」為依官方學習指引整理之學習輔助內容，非官方標準解析；部分附圖題（圖表/程式碼截圖）以官方答案為準並就題意說明判讀邏輯。如與官方公告有出入，一律以官方公告為準。</p>
+</footer>
+</main>
+</div>
+<script src="glossary.js" defer></script>
+</body>
+</html>
