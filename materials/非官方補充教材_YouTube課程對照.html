@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>非官方補充：YouTube 課程 × 官方學習指引對照 — iPAS AI 應用規劃師教材</title>
+<style>
+:root{--accent:#b45309;--accent-soft:#fdf1e3;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+li.warn{background:#fef2f2;border-left:4px solid #dc2626;border-radius:4px;padding:6px 10px;list-style-position:inside;margin-left:-14px;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box.legend{background:#f4f5fb;border-color:#64748b;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;} .box.legend .tag{color:#475569;}
+p.map{font-size:14px;color:var(--muted);background:var(--accent-soft);border-radius:6px;padding:8px 14px;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="#alerts">備考警示總表</a>
+    <a href="#week1">第一週（課程 1–7）</a>
+    <a class="sub" href="#lesson1">第 1 課 AI 與 Big Data 概論</a>
+    <a class="sub" href="#lesson2">第 2 課 機器學習核心類型</a>
+    <a class="sub" href="#lesson3">第 3 課 Hadoop</a>
+    <a class="sub" href="#lesson4">第 4 課 Spark</a>
+    <a class="sub" href="#lesson5">第 5 課 資料架構演進</a>
+    <a class="sub" href="#lesson6">第 6 課 資料前處理與特徵工程</a>
+    <a class="sub" href="#lesson7">第 7 課 第一週複習與整合</a>
+    <a href="#week2">第二週（課程 8–14）</a>
+    <a class="sub" href="#lesson8">第 8 課 迴歸模型</a>
+    <a class="sub" href="#lesson9">第 9 課 分類模型 I</a>
+    <a class="sub" href="#lesson10">第 10 課 決策樹與隨機森林</a>
+    <a class="sub" href="#lesson11">第 11 課 SVM 與樸素貝氏</a>
+    <a class="sub" href="#lesson12">第 12 課 模型評估指標</a>
+    <a class="sub" href="#lesson13">第 13 課 模型優化</a>
+    <a class="sub" href="#lesson14">第 14 課 第二週複習與整合</a>
+    <a href="#week3">第三週（課程 15–21）</a>
+    <a class="sub" href="#lesson15">第 15 課 分群</a>
+    <a class="sub" href="#lesson16">第 16 課 降維</a>
+    <a class="sub" href="#lesson17">第 17 課 神經網路</a>
+    <a class="sub" href="#lesson18">第 18 課 CNN</a>
+    <a class="sub" href="#lesson19">第 19 課 RNN</a>
+    <a class="sub" href="#lesson20">第 20 課 強化學習簡介</a>
+    <a class="sub" href="#lesson21">第 21 課 第三週複習與整合</a>
+    <a href="#week4">第四週（課程 22–27）</a>
+    <a class="sub" href="#lesson22">第 22 課 數據專案生命週期</a>
+    <a class="sub" href="#lesson23">第 23 課 數據治理與品質管理</a>
+    <a class="sub" href="#lesson24">第 24 課 倫理與法規</a>
+    <a class="sub" href="#lesson25">第 25 課 資訊安全</a>
+    <a class="sub" href="#lesson26">第 26 課 模型部署與維運 MLOps</a>
+    <a class="sub" href="#lesson27">第 27 課 產業應用案例分析</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">非官方補充</span>
+      <h1>YouTube 課程 × 官方學習指引對照</h1>
+      <p class="sub">來源：VISION PRO 頻道「iPAS AI 應用規劃師中級（初級適用）」課程（<a href="https://www.youtube.com/playlist?list=PL9rROLqp7gY-8tK0mlwE9ZnC9ZA0h8ONx">播放清單</a>）· 全 27 課逐條交叉核對</p>
+    </header>
+
+    <div class="box key">
+      <span class="tag">免責聲明（必讀）</span>
+      本頁為<strong>非官方補充教材</strong>，依外部 YouTube 課程摘要整理，並與 iPAS 官方學習指引逐條交叉核對。內容正確性一律以<strong>官方學習指引與勘誤表</strong>為準；本頁<strong>非 iPAS 官方教材</strong>，僅供學習參考。
+    </div>
+
+    <div class="box legend">
+      <span class="tag">圖例說明</span>
+      ✅ 與官方一致（附官方原文佐證）｜⚠️ 與官方有出入或有誤導風險（以官方為準）｜➕ 官方未涵蓋之課程補充（判斷相容性）
+    </div>
+
+    <p>核對對象為該課程全 27 課、每課約 5 條重點整理（共約 135 條）；核對依據為 iPAS 官方學習指引全文（初級科目 1、2；中級科目 1、2、3），以官方原文為唯一「官方有／無」判準。四週整體評價：<strong>課程內容事實正確率高，適合作為觀念入門與複習框架</strong>——七成以上重點可在官方學習指引找到直接對應（✅），兩成多屬官方未涵蓋但事實正確、與官方相容的業界補充（➕），真正需要警戒的出入（⚠️）約 10 處，且多半不是「講錯」，而是<strong>框架名稱、分類法或術語與官方不同</strong>，直接影響選擇題作答。</p>
+
+    <!-- ============ 備考警示總表 ============ -->
+    <h2 class="chap" id="alerts">備考警示總表（跨週彙整）</h2>
+
+    <h3 id="alert-terms">一、術語要改用官方用語</h3>
+    <table>
+      <thead><tr><th>課程用語</th><th>官方用語</th><th>出處</th></tr></thead>
+      <tbody>
+        <tr><td>維度災難</td><td><strong>維度詛咒</strong></td><td>第 16 課</td></tr>
+        <tr><td>手肘法（選 K 值）</td><td>官方無此詞；分群評估用<strong>輪廓係數（Silhouette score）</strong></td><td>第 15 課</td></tr>
+        <tr><td>正規化（指 regularization）</td><td><strong>正則化</strong>＝Regularization；<strong>正規化</strong>＝Normalization，官方嚴格分工</td><td>第 13 課</td></tr>
+        <tr><td>模型「飄移」</td><td>官方一律用「<strong>漂移</strong>」；且資料漂移／模型漂移／概念漂移<strong>三者並列</strong>，非總稱下分兩種</td><td>第 26 課</td></tr>
+        <tr><td>核技巧</td><td><strong>核函數（Kernel Function）</strong></td><td>第 11 課</td></tr>
+        <tr><td>白箱模型</td><td>官方用「<strong>可解釋性高／易於解釋</strong>」（「黑箱」官方有用）</td><td>第 10 課</td></tr>
+        <tr><td>濾鏡／特徵圖／局部感知／位置容忍度</td><td>卷積核（濾波器）／特徵映射／局部連接／<strong>平移不變性</strong></td><td>第 18 課</td></tr>
+        <tr><td>循環神經網路（中級）</td><td>中級科目3 用「<strong>遞迴神經網路</strong>」；初級用「循環神經網路」</td><td>第 19 課</td></tr>
+        <tr><td>激活函數（初級）</td><td>初級科目1 用「<strong>激勵函數</strong>」；中級科目3 用「激活函數」</td><td>第 17 課</td></tr>
+        <tr><td>羅吉斯迴歸／支持向量機／樸素貝氏</td><td>邏輯迴歸／支援向量機／樸素貝式分類</td><td>第 9、11 課</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="alert-taxonomy">二、分類法與對應關係以官方為準</h3>
+    <ol>
+      <li><strong>啤酒與尿布＝關聯規則學習（Apriori），不是分群</strong>（第 2 課）——官方明確歸於關聯分析，經典陷阱題。</li>
+      <li><strong>類別不平衡→官方對應 F1 分數</strong>；AUC 官方定位是「綜觀所有閾值的整體區分能力」，勿答「AUC 適合不平衡資料」（第 12 課）。</li>
+      <li><strong>課程「列式儲存（Column-Family 資料庫）」≠官方「列式儲存格式（Parquet/ORC）」</strong>；時間序列題官方答案方向是「分區儲存＋列式格式＋串流處理」（第 4、7 課）。</li>
+      <li><strong>強化學習要素</strong>：中級官方<strong>七項</strong>（含策略、價值函數）、初級官方三項核心；「五大要素」是課程切法（第 20 課）。</li>
+      <li><strong>資料品質</strong>：官方是五類品質問題＋五項品質指標（缺失率、唯一值比率、一致性比率、異常值比率、完整性比率），非課程的「六大維度」（第 23 課）。</li>
+      <li><strong>製造業品檢≠一律高精確率</strong>（第 27 課）——官方只給原則「誤報代價高→Precision、漏報代價高→Recall」，逐案判斷，勿背「產業→指標」對照表。</li>
+      <li><strong>NLP／智慧客服選型</strong>：官方已大篇幅改以 <strong>Transformer</strong> 為主流（RNN/LSTM 為「傳統序列模型」），課程未提 Transformer（第 19、21 課）。</li>
+      <li><strong>GDPR</strong>：官方無罰款數字（且完整規定是 2,000 萬歐元或全球年營業額 4% 取其高）；官方載明的是<strong>權利對應條號</strong>（第 15/16/17/18/20/22 條），後者才可能入題（第 24 課）。</li>
+    </ol>
+
+    <h3 id="alert-extra">三、課程有、官方沒有的詞彙</h3>
+    <div class="box key">
+      <span class="tag">理解幫助大，但勿假設會出現在官方考題</span>
+      CRISP-DM、MDM／黃金記錄、CIA Triad、資料三態（靜態/傳輸中/使用中）、資料毒化、金鑰管理、Polyglot Persistence、Schema on Write、ELT、資料沼澤、NoSQL 四類型、NameNode/DataNode、Map/Reduce 兩階段細節、多項式迴歸、學習曲線（作為過擬合診斷）、手肘法、協同過濾。
+    </div>
+
+    <h3 id="alert-missing">四、官方有、課程沒教的高密度考點</h3>
+    <div class="box def">
+      <span class="tag">建議直接補讀官方章節</span>
+      <ul>
+        <li><strong>中級科目3</strong>：Lasso/Ridge、SVR、Bagging/Boosting/XGBoost/LightGBM、SMOTE、Stratified K-fold、DBSCAN、FP-Growth、t-SNE/UMAP、GRU 與細胞狀態、Transformer、Q-Learning/DQN/MDP、感知器史實（Rosenblatt 1957、XOR）、機器學習治理（偏見三分類、80% Rule）、SHAP/LIME。</li>
+        <li><strong>中級科目2</strong>：資料品質五類問題與五項指標、Label/Target Encoding、MCAR/MAR/MNAR、四大分散式框架比較（含 Flink/Beam）、RBAC/ABAC/PBAC/DAC 與 Zero Trust、合規資料處理五原則、部署三模式（Batch/Online/Streaming）。</li>
+        <li><strong>中級科目1</strong>：AI 導入評估（ROI/NPV、POC）、XAI 技術、GDPR 條號、模型/資料/概念漂移三定義、MLOps 工具鏈（MLflow、DVC）。</li>
+      </ul>
+    </div>
+
+    <!-- ============ 第一週 ============ -->
+    <h2 class="chap" id="week1">第一週交叉核對結果（課程 1–7）</h2>
+
+    <h3 id="lesson1">第 1 課 AI 與 Big Data 概論</h3>
+    <p class="map"><strong>對應官方章節：</strong>初級科目1 §3.1 人工智慧概念、§3.3 機器學習概念；中級科目2 §6.1 大數據與機器學習；中級科目1 §5.1 數據準備與模型選擇（GIGO 出處）</p>
+    <ul>
+      <li>✅ AI ⊃ ML ⊃ DL 層層包含：官方明載「深度學習（DL）是一種機器學習的子領域」（初級科目1）、「機器學習（ML）作為人工智慧發展的核心技術之一」（中級科目3 §4.1）。「IF-THEN 規則也算 AI」與官方將「專家系統（基於規則與知識庫）」列入 AI 技術底層相容。</li>
+      <li>✅ 大數據 5V：中級科目2 §6.1 明列「五大特性 Volume、Variety、Velocity、Veracity、Value」。惟官方對 Value 的論述是「資料價值密度低（Low Value Density）」的挑戰視角，「Value 是最終目的」為課程自己的詮釋（與官方「使 AI 系統更符合商業價值需求」精神相容）。</li>
+      <li class="warn">➕/⚠️ 非結構化資料佔比超過八成：官方全文無此比例數字，屬課程補充（業界常見說法，尚屬合理）。但「需要深度學習才能有效處理」說得過度絕對——官方僅說深度學習「適用於處理非結構化數據」（初級科目1），並非唯一手段（官方亦介紹 TF-IDF 等傳統文字處理法）。</li>
+      <li>✅ Garbage in, garbage out：官方原文「垃圾進，垃圾出（Garbage In, Garbage Out, GIGO）」（中級科目1 §5.1），且強調資料品質決定模型可靠性。</li>
+      <li>✅/➕ 迷思破解：「需多台機器處理才算大數據」與官方 Volume 描述「已遠超過傳統單機環境可承載的記憶體限制」相符；「做 AI 不一定要大數據」官方未直接論述，屬課程補充，與官方觀點無牴觸。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程稱 Veracity 為「真實性」，中級科目2 §6.1 標題作「資料來源異質（Veracity &amp; Integration）」，從來源可信度與整合角度論述；課程稱 Value 為「價值（最終目的）」，官方標題作「資料價值密度低（Value）」。</div>
+
+    <h3 id="lesson2">第 2 課 機器學習核心類型</h3>
+    <p class="map"><strong>對應官方章節：</strong>初級科目1 §3.3 機器學習概念；中級科目3 §4.1 機器學習原理與技術</p>
+    <ul>
+      <li>✅ 監督式學習靠標籤化資料、分為分類與迴歸：官方「透過帶有標記（Labeled Data）的訓練數據來訓練模型」「主要應用於分類與迴歸任務」（初級科目1 §3.3），例子（房價預測為迴歸）也一致。</li>
+      <li>✅ 非監督式學習用無標籤資料、典型任務為分群：官方「無需使用事先標記好的訓練數據」「發掘潛在的模式、結構或分群（Clustering）」。</li>
+      <li>✅ 分類 vs. 分群關鍵在事前是否已知類別：官方雖無郵差/倉管比喻，但「帶有標記」vs.「自動從未標記數據發掘」的定義完全支持此區分。</li>
+      <li>✅ 強化學習＝代理人與環境互動、追求累積回報最大化：官方「讓代理（Agent）透過與環境的互動……獲得最大的累積回報」，應用「遊戲 AI、機器人控制和自動駕駛」。「動態定價」官方未列，屬相容補充。</li>
+      <li>➕ 「先搞清楚問題再選方法」：官方無此原句，但與中級科目1 需求分析導向的規劃精神一致，屬合理補充。</li>
+      <li class="warn">⚠️（摘要段落，非重點條目）課程把「啤酒與尿布」當成非監督式「分群」的例子；官方將啤酒與尿布歸於<strong>關聯分析／關聯規則學習（Apriori）</strong>（初級科目1 §3.2「分析超市購物車數據（如『啤酒與尿布的關聯性』）」；中級科目3 §4.3 購物籃分析）。關聯規則雖也屬非監督式，但任務類型是「關聯」不是「分群」，考試時勿混淆。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程用「分群」，官方在中級科目3 多用「聚類」（如「聚類與降維」），初級科目1 用「分群（Clustering）」，兩詞並存。</div>
+
+    <h3 id="lesson3">第 3 課 大數據生態系（一）：Hadoop</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目2 §4.2 數據儲存與管理、§4.3 數據處理技術與工具</p>
+    <ul>
+      <li>✅ HDFS 分割、分散、複製三步驟：官方分散式儲存定義「將資料切分為多個區塊……分散儲存在多台節點上」「具備副本機制（Replication）、冗餘設計」，並點名「HDFS：最早的大規模分散式檔案系統之一」。試題解析亦有「跨節點資料切分與冗餘備援」。</li>
+      <li>➕ NameNode／DataNode 角色：官方全文完全未出現 NameNode、DataNode，屬課程補充。內容本身正確（NameNode 管元資料、DataNode 存資料），與官方架構描述相容，對深入理解有幫助，但非官方考點。</li>
+      <li>➕ Map／Reduce 兩階段運作細節：官方多次提到 MapReduce（「透過 MapReduce 模型實現資料運算」「批次處理」），但未拆解 Map 與 Reduce 兩階段機制，屬課程補充，內容正確。</li>
+      <li>✅ 「移動計算，而不是移動資料」：官方以「資料本地性（Data Locality）：依照資料存放與計算節點相近原則（如 Hadoop 中 MapReduce 的設計）」表達同一概念。</li>
+      <li>✅ MapReduce 較慢、Spark 記憶體內運算較快：官方 Hadoop「缺點：速度較慢、不適合即時運算」、Spark「記憶體內運算（In-memory Processing）……運算速度快」。惟「快上百倍」的倍數官方未量化，屬課程渲染，勿當精確數字背誦。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「複製（備份兩三份）」＝官方「副本機制（Replication）／冗餘備援」；課程「黃金法則：移動計算」＝官方「資料本地性（Data Locality）」。</div>
+
+    <h3 id="lesson4">第 4 課 大數據生態系（二）：Spark</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目2 §4.3 數據處理技術與工具（四種分散式運算框架比較）、§4.2 數據儲存與管理</p>
+    <ul>
+      <li>✅ Spark 記憶體內運算、適合迭代式機器學習：官方「處理模式：記憶體內運算（In-memory Processing）」「適用情境：……機器學習訓練（如 Spark MLlib）」，§6.1 亦有「使用 Spark MLlib 在分散式記憶體架構下執行迴歸、分類等模型」。「比硬碟快上百倍」官方未量化。</li>
+      <li class="warn">⚠️ 四種主流 NoSQL 類型：官方<strong>沒有系統性介紹 NoSQL 四類型分類</strong>。官方僅在半結構化資料處提到「文件型 NoSQL 資料庫（如 MongoDB）」，試題選項出現過鍵值資料庫、圖形資料庫等名稱；「列式儲存」在官方語境是指 <strong>Parquet、ORC 等列式儲存「格式」</strong>（columnar format），而非課程所指的 Column-Family「資料庫」（如 HBase/Cassandra）——兩者是不同概念，備考時務必分清。課程分類本身在業界是標準說法，可作補充知識。</li>
+      <li>✅ Spark 取代的是 MapReduce 運算層、儲存仍靠 HDFS：官方將 Hadoop(MapReduce) 與 Spark 並列為「運算框架」，且 Hadoop 優點註明「容錯強（HDFS 分散儲存機制）」、資料湖典範為「Apache Hadoop + HDFS + Hive」，與課程說法相容。</li>
+      <li>➕ NoSQL 全名「Not Only SQL」：官方未出現此定義，屬課程補充，內容正確。</li>
+      <li>➕ Polyglot Persistence（混合持久化）：官方無此詞。但官方有相近精神：「在倉儲中管理結構化核心資料，在資料湖中收納半結構與非結構資料」的混合式架構（§6.1）。屬相容且有價值的補充，惟考題應以官方詞彙為準。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「列式儲存（Column-Family Store，資料庫類型）」易與官方「列式儲存格式（Parquet、ORC）」混淆——官方只講後者；課程「混合持久化」官方近似概念為「混合式架構」。</div>
+
+    <h3 id="lesson5">第 5 課 資料架構演進</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目2 §4.2 數據儲存與管理（資料湖架構、Data Lakehouse）；中級科目2 §6.1（資料湖為多模態整合主流方案）</p>
+    <ul>
+      <li class="warn">⚠️ 資料倉儲採 Schema on Write 與 ETL：官方<strong>未介紹「Schema on Write」一詞</strong>，也未把 ETL 與資料倉儲做成對的架構論述（ETL 僅零散出現在資料整合工具脈絡，如「ETL 工具（如 Apache Airflow、Talend）」；資料倉儲僅點名 Snowflake、BigQuery 等）。課程框架是業界標準說法、內容正確，但屬官方未展開的補充框架。</li>
+      <li>✅ 資料湖採 Schema on Read、先存後處理：官方原文「Schema-on-Read：資料在儲存時不強制定義資料結構，待使用時才套用結構」「允許儲存尚未轉換、未清洗的原始資料」。試題亦考「資料湖支援多樣資料型態且不需預先定義結構」。惟 <strong>ELT 一詞官方全文未出現</strong>。</li>
+      <li>➕ 資料沼澤（Data Swamp）：官方無此詞。內容正確（無治理的資料湖失去可用性），且與官方在 §6.1 強調資料編目、資料血緣等治理機制的精神相容，值得補充。</li>
+      <li>➕ 「兩套系統成本高、版本不一致是 Lakehouse 要解決的困境」：官方未論述此動機，僅直接定義「資料湖倉（Data Lakehouse）：結合資料湖與資料倉儲特性……同時具備資料湖的彈性儲存與成本效益，以及資料倉儲的結構化查詢與資料治理能力」。課程動機論述與此定義相容。</li>
+      <li>➕ 「前期痛苦 vs. 後期痛苦」的權衡觀點：官方無此論述，屬課程觀點性補充，無事實錯誤。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「湖倉」＝官方「資料湖倉（Data Lakehouse）」；課程「Schema on Read」＝官方拼法「Schema-on-Read」；課程之 Schema on Write、ELT、資料沼澤為官方未使用之詞彙。</div>
+
+    <h3 id="lesson6">第 6 課 資料前處理與特徵工程</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目2 §4.1 數據收集與清理、§4.3 數據處理技術與工具；中級科目3 §5.1 數據準備與特徵工程；初級科目1 §3.2 資料處理與分析概念</p>
+    <ul>
+      <li>✅/➕ GIGO 是黃金定律：官方原文照錄（中級科目1 §5.1）。但「資料科學家約八成時間花在清理資料」官方無此數據，屬課程補充（業界流傳說法，官方僅說資料品質「往往比演算法本身更決定模型的最終表現」）。</li>
+      <li>✅ 缺失值三招（刪除／均值填補／小模型預測）：官方「填補：使用均值、中位數或機器學習預測（如 KNN 填補）」「刪除：若缺失率低（如 &lt; 5%），可移除」（中級科目2 §4.1）；中級科目3 §5.1 另有「預測模型填補」。官方還多列「保留：使用可處理缺失值的算法（如隨機森林）」與「缺失指標編碼」，比課程更完整。</li>
+      <li>✅ 離群值刪除／修剪（Capping）／取 Log：官方「移除」「截尾與轉換：將值限制於上下邊界內，或進行對數、Box-Cox 等轉換」（中級科目3 §5.1）。官方另強調「標記保留：異常值本身具有預測價值（如欺詐偵測）時保留」——課程漏了這一策略，考題可能考。</li>
+      <li>✅ 獨熱編碼將類別文字轉 0/1 欄位：官方「One-hot Encoding（獨熱編碼）：為每個類別新增一個欄位，該類別為 1，其餘為 0」，並註明高基數時維度爆炸的限制；官方另介紹 Label Encoding 與 Target Encoding，課程未提。</li>
+      <li>✅ 特徵工程用領域知識衍生特徵、特徵並非越多越好：官方時間特徵「從時間資料衍生……時間間隔（Recency）」正對應「距上次登錄天數」；「面對大量特徵……甚至造成過度擬合」（特徵選擇動機）；「特徵工程並非僅是技術操作，更涉及資料理解、領域知識與建模目標的整合」（中級科目3 §5.1）。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「缺失值」＝官方亦用「遺缺值」（初級）、「遺漏值補全（Imputation）」（試題）；課程「修剪（Capping）」＝官方「截尾」；課程「離群值」＝官方「異常值（Outliers）」（中級科目2）／「離群值」（初級、中級科目3），兩詞官方混用。</div>
+
+    <h3 id="lesson7">第 7 課 第一週複習與整合</h3>
+    <p class="map"><strong>對應官方章節：</strong>整合性內容，綜合對應中級科目2 §4.1–4.3、§6.1，初級科目1 §3.2、§3.3</p>
+    <ul>
+      <li>✅ AI 專案三大步（擷取儲存→清洗加工→訓練模型）：官方資料管線描述「串聯……資料擷取、清理、轉換、特徵工程，直至輸出」（中級科目2 §4.3），加上初級科目1 機器學習三步驟（準備資料→訓練→評估），流程一致。</li>
+      <li>✅ 選資料湖保留 AI 探索彈性：官方「資料湖……允許儲存尚未轉換、未清洗的原始資料，保有最大彈性」，§6.1 亦稱資料湖為多模態 AI 訓練資料整合的「主流方案之一」。百科全書/圖書館比喻為課程自創，無礙。</li>
+      <li>✅ Spark 以記憶體內運算高效處理海量原始數據：與官方 Spark 條目一致（見第 4 課）。</li>
+      <li>✅ 有歷史標籤的流失預測屬監督式分類：與官方監督式學習定義（帶標記資料、分類任務）完全一致。</li>
+      <li class="warn">⚠️ 「時間序列數據首選列式儲存（Column-Family Store）」：官方<strong>未介紹 Column-Family 資料庫</strong>，無法以官方佐證「首選」。官方對時間序列的建議是「分區儲存（Partitioning）……以『年月』作為分區鍵……特別適用於時間序列資料」與「列式儲存格式（Parquet、ORC）……適合行為紀錄、設備監測數據」。課程說法（HBase/Cassandra 適合時序）是業界常見觀點，但若考官方教材，答題方向應是「分區＋列式格式／串流處理架構」，且切勿把 Column-Family 資料庫與列式儲存格式混為一談。感測器串流體現 Volume 與 Velocity ✅（官方 §6.1：IoT「持續且高速產生的資料流」）；成果須轉化為商業價值 ✅（官方：「更符合實務部署的商業價值需求」）。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>同第 4 課——課程「列式儲存（Column-Family Store）」與官方「列式儲存格式（Parquet/ORC）」是不同層次的概念。</div>
+
+    <div class="box note">
+      <span class="tag">第一週總評</span>
+      <p><strong>整體正確率印象：高。</strong>7 課約 35 條重點中，八成以上與官方學習指引直接一致或完全相容，無重大事實錯誤；課程的比喻式講解（俄羅斯娃娃、榨西瓜汁、瓶裝水工廠）不影響技術內容正確性，且核心考點（5V、監督/非監督/強化、HDFS 分散儲存、Spark 記憶體內運算、資料湖 Schema-on-Read、缺失值/離群值處理、One-Hot、特徵選擇防過擬合）全數對得上官方原文。</p>
+      <p><strong>最重要的出入警示：</strong></p>
+      <ol>
+        <li><strong>「列式儲存」混淆風險（第 4、7 課）</strong>——課程的 Column-Family 資料庫與官方的列式儲存格式（Parquet/ORC）是兩回事，官方只考後者；時間序列題官方的標準答案方向是「分區儲存＋列式格式＋串流處理」，不是 Column-Family Store。</li>
+        <li><strong>NoSQL 四類型、NameNode/DataNode、Schema on Write、ELT、資料沼澤、Polyglot Persistence 皆非官方內容</strong>——理解有益，但不要期待原詞出現在官方考題；反之，官方有而課程沒講的（Label/Target Encoding、缺失指標編碼、異常值「標記保留」策略、MCAR/MAR/MNAR 缺失機制、Flink/Beam 框架、資料品質五大量化指標）才是中級考生要補的洞。</li>
+        <li><strong>啤酒與尿布是關聯規則（Apriori），不是分群</strong>（第 2 課摘要段落）——官方明確歸類於關聯分析，考題常拿這點設陷阱。</li>
+        <li>Veracity 官方以「資料來源異質」角度論述、Value 以「價值密度低」角度論述，與課程的「真實性／最終目的」翻譯角度略異，背 5V 時建議記官方表述。</li>
+      </ol>
+      <p><strong>對備考者的建議：</strong>本週課程可放心作為觀念入門，但它偏「業界通識」框架，官方指引偏「工程實務與治理」框架。讀完課程後，務必回到中級科目2 第四章（資料品質問題五類型與量化指標、編碼與標準化方法、四大分散式框架比較）與第六章 §6.1（5V 對機器學習流程的具體衝擊與對策），這些細節密度遠高於課程摘要，才是中級選擇題的主要命題來源；初級考生則以初級科目1 §3.2、§3.3 的定義與例子為背誦基準。</p>
+    </div>
+
+    <!-- ============ 第二週 ============ -->
+    <h2 class="chap" id="week2">第二週交叉核對結果（課程 8–14）</h2>
+
+    <h3 id="lesson8">第 8 課 監督式學習（一）：迴歸模型</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2「監督式學習－迴歸任務」（線性迴歸、Lasso 迴歸與嶺迴歸）；初級科目1 §3.1 常見演算法（線性迴歸）與 §3.3 監督式學習段；「相關≠因果」對應中級科目2 §3.3 假設檢定與統計推論、初級科目1 §3.2 因果分析</p>
+    <ul>
+      <li>✅ 迴歸預測連續數值：官方「迴歸分析主要用於預測連續數值結果」「預測連續型的目標變數（例如價格…）」。</li>
+      <li>✅ 簡單線性迴歸找最佳直線、β1 代表 X 對 Y 的影響：官方「透過一條直線或多維超平面…找出最佳迴歸係數」「β1…代表每個自變數對預測值的影響」。</li>
+      <li>✅ 多元線性迴歸：官方列多變量一般式 y = β0 + β1x1 + … + βnxn + ε。「解讀係數須假設其他因素不變」官方未明述，屬課程補充，與官方假設（無多重共線性）相容且正確。</li>
+      <li>➕ 多項式迴歸：官方五份指引皆<strong>無</strong>「多項式迴歸」專節（僅出現「多項式核（Polynomial Kernel）」與中級科目1 的「多項式特徵生成」）；官方處理非線性迴歸改列 SVR、決策樹迴歸。內容本身正確（過度彎曲致過擬合與官方過擬合概念一致），可當補充但非官方考點主軸。</li>
+      <li>✅ 相關不等於因果：中級科目2「即使 r 值顯著，亦不代表其中一個變數造成另一個變數改變」；初級科目1「避免混淆相關性與因果性」。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「多元（複）線性迴歸」＝官方「多變量線性迴歸」。</div>
+
+    <h3 id="lesson9">第 9 課 監督式學習（二）：分類模型 I</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2「監督式學習－分類任務」（邏輯迴歸、K 最近鄰分類）；初級科目1 §3.1（邏輯迴歸、K-最近鄰演算法）與 §3.4 鑑別式AI 與生成式AI 概念（邏輯迴歸）</p>
+    <ul>
+      <li>✅ 分類目標為判斷類別、垃圾郵件例：官方「判斷資料應屬於哪一類別」「判斷電子郵件是否為垃圾信」。</li>
+      <li>✅ Sigmoid 轉 0～1 機率＋門檻＋「名為迴歸實為分類」：初級「使用 Sigmoid 函數…通常設定一個閾值（例如0.5）」；中級「雖名為『迴歸』，實際上是用於解決分類問題」。</li>
+      <li>✅ KNN 不建模型、距離＋投票、預測慢：官方「非參數、惰性學習」「歸類為 K 個鄰居中出現次數最多的類別」「訓練資料量非常大時，預測速度會非常慢」。</li>
+      <li>✅ KNN 對尺度敏感須先縮放：官方「不同尺度的特徵會影響距離計算…通常需要進行特徵縮放（如標準化或歸一化）」。</li>
+      <li>➕ 「尺度未解決前調 K 或加資料無效」：官方分別談 K 值需交叉驗證選擇、尺度需縮放，未做此因果論斷；屬課程教學性強調，方向正確、與官方相容。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「羅吉斯迴歸」＝官方「邏輯迴歸」（初級另出現「二元羅吉斯迴歸」一詞，兩者官方皆用過，中級科目3 統一用「邏輯迴歸」）；課程「特徵標準化（feature scaling）」＝官方「特徵縮放（標準化或歸一化）」。</div>
+
+    <h3 id="lesson10">第 10 課 監督式學習（三）：決策樹與隨機森林</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2（決策樹分類器、集成式分類—隨機森林分類器；迴歸側另有決策樹迴歸、隨機森林迴歸）；初級科目1 §3.4（決策樹、隨機森林）</p>
+    <ul>
+      <li>✅ 樹根／節點／葉節點結構、決策透明：官方「從根節點（Root Node）開始…直到到達葉節點（Leaf Node）」「需要易於解釋的模型（例如：醫療、金融領域）」。</li>
+      <li>✅ 決策樹易過擬合：官方「單棵樹容易學習到資料中的噪聲，導致泛化能力不足」。</li>
+      <li>✅ 隨機森林雙重隨機化：官方「在每棵樹上隨機抽樣資料與特徵進行訓練」；初級「利用 Bootstrap 取樣法隨機抽取樣本」。</li>
+      <li>✅ 以解釋性換準確與穩定：官方「模型整體解釋度較低，屬於黑箱模型」＋「提高模型的穩定性和準確性」「抗過擬合能力強」。</li>
+      <li>✅ 特徵重要性提供部分解釋：官方「可計算特徵的重要性，協助特徵篩選」「隨機森林也能計算特徵的重要性，協助了解…哪些變數」。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「白箱模型」——官方<strong>未使用</strong>「白箱」一詞（用「解釋性高／易於解釋／黑箱模型」表述，「黑箱」官方有）；作答時建議用官方的「可解釋性高」表述。</div>
+
+    <h3 id="lesson11">第 11 課 監督式學習（四）：SVM 與樸素貝氏</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2（支援向量機（SVM）、樸素貝式分類）；貝氏定理另見中級科目3 §3.1（條件機率與貝氏推論）；初級科目1 §3.3、§3.4（支援向量機）</p>
+    <ul>
+      <li>✅ 最大間隔、超平面、支持向量三要素：官方「尋找一條最能區分不同類別的決策邊界（超平面），並最大化兩類之間的間隔（Margin）」，支援向量出現於核決策函數參數（αᵢ、yᵢ、xᵢ：支援向量）。</li>
+      <li>✅ 核技巧映射高維：官方「利用『核函數（Kernel Function）』將資料映射到更高維度空間，使其可被線性分隔」，並列線性／多項式／RBF／Sigmoid 核。</li>
+      <li>✅／➕ 樸素貝氏獨立假設：官方「假設特徵之間彼此條件獨立…現實中很少完全成立，但仍能提供穩健的性能」一致；「只要機率大小排序正確即可分類正確」這一機制解釋官方未明述，屬正確的課程補充。</li>
+      <li>✅ 快、適合文本分類：官方「特別是文本分類、垃圾郵件過濾、情感分析…以快速且穩定的特點受到廣泛使用」「計算效率高且訓練速度快，非常適合處理大型數據集」。</li>
+      <li>✅ 選擇原則：與官方適用情境吻合——SVM「資料集規模中小，特徵維度高…計算成本高（大資料集下訓練時間可觀）」；樸素貝氏適合大規模、即時預測。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「支持向量機」＝官方「支援向量機」（官方 §5.4 一處也寫「支持向量機」，兩者混用但以「支援」為主）；課程「樸素貝氏」＝官方「樸素貝式分類（Naïve Bayes Classifier）」；課程「核技巧（kernel trick）」＝官方「核函數（Kernel Function）」（官方未用「核技巧」一詞）。</div>
+
+    <h3 id="lesson12">第 12 課 模型評估指標</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §5.3「模型訓練、評估與驗證」之「評估指標與模型效果衡量」（分類任務的評估指標、模型比較與綜合評估策略）；初級科目1 §3.3（評估指標段：Accuracy、F1、MSE）</p>
+    <ul>
+      <li>✅ 準確率陷阱：官方原文即用同型例子——「95%樣本為負類時，即使模型全預測為負，準確率仍高達95%」，並點名欺詐偵測、醫療診斷。</li>
+      <li>✅ 混淆矩陣 TP/FP/FN/TN 四格、錯誤各有代價：官方有標準混淆矩陣表；「可自定義誤判成本矩陣，強化高代價錯誤（如漏診）的懲罰」。</li>
+      <li>✅ Precision 管誤報、Recall 管漏判：官方「誤報正類的代價高時（垃圾郵件、醫療誤診）」「漏報正類的代價高時（癌症偵測、詐騙偵測）」。</li>
+      <li class="warn">⚠️ F1 與 AUC：F1「精確率與召回率的調和平均」✅；但「AUC 特別適合不平衡資料」與官方定位有出入——官方把「類別不平衡嚴重」對應到 <strong>F1</strong>，AUC 的適用寫的是「需綜觀整體預測能力、需調整分類閾值的應用」；且學理上極度不平衡時 ROC-AUC 可能過於樂觀（PR 曲線更合適）。備考以官方對應為準：不平衡→F1。</li>
+      <li>✅ 指標選擇是商業策略：官方「業務導向與自定義效能衡量…風險導向任務（如醫療）：強化高代價錯誤的懲罰」。</li>
+    </ul>
+    <div class="box key"><span class="tag">附註</span>官方擷取文字第 5-21 頁 Recall 公式印作 TP/(TP+FP)，但其文字定義「實際正類樣本中，被正確預測為正類的比例」對應 TP/(TP+FN)；疑為排版／擷取瑕疵，引用前建議核對勘誤表，作答以 TP/(TP+FN) 為準。</div>
+
+    <h3 id="lesson13">第 13 課 模型優化</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §5.2（偏差-變異的權衡）、§4.3（過擬合與正則化技術）、§5.3（資料分割與準備—K-fold 交叉驗證）、§5.4 模型調整與優化（正則化技術）；初級科目1 §3.3（過擬合的防範、交叉驗證）</p>
+    <ul>
+      <li>✅ 欠擬合／過擬合定義：官方「偏差…無法有效捕捉主要趨勢，系統性誤差偏高（欠擬合）」「變異…不同資料集上表現差異大、泛化能力差（過擬合）」「訓練數據上表現非常好，但面對未見過的新數據…顯著下降」。</li>
+      <li>➕ 學習曲線診斷工具：官方<strong>未</strong>以「學習曲線」作為過擬合診斷工具（「學習曲線」在官方文本僅指訓練過程平順度或「上手難度」）；官方以「訓練集損失低、驗證集損失高／準確率顯著低於訓練集」描述症狀，並用監控驗證集＋Early Stopping 因應。課程內容正確且相容，但考題用語會是「訓練/驗證表現落差」而非「學習曲線」。</li>
+      <li>✅ 過擬合／欠擬合療法：官方——正則化「限制模型的複雜度…提升泛化能力」；訓練數據不足列為過擬合成因（隱含增加資料）；隨機森林等集成「抗過擬合能力強」；欠擬合對應「表達能力不足，導致欠擬合」（需提高模型容量）。</li>
+      <li>✅ K 折交叉驗證：官方「劃分為 K 個不重疊的子集…每一個子集都會被當作一次驗證集，最終將 K 次驗證結果進行平均」（另有 Stratified K-fold、LOOCV、Repeated K-fold）。</li>
+      <li>✅ 驗證集 vs 測試集之分：官方「驗證集：調整超參數與監控訓練過程」「測試集：僅在模型訓練完成後使用，用來進行最終效能評估」。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照（重要）</span>課程把 regularization 說成「正規化」（課文）又寫「正則化」（重點條目）；官方嚴格區分：「<strong>正則化</strong>」＝Regularization（L1/L2/Elastic Net/Dropout/Early Stopping），「<strong>正規化</strong>」＝Normalization（Min-Max 正規化、批次正規化 Batch Normalization）。考試選項若同時出現兩詞，切勿混用。</div>
+
+    <h3 id="lesson14">第 14 課 第二週複習與整合</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §5.2「模型選擇與架構設計」（依資料特性與任務類型、可解釋性需求、部署環境與資源限制、偏差-變異權衡選模）、§5.3（業務導向指標）、§4.2 各演算法「適用情境／使用限制」</p>
+    <ul>
+      <li>✅ 四步驟決策地圖：官方 §5.2 實質涵蓋全部四個維度（任務類型、資料規模與即時推論需求、可解釋性、業務成本），「四步驟」封裝為課程自創框架，內容與官方一致。</li>
+      <li>✅ 白箱適合金融醫療、黑箱準確難解釋：官方「需要易於解釋的模型（例如：醫療、金融領域）」（決策樹、邏輯迴歸）；隨機森林「屬於黑箱模型」「準確度通常高於…」。</li>
+      <li>✅ 醫療篩檢優先 Recall：官方「漏報正類的代價高時（例如癌症偵測）」用 Recall；「風險導向任務（如醫療）：強化高代價錯誤（如漏診）的懲罰」。</li>
+      <li>➕ 「肺癌篩檢 KNN 最不適合」：情境演練為課程自創。理由之一「對尺度敏感」與官方一致（「距離式模型（如 KNN）需保證特徵間單位一致性」）；理由之二「幾乎沒有可解釋性」官方未述（官方列 KNN 限制為計算成本、離群值、維度詛咒、尺度），此判斷可接受但非官方原文。</li>
+      <li>✅ 跨醫院失靈＝過擬合、缺乏泛化：官方「在不同資料集上的表現差異大、泛化能力差（過擬合）」。</li>
+    </ul>
+
+    <div class="box note">
+      <span class="tag">第二週總評</span>
+      <p><strong>整體正確率印象：高。</strong>第 8～14 課共 35 條重點中約 28 條可在官方指引找到直接對應（✅），6 條為官方未涵蓋但事實正確、與官方相容的補充（➕），僅 1 條有輕度出入（⚠️：AUC 與不平衡資料的對應）。課程內容無事實性錯誤，比喻式講法（法官、偵探、馬路）均忠實對應官方概念。</p>
+      <p><strong>最重要的出入與警示（依備考影響排序）：</strong></p>
+      <ol>
+        <li><strong>「正則化」vs「正規化」</strong>：官方教材兩詞嚴格分工（正則化＝Regularization、正規化＝Normalization），課程第 13 課口語混用「正規化」指 regularization。這是最可能在選擇題失分的術語陷阱。</li>
+        <li><strong>不平衡資料的指標對應</strong>：官方將「類別不平衡嚴重」明確對應 <strong>F1 分數</strong>；AUC 官方定位是「綜觀所有閾值下的整體區分能力」。答題時勿直接寫「AUC 適合不平衡資料」。</li>
+        <li><strong>多項式迴歸</strong>官方指引未收錄（僅有多項式「核」），官方處理非線性迴歸的答案是 SVR、決策樹迴歸、隨機森林迴歸——這三者課程未教，需自行補讀中級科目3 §4.2 迴歸任務。</li>
+        <li><strong>「學習曲線」「白箱」「核技巧」</strong>皆非官方用語，對應官方表述為「訓練/驗證表現落差」「可解釋性高／易於解釋」「核函數」。</li>
+        <li>官方擷取文字中 Recall 公式有排版瑕疵（TP/(TP+FP)），依官方文字定義應為 TP/(TP+FN)，引用前建議核對勘誤表。</li>
+      </ol>
+      <p><strong>備考建議：</strong>課程摘要適合建立直覺，但官方每個演算法都以「定義／模型公式／評估指標／模型假設／適用情境／使用限制」六段式撰寫，考點常落在課程沒講的「模型假設」（如線性迴歸五大假設、邏輯迴歸的對數勝率線性）與「使用限制」（如 Lasso 高相關變數只留其一、樸素貝氏零機率問題與拉普拉斯平滑）；另官方在集成處大量著墨 Bagging/Boosting、Gradient Boosting、XGBoost/LightGBM 與 Stratified K-fold、SMOTE 等，課程第二週完全未觸及，須直接讀中級科目3 §4.2(6)、§5.3、§5.4 補齊。</p>
+    </div>
+
+    <!-- ============ 第三週 ============ -->
+    <h2 class="chap" id="week3">第三週交叉核對結果（課程 15–21）</h2>
+
+    <h3 id="lesson15">第 15 課 非監督式學習（一）：分群</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2「非監督式學習／分群分析」（含 k-means 分群）；初級科目1 §3.3（非監督式學習：K 均值聚類）；初級科目1 §3.1（均值聚類 K-Means、層次聚類）</p>
+    <ul>
+      <li>✅ 非監督式學習用無標籤資料發現內在結構、最基本任務是分群：官方「在沒有預先標註資料的情況下，從資料中發掘隱含模式、結構或關係」，且分群分析列為第一項。「最基本」為課程措辭，官方未排序，無礙。</li>
+      <li>✅ K-Means 流程（決定 K、隨機初始化、分配、更新、迭代收斂）：與官方步驟完全一致——「a.初始化：隨機選取 K 個資料點作為初始質心…d.重複，直到質心不再顯著移動」。</li>
+      <li class="warn">⚠️（部分）兩大挑戰本身一致：官方缺點明列「需要預先指定 K 值」「對初始質心的選擇敏感」。但<strong>「手肘法」在五份官方文字中完全未出現</strong>（官方分群評估提的是「Silhouette score（輪廓係數）」）；「多跑幾次取最穩定結果」官方也未提。兩個解法內容正確，屬課程補充，備考時勿假設官方教材有「手肘法」一詞。另官方還多列兩個課程未提的缺點：「對離群值敏感」「只能形成球形或凸形群集」。</li>
+      <li>➕ 分群的商業價值取決於特徵選擇（RFM 類特徵）：官方僅舉「顧客分群：找出不同消費行為的群體，以便精準行銷」，未展開特徵選擇與商業意義的論述。與官方觀點相容，屬有價值的實務補充。</li>
+      <li>✅ 距離型演算法須先做特徵縮放/標準化：官方於 KNN 節明載「不同尺度的特徵會影響距離計算…通常需要進行特徵縮放（如標準化或歸一化）」，§5.1 亦稱標準化「尤其對於基於梯度或距離計算」之模型重要。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程說「手肘法」，官方無此詞（官方分群評估用「輪廓係數 Silhouette score」）；課程「中心點」，官方稱「質心（Centroid）」。</div>
+
+    <h3 id="lesson16">第 16 課 非監督式學習（二）：降維</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.2「非監督式學習／降維技術（PCA）、關聯規則學習（Apriori：衡量標準）」；中級科目3 §3.2 線性代數之機器學習基礎應用（PCA 協方差矩陣、特徵值分解）；初級科目1 §3.3（降維技術：PCA）。中級科目2 僅在練習題出現「關聯規則分析（如 Apriori）」，非正文章節</p>
+    <ul>
+      <li>✅ 維度過多使資料稀疏、距離失效、依距離的演算法變差：官方「在高維空間中數據變得稀疏，導致分析困難」；KNN 節「高維度空間中，資料點之間的距離會變得均勻，導致『最近鄰居』的概念失去意義」。「無法視覺化」與官方「降維至 2D/3D 空間進行圖形檢視」的動機一致。</li>
+      <li>✅ PCA 是把原始特徵重新組合成新主成分：官方「每個主成分都是原始特徵的線性組合，且代表了數據中最大的變異量方向」。</li>
+      <li>✅ PCA≠特徵選取、代價是可解釋性：官方 §5.1 將「特徵選擇方法」與「降維方法」分列兩節；PCA 缺點明載「主成分是原始特徵的線性組合，缺乏較直觀可解釋性」。</li>
+      <li>✅ 三指標定義：官方「支持度…同時包含 A 和 B 的交易數佔總交易數的比例 P(A∩B)」「信賴度…條件機率，衡量了規則的可靠性」「提升度…衡量 A 的出現對 B 的出現機率的影響」。</li>
+      <li>✅ 提升度 &gt;1 才有價值、50%÷25%=2.0：官方「Lift(A⇒B)=Confidence(A⇒B)/P(B)；若 Lift&gt;1 表示 A 和 B 正相關；Lift&lt;1 負相關；=1 獨立」，課程數字例與公式相符。「信賴度高可能是正確的廢話」為課程比喻，與官方「僅信賴度不足以判斷相關性」的精神相容。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「維度災難」，官方稱「<strong>維度詛咒</strong>」（三處均用此詞，備考請記官方用語）；課程「購物籃分析三指標」，官方歸於 Apriori 的「衡量標準」；課程未提官方同節的 FP-Growth、t-SNE、UMAP（中級考生應自行補讀）。</div>
+
+    <h3 id="lesson17">第 17 課 深度學習（一）：神經網路</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.3「深度學習原理與框架」（人工神經元與感知器概念、激活函數的角色、前向傳播與反向傳播原理、多層感知器 MLP）；初級科目1 §3.3（神經網路：輸入層、隱藏層、輸出層與激勵函數）</p>
+    <ul>
+      <li>✅ 感知器由輸入、權重、偏置組成，加總→激活→輸出：官方「接收多個輸入訊號，對這些訊號進行加權求和，然後透過一個激活函數產生一個輸出訊號」；偏置「允許神經元在沒有任何輸入訊號時也能被激活，或者調整激活的閾值」。可補充：官方載明感知器由 Rosenblatt 於 1957 年提出、用步階函數、無法解決 XOR 問題——常考點而課程摘要未列。</li>
+      <li>✅ 輸入層／隱藏層／輸出層，「深度」指隱藏層多：官方 MLP 節「隱藏層…MLP 的核心，也是『深度』的來源」。</li>
+      <li>✅ 拿掉非線性激活函數則多層網路退化為線性模型：官方「若沒有激活函數…無論神經網路有多少層，其最終輸出都只是輸入的線性組合…能力等同於單層線性模型」。課程說「等同最簡單的線性迴歸」，官方說「等同單層線性模型」，實質相同。</li>
+      <li>✅ 學習循環四步（前向傳播→計算損失→反向傳播→更新權重）：官方「前向傳播產生預測，反向傳播負責…計算梯度…優化器根據這些梯度和學習率微調權重和偏置」。</li>
+      <li>➕ 神經網路無意識與情感、本質是映射函數：官方未有此論述（僅稱「受生物神經元啟發而設計的數學模型」）。內容正確、與官方相容，屬去神祕化的教學補充。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程與中級科目3 同用「激活函數」，但初級科目1 用「<strong>激勵函數</strong>（Activation Function）」，考初級者兩詞都要認得；課程「感知器」與官方一致（Perceptron）。</div>
+
+    <h3 id="lesson18">第 18 課 深度學習（二）：CNN</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.3「卷積神經網路（CNN）」；初級科目1 §3.1（深度學習三大經典模型：卷積神經網路）；中級科目1 §3.2「電腦視覺技術與應用」（CNN 特徵提取、卷積層/池化層、AlexNet/VGG）</p>
+    <ul>
+      <li>✅ 傳統網路處理影像的弱點（參數爆炸、過擬合、攤平破壞空間關係）：官方 MLP 缺點「輸入特徵或隱藏層神經元數量龐大時，模型（參數龐大）」、「會將輸入數據『攤平』成一維向量處理，因此會丟失重要的空間…（關係）」。課程「死背圖片沒有泛化學習」即官方的過擬合風險，說法口語但不誤導。「100×100 彩圖約 3000 萬參數」為課程自算例（隱含首層 1000 神經元），官方無此數字，數學上成立。</li>
+      <li>✅ 卷積層以濾鏡掃描產生特徵圖：官方「每個卷積層包含多個小的、可學習的卷積核…在輸入數據上進行滑動」「生成一個特徵映射，代表輸入中某種特定模式（如邊緣、紋理…）的激活程度」。</li>
+      <li>✅ 局部感知＋權重共享、位置不變性：官方「權重共享…減少了模型的參數數量，同時也使得 CNN 能夠辨識圖像中位置不變的特徵」，並舉「無論貓的眼睛在圖像的左邊還是右邊，都能被同一個濾波器辨識」。</li>
+      <li>✅ 最大池化保留區域最大值、減少計算量、提升位置容忍度：官方「最大池化：從核掃過區域中提取最大值」「縮減特徵映射的尺寸（降採樣），減少計算量」「有助於增加模型的平移不變性」。</li>
+      <li>➕（含✅）卷積層會學習、池化層是固定運算不學習：官方稱卷積核「可學習」，但<strong>未明文寫出「池化層無學習參數」</strong>——內容事實正確，屬有用補充。後半句（網格狀資料、語音應用）官方有載：「高效地處理圖像等高維網格狀數據」「也應用於語音處理和自然語言處理」。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「濾鏡」，官方稱「卷積核/濾波器（Kernel/Filter）」；課程「特徵圖」，官方稱「特徵映射（Feature Map）」；課程「局部感知」，官方稱「局部連接」；課程「位置容忍度」，官方稱「平移不變性」。</div>
+
+    <h3 id="lesson19">第 19 課 深度學習（三）：RNN</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.3「遞迴神經網路（RNN）」（含衍伸模型 LSTM、GRU、Bi-RNN）；初級科目1 §3.1（循環神經網路 RNN：LSTM、GRU）；中級科目1 §3.1「自然語言處理技術與應用」（傳統序列模型 RNN、LSTM、GRU 與 Transformer）</p>
+    <ul>
+      <li>✅ 序列資料意義建立在順序上；MLP/CNN 無記憶：官方「與傳統的前饋神經網路（如 MLP 或 CNN）不同，RNN 具有內部『記憶』」「MLP 假設輸入特徵是獨立的」。</li>
+      <li>✅ 隱藏狀態是記憶、結合上一步更新：官方「隱藏狀態（Ht）…RNN 的『記憶』所在，由當前輸入…與上一個時間步的隱藏狀態（Ht-1）共同計算得出」。</li>
+      <li>✅ 梯度消失導致長期依賴問題：官方 RNN 限制明列「長期依賴問題：梯度消失（Vanishing Gradient Problem）」「對於非常長的序列，學習和保持長期依賴仍然（困難）」。</li>
+      <li>✅ LSTM 三門＋解決健忘：官方「引入了『門控機制』（包含輸入門、遺忘門、輸出門），以及一個獨立的細胞狀態（Cell State）…有效地解決了梯度消失問題」。注意：課程摘要未提<strong>細胞狀態</strong>與 <strong>GRU</strong>，官方兩者皆有、GRU 是常考的 LSTM 簡化版。</li>
+      <li class="warn">⚠️ 「基礎 RNN 主要作為教學工具」：官方無此說法——官方 §5.2 仍將「RNN / LSTM / GRU」並列為序列任務常用模型；且官方更進一步指出「Transformer…徹底顛覆了以往 RNN/LSTM（的地位）」「徹底取代傳統 RNN 的循環架構」。課程止步於「LSTM 取代 RNN」，未帶到官方著墨甚多的 Transformer/自注意力，中級考生若只讀課程會漏掉整段重點。CNN 空間專家／RNN 時間專家的對比本身與官方相容。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程與初級科目1 稱「循環神經網路」，中級科目3 稱「<strong>遞迴神經網路</strong>」（同指 RNN）；課程「三道門」，官方順序寫法為「輸入門 Input Gate、遺忘門 Forget Gate、輸出門 Output Gate」。</div>
+
+    <h3 id="lesson20">第 20 課 強化學習簡介</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §4.1「強化式學習簡介」（基本架構／主要任務類型／訓練流程與評估方法／應用場景）；初級科目1 §3.3（強化學習：三個核心要素、流程、Q-Learning、應用範例）</p>
+    <ul>
+      <li>✅ 三種學習的回饋差異、試錯學習：初級官方「透過探索環境執行不同的行動，並根據環境提供的回饋不斷更新策略，這一過程反映了『試錯學習（Trial-and-Error）』的本質」。</li>
+      <li>✅ 延遲回饋、重視長期累積：中級官方「目標是最大化長期累積報酬」「訓練過程涉及動態回饋、延遲效應與探索策略」。</li>
+      <li class="warn">⚠️ 「五大核心要素」的個數與官方不同：中級科目3 的基本組成有<strong>七項</strong>——「代理人、環境、狀態、動作、報酬、策略（Policy）、價值函數（Value Function）」；初級科目1 則稱「三個核心要素：代理、環境、獎勵」。課程的五項皆在官方清單內、內容正確，但「五大」是課程自己的切法；中級考生務必補上官方多出的「<strong>價值函數</strong>」（衡量狀態或狀態-動作對的長期獎勵期望值）。「獎勵是唯一的學習動力」為課程強調語，官方說法是報酬「用來指引學習方向」，方向一致。</li>
+      <li>✅ 目標是找到最大化長期累積獎勵的最佳策略：官方「策略（Policy）：代理人根據當前狀態選擇動作的規則」「調整其策略，使…獲得最大的長期累積報酬」。</li>
+      <li>✅ 適用情境（下棋、機器人控制、連續決策）：官方應用場景「遊戲 AI 與對弈系統：AlphaGo…自駕車與機器人控制」。「有標記資料做預測時監督式更有效率」官方未明文比較，但與官方對兩種範式的定位相容。課程未提官方的 <strong>Q-Learning／Deep Q-Learning（DQN）</strong>（初級科目1 有專段）與<strong>馬可夫決策過程（MDP）</strong>、策略學習/價值學習等任務分類（中級科目3），皆為官方考點。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「強化學習」「獎勵」，中級科目3 用「<strong>強化式學習</strong>」「<strong>報酬</strong>（Reward）」；課程「代理人」，初級用「代理（Agent）」、中級科目3 用「代理人」。</div>
+
+    <h3 id="lesson21">第 21 課 第三週複習與整合</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §5.2「模型選擇與架構設計」（任務類型與模型配對、資料規模與模型選擇、模型解釋性需求）；中級科目3 §4.3 前言（傳統 ML vs 深度學習）；初級科目1 §3.1（深度學習不需手動設計特徵）</p>
+    <ul>
+      <li>✅ 工具箱定位（分群、PCA、CNN、RNN/LSTM 各司其職）：與官方 §5.2 任務對照表一致——「聚類：K-means…降維：PCA…序列與時間序列任務：RNN/LSTM/GRU」，CNN 對應影像（§4.3）。</li>
+      <li>✅ 傳統 ML 需人工特徵工程、成本低：官方「相較於傳統機器學習依賴手工特徵工程，深度學習透過多層神經網路結構，能自動學習…高階抽象特徵」；小型資料集官方建議「結構簡單、參數數量少的模型」。</li>
+      <li>✅ 深度學習擅長非結構化、需大量資料與 GPU、黑盒：官方「大規模資料能發揮深度模型的表現潛力，特別是在非結構化資料（如影像、語音、文字）」「需要大量的計算資源（GPU）」「（MLP）模型的決策過程如同一個『黑箱』」。</li>
+      <li class="warn">⚠️ 「黃金法則：表格→傳統 ML、圖聲文→深度學習」過度簡化：方向與官方一致，但官方 §5.2 的模型選擇是<strong>多因素決策</strong>——資料規模（小資料即使非結構化也難養深度模型；「大規模資料能發揮深度模型潛力」）、可解釋性需求（醫療金融法遵需高解釋性或搭配 SHAP/LIME）、運算資源與部署限制。且官方明載 MLP「專門處理結構化數據」「可用於處理各種表格數據」，即深度模型並非不碰表格。此口訣可當第一直覺，作答情境題時應以官方多因素框架為準。</li>
+      <li class="warn">⚠️ 「智慧客服（NLP）選 RNN/LSTM」與官方現況有落差：官方中級科目1 §3.1 將 RNN/LSTM/GRU 定位為「早期的深度學習應用…傳統序列模型」，並強調 Transformer「以其強大的自注意力機制…（取代）傳統序列模型」；中級科目3 也稱 Transformer「徹底顛覆了以往 RNN/LSTM（的地位）」。「以圖搜圖選 CNN」「未標記＋自動發現群體＝非監督分群」則與官方一致。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「瑞士刀 vs 工程錘」「黃金法則」皆為課程比喻，官方無對應詞；官方的決策軸是「任務類型配對、資料規模、解釋性、運算資源」。</div>
+
+    <div class="box note">
+      <span class="tag">第三週總評</span>
+      <p><strong>整體正確率印象：高。</strong>35 條重點中約 28 條可直接在官方文字找到對應（✅），無一條存在事實性錯誤；K-Means 流程、PCA 原理、關聯規則三指標、感知器與反向傳播、CNN 權重共享與池化、LSTM 門控、強化學習要素等核心內容與官方敘述高度吻合，作為理解入門相當可靠。</p>
+      <p><strong>最重要的出入警示：</strong></p>
+      <ol>
+        <li><strong>「手肘法」不在官方教材中</strong>——官方分群評估用「輪廓係數（Silhouette score）」，考題若考「如何評估/選擇分群」，官方答案方向是輪廓係數而非手肘法。</li>
+        <li><strong>官方用語是「維度詛咒」不是「維度災難」</strong>，選項辨識時要認得官方詞。</li>
+        <li><strong>課程第三週完全未提 Transformer</strong>，而官方（中級科目1 §3.1、中級科目3 §4.3）以大量篇幅說明 Transformer 已取代 RNN/LSTM 成為 NLP 主流；「智慧客服選 RNN/LSTM」的選型答案在官方脈絡下應優先想到 Transformer。</li>
+        <li><strong>強化學習要素數目</strong>：中級官方是七項（多了「策略」「價值函數」入列）、初級官方是三項核心；「五大要素」是課程自訂切法，中級考生務必補「價值函數」與 MDP、Q-Learning。</li>
+        <li><strong>「表格用傳統 ML、非結構化用 DL」的黃金法則</strong>只是第一直覺，官方 §5.2 是資料規模＋解釋性＋資源的多因素框架，情境題請用官方框架作答。</li>
+      </ol>
+      <p><strong>對備考者的建議：</strong>課程摘要適合建立直覺，但每課官方都有課程未涵蓋的「同節考點」需自行補讀——第 15 課的階層式分群與 DBSCAN、K-Means「對離群值敏感／只能形成球形群集」；第 16 課的 FP-Growth、t-SNE、UMAP 與 Apriori 性質；第 17 課的感知器史實（Rosenblatt 1957、步階函數、XOR 限制）與常見激活函數（ReLU/Sigmoid/Tanh 特性）；第 19 課的細胞狀態、GRU、Bi-RNN 與 Transformer；第 20 課的 Q-Learning/DQN 與強化學習任務分類；第 21 課的 SHAP/LIME 可解釋性技術。這些在官方文字中皆有完整段落，是中級選擇題的常見素材。</p>
+    </div>
+
+    <!-- ============ 第四週 ============ -->
+    <h2 class="chap" id="week4">第四週交叉核對結果（課程 22–27）</h2>
+
+    <h3 id="lesson22">第 22 課 數據專案生命週期</h3>
+    <p class="map"><strong>對應官方章節：</strong>官方五科全文<strong>均未出現 CRISP-DM 一詞</strong>。最接近的官方內容為：中級科目1 §4.1「AI 導入評估」／§4.2「AI 導入規劃」、§5.1「數據準備與模型選擇」；中級科目2 §6.2「端對端機器學習流程（End-to-End ML Pipeline）」（資料整合處理→模型訓練驗證→部署上線→持續監控維運）</p>
+    <ul>
+      <li>➕ 「CRISP-DM 六大階段是業界標準流程」：官方指引從未提及 CRISP-DM 及其六階段名稱。此為課程補充；框架本身正確且與官方的 End-to-End ML Pipeline、AI 導入評估→規劃→部署流程完全相容，但<strong>不是官方學習指引的考點用語</strong>。</li>
+      <li>✅ 「商業理解最重要、把模糊需求轉為可解決問題並定義成功標準」：官方相同精神——「AI 導入需以業務需求為出發點，若無明確問題定義，後續模型開發將…」（中級科目1 試題解析）、「問題定義與需求訪談：明確專案目標與業務需求」、KPI 與成功標準設定（如「設定準確率達80%為成功標準」）。</li>
+      <li>➕ 「資料準備可能佔專案高達八成時間」：官方無此比例，僅稱「資料準備與標註…可能需數週至數月，視資料規模而定」（中級科目1）。八成（業界常引 60–80%）為課程補充，與官方「資料品質決定成敗」的觀點相容。</li>
+      <li>✅ 「模型評估連結技術指標與商業目標」：官方 POC 評估要求「與既有的KPI 進行比較，觀察AI 導入後是否能顯著優化現有流程」，並以 ROI/NPV 量化效益（中級科目1 §4.1）。</li>
+      <li>✅ 「非線性單行道而是迭代循環」：官方採敏捷開發／Scrum 迭代管理，「驗證測試與反饋調整：測試模型效能並修正問題，通常需多次迭代」（中級科目1 §4.2）。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「模型建置」＝官方「模型訓練／建模」；「CRISP-DM」在官方無對應詞，官方稱「端對端機器學習流程（End-to-End ML Pipeline）」或「AI 導入流程」。</div>
+
+    <h3 id="lesson23">第 23 課 數據治理與品質管理</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目2 §4.1（資料品質問題類型與品質指標）、§4.2「資料治理與存取控管」「Zero Trust 架構下的資料控管設計」、§6.4 企業內部治理（政策／跨部門組織／生命週期流程）；中級科目3 第六章「機器學習治理」；中級科目1 §4.1（資料治理（Data Governance）評估項）</p>
+    <ul>
+      <li>✅ 「治理是涵蓋方法、政策、標準與科技的框架，管理整個生命週期」：官方「資料治理機制需涵蓋…從資料版本控管、存取追蹤到全生命週期管理」（中級科目2），並從「政策、組織、流程與文化面向」建立治理機制（§6.4）。惟「目的是賦能而非管死」是課程詮釋，官方表述偏向「系統性控管資料與模型風險」（中級科目3 第六章），方向相容但語氣不同。</li>
+      <li class="warn">⚠️ 「衡量數據品質有六個維度」：官方<strong>沒有「六大維度」框架</strong>。官方列的是五類品質問題（缺失值、異常值、重複值、一致性錯誤、邏輯錯誤）與五項品質指標（缺失率、唯一值比率、一致性比率、異常值比率、完整性比率）（中級科目2 §4.1），另概括為「確保資料完整性、一致性與準確性」。課程沿用的是 DAMA 式六維度說法，內容不算錯，但作答與命名以官方五指標為準。</li>
+      <li>➕ 「主數據管理（MDM）／黃金記錄／單一客戶視圖」：官方全文<strong>完全未提</strong> MDM、主資料、黃金記錄。概念本身正確、屬業界標準作法；官方最接近的是重複值「合併：若重複記錄包含不同資訊，需整合後去重」與資料目錄（Data Catalog）。可當背景知識，非官方考點。</li>
+      <li>✅ 「資料血緣記錄數據從哪來、經過哪些處理」：官方「資料血緣追蹤（Data Lineage）：瞭解資料從來源到使用過程的流向，方便錯誤回溯與系統維運」（中級科目2 §4.2）；中級科目3 亦有「建立資料處理紀錄與流程可追溯性（Data Lineage）」。</li>
+      <li>✅ 「治理是商業議題、需跨部門合作、從源頭預防」：官方「資料治理已成為跨部門共同責任，涵蓋法務、資訊安全、業務及資料科學團隊」，並設「資料治理委員會」（中級科目2 §6.4）；品質指標「內嵌至資料流管線與資料品質監控系統，建立自動化偵測與回報機制」呼應源頭預防。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「數據治理」＝官方多用「資料治理」；課程「唯一性」≈官方「唯一值比率（Uniqueness Rate）」；「MDM／黃金記錄」無官方對應詞。</div>
+
+    <h3 id="lesson24">第 24 課 AI／Big Data 倫理與法規</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目3 §6.2「演算法偏見與公平性」（偏見成因、公平性評估、降低偏見方法）；中級科目1 §4.3「AI 風險管理」之「法規與合規性評估」（GDPR／台灣PDPA／產業法規）與 §4.1 之「可解釋AI（XAI）技術」；中級科目2 §6.4「合規資料處理的基本原則」；初級科目2 第三章（生成式AI 倫理與法規）</p>
+    <ul>
+      <li>✅ 「偏見來源分數據偏見與模型偏見」：官方「AI 偏見的成因可分為資料層面與模型層面」；「目標函數偏誤：以整體平均精度作為優化目標…犧牲特定群體的預測準確度」（中級科目3 §6.2）正對應課程「只看整體準確率、犧牲少數群體」。官方更細分資料偏見為來源偏誤、內容偏誤、製程偏誤三類，考中級科目3 者應記官方三分類。</li>
+      <li>✅ 「AI 篩履歷刷掉女性、信用評分間接歧視」等案例：官方有同型案例——「履歷分類中，模型可能傾向將男性簡歷分類為『管理職潛力高』」（中級科目1）、「信用審核歷史資料中，隱含種族或性別歧視」（中級科目3）、「信用評分系統因歷史資料偏差導致特定族群被歧視」（中級科目1）。人臉辨識對有色人種辨識率低、郵遞區號歧視兩例官方未直接寫（郵遞區號在官方脈絡是「準識別資訊」），屬課程補充，事實正確。</li>
+      <li>✅ 「XAI 目標是打開黑盒子、讓決策可審計」：官方「可解釋AI（XAI）是指能夠讓使用者理解模型如何做出預測或決策的技術方法與工具」，目標含「增強信任」「理解模型行為與潛在偏誤」「支援合規性、道德性與審核需求」（中級科目1 §4.1）。</li>
+      <li class="warn">⚠️ 「GDPR 最高罰款可達全球年營業額的 4%」：<strong>官方全文查無任何罰款數字</strong>（僅寫「鉅額罰款」「遭到GDPR 處以高額罰款」），此數字非官方考點。就事實而言課程說法不完整：GDPR 第83條規定重大違規罰鍰上限為 2,000 萬歐元<strong>或</strong>全球年營業額 4%（取其高者），只講 4% 少了另一半條件。被遺忘權、資料可攜權則 ✅：官方明載「刪除權/遺忘權…GDPR 第17條」「資料可攜權…GDPR 第20條」（中級科目1 §4.3）。另「最嚴格的個資保護法」為評價語，官方稱「全球資料隱私保護的指標性法規」。</li>
+      <li>✅ 「目的限制原則：資料只能用於當初蒐集目的」：官方「目的限制原則（Purpose Limitation）：資料蒐集需指定明確目的，後續使用不得超出或變更原目的…避免二次利用（如用於廣告投放）」（中級科目2 §6.4）。惟注意官方將此列為 GDPR/CCPA/台灣個資法<strong>共通</strong>核心原則，非台灣個資法獨有條款；課程「訓練推薦演算法須另行取得同意」的例子與官方「說明資料用於訓練推薦模型」的告知要求相容。</li>
+      <li>➕ 「Can we / Should we」：官方無此表述，與官方倫理準則（歐盟 AI HLEG「透明度、可解釋性、公平性與問責性」，中級科目1）精神相容，屬課程金句補充。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「數據偏見」＝官方「資料偏見（資料層面）」；課程「模型偏見（只追整體準確率）」≈官方「目標函數偏誤（Objective Function Bias）」；課程「台灣個資法」＝官方「《個人資料保護法》／PDPA」。</div>
+
+    <h3 id="lesson25">第 25 課 Big Data 與 AI 資訊安全</h3>
+    <p class="map"><strong>對應官方章節：</strong>本課是四週中<strong>官方覆蓋最薄弱</strong>的一課。相關官方內容散見：初級科目2 第三章（生成式AI 常見安全風險：訓練數據洩漏、反向工程、提示詞攻擊、對抗性攻擊；防範措施：身份驗證與授權、加密、差分隱私）；中級科目3 §6.1（雜湊、同態加密等隱私強化技術）；中級科目2 §4.2（Zero Trust、RBAC/ABAC 存取控管、存取稽核）；中級科目1 §4.3（HIPAA/PCI-DSS 之「資料傳輸與儲存加密（TLS、AES）」「資料備份與災難復原」）</p>
+    <ul>
+      <li>➕ 「CIA Triad（機密性、完整性、可用性）」：官方五科全文<strong>未出現 CIA Triad 或此三元組框架</strong>（「機密」僅作「機密資料」用；「可用性」散見但非三原則脈絡）。內容本身是資安標準常識、正確，值得當背景知識，但非官方指引內容。</li>
+      <li class="warn">➕/⚠️ 「資料三種狀態，傳輸中最脆弱，靠 TLS/SSL 保護」：官方無「靜態／傳輸中／使用中」三態分類；僅在 PCI-DSS/HIPAA 段落提到「資料傳輸與儲存加密（TLS、AES）」。「傳輸中資料最脆弱」是課程的絕對化說法，官方未背書——實務上「使用中資料」保護最困難（官方反而在同態加密段落提到「數據外包處理也無需解密」正是為解決使用中資料問題），此排序宜保留。</li>
+      <li>✅ 「身份驗證回答你是誰、授權回答你能做什麼」：官方「採取嚴格的身份驗證與授權機制，確保只有經授權的用戶能夠存取系統」（初級科目2）、「使用OAuth2 或JWT 進行用戶身份驗證與授權」（中級科目1）。先驗證後授權的順序官方未明言，但相容。</li>
+      <li>✅／➕ 「對抗性攻擊、模型竊取、資料毒化」：對抗性攻擊 ✅——官方「攻擊者透過精心設計的輸入來操控模型的輸出」（初級科目2）。模型竊取 ≈ 官方的「反向工程：分析模型的行為來推斷出模型的參數或訓練數據」與「提示詞攻擊：透過多次查詢…推斷或重建訓練數據」，概念對得上但官方不用「模型竊取」一詞。<strong>資料毒化官方完全未提</strong>，屬課程補充，內容正確。「貓→烤麵包機」為課程舉例。</li>
+      <li>➕ 「加密不等於絕對安全、金鑰管理更難」：官方無金鑰管理討論。說法正確，屬補充。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「模型竊取」≈官方「反向工程／提示詞攻擊」；課程「資料毒化」無官方對應詞；課程「CIA Triad」無官方對應框架。</div>
+
+    <h3 id="lesson26">第 26 課 模型部署與維運 MLOps</h3>
+    <p class="map"><strong>對應官方章節：</strong>中級科目1 §5.2「AI 技術系統集成與部署」之「MLOps與持續維運」（CI/CD、模型版本控管、模型監控與回饋機制）與 §4.3「AI 風險管理」（模型漂移／資料漂移監控、自動重新訓練）；中級科目2 §6.2「端對端機器學習流程」之「模型部署與上線」「持續監控與模型維運」</p>
+    <ul>
+      <li>✅ 「部署分即時與批次」：官方「Batch Serving：定期批次產出預測結果（如每日風險預測報表）」「Online Serving / API Serving：以RESTful API 或gRPC 提供即時查詢預測服務」（中級科目2 §6.2）——課程「銀行每晚批次算信用風險分數」正對應官方批次例。注意官方還列了第三種「Streaming Inference」（低延遲事件驅動推論），課程未提。</li>
+      <li class="warn">⚠️ 「模型衰退（模型飄移）分為概念飄移與數據飄移兩種」：<strong>分類階層與官方不同</strong>。官方將三者並列為獨立概念：「資料漂移（Data Drift）：輸入資料的分佈發生變化」「模型漂移（Model Drift）：模型的預測準確度隨時間變差」「概念漂移（Concept Drift）：資料背後的潛在關係或模式隨時間改變」（中級科目1 §4.3、§5.2）。課程把「模型飄移」當總稱、下分兩種，考試若考三個名詞的個別定義，應以官方三分法作答。課程對概念／數據飄移的定義描述本身與官方相容。</li>
+      <li>✅ 「MLOps 同時管理程式碼、數據與模型」：官方「MLOps 是DevOps 在AI 領域的延伸，強調將模型訓練、測試、部署與監控進行持續整合與自動化」；模型版本控管「追蹤每次訓練的參數、資料版本與模型成果」（MLflow、DVC）（中級科目1 §5.2）。「DevOps 只管程式碼」是課程對比式簡化，官方未如此表述，但整體相容。</li>
+      <li>✅ 「監控＋自動重訓＋版本控制回滾」：官方「當監控發現模型效能下降或資料漂移時，MLOps 可以自動觸發模型的重新訓練」（中級科目1 §4.3）、「設定門檻條件（如精確度低於標準值）自動觸發模型重訓，並結合CI/CD」（中級科目2）、「熱更新（Hot Swap）或滾動更新（Rolling Update）替換模型版本」、A/B 測試與藍綠部署。</li>
+      <li>✅ 「上線不是終點、要持續創造價值」：官方「AI 模型部署後，並非『一勞永逸』」、第五章另設「成效追蹤與優化」。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「飄移」＝官方一律用「<strong>漂移</strong>」（Drift）；課程「模型飄移＝總稱」vs 官方「模型漂移＝三並列概念之一（預測準確度隨時間變差）」；課程「AI 自動化工廠」為比喻，官方稱「端對端機器學習流程／CI/CD」。</div>
+
+    <h3 id="lesson27">第 27 課 產業應用案例分析</h3>
+    <p class="map"><strong>對應官方章節：</strong>初級科目1 第三章之產業應用（金融：風險評估、欺詐檢測；製造業：品質控制、預測性維護；娛樂/零售：內容推薦）；中級科目3 第五章之分類評估指標（Precision/Recall 適用場景）；中級科目2 §6.2（信用評分、詐欺偵測建模案例）；中級科目1 §4.1「AI 導入評估」（需求真實性、資料品質、ROI）</p>
+    <ul>
+      <li>✅ 「詐欺偵測以高召回率為指導、信用評分要求可解釋」：官方「召回率…適用場景：當『漏報正類』的代價高時（例如癌症偵測、詐騙偵測）」（中級科目3）；「邏輯迴歸：簡單且可解釋，適合信用評分」（中級科目2）、「金融風控：必須向主管機關說明風險評分的組成邏輯」（中級科目1 XAI 段）。</li>
+      <li class="warn">⚠️ 「製造業品檢追求高精確率，寧可放過瑕疵品也不誤丟好產品」：<strong>官方未做此對應</strong>——官方精確率的例子是「垃圾郵件分類、醫療誤診」（誤報代價高），且官方製造業描述是「品質控制：運用影像辨識技術檢測產品缺陷…確保高品質出貨」（初級科目1），偏向不讓瑕疵出貨。實務上多數品檢情境漏檢（出貨瑕疵品）代價更高、反而重召回率；課程此句作為通則有誤導風險，應回到官方原則「看誤報／漏報何者代價高」個案判斷。預測性維護 ✅：官方「AI 分析設備運行數據，提前預測並預防機器故障」（初級科目1）。</li>
+      <li>✅ 「指標選擇取決於犯錯的代價」：與官方表述一致——精確率適用「誤報正類代價高」、召回率適用「漏報正類代價高」（中級科目3 第五章）。這是本課最穩的考點。</li>
+      <li>✅ 「推薦系統猜偏好、銷售預測屬回歸」：官方推薦系統多處（「內容推薦：分析用戶偏好，提供個人化…推薦」初級科目1；「推薦系統：分解使用者-項目矩陣，找出潛在偏好向量」中級科目3）；迴歸「應用場景：銷售預測、需求規劃、股票價格預測」（初級科目1）、「銷售量預測…協助企業進行庫存管理」（中級科目1）。惟「協同過濾」一詞官方未出現（官方以「使用者-項目矩陣分解」描述同一原理），屬術語補充。</li>
+      <li>✅ 「先問資料在哪裡、真的需要 AI 嗎（ROI）」：官方 §4.1 完整對應——「避免因為追隨技術潮流而盲目導入AI」、資料品質（Data Quality）可行性評估、「通過財務模型（如投資報酬率ROI、淨現值NPV…）量化效益」；「資料是燃料」對應官方「垃圾進，垃圾出（GIGO）…資料品質直接影響AI 模型的可靠性」（中級科目1 §5.1）。</li>
+    </ul>
+    <div class="box def"><span class="tag">術語對照</span>課程「協同過濾」＝官方「使用者-項目矩陣分解／個人化推薦」（官方無「協同過濾」一詞）；課程「AI 品保員」＝官方「品質控制／工業瑕疵檢測」。</div>
+
+    <div class="box note">
+      <span class="tag">第四週總評</span>
+      <p><strong>整體正確率印象：</strong>六課約 30 條重點中，與官方一致（✅）約六成，官方未涵蓋的正確補充（➕）約三成，真正有出入需要注意（⚠️）4 處。課程內容在事實層面幾乎沒有硬錯誤，主要問題是「框架名稱與分類法跟官方不同」。</p>
+      <p><strong>最重要的出入警示（依風險排序）：</strong></p>
+      <ol>
+        <li><strong>製造業品檢＝高精確率（第 27 課）</strong>：官方從未如此對應（官方精確率例子是垃圾郵件、醫療誤診），且此通則在實務與命題上都可能反向出題（漏檢代價高時應重召回率）。務必以官方「誤報／漏報代價」原則逐案判斷，不要背「產業→指標」對照表。</li>
+        <li><strong>漂移的分類階層（第 26 課）</strong>：官方將模型漂移、資料漂移、概念漂移<strong>三者並列</strong>且各有定義（模型漂移＝預測準確度隨時間變差），不是課程的「模型飄移總稱下分兩種」。官方用字是「漂移」非「飄移」。</li>
+        <li><strong>資料品質「六大維度」（第 23 課）</strong>：官方是五類品質問題＋五項品質指標（缺失率、唯一值比率、一致性比率、異常值比率、完整性比率），沒有六維度框架，指標名稱可能直接入題。</li>
+        <li><strong>GDPR「4% 罰款」（第 24 課）</strong>：官方全文無罰款數字；且完整條文是「2,000 萬歐元或全球年營業額 4% 取其高」。官方明確載有的反而是 GDPR <strong>條號</strong>（第15/16/17/18/20/22 條對應各權利），這比罰款數字更可能是考點。</li>
+      </ol>
+      <p><strong>對備考者的建議：</strong>本週課程當「架構性導讀」很好用，但 CRISP-DM、MDM／黃金記錄、CIA Triad、資料三態、資料毒化、金鑰管理、協同過濾這些名詞<strong>都不在官方學習指引中</strong>，不必花時間背誦其細節；反之，官方獨有而課程沒教的高密度考點應優先補：中級科目3 第六章「機器學習治理」（資料偏見三分類：來源／內容／製程偏誤；模型偏見四來源；公平性評估與 80% Rule）、中級科目2 §4.2 的存取控制四模型（RBAC/ABAC/PBAC/DAC）與 Zero Trust 原則、GDPR 各權利對應條號、合規資料處理五原則（合法透明／目的限制／資料最小化／保存期限／可追蹤可刪除），以及部署三模式（Batch／Online／Streaming Inference）。</p>
+    </div>
+
+    <footer>
+      內容依 2026-07-17 交叉核對結果整理（核對依據：iPAS 官方學習指引全文）。來源課程版權屬原頻道（VISION PRO）；本頁為非官方補充教材，僅供學習參考，正確性以官方學習指引與勘誤表為準。
+    </footer>
+  </main>
+</div>
+</body>
+</html>

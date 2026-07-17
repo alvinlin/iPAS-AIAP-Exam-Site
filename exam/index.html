@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
   <h1 class="pg">選擇科目開始測驗</h1>
   <p class="lead">題庫共 <b id="bank-total"></b> 題，全數取自 iPAS 官方公告試題（含官方答案），解析為學習整理。每題 2 分、滿分 100、70 分及格。</p>
   <div class="grid2" id="subject-cards"></div>
+  <div id="extra-card" class="hidden" style="margin-top:18px"></div>
   <div class="notice">💡 模式說明 — <b>全真模擬</b>：隨機抽 50 題、60 分鐘倒數、交卷後才對答案。<b>歷屆原卷</b>：依原始梯次卷面順序作答。<b>快速練習</b>：自訂題數、每題作答後立即顯示答案與解析。作答時可用鍵盤 <kbd>1</kbd>–<kbd>4</kbd> 選答、<kbd>←</kbd><kbd>→</kbd> 換題、<kbd>F</kbd> 標記。</div>
 </div>
 
@@ -270,10 +271,12 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
 
 <footer>
   題庫來源：iPAS 公告試題（官方答案）；解析為依官方學習指引撰寫之學習整理，非官方標準解析。<br>
+  「非官方補充題」為依外部課程（YouTube・VISION PRO）整理之自製練習題，已與官方學習指引交叉核對，與官方題庫分開統計，僅供延伸練習。<br>
   本網站為離線學習工具，成績與錯題僅儲存於本機瀏覽器；可於「成績紀錄」頁匯出／匯入備份以跨裝置延續紀錄。
 </footer>
 
 <script src="data/questions.js"></script>
+<script src="data/questions-extra.js"></script>
 <script>
 /* ================= 資料層 ================= */
 const SUBJECTS = [
@@ -291,9 +294,20 @@ const COURSE_FILES = {
   "中級-3": {full:"中級_科目3_機器學習技術與應用.html", cram:"中級_科目3_考前重點與試題解析.html"},
 };
 const COURSE_BASE = "../materials/";
-const QMAP = Object.fromEntries(QUESTION_BANK.map(q=>[q.id,q]));
+/* 非官方補充題庫（data/questions-extra.js，可能不存在）：與官方題庫完全分離，
+   不列入官方科目卡與題數統計，僅供「非官方補充題」專卡練習。 */
+const EXTRA = (typeof EXTRA_BANK!=="undefined" && Array.isArray(EXTRA_BANK)) ? EXTRA_BANK : [];
+const QMAP = Object.fromEntries([...QUESTION_BANK,...EXTRA].map(q=>[q.id,q]));
 const poolOf = (level,no)=>QUESTION_BANK.filter(q=>q.level===level&&q.subject===no);
 const sessionsOf = pool=>[...new Set(pool.map(q=>q.session))];
+const extraWeeks = ()=>{ // 依週次分組 [{no,name,count}]
+  const m=new Map();
+  EXTRA.forEach(q=>{ if(!m.has(q.subject)) m.set(q.subject,{no:q.subject,name:q.subjectName,count:0}); m.get(q.subject).count++; });
+  return [...m.values()].sort((a,b)=>a.no-b.no);
+};
+const isExtra = q=>q&&q.level==="補充";
+const metaOf = q=>isExtra(q)?`非官方補充題・${q.subjectName}・${q.lesson}`:`${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題`;
+const ansLabel = q=>isExtra(q)?"參考答案":"官方答案";
 
 /* ================= 儲存層 ================= */
 const store = {
@@ -344,6 +358,25 @@ function renderHome(){
       }).join("")}
     </div>`;
   }).join("");
+  renderExtraCard();
+}
+function renderExtraCard(){
+  if(!EXTRA.length) return;
+  const holder=document.getElementById("extra-card");
+  holder.classList.remove("hidden");
+  holder.innerHTML=`<div class="card" style="border-top:4px solid var(--warn)">
+    <span class="lv" style="background:var(--warn)">非官方補充</span>
+    <h2 style="font-size:17px;margin:0 0 2px">補充練習題（YouTube 課程整理）</h2>
+    <p class="sub">共 ${EXTRA.length} 題，依 VISION PRO 頻道「iPAS AI 應用規劃師中級」課程整理自製，內容已與官方學習指引交叉核對；<b>非官方試題</b>，與上方官方題庫分開計算。詳見教材「非官方補充教材」頁。</p>
+    ${extraWeeks().map(w=>`<div class="subject-row">
+      <div class="name">${w.name}<small>補充題 ${w.count} 題</small></div>
+      <div class="btnrow"><button class="btn" onclick="dlgExtraPractice(${w.no})">快速練習</button></div>
+    </div>`).join("")}
+    <div class="subject-row">
+      <div class="name">全部範圍<small>混合出題 ${EXTRA.length} 題</small></div>
+      <div class="btnrow"><button class="btn primary" onclick="dlgExtraPractice(0)">快速練習</button></div>
+    </div>
+  </div>`;
 }
 
 /* ================= 課程 ================= */
@@ -413,10 +446,24 @@ function dlgPractice(level,no){
         title:`快速練習｜${level} 科目${no} ${s.name}`, level, subject:no});
     });
 }
+function dlgExtraPractice(week){
+  const pool = week ? EXTRA.filter(q=>q.subject===week) : EXTRA.slice();
+  const name = week ? (extraWeeks().find(w=>w.no===week)||{}).name : "全部範圍";
+  openDlg(`非官方補充題｜${name}`,
+    "自製補充練習題（已與官方學習指引核對），隨機抽題、不計時，每題作答後立即顯示答案與解析。",
+    `<label>題數（此範圍共 ${pool.length} 題）</label><select id="f-n"><option>10</option><option selected>15</option><option>${pool.length}</option></select>`,
+    ()=>{
+      const n=Math.min(+document.getElementById("f-n").value, pool.length);
+      const qids=shuffle(pool).slice(0,n).map(q=>q.id);
+      startExam({qids, mode:"practice", instant:true, seconds:0,
+        title:`非官方補充題｜${name}`, level:"補充", subject:week||0});
+    });
+}
 function startWrongRetry(level,no){
   const w=getWrong();
   let qs=Object.keys(w).map(id=>QMAP[id]).filter(Boolean);
-  if(level) qs=qs.filter(q=>q.level===level&&q.subject===no);
+  if(level==="補充") qs=qs.filter(isExtra);
+  else if(level) qs=qs.filter(q=>q.level===level&&q.subject===no);
   if(!qs.length){alert("目前沒有符合的錯題。");return;}
   const qids=shuffle(qs).map(q=>q.id);
   startExam({qids, mode:"retry", instant:true, seconds:0,
@@ -462,7 +509,7 @@ function renderQ(){
   document.getElementById("qcard").innerHTML=`
     <div class="meta">
       <span>第 ${exam.idx+1} / ${exam.qids.length} 題</span>
-      <span>${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</span>
+      <span>${metaOf(q)}</span>
       <button class="flagbtn ${exam.flags.has(q.id)?"on":""}" onclick="toggleFlag()">⚑ ${exam.flags.has(q.id)?"已標記":"標記"}</button>
     </div>
     <p class="stem">${esc(q.stem)}</p>
@@ -474,7 +521,7 @@ function renderQ(){
       } else if(chosen===L) cls+=" sel";
       return `<div class="${cls}" onclick="choose('${L}')"><span class="tag">${L}</span><span>${esc(t)}</span></div>`;
     }).join("")}
-    ${showAns?`<div class="exp-box"><span class="lab">官方答案：${q.answer}${chosen===q.answer?"　✔ 答對":"　✘ 答錯"}</span><br>${esc(q.exp)}</div>`:""}`;
+    ${showAns?`<div class="exp-box"><span class="lab">${ansLabel(q)}：${q.answer}${chosen===q.answer?"　✔ 答對":"　✘ 答錯"}</span><br>${esc(q.exp)}</div>`:""}`;
   document.getElementById("btn-prev").disabled=exam.idx===0;
   document.getElementById("btn-next").textContent=exam.idx===exam.qids.length-1?"已是最後一題":"下一題 →";
   document.getElementById("btn-next").disabled=exam.idx===exam.qids.length-1;
@@ -610,11 +657,11 @@ function renderReviewList(){
       <div class="top"><p class="stem">${d.i+1}. ${esc(q.stem)} ${badge}${d.flagged?'<span class="badge na">⚑</span>':""}</p></div>
       <ul>${Object.entries(q.opts).map(([L,t])=>{
         let cls=""; if(q.answer.includes(L))cls="official"; else if(d.your===L)cls="yours-wrong";
-        return `<li class="${cls}">(${L}) ${esc(t)}${q.answer.includes(L)?"　← 官方答案":d.your===L?"　← 你的作答":""}</li>`;
+        return `<li class="${cls}">(${L}) ${esc(t)}${q.answer.includes(L)?`　← ${ansLabel(q)}`:d.your===L?"　← 你的作答":""}</li>`;
       }).join("")}</ul>
       <div class="exp-box"><span class="lab">解析</span>${esc(q.exp)}</div>
       ${noteBlock(q.id,"rv")}
-      <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</div>
+      <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${metaOf(q)}</div>
     </div>`;
   }).join("");
 }
@@ -667,6 +714,7 @@ function renderWrongbook(){
         const n=ids.filter(id=>QMAP[id]&&QMAP[id].level===s.level&&QMAP[id].subject===s.no).length;
         return n?`<button class="btn" onclick="startWrongRetry('${s.level}',${s.no})">${s.level}科${s.no}（${n}）</button>`:"";
       }).join("")}
+      ${(()=>{const n=ids.filter(id=>isExtra(QMAP[id])).length;return n?`<button class="btn" onclick="startWrongRetry('補充')">非官方補充題（${n}）</button>`:"";})()}
       <button class="btn ghost" onclick="if(confirm('清空整本錯題本？')){store.set('${WKEY}',{});updateWbBadge();renderWrongbook();}">清空錯題本</button>
     </div>`+
     ids.map(id=>{
@@ -677,10 +725,10 @@ function renderWrongbook(){
           <button class="btn ghost" title="移除" onclick="removeWrong('${id}');renderWrongbook()">✕ 移除</button>
         </div>
         <ul>${Object.entries(q.opts).map(([L,t])=>
-          `<li class="${q.answer.includes(L)?"official":""}">(${L}) ${esc(t)}${q.answer.includes(L)?"　← 官方答案":""}</li>`).join("")}</ul>
+          `<li class="${q.answer.includes(L)?"official":""}">(${L}) ${esc(t)}${q.answer.includes(L)?`　← ${ansLabel(q)}`:""}</li>`).join("")}</ul>
         <div class="exp-box"><span class="lab">解析</span>${esc(q.exp)}</div>
         ${noteBlock(id,"wb")}
-        <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題</div>
+        <div style="margin-top:8px;font-size:12.5px;color:var(--muted)">${metaOf(q)}</div>
       </div>`;
     }).join("");
 }
