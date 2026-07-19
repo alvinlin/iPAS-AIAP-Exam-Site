@@ -4,7 +4,8 @@
  * 滑鼠懸停或鍵盤 Tab focus 顯示簡短解釋泡泡，「點選」名詞則開啟
  * 「名詞說明欄」側欄（預設停靠右方，可移至左方／下方，可關閉，
  * 位置記憶於 localStorage 鍵 ipas-gl-pos），內含詳盡說明與考點提示，
- * 說明文字中出現的其他名詞可直接點按跳轉。
+ * 說明文字中出現的其他名詞可直接點按跳轉；欄內跳轉會依序累加
+ * 「檢索路徑」麵包屑（點路徑上的名詞可回到該詞），自內文點名詞則重新起算。
  * 為避免滿版底線，每個名詞在每一章（h2 分章）只標示第一次出現。
  * 辭典異動只需編輯本檔（TERMS＝簡短解釋、DETAIL＝詳盡說明），所有教材頁自動生效。
  */
@@ -499,7 +500,7 @@
     });
     document.addEventListener('click', function (e) { // 點按：開啟名詞說明欄
       var el = e.target.closest && e.target.closest('.gl');
-      if (el) { hide(); openPanel(+el.getAttribute('data-g')); }
+      if (el) { hide(); openPanel(+el.getAttribute('data-g'), !!(panel && panel.contains(el))); }
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { hide(); closePanel(); }
@@ -511,6 +512,7 @@
   /* ========== 名詞說明欄（點選名詞開啟；可停靠左／下／右、可關閉） ========== */
   var PKEY = 'ipas-gl-pos';
   var panel = null, pbody = null;
+  var trail = []; // 檢索路徑：欄內跳轉依序累加的名詞索引
 
   function savedPos() {
     try {
@@ -558,6 +560,14 @@
     panel.appendChild(pbody);
     document.body.appendChild(panel);
 
+    pbody.addEventListener('click', function (e) { // 點檢索路徑上的名詞 → 回到該詞並截斷其後路徑
+      var b = e.target.closest && e.target.closest('button.gl-cb');
+      if (!b) return;
+      var k = +b.getAttribute('data-k');
+      trail = trail.slice(0, k + 1);
+      renderTerm(trail[k]);
+    });
+
     acts.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
@@ -576,13 +586,19 @@
     }
   }
 
-  function openPanel(idx) {
+  function openPanel(idx, fromPanel) {
     if (!TERMS[idx]) return;
+    if (fromPanel && trail.length) { // 欄內跳轉：依序累加檢索路徑（同詞連點不重複）
+      if (trail[trail.length - 1] !== idx) trail.push(idx);
+    } else { // 自內文點名詞：重新起算
+      trail = [idx];
+    }
     renderTerm(idx);
     document.documentElement.setAttribute('data-glopen', '1');
   }
 
   function closePanel() {
+    trail = [];
     document.documentElement.removeAttribute('data-glopen');
   }
 
@@ -608,9 +624,44 @@
     into.appendChild(document.createTextNode(text.slice(last)));
   }
 
+  /* 檢索路徑麵包屑：欄內跳轉超過一層時顯示於說明最上方 */
+  function shortName(idx) {
+    return TERMS[idx][0].replace(/（[^）]*）?\s*$/, '') || TERMS[idx][0];
+  }
+
+  function renderTrail() {
+    if (trail.length < 2) return;
+    var nav = document.createElement('nav');
+    nav.className = 'gl-crumbs';
+    nav.setAttribute('aria-label', '名詞檢索路徑');
+    trail.forEach(function (ti, k) {
+      if (k) {
+        var sep = document.createElement('span');
+        sep.className = 'gl-cs';
+        sep.textContent = '›';
+        nav.appendChild(sep);
+      }
+      if (k === trail.length - 1) { // 目前名詞：不可點
+        var cur = document.createElement('b');
+        cur.textContent = shortName(ti);
+        nav.appendChild(cur);
+      } else {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'gl-cb';
+        b.setAttribute('data-k', k);
+        b.title = '回到「' + TERMS[ti][0] + '」';
+        b.textContent = shortName(ti);
+        nav.appendChild(b);
+      }
+    });
+    pbody.appendChild(nav);
+  }
+
   function renderTerm(i) {
     var t = TERMS[i];
     pbody.innerHTML = '';
+    renderTrail();
     var h = document.createElement('h3');
     h.textContent = t[0];
     pbody.appendChild(h);
@@ -661,6 +712,11 @@
       '.gl-pb h3{margin:0 0 10px;font-size:17px;color:var(--accent,#0e7c66);border:none;padding:0;}' +
       '.gl-pb p{margin:0 0 10px;}' +
       '.gl-pb .gl-lead{font-weight:600;}' +
+      '.gl-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:2px 5px;margin:0 0 10px;padding:6px 9px;background:var(--accent-soft,#e6f4f0);border-radius:7px;font-size:12.5px;line-height:1.6;}' +
+      '.gl-crumbs .gl-cs{color:var(--muted,#647084);}' +
+      '.gl-crumbs .gl-cb{border:none;background:none;padding:0;font:inherit;color:var(--accent,#0e7c66);cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:2px;}' +
+      '.gl-crumbs .gl-cb:hover,.gl-crumbs .gl-cb:focus{text-decoration-style:solid;outline:none;}' +
+      '.gl-crumbs b{font-weight:600;color:inherit;}' +
       '.gl-pb .gl-pt{background:#fff8e6;border-left:3px solid #eab308;padding:8px 10px;border-radius:6px;color:#7c5e0b;}' +
       /* ―― 深色模式 ―― */
       '[data-theme="dark"] .gl-panel{background:#131a29;border-color:#2b3447;box-shadow:0 10px 36px rgba(0,0,0,.55);}' +
@@ -670,6 +726,9 @@
       '[data-theme="dark"] .gl-pa button:hover{background:#1c2434;color:var(--accent-bright,#7fd8c4);}' +
       '[data-theme="dark"] .gl-pa button.on{background:var(--accent,#0e7c66);border-color:var(--accent,#0e7c66);color:#fff;}' +
       '[data-theme="dark"] .gl-pb .gl-pt{background:#2b2210;border-color:#f5b74e;color:#f0cf8a;}' +
+      '[data-theme="dark"] .gl-crumbs{background:#1c2434;}' +
+      '[data-theme="dark"] .gl-crumbs .gl-cs{color:#8f9bad;}' +
+      '[data-theme="dark"] .gl-crumbs .gl-cb{color:var(--accent-bright,#7fd8c4);}' +
       '@media print{.gl{text-decoration:none;}.gl-tip{display:none;}.gl-panel{display:none!important;}html[data-glopen] body{padding:0!important;}}';
     var st = document.createElement('style');
     st.textContent = css;
