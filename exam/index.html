@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
   <p class="lead">題庫共 <b id="bank-total"></b> 題，全數取自 iPAS 官方公告試題（含官方答案），解析為學習整理。每題 2 分、滿分 100、70 分及格。</p>
   <div class="grid2" id="subject-cards"></div>
   <div id="extra-card" class="hidden" style="margin-top:18px"></div>
-  <div class="notice">💡 模式說明 — <b>全真模擬</b>：隨機抽 50 題、60 分鐘倒數、交卷後才對答案。<b>歷屆原卷</b>：依原始梯次卷面順序作答。<b>快速練習</b>：自訂題數、每題作答後立即顯示答案與解析。作答時可用鍵盤 <kbd>1</kbd>–<kbd>4</kbd> 選答、<kbd>←</kbd><kbd>→</kbd> 換題、<kbd>F</kbd> 標記。</div>
+  <div class="notice">💡 模式說明 — <b>全真模擬</b>：隨機抽 50 題、依正式考試時間倒數（初級 75 分鐘、中級 90 分鐘）、交卷後才對答案。<b>歷屆原卷</b>：依原始梯次卷面順序作答。<b>快速練習</b>：自訂題數、每題作答後立即顯示答案與解析。作答時可用鍵盤 <kbd>1</kbd>–<kbd>4</kbd> 選答、<kbd>←</kbd><kbd>→</kbd> 換題、<kbd>F</kbd> 標記。</div>
 </div>
 
 <!-- ============ 課程 ============ -->
@@ -406,11 +406,16 @@ function openDlg(title,sub,fieldsHTML,onGo){
 }
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
+const officialMin=level=>level==="初級"?75:90; // 正式考試每科作答時間：初級 75 分鐘、中級 90 分鐘
+function timeOptions(level,mins){
+  const off=officialMin(level);
+  return `<label>作答時間</label><select id="f-min"><option value="${off}" selected>${off} 分鐘（正式考試）</option>${mins.map(m=>`<option value="${m}">${m} 分鐘</option>`).join("")}<option value="0">不計時</option></select>`;
+}
 function dlgMock(level,no){
   const s=SUBJECTS.find(x=>x.level===level&&x.no===no);
   openDlg(`全真模擬｜${level} 科目${no} ${s.name}`,
     "隨機抽出 50 題並打亂順序，倒數計時，交卷後才顯示答案。",
-    `<label>作答時間</label><select id="f-min"><option value="60" selected>60 分鐘（正式考試）</option><option value="45">45 分鐘</option><option value="30">30 分鐘</option><option value="0">不計時</option></select>`,
+    timeOptions(level,[60,45,30]),
     ()=>{
       const min=+document.getElementById("f-min").value;
       const qids=shuffle(poolOf(level,no)).slice(0,50).map(q=>q.id);
@@ -424,7 +429,7 @@ function dlgPast(level,no){
   openDlg(`歷屆原卷｜${level} 科目${no} ${s.name}`,
     "依原始卷面題序作答完整一梯次試卷。",
     `<label>選擇梯次</label><select id="f-session">${sessions.map(x=>`<option>${x}</option>`).join("")}</select>
-     <label>作答時間</label><select id="f-min"><option value="60" selected>60 分鐘（正式考試）</option><option value="45">45 分鐘</option><option value="0">不計時</option></select>`,
+     ${timeOptions(level,[60,45])}`,
     ()=>{
       const ses=document.getElementById("f-session").value;
       const min=+document.getElementById("f-min").value;
