@@ -6,6 +6,8 @@
  * 位置記憶於 localStorage 鍵 ipas-gl-pos），內含詳盡說明與考點提示，
  * 說明文字中出現的其他名詞可直接點按跳轉；欄內跳轉會依序累加
  * 「檢索路徑」麵包屑（點路徑上的名詞可回到該詞），自內文點名詞則重新起算。
+ * 另提供「專有名詞列表」視圖（欄頭 ☰ 按鈕或右上角 📚 浮動鈕開啟），
+ * 內含即時搜尋框，可比對名稱、別名與解釋文字並高亮關鍵字，點項目即開啟該名詞。
  * 為避免滿版底線，每個名詞在每一章（h2 分章）只標示第一次出現。
  * 辭典異動只需編輯本檔（TERMS＝簡短解釋、DETAIL＝詳盡說明），所有教材頁自動生效。
  */
@@ -513,6 +515,7 @@
   var PKEY = 'ipas-gl-pos';
   var panel = null, pbody = null;
   var trail = []; // 檢索路徑：欄內跳轉依序累加的名詞索引
+  var mode = 'term'; // 'term'＝名詞說明、'list'＝專有名詞列表
 
   function savedPos() {
     try {
@@ -536,6 +539,13 @@
 
     var acts = document.createElement('span');
     acts.className = 'gl-pa';
+    var lb = document.createElement('button');
+    lb.type = 'button';
+    lb.className = 'gl-pl';
+    lb.textContent = '☰';
+    lb.title = '專有名詞列表';
+    lb.setAttribute('aria-label', '專有名詞列表');
+    acts.appendChild(lb);
     [['left', '◧', '停靠左方'], ['bottom', '⬓', '停靠下方'], ['right', '◨', '停靠右方']].forEach(function (p) {
       var b = document.createElement('button');
       b.type = 'button';
@@ -562,16 +572,21 @@
 
     pbody.addEventListener('click', function (e) { // 點檢索路徑上的名詞 → 回到該詞並截斷其後路徑
       var b = e.target.closest && e.target.closest('button.gl-cb');
-      if (!b) return;
-      var k = +b.getAttribute('data-k');
-      trail = trail.slice(0, k + 1);
-      renderTerm(trail[k]);
+      if (b) {
+        var k = +b.getAttribute('data-k');
+        trail = trail.slice(0, k + 1);
+        renderTerm(trail[k]);
+        return;
+      }
+      var li = e.target.closest && e.target.closest('button.gl-li'); // 點列表項目 → 開啟該名詞（路徑重新起算）
+      if (li) openPanel(+li.getAttribute('data-g'), false);
     });
 
     acts.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
       if (b === x) { closePanel(); return; }
+      if (b === lb) { openList(); return; }
       setPos(b.getAttribute('data-pos'));
     });
     setPos(savedPos());
@@ -600,6 +615,78 @@
   function closePanel() {
     trail = [];
     document.documentElement.removeAttribute('data-glopen');
+  }
+
+  /* ========== 專有名詞列表（含即時搜尋） ========== */
+  function openList() {
+    trail = [];
+    document.documentElement.setAttribute('data-glopen', '1'); // 先顯示面板，renderList 內的 focus 才有效
+    renderList();
+  }
+
+  /* 於 into 內插入 text，若含 q（不分大小寫）則以 <mark> 高亮 */
+  function highlight(text, q, into) {
+    if (!q) { into.appendChild(document.createTextNode(text)); return; }
+    var lt = text.toLowerCase(), lq = q.toLowerCase(), s = 0, p;
+    while ((p = lt.indexOf(lq, s)) >= 0) {
+      into.appendChild(document.createTextNode(text.slice(s, p)));
+      var mk = document.createElement('mark');
+      mk.textContent = text.slice(p, p + q.length);
+      into.appendChild(mk);
+      s = p + q.length;
+    }
+    into.appendChild(document.createTextNode(text.slice(s)));
+  }
+
+  function renderList() {
+    mode = 'list';
+    pbody.innerHTML = '';
+    var box = document.createElement('div');
+    box.className = 'gl-search';
+    var inp = document.createElement('input');
+    inp.type = 'search';
+    inp.placeholder = '搜尋名詞（中英文名稱或解釋關鍵字）';
+    inp.setAttribute('aria-label', '搜尋專有名詞');
+    box.appendChild(inp);
+    var cnt = document.createElement('div');
+    cnt.className = 'gl-count';
+    var wrap = document.createElement('div');
+    wrap.className = 'gl-lwrap';
+    pbody.appendChild(box);
+    pbody.appendChild(cnt);
+    pbody.appendChild(wrap);
+
+    function update() {
+      var q = inp.value.trim();
+      var lq = q.toLowerCase();
+      wrap.innerHTML = '';
+      var n = 0;
+      TERMS.forEach(function (t, i) {
+        if (lq && t[0].toLowerCase().indexOf(lq) < 0 &&
+            t[1].toLowerCase().indexOf(lq) < 0 &&
+            t[2].toLowerCase().indexOf(lq) < 0) return;
+        n++;
+        var li = document.createElement('button');
+        li.type = 'button';
+        li.className = 'gl-li';
+        li.setAttribute('data-g', i);
+        var nm = document.createElement('b');
+        highlight(t[0], q, nm);
+        var ld = document.createElement('span');
+        ld.className = 'gl-ld';
+        highlight(t[2], q, ld);
+        li.appendChild(nm);
+        li.appendChild(ld);
+        wrap.appendChild(li);
+      });
+      cnt.textContent = q
+        ? (n ? '符合「' + q + '」的名詞：' + n + ' 個' : '查無符合「' + q + '」的名詞')
+        : '共 ' + TERMS.length + ' 個名詞';
+    }
+    inp.addEventListener('input', update);
+    update();
+    pbody.scrollTop = 0;
+    inp.focus();
   }
 
   /* 說明文字中出現的其他名詞 → 可點跳轉的連結 */
@@ -660,6 +747,7 @@
 
   function renderTerm(i) {
     var t = TERMS[i];
+    mode = 'term';
     pbody.innerHTML = '';
     renderTrail();
     var h = document.createElement('h3');
@@ -680,6 +768,21 @@
       });
     }
     pbody.scrollTop = 0;
+  }
+
+  /* 右上角浮動鈕（主題切換鈕下方）：開啟專有名詞列表，再點一次關閉 */
+  function buildFab() {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gl-fab';
+    b.textContent = '📚';
+    b.title = '專有名詞列表';
+    b.setAttribute('aria-label', '專有名詞列表');
+    b.addEventListener('click', function () {
+      if (document.documentElement.hasAttribute('data-glopen') && mode === 'list') closePanel();
+      else openList();
+    });
+    document.body.appendChild(b);
   }
 
   /* ========== 樣式（沿用各頁 --accent 主題色） ========== */
@@ -718,6 +821,18 @@
       '.gl-crumbs .gl-cb:hover,.gl-crumbs .gl-cb:focus{text-decoration-style:solid;outline:none;}' +
       '.gl-crumbs b{font-weight:600;color:inherit;}' +
       '.gl-pb .gl-pt{background:#fff8e6;border-left:3px solid #eab308;padding:8px 10px;border-radius:6px;color:#7c5e0b;}' +
+      /* ―― 專有名詞列表與搜尋 ―― */
+      '.gl-fab{position:fixed;top:62px;right:16px;z-index:9997;width:40px;height:40px;border-radius:50%;border:1px solid #d5dbe4;background:#fff;font-size:17px;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(15,23,42,.18);display:flex;align-items:center;justify-content:center;padding:0;}' +
+      '.gl-fab:hover{transform:scale(1.08);}' +
+      'html[data-glopen][data-glpos="right"] .gl-fab{right:calc(min(370px,94vw) + 16px);}' +
+      '.gl-search input{width:100%;box-sizing:border-box;padding:8px 11px;border:1px solid var(--line,#e2e8f0);border-radius:7px;font:inherit;font-size:13.5px;background:transparent;color:inherit;}' +
+      '.gl-search input:focus{outline:none;border-color:var(--accent,#0e7c66);}' +
+      '.gl-count{margin:8px 0 4px;font-size:12px;color:var(--muted,#647084);}' +
+      '.gl-li{display:block;width:100%;text-align:left;border:none;border-bottom:1px solid var(--line,#e2e8f0);background:none;padding:8px 6px;font:inherit;line-height:1.6;cursor:pointer;border-radius:4px;}' +
+      '.gl-li:hover,.gl-li:focus{background:var(--accent-soft,#e6f4f0);outline:none;}' +
+      '.gl-li b{display:block;font-size:13.5px;color:var(--accent,#0e7c66);}' +
+      '.gl-li .gl-ld{display:block;margin-top:2px;font-size:12.5px;color:var(--muted,#647084);}' +
+      '.gl-pb mark{background:#ffe9a8;color:inherit;border-radius:2px;padding:0 1px;}' +
       /* ―― 深色模式 ―― */
       '[data-theme="dark"] .gl-panel{background:#131a29;border-color:#2b3447;box-shadow:0 10px 36px rgba(0,0,0,.55);}' +
       '[data-theme="dark"] .gl-ph{border-color:#2b3447;}' +
@@ -729,7 +844,13 @@
       '[data-theme="dark"] .gl-crumbs{background:#1c2434;}' +
       '[data-theme="dark"] .gl-crumbs .gl-cs{color:#8f9bad;}' +
       '[data-theme="dark"] .gl-crumbs .gl-cb{color:var(--accent-bright,#7fd8c4);}' +
-      '@media print{.gl{text-decoration:none;}.gl-tip{display:none;}.gl-panel{display:none!important;}html[data-glopen] body{padding:0!important;}}';
+      '[data-theme="dark"] .gl-fab{background:#1c2434;border-color:#334158;box-shadow:0 2px 10px rgba(0,0,0,.5);}' +
+      '[data-theme="dark"] .gl-search input{border-color:#2b3447;}' +
+      '[data-theme="dark"] .gl-li{border-color:#2b3447;}' +
+      '[data-theme="dark"] .gl-li:hover,[data-theme="dark"] .gl-li:focus{background:#1c2434;}' +
+      '[data-theme="dark"] .gl-li b{color:var(--accent-bright,#7fd8c4);}' +
+      '[data-theme="dark"] .gl-pb mark{background:#7a5a12;color:#fff;}' +
+      '@media print{.gl{text-decoration:none;}.gl-tip{display:none;}.gl-panel{display:none!important;}.gl-fab{display:none;}html[data-glopen] body{padding:0!important;}}';
     var st = document.createElement('style');
     st.textContent = css;
     document.head.appendChild(st);
@@ -740,6 +861,7 @@
     annotate();
     buildTip();
     buildPanel();
+    buildFab();
     bindEvents();
   }
 
