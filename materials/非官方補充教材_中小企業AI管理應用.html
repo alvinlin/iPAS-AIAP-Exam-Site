@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>中小企業 AI 管理應用</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 版面：沿用本工作區教材的「左側目錄＋右側正文」結構；五大領域各為一章，章內每個主題分「知識重點／AI 應用建議／注意」三段 */
+:root{
+  --bg:#f5f4f3; --paper:#ffffff; --ink:#23201f; --muted:#6e6563; --line:#e6e0de;
+  --accent:#8a3040; --accent-ink:#ffffff; --accent-soft:#f6eaec;
+  --lo:#1f7a4d; --lo-soft:#e5f3eb; --mid:#a8620c; --mid-soft:#fbf0dd; --hi:#b3312d; --hi-soft:#fbe7e5;
+  --note:#f3f1ee;
+  --f-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --f-body:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1220; --paper:#131a29; --ink:#d9e0eb; --muted:#8f9bad; --line:#2b3447;
+  --accent:#e0808f; --accent-ink:#131a29; --accent-soft:#2a1f2b;
+  --lo:#6fcf9b; --lo-soft:#15291f; --mid:#e8b163; --mid-soft:#2e2413; --hi:#f08a82; --hi-soft:#33191c;
+  --note:#1a2233; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1220; --paper:#131a29; --ink:#d9e0eb; --muted:#8f9bad; --line:#2b3447;
+  --accent:#e0808f; --accent-ink:#131a29; --accent-soft:#2a1f2b;
+  --lo:#6fcf9b; --lo-soft:#15291f; --mid:#e8b163; --mid-soft:#2e2413; --hi:#f08a82; --hi-soft:#33191c;
+  --note:#1a2233; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.8}
+.wrap{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1320px;margin:0 auto;background:var(--paper);min-height:100%}
+[data-theme="dark"] nav.toc{background:var(--paper)}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;max-height:100vh;overflow-y:auto;padding:28px 16px;border-right:1px solid var(--line);font-size:14px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+nav.toc .lab{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--muted);margin:18px 8px 6px}
+nav.toc .lab:first-child{margin-top:0}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:4px 8px;border-radius:6px}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--accent);outline:none}
+main{padding-block:44px 64px;padding-inline:52px;max-width:940px;min-width:0}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:20px;margin-bottom:8px}
+.kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--accent)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance}
+h1{font-size:30px;line-height:1.35;margin:8px 0 8px}
+header.page p{margin:0;color:var(--muted)}
+h2.chap{margin:52px 0 6px;padding:12px 18px;background:var(--accent);color:var(--accent-ink);border-radius:8px;font-size:22px;scroll-margin-top:16px}
+.chap-sub{color:var(--muted);margin:0 0 8px;font-size:14.5px}
+h3{margin:36px 0 12px;font-size:19px;color:var(--accent);border-left:4px solid var(--accent);padding-left:11px;scroll-margin-top:16px}
+h4{margin:0 0 6px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;color:var(--muted);font-weight:500}
+p{margin:10px 0}
+ul{margin:6px 0;padding-left:22px}
+li{margin:4px 0}
+b,strong{font-weight:700}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.pair>div{min-width:0}
+.uc{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.uc li{margin:0;padding:10px 13px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;line-height:1.7}
+.uh{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;margin-bottom:2px}
+.uh b{font-size:15px}
+.lv{font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:999px;white-space:nowrap;letter-spacing:.04em}
+.l1{background:var(--lo-soft);color:var(--lo)} .l2{background:var(--mid-soft);color:var(--mid)} .l3{background:var(--hi-soft);color:var(--hi)}
+.warn{margin:12px 0 0;padding:10px 14px;background:var(--note);border-radius:8px;font-size:14.5px}
+.warn b{color:var(--hi)}
+.ipas{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+.ipas span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--accent);margin-right:6px}
+dl.law{margin:0;display:grid;grid-template-columns:8.5em minmax(0,1fr);border-top:1px solid var(--line);font-size:14.5px}
+dl.law dt,dl.law dd{margin:0;padding:8px 10px;border-bottom:1px solid var(--line)}
+dl.law dt{font-weight:700}
+.tbl{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;color:var(--muted);font-weight:500;border-bottom:2px solid var(--accent)}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{margin:0;padding:14px;border-top:3px solid var(--accent);background:var(--note);border-radius:0 0 8px 8px;counter-increment:s;font-size:14.5px}
+.steps li::before{content:"階段 " counter(s);display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.steps li b{display:block;font-size:15.5px;margin:2px 0 4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;color:var(--muted);margin:10px 0}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+@media (max-width:960px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  nav.toc{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);padding:20px 16px;display:flex;flex-wrap:wrap;gap:4px}
+  nav.toc .lab,nav.toc a.sub{display:none}
+  nav.toc a{border:1px solid var(--line);border-radius:999px;padding:3px 12px}
+  main{padding-block:28px 48px;padding-inline:16px}
+  .pair{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  h1{font-size:25px}
+}
+@media (max-width:520px){dl.law{grid-template-columns:minmax(0,1fr)} dl.law dt{border-bottom:0;padding-bottom:0}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="wrap">
+<nav class="toc" aria-label="目錄">
+  <a href="index.html">← 回教材首頁</a>
+  <div class="lab">總覽</div>
+  <a href="#roadmap">導入路徑與共通原則</a>
+  <a href="#matrix">五大領域速覽</a>
+  <div class="lab">五大管理領域</div>
+  <a href="#prod">一、生產管理</a>
+  <a class="sub" href="#prod-esg">ESG 淨零碳排</a>
+  <a class="sub" href="#prod-flow">生產流程優化</a>
+  <a class="sub" href="#prod-law">法規概論</a>
+  <a class="sub" href="#prod-qc">品質控制</a>
+  <a href="#mkt">二、行銷管理</a>
+  <a class="sub" href="#mkt-research">市場調研</a>
+  <a class="sub" href="#mkt-promo">行銷推廣</a>
+  <a class="sub" href="#mkt-law">法規概論</a>
+  <a class="sub" href="#mkt-brand">品牌策略</a>
+  <a class="sub" href="#mkt-crm">顧客關係管理</a>
+  <a href="#hr">三、人資管理</a>
+  <a class="sub" href="#hr-hire">人才招募選擇</a>
+  <a class="sub" href="#hr-retain">人才留任管理</a>
+  <a class="sub" href="#hr-dev">人才培育發展</a>
+  <a class="sub" href="#hr-law">法規概論</a>
+  <a class="sub" href="#hr-perf">績效管理</a>
+  <a href="#rd">四、研發管理</a>
+  <a class="sub" href="#rd-tech">技術創新</a>
+  <a class="sub" href="#rd-svc">服務創新</a>
+  <a class="sub" href="#rd-law">法規概論</a>
+  <a class="sub" href="#rd-npd">產品研發</a>
+  <a href="#fin">五、財務管理</a>
+  <a class="sub" href="#fin-inv">投資決策</a>
+  <a class="sub" href="#fin-law">法規概論</a>
+  <a class="sub" href="#fin-risk">風險稅務管理</a>
+  <a class="sub" href="#fin-fs">財報分析</a>
+  <a class="sub" href="#fin-cash">資金管理</a>
+</nav>
+
+<main>
+<header class="page">
+  <div class="kicker">非官方補充 · 管理實務 × AI 應用規劃</div>
+  <h1>中小企業 AI 管理應用：五大管理領域知識與導入建議</h1>
+  <p>生產、行銷、人資、研發、財務五大領域，共 23 個主題。每個主題整理管理知識重點、可落地的 AI 應用與導入門檻，以及法規與風險提醒。</p>
+</header>
+
+<div class="legend" aria-label="導入門檻圖例">
+  <span><span class="lv l1">門檻 低</span> 現成生成式 AI 工具即可開始，數週見效</span>
+  <span><span class="lv l2">門檻 中</span> 需整理內部資料或串接系統（RAG、低程式碼流程）</span>
+  <span><span class="lv l3">門檻 高</span> 需累積標註資料、訓練或客製模型</span>
+</div>
+
+<!-- ============ 總覽 ============ -->
+<h2 class="chap" id="roadmap">導入路徑與共通原則</h2>
+<p class="chap-sub">中小企業資源有限，建議由「低門檻、高頻率、可量化」的工作開始，逐步累積資料再進入預測與最佳化。</p>
+<ol class="steps">
+  <li><b>生成式 AI 提效</b>文案、會議紀錄、報告初稿、法規與文件摘要。工具費用低，先建立使用規範與提示詞範本庫。</li>
+  <li><b>資料整理與流程串接</b>把散在 Excel、LINE、紙本的資料結構化；以 RAG 建內部知識庫，以低程式碼平台串接表單、ERP、通知。</li>
+  <li><b>預測與最佳化</b>需求預測、預知保養、流失預測、瑕疵檢測。資料量足夠、效益明確的題目才投入模型開發或委外。</li>
+</ol>
+
+<h3>共通治理原則</h3>
+<ul>
+  <li><b>資料分級</b>：營業秘密、客戶個資、員工資料、未公開財報，不得貼入未簽企業版條款的公用生成式 AI 服務。先定義「可用／需去識別化／禁止」三級清單。</li>
+  <li><b>人在迴圈</b>：影響人（錄取、考績、授信、客訴裁決）或影響錢（報價、報稅、付款）的決策，AI 只提供建議，由權責人員最終核定並留存紀錄。</li>
+  <li><b>幻覺與數字</b>：LLM 產出的法條、數據、計算一律回查原始來源；財務與碳排計算交給試算表或程式，AI 負責說明與撰寫。</li>
+  <li><b>先量測再導入</b>：導入前記錄基準值（工時、不良率、回覆時間），導入後以同一指標比較，才能判斷投資是否值得。</li>
+  <li><b>法規底線</b>：我國《個人資料保護法》《營業秘密法》《著作權法》適用於所有 AI 應用；我國《人工智慧基本法》已完成立法，後續子法由各主管機關訂定。產品或服務進入歐盟者，另須留意歐盟《AI 法》的高風險與透明義務。</li>
+</ul>
+
+<h2 class="chap" id="matrix">五大領域速覽</h2>
+<p class="chap-sub">每個領域挑出最值得中小企業優先嘗試的應用。</p>
+<div class="tbl"><table>
+<thead><tr><th>領域</th><th>優先嘗試（門檻低）</th><th>第二步（門檻中）</th><th>進階（門檻高）</th></tr></thead>
+<tbody>
+<tr><td><b>生產</b></td><td>SOP 與異常處理問答、碳盤查文件整理</td><td>電力／設備數據儀表板與異常告警</td><td>AOI 瑕疵檢測、預知保養、排程最佳化</td></tr>
+<tr><td><b>行銷</b></td><td>多平台文案、評論摘要與情緒分析</td><td>RAG 客服、RFM 分群與自動化再行銷</td><td>流失預測、個人化推薦</td></tr>
+<tr><td><b>人資</b></td><td>職缺描述、面試題庫、訓練教材</td><td>內部規章問答、技能盤點</td><td>離職風險預測（需嚴格治理）</td></tr>
+<tr><td><b>研發</b></td><td>專利與文獻摘要、需求整理、程式輔助</td><td>技術情報追蹤、客戶聲音分析</td><td>代理模型模擬、生成式設計</td></tr>
+<tr><td><b>財務</b></td><td>財報解讀與說明草稿、法規問答</td><td>發票與費用異常偵測、應收帳款催收排序</td><td>現金流預測、客戶信用評分</td></tr>
+</tbody></table></div>
+
+<!-- ============ 一、生產管理 ============ -->
+<h2 class="chap" id="prod">一、生產管理</h2>
+<p class="chap-sub">目標：在品質、成本、交期（QCD）之外，加入碳排與安全，並用數據取代經驗判斷。</p>
+
+<h3 id="prod-esg">ESG 淨零碳排</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>溫室氣體盤查範疇</b>：範疇一為直接排放（鍋爐、公務車、冷媒逸散），範疇二為外購電力，範疇三為其他間接排放（原物料、運輸、產品使用）。依 GHG Protocol 或 ISO 14064-1 進行組織盤查；產品碳足跡依 ISO 14067。</li>
+  <li><b>排放量計算</b>：活動數據 × 排放係數 × GWP，單位為公噸二氧化碳當量（tCO₂e）。電力係數採能源署公告之年度電力排碳係數。</li>
+  <li><b>國內制度</b>：《氣候變遷因應法》將 2050 淨零入法並開徵碳費。碳費首波對象為年排放量達 2.5 萬 tCO₂e 的電力業與製造業，一般費率每公噸 300 元，提出自主減量計畫可適用優惠費率。</li>
+  <li><b>供應鏈壓力</b>：多數中小企業不在碳費對象內，但國際品牌與上市櫃客戶需揭露範疇三，會要求供應商提供盤查數據與減碳目標。出口歐盟的鋼鐵、鋁、水泥、肥料、氫、電力，另受歐盟碳邊境調整機制（CBAM）規範。</li>
+  <li><b>減碳路徑</b>：能源管理（空壓機、冰水主機、照明）→ 製程改善 → 綠電與再生能源憑證 → 碳權抵換（最後手段）。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>盤查資料自動彙整</b><span class="lv l1">門檻 低</span></div>以 AI 讀取電費單、油單、採購發票，抽取活動數據填入盤查表，並依品項建議對應的排放係數，由人員確認。</li>
+  <li><div class="uh"><b>能源異常偵測</b><span class="lv l2">門檻 中</span></div>智慧電表每 15 分鐘數據建立用電基線，偵測非生產時段待機耗電、空壓系統洩漏等異常並推播。</li>
+  <li><div class="uh"><b>空調與空壓最佳化</b><span class="lv l3">門檻 高</span></div>以歷史負載、溫濕度訓練預測模型，動態調整主機台數與設定值，一般為節能專案中回收最快的一項。</li>
+  <li><div class="uh"><b>永續報告與客戶問卷</b><span class="lv l1">門檻 低</span></div>以 RAG 連結公司盤查結果與政策文件，草擬客戶 ESG 問卷回覆及永續報告章節。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　排放係數與碳費規定會逐年更新，以環境部及能源署最新公告為準。AI 產出的數字必須可追溯至原始單據，否則無法通過第三方查證。</p>
+
+<h3 id="prod-flow">生產流程優化</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>精實生產</b>：辨識七大浪費（過量生產、等待、搬運、過度加工、庫存、動作、不良），以價值流圖（VSM）找出非增值時間。</li>
+  <li><b>OEE 設備綜合效率</b> ＝ 稼動率 × 性能效率 × 良率，世界級水準約 85%。</li>
+  <li><b>限制理論（TOC）</b>：產出由瓶頸決定，改善非瓶頸站無法提升整體產能。</li>
+  <li><b>生產計畫</b>：主生產排程（MPS）、物料需求規劃（MRP）、先進規劃排程（APS）；製造執行系統（MES）負責現場追蹤。</li>
+  <li><b>保養策略</b>：事後保養 → 預防保養（定期）→ 預知保養（依狀態）。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>現場 SOP 問答助理</b><span class="lv l1">門檻 低</span></div>把 SOP、機台手冊、歷年異常處理紀錄建成知識庫，新進人員以手機提問，縮短老師傅帶人時間。</li>
+  <li><div class="uh"><b>需求預測</b><span class="lv l2">門檻 中</span></div>以歷史出貨、季節性、客戶預告訂單預測未來需求，作為備料與產能規劃依據，降低庫存與缺料。</li>
+  <li><div class="uh"><b>預知保養</b><span class="lv l3">門檻 高</span></div>在關鍵設備加裝振動、溫度、電流感測器，以異常偵測模型預警故障。故障樣本少時，先用非監督式異常偵測。</li>
+  <li><div class="uh"><b>排程最佳化</b><span class="lv l3">門檻 高</span></div>多品項、多機台、換線成本高的工廠，以最佳化演算法產生排程建議，由生管人員調整確認。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　先用 OEE 找出損失最大的環節，再決定 AI 題目。多數工廠的第一步是讓機台數據能被自動收集，而非直接買模型。</p>
+<p class="ipas"><span>iPAS 對應</span>監督式與非監督式學習、時間序列預測、異常偵測、資料前處理</p>
+
+<h3 id="prod-law">法規概論（生產）</h3>
+<div class="pair">
+<div><h4>知識重點</h4><dl class="law">
+  <dt>職業安全衛生法</dt><dd>雇主應防止機械、設備、化學品危害，並預防人因性危害、異常工作負荷（過勞）與執行職務遭不法侵害。</dd>
+  <dt>工廠管理輔導法</dt><dd>工廠登記、變更與土地使用；未登記工廠的輔導與管理。</dd>
+  <dt>環保法規</dt><dd>空氣污染防制法、水污染防治法、廢棄物清理法、氣候變遷因應法。</dd>
+  <dt>勞動基準法</dt><dd>排班須遵守每日正常工時 8 小時、每週 40 小時及延長工時上限，輪班換班間隔原則上至少 11 小時。</dd>
+  <dt>商品檢驗法</dt><dd>列檢商品須經標準檢驗局檢驗或登錄後始得運出廠場或輸入。</dd>
+  <dt>個人資料保護法</dt><dd>影像監控與人員定位屬蒐集個人資料，須有特定目的並告知員工。</dd>
+</dl></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>工安影像辨識</b><span class="lv l2">門檻 中</span></div>以攝影機偵測未戴安全帽、進入危險區域、堆高機人車交錯，即時警示。用途應限於安全，事前公告並避免作為懲處依據。</li>
+  <li><div class="uh"><b>法規與申報提醒</b><span class="lv l1">門檻 低</span></div>建立法規義務清單（定期檢查、申報期限、證照效期），以 AI 摘要法規修正並自動提醒權責人。</li>
+  <li><div class="uh"><b>排班合規檢查</b><span class="lv l2">門檻 中</span></div>排班系統自動檢查工時、加班時數與輪班間隔，違規前先警示。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 摘要的法規內容只能當作索引，引用時須以「全國法規資料庫」現行條文為準。</p>
+
+<h3 id="prod-qc">品質控制</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>統計製程管制（SPC）</b>：以管制圖區分共同原因與特殊原因變異；製程能力指標 Cpk ≥ 1.33 常作為合格門檻。</li>
+  <li><b>品質工具</b>：QC 七大手法（查檢表、柏拉圖、特性要因圖、直方圖、散布圖、管制圖、層別法）；FMEA 事前風險評估；8D 用於客訴矯正。</li>
+  <li><b>六標準差 DMAIC</b>：定義、衡量、分析、改善、控制。</li>
+  <li><b>品質系統</b>：ISO 9001 品質管理系統；車用 IATF 16949、醫材 ISO 13485 等產業標準。</li>
+  <li><b>產品責任</b>：《消費者保護法》規定商品製造者負無過失責任，不良品流出的代價遠高於檢驗成本。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>AOI 瑕疵檢測</b><span class="lv l3">門檻 高</span></div>以電腦視覺取代人工目檢。瑕疵樣本少時可用異常偵測或資料增強；評估時重視召回率（Recall），避免漏檢流出。</li>
+  <li><div class="uh"><b>SPC 異常自動判讀</b><span class="lv l2">門檻 中</span></div>自動套用管制圖判異規則，出現連續上升、偏移等趨勢時提早通知，並列出同時段的設備、原料批號供追查。</li>
+  <li><div class="uh"><b>8D 與客訴報告草稿</b><span class="lv l1">門檻 低</span></div>輸入客訴內容與調查紀錄，由 AI 依 8D 格式草擬報告並比對歷史相似案例。</li>
+  <li><div class="uh"><b>根因分析輔助</b><span class="lv l2">門檻 中</span></div>以製程參數與良率資料訓練可解釋模型，排序影響良率的關鍵參數，縮小實驗範圍。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　瑕疵檢測模型上線後，需定期抽樣複檢並追蹤資料漂移（換料、換光源、換機台都會影響準確度）。</p>
+<p class="ipas"><span>iPAS 對應</span>精確率與召回率、類別不平衡、資料漂移、可解釋 AI</p>
+
+<!-- ============ 二、行銷管理 ============ -->
+<h2 class="chap" id="mkt">二、行銷管理</h2>
+<p class="chap-sub">目標：用有限預算找到對的客群，並把一次性交易變成長期關係。</p>
+
+<h3 id="mkt-research">市場調研</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>STP</b>：市場區隔（Segmentation）、目標市場選擇（Targeting）、定位（Positioning）。</li>
+  <li><b>分析架構</b>：PEST 看總體環境、五力分析看產業競爭、SWOT 整合內外部因素。</li>
+  <li><b>資料來源</b>：初級資料（問卷、訪談、焦點團體）與次級資料（政府統計、產業報告、競品公開資訊、電商評論）。</li>
+  <li><b>市場規模估算</b>：TAM（整體市場）、SAM（可服務市場）、SOM（可取得市場）。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>評論與社群分析</b><span class="lv l1">門檻 低</span></div>彙整電商評論、Google 評論、社群留言，以 AI 做情緒分析與主題歸納，找出自家與競品的抱怨和亮點。</li>
+  <li><div class="uh"><b>桌上研究助理</b><span class="lv l1">門檻 低</span></div>以具網路檢索功能的 AI 整理產業報告與政府統計，產出附來源連結的研究摘要。</li>
+  <li><div class="uh"><b>問卷設計與開放題編碼</b><span class="lv l1">門檻 低</span></div>協助設計不具誘導性的問卷題目，並把大量開放式回答自動分類編碼。</li>
+  <li><div class="uh"><b>客群分群</b><span class="lv l2">門檻 中</span></div>以交易資料做 K-means 分群，找出行為相近的客群，作為 STP 的數據依據。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 模擬的「虛擬消費者」只能用來發想假設，不能取代真實訪談；市場數據必須點開來源確認。</p>
+
+<h3 id="mkt-promo">行銷推廣</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>行銷組合</b>：4P（產品、價格、通路、推廣）；站在顧客角度的 4C（需求、成本、便利、溝通）。</li>
+  <li><b>數位行銷漏斗</b>：認知 → 考慮 → 轉換 → 忠誠 → 推薦，每一層設定對應指標。</li>
+  <li><b>關鍵指標</b>：點擊率（CTR）、轉換率（CVR）、顧客取得成本（CAC）、廣告投資報酬率（ROAS）。</li>
+  <li><b>媒體類型</b>：自有媒體（官網、LINE 官方帳號）、付費媒體（廣告）、贏得媒體（口碑、報導）。</li>
+  <li><b>A/B 測試</b>：一次只改一個變因，樣本數足夠才下結論。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>多版本文案與素材</b><span class="lv l1">門檻 低</span></div>同一主題產出 FB、IG、LINE、電子報不同長度與語氣的版本，並產生 A/B 測試變體。</li>
+  <li><div class="uh"><b>生成式搜尋最佳化</b><span class="lv l1">門檻 低</span></div>除了傳統 SEO，也整理常見問答與結構化產品資訊，讓 AI 搜尋與聊天工具更容易正確引用。</li>
+  <li><div class="uh"><b>行銷自動化流程</b><span class="lv l2">門檻 中</span></div>以低程式碼平台串接表單、CRM 與訊息推播，依顧客行為觸發不同內容。</li>
+  <li><div class="uh"><b>成效分析報告</b><span class="lv l2">門檻 中</span></div>匯出廣告與網站數據，由 AI 解讀變化原因並提出下期預算分配建議。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 生成的圖片與文案須人工審核產品功效描述、價格與優惠條件，避免構成不實廣告。</p>
+
+<h3 id="mkt-law">法規概論（行銷）</h3>
+<div class="pair">
+<div><h4>知識重點</h4><dl class="law">
+  <dt>公平交易法</dt><dd>禁止對商品價格、品質、內容等為虛偽不實或引人錯誤之表示（第 21 條）；網紅、名人代言另有公平會薦證廣告規範，薦證者亦可能負連帶責任。</dd>
+  <dt>消費者保護法</dt><dd>企業經營者應確保廣告內容真實，對消費者所負義務不得低於廣告內容；網購等通訊交易，消費者享 7 日解除權。</dd>
+  <dt>個人資料保護法</dt><dd>蒐集時須告知目的；當事人表示拒絕接受行銷時，應立即停止利用其個資行銷。</dd>
+  <dt>著作權法、商標法</dt><dd>素材須有授權；經濟部智慧財產局認為純由 AI 生成、無人類創意投入的內容不受著作權保護。</dd>
+  <dt>產業特別法</dt><dd>食品安全衛生管理法、化粧品衛生安全管理法、健康食品管理法、醫療器材管理法，均限制誇大與醫療效能宣稱。</dd>
+</dl></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>廣告用語合規初篩</b><span class="lv l2">門檻 中</span></div>把主管機關公布的違規詞例與公司審稿規則建成知識庫，發稿前由 AI 標示高風險詞句，再由人員判斷。</li>
+  <li><div class="uh"><b>行銷同意管理</b><span class="lv l2">門檻 中</span></div>CRM 記錄每位顧客的同意範圍與退訂狀態，自動化行銷流程只對已同意者發送。</li>
+  <li><div class="uh"><b>素材來源登記</b><span class="lv l1">門檻 低</span></div>記錄每張圖、每段文案的生成工具、提示詞與人工修改，作為日後權利爭議的證明。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　使用 AI 生成的真人肖像或聲音代言，須取得當事人授權並揭露為 AI 生成，避免涉及冒名、深偽與詐欺疑慮。</p>
+
+<h3 id="mkt-brand">品牌策略</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>品牌權益</b>：Aaker 模型包含品牌知名度、品牌聯想、知覺品質、品牌忠誠度；Keller 以顧客為基礎的品牌權益金字塔，由識別到共鳴。</li>
+  <li><b>品牌定位陳述</b>：對誰（目標客群）、在什麼類別、提供什麼獨特價值、為什麼可信。</li>
+  <li><b>品牌識別</b>：名稱、標誌、色彩、字體、語調（brand voice）須在所有接觸點一致。</li>
+  <li><b>品牌架構</b>：單一品牌、多品牌、背書品牌，影響資源分配與延伸風險。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>品牌語調規範助理</b><span class="lv l1">門檻 低</span></div>把品牌手冊、用語禁忌、範例文案寫成系統提示詞或專屬助理，讓每位員工產出的內容語調一致。</li>
+  <li><div class="uh"><b>品牌聲量監測</b><span class="lv l2">門檻 中</span></div>追蹤網路上品牌與競品的提及量與情緒變化，負面聲量異常升高時即時通知，縮短危機反應時間。</li>
+  <li><div class="uh"><b>命名與標語發想</b><span class="lv l1">門檻 低</span></div>大量發想命名與標語候選，再以商標檢索系統查核是否已有他人註冊。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 容易產出「看起來都差不多」的內容，品牌差異化的核心判斷仍需經營者與團隊決定。</p>
+
+<h3 id="mkt-crm">顧客關係管理</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>RFM 模型</b>：最近一次消費（Recency）、消費頻率（Frequency）、消費金額（Monetary），是中小企業最實用的分群方法。</li>
+  <li><b>顧客終身價值（CLV）</b>：顧客在整個關係期間帶來的利潤；CLV 與 CAC 的比值常用於判斷獲客是否划算。</li>
+  <li><b>留存與流失</b>：取得新客的成本通常高於維繫舊客，流失率是 CRM 的核心指標。</li>
+  <li><b>滿意度指標</b>：淨推薦值（NPS）、顧客滿意度（CSAT）、顧客費力度（CES）。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>RAG 智慧客服</b><span class="lv l2">門檻 中</span></div>以產品手冊、FAQ、退換貨政策建知識庫回答常見問題，無法處理或情緒激動時轉接真人。</li>
+  <li><div class="uh"><b>客服對話摘要與分類</b><span class="lv l1">門檻 低</span></div>自動摘要通話與訊息、標記問題類型，每月彙整成產品改善清單。</li>
+  <li><div class="uh"><b>流失預測</b><span class="lv l3">門檻 高</span></div>以購買間隔、客訴紀錄、互動頻率預測流失機率，對高價值且高風險的顧客優先關懷。</li>
+  <li><div class="uh"><b>個人化推薦</b><span class="lv l3">門檻 高</span></div>依購買紀錄推薦加購品項，商品數多、回購頻繁的產業效益較明顯。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　客服機器人應揭露為 AI，並清楚提供轉接真人的方式；回答退款、保固等承諾事項必須以正式政策為準。</p>
+<p class="ipas"><span>iPAS 對應</span>K-means 分群、情感分析、RAG、分類模型評估、人機協作</p>
+
+<!-- ============ 三、人資管理 ============ -->
+<h2 class="chap" id="hr">三、人資管理</h2>
+<p class="chap-sub">目標：在人力緊縮下招得到、留得住、長得快。人資是 AI 法規風險最高的領域，任何影響個人權益的判斷都須由人負責。</p>
+
+<h3 id="hr-hire">人才招募選擇</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>工作分析</b>：先寫清楚工作說明書（職責）與工作規範（所需知識、技能、能力），才能定義招募條件。</li>
+  <li><b>職能模型</b>：區分核心職能、管理職能、專業職能，作為選才與培訓共同語言。</li>
+  <li><b>甄選工具</b>：結構化面試的預測效度高於非結構化面試；行為事例面試（STAR：情境、任務、行動、結果）檢驗過去實際表現。</li>
+  <li><b>雇主品牌</b>：中小企業可強調成長空間、決策速度與彈性，補足薪資競爭力。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>職缺描述撰寫</b><span class="lv l1">門檻 低</span></div>依工作分析產出職缺文案，並檢查是否有年齡、性別、婚姻等歧視性用語。</li>
+  <li><div class="uh"><b>結構化面試題庫</b><span class="lv l1">門檻 低</span></div>依職能產生行為面試題目與評分標準，確保每位面試官用同一把尺。</li>
+  <li><div class="uh"><b>履歷摘要比對</b><span class="lv l2">門檻 中</span></div>把履歷整理成與職能對照的摘要表，由招募人員判斷；不宜讓 AI 自動淘汰。</li>
+  <li><div class="uh"><b>面試排程與候選人溝通</b><span class="lv l1">門檻 低</span></div>自動排定面試、寄送通知與回答流程問題，改善候選人體驗。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　以歷史錄取資料訓練的篩選模型會複製過去的偏見；國際上已有履歷篩選模型因歧視女性求職者而停用的案例。歐盟《AI 法》將招募、升遷、解僱用途的 AI 列為高風險系統。</p>
+
+<h3 id="hr-retain">人才留任管理</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>離職成本</b>：包含招募、訓練、產能損失與知識流失，常用粗估為該職位年薪的一半以上。</li>
+  <li><b>赫茲伯格雙因子理論</b>：保健因子（薪資、制度、環境）不足會不滿；激勵因子（成就、認同、成長）才會帶來投入。</li>
+  <li><b>員工敬業度</b>：定期脈動調查與留任面談（stay interview），比離職面談更能及早發現問題。</li>
+  <li><b>整體獎酬</b>：薪資、獎金、福利、彈性工作、職涯發展一起設計。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>敬業度調查分析</b><span class="lv l1">門檻 低</span></div>以 AI 歸納開放式回饋的主題與情緒，依部門呈現趨勢。報告以群體呈現，不追溯個人。</li>
+  <li><div class="uh"><b>內部規章與福利問答</b><span class="lv l2">門檻 中</span></div>以員工手冊、請假與福利辦法建知識庫，員工隨時查詢，減少人資重複回答。</li>
+  <li><div class="uh"><b>薪酬市場比較</b><span class="lv l1">門檻 低</span></div>彙整公開薪資調查與職缺資料，協助檢視職位薪資是否落後市場。</li>
+  <li><div class="uh"><b>離職風險預測</b><span class="lv l3">門檻 高</span></div>以年資、調薪、加班、主管異動等指標預測離職風險。員工數少時模型不可靠，須特別注意隱私與告知。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　不應分析員工私人通訊或社群內容來推測離職意圖。員工資料屬個人資料，健康檢查結果更屬特種個資，蒐集利用有更嚴格限制。</p>
+
+<h3 id="hr-dev">人才培育發展</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>70-20-10 學習法則</b>：70% 來自工作實作、20% 來自他人指導回饋、10% 來自正式課程。</li>
+  <li><b>ADDIE 教學設計</b>：分析、設計、發展、實施、評估。</li>
+  <li><b>柯氏四層次評估</b>：反應、學習、行為、成果，愈高層次愈能證明培訓效益。</li>
+  <li><b>TTQS 人才發展品質管理系統</b>：勞動部推動的訓練品質評核，申請部分政府訓練補助時會參考。</li>
+  <li><b>知識傳承</b>：資深員工退休前，將隱性知識轉為文件、影片與案例。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>教材與測驗產生</b><span class="lv l1">門檻 低</span></div>把 SOP、產品規格轉成課程講義、情境題與測驗，縮短內訓教材開發時間。</li>
+  <li><div class="uh"><b>AI 情境演練教練</b><span class="lv l1">門檻 低</span></div>模擬難纏客戶、績效面談、業務議價等情境，讓員工反覆練習並獲得回饋。</li>
+  <li><div class="uh"><b>老師傅知識萃取</b><span class="lv l2">門檻 中</span></div>訪談錄音轉文字後，由 AI 整理成問題與處理方式的知識條目，納入內部知識庫。</li>
+  <li><div class="uh"><b>技能盤點與學習路徑</b><span class="lv l2">門檻 中</span></div>比對職能需求與員工現有技能，建議個人化學習路徑。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 產出的教材須經專業人員審核，尤其是安全操作與品質標準相關內容。</p>
+
+<h3 id="hr-law">法規概論（人資）</h3>
+<div class="pair">
+<div><h4>知識重點</h4><dl class="law">
+  <dt>就業服務法</dt><dd>第 5 條禁止以性別、年齡、婚姻、容貌、身心障礙等事由歧視求職人或員工，並不得要求提供非屬就業所需的隱私資料。</dd>
+  <dt>性別平等工作法</dt><dd>招募、考績、升遷不得性別歧視；僱用 10 人以上應設性騷擾申訴管道，30 人以上須訂定防治措施並公開揭示。</dd>
+  <dt>勞動基準法</dt><dd>工時與加班上限、加班費、特別休假、資遣事由與預告期。以「不能勝任工作」解僱須符合解僱最後手段原則，並有具體紀錄。</dd>
+  <dt>勞工退休金條例</dt><dd>雇主每月提繳不低於工資 6%；新制資遣費每滿 1 年發給 0.5 個月平均工資，最高 6 個月。</dd>
+  <dt>中高齡者及高齡者就業促進法</dt><dd>禁止年齡歧視，並有繼續僱用與退休再僱用的相關措施。</dd>
+  <dt>身心障礙者權益保障法</dt><dd>私立機構員工總數 67 人以上，應進用具工作能力的身心障礙者不低於員工總數 1%。</dd>
+  <dt>個人資料保護法</dt><dd>員工資料的蒐集、處理、利用須符合特定目的；病歷、健康檢查、犯罪前科屬特種個資。</dd>
+</dl></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>勞動法規問答</b><span class="lv l2">門檻 中</span></div>以勞動部法規與函釋建知識庫，回答加班費、特休、請假計算，回答須附條文出處供人資覆核。</li>
+  <li><div class="uh"><b>出勤合規檢查</b><span class="lv l2">門檻 中</span></div>比對打卡與排班資料，自動找出超時、未給加班費、特休未排休等問題。</li>
+  <li><div class="uh"><b>AI 使用告知與同意</b><span class="lv l1">門檻 低</span></div>在招募與內部制度中說明哪些環節使用 AI、資料用途與保存期間，並保留人工申訴管道。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　最低工資、投保級距等金額每年調整，以勞動部公告為準。</p>
+
+<h3 id="hr-perf">績效管理</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>目標設定</b>：KPI 衡量結果；OKR 以挑戰性目標（Objective）搭配可衡量關鍵結果（Key Results）；平衡計分卡從財務、顧客、內部流程、學習成長四構面展開策略。</li>
+  <li><b>SMART 原則</b>：具體、可衡量、可達成、相關、有時限。</li>
+  <li><b>評核偏誤</b>：月暈效應、近因效應、趨中傾向、寬大或嚴苛傾向；以校準會議（calibration）降低主管間差異。</li>
+  <li><b>持續回饋</b>：從年度考核轉向定期一對一面談，及早修正方向。</li>
+  <li><b>與獎酬連結</b>：績效結果連動調薪、獎金、晉升，規則須事前公開。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>目標撰寫輔助</b><span class="lv l1">門檻 低</span></div>協助把模糊目標改寫成符合 SMART 的 KPI 或 OKR，並檢查部門目標與公司目標是否對齊。</li>
+  <li><div class="uh"><b>績效證據彙整</b><span class="lv l2">門檻 中</span></div>彙整一年來的專案紀錄與回饋，產出事實清單供主管撰寫評語，減少近因效應。</li>
+  <li><div class="uh"><b>評語偏誤檢查</b><span class="lv l1">門檻 低</span></div>檢查評語是否含有與工作無關或帶性別刻板印象的描述。</li>
+  <li><div class="uh"><b>面談準備</b><span class="lv l1">門檻 低</span></div>協助主管規劃績效面談的開場、回饋方式與發展建議。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　考績等第與解僱決定不可交由 AI 判定。以監控軟體推算「生產力分數」容易引發信任與隱私爭議。</p>
+<p class="ipas"><span>iPAS 對應</span>演算法偏誤與公平性、人在迴圈、個資與隱私、可解釋性</p>
+
+<!-- ============ 四、研發管理 ============ -->
+<h2 class="chap" id="rd">四、研發管理</h2>
+<p class="chap-sub">目標：以小團隊快速驗證想法，把有限研發資源集中在最有機會的題目，並守住智慧財產。</p>
+
+<h3 id="rd-tech">技術創新</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>技術 S 曲線</b>：技術成熟後進步趨緩，須提早布局下一代技術。</li>
+  <li><b>創新類型</b>：漸進式與突破式創新；延續性與破壞式創新（Christensen）。</li>
+  <li><b>技術成熟度（TRL）</b>：1 到 9 級，從基礎原理到系統實際運作驗證，用於評估技術離量產多遠。</li>
+  <li><b>開放式創新</b>：與大學、法人研究機構、供應商、新創合作，彌補內部研發能量。</li>
+  <li><b>專利地圖</b>：分析競爭者專利布局，找出技術空白與迴避設計方向。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>專利與文獻摘要</b><span class="lv l1">門檻 低</span></div>快速摘要專利請求項與論文重點，建立技術比較表，縮短前期研究時間。</li>
+  <li><div class="uh"><b>技術情報追蹤</b><span class="lv l2">門檻 中</span></div>定期抓取指定關鍵字的新專利、論文與競品新聞，由 AI 分類並產出週報。</li>
+  <li><div class="uh"><b>程式開發輔助</b><span class="lv l1">門檻 低</span></div>以 AI 輔助撰寫程式、測試與文件，小型軟體團隊效益特別明顯。</li>
+  <li><div class="uh"><b>代理模型加速模擬</b><span class="lv l3">門檻 高</span></div>以既有模擬或實驗數據訓練機器學習模型，快速預測參數組合結果，減少昂貴的試誤。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　未公開的技術內容不可輸入未經授權的公用 AI 服務；發明在申請專利前公開，可能喪失新穎性。</p>
+
+<h3 id="rd-svc">服務創新</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>設計思考</b>：同理、定義、發想、原型、測試；雙鑽石模型先發散後收斂。</li>
+  <li><b>顧客旅程地圖</b>：描繪顧客在各接觸點的行動、想法與情緒，找出痛點。</li>
+  <li><b>服務藍圖</b>：把前台互動、後台作業與支援系統對應起來，找出失誤點與等待點。</li>
+  <li><b>服務化轉型</b>：製造業由賣產品轉為賣服務，例如設備租賃、按使用量計費、遠端維護。</li>
+  <li><b>服務特性</b>：無形性、不可分割性、異質性、易逝性，影響品質管理方式。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>痛點挖掘</b><span class="lv l1">門檻 低</span></div>從客服紀錄、評論與訪談逐字稿中歸納顧客旅程各階段的痛點與頻率。</li>
+  <li><div class="uh"><b>快速原型</b><span class="lv l1">門檻 低</span></div>以 AI 與低程式碼工具在幾天內做出可操作的服務原型，先給真實顧客試用再決定是否投資。</li>
+  <li><div class="uh"><b>AI 代理服務</b><span class="lv l2">門檻 中</span></div>把預約、報價、訂單查詢等流程交給 AI 代理處理，例外情況交回人員。</li>
+  <li><div class="uh"><b>設備遠端服務</b><span class="lv l3">門檻 高</span></div>設備聯網後提供耗材預測補貨與故障預警，發展成訂閱式服務收入。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 代理可以代表公司對外承諾時，須限定其權限範圍，並保留交易紀錄以便稽核。</p>
+
+<h3 id="rd-law">法規概論（研發）</h3>
+<div class="pair">
+<div><h4>知識重點</h4><dl class="law">
+  <dt>專利法</dt><dd>發明專利 20 年、新型專利 10 年、設計專利 15 年，自申請日起算。發明專利須具新穎性、進步性、產業利用性；發明人須為自然人，AI 不得列為發明人。</dd>
+  <dt>營業秘密法</dt><dd>受保護須具秘密性、經濟價值，並採取合理保密措施。任意把機密輸入外部 AI 服務，可能被認定未盡合理保密措施。</dd>
+  <dt>著作權法</dt><dd>程式碼與文件受保護；使用開源套件須遵守授權條款，GPL 等授權可能要求公開衍生程式碼。</dd>
+  <dt>產業創新條例</dt><dd>研究發展支出可選擇當年度抵減 15%，或分三年每年抵減 10%，抵減額不超過當年度應納營所稅額 30%。</dd>
+  <dt>醫療器材管理法等</dt><dd>AI 用於醫療判讀可能屬醫療器材軟體，須查驗登記；出口產品另須符合目標市場法規。</dd>
+</dl></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>先前技術檢索</b><span class="lv l2">門檻 中</span></div>以 AI 協助擴展關鍵字與同義詞，在專利資料庫檢索先前技術，申請前評估可專利性，再交由專利師確認。</li>
+  <li><div class="uh"><b>研發紀錄管理</b><span class="lv l1">門檻 低</span></div>以 AI 整理實驗紀錄並標註日期、參與人員與版本，支援專利申請、研發抵減與權利歸屬舉證。</li>
+  <li><div class="uh"><b>開源授權檢查</b><span class="lv l2">門檻 中</span></div>以軟體組成分析工具列出使用的開源套件與授權，AI 生成程式碼也納入檢查。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　政府研發補助如經濟部小型企業創新研發計畫（SBIR）及地方型 SBIR，申請時程與要件每年公告，以主管機關為準。</p>
+
+<h3 id="rd-npd">產品研發</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>階段關卡流程（Stage-Gate）</b>：每個階段結束設關卡，決定繼續、修正或停止，避免資源卡在沒前景的專案。</li>
+  <li><b>品質機能展開（QFD）</b>：以品質屋把顧客需求轉換為工程規格。</li>
+  <li><b>設計 FMEA</b>：在設計階段預估失效模式，依嚴重度、發生度、偵測度排定改善優先順序。</li>
+  <li><b>敏捷開發與最小可行產品（MVP）</b>：以短週期迭代，用最少功能驗證市場需求。</li>
+  <li><b>面向製造與組裝的設計（DFM/DFA）</b>：設計階段就考量可製造性，降低量產成本。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>需求整理與規格草擬</b><span class="lv l1">門檻 低</span></div>把業務回報、客訴與訪談整理成需求清單，並草擬產品規格書與測試案例。</li>
+  <li><div class="uh"><b>FMEA 腦力激盪</b><span class="lv l1">門檻 低</span></div>依產品結構列出可能失效模式供團隊討論，並比對過去客訴與維修紀錄。</li>
+  <li><div class="uh"><b>生成式設計</b><span class="lv l3">門檻 高</span></div>輸入負載、材料與空間限制，由軟體產生多種結構方案，兼顧輕量化與強度。</li>
+  <li><div class="uh"><b>測試自動化</b><span class="lv l2">門檻 中</span></div>自動產生測試腳本並分析測試結果，縮短驗證週期。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　AI 可以擴大方案的數量，但規格取捨與安全裕度須由工程師負責並留下設計審查紀錄。</p>
+<p class="ipas"><span>iPAS 對應</span>生成式 AI 應用規劃、RAG 與微調的選擇、AI 代理、低程式碼平台、智慧財產權</p>
+
+<!-- ============ 五、財務管理 ============ -->
+<h2 class="chap" id="fin">五、財務管理</h2>
+<p class="chap-sub">目標：看得懂數字、算得出報酬、守得住現金。財務數字的正確性不能交給 AI 保證，AI 負責加速整理與提出疑點。</p>
+
+<h3 id="fin-inv">投資決策</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>淨現值（NPV）</b>：未來現金流量以資金成本折現後減去投資額，NPV &gt; 0 表示創造價值。</li>
+  <li><b>內部報酬率（IRR）</b>：使 NPV 等於 0 的折現率，高於資金成本才值得投資。</li>
+  <li><b>回收期間</b>：中小企業重視現金回收速度，常搭配折現回收期間使用。</li>
+  <li><b>加權平均資金成本（WACC）</b>：依負債與權益比重計算的整體資金成本，作為折現率。</li>
+  <li><b>情境與敏感度分析</b>：樂觀、基準、悲觀三情境，並測試關鍵假設變動對 NPV 的影響。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>投資評估模型建置</b><span class="lv l1">門檻 低</span></div>請 AI 協助建立 NPV、IRR 試算表架構與公式，並列出應檢驗的假設；計算結果以試算表為準。</li>
+  <li><div class="uh"><b>AI 專案效益評估</b><span class="lv l1">門檻 低</span></div>評估 AI 導入時，把授權費、用量計費、整合開發、資料整理與人員訓練一併列入總持有成本，對照節省工時與營收增加。</li>
+  <li><div class="uh"><b>情境模擬</b><span class="lv l2">門檻 中</span></div>以蒙地卡羅模擬讓多個假設同時變動，得出報酬的機率分布，而非單一數字。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　大型語言模型直接心算容易出錯。涉及數字的結論，請 AI 使用程式或試算表計算，並由財務人員覆核公式。</p>
+
+<h3 id="fin-law">法規概論（財務）</h3>
+<div class="pair">
+<div><h4>知識重點</h4><dl class="law">
+  <dt>商業會計法</dt><dd>會計憑證至少保存 5 年，會計帳簿及財務報表至少保存 10 年；非公開發行公司依商業會計處理準則及企業會計準則公報（EAS）編製財報。</dd>
+  <dt>公司法</dt><dd>董事會每會計年度終了應編造營業報告書、財務報表及盈餘分派或虧損撥補議案，提請股東常會承認。</dd>
+  <dt>所得稅法</dt><dd>營利事業所得稅率 20%；當年度未分配盈餘加徵 5%。</dd>
+  <dt>加值型及非加值型營業稅法</dt><dd>一般營業人稅率 5%；統一發票與電子發票開立規定。</dd>
+  <dt>洗錢防制法</dt><dd>異常金流與大額現金交易須留意；特定行業負有客戶審查與申報義務。</dd>
+  <dt>證券交易法</dt><dd>公開發行以上公司的財報公告申報、內控制度與資訊揭露。</dd>
+</dl></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>稅務法規問答</b><span class="lv l2">門檻 中</span></div>以財政部法規與解釋函令建知識庫，快速查詢費用認列、發票開立等問題，須附出處並由會計師或主辦會計確認。</li>
+  <li><div class="uh"><b>憑證數位化歸檔</b><span class="lv l1">門檻 低</span></div>以 AI 辨識發票與收據內容，自動命名、分類與歸檔，配合法定保存年限管理。</li>
+  <li><div class="uh"><b>法規變動追蹤</b><span class="lv l1">門檻 低</span></div>訂閱主管機關公告，由 AI 摘要與公司相關的稅務與會計修正重點。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　稅率、扣除額與申報規定每年可能調整，以財政部最新公告為準。</p>
+
+<h3 id="fin-risk">風險稅務管理</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>風險類型</b>：市場風險（匯率、利率、原物料價格）、信用風險（客戶倒帳）、流動性風險、作業風險（舞弊、系統錯誤）。</li>
+  <li><b>企業風險管理（ERM）</b>：參考 COSO 架構，辨識、評估、回應、監控風險。</li>
+  <li><b>匯率避險</b>：自然避險（收付同幣別）、遠期外匯、選擇權；出口導向中小企業特別重要。</li>
+  <li><b>內部控制</b>：職能分工（請款、核准、付款不同人）、授權層級、定期盤點。</li>
+  <li><b>稅務規劃</b>：善用研發投抵、合理認列費用、掌握申報期限；區分合法節稅與逃漏稅。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>費用與發票異常偵測</b><span class="lv l2">門檻 中</span></div>找出重複請款、週末或深夜大額付款、新供應商首筆大額交易，並以班佛定律檢查金額分布是否異常。</li>
+  <li><div class="uh"><b>客戶信用評估</b><span class="lv l3">門檻 高</span></div>以付款紀錄、交易往來與外部資訊評估客戶信用，作為授信額度參考。</li>
+  <li><div class="uh"><b>匯率曝險監控</b><span class="lv l2">門檻 中</span></div>彙整外幣應收應付部位，模擬匯率變動對損益的影響並提示避險時點。</li>
+  <li><div class="uh"><b>風險登錄表維護</b><span class="lv l1">門檻 低</span></div>以 AI 協助盤點各部門風險、撰寫因應措施，定期更新風險地圖。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　異常偵測只產生待查清單，不能直接認定舞弊；調查與處理須依公司內控程序進行。</p>
+
+<h3 id="fin-fs">財報分析</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>四大報表</b>：資產負債表（財務狀況）、綜合損益表（經營成果）、現金流量表（現金來源與去向）、權益變動表。</li>
+  <li><b>償債能力</b>：流動比率、速動比率、負債比率、利息保障倍數。</li>
+  <li><b>經營效率</b>：存貨週轉率、應收帳款週轉率、總資產週轉率。</li>
+  <li><b>獲利能力</b>：毛利率、營業利益率、淨利率；杜邦分析把 ROE 拆解為淨利率 × 總資產週轉率 × 權益乘數。</li>
+  <li><b>獲利品質</b>：營業活動現金流量長期低於淨利，須留意應收帳款或存貨是否異常增加。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>月結報表解讀</b><span class="lv l1">門檻 低</span></div>輸入月報與去年同期數據，由 AI 以程式計算比率並撰寫差異說明初稿，給經營者閱讀。</li>
+  <li><div class="uh"><b>同業比較</b><span class="lv l2">門檻 中</span></div>取得上市櫃同業在公開資訊觀測站的財報，比較毛利率、週轉率等指標，找出自身落差。</li>
+  <li><div class="uh"><b>管理儀表板</b><span class="lv l2">門檻 中</span></div>串接會計系統資料，以自然語言查詢「哪個產品線毛利下降最多」，即時產生圖表。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　上傳財報到外部 AI 服務前，確認服務條款不會以資料訓練模型；未公開財報屬機密資訊。</p>
+
+<h3 id="fin-cash">資金管理</h3>
+<div class="pair">
+<div><h4>知識重點</h4><ul>
+  <li><b>現金轉換循環（CCC）</b> ＝ 存貨週轉天數 ＋ 應收帳款週轉天數 − 應付帳款週轉天數，天數愈短，資金壓力愈小。</li>
+  <li><b>營運資金管理</b>：控制存貨水位、加速收款、在不影響供應商關係下安排付款。</li>
+  <li><b>13 週滾動現金流預測</b>：以週為單位預估收支，及早發現資金缺口。</li>
+  <li><b>融資管道</b>：銀行融資、中小企業信用保證基金保證、政府政策性貸款、應收帳款融資。</li>
+  <li><b>黑字倒閉</b>：帳上獲利但現金不足以支付到期債務，是成長中企業常見風險。</li>
+</ul></div>
+<div><h4>AI 應用建議</h4><ul class="uc">
+  <li><div class="uh"><b>現金流預測</b><span class="lv l2">門檻 中</span></div>以歷史收付款與訂單資料預測未來 13 週現金流，並標示可能的資金缺口週次。</li>
+  <li><div class="uh"><b>收款優先排序</b><span class="lv l2">門檻 中</span></div>依客戶過去付款行為預測逾期機率，優先催收高風險帳款，並自動產生對帳與催收通知。</li>
+  <li><div class="uh"><b>付款排程建議</b><span class="lv l1">門檻 低</span></div>彙整應付帳款到期日與現金預測，建議付款順序，兼顧供應商關係與資金調度。</li>
+  <li><div class="uh"><b>融資文件準備</b><span class="lv l1">門檻 低</span></div>協助撰寫營運計畫書、資金用途說明與還款計畫，提升貸款申請文件品質。</li>
+</ul></div>
+</div>
+<p class="warn"><b>注意</b>　預測模型遇到大客戶倒帳、疫情、關稅等結構性變化時會失準，須保留安全現金水位並定期以實際數字校正。</p>
+<p class="ipas"><span>iPAS 對應</span>迴歸與時間序列預測、異常偵測、分類模型、AI 導入效益評估、資料安全</p>
+
+<footer>
+  <p>本頁為自製延伸教材，非 iPAS 官方學習指引內容，不在官方評鑑範圍的保證之內；各主題標示的「iPAS 對應」僅供連結考點複習。</p>
+  <p>本頁為管理知識與 AI 應用規劃之學習整理，非法律、稅務或投資建議。法規內容整理至 2026 年 9 月，條文與金額以「全國法規資料庫」及各主管機關最新公告為準；實際導入前請諮詢律師、會計師或相關專業人員。</p>
+</footer>
+</main>
+</div>
+<script src="glossary.js" defer></script>
+</body>
+</html>
