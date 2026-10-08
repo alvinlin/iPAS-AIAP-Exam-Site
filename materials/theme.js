@@ -30,6 +30,8 @@
     '[data-theme="dark"] .box.key{background:#2b2210;}[data-theme="dark"] .box.key .tag{color:#f5b74e;}' +
     '[data-theme="dark"] .box.note{background:#122718;}[data-theme="dark"] .box.note .tag{color:#5fd38a;}' +
     '[data-theme="dark"] code{background:#1d2637;}' +
+    '[data-theme="dark"] .formula{background:#1a2133;border-color:#3b4766;}' +
+    '[data-theme="dark"] .box.legend{background:#1a2133;}[data-theme="dark"] .box.legend .tag{color:#a3b1c6;}' +
     '[data-theme="dark"] .q{background:#131a29;}' +
     '[data-theme="dark"] .gl{text-decoration-color:var(--accent-bright);}' +
     /* 教材首頁（index.html，無主題變數） */
