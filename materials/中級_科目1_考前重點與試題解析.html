@@ -46,6 +46,17 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .q .ans{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;margin:4px 0;font-size:14px;}
 .q .exp{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:15px;}
 .q .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+/* 題組共用資料與題目附件（程式碼、輸出、表格、圖） */
+.qctx{border:1px dashed var(--accent);border-radius:10px;padding:14px 18px;margin:22px 0 -4px;background:var(--accent-soft);font-size:14.5px;}
+.qctx .lab{display:inline-block;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.qctx p{margin:6px 0;}
+.q .fig{margin:0 0 12px;}
+.fig pre,.qctx pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre;}
+.fig img,.qctx img{max-width:100%;height:auto;display:block;margin:8px 0;border:1px solid var(--line);border-radius:6px;background:#fff;padding:4px;}
+.fig table,.qctx table{width:auto;margin:8px 0;font-size:14px;}
+.fig .figlab,.qctx .figlab{font-weight:700;color:var(--accent);margin:10px 0 2px;font-size:14px;}
+.fig .figlist,.qctx .figlist{margin:6px 0;padding-left:22px;font-size:14.5px;}
+.fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
 </style>
@@ -901,6 +912,14 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <div class="q" id="e115a-q19">
 <p class="stem"><span class="qno">19.</span>一家電商已將推薦系統上線三個月，團隊根據數據得出「因 AUC 高達 0.91，模型表現優異，AI 導入成效良好」。請問此評估結論存在什麼根本問題？</p>
+<div class="fig">
+<table><thead><tr><th>指標</th><th>導入前</th><th>導入後</th></tr></thead>
+<tbody><tr><td>模型離線 AUC</td><td>—</td><td>0.91</td></tr>
+<tr><td>點擊率（CTR）</td><td>3.2%</td><td>3.1%</td></tr>
+<tr><td>平均訂單金額</td><td>$850</td><td>$1,020</td></tr>
+<tr><td>系統推論延遲</td><td>—</td><td>平均 85ms</td></tr>
+<tr><td>模型推論費用</td><td>—</td><td>每月 $12,000</td></tr></tbody></table>
+</div>
 <ul class="opts"><li>(A) 僅依賴離線指標 AUC 判斷模型成效，忽略線上業務指標（如 CTR 與營收）的變化，可能導致錯誤結論；</li><li>(B) AUC 已達 0.91，代表模型排序能力優異，即使 CTR 略為下降，仍可視為推薦品質提升；</li><li>(C) CTR 從 3.2% 降至 3.1%，顯示模型效果變差，應立即還原至舊模型；</li><li>(D) 平均訂單金額提升至 $1,020，代表模型已成功優化營收，因此無需考慮其他指標</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>只看離線 AUC 而忽略線上業務指標（CTR、營收）易誤判導入成效，應採技術＋業務雙軌評估，故 (A)。</div>

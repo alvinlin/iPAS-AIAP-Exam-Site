@@ -67,6 +67,19 @@ dialog .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
 .qcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
 .qcard .meta{font-size:12.5px;color:var(--muted);margin-bottom:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .qcard .stem{font-size:16.5px;font-weight:600;margin:0 0 18px;white-space:pre-wrap}
+/* 題組共用資料與題目附件（程式碼、輸出、表格、圖），HTML 來自題庫 ctx/fig 欄位 */
+.qctx{border:1px dashed var(--brand);border-radius:10px;padding:12px 16px;margin:0 0 14px;background:var(--brand-soft);font-size:14px}
+.qctx .lab{display:block;font-weight:700;color:var(--brand);margin-bottom:4px;font-size:13px}
+.qctx p{margin:6px 0}
+.fig{margin:-6px 0 14px}
+.fig pre,.qctx pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre}
+.fig img,.qctx img{max-width:100%;height:auto;display:block;margin:8px 0;border:1px solid var(--line);border-radius:6px;background:#fff;padding:4px}
+.fig table,.qctx table{border-collapse:collapse;margin:8px 0;font-size:14px}
+.fig th,.fig td,.qctx th,.qctx td{border:1px solid var(--line);padding:5px 10px;text-align:left}
+.fig .figlab,.qctx .figlab{font-weight:700;color:var(--brand);margin:10px 0 2px;font-size:14px}
+.fig .figlist,.qctx .figlist{margin:6px 0;padding-left:22px;font-size:14px}
+.fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0}
+.rq .fig,.rq .qctx{font-size:13.5px}
 .opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;margin:9px 0;cursor:pointer;transition:all .12s;font-size:15px;background:#fff}
 .opt:hover{border-color:var(--brand);background:var(--brand-soft)}
 .opt .tag{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13.5px;color:var(--muted)}
@@ -160,6 +173,8 @@ kbd{background:#eef1f5;border:1px solid var(--line);border-bottom-width:2px;bord
 [data-theme="dark"] .filters button.active{color:#0d1220}
 [data-theme="dark"] dialog{background:var(--card);color:var(--ink)}
 [data-theme="dark"] kbd{background:#1d2637}
+[data-theme="dark"] .fig pre,[data-theme="dark"] .qctx pre{background:#0f1522;border-color:#2b3447}
+[data-theme="dark"] .fig .formula,[data-theme="dark"] .qctx .formula{background:#1a2133;border-color:#3b4766}
 [data-theme="dark"] .badge.na{background:#1d2637}
 [data-theme="dark"] .notice{color:#e3c27a}
 [data-theme="dark"] .card{box-shadow:none}
@@ -294,6 +309,9 @@ const COURSE_FILES = {
   "中級-3": {full:"中級_科目3_機器學習技術與應用.html", cram:"中級_科目3_考前重點與試題解析.html"},
 };
 const COURSE_BASE = "../materials/";
+/* 題目附件：ctx（題組共用資料）與 fig（程式碼／輸出／表格／圖）為題庫內建 HTML，圖片路徑相對於教材目錄 */
+const fixImg=h=>String(h).replace(/src="img\//g,`src="${COURSE_BASE}img/`);
+const attachHtml=q=>(q.ctx?`<div class="qctx"><span class="lab">題組共用資料</span>${fixImg(q.ctx)}</div>`:"")+(q.fig?`<div class="fig">${fixImg(q.fig)}</div>`:"");
 /* 非官方補充題庫（data/questions-extra.js，可能不存在）：與官方題庫完全分離，
    不列入官方科目卡與題數統計，僅供「非官方補充題」專卡練習。 */
 const EXTRA = (typeof EXTRA_BANK!=="undefined" && Array.isArray(EXTRA_BANK)) ? EXTRA_BANK : [];
@@ -518,6 +536,7 @@ function renderQ(){
       <button class="flagbtn ${exam.flags.has(q.id)?"on":""}" onclick="toggleFlag()">⚑ ${exam.flags.has(q.id)?"已標記":"標記"}</button>
     </div>
     <p class="stem">${esc(q.stem)}</p>
+    ${attachHtml(q)}
     ${Object.entries(q.opts).map(([L,t])=>{
       let cls="opt";
       if(showAns){ cls+=" locked";
@@ -660,6 +679,7 @@ function renderReviewList(){
     const badge=d.ok?`<span class="badge ok">答對</span>`:d.your?`<span class="badge bad">答錯</span>`:`<span class="badge na">未作答</span>`;
     return `<div class="rq">
       <div class="top"><p class="stem">${d.i+1}. ${esc(q.stem)} ${badge}${d.flagged?'<span class="badge na">⚑</span>':""}</p></div>
+      ${attachHtml(q)}
       <ul>${Object.entries(q.opts).map(([L,t])=>{
         let cls=""; if(q.answer.includes(L))cls="official"; else if(d.your===L)cls="yours-wrong";
         return `<li class="${cls}">(${L}) ${esc(t)}${q.answer.includes(L)?`　← ${ansLabel(q)}`:d.your===L?"　← 你的作答":""}</li>`;
@@ -729,6 +749,7 @@ function renderWrongbook(){
           <p class="stem">${esc(q.stem)} <span class="badge bad">錯 ${w[id].count} 次</span></p>
           <button class="btn ghost" title="移除" onclick="removeWrong('${id}');renderWrongbook()">✕ 移除</button>
         </div>
+        ${attachHtml(q)}
         <ul>${Object.entries(q.opts).map(([L,t])=>
           `<li class="${q.answer.includes(L)?"official":""}">(${L}) ${esc(t)}${q.answer.includes(L)?`　← ${ansLabel(q)}`:""}</li>`).join("")}</ul>
         <div class="exp-box"><span class="lab">解析</span>${esc(q.exp)}</div>

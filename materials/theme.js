@@ -31,6 +31,8 @@
     '[data-theme="dark"] .box.note{background:#122718;}[data-theme="dark"] .box.note .tag{color:#5fd38a;}' +
     '[data-theme="dark"] code{background:#1d2637;}' +
     '[data-theme="dark"] .formula{background:#1a2133;border-color:#3b4766;}' +
+    '[data-theme="dark"] .fig pre,[data-theme="dark"] .qctx pre{background:#0f1522;border-color:#2b3447;}' +
+    '[data-theme="dark"] .fig img,[data-theme="dark"] .qctx img{border-color:#2b3447;}' +
     '[data-theme="dark"] .box.legend{background:#1a2133;}[data-theme="dark"] .box.legend .tag{color:#a3b1c6;}' +
     '[data-theme="dark"] .q{background:#131a29;}' +
     '[data-theme="dark"] .gl{text-decoration-color:var(--accent-bright);}' +

@@ -33,4 +33,4 @@
 ### 更新題庫
 
 教材新增梯次試題後，於工作區根目錄執行 `python3 tools/extract_questions.py` 重新產生 `data/questions.js`（加 `--check` 只比對不寫檔）
-（腳本解析教材 HTML 中的 `div.q` 題卡；梯次 ID 對應表在腳本內 `SESSION_NAME`，新增梯次時須補上對應）。
+（腳本解析教材 HTML 中的 `div.q` 題卡；梯次 ID 對應表在腳本內 `SESSION_NAME`，新增梯次時須補上對應）。題卡內的附件 `div.fig`（程式碼、輸出、表格、附圖）與題組共用資料 `div.qctx` 會一併抽成 `fig`／`ctx` 欄位，作答、檢討與錯題本頁面皆會顯示；附圖檔案在 `../學習資源/教材/img/`。

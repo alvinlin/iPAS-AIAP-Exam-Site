@@ -46,6 +46,17 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .q .ans{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;margin:4px 0;font-size:14px;}
 .q .exp{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:15px;}
 .q .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+/* 題組共用資料與題目附件（程式碼、輸出、表格、圖） */
+.qctx{border:1px dashed var(--accent);border-radius:10px;padding:14px 18px;margin:22px 0 -4px;background:var(--accent-soft);font-size:14.5px;}
+.qctx .lab{display:inline-block;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.qctx p{margin:6px 0;}
+.q .fig{margin:0 0 12px;}
+.fig pre,.qctx pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre;}
+.fig img,.qctx img{max-width:100%;height:auto;display:block;margin:8px 0;border:1px solid var(--line);border-radius:6px;background:#fff;padding:4px;}
+.fig table,.qctx table{width:auto;margin:8px 0;font-size:14px;}
+.fig .figlab,.qctx .figlab{font-weight:700;color:var(--accent);margin:10px 0 2px;font-size:14px;}
+.fig .figlist,.qctx .figlist{margin:6px 0;padding-left:22px;font-size:14.5px;}
+.fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
 </style>
@@ -577,10 +588,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e114b-q34">
-<p class="stem"><span class="qno">34.</span>某心臟病風險模型資料僅 150 筆、陽性不到 8%，希望在有限樣本下兼顧資料利用率與各類別在驗證折中的比例一致性，最適合採用下列哪一種交叉驗證方法？</p>
-<ul class="opts"><li>(A) 5-Fold 交叉驗證</li><li>(B) 留一法交叉驗證（Leave-One-Out）</li><li>(C) 隨機交叉驗證</li><li>(D) 分層留一法交叉驗證（Stratified Leave-One-Out）</li></ul>
-<span class="ans">答案：A</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (A) 5-Fold。在小樣本且需兼顧資料利用率與運算可行性下，5-Fold 為實務常用平衡選擇。<div class="box note" style="margin-top:8px"><span class="tag">補充說明</span>題幹強調「各類別比例一致性」傾向分層方法；惟分層需各折每類至少數筆，LOO 每折僅 1 筆無法分層。官方採 5-Fold，作答以官方答案為準。</div></div>
+<p class="stem"><span class="qno">34.</span>某醫療人工智慧團隊正在開發心臟病風險預測模型，資料量僅有 150 筆，其中陽性個案不到 8%。由於樣本數稀少且類別分布極不平衡，團隊希望在有限資料下，仍能準確評估模型在不同資料上的表現穩定性，同時避免訓練資料被過度切分而影響模型效能。若團隊希望在有限樣本下，同時兼顧資料的利用率與各類別在驗證折中的比例一致性，最適合採用下列哪一種交叉驗證方法？</p>
+<ul class="opts"><li>(A) 5-Fold 交叉驗證（5-Fold Cross Validation）；</li><li>(B) 留一法交叉驗證（Leave-One-Out Cross Validation）；</li><li>(C) 隨機交叉驗證（Random Cross Validation）；</li><li>(D) 分層留一法交叉驗證（Stratified Leave-One-Out Cross Validation）</li></ul>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>題幹兩個關鍵條件：樣本僅 150 筆要「盡量利用資料、避免過度切分」→ 留一法每次只留 1 筆驗證、其餘全部訓練，資料利用率最高；陽性不到 8% 要「各類別在驗證折中的比例一致」→ 需分層（Stratified）抽樣。同時滿足兩者的是分層留一法，(D) 正確。(A) 5-Fold 每折切掉 20% 資料且未分層；(B) 留一法未分層，少數類在各折比例不受控；(C) 隨機切分無法保證類別比例。</div>
 </div>
 
 <div class="q" id="e114b-q35">
@@ -606,93 +617,300 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <div class="q" id="e114b-q38">
 <p class="stem"><span class="qno">38.</span>附圖程式碼所計算的是哪一類型的評估指標？</p>
+<div class="fig">
+<pre>def metric(y_true, y_pred):
+    return sum((y_true - y_pred) ** 2) / len(y_true)</pre>
+</div>
 <ul class="opts"><li>(A) MAE</li><li>(B) MSE</li><li>(C) RMSE</li><li>(D) R²</li></ul>
-<span class="ans">答案：C</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (C) RMSE。程式碼對誤差先平方取平均（MSE）後再開根號，即均方根誤差 RMSE，單位與目標變數一致。（本題為附程式碼判讀題，圖未隨文字提供。）</div>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>程式碼 <code>sum((y_true - y_pred) ** 2) / len(y_true)</code> 是把每筆誤差平方後加總再除以筆數，即均方誤差 MSE，(B) 正確。(A) MAE 取絕對值而非平方；(C) RMSE 還要對結果再開根號，程式中沒有 <code>sqrt</code>；(D) R² 需與總變異（Σ(y − ȳ)²）相除，程式中沒有此計算。</div>
 </div>
 
 <div class="q" id="e114b-q39">
 <p class="stem"><span class="qno">39.</span>附圖程式碼實現的是哪一種正則化技術？</p>
+<div class="fig">
+<pre>def forward(x, p, training=True):
+    if training:
+        mask = np.random.binomial(1, p, size=x.shape)
+        return x * mask / p
+    else:
+        return x</pre>
+</div>
 <ul class="opts"><li>(A) L1 正則化</li><li>(B) L2 正則化</li><li>(C) Dropout</li><li>(D) Batch Normalization</li></ul>
 <span class="ans">答案：C</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (C) Dropout。程式碼於訓練中隨機關閉部分神經元輸出（如 <code>nn.Dropout(p)</code>），屬 Dropout 正則化，藉降低神經元依賴抑制過擬合。（本題為附程式碼判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (C) Dropout。程式碼於訓練中隨機關閉部分神經元輸出（如 <code>nn.Dropout(p)</code>），屬 Dropout 正則化，藉降低神經元依賴抑制過擬合。</div>
 </div>
 
 <div class="q" id="e114b-q40">
 <p class="stem"><span class="qno">40.</span>依據附圖程式碼進行資料處理，下列何者正確？</p>
+<div class="fig">
+<pre>import numpy as np
+
+v1 = np.array([1, 2, 3])
+v2 = np.array([4, 5, 6])
+A = np.array([[1, 2], [3, 4]])</pre>
+</div>
 <ul class="opts"><li>(A) np.linalg.inv(A) 計算矩陣 A 的行列式</li><li>(B) v1 * v2 結果為 array([5, 7, 9])</li><li>(C) np.dot(v1, v2) 結果為 np.int64(32)</li><li>(D) np.linalg.eig(A) 計算矩陣 A 的反矩陣</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。<code>np.dot(v1,v2)</code> 為點積，若 v1=[1,2,3]、v2=[4,5,6] 則 1·4+2·5+3·6=32。(A) inv 是反矩陣非行列式；(B) v1*v2 為逐元素乘積 [4,10,18]；(D) eig 是特徵值分解非反矩陣。</div>
 </div>
 
 <div class="q" id="e114b-q41">
-<p class="stem"><span class="qno">41.</span>考慮擲骰子並採 Monte Carlo 方法估算條件機率。事件 A：擲出偶數；事件 B：擲出大於 3。下列何者為條件機率 P(A∣B) 的正確值？</p>
+<p class="stem"><span class="qno">41.</span>考慮擲出骰子並採用 Monte Carlo 方法估算條件機率，參考附圖程式碼。事件 A：擲出偶數；事件 B：擲出大於 3。請問下列何者為條件機率 P(A∣B)的正確值？</p>
+<div class="fig">
+<pre>import numpy as np
+
+np.random.seed(123)
+n = 100000
+dice_rolls = np.random.randint(1, 7, size=n)
+
+A = (dice_rolls % 2 == 0)
+B = (dice_rolls &gt; 3)
+A_and_B = A &amp; B</pre>
+</div>
 <ul class="opts"><li>(A) A_and_B.sum() / (A.sum() * B.sum())</li><li>(B) A_and_B.sum() / (A.sum() + B.sum())</li><li>(C) A_and_B.sum() / A.sum()</li><li>(D) A_and_B.sum() / B.sum()</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>條件機率 P(A|B)=P(A∩B)/P(B)，分母為<strong>條件事件 B 的計數</strong>，故為 <code>A_and_B.sum() / B.sum()</code>。</div>
 </div>
 
+<div class="qctx" data-q="42-45" data-src="e114b">
+<span class="lab">第 42–45 題共用資料</span>
+<p>VGG16 是由牛津大學 Visual Geometry Group(VGG)在 2014 年提出的經典卷積神經網路（Convolutional Neural Network, CNN）架構。該模型以簡潔且規則的層堆疊設計聞名，廣泛應用於影像分類、特徵提取及遷移學習等任務。附圖程式碼載入了預訓練的 VGG16 模型，並輸出其完整層級結構及參數統計摘要（如附表）。</p><pre>from torchsummary import summary
+from torchvision import models
+model = models.vgg16(weights='IMAGENET1K_V1')
+summary(model, (3,150,150))</pre><pre>----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 64, 150, 150]           1,792
+              ReLU-2         [-1, 64, 150, 150]               0
+            Conv2d-3         [-1, 64, 150, 150]          36,928
+              ReLU-4         [-1, 64, 150, 150]               0
+         MaxPool2d-5           [-1, 64, 75, 75]               0
+            Conv2d-6          [-1, 128, 75, 75]          73,856
+              ReLU-7          [-1, 128, 75, 75]               0
+            Conv2d-8          [-1, 128, 75, 75]         147,584
+              ReLU-9          [-1, 128, 75, 75]               0
+        MaxPool2d-10          [-1, 128, 37, 37]               0
+           Conv2d-11          [-1, 256, 37, 37]         295,168
+             ReLU-12          [-1, 256, 37, 37]               0
+           Conv2d-13          [-1, 256, 37, 37]         590,080
+             ReLU-14          [-1, 256, 37, 37]               0
+           Conv2d-15          [-1, 256, 37, 37]         590,080
+             ReLU-16          [-1, 256, 37, 37]               0
+        MaxPool2d-17          [-1, 256, 18, 18]               0
+           Conv2d-18          [-1, 512, 18, 18]       1,180,160
+             ReLU-19          [-1, 512, 18, 18]               0
+           Conv2d-20          [-1, 512, 18, 18]       2,359,808
+             ReLU-21          [-1, 512, 18, 18]               0
+           Conv2d-22          [-1, 512, 18, 18]       2,359,808
+             ReLU-23          [-1, 512, 18, 18]               0
+        MaxPool2d-24            [-1, 512, 9, 9]               0
+           Conv2d-25            [-1, 512, 9, 9]       2,359,808
+             ReLU-26            [-1, 512, 9, 9]               0
+           Conv2d-27            [-1, 512, 9, 9]       2,359,808
+             ReLU-28            [-1, 512, 9, 9]               0
+           Conv2d-29            [-1, 512, 9, 9]       2,359,808
+             ReLU-30            [-1, 512, 9, 9]               0
+        MaxPool2d-31            [-1, 512, 4, 4]               0
+AdaptiveAvgPool2d-32            [-1, 512, 7, 7]               0
+           Linear-33                 [-1, 4096]     102,764,544
+             ReLU-34                 [-1, 4096]               0
+          Dropout-35                 [-1, 4096]               0
+           Linear-36                 [-1, 4096]      16,781,312
+             ReLU-37                 [-1, 4096]               0
+          Dropout-38                 [-1, 4096]               0
+           Linear-39                 [-1, 1000]       4,097,000
+================================================================
+Total params: 138,357,544
+Trainable params: 138,357,544
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.26
+Forward/backward pass size (MB): 96.93
+Params size (MB): 527.79
+Estimated Total Size (MB): 624.98
+----------------------------------------------------------------</pre>
+</div>
 <div class="q" id="e114b-q42">
-<p class="stem"><span class="qno">42.</span>（VGG16 題組）在 VGG16 中，下列何者的參數量最多？</p>
+<p class="stem"><span class="qno">42.</span>在深度神經網路中，不同層的參數量（parameter count）差異極大。有些層雖然數量少但計算量大，有些則相反。了解參數分佈情形，有助於模型壓縮與遷移學習設計。請問在 VGG16 中，下列何者的參數量最多？</p>
 <ul class="opts"><li>(A) 卷積層（Conv2d）</li><li>(B) 全連接層（Linear）</li><li>(C) ReLU 激活函數</li><li>(D) 池化層（MaxPool2d、AdaptiveAvgPool2d）</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>由附表可見 Linear-33 單層即達約 1.03 億參數，全連接層參數量遠超卷積層，<strong>全連接層參數量最多</strong>。ReLU 與池化層參數量為 0。</div>
 </div>
 
 <div class="q" id="e114b-q43">
-<p class="stem"><span class="qno">43.</span>（VGG16 題組）在 VGG16 中，下列何者運算量（FLOPs）最多？</p>
+<p class="stem"><span class="qno">43.</span>在神經網路中，了解各層的運算量分佈，有助於模型壓縮與硬體加速的策略設計。請問在 VGG16 中，下列何者運算量(FLOPs)最多？</p>
 <ul class="opts"><li>(A) 卷積層（Conv2d）</li><li>(B) 全連接層（Linear）</li><li>(C) ReLU 激活函數</li><li>(D) 池化層（MaxPool2d、AdaptiveAvgPool2d）</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>卷積層雖參數量少，但需在大尺寸特徵圖上對每個空間位置重複卷積運算，<strong>運算量(FLOPs)集中於卷積層</strong>。此即「參數多≠運算多」的典型對照。</div>
 </div>
 
 <div class="q" id="e114b-q44">
-<p class="stem"><span class="qno">44.</span>（VGG16 題組）根據 VGG16 的模型架構，下列敘述何者正確？</p>
+<p class="stem"><span class="qno">44.</span>VGG16 層數深且結構規則，由多層卷積、池化及全連接層組成。了解各層的輸入/輸出維度、參數量及記憶體需求，有助於掌握 CNN 模型的組成邏輯與實作技巧。根據 VGG16 的模型架構，下列敘述何者正確？</p>
 <ul class="opts"><li>(A) AdaptiveAvgPool2d 輸出攤平後傳入第一個全連接層；前一層空間為 4×4，故第一個線性層輸入維度為 512×4×4=8192</li><li>(B) Linear-33 報出的 102,764,544 參數只包含權重，偏差（bias）沒有算在內</li><li>(C) Estimated Total Size 624.98MB 表示訓練只需約 625MB GPU 記憶體，一張 1GB GPU 就足夠訓練</li><li>(D) VGG16 包含 13 層卷積層與 3 層全連接層，總參數約 138,357,544（約 138.36M）</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>官方公告答案為 (D)。VGG16 確為 13 卷積+3 全連接、總參數約 138.36M。(A) AdaptiveAvgPool2d 輸出為 7×7 應為 512×7×7=25088；(B) 該參數含 bias；(C) 訓練尚需 optimizer state 與梯度，遠超 625MB。</div>
 </div>
 
 <div class="q" id="e114b-q45">
-<p class="stem"><span class="qno">45.</span>（VGG16 題組）假設要對 VGG16 進行遷移學習，凍結卷積層參數、只訓練最後全連接層（classifier）。下列哪段程式碼寫法正確？</p>
-<ul class="opts"><li>(A) 程式碼 A</li><li>(B) 程式碼 B</li><li>(C) 程式碼 C</li><li>(D) 程式碼 D</li></ul>
-<span class="ans">答案：A</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (A)。遷移學習凍結卷積層的正確做法為先將 <code>features</code> 參數設 <code>requires_grad=False</code>，再僅對 <code>classifier</code> 重新訓練。（本題為附程式碼判讀題。）</div>
-</div>
+<p class="stem"><span class="qno">45.</span>在實務應用中，我們常使用遷移學習(transfer learning)技巧，即載入預訓練模型（如 VGG16），凍結部分層的參數，只針對特定任務重新訓練最後幾層，這種做法可節省訓練時間並提升模型效能。假設你要對 VGG16 進行遷移學習(transfer learning)，希望凍結卷積層的參數，只訓練最後全連接層(classifier)。下列哪段程式碼寫法正確？</p>
+<div class="fig">
+<p class="figlab">程式碼 A</p><pre>import torch
+import torchvision.models as models
 
-<div class="q" id="e114b-q46">
-<p class="stem"><span class="qno">46.</span>（手寫數字題組）研究人員以 PCA 降噪，但執行後影像仍含明顯雜訊。請問哪一段程式碼需要修改，才能讓 PCA 對 noisy 影像有效去噪？</p>
+model = models.vgg16(pretrained=True)
+for param in model.parameters():
+    param.requires_grad = False
+model.classifier[6] = torch.nn.Linear(4096, 10)</pre><p class="figlab">程式碼 B</p><pre>import torch
+import torchvision.models as models
+
+model = models.vgg16(pretrained=True)
+for param in model.features.parameters():
+    param.requires_grad = False
+model.classifier[6] = torch.nn.Linear(4096, 10)</pre><p class="figlab">程式碼 C</p><pre>import torch
+import torchvision.models as models
+
+model = models.vgg16(pretrained=True)
+for param in model.classifier.parameters():
+    param.requires_grad = False
+model.classifier[6] = torch.nn.Linear(4096, 10)</pre><p class="figlab">程式碼 D</p><pre>import torch
+import torchvision.models as models
+
+model = models.vgg16(pretrained=True)
+model.requires_grad = False
+model.classifier[6] = torch.nn.Linear(4096, 10)</pre>
+</div>
 <ul class="opts"><li>(A) 程式碼 A</li><li>(B) 程式碼 B</li><li>(C) 程式碼 C</li><li>(D) 程式碼 D</li></ul>
 <span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。PCA 降噪須保留適當主成分數（n_components）以濾除雜訊；若該參數設定不當（如保留過多成分）則無法去噪，需修改程式碼 B。（本題為附程式碼判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>要「凍結卷積層、只訓練 classifier」，須對 <code>model.features.parameters()</code>（VGG16 的卷積特徵擷取部分）設 <code>requires_grad = False</code>，再替換 <code>model.classifier[6]</code> 為新的全連接層，程式碼 B 正確，(B) 正確。(A) <code>model.parameters()</code> 會把全部參數（含 classifier）都凍結，新替換的那一層雖可訓練但原 classifier 其餘層被凍住，與題意不符；(C) 凍結的是 classifier 而非卷積層，方向相反；(D) <code>model.requires_grad = False</code> 只是給模型物件加一個屬性，不會凍結任何參數。</div>
+</div>
+
+<div class="qctx" data-q="46-47" data-src="e114b">
+<span class="lab">第 46–47 題共用資料</span>
+<p>在郵遞區號自動辨識的研究中，研究人員收集了一份手寫數字影像資料集，每一張影像為 8×8 的灰階圖片，共包含多個手寫數字樣本。這份資料集來自 UCI Machine Learning Repository，常被用於數字辨識與機器學習方法的教學與實驗。</p><p>在過程中，研究人員發現資料中可能存在雜訊，例如筆跡模糊或影像中附加的干擾點，這會影響後續分類模型的效能。因此，他們希望透過資料降噪的方法，提升後續分類的準確度。同時，他們也想透過 KNN (K-Nearest Neighbors) 搭配交叉驗證來評估模型表現，確保模型在不同資料切割下都能有穩定的預測能力。</p><pre>from sklearn.datasets import load_digits
+digits = load_digits()
+digits.data.shape</pre><pre>(1797, 64)</pre><p>部分樣本經繪製後的外觀如下圖所示：</p><img src="img/中3-e114b-q46-ctx.png" alt="手寫數字資料集部分樣本（兩列、每列 10 張 8×8 灰階影像，依序為 0 至 9）">
+</div>
+<div class="q" id="e114b-q46">
+<p class="stem"><span class="qno">46.</span>假設研究人員已將含有雜訊的手寫數字影像存放在變數 noisy 中。部分資料經視覺化後的外觀如下。他們嘗試使用 PCA 進行降噪，並希望能保留影像的主要特徵，同時去除影像中的雜訊。然而，當程式執行後，觀察到影像仍然含有明顯的雜訊。研究人員懷疑是程式中某個步驟的設定不正確，導致 PCA 沒有發揮降噪的作用，需要修改程式碼才能讓降噪有效。請問哪一段程式碼需要修改，才能讓 PCA 對 noisy 影像有效去噪？</p>
+<div class="fig">
+<pre>import numpy as np
+noisy = np.random.normal(digits.data, 4)</pre><img src="img/中3-e114b-q46.png" alt="加入雜訊後的手寫數字影像（兩列、每列 10 張，可見明顯雜訊點）"><pre>from sklearn.decomposition import PCA                #程式碼A
+pca = PCA()                                          #程式碼B
+pca.fit(noisy)                                       #程式碼C
+components = pca.transform(noisy)                    #程式碼D
+filtered = pca.inverse_transform(components)         #程式碼E</pre>
+</div>
+<ul class="opts"><li>(A) 程式碼 A</li><li>(B) 程式碼 B</li><li>(C) 程式碼 C</li><li>(D) 程式碼 D</li></ul>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。PCA 降噪須保留適當主成分數（n_components）以濾除雜訊；若該參數設定不當（如保留過多成分）則無法去噪，需修改程式碼 B。</div>
 </div>
 
 <div class="q" id="e114b-q47">
-<p class="stem"><span class="qno">47.</span>（手寫數字題組）哪幾組程式碼能正確使用 KNN 搭配交叉驗證對 digits 資料集進行訓練並輸出準確率？</p>
+<p class="stem"><span class="qno">47.</span>研究人員在對 digits 資料集進行分類時，決定使用 KNN 並搭配交叉驗證來評估模型準確率。他們撰寫了四組不同的程式碼來進行 KNN 訓練與交叉驗證，但不確定哪幾組程式碼能正確執行並輸出準確率。每組程式碼在資料切割、模型訓練、交叉驗證函數的使用上略有差異，研究人員希望找出可以正確完成任務的程式碼組合，以確保模型評估的可靠性。請問哪幾組程式碼能正確使用 KNN 搭配交叉驗證，對 digits 資料集進行訓練並輸出準確率？</p>
+<div class="fig">
+<p class="figlab">程式碼 A</p><pre># 程式碼 A：
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = digits.data, digits.target
+model = KNeighborsClassifier(n_neighbors=3)
+cv = StratifiedKFold(n_splits=5, shuffle=True)
+scores = cross_val_score(model, X, y, cv=cv, scoring="accuracy")
+print(scores.mean())</pre><p class="figlab">程式碼 B</p><pre># 程式碼 B：
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = digits.data, digits.target
+model = KNeighborsClassifier(n_neighbors=3)
+cv = StratifiedKFold(n_splits=5, shuffle=True)
+scores = cross_val_score(model, X, y, cv=cv, scoring="f1")
+print(scores.mean())</pre><p class="figlab">程式碼 C</p><pre># 程式碼 C：
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = digits.data, digits.target
+model = KNeighborsClassifier(n_neighbors=3)
+scores = cross_val_score(model, X, y, cv=5, scoring="accuracy")
+print(scores.mean())</pre><p class="figlab">程式碼 D</p><pre># 程式碼 D：
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = digits.data, digits.target
+model = KNeighborsClassifier(n_neighbors=3)
+scores = cross_val_score(model, X, y, cv=5, scoring="f1")
+print(scores.mean())</pre>
+</div>
 <ul class="opts"><li>(A) 程式碼 A、B、C、D</li><li>(B) 程式碼 A、C</li><li>(C) 程式碼 A、B</li><li>(D) 程式碼 C、D</li></ul>
-<span class="ans">答案：C</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。能正確執行的組合須正確呼叫 KNN 分類器與 <code>cross_val_score</code> 並輸出準確率；經比對為程式碼 A 與 B。（本題為附程式碼判讀題。）</div>
+<span class="ans">答案：B</span>
+<div class="exp"><span class="lab">解析</span>四段程式碼只差在 <code>cv</code> 與 <code>scoring</code>：A（<code>cv=cv</code> 分層 K 折、<code>scoring="accuracy"</code>）與 C（<code>cv=5</code>、<code>scoring="accuracy"</code>）都能正確完成 KNN 交叉驗證並輸出準確率，(B) 正確。B、D 使用 <code>scoring="f1"</code>，而 digits 是 10 類別的多元分類，<code>"f1"</code> 預設為二元平均（binary）會報錯，且就算改用 f1_macro 也不是題目要求的「準確率」，故 (A)(C)(D) 含 B 或 D 的組合皆不正確。</div>
 </div>
 
+<div class="qctx" data-q="48-50" data-src="e114b">
+<span class="lab">第 48–50 題共用資料</span>
+<p>使用鐵達尼號(Titanic)資料集進行多層感知機(Multilayer Perceptron, MLP)分類預測分析，其中 survived 為反應變數(1 表示存活，0 表示死亡)。附圖程式碼展示資料載入與處理。</p><pre>import numpy as np
+import pandas as pd
+from keras import Sequential
+from keras.layers import Input, Dense
+
+np.random.seed(123)
+df_train = pd.read_csv("titanic_train.csv")
+df_test = pd.read_csv("titanic_test.csv")</pre><p>下圖顯示資料集的前 5 筆資料。</p><pre>df_train.head()</pre><table><thead><tr><th></th><th>pclass</th><th>sex</th><th>age</th><th>sibsp</th><th>parch</th><th>fare</th><th>embarked_C</th><th>embarked_Q</th><th>embarked_S</th><th>survived</th></tr></thead><tbody><tr><td>0</td><td>1</td><td>1</td><td>29.0000</td><td>0</td><td>0</td><td>211.3375</td><td>False</td><td>False</td><td>True</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0.9167</td><td>1</td><td>2</td><td>151.5500</td><td>False</td><td>False</td><td>True</td><td>1</td></tr><tr><td>2</td><td>1</td><td>1</td><td>2.0000</td><td>1</td><td>2</td><td>151.5500</td><td>False</td><td>False</td><td>True</td><td>0</td></tr><tr><td>3</td><td>1</td><td>0</td><td>30.0000</td><td>1</td><td>2</td><td>151.5500</td><td>False</td><td>False</td><td>True</td><td>0</td></tr><tr><td>4</td><td>1</td><td>0</td><td>48.0000</td><td>0</td><td>0</td><td>26.5500</td><td>False</td><td>False</td><td>True</td><td>1</td></tr></tbody></table><pre>df_test.head()</pre><table><thead><tr><th></th><th>pclass</th><th>sex</th><th>age</th><th>sibsp</th><th>parch</th><th>fare</th><th>embarked_C</th><th>embarked_Q</th><th>embarked_S</th><th>survived</th></tr></thead><tbody><tr><td>0</td><td>1</td><td>1</td><td>25.000000</td><td>1</td><td>2</td><td>151.5500</td><td>False</td><td>False</td><td>True</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>18.000000</td><td>1</td><td>0</td><td>227.5250</td><td>True</td><td>False</td><td>False</td><td>1</td></tr><tr><td>2</td><td>1</td><td>0</td><td>29.881135</td><td>0</td><td>0</td><td>25.9250</td><td>False</td><td>False</td><td>True</td><td>1</td></tr><tr><td>3</td><td>1</td><td>1</td><td>32.000000</td><td>0</td><td>0</td><td>76.2917</td><td>True</td><td>False</td><td>False</td><td>1</td></tr><tr><td>4</td><td>1</td><td>1</td><td>47.000000</td><td>1</td><td>1</td><td>52.5542</td><td>False</td><td>False</td><td>True</td><td>1</td></tr></tbody></table><pre>dataset_train = df_train.values.astype('float32')
+dataset_test = df_test.values.astype('float32')
+
+X_train = dataset_train[:, 0:9]
+y_train = dataset_train[:, 9]
+X_test = dataset_test[:, 0:9]
+y_test = dataset_test[:, 9]</pre>
+</div>
 <div class="q" id="e114b-q48">
-<p class="stem"><span class="qno">48.</span>（鐵達尼 MLP 題組）參考程式碼，下列何者正確？（A：X_train -= X_train.mean(axis=0) 將平均調為 0；B：X_train /= X_train.std(axis=0) 將標準差調為 0；C：壓縮到 0~1 之間；D：標準化防止梯度爆炸或消失；E：標準化屬特徵選擇；F：應改為 X_train=X_train.std(axis=0) …）</p>
+<p class="stem"><span class="qno">48.</span>參考下圖程式碼，下列何者正確？</p>
+<div class="fig">
+<pre>X_train -= X_train.mean(axis=0)
+X_train /= X_train.std(axis=0)
+X_test -= X_test.mean(axis=0)
+X_test /= X_test.std(axis=0)</pre><ol class="figlist"><li><b>描述 A：</b>X_train -= X_train.mean(axis=0) 將每個訓練集特徵的平均值調整為 0</li><li><b>描述 B：</b>X_train /= X_train.std(axis=0) 將每個訓練集特徵的標準差調整為 0</li><li><b>描述 C：</b>X_train 處理結果會將資料壓縮到 0 和 1 之間</li><li><b>描述 D：</b>標準化結果防止梯度爆炸或消失</li><li><b>描述 E：</b>標準化是屬於特徵選擇(Feature Selection)方法</li><li><b>描述 F：</b>X_train 程式碼應修正為 X_train = X_train.std(axis=0), X_test 程式碼應修正為 X_test = X_test.std(axis=0)</li></ol>
+</div>
 <ul class="opts"><li>(A) A、B、C、D</li><li>(B) A、E</li><li>(C) A、D</li><li>(D) A、C、F</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。A 正確（減均值使平均為 0）；D 正確（標準化有助穩定梯度、避免爆炸/消失）。B 錯（除標準差是使標準差為 1 非 0）；C 錯（Z-score 標準化非壓縮到 0~1，那是 Min-Max）；E 錯（標準化屬特徵縮放非特徵選擇）；F 錯。</div>
 </div>
 
 <div class="q" id="e114b-q49">
-<p class="stem"><span class="qno">49.</span>（鐵達尼 MLP 題組）參考執行結果，下列何者正確？</p>
+<p class="stem"><span class="qno">49.</span>參考下圖執行結果，下列何者正確？</p>
+<div class="fig">
+<pre>model = Sequential()
+model.add(Input(shape=(X_train.shape[1],)))
+model.add(Dense(10, activation="relu"))
+model.add(Dense(10, activation="relu"))
+model.add(Dense(1, activation="sigmoid"))
+model.summary()
+model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])</pre><pre>Model: "sequential"</pre><table><thead><tr><th>Layer (type)</th><th>Output Shape</th><th>Param #</th></tr></thead><tbody><tr><td>dense (Dense)</td><td>(None, 10)</td><td>空格1</td></tr><tr><td>dense_1 (Dense)</td><td>(None, 10)</td><td>空格2</td></tr><tr><td>dense_2 (Dense)</td><td>(None, 1)</td><td>11</td></tr></tbody></table><p class="figlab">選項 (A) 所指的數學式</p><p class="formula">f(x) = 1 / (1 + e<sup>−x</sup>)</p>
+</div>
 <ul class="opts"><li>(A) activation="relu" 其數學式為（圖示）</li><li>(B) 空格 1 值為 110，空格 2 值為 100</li><li>(C) 空格 1 值為 100，空格 2 值為 110</li><li>(D) activation="sigmoid" 一般用於多類別分類預測模型</li></ul>
 <span class="ans">答案：C</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。依模型摘要參數推算，空格 1 為 100、空格 2 為 110。(D) 錯，Sigmoid 用於二元/多標籤而非多類別單選（多類別應用 Softmax）。（本題為附程式碼/輸出判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。依模型摘要參數推算，空格 1 為 100、空格 2 為 110。(D) 錯，Sigmoid 用於二元/多標籤而非多類別單選（多類別應用 Softmax）。</div>
 </div>
 
 <div class="q" id="e114b-q50">
-<p class="stem"><span class="qno">50.</span>（鐵達尼 MLP 題組）參考繪圖結果，下列何者正確？（A：空格 1 須填 "b-"；B：空格 2 須填 "b--"；C：空格 1 須填 "r-"；D：空格 2 須填 "r--"；E：驗證損失明顯較訓練損失減少更明顯）</p>
+<p class="stem"><span class="qno">50.</span>參考下圖執行結果，下列何者正確？</p>
+<div class="fig">
+<pre>history = model.fit(X_train, y_train, validation_split=0.2, epochs=100, batch_size=10)
+loss, accuracy = model.evaluate(X_train, y_train, verbose=0)</pre><pre>import matplotlib.pyplot as plt
+loss = history.history["loss"]
+epochs = range(1, len(loss)+1)
+val_loss = history.history["val_loss"]
+plt.plot(epochs, loss, 空格1 , label="Training Loss")
+plt.plot(epochs, val_loss, 空格2 , label="Validation Loss")
+plt.title("Training and Validation Loss")
+plt.xlabel("Epochs")
+plt.ylabel("Loss")
+plt.legend()
+plt.show()</pre><img src="img/中3-e114b-q50.png" alt="Training and Validation Loss 曲線圖：藍色實線為訓練損失持續下降至約 0.40，紅色虛線為驗證損失約在 0.45–0.46 間震盪"><ol class="figlist"><li><b>描述 A：</b>空格 1 須填入 "b-"</li><li><b>描述 B：</b>空格 2 須填入 "b--"</li><li><b>描述 C：</b>空格 1 須填入 "r-"</li><li><b>描述 D：</b>空格 2 須填入 "r--"</li><li><b>描述 E：</b>驗證損失明顯較訓練損失減少更明顯</li></ol>
+</div>
 <ul class="opts"><li>(A) B、C</li><li>(B) A、C、D</li><li>(C) A、D</li><li>(D) C、D、E</li></ul>
 <span class="ans">答案：C</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。依繪圖慣例，訓練曲線以 "b-"（藍實線）、驗證曲線以 "r--"（紅虛線）區分，故 A 與 D 正確。E 描述與一般訓練曲線不符。（本題為附程式碼/繪圖判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (C)。依繪圖慣例，訓練曲線以 "b-"（藍實線）、驗證曲線以 "r--"（紅虛線）區分，故 A 與 D 正確。E 描述與一般訓練曲線不符。</div>
 </div>
 
 <h2 class="chap" id="e115a">115 年第一次　第三科 機器學習技術與應用（50 題）</h2>
@@ -937,10 +1155,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q35">
-<p class="stem"><span class="qno">35.</span>LoRA 微調 LLM 法律摘要，複雜條款常遺漏，但 GPU 顯存接近上限。下列哪種調整方式最能在不明顯增加記憶體使用的前提下改善表現？</p>
+<p class="stem"><span class="qno">35.</span>某團隊使用 LoRA 微調大型語言模型進行法律摘要任務，發現模型在複雜條款的摘要上常出現內容遺漏，但 GPU 顯存已接近上限。下列哪種調整方式最能在不明顯增加記憶體使用的前提下改善模型表現？</p>
 <ul class="opts"><li>(A) 提高 LoRA rank 以增強模型表達能力</li><li>(B) 改用完整微調（Full Fine-tuning）以學習更多細節</li><li>(C) 降低 LoRA rank 以釋放記憶體並增加 Batch Size</li><li>(D) 降低 LoRA rank 但套用到更多層，保持 trainable 總參數不變</li></ul>
-<span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。<div class="box note" style="margin-top:8px"><span class="tag">補充說明</span>選項 (B) 完整微調通常會大幅增加記憶體用量，與題幹「不明顯增加記憶體」前提似有張力；惟本題官方公告答案為 (B)，依規定作答以官方答案為準，不更改。</div></div>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>限制條件是「不明顯增加記憶體」，目標是改善複雜條款的摘要能力。降低每層的 LoRA rank、但把 LoRA 套用到更多層（如同時加在 attention 與 FFN），可在 trainable 參數總量不變、記憶體不增的前提下，讓更多層獲得任務適配能力，(D) 正確。(A) 提高 rank 會增加 trainable 參數與顯存；(B) 完整微調需要所有參數的梯度與優化器狀態，記憶體暴增；(C) 降低 rank 又加大 Batch Size，表達能力下降且顯存未必減少，無助改善遺漏問題。</div>
 </div>
 
 <div class="q" id="e115a-q36">
@@ -972,77 +1190,218 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q40">
-<p class="stem"><span class="qno">40.</span>（程式題）建立 28×28（展平 784 維）手寫數字分為 0~9 共 10 類的 MLP，標籤已轉 One-Hot 編碼。程式碼中 (A) 與 (B) 的函數應填入何者？</p>
+<p class="stem"><span class="qno">40.</span>分析師準備建立一個能將手寫數字圖片（28x28 像素展平為 784 維度）分為 0~9 共 10 個類別的多層感知機（MLP），且標籤已轉為 One-Hot 編碼（One-Hot Encoding）。為符合 10 個類別的單標籤分類需求，下圖中的程式碼中(A)與(B)的函數應填入何者？</p>
 <ul class="opts"><li>(A) sigmoid，mean_squared_error</li><li>(B) softmax，categorical_crossentropy</li><li>(C) relu，binary_crossentropy</li><li>(D) tanh，sparse_categorical_crossentropy</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>10 類別單選分類輸出層用 <strong>Softmax</strong>（機率分佈、互斥）；One-Hot 標籤的多分類損失用 <strong>categorical_crossentropy</strong>。(D) sparse 用於整數標籤而非 One-Hot。</div>
 </div>
 
 <div class="q" id="e115a-q41">
-<p class="stem"><span class="qno">41.</span>（程式題）OCR 訓練 pipeline 對手寫字母套用資料增強，驗證損失持續下降但部署後「b/d/p/q」類字母錯誤率異常偏高。下列何者為最可能的根本原因？</p>
+<p class="stem"><span class="qno">41.</span>工程師使用 PyTorch 建立 OCR 訓練 pipeline，並對手寫字母資料集套用下圖程式進行資料增強（Transform）。模型在訓練過程中顯示驗證損失（Validation Loss）持續下降，但實際部署後，系統在辨識「b/d/p/q」類字母錯誤率異常偏高。下列何者為最可能的根本原因？</p>
+<div class="fig">
+<pre>import torchvision.transforms as transforms
+
+transform = transforms.Compose([
+    transforms.RandomHorizontalFlip(p=0.5),
+    transforms.RandomRotation(15),
+    transforms.ColorJitter(brightness=0.3),
+    transforms.ToTensor(),
+])</pre>
+</div>
 <ul class="opts"><li>(A) RandomRotation(15) 角度過大導致特徵變形，應降至 5 度以內</li><li>(B) RandomHorizontalFlip 破壞字母方向語義，使模型以 50% 機率學到鏡像錯誤標籤</li><li>(C) ColorJitter 改變筆畫灰階，導致邊緣偵測特徵失真</li><li>(D) ToTensor() 應放在所有幾何變換之前才能保持座標對應正確</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>b/d、p/q 互為水平鏡像，<strong>RandomHorizontalFlip 破壞字母方向語義</strong>，使模型以 50% 機率學到鏡像後的錯誤標籤，導致這幾類辨識錯誤率偏高。此與第 4 題水平翻轉語意錯誤同理。</div>
 </div>
 
+<div class="qctx" data-q="42-43" data-src="e115a">
+<span class="lab">第 42–43 題共用資料</span>
+<p>下圖為使用 ResNet 進行遷移學習（Transfer Learning）的 Python 程式片段。</p><pre>import torch
+import torch.nn as nn
+import torchvision
+
+model = torchvision.models.resnet50(pretrained=True)
+for param in model.parameters():
+    param.requires_grad = False  # 行(A)
+
+model.fc = nn.Linear(2048, 2)
+optimizer = torch.optim.Adam(model.fc.parameters(), lr=1e-4)</pre>
+</div>
 <div class="q" id="e115a-q42">
-<p class="stem"><span class="qno">42.</span>（程式題）ResNet 遷移學習中行 (A) 將所有既有權重的梯度計算關閉，這在遷移學習中屬於哪一種標準策略？</p>
+<p class="stem"><span class="qno">42.</span>觀察程式中行(A)將所有既有權重的梯度計算關閉，這在遷移學習中屬於哪一種標準策略？</p>
 <ul class="opts"><li>(A) 全面微調（Full Fine-Tuning）</li><li>(B) 零樣本學習（Zero-shot Learning）</li><li>(C) 特徵萃取（Feature Extraction）</li><li>(D) 知識蒸餾（Knowledge Distillation）</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>凍結既有權重（關閉梯度計算）、僅用預訓練模型抽取特徵再訓練新分類頭，屬<strong>特徵萃取（Feature Extraction）</strong>策略。(A) 全面微調則會更新所有權重。</div>
 </div>
 
 <div class="q" id="e115a-q43">
-<p class="stem"><span class="qno">43.</span>（程式題）遷移學習微調（Fine-Tuning）時通常將學習率設得非常小（如 1e-4），下列何者為主要原因？</p>
+<p class="stem"><span class="qno">43.</span>在進行遷移學習微調（Fine-Tuning）時，通常會將優化器的學習率（Learning Rate）設得非常小（如 1e-4），下列何者為主要的原因？</p>
 <ul class="opts"><li>(A) 為了避免記憶體耗盡（OOM）</li><li>(B) 為了加速模型整體的收斂時間</li><li>(C) 為了讓損失函數強制歸零</li><li>(D) 為了避免更新步伐過大，破壞預訓練模型原本已學好的良好特徵表示</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>微調時用極小學習率是為了<strong>避免更新步伐過大破壞預訓練已學好的特徵表示</strong>，在既有基礎上小幅調整。與記憶體、強制歸零無關。</div>
 </div>
 
+<div class="qctx" data-q="44-45" data-src="e115a">
+<span class="lab">第 44–45 題共用資料</span>
+<p>Iris 是 UCI Dataset 上的一組經典資料集，常被用來教學與測試分類模型。這份資料包含三種類型的鳶尾花（Iris setosa、Iris versicolor、Iris virginica），每個類別各有 50 筆資料。每筆資料包含四個特徵：花萼長度、花萼寬度、花瓣長度、花瓣寬度。</p><p>研究人員希望透過機器學習模型，根據花朵的形態特徵，自動判斷該花屬於哪一種類型。在本次任務中，研究人員希望比較不同分類模型的表現。他們首先嘗試用線性判別分析（LDA）進行降維，接著使用 K 最近鄰（KNN）分類器來做分類預測，並使用交叉驗證（Cross Validation）評估模型的準確率。</p><pre>from ucimlrepo import fetch_ucirepo
+
+# 線上載入資料
+iris = fetch_ucirepo(id=53)
+
+# 讀取資料的輸入欄位與預測目標欄位
+X = iris.data.features
+y = iris.data.targets['class']</pre><pre># 輸入欄位的概況
+X.head()</pre><table><thead><tr><th></th><th>sepal length</th><th>sepal width</th><th>petal length</th><th>petal width</th></tr></thead><tbody><tr><td>0</td><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td></tr><tr><td>1</td><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td></tr><tr><td>2</td><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td></tr><tr><td>3</td><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td></tr><tr><td>4</td><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td></tr></tbody></table><pre># 預測目標欄位的概況
+y.head()</pre><pre>0    Iris-setosa
+1    Iris-setosa
+2    Iris-setosa
+3    Iris-setosa
+4    Iris-setosa
+Name: class, dtype: object</pre>
+</div>
 <div class="q" id="e115a-q44">
-<p class="stem"><span class="qno">44.</span>（程式題）研究人員先用整體資料進行 LDA 降維，接著用 KNN 分類並用交叉驗證評估準確率。請問下列敘述何者正確？</p>
+<p class="stem"><span class="qno">44.</span>研究人員撰寫的程式中（下圖），先用整體資料進行 LDA（Linear Discriminant Analysis）降維，接著再用 KNN（K-Nearest Neighbors）進行分類，並用交叉驗證來評估準確率。請問下列敘述何者正確？</p>
+<div class="fig">
+<pre>from sklearn.model_selection import cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+lda = LinearDiscriminantAnalysis()
+X_new = lda.fit_transform(X,y)
+
+model = KNeighborsClassifier(n_neighbors=3)
+scores = cross_val_score(model, X_new, y, cv=5, scoring="accuracy")
+scores.mean()</pre><pre>0.9733333333333334</pre>
+</div>
 <ul class="opts"><li>(A) 此寫法完全正確，因為先以整體資料進行 LDA 降維，再以交叉驗證測試 KNN，是標準流程</li><li>(B) 此寫法存在資料洩漏（Data Leakage）問題，應將 LDA 納入交叉驗證流程中一併進行</li><li>(C) 雖然流程不夠嚴謹，但結果仍然能夠代表模型真實的泛化能力</li><li>(D) 如果只想驗證 KNN 的分類效果，可以直接跳過 LDA 步驟</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>先用<strong>整體資料</strong>（含驗證折）做 LDA 降維，會讓驗證資料資訊洩漏進降維過程，造成<strong>資料洩漏</strong>。正確做法是將 LDA 納入交叉驗證流程，在每折僅用訓練部分擬合。</div>
 </div>
 
 <div class="q" id="e115a-q45">
-<p class="stem"><span class="qno">45.</span>（程式題）使用 cross_val_score 進行交叉驗證但尚未設定 cv 參數，希望確保每次分割訓練集與測試集的類別比例與原始資料一致。下列哪幾段程式碼插入比較合適？</p>
+<p class="stem"><span class="qno">45.</span>研究人員在程式（下圖）中使用 cross_val_score 進行交叉驗證，但目前尚未設定 cv 參數。他們希望確保在每次資料分割時，訓練集與測試集的類別比例與原始資料一致，以免影響模型的準確率估計。目前有以下幾段候選程式碼可供選擇。請問為了確保在交叉驗證時每個分割中的類別比例與原始資料一致，上面哪幾段程式碼插入在原始程式中[#填入程式碼]的部分比較合適？</p>
+<div class="fig">
+<pre>from sklearn.model_selection import cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+model = KNeighborsClassifier(n_neighbors=3)
+
+# 填入程式碼
+
+scores = cross_val_score(model, X, y, cv=cv, scoring="accuracy")
+scores.mean()</pre><p class="figlab">程式碼 A</p><pre>cv = KFold(n_splits=5, shuffle=True)</pre><p class="figlab">程式碼 B</p><pre>cv = StratifiedKFold(n_splits=5, shuffle=True)</pre><p class="figlab">程式碼 C</p><pre>cv = 5</pre><p class="figlab">程式碼 D</p><pre>cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=2)</pre>
+</div>
 <ul class="opts"><li>(A) 程式碼 B、C、D</li><li>(B) 程式碼 A、C</li><li>(C) 程式碼 A、B、D</li><li>(D) 程式碼 C、D</li></ul>
 <span class="ans">答案：A</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (A)。要保持各折類別比例一致須使用 <strong>StratifiedKFold</strong>（分層 K 折），符合此設定的程式碼組合為 B、C、D。（本題為附程式碼判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (A)。要保持各折類別比例一致須使用 <strong>StratifiedKFold</strong>（分層 K 折），符合此設定的程式碼組合為 B、C、D。</div>
 </div>
 
+<div class="qctx" data-q="46-48" data-src="e115a">
+<span class="lab">第 46–48 題共用資料</span>
+<p>使用 CIFAR-10 資料集以建立卷積神經網路（CNN），進行彩色影像之分類與辨識分析。CIFAR-10 為一常用之影像分類基準資料集，內容包含 10 個類別，共計 60000 張彩色影像，其中訓練集含 50000 張影像，測試集則含 10000 張影像。每張影像解析度為 32 × 32 像素，並具有三個通道（channel），分別對應紅、綠、藍三原色。以下程式碼片段示範資料載入與處理流程。</p><pre>import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+import matplotlib.pyplot as plt
+
+(x_train, y_train), (x_test, y_test) = datasets.cifar10.load_data()</pre><p>下圖顯示資料集的第 1 筆部分資料。</p><pre>&gt;&gt;&gt; x_train[0]
+array([[[ 59,  62,  63],
+        [ 43,  46,  45],
+        [ 50,  48,  43],
+        ...,
+        [158, 132, 108],
+        [152, 125, 102],
+        [148, 124, 103]],
+
+       [[ 16,  20,  20],
+        [  0,   0,   0],
+        [ 18,   8,   0],
+        ...,</pre><pre>&gt;&gt;&gt; y_train[0]
+array([6], dtype=uint8)</pre>
+</div>
 <div class="q" id="e115a-q46">
-<p class="stem"><span class="qno">46.</span>（程式題，CIFAR-10 CNN 題組）參考資料處理程式碼，下列哪一項描述組合正確？</p>
+<p class="stem"><span class="qno">46.</span>參考下圖資料處理，下列哪一項描述組合正確？</p>
+<div class="fig">
+<pre>x_train, x_test = x_train / 255.0, x_test / 255.0
+y_train = tf.keras.utils.to_categorical(y_train, 10)
+y_test = tf.keras.utils.to_categorical(y_test, 10)</pre><ol class="figlist"><li><b>描述 A：</b>x_train, x_test 將影像範圍壓縮到 0~31 範圍</li><li><b>描述 B：</b>可以增加模型的泛化能力</li><li><b>描述 C：</b>x_train, x_test 資料轉換結果相當於 z-score 標準化</li><li><b>描述 D：</b>資料轉換目的是避免梯度爆炸或梯度消失</li><li><b>描述 E：</b>y_train 將 label 轉換為獨熱編碼（One-hot Encoding）</li><li><b>描述 F：</b>y_train 適合輸出層使用 softmax 函數</li></ol>
+</div>
 <ul class="opts"><li>(A) 描述 A、C、F</li><li>(B) 描述 B、D、E、F</li><li>(C) 描述 B、C、E、F</li><li>(D) 描述 A、B、D、E、F</li></ul>
 <span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。針對 CIFAR-10（32×32×3、訓練 50000/測試 10000、像素正規化等）資料處理流程，正確描述組合為 B、D、E、F。（本題為附程式碼判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。針對 CIFAR-10（32×32×3、訓練 50000/測試 10000、像素正規化等）資料處理流程，正確描述組合為 B、D、E、F。</div>
 </div>
 
 <div class="q" id="e115a-q47">
-<p class="stem"><span class="qno">47.</span>（程式題，CIFAR-10 CNN 題組）參考建立模型結果，下列哪一項描述組合正確？</p>
+<p class="stem"><span class="qno">47.</span>參考下圖建立模型結果，下列哪一項描述組合正確？</p>
+<div class="fig">
+<img src="img/中3-e115a-q47.png" alt="CIFAR-10 CNN 模型建立程式碼，標示區塊 1 至區塊 4"><pre>model = models.Sequential([
+    # 區塊 1
+    layers.Input(shape=(32, 32, 3)),
+    layers.Conv2D(32, kernel_size=(3,3), padding="same", activation="relu"),
+    layers.BatchNormalization(),
+    layers.Conv2D(32, (3,3), activation='relu', padding='same'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2,2)),
+    layers.Dropout(0.25),
+
+    # 區塊 2
+    layers.Conv2D(64, (3,3), activation='relu', padding='same'),
+    layers.BatchNormalization(),
+    layers.Conv2D(64, (3,3), activation='relu', padding='same'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2,2)),
+    layers.Dropout(0.25),
+
+    # 區塊 3
+    layers.Conv2D(128, (3,3), activation='relu', padding='same'),
+    layers.BatchNormalization(),
+    layers.Conv2D(128, (3,3), activation='relu', padding='same'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2,2)),
+    layers.Dropout(0.25),
+
+    # 區塊 4
+    layers.Flatten(),
+    layers.Dense(256, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dropout(0.5),
+    layers.Dense(10, activation='softmax')
+])</pre><ol class="figlist"><li><b>描述 A：</b>區塊 1 layers.Input(shape=(32, 32, 3)) 主要目的是進行資料標準化</li><li><b>描述 B：</b>區塊 1 layers.Conv2D(32, kernel_size=(3,3), padding="same", activation="relu") 考慮輸入為 (32,32,3)，則輸出 shape 為 (32,32,3)</li><li><b>描述 C：</b>區塊 1 layers.BatchNormalization() 放在 Conv2D 之後可以減少梯度消失或爆炸</li><li><b>描述 D：</b>區塊 2 layers.Dropout(0.25) 可以隨機將 25% 神經元輸出設定為 1</li><li><b>描述 E：</b>區塊 3 layers.Dropout(0.25) 可以減少過度擬合（Overfitting）</li><li><b>描述 F：</b>區塊 4 Flatten 層的作用是將 3D 特徵圖展開為平成 1D 向量</li></ol>
+</div>
 <ul class="opts"><li>(A) 描述 A、C</li><li>(B) 描述 C、E、F</li><li>(C) 描述 A、D、E</li><li>(D) 描述 D、E、F</li></ul>
 <span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。依模型摘要（各層輸出形狀與參數量）判讀，正確描述組合為 C、E、F。（本題為附程式碼/模型摘要判讀題。）</div>
+<div class="exp"><span class="lab">解析</span>官方公告答案為 (B)。依模型摘要（各層輸出形狀與參數量）判讀，正確描述組合為 C、E、F。</div>
 </div>
 
 <div class="q" id="e115a-q48">
-<p class="stem"><span class="qno">48.</span>（程式題，CIFAR-10 CNN 題組）當 Epochs=6 時訓練曲線值(0.81)明顯大於驗證曲線值(0.72)，下列何者為最可能的原因？</p>
+<p class="stem"><span class="qno">48.</span>參考下圖繪圖結果，當 Epochs=6 時，訓練曲線值(0.81)明顯大於驗證曲線值(0.72)，下列何者為最可能的原因？</p>
+<div class="fig">
+<img src="img/中3-e115a-q48.png" alt="CIFAR-10 CNN 訓練與驗證準確率曲線（Training and Validation Accuracy），橫軸 Epochs 0–9，縱軸 Accuracy 0.45–0.85；Epochs=6 時訓練曲線約 0.81、驗證曲線約 0.72">
+</div>
 <ul class="opts"><li>(A) 學習率太低</li><li>(B) 批次大小設定太大</li><li>(C) 模型低度擬合（Underfitting）</li><li>(D) 模型過擬合（Overfitting）</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>訓練準確率(0.81)明顯高於驗證準確率(0.72)，呈現訓練表現好、驗證表現差的落差，是<strong>過擬合</strong>的典型徵兆。</div>
 </div>
 
+<div class="qctx" data-q="49-50" data-src="e115a">
+<span class="lab">第 49–50 題共用資料</span>
+<p>某人工智慧團隊正在開發一套自動光學檢測（Automated Optical Inspection, AOI）系統，目標是透過機械手臂上的相機，自動辨識晶圓表面是否存在「劃傷（Scratch）」或「污點（Spot）」等瑕疵。目前系統開發面臨以下挑戰：</p><ul><li>資料極度不平衡，正常晶圓影像約佔 99%，有瑕疵影像僅佔 1%。</li><li>輸入影像品質不一致，包含不同解析度，且部分影像因機械手臂震動而出現模糊。</li><li>在使用深層卷積神經網路（CNN）訓練時，Loss 曲線震盪劇烈，甚至偶爾出現數值溢出（NaN）情形。</li></ul>
+</div>
 <div class="q" id="e115a-q49">
-<p class="stem"><span class="qno">49.</span>（AOI 題組）若需建立超過 50 層的深層神經網路捕捉細微劃傷特徵，又擔心傳統深層網路常見的梯度消失問題，下列哪一種經典架構最適合優先考慮？</p>
+<p class="stem"><span class="qno">49.</span>若團隊需要建立一個超過 50 層的深層神經網路，以捕捉晶圓表面細微的劃傷特徵，但又擔心傳統深層網路常見的梯度消失（Vanishing Gradient）問題，則下列哪一種經典架構最適合優先考慮？</p>
 <ul class="opts"><li>(A) VGG：透過重複堆疊 3×3 卷積層與池化層來維持梯度穩定</li><li>(B) GoogLeNet：透過 Inception 模塊並行使用不同大小的卷積核</li><li>(C) ResNet（Residual Network）：透過殘差連接（Residual Connection / Skip Connection），使梯度能跨層傳遞並降低深層訓練困難</li><li>(D) Vision Transformer（ViT）：完全捨棄卷積，因此不會出現任何深層模型的訓練問題</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>建構超過 50 層深層網路、克服梯度消失，首選 <strong>ResNet 殘差/跳躍連接</strong>，使梯度跨層傳遞、緩解深層訓練困難。(D) ViT 仍會有訓練問題，描述絕對化錯誤。</div>
 </div>
 
 <div class="q" id="e115a-q50">
-<p class="stem"><span class="qno">50.</span>（AOI 題組）為修復訓練中 Loss 變 NaN，考慮在 PyTorch 訓練迴圈加入梯度裁剪（torch.nn.utils.clip_grad_norm_）。若要正確加入，最適合插入於哪個位置？其主要作用為何？</p>
+<p class="stem"><span class="qno">50.</span>為了修復訓練過程中 Loss 突然變成 NaN 的問題，工程師考慮在 PyTorch 訓練迴圈中加入梯度裁剪（Gradient Clipping）機制，例如 torch.nn.utils.clip_grad_norm_。若要正確加入梯度裁剪，最適合插入於哪個位置？其主要作用為何？</p>
+<div class="fig">
+<pre>for images, labels in train_loader:
+    optimizer.zero_grad()                 # 位置 1
+    outputs = model(images)               # 位置 2
+    loss = criterion(outputs, labels)     # 位置 3
+    loss.backward()                       # 位置 4
+    optimizer.step()                      # 位置 5</pre>
+</div>
 <ul class="opts"><li>(A) 插入於位置 3 與位置 4 之間；用以限制 Loss 數值大小，避免梯度消失</li><li>(B) 插入於位置 4 與位置 5 之間；用以限制梯度範數過大，避免更新步幅失控導致數值不穩</li><li>(C) 插入於位置 5 之後；用以將更新後的權重強制壓縮回正常範圍</li><li>(D) 插入於位置 1 與位置 2 之間；用以對輸入影像進行批次標準化</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>梯度裁剪須在 <code>loss.backward()</code> 計算梯度之後、<code>optimizer.step()</code> 更新參數之前（位置 4 與 5 之間）插入，作用是<strong>限制梯度範數過大</strong>，避免更新步幅失控導致數值不穩（NaN/梯度爆炸）。</div>
@@ -1050,7 +1409,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <footer>
 <p>官方答案取自 iPAS 經濟部產業人才能力鑑定公告試題（114 年第二梯次、115 年第一次「中級 科目三：機器學習技術與應用」）；本檔【答案】欄完全採用官方公告答案，不予更改。</p>
-<p>【解析】與【考前重點】為依官方學習指引整理之學習用內容，屬學習整理，<strong>非官方標準解析</strong>。部分附程式碼/附圖判讀題（114 年第 38–41、45–50 題；115 年第 45–47 題）原 PDF 之程式碼與圖表未隨擷取文字提供，解析依官方答案與題幹文字推定說明，請對照原始試題 PDF 研讀。</p>
+<p>【解析】與【考前重點】為依官方學習指引整理之學習用內容，屬學習整理，<strong>非官方標準解析</strong>。附程式碼／附圖判讀題的程式碼、執行輸出與表格已依原卷逐字轉錄於題幹之後，圖表類附圖則取自原 PDF；題組共用資料標示於題組第一題之前。</p>
 <p>本教材僅供學習參考，不保證考試通過；請以官方公告之評鑑主題與簡章為準。</p>
 </footer>
 

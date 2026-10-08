@@ -46,6 +46,17 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .q .ans{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;margin:4px 0;font-size:14px;}
 .q .exp{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:15px;}
 .q .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+/* 題組共用資料與題目附件（程式碼、輸出、表格、圖） */
+.qctx{border:1px dashed var(--accent);border-radius:10px;padding:14px 18px;margin:22px 0 -4px;background:var(--accent-soft);font-size:14.5px;}
+.qctx .lab{display:inline-block;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.qctx p{margin:6px 0;}
+.q .fig{margin:0 0 12px;}
+.fig pre,.qctx pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre;}
+.fig img,.qctx img{max-width:100%;height:auto;display:block;margin:8px 0;border:1px solid var(--line);border-radius:6px;background:#fff;padding:4px;}
+.fig table,.qctx table{width:auto;margin:8px 0;font-size:14px;}
+.fig .figlab,.qctx .figlab{font-weight:700;color:var(--accent);margin:10px 0 2px;font-size:14px;}
+.fig .figlist,.qctx .figlist{margin:6px 0;padding-left:22px;font-size:14.5px;}
+.fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
 </style>
@@ -314,6 +325,9 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <div class="q" id="e114b-q3">
 <p class="stem"><span class="qno">3.</span>附圖為某資料之分佈圖，此圖資料之偏態（Skewness）值較有可能為下列哪個選項？</p>
+<div class="fig">
+<img src="img/中2-e114b-q3.png" alt="資料分佈直方圖（含密度曲線，左尾較長）">
+</div>
 <ul class="opts"><li>(A) Skewness &lt; 0</li><li>(B) Skewness &gt; 0</li><li>(C) Skewness = 0</li><li>(D) 無法計算 Skewness</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>依官方答案為左偏（負偏態，Skewness&lt;0），即左側尾部較長、主體偏右。偏度判讀：右尾長→正偏；左尾長→負偏。</div>
@@ -572,77 +586,207 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e114b-q40">
-<p class="stem"><span class="qno">40.</span>參考附圖虛擬程式碼，最可能描述何種驗證法？</p>
+<p class="stem"><span class="qno">40.</span>請參考附圖，下列虛擬程式碼（pseudocode）最可能是在描述何種驗證法？</p>
+<div class="fig">
+<pre>Input：
+    - data_set：包含 N 筆資料的資料集
+    - model_training_function：用來訓練模型的函式
+    - model_evaluation_function：用來評估模型的函式（如計算誤差或準確率）
+Output：
+    - 平均評估指標（如平均準確率或平均誤差）
+
+Algorithm：
+1. 初始化評估指標列表 metrics = []
+2. 對 i = 1 到 N：
+    a. 將第 i 筆資料作為測試集 test_data
+    b. 將其餘 N-1 筆資料作為訓練集 train_data
+    c. 使用 model_training_function 在 train_data 上訓練模型
+    d. 使用訓練好的模型對 test_data 做預測，計算評估指標 metric_i
+    e. 將 metric_i 加入 metrics
+
+3. 計算 metrics 的平均值 mean_metric
+4. 回傳 mean_metric</pre>
+</div>
 <ul class="opts"><li>(A) Hold-out 驗證</li><li>(B) 留一交叉驗證 LOOCV</li><li>(C) K-fold 交叉驗證</li><li>(D) 拔靴法（Bootstrap）驗證</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>依官方答案為 LOOCV：每次留 1 筆當驗證、其餘 N−1 筆訓練，重複 N 次。其特徵為「迴圈次數 = 樣本數、每次驗證集僅 1 筆」。</div>
 </div>
 
 <div class="q" id="e114b-q41">
-<p class="stem"><span class="qno">41.</span>參考附圖虛擬程式碼，最可能描述何種演算法？</p>
+<p class="stem"><span class="qno">41.</span>請參考附圖，下列虛擬程式碼（pseudocode）最可能是在描述何種演算法？</p>
+<div class="fig">
+<pre>Input：
+    - data_points：N 筆資料，每筆資料有 D 個特徵
+    - X：要分成的群數
+Output：
+    - clusters：每筆資料所屬的群編號
+    - centroids：每個群的中心點
+
+Algorithm：
+1. 隨機選擇 X 個資料點作為初始中心
+2. 重複以下步驟直到收斂：
+    a. 分群：
+        對每個資料點，計算它到每個中心的距離
+        將資料點指派給距離最近的中心
+    b. 更新中心：
+        對每個群：
+            計算該群中所有資料點的平均值
+            將群中心更新為這個平均值
+3. 當群中心不再變動時，停止
+
+回傳每筆資料的群編號 clusters，以及最後的群中心 centroids</pre>
+</div>
 <ul class="opts"><li>(A) K-means 分群</li><li>(B) 高斯混合模型分群 GMM</li><li>(C) 階層式分群</li><li>(D) DBSCAN 分群</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>依官方答案為 K-means：典型流程為「初始化 k 個質心 → 將點指派至最近質心 → 重新計算質心 → 重複至收斂」。此「指派-更新質心」迭代為 K-means 標誌。</div>
 </div>
 
 <div class="q" id="e114b-q42">
-<p class="stem"><span class="qno">42.</span>生產線每小時瑕疵品數符合卜瓦松分佈（平均每小時 5 個），附圖程式碼展示資料處理，下列敘述何者正確？</p>
+<p class="stem"><span class="qno">42.</span>考慮某生產線每小時出現瑕疵品的個數符合卜瓦松分佈（Poisson Distribution），已知平均每小時產生 5 個瑕疵品，附圖程式碼展示資料處理，請問下列敘述何者正確？</p>
+<div class="fig">
+<pre>import numpy as np
+from scipy.stats import poisson
+lambda_poisson = 5
+print(poisson.pmf(5, lambda_poisson))</pre>
+</div>
 <ul class="opts"><li>(A) lambda_poisson = 5 表示每小時最多 5 個瑕疵品</li><li>(B) poisson.pmf(5, lambda_poisson) 表示小於 5 個瑕疵品的機率</li><li>(C) 卜瓦松分佈的適用條件為事件彼此獨立，且平均發生率固定</li><li>(D) poisson.cdf(10, 5) 表示大於或等於 10 個瑕疵品的機率</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>卜瓦松前提即「事件獨立、平均發生率固定」。(A) λ 是平均非最大值；(B) pmf(5) 是「恰好 5 個」的機率；(D) cdf(10) 是「≤10 個」的累積機率。</div>
 </div>
 
+<div class="qctx" data-q="43-47" data-src="e114b">
+<span class="lab">第 43–47 題共用資料</span>
+<p>一間遊戲市場研究公司正在分析全球電子遊戲銷售情況，並準備建立一份「熱銷遊戲銷售報告」。分析師取得了一份名為 vgsales.csv 的資料集，內容包含了全球銷量超過 10 萬份的電子遊戲清單。研究團隊希望透過這份資料，了解不同年份、平台與地區的銷售趨勢。資料集的欄位說明如下：</p><ul><li>Name：遊戲名稱</li><li>Platform：遊戲平台（如 PS4、X360、Wii 等）</li><li>Year：發售年份</li><li>Genre：遊戲類型（如 Action、Sports、Role-Playing 等）</li><li>Publisher：發行商名稱</li><li>NA_Sales / EU_Sales / JP_Sales / Other_Sales：各地區銷售量（單位：百萬份）</li><li>Global_Sales：全球總銷售量（單位：百萬份）</li></ul><p>資料的欄位概觀如下：</p><pre>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 載入資料
+data = pd.read_csv("vgsales.csv")
+data.head()</pre><table><thead><tr><th></th><th>Rank</th><th>Name</th><th>Platform</th><th>Year</th><th>Genre</th><th>Publisher</th><th>NA_Sales</th><th>EU_Sales</th><th>JP_Sales</th><th>Other_Sales</th><th>Global_Sales</th></tr></thead><tbody><tr><td>0</td><td>1</td><td>Wii Sports</td><td>Wii</td><td>2006.0</td><td>Sports</td><td>Nintendo</td><td>41.49</td><td>29.02</td><td>3.77</td><td>8.46</td><td>82.74</td></tr><tr><td>1</td><td>2</td><td>Super Mario Bros.</td><td>NES</td><td>1985.0</td><td>Platform</td><td>Nintendo</td><td>29.08</td><td>3.58</td><td>6.81</td><td>0.77</td><td>40.24</td></tr><tr><td>2</td><td>3</td><td>Mario Kart Wii</td><td>Wii</td><td>2008.0</td><td>Racing</td><td>Nintendo</td><td>15.85</td><td>12.88</td><td>3.79</td><td>3.31</td><td>35.82</td></tr><tr><td>3</td><td>4</td><td>Wii Sports Resort</td><td>Wii</td><td>2009.0</td><td>Sports</td><td>Nintendo</td><td>15.75</td><td>11.01</td><td>3.28</td><td>2.96</td><td>33.00</td></tr><tr><td>4</td><td>5</td><td>Pokemon Red/Pokemon Blue</td><td>GB</td><td>1996.0</td><td>Role-Playing</td><td>Nintendo</td><td>11.27</td><td>8.89</td><td>10.22</td><td>1.00</td><td>31.37</td></tr></tbody></table>
+</div>
 <div class="q" id="e114b-q43">
-<p class="stem"><span class="qno">43.</span>（vgsales 情境）載入後 Year 欄位型態為 float64 而非整數，哪些原因可能導致？原因A：有缺失值 NaN 使整欄轉浮點；原因B：年份原為字串轉換出錯變浮點；原因C：Pandas 預設將所有數值讀為 float64；原因D：年份含小數點(如 2006.0) 被視為浮點。</p>
+<p class="stem"><span class="qno">43.</span>分析師在載入資料後，檢視 Year 欄位的資料型態，發現它是 float64，而非一般年份常用的整數。他想了解這樣的情形為什麼會發生。請問下列哪些原因可能導致這種狀況？</p>
+<div class="fig">
+<pre>data['Year']
+
+0        2006.0
+1        1985.0
+2        2008.0
+3        2009.0
+4        1996.0
+          ...  
+16593    2002.0
+16594    2003.0
+16595    2008.0
+16596    2010.0
+16597    2003.0
+Name: Year, Length: 16598, dtype: float64</pre><ol class="figlist"><li><b>原因 A：</b>CSV 檔中 Year 欄位有缺失值(NaN)，導致 Pandas 自動將整欄轉為浮點數。</li><li><b>原因 B：</b>CSV 檔中的年份資料原本是字串(如 "2006")，Pandas 轉換時出錯而變成浮點數。</li><li><b>原因 C：</b>Pandas 預設會將所有數值型態讀取為 float64，不論資料是否為整數。</li><li><b>原因 D：</b>CSV 檔中的年份資料可能包含小數點(例如 2006.0)，因此被視為浮點數。</li></ol>
+</div>
 <ul class="opts"><li>(A) 原因 B、原因 C</li><li>(B) 原因 A、原因 D</li><li>(C) 原因 A、原因 B、原因 D</li><li>(D) 原因 C、原因 D</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>原因A 正確：欄位有 NaN 時 Pandas 會把整數欄自動升為 float64。原因D 正確：值帶小數(2006.0) 自然為浮點。原因B 字串轉換出錯會報錯或維持 object 而非靜默變 float；原因C 錯，Pandas 會盡量以 int 讀純整數欄。故選 A、D。</div>
 </div>
 
 <div class="q" id="e114b-q44">
-<p class="stem"><span class="qno">44.</span>（承上）欲將 Year 轉為整數型態以利年份趨勢分析，考慮可能含 NaN，最合適的轉換方式為？</p>
-<ul class="opts"><li>(A) data['Year'].astype(int)</li><li>(B) data['Year'].fillna(0).astype(int)</li><li>(C) data['Year'].fillna(1).astype(int)</li><li>(D) data['Year'].astype('Int64')</li></ul>
+<p class="stem"><span class="qno">44.</span>研究團隊接下來想要將 Year 欄位轉換為整數型態，以便後續進行年份趨勢分析。考慮到資料中可能包含缺失值（NaN），請選出最合適的轉換方式。</p>
+<ul class="opts"><li>(A) data['Year'] = data['Year'].astype(int)</li><li>(B) data['Year'] = data['Year'].fillna(0).astype(int)</li><li>(C) data['Year'] = data['Year'].fillna(1).astype(int)</li><li>(D) data['Year'] = data['Year'].astype('Int64')</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>Pandas 的可空整數型別 <code>'Int64'</code>（大寫 I）允許保留 NaN（&lt;NA&gt;）並轉整數，不需填補錯誤值。(A) 對 NaN 會報錯；(B)(C) 用 0 或 1 填補會污染年份資料。</div>
 </div>
 
 <div class="q" id="e114b-q45">
-<p class="stem"><span class="qno">45.</span>（承上）欲統計每個平台的全球銷售總額並以長條圖呈現，最能正確實現的程式碼為？</p>
+<p class="stem"><span class="qno">45.</span>為了觀察各遊戲平台的市場表現，分析師想要統計每個平台的全球銷售總額，並以長條圖呈現。請選出最能正確實現此分析的程式碼。</p>
 <ul class="opts"><li>(A) data.groupby("Platform")["Global_Sales"].sum().plot(kind="bar")</li><li>(B) data.groupby("Platform")["Global_Sales"].count().plot(kind="bar")</li><li>(C) data["Platform"].value_counts().plot(kind="bar")</li><li>(D) data.groupby("Platform")["Global_Sales"].mean().plot(kind="bar")</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>要「銷售總額」需 groupby 平台後對 Global_Sales 做 <code>sum()</code>。(B) count 為筆數、(C) value_counts 為平台出現次數、(D) mean 為平均非總額。</div>
 </div>
 
 <div class="q" id="e114b-q46">
-<p class="stem"><span class="qno">46.</span>（承上）欲以 seaborn 長條圖比較北美、歐洲、日本及其他地區的整體銷售總額比例，正確的程式碼為？</p>
-<ul class="opts"><li>(A) sns.countplot(x=[四地區欄位], data=data)</li><li>(B) sns.lineplot(x="Platform", y=[四地區欄位], data=data)</li><li>(C) sns.barplot(x="variable", y="value", data=pd.melt(data, value_vars=[四地區欄位]), estimator=sum)</li><li>(D) sns.histplot(data[[四地區欄位]])</li></ul>
+<p class="stem"><span class="qno">46.</span>團隊希望比較北美、歐洲、日本及其他地區的整體銷售比例，並使用 seaborn 套件以長條圖的形式進行可視化分析。請選出能正確顯示這些地區銷售總額比例的程式碼。</p>
+<ul class="opts"><li>(A) sns.countplot(x=["NA_Sales","EU_Sales","JP_Sales","Other_Sales"], data=data)</li><li>(B) sns.lineplot(x="Platform", y=["NA_Sales","EU_Sales","JP_Sales","Other_Sales"], data=data)</li><li>(C) sns.barplot(x="variable", y="value", data=pd.melt(data, value_vars=["NA_Sales","EU_Sales","JP_Sales","Other_Sales"]), estimator=sum)</li><li>(D) sns.histplot(data[["NA_Sales","EU_Sales","JP_Sales","Other_Sales"]])</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>先用 <code>pd.melt</code> 將四個地區欄位轉為長格式（variable/value），再以 <code>barplot</code> 搭配 <code>estimator=sum</code> 對各地區加總繪長條圖。(A) countplot 計次、(B) lineplot 不適、(D) histplot 為分佈圖。</div>
 </div>
 
 <div class="q" id="e114b-q47">
-<p class="stem"><span class="qno">47.</span>（承上）欲找出北美（NA）銷售前五名遊戲並以 seaborn 條狀圖呈現，正確的程式碼為？</p>
+<p class="stem"><span class="qno">47.</span>研究團隊想要知道在北美地區（NA）銷售成績最好的遊戲前五名，並希望以 seaborn 的條狀圖呈現結果。請選出能正確完成這項分析的程式碼。</p>
 <ul class="opts"><li>(A) sns.barplot(x="NA_Sales", y="Name", data=data.head(5))</li><li>(B) sns.barplot(x="Name", y="NA_Sales", data=data.nlargest(5, "NA_Sales"))</li><li>(C) sns.lineplot(x="Name", y="NA_Sales", data=data.nlargest(5, "NA_Sales"))</li><li>(D) sns.countplot(x="Name", y="NA_Sales", data=data)</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>需先用 <code>nlargest(5, "NA_Sales")</code> 取 NA 銷售前五名，再以 barplot 繪製。(A) head(5) 僅取前五列非前五名；(C) lineplot 不適合類別；(D) countplot 不能同時指定 x、y 為此用法。</div>
 </div>
 
+<div class="qctx" data-q="48-50" data-src="e114b">
+<span class="lab">第 48–50 題共用資料</span>
+<p>使用銷售資料集(marketing.csv)進行迴歸分析，附圖程式碼展示資料載入與處理。</p><pre>import pandas as pd
+df = pd.read_csv("marketing.csv")</pre><p>下圖顯示資料集的前 5 筆資料與相關資訊。</p><pre>&gt;&gt;&gt; df.head()
+   youtube  facebook  newspaper  sales
+0   276.12     45.36      83.04  26.52
+1    53.40       NaN      54.12  12.48
+2    20.64     55.08      83.16  11.16
+3   181.80     49.56      70.20  22.20
+4   216.96     12.96      70.08  15.48
+&gt;&gt;&gt; df.describe()
+          youtube    facebook   newspaper       sales
+count  200.000000  199.000000  200.000000  200.000000
+mean   176.451000   27.820101   36.664800   16.827000
+std    103.025084   17.808410   26.134345    6.260948
+min      0.840000    0.000000    0.360000    1.920000
+25%     89.250000   11.940000   15.300000   12.450000
+50%    179.700000   27.000000   30.900000   15.480000
+75%    262.590000   43.680000   54.120000   20.880000
+max    355.680000   59.520000  136.800000   32.400000</pre>
+</div>
 <div class="q" id="e114b-q48">
-<p class="stem"><span class="qno">48.</span>（marketing 情境）根據 describe 結果，下列何者正確？</p>
+<p class="stem"><span class="qno">48.</span>根據上述結果，下列何者正確？</p>
 <ul class="opts"><li>(A) 資料集個數為 199 筆，變數個數為 4 個</li><li>(B) sales 變數的中位數是 16.827</li><li>(C) facebook 變數的第三四分位數(Q3) 是 11.94</li><li>(D) youtube 變數的第一四分位數(Q1) 是 89.25</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>依官方答案，describe 輸出中 youtube 欄 25%（Q1）值為 89.25。其餘選項與輸出表中對應的筆數、中位數（50%）或 Q3 數值不符。應對照 describe 表中 count、50%、25%、75% 列逐一核對。</div>
 </div>
 
 <div class="q" id="e114b-q49">
-<p class="stem"><span class="qno">49.</span>（承上）計算各變數遺漏值(NaN)個數，下列何者正確？選項A: df.isnull().sum()；選項B: df.isNaN().sum()；選項C: df.isna().sum()；選項D: df.isnan().sum()</p>
+<p class="stem"><span class="qno">49.</span>參考下圖計算各變數的遺漏值(NaN)個數結果，下列何者正確？</p>
+<div class="fig">
+<pre>youtube      0
+facebook     1
+newspaper    0
+sales        0
+dtype: int64</pre><ol class="figlist"><li><b>選項 A：</b>df.isnull().sum()</li><li><b>選項 B：</b>df.isNaN().sum()</li><li><b>選項 C：</b>df.isna().sum()</li><li><b>選項 D：</b>df.isnan().sum()</li></ol>
+</div>
 <ul class="opts"><li>(A) 選項 D</li><li>(B) 選項 B、選項 C、選項 D</li><li>(C) 選項 A、選項 C</li><li>(D) 選項 A、選項 B、選項 C</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>Pandas 偵測缺失值的正確方法為 <code>isnull()</code> 與其別名 <code>isna()</code>，兩者等價。<code>isNaN()</code>、<code>isnan()</code> 非 Pandas DataFrame 方法（會報錯）。故正確為 A、C。</div>
 </div>
 
 <div class="q" id="e114b-q50">
-<p class="stem"><span class="qno">50.</span>（承上，已填補遺漏值）參考執行結果，下列何者正確？A：reg = LinearRegression().fit(y, X)；B：reg = LinearRegression().fit(X, y)；C：print(reg.coef_) 結果含截距等 4 個係數；D：sm.OLS(X2, y).fit()；E：所有迴歸係數在 α=0.05 下皆顯著；F：截距項係數值為 3.5561</p>
+<p class="stem"><span class="qno">50.</span>考慮資料集已經填補遺漏值，參考下圖執行結果，下列何者正確？</p>
+<div class="fig">
+<pre>from sklearn.linear_model import LinearRegression
+import statsmodels.api as sm
+X = df[['youtube', 'facebook', 'newspaper']]
+y = df['sales']
+reg = 空格1
+print(reg.coef_)
+X2 = sm.add_constant(X)
+model_sm = 空格2
+print(model_sm.summary())</pre><pre>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  sales   R-squared:                       0.898
+Model:                            OLS   Adj. R-squared:                  0.896
+Method:                 Least Squares   F-statistic:                     573.0
+Date:                Sat, 20 Sep 2025   Prob (F-statistic):           1.03e-96
+Time:                        19:37:30   Log-Likelihood:                -422.21
+No. Observations:                 200   AIC:                             852.4
+Df Residuals:                     196   BIC:                             865.6
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.5561      0.373      9.537      0.000       2.821       4.291
+youtube        0.0455      0.001     32.702      0.000       0.043       0.048
+facebook       0.1891      0.009     21.960      0.000       0.172       0.206
+newspaper     -0.0006      0.006     -0.108      0.914      -0.012       0.011</pre><ol class="figlist"><li><b>A：</b>空格 1 完整語法 reg = LinearRegression().fit(y, X)</li><li><b>B：</b>空格 1 完整語法 reg = LinearRegression().fit(X, y)</li><li><b>C：</b>print(reg.coef_) 結果為包括截距項等 4 個係數值</li><li><b>D：</b>空格 2 完整語法 sm.OLS(X2, y).fit()</li><li><b>E：</b>model_sm 迴歸模型的所有迴歸係數在 α=0.05 之下具有顯著的解釋力</li><li><b>F：</b>截距項係數值為 3.5561</li></ol>
+</div>
 <ul class="opts"><li>(A) B、C、F</li><li>(B) B、F</li><li>(C) A、C、D、F</li><li>(D) B、E</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>B 正確：scikit-learn 語法為 <code>fit(X, y)</code>（特徵在前、目標在後）。F 正確：依輸出截距為 3.5561。C 錯：<code>reg.coef_</code> 只含各特徵係數、不含截距（截距在 <code>intercept_</code>），3 個特徵應為 3 個係數；A 參數順序顛倒；D 的 OLS 參數順序應為 (y, X2)；E 未必所有係數皆顯著。故僅 B、F。</div>
@@ -659,7 +803,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q2">
-<p class="stem"><span class="qno">2.</span>下圖為吉尼不純度公式，於決策樹用於評估節點分裂品質。關於吉尼不純度，下列敘述何者「不正確」？</p>
+<p class="stem"><span class="qno">2.</span>下圖為吉尼不純度（Gini Impurity）的計算公式，在決策樹（Decision Tree）中，吉尼不純度用於評估節點分裂的品質。關於吉尼不純度，下列敘述何者不正確？</p>
+<div class="fig">
+<p class="formula">G = 1 − Σ<sub>i=1</sub><sup>k</sup> p<sub>i</sub><sup>2</sup></p>
+</div>
 <ul class="opts"><li>(A) 公式中的 pᵢ 代表第 i 類在該節點中的樣本數，並直接帶入公式計算</li><li>(B) 公式中的 k 代表節點內資料的類別數量</li><li>(C) 吉尼不純度衡量節點內類別混雜程度，數值越高代表越混雜</li><li>(D) 當節點內所有樣本屬同一類別（完全純淨）時，吉尼不純度為 0</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>(A) 錯：pᵢ 是第 i 類的<strong>機率/比例</strong>（=該類樣本數 ÷ 總數），不是樣本數本身直接帶入。Gini=1−Σpᵢ²，(B)(C)(D) 皆正確。</div>
@@ -701,10 +848,13 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q8">
-<p class="stem"><span class="qno">8.</span>咖啡店宣稱平均外送 36 分鐘、母體標準差 16 分鐘，抽 9 筆訂單平均 40 分鐘。採右尾 Z 檢定（H₁: μ&gt;36），α=0.05（臨界值 1.645），Z 值與檢定結果為何？</p>
+<p class="stem"><span class="qno">8.</span>某咖啡店聲稱其平均外送時間為 36 分鐘，母體標準差為 16 分鐘。顧客保護團體抽樣 9 筆訂單，發現平均外送時間為 40 分鐘。若採用右尾 Z 檢定（H₁: μ &gt; 36），顯著水準 α = 0.05（臨界值 Z₀.₀₅ = 1.645），請問 Z 值與檢定結果為何？（參考公式如下圖）</p>
+<div class="fig">
+<p class="formula">Z = (x̄ − μ<sub>0</sub>) / (σ / √n)</p>
+</div>
 <ul class="opts"><li>(A) Z ≈ 0.08，拒絕虛無假說</li><li>(B) Z ≈ 0.08，不拒絕虛無假說</li><li>(C) Z ≈ 0.75，拒絕虛無假說</li><li>(D) Z ≈ 0.75，不拒絕虛無假說</li></ul>
-<span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>Z=(40−36)/(16/√9)=4/(16/3)=4/5.333≈0.75。但本題官方答案為 B（Z≈0.08）。無論取 0.08 或 0.75，皆 &lt; 臨界值 1.645，故結論一致：<strong>不拒絕虛無假說</strong>。<div class="box note"><span class="tag">補充</span>依標準誤 σ/√n=16/3≈5.33 計算 Z≈0.75；選項 0.08 可能為原題公式/數值設定差異，但「不拒絕 H₀」的結論不受影響，仍以官方答案 B 為準。</div></div>
+<span class="ans">答案：D</span>
+<div class="exp"><span class="lab">解析</span>標準誤 σ/√n = 16/√9 = 16/3 ≈ 5.33，Z = (x̄ − μ₀)/(σ/√n) = (40 − 36)/5.33 ≈ 0.75；右尾檢定臨界值 1.645，0.75 &lt; 1.645 落在接受域，故不拒絕虛無假說，(D) 正確。(A)(B) 的 Z ≈ 0.08 是誤把 σ 當成標準誤或除以 n 的結果；(C) Z 值對但結論錯，未達臨界值不能拒絕 H₀。</div>
 </div>
 
 <div class="q" id="e115a-q9">
@@ -778,7 +928,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q19">
-<p class="stem"><span class="qno">19.</span>下圖表為某時段 8 筆訂單交易紀錄，執行 Apriori，設定最低支援度為 3，最終保留的最大頻繁項目集為何？</p>
+<p class="stem"><span class="qno">19.</span>下圖表為電商平台某時段的交易紀錄（共 8 筆訂單），對圖表內的資料執行 Apriori 演算法，設定最低支援度為 3。請問最終保留下來的最大頻繁項目集為何？</p>
+<div class="fig">
+<table><thead><tr><th>單號</th><th>購買產品</th></tr></thead><tbody><tr><td>1</td><td>A, B, E</td></tr><tr><td>2</td><td>C, D</td></tr><tr><td>3</td><td>B, D, E</td></tr><tr><td>4</td><td>A, B, E</td></tr><tr><td>5</td><td>B, C, E</td></tr><tr><td>6</td><td>A, D</td></tr><tr><td>7</td><td>A,</td></tr><tr><td>8</td><td>A, D</td></tr></tbody></table>
+</div>
 <ul class="opts"><li>(A) {A}</li><li>(B) {A, D}</li><li>(C) {A, B, E}</li><li>(D) {B, E}</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>依官方答案，在最低支援度（計數）≥3 的門檻下，唯一同時滿足且為最大的頻繁項目集為 {B, E}（B 與 E 共同出現次數 ≥3，且其超集不再滿足門檻）。Apriori 由頻繁 1-項集逐層擴展，保留通過支援度門檻的最大集。</div>
@@ -806,7 +959,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q23">
-<p class="stem"><span class="qno">23.</span>ROC 曲線由單一分類模型在不同閾值下形成，以 TPR 為縱軸、FPR 為橫軸。下圖四條曲線中，何者最不可能是 ROC 曲線？</p>
+<p class="stem"><span class="qno">23.</span>Receiver Operating Characteristic（ROC）曲線係由單一分類模型在不同決策閾值下形成，並以真陽率（True Positive Rate, TPR）為縱軸、假陽率（False Positive Rate, FPR）為橫軸。請問下圖中四條曲線，何者最不可能是 ROC 曲線？</p>
+<div class="fig">
+<img src="img/中2-e115a-q23.png" alt="四條曲線 A、B、C、D 的 TPR–FPR 圖：A 為 TPR=1 的水平線，B 為凹向左上的曲線，C 為先升後降再升的非單調曲線，D 為對角斜直線">
+</div>
 <ul class="opts"><li>(A) 水平線 A</li><li>(B) 曲線 B</li><li>(C) 曲線 C</li><li>(D) 斜直線 D</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>ROC 曲線須單調不下降、由 (0,0) 到 (1,1)。依官方答案，曲線 C 違反此性質（如出現下凹/非單調或落在對角線下方且形狀不符），最不可能是合法 ROC 曲線。對角線 D 代表隨機猜測仍為合法 ROC。</div>
@@ -918,7 +1074,16 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </div>
 
 <div class="q" id="e115a-q39">
-<p class="stem"><span class="qno">39.</span>（程式題）建構自動化資料清洗管線，撰寫補齊缺失欄位的 Python 函式（如圖）。當此函式連續處理兩筆獨立資料（row1 與 row2）後，第二筆資料 row2['tags'] 的內容會為何？</p>
+<p class="stem"><span class="qno">39.</span>在建構自動化資料清洗管線時，工程師撰寫一個用於補齊缺失欄位的 Python 函式，如下圖所示。當此函式連續處理兩筆獨立的資料（row1 與 row2）後，請問第二筆資料 row2['tags'] 的內容會為何？</p>
+<div class="fig">
+<pre>def process_record(record, tags=[]):
+    tags.append("checked")
+    record['tags'] = tags
+    return record
+
+row1 = process_record({"id": 1})
+row2 = process_record({"id": 2})</pre>
+</div>
 <ul class="opts"><li>(A) ["checked", "tags"]</li><li>(B) []</li><li>(C) ["checked", "checked"]</li><li>(D) 拋出 KeyError 錯誤，因字典中沒有 tags 鍵值</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>此為 Python 經典陷阱：函式以<strong>可變物件（list）作為預設參數</strong>，預設值只在函式定義時建立一次並被多次呼叫共享。第一筆 append "checked" 後，該 list 殘留；第二筆再 append "checked"，故 row2['tags'] 為 ["checked", "checked"]。正解：預設值應用 None 並在函式內初始化。</div>
@@ -926,69 +1091,145 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <div class="q" id="e115a-q40">
 <p class="stem"><span class="qno">40.</span>（程式題）下圖為一段分類演算法的 pseudocode，最可能對應下列哪一種演算法？</p>
+<div class="fig">
+<pre>Input：
+    - train_data：訓練資料集，每筆包含特徵和標籤
+    - test_point：要預測的資料點
+    - X：要考慮的最近鄰個數
+Output：
+    - 預測的分類標籤
+Algorithm：
+1. 初始化一個空列表 distances
+2. 對於每個訓練資料中的樣本 sample：
+    a. 計算 sample 與 test_point 的距離 distance
+    b. 把 (distance, sample 的標籤) 加到 distances 中
+3. 按照距離對 distances 升序排序
+4. 取出前 X 個距離最小的項目，記錄它們的標籤
+5. 統計這 X 個標籤中出現次數最多的那個標籤
+6. 返回該標籤作為 test_point 的預測結果</pre>
+</div>
 <ul class="opts"><li>(A) K-近鄰（KNN）</li><li>(B) K-means 分群</li><li>(C) 支援向量機（SVM）</li><li>(D) 隨機森林分類器</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>依官方答案為 KNN：典型流程為「計算待測點與所有訓練點的距離 → 取最近 k 個鄰居 → 以多數決決定類別」，無訓練階段、屬惰性學習(lazy learning)，此即 KNN 標誌。</div>
 </div>
 
+<div class="qctx" data-q="41-44" data-src="e115a">
+<span class="lab">第 41–44 題共用資料</span>
+<p>某全球共享乘車平台的資料科學團隊，正針對 2025 年第四季度進行營收優化與防弊分析專案。團隊希望透過資料分析達成兩項目標：一是預測司機未來收入表現，以支援營運策略與獎勵機制調整；二是希望透過分析裝置與定位回傳資料，辨識潛在異常行為，以降低補貼濫用風險。</p><p>為此，團隊整理出一份司機每日營運資料檔（driver_daily_stats.csv），其中每筆資料代表某位司機於某一天的營運表現與系統回傳摘要資訊。資料欄位如下：</p><ul><li>driver_id：司機編號</li><li>daily_earnings：日總收入（單位：美元）</li><li>region：註冊營運區域（以字串 A、B、C 表示）</li><li>app_version：使用的司機端 App 版本（如 v1.0、v2.0）</li><li>gps_ping_rate：每分鐘回傳 GPS 訊號的次數</li></ul>
+</div>
 <div class="q" id="e115a-q41">
-<p class="stem"><span class="qno">41.</span>（driver 情境）檢視 daily_earnings 統計量：mean=223.41、50%=128.55、max=4500。發現約 5% 遺失值，欲建線性迴歸預測收入，為盡量保留原分布特性並降低補值偏差，下列哪種處理最合理？</p>
+<p class="stem"><span class="qno">41.</span>資料分析師使用 Python 檢視 daily_earnings 欄位的基本統計量，執行以下程式碼（Pandas 2 以上版本）。若團隊進一步發現 daily_earnings 欄位約有 5% 的遺失值，且目前規劃先建立線性迴歸（Linear Regression）模型來預測未來收入。為盡可能保留該欄位原有分布特性，並降低因補值造成的偏差，請問下列哪一種處理方式最為合理？</p>
+<div class="fig">
+<pre>import pandas as pd
+
+df = pd.read_csv('driver_daily_stats.csv')
+print(df['daily_earnings'].describe()[['mean', '50%', 'max']])</pre><p class="figlab">輸出結果如下：</p><ul><li>mean：223.411306</li><li>50%：128.552462</li><li>max：4500.000000</li></ul>
+</div>
 <ul class="opts"><li>(A) fillna(mean)</li><li>(B) fillna(median)</li><li>(C) fillna(max)</li><li>(D) 直接刪除所有遺失資料，因數值欄位不適合補值</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>mean(223) 遠大於 median(128) 且 max 高達 4500，顯示資料<strong>右偏、有極端值</strong>。此時用中位數補值較不受極端值拉扯、較能保留原分布中心，偏差小於用平均。(C) 用 max 嚴重失真；(D) 刪 5% 資料非必要且損資訊。</div>
 </div>
 
 <div class="q" id="e115a-q42">
-<p class="stem"><span class="qno">42.</span>（承上）將 region(A/B/C) 以 Label Encoding 轉為 1/2/3，線性迴歸對 C 區（=3）明顯高估，顯示模型誤解編碼為線性大小關係。若不得修改編碼（須維持 1/2/3），但希望從演算法層面降低此誤解風險，下列何者最適合作為替代模型？</p>
+<p class="stem"><span class="qno">42.</span>承上題，團隊在建立預測模型前，先將 region（A、B、C 區）轉換為整數 1、2、3，即採用標籤編碼（Label Encoding）。模型上線測試後發現，線性迴歸模型對於 C 區（編碼為 3）的預測收入出現明顯高估，顯示模型可能將編碼值誤解為具有線性大小關係。若主管要求不得修改原有的特徵編碼方式，必須維持 1、2、3 的整數表示，但希望從演算法層面降低此類誤解風險，則下列何者最適合作為替代模型？</p>
 <ul class="opts"><li>(A) 羅吉斯迴歸</li><li>(B) Ridge 迴歸</li><li>(C) 支援向量機（SVM）搭配線性核函數</li><li>(D) 隨機森林（Random Forest）</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>隨機森林（樹模型）以「是否 ≤ 某閾值」做分裂，不假設編碼值具線性大小意義，能容忍 Label Encoding 對無序類別的影響。(A)(B)(C) 皆為線性模型，仍會把 1/2/3 當線性數值，無法解決誤解。</div>
 </div>
 
 <div class="q" id="e115a-q43">
-<p class="stem"><span class="qno">43.</span>（承上）極少數司機（約 0.05%）竄改 gps_ping_rate 騙補貼。新進人員稱「整體準確率高達 99.95%，可直接上線」。資深工程師質疑，下列何者「不是」其提出質疑的合理理由？</p>
+<p class="stem"><span class="qno">43.</span>平台安全部門發現，僅有極少數司機（約占總體 0.05%）會利用外掛程式竄改 gps_ping_rate，以騙取里程補貼。某新進資料科學家訓練了一個二元分類模型，並在報告中指出：「模型整體準確率（Accuracy）高達 99.95%，因此可直接上線攔截可疑帳號。」然而，資深工程師檢視後認為，僅憑上述結果（如圖）仍不足以支持模型直接上線。下列何者不是其提出質疑的合理理由？</p>
+<div class="fig">
+<pre>              precision    recall  f1-score
+
+           0       1.00      1.00      1.00
+           1       1.00      1.00      1.00
+
+    accuracy                           1.00
+   macro avg       1.00      1.00      1.00
+weighted avg       1.00      1.00      1.00</pre>
+</div>
 <ul class="opts"><li>(A) 此類極度不平衡資料中，即使模型永遠預測所有司機皆正常，整體準確率仍可能高達 99.95%</li><li>(B) 報告未呈現召回率（Recall），模型可能無法有效辨識真正的外掛司機</li><li>(C) 異常偵測問題不可使用分類模型處理，僅能使用分群或離群值方法</li><li>(D) 對少數類比例極低的問題，若僅觀察 Accuracy，可能忽略模型對異常樣本的實際偵測能力</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>(C) 是錯誤陳述（非合理質疑理由）：異常偵測<strong>可以</strong>用監督式分類模型處理（只要有標註），並非「僅能用分群/離群值方法」。(A)(B)(D) 皆為合理質疑——不平衡下 Accuracy 失真、缺 Recall 無法評估抓詐能力。</div>
 </div>
 
 <div class="q" id="e115a-q44">
-<p class="stem"><span class="qno">44.</span>（承上）營運長目標：「對作弊零容忍，即使誤凍結部分正常司機帳號後續可人工覆核，但不能放過任何真正的外掛司機。」調整決策機率門檻（預設 0.5）時，應採取何種策略最合理？</p>
+<p class="stem"><span class="qno">44.</span>針對上述外掛偵測模型，營運長下達最終的商業決策目標如下：「對於作弊行為零容忍。即使誤凍結部分正常司機帳號，後續仍可交由人工覆核；但不能放過任何一個真正的外掛司機。」根據上述目標，團隊在調整模型輸出的決策機率門檻（Threshold，預設為 0.5）時，應採取下列何種策略最為合理？</p>
 <ul class="opts"><li>(A) 選擇使對作弊者的召回率（Recall）最大化的門檻，通常代表應降低 Threshold</li><li>(B) 選擇使精確率（Precision）最大化的門檻，通常代表應提高 Threshold</li><li>(C) 固定使用 Threshold=0.5，因調整門檻將破壞訓練平衡</li><li>(D) 選擇使特異度（Specificity）達 100% 的門檻，確保正常司機不會被誤判</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>「不能放過任何外掛司機」＝盡量不漏抓＝最大化 Recall（召回率），對應<strong>降低</strong>判正門檻使更多可疑者被標記。誤凍結正常者(降低 Precision/特異度) 可接受並交人工覆核。(B)(D) 與目標相反；(C) 固定門檻無法達零容忍。</div>
 </div>
 
+<div class="qctx" data-q="45-47" data-src="e115a">
+<span class="lab">第 45–47 題共用資料</span>
+<p>資料分析師載入一份電商交易紀錄的 Pandas DataFrame df，其欄位包含：OrderID（訂單編號）、CustomerID（客戶編號）、Category（商品分類）、Revenue（該筆營收）。此外，另有一份客戶資料表 customers，包含 CustomerID（客戶編號）與 Region（所在地區）欄位。</p>
+</div>
 <div class="q" id="e115a-q45">
-<p class="stem"><span class="qno">45.</span>（電商交易情境）欲找出「總貢獻營收最高的前 3 名客戶」，下列 Pandas 程式碼何者最為精確且高效？</p>
+<p class="stem"><span class="qno">45.</span>若分析師想找出「總貢獻營收最高的前 3 名客戶」，下列 Pandas 程式碼何者最為精確且高效？</p>
 <ul class="opts"><li>(A) df.sort_values('Revenue', ascending=False).head(3)['CustomerID']</li><li>(B) df.groupby('CustomerID')['Revenue'].max().head(3)</li><li>(C) df.groupby('CustomerID')['Revenue'].sum().nlargest(3)</li><li>(D) df.value_counts('CustomerID').head(3)</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>「總貢獻營收」需先 groupby 客戶後 <code>sum()</code> 加總，再以 <code>nlargest(3)</code> 取前三。(A) 只看單筆最高營收非總額；(B) max 為單客最大單筆；(D) value_counts 計交易次數非營收。</div>
 </div>
 
 <div class="q" id="e115a-q46">
-<p class="stem"><span class="qno">46.</span>（承上）若只想計算「Electronics」這個特定分類的平均營收，下列何者為最佳語法？</p>
+<p class="stem"><span class="qno">46.</span>若分析師只想計算「Electronics（電子產品）」這個特定分類的平均營收，下列何者為最佳的語法？</p>
 <ul class="opts"><li>(A) df[df['Category'] == 'Electronics']['Revenue'].mean()</li><li>(B) df['Category' == 'Electronics']['Revenue'].mean()</li><li>(C) df.loc['Electronics', 'Revenue'].mean()</li><li>(D) df.filter(items=['Electronics'])['Revenue'].mean()</li></ul>
 <span class="ans">答案：A</span>
 <div class="exp"><span class="lab">解析</span>正確為布林索引：<code>df[df['Category']=='Electronics']</code> 篩出該分類列再對 Revenue 取 mean。(B) 'Category'=='Electronics' 先比較兩字串得 False，語法錯誤；(C) loc 用標籤索引非條件；(D) filter(items) 篩的是欄/列標籤非值。</div>
 </div>
 
 <div class="q" id="e115a-q47">
-<p class="stem"><span class="qno">47.</span>（承上）想將 customers 表的 Region 欄加入 df，且「只保留在 customers 表中有對應資料的交易紀錄」，下列哪種合併方式最正確？</p>
+<p class="stem"><span class="qno">47.</span>分析師想將 customers 表中的 Region 欄位加入到 df 交易紀錄中，且「只保留那些在 customers 表中有對應資料的交易紀錄」。下列哪一種合併方式最正確？</p>
 <ul class="opts"><li>(A) pd.concat([df, customers], axis=1)</li><li>(B) pd.merge(df, customers, on='CustomerID', how='outer')</li><li>(C) pd.merge(df, customers, on='CustomerID', how='inner')</li><li>(D) df.join(customers, on='CustomerID')</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span>「只保留兩邊都有對應」即<strong>內部合併 inner join</strong>，依 CustomerID 合併。(A) concat 按位置拼接易錯位；(B) outer 會保留無對應的列(產生 NaN)；(D) join 預設用索引、需額外設定且非取交集。</div>
 </div>
 
+<div class="qctx" data-q="48-50" data-src="e115a">
+<span class="lab">第 48–50 題共用資料</span>
+<p>使用鳶尾花卉資料集（iris）進行羅吉斯迴歸（Logistic Regression）分析，以下程式碼展示資料載入與處理。</p><pre>from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, f1_score, classification_report
+
+iris = load_iris()
+X, y = iris.data, iris.target
+feature_names = iris.feature_names
+target_names = iris.target_names</pre><p>下圖顯示資料集的前 5 筆資料與相關資訊。</p><pre>&gt;&gt;&gt; print(X[0:5])
+[[5.1 3.5 1.4 0.2]
+ [4.9 3.  1.4 0.2]
+ [4.7 3.2 1.3 0.2]
+ [4.6 3.1 1.5 0.2]
+ [5.  3.6 1.4 0.2]]
+&gt;&gt;&gt; print(y[0:5])
+[0 0 0 0 0]
+&gt;&gt;&gt; print(feature_names)
+['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
+&gt;&gt;&gt; print(target_names)
+['setosa' 'versicolor' 'virginica']</pre>
+</div>
 <div class="q" id="e115a-q48">
-<p class="stem"><span class="qno">48.</span>（程式題）對特徵 X 用 StandardScaler 標準化（已 scaler = StandardScaler()），下列哪種寫法可正確完成資料標準化？</p>
+<p class="stem"><span class="qno">48.</span>在進行機器學習建模前，資料分析師需對特徵變數 X 進行標準化處理，以消除不同量尺所造成的影響。已知使用 StandardScaler 進行資料轉換，程式碼如下：scaler = StandardScaler()。請問下列哪一種寫法可以正確完成資料標準化？</p>
 <ul class="opts"><li>(A) X_norm = scaler.transform(X)</li><li>(B) X_norm = scaler.fit(X)</li><li>(C) X_norm = scaler.fit_transform(X)</li><li>(D) X_norm = fit_transform(scaler)</li></ul>
 <span class="ans">答案：C</span>
 <div class="exp"><span class="lab">解析</span><code>fit_transform(X)</code> 一步完成「學習均值/標準差」並「轉換」回傳標準化結果。(A) transform 前需先 fit 否則未學參數；(B) fit 只學參數回傳 scaler 本身非轉換結果；(D) 語法錯誤。</div>
 </div>
 
 <div class="q" id="e115a-q49">
-<p class="stem"><span class="qno">49.</span>（程式題）已完成前處理，欲建分類模型，流程為：① 切分訓練/測試集 ② 建立羅吉斯迴歸模型 ③ 以訓練資料 fit。下列哪一組 Pandas / Scikit-learn 程式碼流程最為正確？</p>
+<p class="stem"><span class="qno">49.</span>在進行機器學習建模前，資料分析師已完成資料前處理（包含遺漏值處理與特徵標準化），並準備建立分類模型。已知資料流程如下：1. 將資料區分為訓練集與測試集；2. 建立羅吉斯迴歸（Logistic Regression）模型；3. 使用訓練資料進行模型擬合（fit）。請問下列哪一組 Pandas / Scikit-learn 程式碼流程最為正確？</p>
+<div class="fig">
+<p class="figlab">程式碼 A</p><pre>X_train, X_test, y_train, y_test = train_test_split(X_norm, y, train_size=0.2, random_state=123)
+log_reg = LogisticRegression(solver="liblinear")
+log_reg.fit(X_train, y_train)</pre><p class="figlab">程式碼 B</p><pre>X_train, X_test, y_train, y_test = train_test_split(X_norm, y, train_size=0.2, random_state=123)
+log_reg = LogisticRegression(solver="lbfgs")
+log_reg.fit(X_train, y_train)</pre><p class="figlab">程式碼 C</p><pre>X_train, X_test, y_train, y_test = train_test_split(y, X_norm, train_size=0.2, random_state=123)
+log_reg = LogisticRegression(solver="liblinear")
+log_reg.fit(X_train, y_train)</pre><p class="figlab">程式碼 D</p><pre>X_train, X_test, y_train, y_test = train_test_split(y, X_norm, train_size=0.2, random_state=123)
+log_reg = LogisticRegression(solver="lbfgs")
+log_reg.fit(X_train, y_train)</pre>
+</div>
 <ul class="opts"><li>(A) 選項 A</li><li>(B) 選項 B</li><li>(C) 選項 C</li><li>(D) 選項 D</li></ul>
 <span class="ans">答案：B</span>
 <div class="exp"><span class="lab">解析</span>依官方答案為選項 B：正確流程為先以 <code>train_test_split(X, y, ...)</code> 切分，建立 <code>LogisticRegression()</code>，再以<strong>訓練集</strong> <code>model.fit(X_train, y_train)</code> 擬合（特徵在前、目標在後，且僅用訓練集 fit）。其餘選項在參數順序、用測試集 fit 或語法上有誤。</div>
@@ -996,6 +1237,28 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <div class="q" id="e115a-q50">
 <p class="stem"><span class="qno">50.</span>（程式題）參考下圖程式碼，下列描述何者正確？</p>
+<div class="fig">
+<pre>&gt;&gt;&gt; y_pred = log_reg.predict(X_test)
+&gt;&gt;&gt; cm = confusion_matrix(y_test, y_pred)
+&gt;&gt;&gt; f1 = f1_score(y_test, y_pred, average="weighted")
+&gt;&gt;&gt; print(cm)
+[[13  0  0]
+ [ 0  6  0]
+ [ 0  1 10]]
+&gt;&gt;&gt; print("F1-score (Weighted):", f1)
+F1-score (Weighted): 0.9671550671550672
+&gt;&gt;&gt; print("Classification Report:\n", classification_report(y_test, y_pred, target_names=target_names))
+Classification Report:
+               precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        13
+  versicolor       0.86      1.00      0.92         6
+   virginica       1.00      0.91      0.95        11
+
+    accuracy                           0.97        30
+   macro avg       0.95      0.97      0.96        30
+weighted avg       0.97      0.97      0.97        30</pre>
+</div>
 <ul class="opts"><li>(A) cm 表示混淆矩陣，橫列表測試集的預測值</li><li>(B) 混淆矩陣對角線數值皆大於非對角線數值表示模型過度擬合</li><li>(C) f1_score 參數 average="weighted" 表示計算平均 f1_score</li><li>(D) f1_score 計算時採用各類別精確率（Precision）與召回率（Recall）的調和平均，並加權考量類別不平衡性</li></ul>
 <span class="ans">答案：D</span>
 <div class="exp"><span class="lab">解析</span>(D) 正確：F1 是 Precision 與 Recall 的調和平均；<code>average="weighted"</code> 會依各類別樣本數加權，考量類別不平衡。(A) 混淆矩陣慣例橫列為真實、縱行為預測（sklearn 預設）；(B) 對角線大代表分類正確、非過擬合徵兆；(C) weighted 並非單純算術平均而是加權平均。</div>
@@ -1003,7 +1266,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <footer>
 <p>官方答案取自 iPAS 經濟部產業人才能力鑑定公告試題（114 年第二梯次、115 年第一次「中級・第二科 大數據處理分析與應用」）。各題【答案】採 PDF 內官方答案字母，未經更改。</p>
-<p>【解析】與「考前重點」為依官方學習指引整理之學習輔助內容，非官方標準解析；部分附圖題（圖表/程式碼截圖）以官方答案為準並就題意說明判讀邏輯。如與官方公告有出入，一律以官方公告為準。</p>
+<p>【解析】與「考前重點」為依官方學習指引整理之學習輔助內容，非官方標準解析；附圖題的程式碼、執行輸出與表格已依原卷逐字轉錄於題幹之後，圖表類附圖則取自原 PDF；題組共用資料標示於題組第一題之前。如與官方公告有出入，一律以官方公告為準。</p>
 </footer>
 </main>
 </div>
