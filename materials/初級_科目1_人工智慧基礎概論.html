@@ -40,6 +40,11 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .term{font-weight:600;color:var(--accent);}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+figure.gfig{margin:18px auto;text-align:center;}
+figure.gfig img{max-width:min(100%,640px);height:auto;background:#fff;border:1px solid var(--line,#e2e8f0);border-radius:8px;padding:8px;}
+figure.gfig figcaption{font-size:13px;color:var(--muted,#647084);margin-top:6px;line-height:1.5;}
+.gfig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.gfig-grid figure.gfig{margin:0;}
 </style>
 <script src="theme.js"></script>
 </head>
@@ -525,6 +530,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
       </ul>
       差異核心在於「數據的角色與目標」：生成式 AI 在創新內容生成上表現出色，鑑別式 AI 則在精準分析與決策支持方面具有優勢。
     </div>
+      <figure class="gfig"><img src="img/初1-guide-p55.svg" alt="鑑別式 AI 與生成式 AI 流程對照圖" loading="lazy"><figcaption>鑑別式 AI：資料 → 邊界判定 → 決策；生成式 AI：提示 ⇄ 輸入並調整 → 創建 ⇄ 生成 → 內容<br>（官方學習指引 第 3-49 頁，依原圖重繪）</figcaption></figure>
 
     <h3 id="sec4-2">鑑別式 AI 的原理與常見模型</h3>
     <p>鑑別式 AI 透過學習條件機率 P(y|x) 進行預測，核心思想在於區分不同類別之間的差異，找到最適合分類或迴歸的邊界；不建構數據生成的內在機制。常用於醫學影像分類、信用風險評估、語音辨識、文本分類等，具良好解釋性與泛化能力。</p>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 270" width="780" height="270" font-family="'Noto Sans CJK TC','Microsoft JhengHei','PingFang TC',sans-serif">
+<rect width="780" height="270" fill="#fff"/>
+<rect x="10" y="10" width="760" height="250" rx="34" fill="none" stroke="#111" stroke-width="2"/>
+<text x="390" y="44" text-anchor="middle" font-size="19" font-weight="bold">鑑別式 AI</text>
+<rect x="40" y="62" width="150" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="115.0" y="93.0" text-anchor="middle" font-size="17">資料 (Data)</text>
+<rect x="315" y="62" width="150" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="390.0" y="93.0" text-anchor="middle" font-size="17">邊界判定</text>
+<rect x="590" y="62" width="150" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="665.0" y="93.0" text-anchor="middle" font-size="17">決策</text>
+<line x1="210" y1="87" x2="281" y2="87" stroke="#111" stroke-width="9"/><polygon points="279,76 295,87 279,98" fill="#111"/>
+<line x1="485" y1="87" x2="556" y2="87" stroke="#111" stroke-width="9"/><polygon points="554,76 570,87 554,98" fill="#111"/>
+<text x="390" y="152" text-anchor="middle" font-size="19" font-weight="bold">生成式 AI</text>
+<rect x="30" y="178" width="140" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="100.0" y="209.0" text-anchor="middle" font-size="17">提示 (Prompt)</text>
+<ellipse cx="240" cy="203" rx="58" ry="40" fill="#fff" stroke="#222" stroke-width="1.6"/><polygon points="233,156 249,163 233,170" fill="#e00"/><polygon points="247,236 231,243 247,250" fill="#e00"/><text x="240" y="208" text-anchor="middle" font-size="14">輸入並調整</text>
+<rect x="315" y="178" width="150" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="390.0" y="209.0" text-anchor="middle" font-size="17">創建</text>
+<ellipse cx="535" cy="203" rx="58" ry="40" fill="#fff" stroke="#222" stroke-width="1.6"/><polygon points="528,156 544,163 528,170" fill="#e00"/><polygon points="542,236 526,243 542,250" fill="#e00"/><text x="535" y="208" text-anchor="middle" font-size="14">生成</text>
+<rect x="610" y="178" width="140" height="50" rx="8" fill="#fff" stroke="#222" stroke-width="1.6"/><text x="680.0" y="209.0" text-anchor="middle" font-size="17">內容</text>
+</svg>

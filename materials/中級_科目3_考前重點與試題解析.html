@@ -59,6 +59,11 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+figure.gfig{margin:18px auto;text-align:center;}
+figure.gfig img{max-width:min(100%,640px);height:auto;background:#fff;border:1px solid var(--line,#e2e8f0);border-radius:8px;padding:8px;}
+figure.gfig figcaption{font-size:13px;color:var(--muted,#647084);margin-top:6px;line-height:1.5;}
+.gfig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.gfig-grid figure.gfig{margin:0;}
 </style>
 <script src="theme.js"></script>
 </head>
@@ -262,6 +267,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <li>部署：資源受限（IoT/手機/邊緣）→簡單模型或剪枝/量化/蒸餾；即時推論重延遲。</li>
 </ul>
 <div class="box def"><span class="tag">偏差-變異權衡</span><span class="term">偏差(Bias)</span>高=擬合不足=欠擬合（低複雜度模型）；<span class="term">變異(Variance)</span>高=對雜訊敏感=過擬合（高複雜度模型）。訓練分高、驗證分低且不同切分差異大 → 高變異/過擬合。</div>
+<figure class="gfig"><img src="img/中3-guide-p150.svg" alt="偏差-變異權衡曲線" loading="lazy"><figcaption>偏差-變異權衡：模型複雜度上升時 Bias² 下降、Variance 上升，總誤差最低點即最佳複雜度<br>（官方學習指引 第 5-16 頁，依原圖重繪）</figcaption></figure>
 
 <h3 id="c-eval">5.3 模型訓練、評估與驗證</h3>
 <h4>分類評估（混淆矩陣）</h4>
@@ -273,6 +279,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <tr><td>F1</td><td>2·P·R/(P+R)</td><td>P、R 取平衡（調和平均，對小值敏感）；不平衡資料</td></tr>
 <tr><td>ROC-AUC</td><td>曲線下面積</td><td>整體區分能力、需調閾值</td></tr>
 </table>
+<figure class="gfig"><img src="img/中3-guide-p156.png" alt="ROC 曲線示意" loading="lazy"><figcaption>ROC 曲線：橫軸假正率（FPR）、縱軸真正率（TPR）；越靠左上越好，對角虛線為隨機分類器<br>（官方學習指引 第 5-22 頁）</figcaption></figure>
 <div class="box key"><span class="tag">不平衡資料陷阱</span>正類僅 1~3% 時，全預測為負類 Accuracy 仍可達 99%，無法反映少數類偵測能力 → 改用 Recall/F1/AUC、SMOTE 過採樣、類別權重、欠採樣。</div>
 <h4>迴歸評估</h4>
 <ul>

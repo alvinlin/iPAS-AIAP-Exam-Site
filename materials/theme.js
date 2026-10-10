@@ -33,6 +33,8 @@
     '[data-theme="dark"] .formula{background:#1a2133;border-color:#3b4766;}' +
     '[data-theme="dark"] .fig pre,[data-theme="dark"] .qctx pre{background:#0f1522;border-color:#2b3447;}' +
     '[data-theme="dark"] .fig img,[data-theme="dark"] .qctx img{border-color:#2b3447;}' +
+    /* 學習指引附圖：圖片維持白底（原圖為淺色配色），只調外框 */
+    '[data-theme="dark"] figure.gfig img{border-color:#2b3447;}' +
     '[data-theme="dark"] .box.legend{background:#1a2133;}[data-theme="dark"] .box.legend .tag{color:#a3b1c6;}' +
     '[data-theme="dark"] .q{background:#131a29;}' +
     '[data-theme="dark"] .gl{text-decoration-color:var(--accent-bright);}' +

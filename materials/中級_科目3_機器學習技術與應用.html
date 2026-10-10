@@ -41,6 +41,11 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .term{font-weight:600;color:var(--accent);}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+figure.gfig{margin:18px auto;text-align:center;}
+figure.gfig img{max-width:min(100%,640px);height:auto;background:#fff;border:1px solid var(--line,#e2e8f0);border-radius:8px;padding:8px;}
+figure.gfig figcaption{font-size:13px;color:var(--muted,#647084);margin-top:6px;line-height:1.5;}
+.gfig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.gfig-grid figure.gfig{margin:0;}
 </style>
 <script src="theme.js"></script>
 </head>
@@ -327,6 +332,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
       <li><span class="term">梯度提升迴歸 (Gradient Boosting)</span>：序列式集成，「逐步修正誤差」，每棵樹學習修正前一棵的殘差。精確度通常高於隨機森林、擅長複雜非線性、可自訂損失、支援早停；缺點為訓練慢、易過擬合、超參數多。</li>
       <li><span class="term">高效梯度提升 (XGBoost、LightGBM)</span>：對傳統 GBDT 的演算法與工程優化。XGBoost 使用二階導數 (Hessian)、層級式生長 (Level-wise)、L1/L2 正則化、Block 結構加速；LightGBM 使用葉子式生長 (Leaf-wise)、直方圖算法 (Histogram-based)，在大數據上更快更省記憶體。共同特點：高運算效率、支援稀疏與缺值、可並行、特徵重要性分析。缺點：參數複雜、解釋力有限、記憶體需求高、Leaf-wise 可能過擬合（LightGBM 特有）。</li>
     </ul>
+      <figure class="gfig"><img src="img/中3-guide-p61.svg" alt="XGBoost 層級式與 LightGBM 葉子式生長示意" loading="lazy"><figcaption>XGBoost 層級式生長（Level-wise） vs. LightGBM 葉子式生長（Leaf-wise）<br>（官方學習指引 第 4-23 頁，原圖出自 geeksforgeeks.org，依原圖重繪）</figcaption></figure>
 
     <h4>監督式學習 — 分類任務</h4>
     <p>分類 (Classification) 預測離散類別結果。共用評估指標：Accuracy、Precision、Recall、F1-score、ROC-AUC。</p>
@@ -549,6 +555,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
     <h4>運算資源與實務部署限制</h4>
     <p>資源受限（IoT、手機、邊緣裝置）宜用簡單模型或模型剪枝/量化瘦身；資源充足（雲端、資料中心）可用高效能深度模型與集成；即時推論需求（金融交易、推薦）須優先考量推論延遲，可搭配 caching、模型蒸餾 (Knowledge Distillation)。</p>
     <div class="box key"><span class="tag">重點｜偏差-變異的權衡 (Bias-Variance Tradeoff)</span><span class="term">偏差 (Bias)</span>：模型擬合能力不足，無法捕捉主要趨勢（欠擬合）。<span class="term">變異 (Variance)</span>：模型對訓練資料細微差異或雜訊過於敏感，泛化能力差（過擬合）。模型複雜度提升通常伴隨偏差降低、變異提高。低複雜度模型（線性迴歸）偏差高/變異低；高複雜度模型（深度神經網路）偏差低/變異高，需更多資料或正則化控制變異。</div>
+    <figure class="gfig"><img src="img/中3-guide-p150.svg" alt="偏差-變異權衡曲線" loading="lazy"><figcaption>偏差-變異權衡：模型複雜度上升時 Bias² 下降、Variance 上升，總誤差最低點即最佳複雜度<br>（官方學習指引 第 5-16 頁，依原圖重繪）</figcaption></figure>
 
     <!-- 5.3 -->
     <h3 id="sec5-3">5.3 模型訓練、評估與驗證</h3>
@@ -578,6 +585,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
         <tr><td>ROC 曲線與 AUC</td><td>橫軸假正率、縱軸真正率；AUC 為曲線下面積</td><td>整體區分能力（AUC 越接近 1 越好），需調整閾值的應用</td></tr>
       </tbody>
     </table>
+        <figure class="gfig"><img src="img/中3-guide-p156.png" alt="ROC 曲線示意" loading="lazy"><figcaption>ROC 曲線：橫軸假正率（FPR）、縱軸真正率（TPR）；越靠左上越好，對角虛線為隨機分類器<br>（官方學習指引 第 5-22 頁）</figcaption></figure>
     <div class="box note"><span class="tag">注意</span>原文召回率公式排版誤植為 TP/(TP+FP)，依定義「實際正類中被正確預測為正的比例」應為 Recall = TP/(TP+FN)。</div>
     <h5>迴歸任務</h5>
     <table>

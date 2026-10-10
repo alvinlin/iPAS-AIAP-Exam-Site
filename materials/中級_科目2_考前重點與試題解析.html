@@ -59,6 +59,11 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .fig .formula,.qctx .formula{font-family:"Cambria Math","Segoe UI",serif;font-size:17px;background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:8px 0;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+figure.gfig{margin:18px auto;text-align:center;}
+figure.gfig img{max-width:min(100%,640px);height:auto;background:#fff;border:1px solid var(--line,#e2e8f0);border-radius:8px;padding:8px;}
+figure.gfig figcaption{font-size:13px;color:var(--muted,#647084);margin-top:6px;line-height:1.5;}
+.gfig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.gfig-grid figure.gfig{margin:0;}
 </style>
 <script src="theme.js"></script>
 </head>
@@ -117,6 +122,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 </ul>
 <div class="box key"><span class="tag">高頻考點 — 箱形圖（Box Plot）</span>
 上鬚 = Q3 + 1.5×IQR、下鬚 = Q1 − 1.5×IQR；超出鬚範圍者視為<strong>離群值（以圓點/星號單獨標記）</strong>。箱形圖中的「最大/最小值」指<strong>不含離群值</strong>的鬚端值，不一定是資料集真正極值。箱形圖無法呈現多峰分佈形狀。</div>
+<figure class="gfig"><img src="img/中2-guide-p15.png" alt="箱形圖構造示意：下鬚、Q1、中位數、Q3、上鬚與離群值" loading="lazy"><figcaption>箱形圖構造：下鬚、第一四分位數 Q1、中位數、第三四分位數 Q3、上鬚，鬚外圓點為離群值<br>（官方學習指引 第 3-8 頁）</figcaption></figure>
 
 <h4>（3）分佈形狀 — 偏度與峰度</h4>
 <table>
@@ -128,6 +134,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <tr><td>中峰 Mesokurtic</td><td>Kurtosis ≈ 3</td><td>近似常態（Pearson 定義基準 3）</td></tr>
 <tr><td>扁平 Platykurtic</td><td>Kurtosis &lt; 3</td><td>平坦輕尾、極端值少</td></tr>
 </table>
+<div class="gfig-grid">
+<figure class="gfig"><img src="img/中2-guide-p18.png" alt="負偏態與正偏態分佈曲線" loading="lazy"><figcaption>偏態：負偏態（左偏，左尾長）與正偏態（右偏，右尾長）<br>（官方學習指引 第 3-11 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p19.png" alt="峰度示意：高峰、中峰、扁平分佈曲線" loading="lazy"><figcaption>峰度：高峰 Leptokurtic（藍）、中峰 Mesokurtic（黑）、扁平 Platykurtic（紅）<br>（官方學習指引 第 3-12 頁）</figcaption></figure>
+</div>
 
 <h3 id="c-dist">3.2 機率分佈與資料分佈模型</h3>
 <div class="box def"><span class="tag">定義</span><span class="term">機率分佈</span>描述隨機變數所有可能值及其機率。兩個重要數值：<strong>期望值 E(X)</strong>（加權平均、中心位置）與<strong>變異數 Var(X)</strong>（分散程度）。離散用 <strong>PMF</strong>（質量函數，總和=1）；連續用 <strong>PDF</strong>（密度函數，區間積分=機率）。</div>

@@ -41,6 +41,11 @@ code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
 .formula{background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:"Cambria Math","Segoe UI",serif;}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
 @media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+figure.gfig{margin:18px auto;text-align:center;}
+figure.gfig img{max-width:min(100%,640px);height:auto;background:#fff;border:1px solid var(--line,#e2e8f0);border-radius:8px;padding:8px;}
+figure.gfig figcaption{font-size:13px;color:var(--muted,#647084);margin-top:6px;line-height:1.5;}
+.gfig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.gfig-grid figure.gfig{margin:0;}
 </style>
 <script src="theme.js"></script>
 </head>
@@ -164,6 +169,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
       <li><strong>離群值 (Outliers)</strong>：超出 Q1 − 1.5×IQR 或 Q3 + 1.5×IQR 的資料，通常以圓點或星形標註。</li>
     </ul>
     <p>應用：資料分佈檢視、異常值檢測、比較不同資料集。優勢：直觀展示集中度、分佈範圍與異常值，無需繁瑣計算。侷限：無法顯示精確形狀（如多峰分佈）。</p>
+    <figure class="gfig"><img src="img/中2-guide-p15.png" alt="箱形圖構造示意：下鬚、Q1、中位數、Q3、上鬚與離群值" loading="lazy"><figcaption>箱形圖構造：下鬚、第一四分位數 Q1、中位數、第三四分位數 Q3、上鬚，鬚外圓點為離群值<br>（官方學習指引 第 3-8 頁）</figcaption></figure>
 
     <h4>（3）分佈形狀：偏度與峰度</h4>
     <p><strong>偏度 (Skewness)</strong>：衡量資料分佈對稱程度，反映是否存在長尾。</p>
@@ -175,6 +181,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
         <tr><td>接近對稱</td><td>≈ 0</td><td>趨近理想常態分佈（如某工廠產品重量偏度 0.1）。</td></tr>
       </tbody>
     </table>
+    <figure class="gfig"><img src="img/中2-guide-p18.png" alt="負偏態與正偏態分佈曲線" loading="lazy"><figcaption>偏態：負偏態（左偏，左尾長）與正偏態（右偏，右尾長）<br>（官方學習指引 第 3-11 頁）</figcaption></figure>
     <p><strong>峰度 (Kurtosis)</strong>：衡量分佈「尾部與峰頂的尖銳程度」。以 Pearson 定義、常態峰度標準 3 說明：</p>
     <table>
       <thead><tr><th>類型</th><th>峰度值</th><th>說明</th></tr></thead>
@@ -184,6 +191,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
         <tr><td>扁平 (Platykurtic)</td><td>&lt; 3</td><td>分佈較分散、較平坦，極端值較少。</td></tr>
       </tbody>
     </table>
+    <figure class="gfig"><img src="img/中2-guide-p19.png" alt="峰度示意：高峰、中峰、扁平分佈曲線" loading="lazy"><figcaption>峰度：高峰 Leptokurtic（藍）、中峰 Mesokurtic（黑）、扁平 Platykurtic（紅）<br>（官方學習指引 第 3-12 頁）</figcaption></figure>
 
     <h3 id="sec32">3.2 機率分佈與資料分佈模型</h3>
     <div class="box def">
@@ -665,7 +673,18 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
         <tr><td>時間序列</td><td>折線圖 (Line Chart)</td><td>連續線條表示時間趨勢或週期（多條線重疊難辨識）</td></tr>
       </tbody>
     </table>
-    <p class="sub">（原文各圖表附有圖示範例）</p>
+    <div class="gfig-grid">
+<figure class="gfig"><img src="img/中2-guide-p118.png" alt="直方圖 (Histogram)範例" loading="lazy"><figcaption>直方圖 (Histogram)<br>（官方學習指引 第 5-30 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p119.png" alt="箱型圖 (Boxplot)範例" loading="lazy"><figcaption>箱型圖 (Boxplot)<br>（官方學習指引 第 5-31 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p120.png" alt="KDE 曲線範例" loading="lazy"><figcaption>KDE 曲線<br>（官方學習指引 第 5-32 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p121.png" alt="散佈圖 (Scatter Plot)範例" loading="lazy"><figcaption>散佈圖 (Scatter Plot)<br>（官方學習指引 第 5-33 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p122.png" alt="相關係數矩陣 (Correlation Matrix)範例" loading="lazy"><figcaption>相關係數矩陣 (Correlation Matrix)<br>（官方學習指引 第 5-34 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p123.png" alt="熱力圖 (Heatmap)範例" loading="lazy"><figcaption>熱力圖 (Heatmap)<br>（官方學習指引 第 5-35 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p124.png" alt="長條圖 (Bar Chart)範例" loading="lazy"><figcaption>長條圖 (Bar Chart)<br>（官方學習指引 第 5-36 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p125.png" alt="堆疊長條圖 (Stacked Bar Chart)範例" loading="lazy"><figcaption>堆疊長條圖 (Stacked Bar Chart)<br>（官方學習指引 第 5-37 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p126.png" alt="圓餅圖 (Pie Chart)範例" loading="lazy"><figcaption>圓餅圖 (Pie Chart)<br>（官方學習指引 第 5-38 頁）</figcaption></figure>
+<figure class="gfig"><img src="img/中2-guide-p127.png" alt="時間序列折線圖 (Line Chart)範例" loading="lazy"><figcaption>時間序列折線圖 (Line Chart)<br>（官方學習指引 第 5-39 頁）</figcaption></figure>
+</div>
 
     <h4>（2）平台工具分類</h4>
     <table>
