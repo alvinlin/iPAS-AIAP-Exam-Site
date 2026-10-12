@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>初級科目2 生成式AI應用與規劃（白話加強版）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#0369a1;--accent-soft:#e0f2fe;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+.formula{background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:"Cambria Math","Segoe UI",serif;}
+/* ===== 白話加強版元件 ===== */
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.plain,.memo,.update,.exam,.pitfall{border-radius:10px;padding:12px 18px;margin:16px 0;border:1px solid;}
+.plain .tag,.memo .tag,.update .tag,.exam .tag,.pitfall .tag{display:block;font-weight:700;font-size:13px;margin-bottom:4px;}
+.plain{background:#f0f7ff;border-color:#bfdbfe;} .plain .tag{color:#1d4ed8;}
+.memo{background:#fdf4ff;border-color:#f0abfc;} .memo .tag{color:#a21caf;}
+.memo .mn{font-size:17px;font-weight:700;letter-spacing:.04em;}
+.update{background:#f0fdf4;border-color:#86efac;} .update .tag{color:#15803d;}
+.exam{background:#fff7e6;border-color:#fcd34d;} .exam .tag{color:#b45309;}
+.pitfall{background:#fef2f2;border-color:#fca5a5;} .pitfall .tag{color:#b91c1c;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:0 8px;border-radius:999px;margin-left:6px;vertical-align:2px;background:#dcfce7;color:#166534;}
+.badge.out{background:#e0e7ff;color:#3730a3;}
+.yr{font-size:12px;color:var(--muted);font-weight:400;}
+dl.terms{display:grid;grid-template-columns:minmax(150px,220px) 1fr;margin:14px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+dl.terms dt,dl.terms dd{margin:0;padding:9px 14px;border-bottom:1px solid var(--line);}
+dl.terms dt{background:var(--accent-soft);font-weight:700;}
+dl.terms dt .en{display:block;font-weight:400;font-size:12.5px;color:var(--muted);}
+dl.terms dd .eg{display:block;font-size:14px;color:var(--muted);margin-top:2px;}
+dl.terms dt:last-of-type,dl.terms dd:last-of-type{border-bottom:none;}
+.timeline{border-left:3px solid var(--accent);margin:14px 0;padding-left:16px;}
+.timeline p{margin:6px 0;} .timeline b{color:var(--accent);}
+@media(max-width:860px){dl.terms{grid-template-columns:1fr}dl.terms dt{border-bottom:none}}
+/* 深色 */
+[data-theme="dark"] .plain{background:#13223a;border-color:#2c4a77;} [data-theme="dark"] .plain .tag{color:#8ab4ff;}
+[data-theme="dark"] .memo{background:#2a1630;border-color:#6b2f78;} [data-theme="dark"] .memo .tag{color:#f0a6ff;}
+[data-theme="dark"] .update{background:#12271a;border-color:#2f6b45;} [data-theme="dark"] .update .tag{color:#5fd38a;}
+[data-theme="dark"] .exam{background:#2b2210;border-color:#6b5420;} [data-theme="dark"] .exam .tag{color:#f5b74e;}
+[data-theme="dark"] .pitfall{background:#2d1517;border-color:#7a2f33;} [data-theme="dark"] .pitfall .tag{color:#ff9b9b;}
+[data-theme="dark"] .badge{background:#14532d;color:#bbf7d0;} [data-theme="dark"] .badge.out{background:#312e81;color:#c7d2fe;}
+[data-theme="dark"] dl.terms dt{background:var(--accent-soft);}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="初級_科目2_生成式AI應用與規劃.html">↗ 對照完整教材</a>
+    <a href="#guide">使用說明</a>
+    <a href="#chap1">壹、考試科目與評鑑內容</a>
+    <a class="sub" href="#sec1-1">職能基準與報考資格</a>
+    <a class="sub" href="#sec1-2">考科內容說明</a>
+    <a href="#chap2">貳、No Code / Low Code 概念</a>
+    <a class="sub" href="#sec2-1">基本概念與差異</a>
+    <a class="sub" href="#sec2-2">生成式AI 強化 NC/LC</a>
+    <a class="sub" href="#sec2-3">跨產業應用</a>
+    <a class="sub" href="#sec2-4">平台選擇與評估</a>
+    <a class="sub" href="#sec2-5">挑戰與因應策略</a>
+    <a class="sub" href="#sec2-6">市場價值與未來發展</a>
+    <a class="sub" href="#sec2-7">AI 民主化</a>
+    <a href="#chap3">參、生成式AI 應用領域與工具使用</a>
+    <a class="sub" href="#sec3-1">技術架構與關鍵特徵</a>
+    <a class="sub" href="#sec3-2">市場價值與影響</a>
+    <a class="sub" href="#sec3-3">技術突破與發展方向</a>
+    <a class="sub" href="#sec3-4">工具發展八大趨勢</a>
+    <a class="sub" href="#sec3-5">產業應用領域</a>
+    <a href="#chap4">肆、生成式AI 導入評估</a>
+    <a class="sub" href="#sec4-1">五大評估面向</a>
+    <a class="sub" href="#sec4-2">導入策略與實施建議</a>
+    <a class="sub" href="#sec4-3">技術人才培養</a>
+    <a href="#chap5">伍、生成式AI 導入規劃</a>
+    <a class="sub" href="#sec5-1">四階段導入流程</a>
+    <a class="sub" href="#sec5-2">準備階段</a>
+    <a class="sub" href="#sec5-3">設計階段</a>
+    <a class="sub" href="#sec5-4">驗證 POC 階段</a>
+    <a class="sub" href="#sec5-5">實施/營運階段</a>
+    <a class="sub" href="#sec5-6">ROI 計算方式</a>
+    <a href="#chap6">陸、生成式AI 風險管理</a>
+    <a class="sub" href="#sec6-1">風險管理重點</a>
+    <a class="sub" href="#sec6-2">資料隱私與安全</a>
+    <a class="sub" href="#sec6-3">倫理與偏見</a>
+    <a class="sub" href="#sec6-4">生成式AI 與法規</a>
+    <a class="sub" href="#sec6-5">風險種類與管理策略</a>
+    <a href="#glossary">總整理：名詞速查</a>
+    <a href="#update-all">總整理：新進展地圖</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">初級 · 科目 2 · 白話加強版</span>
+      <h1>生成式AI應用與規劃</h1>
+      <p class="sub">非官方補充教材 · 以官方學習指引為骨架，補名詞解說、白話說明與最新發展</p>
+      <div class="tags"><span>內容更新至 2026 年 10 月</span><span>考試以官方學習指引為準</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明</h2>
+      <p>本頁依完整教材的章節順序，每一節用以下幾種區塊加強；考試範圍以官方學習指引為準，標示<span class="badge out">考試範圍外</span>的內容是延伸知識，幫助理解與實務應用。</p>
+      <div class="howto">
+        <div><b style="color:#1d4ed8">💬 白話說</b><br>用生活比喻講清楚概念</div>
+        <div><b style="color:#a21caf">🧠 記憶口訣</b><br>一句話記住重點</div>
+        <div><b>📖 名詞小辭典</b><br>本節專有名詞中英對照與白話解釋</div>
+        <div><b style="color:#15803d">🚀 延伸與新進展</b><br>更新的演算法、模型、訓練與微調方法</div>
+        <div><b style="color:#b45309">📌 考試重點</b><br>官方指引的必考觀念</div>
+        <div><b style="color:#b91c1c">⚠️ 易混淆</b><br>常見誤解與相似名詞辨析</div>
+      </div>
+    </section>
+
+    <h2 class="chap" id="chap1">壹、考試科目與評鑑內容</h2>
+    <p>這一章是「考試說明書」：告訴你 AI 應用規劃師要會什麼、初級兩科各考哪些主題。內容不難，但常被當成送分題（例如「職能基準包含哪三種能力」）。</p>
+
+    <h3 id="sec1-1">職能基準與報考資格 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec1-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>「職能基準」就像一份<b>職缺說明書加上考核表</b>：它把某個職業要做的事拆開，再寫清楚做這些事需要「懂什麼（知識）、會做什麼（技能）、用什麼心態做（態度）」。AI 應用規劃師不是寫模型的工程師，而是<b>企業裡的 AI 導入顧問兼專案經理</b>：懂工具特性、能依部門需求挑對工具、能拉著跨部門團隊把導入計畫做完，並在上線後持續優化。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">知技態、懂挑帶</span><br>職能基準＝<b>知</b>識＋<b>技</b>能＋<b>態</b>度；規劃師的工作＝<b>懂</b>工具、<b>挑</b>方案、<b>帶</b>團隊導入。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">職能基準</span><span class="en">Occupational Competency Standard</span></dt>
+      <dd>完成某職業工作任務所需的能力組合，包含知識、技能、態度三者。<span class="eg">例：餐廳廚師的職能基準會寫「懂食材衛生（知識）、會刀工（技能）、守時負責（態度）」。</span></dd>
+      <dt><span class="term">知識／技能／態度</span><span class="en">Knowledge / Skill / Attitude（KSA）</span></dt>
+      <dd>知識是「知道什麼」、技能是「做得出來」、態度是「做事的價值觀與行為習慣」。<span class="eg">例：知道個資法（知識）、會操作提示詞（技能）、不把客戶資料丟進公開聊天機器人（態度）。</span></dd>
+      <dt><span class="term">AI 應用規劃師</span><span class="en">AI Application Planner</span></dt>
+      <dd>協助企業規劃與推動 AI 技術或工具導入的角色：評估、選型、整合跨部門、推動開發部署與後續優化。<span class="eg">例：幫行銷部挑一套文案生成工具，並訂出試用、驗收與教育訓練計畫的人。</span></dd>
+      <dt><span class="term">演算法</span><span class="en">Algorithm</span></dt>
+      <dd>解決問題的一套明確步驟。<span class="eg">例：食譜就是做菜的演算法；排序、推薦也都有各自的演算法。</span></dd>
+      <dt><span class="term">機器學習</span><span class="en">Machine Learning, ML</span></dt>
+      <dd>讓電腦從資料中自動找出規律，而不是由人一條條寫規則。<span class="eg">例：看過大量垃圾信後，自己學會判斷哪封是垃圾信。</span></dd>
+      <dt><span class="term">深度學習</span><span class="en">Deep Learning, DL</span></dt>
+      <dd>機器學習的一支，用很多層的神經網路自動學出特徵。<span class="eg">例：人臉辨識、語音轉文字、ChatGPT 背後的模型都是深度學習。</span></dd>
+      <dt><span class="term">商業智慧</span><span class="en">Business Intelligence, BI</span></dt>
+      <dd>把企業資料整理成報表與儀表板，協助管理決策的技術與流程。<span class="eg">例：每天早上主管看的「各門市營收儀表板」。</span></dd>
+      <dt><span class="term">生成式工具</span><span class="en">Generative AI Tools</span></dt>
+      <dd>能根據指令產生新內容（文字、圖、音、影、程式碼）的 AI 工具。<span class="eg">例：ChatGPT 寫信、圖像生成工具畫海報。</span></dd>
+      <dt><span class="term">ChatGPT</span><span class="en">Chat Generative Pre-trained Transformer</span></dt>
+      <dd>OpenAI 推出的對話式生成 AI 服務，名稱中 GPT 意為「生成式預訓練 Transformer」。<span class="eg">例：問它「幫我把這段會議紀錄整理成三點」。</span></dd>
+      <dt><span class="term">跨產業適用</span><span class="en">Cross-industry</span></dt>
+      <dd>職能內容不限定特定行業，製造、金融、零售、醫療等都適用。<span class="eg">例：無論是銀行還是工廠，都需要有人規劃 AI 導入。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>職能基準＝<b>知識、技能、態度</b>三者的組合；AI 應用規劃師職能重點是「了解 AI 工具特性、依業務需求評估選擇工具、整合跨部門共同制定與執行導入計畫（開發、部署、後續優化）」；此職能基準<b>跨產業適用</b>。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>「AI 素養」成為法定義務</b><span class="yr">（2025）</span>：歐盟《人工智慧法》（EU AI Act）第 4 條要求提供者與部署者採取措施提升員工的 AI 素養，自 2025 年 2 月 2 日起適用。這讓「懂 AI 工具、能帶導入」的規劃師能力，從加分項變成企業合規需求的一部分。</li>
+        <li><b>規劃師的工作對象從「工具」擴大到「代理」</b><span class="yr">（2025）</span>：2025 年起 AI Agent（能自行規劃步驟、呼叫工具完成任務的 AI）成為企業導入主流議題，規劃師除了挑工具，還要設計「AI 可以自動做到哪一步、哪一步一定要人確認」。詳見 <a href="#sec3-4">3-4</a>。</li>
+      </ul></div>
+
+    <h3 id="sec1-2">考科內容說明 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec1-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>初級兩科像是「上下集」：<b>科目一</b>教你 AI 是什麼、資料怎麼處理、機器學習怎麼運作（原理篇）；<b>科目二</b>教你把生成式 AI 拿到公司裡用：先認識 No Code／Low Code，再認識生成式 AI 的應用與工具，最後學怎麼評估、規劃導入並管好風險（實戰篇）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">科二三主題：零碼、工具、導入</span><br>No Code／Low Code（零碼）→ 生成式 AI 應用領域與工具（工具）→ 導入評估、規劃與風險管理（導入）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">評鑑主題／評鑑內容</span><span class="en">Assessment Topics / Content</span></dt>
+      <dd>官方公告的出題範圍；主題是大分類，內容是底下的細項。<span class="eg">例：主題「生成式AI 導入評估規劃」下有「導入評估、導入規劃、風險管理」三項內容。</span></dd>
+      <dt><span class="term">鑑別式 AI</span><span class="en">Discriminative AI</span></dt>
+      <dd>負責「判斷、分類、預測」的 AI，學的是輸入與答案之間的界線。<span class="eg">例：判斷一筆交易是否為盜刷、X 光片是否有異常。</span></dd>
+      <dt><span class="term">生成式 AI</span><span class="en">Generative AI, GenAI / GAI</span></dt>
+      <dd>負責「產生新內容」的 AI，學的是資料本身長什麼樣子，再生出相似的新東西。<span class="eg">例：寫報告、畫插圖、生成配音。</span></dd>
+      <dt><span class="term">AI 治理</span><span class="en">AI Governance</span></dt>
+      <dd>組織用來確保 AI 被安全、合法、負責任使用的規則、流程與責任分工。<span class="eg">例：公司規定「哪些資料不得輸入外部 AI 服務、誰負責審核 AI 產出」。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>科目二三大評鑑主題：<b>No Code／Low Code 概念</b>（基本概念、優勢與限制）、<b>生成式AI 應用領域與工具使用</b>（應用領域與常見工具、如何善用工具）、<b>生成式AI 導入評估規劃</b>（導入評估、導入規劃、風險管理）。風險管理歸在第三個主題之下。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>「鑑別式 vs 生成式」屬科目一的評鑑內容，但科目二的情境題常拿來考：<b>要判斷／分類</b>（詐欺偵測、影像判讀）選鑑別式；<b>要產出內容</b>（報告、文案、圖片）選生成式。把生成式 AI 拿去直接下醫療影像結論，可能產生與影像不符的內容而誤判。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>歷屆試題已超出指引文字</b><span class="yr">（2025–2026）</span>：本站整理的初級科目二歷屆試題中，提示工程技巧（Few-shot、CoT、ToT）、RAG、AI Agent、MCP 等主題反覆出現，雖然學習指引本文著墨不多。建議把本頁 <a href="#sec3-1">3-1</a>、<a href="#sec3-3">3-3</a>、<a href="#sec3-4">3-4</a> 的延伸內容也當作必讀，並搭配「考前重點與試題解析」頁複習。</li>
+      </ul></div>
+
+    <h2 class="chap" id="chap2">貳、No Code / Low Code 概念</h2>
+    <p>本章主軸：No Code／Low Code 把「寫程式」的門檻降低，生成式 AI 再把門檻降得更低，兩者結合推動了「AI 民主化」。考題最愛考 No Code 與 Low Code 的差別、平台選擇六因素、挑戰與解方、市場價值三面向。</p>
+
+    <h3 id="sec2-1">基本概念與差異 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>想像要做一個「請假申請 App」：<br>・<b>No Code</b> 像<b>樂高積木</b>：只有現成積木，拖一拖、接一接就能做出東西，完全不用寫程式；但積木形狀固定，想做特殊造型就做不到。<br>・<b>Low Code</b> 像<b>樂高＋可以自己削的木塊</b>：大部分用積木，卡關的地方寫一點程式補上，所以能接公司的 ERP、做複雜的簽核規則。<br>所以 No Code 給「不會寫程式的業務人員」快速做原型；Low Code 給「有點技術底子的開發者」做企業級、可擴展的系統。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">零碼拖拉做原型，低碼補碼做企業</span><br>No Code：零程式碼、拖放、非技術者、快速原型與小型應用；Low Code：少量程式碼、有技術背景、複雜邏輯、企業級、彈性高可擴展。</div>
+    <table>
+      <tr><th>比較</th><th>No Code</th><th>Low Code</th></tr>
+      <tr><td>誰用</td><td>非技術背景（市民開發者）</td><td>具基本技術背景的開發者</td></tr>
+      <tr><td>怎麼做</td><td>圖形化介面、拖放</td><td>視覺化工具＋少量程式碼</td></tr>
+      <tr><td>適合</td><td>快速原型、小型應用、簡單業務問題</td><td>複雜邏輯、企業級應用、高自訂性</td></tr>
+      <tr><td>客製彈性</td><td>較低</td><td>較高，可深度整合與擴展</td></tr>
+    </table>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">No Code（無程式碼）</span><span class="en">No Code</span></dt>
+      <dd>透過視覺化介面與拖放操作，不寫任何程式碼就能開發應用的方式與平台。<span class="eg">例：用表單工具＋自動化流程工具，拖拉出「填表後自動寄信通知主管」。</span></dd>
+      <dt><span class="term">Low Code（低程式碼）</span><span class="en">Low Code</span></dt>
+      <dd>以視覺化開發為主、再用少量程式碼補足整合與客製邏輯的開發方式。<span class="eg">例：用 Low Code 平台做好畫面，再寫一小段程式去串公司 ERP 的庫存資料。</span></dd>
+      <dt><span class="term">拖放</span><span class="en">Drag-and-drop</span></dt>
+      <dd>用滑鼠把元件拖到畫面上放好的操作方式。<span class="eg">例：把「按鈕」元件拖到表單下方。</span></dd>
+      <dt><span class="term">視覺化介面／圖形化介面</span><span class="en">Visual Interface / GUI（Graphical User Interface）</span></dt>
+      <dd>用圖示、方塊、連線等圖形來操作與設計，而非輸入文字指令。<span class="eg">例：用流程圖方塊拉出「如果金額大於一萬就送經理簽核」。</span></dd>
+      <dt><span class="term">使用者介面</span><span class="en">User Interface, UI</span></dt>
+      <dd>使用者看到並操作的畫面與元件。<span class="eg">例：App 的按鈕、選單、輸入框。</span></dd>
+      <dt><span class="term">快速原型設計</span><span class="en">Rapid Prototyping</span></dt>
+      <dd>先做出一個「能用但陽春」的版本，讓使用者試用並回饋，再決定是否正式開發。<span class="eg">例：兩天內拖出一個訂便當 App，給同事試用一週。</span></dd>
+      <dt><span class="term">客製化／擴展性</span><span class="en">Customization / Extensibility</span></dt>
+      <dd>依需求修改功能的程度／未來增加功能、串接其他系統的能力。<span class="eg">例：Low Code 能加自訂程式，擴展性較 No Code 高。</span></dd>
+      <dt><span class="term">TensorFlow／Keras</span><span class="en">TensorFlow / Keras</span></dt>
+      <dd>常用的開源深度學習框架；Keras 是較高階、易用的介面。指引提到它們已推出視覺化工具，讓無程式經驗者也能建模。<span class="eg">例：用網頁上的視覺化工具調整神經網路層數、觀察訓練結果。</span></dd>
+      <dt><span class="term">數位轉型</span><span class="en">Digital Transformation</span></dt>
+      <dd>用數位技術重新設計企業的流程、產品與商業模式，不只是把紙本變電子檔。<span class="eg">例：從人工排班改成依銷售預測自動排班。</span></dd>
+      <dt><span class="term">人工智慧</span><span class="en">Artificial Intelligence, AI</span></dt>
+      <dd>讓機器展現類似人類智慧（理解、推理、學習、生成）的技術總稱。<span class="eg">例：語音助理、推薦系統、聊天機器人。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>No Code＝<b>非技術背景、無需寫程式、快速原型／小型應用</b>；Low Code＝<b>具技術背景、少量程式碼、複雜邏輯／企業級應用、彈性較高、可深度整合與擴展</b>。題目若問「哪一種更適合開發靈活且可擴展的解決方案」→ Low Code。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>Low Code 的「Low」是<b>少量</b>程式碼，不是「低品質」；No Code 也不是「沒有程式」，而是程式由平台在背後產生，使用者看不到。另外「No Code 適合中大型企業複雜應用」是錯誤敘述，那是 Low Code 的定位。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>Vibe coding（氛圍寫程式）</b><span class="yr">（2025）</span>：由 Andrej Karpathy 於 2025 年 2 月提出，指用自然語言描述需求、讓 AI 生成並修改程式，使用者幾乎不看程式碼；Collins 詞典選為 2025 年度詞彙。它把「No Code」推進到「用說的寫程式」，但也繼承了 No Code 的老問題：使用者不懂背後邏輯，品質、資安與維護風險更高，正式系統仍需工程把關。</li>
+        <li><b>AI coding agent（AI 程式代理）</b><span class="yr">（2025）</span>：例如 Anthropic 於 2025 年 2 月以研究預覽推出的 Claude Code（在終端機中讀寫專案檔、執行測試），以及 GitHub 於 2025 年 5 月 Build 大會發表的 Copilot coding agent（可把 issue 指派給 AI，在沙箱中改程式並開 pull request 待人審核）。和指引裡「自動生成程式碼」的差別：舊做法是「AI 補一段程式」，新做法是「AI 自己規劃、修改多個檔案並驗證」，人改當審查者。</li>
+      </ul></div>
+
+    <h3 id="sec2-2">生成式AI 強化 NC/LC <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>原本的 No Code 平台像一間「自助 DIY 工作室」，工具都擺好了但要自己動手；加上生成式 AI 之後，工作室多了一位<b>會聽人話的助理</b>：你說「幫我做一個請假表單，主管核准後寄信」，它就先幫你把表單、流程、文案、甚至介面設計都擺出初稿，你只要微調。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">碼、模、數、介、文、個</span><br>六項強化：自動生成程式<b>碼</b>、<b>模</b>板設計優化、<b>數</b>據分析與決策、AI 驅動 UI/UX（<b>介</b>面）設計、行銷<b>文</b>案生成、<b>個</b>人化 App 快速開發。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">DALL-E</span><span class="en">DALL·E</span></dt>
+      <dd>OpenAI 的文字生成圖像模型，輸入文字描述即可產生圖片。<span class="eg">例：「一隻戴安全帽的柴犬在工地，扁平插畫風」。</span></dd>
+      <dt><span class="term">自動生成程式碼</span><span class="en">Code Generation</span></dt>
+      <dd>由 AI 依自然語言描述產生程式碼。<span class="eg">例：「寫一個把 Excel 每列寄成 Email 的腳本」。</span></dd>
+      <dt><span class="term">模板</span><span class="en">Template</span></dt>
+      <dd>預先設計好的版型或流程範本，可直接套用再修改。<span class="eg">例：報價單模板、客服回覆模板。</span></dd>
+      <dt><span class="term">使用者體驗</span><span class="en">User Experience, UX</span></dt>
+      <dd>使用者操作產品時的整體感受：好不好找、好不好用、順不順。UI 是外觀，UX 是體驗。<span class="eg">例：結帳只要三步而不是七步，就是 UX 改善。</span></dd>
+      <dt><span class="term">個人化</span><span class="en">Personalization</span></dt>
+      <dd>依每位使用者的資料與行為提供不同內容或功能。<span class="eg">例：購物 App 首頁依你的瀏覽紀錄推薦商品。</span></dd>
+      <dt><span class="term">部署</span><span class="en">Deployment</span></dt>
+      <dd>把開發好的應用或模型放到正式環境讓使用者使用。<span class="eg">例：把測試版 App 上架到公司內部 App 商店。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>生成式 AI（如 ChatGPT、DALL-E）對 NC/LC 的強化：自動生成程式碼、模板設計優化、數據分析與決策、AI 驅動 UI/UX 設計、自動化行銷文案生成、個人化 App 快速開發，目標是「自動化、智慧化開發與應用」。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>函式呼叫（Function calling）</b><span class="yr">（2023）</span>：OpenAI 於 2023 年 6 月在 API 推出，讓模型依開發者提供的 JSON 規格「回傳要呼叫哪個功能、帶什麼參數」，再由程式實際執行。這讓 No Code 自動化平台可以把「一句話需求」轉成對 CRM、試算表、Email 等系統的實際操作，而不只是產出一段文字。</li>
+        <li><b>結構化輸出（Structured Outputs）</b><span class="yr">（2024）</span>：OpenAI 於 2024 年 8 月推出，讓模型輸出保證符合指定的 JSON Schema。對 NC/LC 平台很關鍵：AI 產出的資料格式穩定，下一個流程節點才接得住，不會因為多一個逗號就整條流程壞掉。</li>
+      </ul></div>
+
+    <h3 id="sec2-3">跨產業應用 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>記這張表的訣竅是「每個產業最痛的地方」：醫療痛在<b>研發慢、病歷多</b>；製造痛在<b>設計與製程</b>；金融痛在<b>風險與合規</b>；零售痛在<b>猜不準顧客與庫存</b>；教育痛在<b>一位老師要顧一整班</b>；客服痛在<b>24 小時接不完的問題</b>。生成式 AI＋NC/LC 就是往這些痛點下手。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">醫藥病、製設流、金險投規、零行庫顧、教材徑評、客服答析</span><br>醫療：藥物發現／個人化治療／病歷；製造：產品設計原型／生產流程優化；金融：風險評估／投資組合／合規；零售：個人化行銷／庫存供應鏈／顧客體驗；教育：教材生成／學習路徑／智慧評量；客服：虛擬客服／自動回應／客訴分析。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">藥物發現</span><span class="en">Drug Discovery</span></dt>
+      <dd>找出可能成為新藥的分子並驗證其效果的研發過程；AI 可預測分子結構以縮短研發週期。<span class="eg">例：先用 AI 從上百萬個候選分子中篩出最有希望的幾百個，再進實驗室。</span></dd>
+      <dt><span class="term">基因組數據</span><span class="en">Genomic Data</span></dt>
+      <dd>個人完整 DNA 序列相關的資料，可用來設計個人化治療。<span class="eg">例：依病人基因型選擇較有效的標靶藥。</span></dd>
+      <dt><span class="term">輔助診斷</span><span class="en">Computer-Aided Diagnosis</span></dt>
+      <dd>由 AI 提供判讀建議，最終診斷仍由醫師負責。<span class="eg">例：AI 在 X 光片上圈出可疑區域供醫師確認。</span></dd>
+      <dt><span class="term">投資組合優化</span><span class="en">Portfolio Optimization</span></dt>
+      <dd>在報酬與風險之間找最佳的資產配置比例。<span class="eg">例：依客戶風險承受度調整股債比例。</span></dd>
+      <dt><span class="term">自動化合規監管</span><span class="en">Automated Compliance / RegTech</span></dt>
+      <dd>用科技自動檢查業務是否符合法規要求。<span class="eg">例：自動掃描交易紀錄找出疑似洗錢的模式。</span></dd>
+      <dt><span class="term">需求預測</span><span class="en">Demand Forecasting</span></dt>
+      <dd>依歷史銷售與外部因素預估未來需求，作為備貨依據。<span class="eg">例：颱風前預測泡麵與礦泉水銷量暴增。</span></dd>
+      <dt><span class="term">供應鏈管理</span><span class="en">Supply Chain Management, SCM</span></dt>
+      <dd>管理從原料、生產、倉儲到配送給顧客的整條流程。<span class="eg">例：自動計算各門市何時該補貨、補多少。</span></dd>
+      <dt><span class="term">個人化學習路徑</span><span class="en">Personalized Learning Path</span></dt>
+      <dd>依學生程度與學習狀況安排不同的學習順序與內容。<span class="eg">例：分數單元錯很多的學生，系統先補基礎再往下教。</span></dd>
+      <dt><span class="term">虛擬智慧客服</span><span class="en">Virtual Agent / Chatbot</span></dt>
+      <dd>以 AI 自動回應顧客問題，可 24/7（全天候）服務。<span class="eg">例：半夜查詢訂單進度也有即時回覆。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>能把應用對到正確產業：「病歷自動生成、輔助診斷」屬<b>醫療</b>；「風險評估、投資組合優化、自動化合規」屬<b>金融</b>；「需求預測、補貨優化」屬<b>零售</b>；「智慧評量與回饋」屬<b>教育</b>。題目常以「下列何者<b>不是</b>金融業應用」混入醫療項目。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>AI 蛋白質結構預測獲諾貝爾化學獎</b><span class="yr">（2024）</span>：2024 年諾貝爾化學獎頒給 David Baker（計算蛋白質設計）與 Google DeepMind 的 Demis Hassabis、John Jumper（AlphaFold 蛋白質結構預測），是「AI 加速藥物與生技研發」最具代表性的里程碑，呼應指引中醫療業「預測分子結構、縮短研發週期」。</li>
+        <li><b>AlphaFold 3</b><span class="yr">（2024）</span>：2024 年 5 月發表於 Nature，採用以擴散模型為基礎的架構，從只預測蛋白質擴展到預測蛋白質與 DNA／RNA、小分子等的交互作用結構。重點：生成式技術（擴散模型）不只畫圖，也被用在科學預測。</li>
+      </ul></div>
+
+    <h3 id="sec2-4">平台選擇與評估 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-4">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>挑 NC/LC 平台就像<b>挑一台公司車</b>：先看誰要開（目標用戶）、能不能載貨加裝備（功能與擴展性）、安不安全（安全合規）、買車加油保養總共多少錢、值不值得（成本效益）、壞了有沒有保修廠和車友社團（技術支援與社群）、口碑和同業開得好不好（市場評價與案例）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">人、功、安、錢、援、碑</span><br>六因素：目標用<b>人</b>與技術需求、<b>功</b>能與擴展性、<b>安</b>全性與合規性、成本效益（<b>錢</b>：TCO／ROI）、技術支<b>援</b>與社群、市場口<b>碑</b>與案例。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">顧客關係管理系統</span><span class="en">Customer Relationship Management, CRM</span></dt>
+      <dd>記錄與管理客戶資料、互動歷程、銷售機會的系統。<span class="eg">例：業務打開客戶頁面就看到過去的詢價與客訴紀錄。</span></dd>
+      <dt><span class="term">企業資源規劃系統</span><span class="en">Enterprise Resource Planning, ERP</span></dt>
+      <dd>整合採購、庫存、生產、財務、人資等核心作業的企業系統。<span class="eg">例：出貨後庫存與應收帳款自動同步更新。</span></dd>
+      <dt><span class="term">系統整合能力</span><span class="en">System Integration</span></dt>
+      <dd>平台能否與既有系統互通資料、串接流程。<span class="eg">例：No Code 表單送出後自動寫入 ERP。</span></dd>
+      <dt><span class="term">加密</span><span class="en">Encryption</span></dt>
+      <dd>把資料轉成沒有金鑰就看不懂的形式，保護儲存與傳輸中的資料。<span class="eg">例：網址列有鎖頭的 HTTPS 連線就是傳輸加密。</span></dd>
+      <dt><span class="term">身份驗證</span><span class="en">Authentication</span></dt>
+      <dd>確認「你是誰」。多重安全機制常指多因素驗證（Multi-Factor Authentication, MFA）。<span class="eg">例：輸入密碼後還要輸入手機收到的驗證碼。</span></dd>
+      <dt><span class="term">權限管理</span><span class="en">Access Control / Authorization</span></dt>
+      <dd>決定「你能做什麼、看什麼」，細緻到依角色、欄位設定。<span class="eg">例：業務看得到客戶電話，但看不到成本價。</span></dd>
+      <dt><span class="term">總擁有成本</span><span class="en">Total Cost of Ownership, TCO</span></dt>
+      <dd>擁有並使用一項方案的全部成本：購買／訂閱費加上建置、整合、訓練、維運、資安合規等直接與隱性成本。<span class="eg">例：軟體一年訂閱 10 萬，但串接與教育訓練又花 20 萬，TCO 是 30 萬以上。</span></dd>
+      <dt><span class="term">投資報酬率</span><span class="en">Return On Investment, ROI</span></dt>
+      <dd>投入能換回多少效益的比例，常見算法＝（效益−成本）÷ 成本。<span class="eg">例：花 100 萬、一年省下 150 萬人力成本，ROI＝50%。</span></dd>
+      <dt><span class="term">應用程式介面</span><span class="en">Application Programming Interface, API</span></dt>
+      <dd>系統之間約定好的「點餐窗口」，讓程式能呼叫另一個系統的功能或資料。<span class="eg">例：網站透過金流 API 完成刷卡。</span></dd>
+    </dl>
+    <div class="box note"><span class="tag">公式</span>ROI ＝（效益 − 成本）÷ 成本 × 100%　　回收期 ≈ 導入成本 ÷ 每期淨節省</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>六個關鍵因素要能背出並對應內容：安全性與合規性包含<b>加密、身份驗證、多重安全機制、細緻的權限控制</b>；成本與效益指 <b>TCO 與 ROI</b>；功能與擴展性包含<b>與 CRM、ERP 整合</b>與高度自訂性。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>TCO 是「<b>成本</b>」面，ROI 是「<b>效益相對成本</b>」面。導入後省下的人力或油料是<b>效益</b>，不要算進 TCO。身份驗證（你是誰）≠ 授權／權限（你能做什麼）。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>評估清單新增「是否支援 MCP」</b><span class="yr">（2024）</span>：Anthropic 於 2024 年 11 月提出開放標準 Model Context Protocol（MCP），讓 AI 應用以統一方式連接外部工具與資料源，之後主要 AI 廠商陸續支援。選平台時可把「能否以 MCP 或標準 API 接上公司系統」納入「功能與擴展性」評估。</li>
+        <li><b>供應商的 AI 管理制度認證</b><span class="yr">（2023）</span>：ISO/IEC 42001（AI 管理系統標準）於 2023 年 12 月發布，是可驗證的 AI 管理制度標準。評估「安全性與合規性」時，可詢問供應商是否取得相關認證，作為客觀佐證之一。</li>
+      </ul></div>
+
+    <h3 id="sec2-5">挑戰與因應策略 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-5">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>讓生成式 AI 進到 NC/LC 平台，就像<b>讓一位很會寫但偶爾亂講的實習生</b>直接幫你做系統：他可能寫錯（準確性）、把客戶資料貼到不該貼的地方（隱私）、寫出偏頗或假的內容（倫理）、做出來的東西接不上公司系統或跑不動（整合與效能）。對策就是：有人覆核、資料上鎖、訂行為準則、選開放好串接的平台。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">準、隱、德、整 → 驗、鎖、規、開</span><br>四挑戰：準確可靠、隱私安全、道德倫理、整合適配；四解方：多層<b>驗</b>證（自動＋人工）、加密匿名權限上<b>鎖</b>、倫理<b>規</b>範＋公平性檢測、選有 API 的<b>開</b>放式平台＋雲端分散負載。<br>克服挑戰四大面向：<b>數據品質、模型效能、人機協作、安全防護</b>（口訣：「資、效、人、安」）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">一般資料保護規則</span><span class="en">General Data Protection Regulation, GDPR</span></dt>
+      <dd>歐盟的個人資料保護法規，規範個資的蒐集、處理與跨境傳輸，違規罰款很重。<span class="eg">例：歐洲客戶可要求企業刪除他的個資。</span></dd>
+      <dt><span class="term">加州消費者隱私法</span><span class="en">California Consumer Privacy Act, CCPA</span></dt>
+      <dd>美國加州的消費者隱私法，賦予消費者知悉、刪除、拒絕出售個資等權利。<span class="eg">例：網站提供「不要出售我的個人資訊」連結。</span></dd>
+      <dt><span class="term">匿名化</span><span class="en">Anonymization</span></dt>
+      <dd>把資料處理到無法再識別出特定個人。<span class="eg">例：病歷移除姓名、身分證號並把年齡改成年齡區間。</span></dd>
+      <dt><span class="term">多層次驗證機制</span><span class="en">Multi-layer Validation</span></dt>
+      <dd>自動化檢測加上人工審核，層層把關輸出結果。<span class="eg">例：AI 產生的程式先跑自動測試，再由工程師審查。</span></dd>
+      <dt><span class="term">公平性檢測工具</span><span class="en">Fairness Testing Tools</span></dt>
+      <dd>檢查模型對不同群體是否有不公平差異的工具。<span class="eg">例：比較男女申請人的貸款核准率是否異常落差。</span></dd>
+      <dt><span class="term">雲端運算</span><span class="en">Cloud Computing</span></dt>
+      <dd>透過網路租用遠端的運算、儲存資源，按用量付費並可彈性擴充。<span class="eg">例：促銷期間自動多開幾台雲端主機分散負載。</span></dd>
+      <dt><span class="term">人機協作</span><span class="en">Human-AI Collaboration / Human-in-the-loop, HITL</span></dt>
+      <dd>讓人類在流程關鍵處參與審核與決策，AI 負責大量重複工作。<span class="eg">例：AI 草擬理賠回覆，金額超過門檻時由專員確認。</span></dd>
+      <dt><span class="term">壓力測試</span><span class="en">Stress Testing</span></dt>
+      <dd>在高負載或極端情境下測試系統表現。<span class="eg">例：模擬一萬人同時詢問客服機器人。</span></dd>
+      <dt><span class="term">弱點掃描</span><span class="en">Vulnerability Scanning</span></dt>
+      <dd>用工具定期檢查系統是否有已知的安全漏洞。<span class="eg">例：每月掃描平台套件是否有未修補的漏洞。</span></dd>
+      <dt><span class="term">資料偏見</span><span class="en">Data Bias</span></dt>
+      <dd>訓練資料不具代表性或含歷史歧視，導致模型輸出偏頗。<span class="eg">例：過去錄取者多為男性，模型便偏好男性履歷。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>挑戰↔解方的配對：<b>準確性與可靠性</b>→多層次驗證（自動化檢測＋人工審核）；<b>資料隱私與安全</b>（GDPR、CCPA）→加密、匿名化、權限控管；<b>道德倫理</b>（虛假資訊、偏見歧視）→倫理準則、使用規範、公平性檢測；<b>技術整合與適配</b>→具 API 擴充能力的開放式平台、雲端分散負載。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>OWASP 大型語言模型應用十大風險（2025 版）</b><span class="yr">（2025）</span>：資安社群 OWASP 整理的 LLM 應用風險清單，第一名是提示注入（Prompt Injection），另含敏感資訊揭露、供應鏈、資料與模型投毒、不當輸出處理、過度代理權（Excessive Agency）、系統提示洩漏、向量與嵌入弱點、錯誤資訊、無上限資源消耗。比指引的四大挑戰更細，適合當 NC/LC＋AI 專案的資安檢查表。</li>
+        <li><b>護欄（Guardrails）工具</b><span class="yr">（2023）</span>：例如 NVIDIA 於 2023 年 4 月開源的 NeMo Guardrails，在使用者與模型之間加一層規則，限制主題、擋下不安全內容。這是指引「多層次驗證、安全防護」在 LLM 時代的具體做法之一。</li>
+      </ul></div>
+
+    <h3 id="sec2-6">市場價值與未來發展 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-6">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>NC/LC 對企業的價值就三件事：<b>省錢、快、變得動</b>。省錢＝少請工程師、流程簡化；快＝現成模組拿來就用、改版很快；變得動＝各部門自己就能做小工具，公司數位轉型不用全卡在資訊部。加上 AI 後，未來連「訓練模型」都可能變成點一點就好的零程式碼工作。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">降本、快市、轉型</span><br>市場價值三面向：降低開發成本、縮短上市時間、加速數位轉型。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">上市時間</span><span class="en">Time to Market, TTM</span></dt>
+      <dd>從構想到產品實際推出所需的時間。<span class="eg">例：原本半年才能上線的內部系統，用 Low Code 兩個月完成。</span></dd>
+      <dt><span class="term">即用型模組</span><span class="en">Ready-made Modules / Components</span></dt>
+      <dd>平台預先做好、可直接套用的功能元件。<span class="eg">例：登入模組、付款模組、地圖元件。</span></dd>
+      <dt><span class="term">敏捷開發</span><span class="en">Agile Development</span></dt>
+      <dd>以短週期反覆交付、依回饋快速調整的開發方式。<span class="eg">例：每兩週推出一版，蒐集使用者意見再改。</span></dd>
+      <dt><span class="term">滲透率</span><span class="en">Adoption / Penetration Rate</span></dt>
+      <dd>某技術在目標群體中被採用的比例。<span class="eg">例：公司內有六成部門已使用 NC/LC 工具。</span></dd>
+      <dt><span class="term">零程式碼 AI 應用開發</span><span class="en">No-code AI Development</span></dt>
+      <dd>由 AI 助理協助完成模型訓練與優化，使用者不寫程式即可建立 AI 應用。<span class="eg">例：上傳產品照片、標好類別，平台自動訓練瑕疵辨識模型。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>市場價值三大面向：<b>降低開發成本、縮短上市時間、加速數位轉型</b>；未來方向：企業應用滲透率提升（特別有利中小企業）、自動化與智慧化升級（AI 自動生成程式碼、流程設計、零程式碼 AI 開發）、與生成式 AI 整合（自動建議設計與流程、產生文案與素材）。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>從「自動化流程」到「AI Agent 工作流」</b><span class="yr">（2025）</span>：傳統 NC/LC 自動化是「固定流程照表操課」；2025 年起流行的 Agent 工作流則讓 AI 依目標自行決定步驟、呼叫工具，遇到例外會改變策略。適合流程多變的任務，但也更需要權限限制與人工確認點。</li>
+        <li><b>Agent 之間的通訊標準 A2A</b><span class="yr">（2025）</span>：Google 於 2025 年 4 月提出 Agent2Agent（A2A）協定，6 月移交 Linux 基金會；它處理「代理與代理之間」如何委派任務與回報結果，與處理「代理與工具／資料」連接的 MCP 互補。</li>
+      </ul></div>
+
+    <h3 id="sec2-7">AI 民主化 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec2-7">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>以前 AI 像<b>私人主廚</b>，只有大企業請得起專家團隊；AI 民主化就是把它變成<b>超商微波食品</b>：大家都買得到、用得起、不用會做菜。No Code／Low Code 讓業務人員也能自己做 AI 小工具，這些人就叫「市民開發者」。但風險也像微波食品：大家都會「加熱」，不代表懂營養，<b>不懂原理就可能誤用</b>。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">降門檻、擴可及、跨創新、普應用、全球化</span><br>NC/LC 對 AI 民主化五項影響；風險一句話：「人人會用≠人人懂」，所以要配套教育與規範。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">AI 民主化</span><span class="en">AI Democratization</span></dt>
+      <dd>把 AI 從少數專家與大企業擴展到更廣泛的社會層面，讓非技術背景者與中小企業也能參與開發並受益。<span class="eg">例：小型咖啡店老闆用 No Code 工具做出會員推薦系統。</span></dd>
+      <dt><span class="term">市民開發者</span><span class="en">Citizen Developer</span></dt>
+      <dd>非專業技術人員，利用 NC/LC 工具自動化日常工作（如報告生成、數據輸入）。<span class="eg">例：會計人員自己拖出「每月自動彙整發票」的流程。</span></dd>
+      <dt><span class="term">可訪問性／可及性</span><span class="en">Accessibility</span></dt>
+      <dd>技術能被更多人取得、負擔與使用的程度。<span class="eg">例：雲端訂閱制讓非營利組織也用得起 AI。</span></dd>
+      <dt><span class="term">技術平權</span><span class="en">Technology Equity</span></dt>
+      <dd>讓不同地區、資源條件的人都有機會使用技術。<span class="eg">例：發展中國家的學生用免費 AI 家教學程式。</span></dd>
+      <dt><span class="term">數位落差</span><span class="en">Digital Divide</span></dt>
+      <dd>不同族群在取得與運用數位科技上的差距。<span class="eg">例：偏鄉長者不會使用線上掛號。</span></dd>
+      <dt><span class="term">模型偏差／誤用</span><span class="en">Model Bias / Misuse</span></dt>
+      <dd>模型輸出系統性偏頗，或被用在不適當的場合。<span class="eg">例：用一般聊天機器人直接決定員工考績。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>五項影響：<b>降低技術門檻、擴大 AI 可訪問性、推動跨領域創新、強化普及化應用、啟動全球性影響</b>。主要風險：過度依賴 No Code 工具→缺乏深層理解→模型偏差或誤用；因應：加強教育與規範。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>小型語言模型（SLM）</b><span class="yr">（2024）</span>：Microsoft 於 2024 年 4 月發布 Phi-3-mini（約 38 億參數、開放權重），官方表示可在手機上執行。小模型讓 AI 不必依賴昂貴雲端，資料也能留在本機，是另一種形式的民主化。</li>
+        <li><b>開放權重推理模型</b><span class="yr">（2025）</span>：DeepSeek 於 2025 年 1 月以 MIT 授權釋出推理模型 DeepSeek-R1 的權重，並同時釋出由它蒸餾出的多個小模型。開放權重讓企業可自行部署、微調，但仍須自行評估資安、授權與資料來源等風險。</li>
+      </ul></div>
+    <h2 class="chap" id="chap3">參、生成式AI 應用領域與工具使用</h2>
+    <p>本章是全科最「技術」的一章：生成式 AI 的架構、推理參數、技術突破、工具趨勢與產業應用。考試重點在名詞（GAN、VAE、Transformer、溫度、Top-k、核採樣、RLHF、AIaaS…）的意義，以及「哪個工具／技術屬於哪個趨勢」。</p>
+
+    <h3 id="sec3-1">技術架構與關鍵特徵 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec3-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>把大型語言模型想成一位<b>讀過整座圖書館的接龍高手</b>：<br>① <b>訓練資料處理</b>：先把書整理乾淨（清洗），切成一個個小字塊（Token 標記化），再把每個字塊換成一串數字（向量化），因為電腦只懂數字。<br>② <b>深度學習網路</b>：用很多層神經網路讀這些數字；其中「自注意力」讓它讀到「它」這個字時，會回頭看前文到底指誰，即使相隔很遠。<br>③ <b>推理機制</b>：真正回答時，模型每次都在猜「下一個字」，手上有一張「每個候選字的機率表」。<b>溫度</b>決定要不要冒險選冷門字；<b>Top-k</b> 只從前 k 名裡抽；<b>核採樣</b>則從「機率加起來到 90%」的那一群裡抽。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">洗、切、量；溫越高越敢講</span><br>訓練資料處理三步：數據清<b>洗</b>→標記化（<b>切</b>）→向<b>量</b>化。溫度低＝保守穩定，溫度高＝有創意但較易離題；Top-k 看「名次」，核採樣（Top-p）看「累積機率」。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">生成對抗網路</span><span class="en">Generative Adversarial Network, GAN</span></dt>
+      <dd>由「生成器」造假、「判別器」抓假，兩者互相對抗而越來越強的生成模型。<span class="eg">例：偽鈔師傅和驗鈔員互相較勁，最後偽鈔幾可亂真。</span></dd>
+      <dt><span class="term">變分自編碼器</span><span class="en">Variational Autoencoder, VAE</span></dt>
+      <dd>先把資料壓縮成一個機率分布的「潛在空間」，再從中取樣還原出新資料的生成模型。<span class="eg">例：把人臉壓成「年齡、表情、髮型」等旋鈕，轉動旋鈕就生成新臉。</span></dd>
+      <dt><span class="term">Transformer（變換器）</span><span class="en">Transformer</span></dt>
+      <dd>2017 年提出、以注意力機制為核心的神經網路架構，是 GPT 等大型語言模型的基礎。<span class="eg">例：ChatGPT 的「T」就是 Transformer。</span></dd>
+      <dt><span class="term">多層神經網路</span><span class="en">Multi-layer Neural Network</span></dt>
+      <dd>由多層「神經元」組成，每層把輸入轉換成更抽象的特徵。<span class="eg">例：影像辨識中，前幾層看線條，後幾層看出眼睛、輪子。</span></dd>
+      <dt><span class="term">特徵提取／表示學習</span><span class="en">Feature Extraction / Representation Learning</span></dt>
+      <dd>從原始資料中自動找出有用的特徵，並學會用合適的方式表示資料。<span class="eg">例：模型自己學到「肺部陰影形狀」是判讀關鍵。</span></dd>
+      <dt><span class="term">注意力機制</span><span class="en">Attention Mechanism</span></dt>
+      <dd>讓模型處理資料時，對不同部分給予不同重視程度。<span class="eg">例：翻譯「銀行」時，注意到前文的「河邊」而翻成 bank（河岸）。</span></dd>
+      <dt><span class="term">自注意力</span><span class="en">Self-Attention</span></dt>
+      <dd>序列中每個字都去看同一序列的其他字，計算彼此關聯，擅長處理長距離依賴。<span class="eg">例：「小明把書借給小華，因為他很需要」，模型判斷「他」指小華。</span></dd>
+      <dt><span class="term">長距離依賴</span><span class="en">Long-range Dependency</span></dt>
+      <dd>句子或文件中相隔很遠的字詞之間的關聯。<span class="eg">例：第一段提到的主角名字，在第五段用代名詞出現。</span></dd>
+      <dt><span class="term">數據清洗</span><span class="en">Data Cleaning</span></dt>
+      <dd>移除雜訊與錯誤資料、填補遺缺值，確保資料品質與一致性。<span class="eg">例：刪掉重複的網頁、修正亂碼。</span></dd>
+      <dt><span class="term">雜訊</span><span class="en">Noise</span></dt>
+      <dd>資料中無意義或錯誤、會干擾學習的部分。<span class="eg">例：爬來的網頁裡夾雜廣告與選單文字。</span></dd>
+      <dt><span class="term">遺缺值</span><span class="en">Missing Value</span></dt>
+      <dd>資料中本應有值卻空白的欄位。<span class="eg">例：客戶資料表中「年齡」欄空白。</span></dd>
+      <dt><span class="term">標記化</span><span class="en">Tokenization</span></dt>
+      <dd>把文字切成模型處理的基本單位 Token（詞或子詞）。<span class="eg">例：「unhappiness」可能切成 un／happi／ness。</span></dd>
+      <dt><span class="term">Token（詞元）</span><span class="en">Token</span></dt>
+      <dd>模型讀寫文字的最小單位，也是 API 計費與長度限制的單位。<span class="eg">例：一篇文章約幾千個 Token，費用依 Token 數計算。</span></dd>
+      <dt><span class="term">向量化</span><span class="en">Vectorization</span></dt>
+      <dd>把文字或其他資料轉成數值向量；語意相近的內容向量也相近（常稱嵌入 Embedding）。<span class="eg">例：「貓」和「小貓」的向量距離很近。</span></dd>
+      <dt><span class="term">推理（推論）</span><span class="en">Inference</span></dt>
+      <dd>模型訓練完後，實際接收輸入並產生輸出的過程。<span class="eg">例：你在 ChatGPT 按下送出後，它產生回答的階段。</span></dd>
+      <dt><span class="term">溫度參數</span><span class="en">Temperature</span></dt>
+      <dd>控制生成隨機性：低溫較保守、一致；高溫較有創意、多變。<span class="eg">例：寫合約條文用低溫，想廣告標語用高溫。</span></dd>
+      <dt><span class="term">頂部採樣</span><span class="en">Top-k Sampling</span></dt>
+      <dd>只從機率最高的前 k 個候選中抽選下一個字。<span class="eg">例：k＝5，就只在前五名候選字中抽。</span></dd>
+      <dt><span class="term">核採樣</span><span class="en">Nucleus Sampling（Top-p Sampling）</span></dt>
+      <dd>從機率由高到低累加、達到門檻（如 0.9）的候選群中抽選，候選數量會隨情境變動。<span class="eg">例：答案很明確時只剩 2 個候選；開放題時可能有 50 個。</span></dd>
+      <dt><span class="term">遷移學習</span><span class="en">Transfer Learning</span></dt>
+      <dd>把在大量資料上學到的能力，轉用到新的任務。<span class="eg">例：會中文寫作的模型，稍加訓練就會寫公司公文。</span></dd>
+      <dt><span class="term">多模態</span><span class="en">Multimodal</span></dt>
+      <dd>同時處理文字、圖像、聲音、影片等多種資料型態。<span class="eg">例：拍一張故障零件照片，問 AI 可能原因。</span></dd>
+      <dt><span class="term">提示詞</span><span class="en">Prompt</span></dt>
+      <dd>給生成式 AI 的輸入指令與內容；可透過提示詞控制生成（可控生成）。<span class="eg">例：「用國小五年級聽得懂的話解釋通膨，限 100 字」。</span></dd>
+      <dt><span class="term">AI 幻覺</span><span class="en">AI Hallucination</span></dt>
+      <dd>模型生成看似合理、實際錯誤或捏造的內容。<span class="eg">例：AI 引用一篇根本不存在的論文或判決。</span></dd>
+      <dt><span class="term">模型壓縮</span><span class="en">Model Compression</span></dt>
+      <dd>縮小模型大小與運算量的技術總稱（剪枝、量化、蒸餾等）。<span class="eg">例：把伺服器級模型壓到筆電能跑。</span></dd>
+      <dt><span class="term">量化</span><span class="en">Quantization</span></dt>
+      <dd>用較少位元表示模型參數（如 16 位元→4 位元），省記憶體、加速運算，可能略損精度。<span class="eg">例：像把高畫質照片轉成檔案較小的版本。</span></dd>
+      <dt><span class="term">推理加速</span><span class="en">Inference Acceleration</span></dt>
+      <dd>讓模型產生回應更快、更省資源的各種技術。<span class="eg">例：改良記憶體管理，讓同一張 GPU 同時服務更多使用者。</span></dd>
+      <dt><span class="term">混合注意力機制／模塊化設計</span><span class="en">Hybrid Attention / Modular Design</span></dt>
+      <dd>結合多種注意力計算方式以兼顧效率與效果／把模型拆成可替換、可組合的模組。<span class="eg">例：只對附近字詞做完整注意力，遠處用簡化方式計算。</span></dd>
+      <dt><span class="term">領域特定微調</span><span class="en">Domain-specific Fine-tuning</span></dt>
+      <dd>用特定領域資料再訓練通用模型，讓它更懂該領域。<span class="eg">例：用法律判決書微調，讓模型更會寫法律分析。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>生成式 AI 常基於 <b>GAN、VAE、Transformer</b>。三大環節：<b>深度學習網路</b>（多層神經網路、注意力／自注意力處理長距離依賴）、<b>訓練數據處理</b>（清洗、標記化、向量化）、<b>推理機制</b>（溫度、Top-k、核採樣）。溫度低→保守，高→創意；核採樣＝累積機率達閾值（如 0.9）。主要挑戰含計算資源、硬體限制、準確性、<b>AI 幻覺</b>、偏見與安全。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>Top-k vs 核採樣（Top-p）</b>：Top-k 固定取「前 k 名」；Top-p 取「累積機率到 p 為止」的那群，候選數量不固定。<b>標記化 vs 向量化</b>：前者是「切」，後者是「轉數字」。<b>溫度</b>不會讓模型「更聰明」，只改變選字的冒險程度；調低溫度也不能根除幻覺。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>少樣本提示（Few-shot prompting）</b><span class="yr">（2020）</span>：GPT-3 論文展示只要在提示中給幾個範例，模型就能照樣完成新任務，不必重新訓練。這是「透過提示詞進行可控生成」的基礎技巧；對照是不給範例的 Zero-shot。</li>
+        <li><b>思維鏈（Chain-of-Thought, CoT）</b><span class="yr">（2022）</span>：Google 研究者提出在提示中示範「逐步推理」，可明顯改善數學與邏輯題表現；後續衍生自我一致性（Self-consistency，2022，多次推理取多數答案）與思維樹（Tree of Thoughts, ToT，2023，同時探索多條推理路徑再比較）。</li>
+        <li><b>推理模型（Reasoning models）</b><span class="yr">（2024）</span>：OpenAI 於 2024 年 9 月發表 o1-preview，以大規模強化學習訓練模型在回答前先產生內部思考過程，且「思考越久、表現越好」。差別在於：CoT 是「使用者在提示裡要求逐步想」，推理模型則是「訓練時就學會自己先想」。</li>
+        <li><b>專家混合架構（Mixture of Experts, MoE）</b><span class="yr">（2023）</span>：如 Mistral AI 於 2023 年 12 月以 Apache 2.0 授權釋出的 Mixtral 8x7B，每次只啟用部分「專家」子網路，總參數大但每次計算量較小，是指引「模型效率」方向的代表做法之一。</li>
+        <li><b>情境工程（Context engineering）</b><span class="yr">（2025）</span>：2025 年中由 Shopify 執行長 Tobi Lütke、Andrej Karpathy 等人推廣的說法：在真實 AI 應用中，比起把一句提示寫漂亮，更關鍵的是「把對的資訊放進模型的上下文」，包括系統指示、工具說明、記憶、檢索到的文件與使用者輸入。可視為提示工程的進化版。</li>
+      </ul></div>
+
+    <h3 id="sec3-2">市場價值與影響 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec3-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>這節是「生成式 AI 的經濟學」。重點不是背數字，而是分清楚<b>好處分三層</b>（直接、間接、衍生）、<b>挑戰分三層</b>（技術、商業、社會），以及<b>就業有兩面</b>：重複性工作被取代，同時冒出 AI 訓練師、提示工程師等新職務。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">直省、間創、衍帶</span><br>直接效益＝降成本提效率（省）；間接效益＝促創新、新商業模式（創）；衍生效益＝帶動 AI 硬體與雲端服務（帶）。挑戰三層：<b>技、商、社</b>。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">垂直領域應用</span><span class="en">Vertical Applications</span></dt>
+      <dd>專門針對某一產業或專業深度打造的應用（相對於通用型）。<span class="eg">例：專做法律文件審閱的 AI 工具。</span></dd>
+      <dt><span class="term">訂閱制</span><span class="en">Subscription Model</span></dt>
+      <dd>按月或按年付費使用服務的商業模式。<span class="eg">例：每位員工每月付費使用 AI 助理。</span></dd>
+      <dt><span class="term">提示工程師</span><span class="en">Prompt Engineer</span></dt>
+      <dd>專門設計、測試與優化提示詞，讓 AI 穩定產出所需結果的新興職務。<span class="eg">例：設計客服機器人的系統提示與回覆範例。</span></dd>
+      <dt><span class="term">AI 訓練師</span><span class="en">AI Trainer</span></dt>
+      <dd>負責準備資料、標註、評估與回饋，協助模型改進的人員。<span class="eg">例：替模型回答打分數、撰寫示範答案。</span></dd>
+      <dt><span class="term">直接／間接／衍生效益</span><span class="en">Direct / Indirect / Spillover Benefits</span></dt>
+      <dd>直接＝降成本、提效率；間接＝促進創新、新商業模式；衍生＝帶動相關產業（AI 硬體、雲端）。<span class="eg">例：AI 熱潮帶動 GPU 與資料中心需求，屬衍生效益。</span></dd>
+      <dt><span class="term">永續發展考量</span><span class="en">Sustainability</span></dt>
+      <dd>兼顧能源效率與社會責任的發展方式。<span class="eg">例：選擇耗能較低的模型、評估資料中心用電。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>就業市場變革：<b>工作取代</b>（重複性、低技能）與<b>新興職務</b>（AI 訓練師、提示工程師）並存；產業轉型影響最明顯在<b>內容創作、軟體開發、客戶服務</b>；挑戰分<b>技術</b>（資料安全、模型可靠性）、<b>商業</b>（投報不確定、競爭加劇）、<b>社會</b>（就業變動、數位落差、倫理）。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>產業共同治理 Agent 標準</b><span class="yr">（2025）</span>：Linux 基金會於 2025 年 12 月成立 Agentic AI Foundation，Anthropic 將 MCP 捐贈給該基金會管理。指引所說「市場整合加速」在協定層面的體現：互通標準由中立組織維護，降低企業被單一廠商綁住的風險。</li>
+        <li><b>「提示工程師」職能演變</b><span class="yr">（2025）</span>：隨著模型越來越能理解一般口語、以及「情境工程」概念興起，單純寫提示的工作逐漸併入產品、資料與流程設計職能。規劃師要培養的是「設計 AI 工作流程與評估機制」的能力，而不只是寫提示的技巧。</li>
+      </ul></div>
+
+    <h3 id="sec3-3">技術突破與發展方向 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec3-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>生成式 AI 的家族史：<b>GAN</b> 讓 AI 第一次畫出逼真的臉；<b>VAE、流式模型</b>提供比較穩定、可算機率的生成；<b>Transformer</b> 讓 GPT 寫出流暢文章，也撐起 DALL-E、Stable Diffusion 等多模態生成；<b>預訓練＋微調＋RLHF</b> 讓模型從「會接龍」變成「會聽話」；<b>vLLM、壓縮量化</b>讓模型跑得快、跑得省，甚至上手機。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">對抗畫臉、Transformer 寫字、擴散去噪、人類回饋教乖</span><br>GAN＝對抗；擴散模型＝從雜訊一步步「去噪」還原出圖；RLHF＝用人類偏好當獎勵，讓模型回答更符合人意。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">流式生成模型</span><span class="en">Flow-based Generative Model</span></dt>
+      <dd>用一連串可逆轉換，把簡單分布變成複雜資料分布，能精確計算機率。<span class="eg">例：像把一團麵糰經過可還原的揉捏步驟，變成特定形狀。</span></dd>
+      <dt><span class="term">GPT</span><span class="en">Generative Pre-trained Transformer</span></dt>
+      <dd>OpenAI 的「生成式預訓練 Transformer」模型系列，以預測下一個 Token 的方式生成文字。<span class="eg">例：GPT-4 提升了理解與生成準確度。</span></dd>
+      <dt><span class="term">大型語言模型</span><span class="en">Large Language Model, LLM</span></dt>
+      <dd>以海量文字預訓練、參數規模龐大的語言模型。<span class="eg">例：GPT 系列、Claude、Gemini、Llama。</span></dd>
+      <dt><span class="term">參數規模</span><span class="en">Parameter Scale</span></dt>
+      <dd>模型內可學習數值的數量，常以「億、十億（B）」計。<span class="eg">例：「7B 模型」＝約 70 億個參數。</span></dd>
+      <dt><span class="term">Stable Diffusion</span><span class="en">Stable Diffusion</span></dt>
+      <dd>以擴散模型為核心、開放權重的文字生成圖像模型。<span class="eg">例：可在自家電腦上生成產品情境圖。</span></dd>
+      <dt><span class="term">Midjourney</span><span class="en">Midjourney</span></dt>
+      <dd>以藝術風格著稱的商業圖像生成服務。<span class="eg">例：生成概念美術、海報草圖。</span></dd>
+      <dt><span class="term">擴散模型</span><span class="en">Diffusion Model</span></dt>
+      <dd>訓練時學「把加了雜訊的圖還原」，生成時從純雜訊一步步去噪得到新圖。<span class="eg">例：像從滿是雪花的電視畫面慢慢調出清楚影像。</span></dd>
+      <dt><span class="term">預訓練</span><span class="en">Pre-training</span></dt>
+      <dd>先用海量通用資料訓練模型的基礎能力。<span class="eg">例：先讀遍網路文章學會語言。</span></dd>
+      <dt><span class="term">微調</span><span class="en">Fine-tuning</span></dt>
+      <dd>在預訓練模型上，用特定任務或領域資料再訓練，調整其行為或知識。<span class="eg">例：用公司客服紀錄微調，讓語氣符合品牌。</span></dd>
+      <dt><span class="term">少樣本學習</span><span class="en">Few-shot Learning</span></dt>
+      <dd>只靠少量範例就能學會或完成新任務。<span class="eg">例：給三則範例回覆，模型就照格式回覆第四則。</span></dd>
+      <dt><span class="term">提示工程</span><span class="en">Prompt Engineering</span></dt>
+      <dd>設計與優化提示詞，以提高生成品質與可控性的方法。<span class="eg">例：指定角色、格式、字數、範例與限制條件。</span></dd>
+      <dt><span class="term">人類回饋強化學習</span><span class="en">Reinforcement Learning from Human Feedback, RLHF</span></dt>
+      <dd>由人類比較並評分模型回答，訓練出「偏好模型」作為獎勵，再用強化學習讓模型往人類偏好的方向調整。<span class="eg">例：標註員選出兩個回答中較有幫助、較安全的那個。</span></dd>
+      <dt><span class="term">vLLM</span><span class="en">vLLM</span></dt>
+      <dd>開源的大型語言模型推理與服務引擎，以高效記憶體管理提升吞吐量。<span class="eg">例：同一台 GPU 伺服器可同時回應更多使用者。</span></dd>
+      <dt><span class="term">邊緣計算</span><span class="en">Edge Computing</span></dt>
+      <dd>在資料產生地附近（裝置端、工廠現場）運算，而非全部送到雲端。<span class="eg">例：工廠相機內建 AI 即時檢測瑕疵。</span></dd>
+      <dt><span class="term">Hugging Face</span><span class="en">Hugging Face</span></dt>
+      <dd>全球最大的開源模型與資料集分享平台之一，提供模型庫與工具套件。<span class="eg">例：下載開源模型、在 Spaces 上試玩示範應用。</span></dd>
+      <dt><span class="term">開放原始碼</span><span class="en">Open Source</span></dt>
+      <dd>原始碼公開、允許依授權使用與修改的軟體。<span class="eg">例：社群共同改良開源模型工具。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>技術突破：GAN（高品質圖像）、VAE 與流式模型（穩定性、機率生成）、Transformer 與自注意力（GPT、DALL-E、Stable Diffusion）、預訓練與微調（少樣本學習、提示工程、<b>RLHF</b>）、高效推理與模型壓縮（<b>vLLM</b>，適用邊緣計算與行動裝置）。工具方向：A 模型規模與能力提升、B 輕量化與個人化、C 深層學習架構改進（GAN 與擴散模型融合）；開源社群如 Hugging Face。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>RLHF ≠ 微調資料</b>：RLHF 用的是「人類對回答的偏好」當獎勵訊號，而一般監督式微調（SFT）用的是「標準答案範例」。<b>預訓練 vs 微調</b>：前者打底、資料海量通用；後者加工、資料少而專。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>LoRA（低秩適應）</b><span class="yr">（2021）</span>：微調時凍結原模型，只訓練少量外掛的小矩陣，大幅降低微調所需記憶體與儲存；屬「參數高效微調」（Parameter-Efficient Fine-Tuning, PEFT）的代表。</li>
+        <li><b>QLoRA</b><span class="yr">（2023）</span>：Dettmers 等人提出，把基礎模型量化成 4 位元後再做 LoRA，論文示範單張 48GB GPU 即可微調 650 億參數模型。結合指引中的「量化」與「微調」兩個概念。</li>
+        <li><b>DPO（直接偏好最佳化）</b><span class="yr">（2023）</span>：Stanford 團隊提出，直接用人類偏好資料調整模型，不必另訓獎勵模型、也不必跑強化學習，比 RLHF 流程簡單，成為常見的對齊方法之一。</li>
+        <li><b>PagedAttention／vLLM 論文</b><span class="yr">（2023）</span>：發表於 SOSP 2023，借用作業系統「分頁」概念管理生成時的快取記憶體，減少浪費、提高同時服務量；這就是指引所提 vLLM 的核心技術。同類加速技術還有 FlashAttention（2022），減少注意力計算的記憶體搬運。</li>
+        <li><b>擴散＋Transformer 的融合</b><span class="yr">（2024）</span>：Stable Diffusion 3 論文（2024 年 3 月）以 Transformer 架構（MMDiT）取代傳統卷積網路骨幹，並採用整流（rectified flow）訓練；同年 2 月 OpenAI 發表文字生成影片模型 Sora。這是指引「架構改進、多模態融合」方向的實例。</li>
+        <li><b>推理能力靠強化學習</b><span class="yr">（2025）</span>：DeepSeek-R1（2025 年 1 月）公開以強化學習培養推理能力的做法並釋出權重；強化學習的角色從 RLHF 的「教乖」延伸到「教會思考」。</li>
+      </ul></div>
+
+    <h3 id="sec3-4">工具發展八大趨勢 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec3-4">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>八大趨勢可以想成一家「AI 工具百貨」的八個樓層：<b>專業館</b>（法律、醫療、金融、教育的專用工具）、<b>多媒體館</b>（文字、圖、聲、影一起做）、<b>租借櫃台</b>（AIaaS：不用自己買 GPU，雲端 API 按量付費）、<b>訂製館</b>（微調、提示工程、調參數）、<b>協作區</b>（多人即時共編與回饋）、<b>保險庫</b>（本地部署、加密、版權過濾）、<b>節能館</b>（壓縮、量化、批量處理）、<b>生態系廣場</b>（API、外掛、第三方整合）。地下室還有第 9 項「<b>道德與法律規範</b>」撐住整棟樓。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">專、多、服、個、協、安、效、生＋法</span><br>專業化垂直整合、多模態、AI 即服務、個人化可控、協作回饋、安全隱私、效能優化、生態系統，第 9 項道德與法律規範。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">垂直整合</span><span class="en">Vertical Integration</span></dt>
+      <dd>針對特定產業需求，從資料、模型到應用深度客製。<span class="eg">例：醫療影像診斷 AI、法規檢索 AI。</span></dd>
+      <dt><span class="term">Whisper</span><span class="en">Whisper</span></dt>
+      <dd>OpenAI 的開源語音辨識模型，可把語音轉成文字並支援多語言。<span class="eg">例：會議錄音自動轉逐字稿。</span></dd>
+      <dt><span class="term">AI 即服務</span><span class="en">AI as a Service, AIaaS</span></dt>
+      <dd>透過雲端平台以 API 方式提供 AI 能力，用多少付多少。<span class="eg">例：企業呼叫 OpenAI API 做客服摘要，不用自建模型。</span></dd>
+      <dt><span class="term">OpenAI API／Hugging Face Spaces</span><span class="en">OpenAI API / Hugging Face Spaces</span></dt>
+      <dd>前者是以 API 存取 OpenAI 模型的服務；後者是 Hugging Face 上託管、展示 AI 應用的空間。<span class="eg">例：在 Spaces 上直接試用別人做好的去背工具。</span></dd>
+      <dt><span class="term">外掛</span><span class="en">Plug-in / Extension</span></dt>
+      <dd>為既有軟體加掛額外功能的模組。<span class="eg">例：在文書軟體裝上 AI 寫作外掛。</span></dd>
+      <dt><span class="term">本地部署</span><span class="en">On-premises / Local Deployment</span></dt>
+      <dd>把模型裝在企業自己的伺服器或裝置上執行，資料不離開公司。<span class="eg">例：醫院在院內伺服器跑模型處理病歷。</span></dd>
+      <dt><span class="term">內容過濾</span><span class="en">Content Filtering</span></dt>
+      <dd>自動攔截不當、違法或侵權的輸入與輸出。<span class="eg">例：擋下生成暴力圖片的請求。</span></dd>
+      <dt><span class="term">版權管理</span><span class="en">Copyright Management</span></dt>
+      <dd>確保生成內容不侵權，並管理授權與使用範圍。<span class="eg">例：只用已取得授權的素材訓練品牌圖像模型。</span></dd>
+      <dt><span class="term">批量處理</span><span class="en">Batch Processing</span></dt>
+      <dd>把大量請求集中一次處理，以提高效率、降低成本。<span class="eg">例：晚上一次生成一萬筆商品描述。</span></dd>
+      <dt><span class="term">生態系統</span><span class="en">Ecosystem</span></dt>
+      <dd>圍繞平台形成的開發者、外掛、第三方服務網絡。<span class="eg">例：許多工具都能接上同一個模型平台。</span></dd>
+      <dt><span class="term">深偽</span><span class="en">Deepfake</span></dt>
+      <dd>以深度學習偽造的逼真影像、聲音或影片。<span class="eg">例：偽造名人聲音的詐騙電話。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>能把工具對到趨勢：DALL-E、Midjourney（文圖整合）、Whisper、ChatGPT 語音模式（語音文字轉換）屬<b>多模態</b>；OpenAI API、Hugging Face Spaces 屬 <b>AIaaS</b>；微調、提示工程屬<b>個人化與可控性</b>；本地部署、加密屬<b>安全性與隱私</b>；壓縮、量化屬<b>效能優化</b>；Hugging Face、OpenAI 的 API／外掛屬<b>生態系</b>。第 9 項道德與法律規範：版權、防濫用（假新聞、深偽）、法規遵循。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>檢索增強生成（Retrieval-Augmented Generation, RAG）</b><span class="yr">（2020）</span>：先從外部知識庫檢索相關文件，再交給模型根據文件回答，可引用來源、知識更新不必重訓。這是「領域知識整合」最常見的企業做法。</li>
+        <li><b>RAG 的進化：混合檢索與重排序</b><span class="yr">（2019 起）</span>：同時用關鍵字檢索（如 BM25）與向量語意檢索，再用 BERT 類的重排序模型（2019 年 Nogueira 與 Cho 提出以 BERT 做段落重排）挑出最相關段落，比單用向量搜尋更準。</li>
+        <li><b>GraphRAG</b><span class="yr">（2024）</span>：Microsoft Research 於 2024 年 4 月提出，先用 LLM 從文件抽出實體與關係建成知識圖譜、分群摘要，擅長回答「整批資料的主要主題是什麼」這類全域問題，彌補一般 RAG 只能找片段的弱點。</li>
+        <li><b>Agentic RAG</b><span class="yr">（2025）</span>：2025 年 1 月的綜述論文整理此方向：由 AI Agent 主導檢索，會自行判斷資訊是否足夠、改寫查詢、多輪檢索與反思，取代「固定只查一次」的傳統 RAG 流程。</li>
+        <li><b>Model Context Protocol（MCP）</b><span class="yr">（2024）</span>：Anthropic 於 2024 年 11 月提出的開放標準，讓 AI 應用用統一方式連接外部工具、資料源與 API，被稱為 AI 的「USB-C 介面」；2025 年 12 月捐贈給 Linux 基金會旗下的 Agentic AI Foundation。它對應指引「生態系統建構」與「API、外掛整合」趨勢。</li>
+        <li><b>多模態影音生成</b><span class="yr">（2024–2025）</span>：OpenAI 於 2024 年 2 月發表文字生成影片的 Sora；Google 於 2025 年 5 月發表可同步生成對白、音效的 Veo 3。指引「影音內容生成」趨勢已從剪輯特效走到直接生成有聲影片，也讓深偽風險上升。</li>
+        <li><b>小型模型與本地部署</b><span class="yr">（2024）</span>：Phi-3-mini 等小型語言模型可在筆電甚至手機執行，配合量化技術，讓「本地部署選項」對中小企業也變得可行。</li>
+      </ul></div>
+    <table>
+      <tr><th>需求</th><th>提示工程</th><th>RAG</th><th>微調（含 LoRA 等 PEFT）</th></tr>
+      <tr><td>改變什麼</td><td>只改輸入</td><td>補外部知識</td><td>改模型權重（行為、語氣、格式）</td></tr>
+      <tr><td>知識更新</td><td>每次手動放入</td><td>更新知識庫即可，最即時</td><td>需重新訓練</td></tr>
+      <tr><td>可追溯來源</td><td>低</td><td>高（可附引用）</td><td>低</td></tr>
+      <tr><td>成本與門檻</td><td>最低</td><td>中（要建檢索系統）</td><td>較高（資料與訓練）</td></tr>
+      <tr><td>適合情境</td><td>先試、快速驗證</td><td>法規、產品手冊、FAQ 等常更新內容</td><td>固定的語氣風格、專門格式、特殊任務</td></tr>
+    </table>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>RAG vs MCP</b>：RAG 重在「補知識」（查文件再回答）；MCP 重在「標準化連接工具與資料源」（也可用來做檢索，但範圍更廣，例如呼叫行事曆、資料庫、寄信）。<b>RAG vs 微調</b>：要「最新、可引用」選 RAG；要「固定語氣格式」選微調。實務上常先提示工程，再 RAG，最後才微調。</div>
+
+    <h3 id="sec3-5">產業應用領域 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec3-5">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>每個產業的趨勢欄都在講同一件事：<b>AI 負責「量大、技術性、細節」，人負責「構思、判斷、創意」</b>。藝術設計是 AI 畫細節、人想點子；醫療是 AI 加速研發、走向精準醫療；教育靠學習數據持續優化；娛樂結合 AR/VR 做沉浸體驗；製造走向智慧製造全流程。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">藝輔創、醫精準、教數據、娛沉浸、製智造</span><br>五大領域的「應用趨勢」各一個關鍵詞。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">虛擬實境／擴增實境</span><span class="en">Virtual Reality, VR / Augmented Reality, AR</span></dt>
+      <dd>VR 讓人進入完全虛擬的環境；AR 把虛擬資訊疊在真實畫面上。<span class="eg">例：VR 模擬手術室訓練醫學生；AR 眼鏡顯示維修步驟。</span></dd>
+      <dt><span class="term">精準醫療</span><span class="en">Precision Medicine</span></dt>
+      <dd>依個人基因、環境與生活型態量身制定預防與治療。<span class="eg">例：依腫瘤基因突變選擇標靶藥物。</span></dd>
+      <dt><span class="term">醫學影像分析</span><span class="en">Medical Image Analysis</span></dt>
+      <dd>以 AI 協助判讀 X 光、電腦斷層、核磁共振等影像。<span class="eg">例：自動標出疑似肺結節。</span></dd>
+      <dt><span class="term">虛擬偶像／虛擬主播</span><span class="en">Virtual Idol / VTuber</span></dt>
+      <dd>以電腦生成角色形象進行演出或直播的藝人。<span class="eg">例：AI 生成歌聲搭配 3D 角色的虛擬歌手。</span></dd>
+      <dt><span class="term">快速原型製作／3D 列印</span><span class="en">Rapid Prototyping / 3D Printing</span></dt>
+      <dd>依數位設計快速做出實體樣品；3D 列印以逐層堆疊材料成形。<span class="eg">例：AI 產生多款外殼設計，挑兩款列印出來試握。</span></dd>
+      <dt><span class="term">智慧製造</span><span class="en">Smart Manufacturing</span></dt>
+      <dd>以感測、資料與 AI 串起設計、研發、生產全流程的製造模式。<span class="eg">例：依即時訂單與機台狀態自動排程。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>藝術與設計：創作者把 AI 當<b>輔助工具</b>，專注構思與創意；醫療與生技：藥物開發（生成分子結構）、醫學影像、個人化醫療、醫學教育（VR/AR）→ 精準醫療；教育：強調<b>學習行為數據分析</b>；娛樂媒體：結合 AR/VR 沉浸式體驗；產品設計與製造：快速原型（3D 列印）→ 智慧製造與自動化。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>生成式模型進入科學研發</b><span class="yr">（2024）</span>：AlphaFold 3（2024）以擴散式架構預測生物分子交互作用；同年諾貝爾化學獎肯定 AI 蛋白質結構預測與設計，醫療與生技欄的「生成分子結構」已是主流研發工具。</li>
+        <li><b>有聲影片生成</b><span class="yr">（2025）</span>：Veo 3（2025）等模型能一次生成畫面與對白、音效，影響娛樂與媒體的前期提案與短影音製作；同時也讓內容來源標記（見 <a href="#sec6-4">6-4</a>）更加重要。</li>
+      </ul></div>
+    <h2 class="chap" id="chap4">肆、生成式AI 導入評估</h2>
+    <p>本章回答「要不要導入、準備好了沒、怎麼一步步來」。導入不只是技術升級，而是營運模式與策略的革新。考題常以情境出現：「企業導入的第一步是什麼？」「哪個項目應優先試點？」</p>
+
+    <h3 id="sec4-1">五大評估面向 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec4-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>導入評估就像<b>搬新家前的健檢</b>：先問「為什麼要搬」（需求與痛點）、「錢和家具夠不夠」（資源、資料、硬體、人才）、「要一次搬完還是分批」（分階段策略）、「家人能不能適應新環境」（員工技能與文化）、「搬家路上會出什麼事」（風險）。其中最容易被忽略的是<b>資料</b>：生成式 AI 很吃資料品質，垃圾進、垃圾出。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">需、資、策、人、險</span><br>五大評估面向：需求與現狀、資源與基礎設施、導入策略（分階段）、員工技能與文化、風險評估與管理。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">痛點識別</span><span class="en">Pain Point Identification</span></dt>
+      <dd>找出流程中最困擾、最耗成本的問題（流程瓶頸、資源失衡、決策不足）。<span class="eg">例：客服每天花三小時回覆相同的退貨問題。</span></dd>
+      <dt><span class="term">應用場景分析</span><span class="en">Use Case Analysis</span></dt>
+      <dd>評估 AI 用在哪些情境能提升品質、縮短週期或優化客戶體驗。<span class="eg">例：比較「自動寫週報」與「客服回覆草稿」哪個效益大。</span></dd>
+      <dt><span class="term">技術對接性</span><span class="en">Technical Compatibility</span></dt>
+      <dd>新 AI 方案與現有系統、資料格式能否順利銜接。<span class="eg">例：AI 工具能否讀取公司文件管理系統的檔案。</span></dd>
+      <dt><span class="term">數據完整性</span><span class="en">Data Integrity / Completeness</span></dt>
+      <dd>資料是否齊全、正確、一致，未缺漏或被不當修改。<span class="eg">例：產品資料表每筆都有規格、價格與更新日期。</span></dd>
+      <dt><span class="term">數據整合</span><span class="en">Data Integration</span></dt>
+      <dd>把分散在不同系統的資料彙整成一致可用的形式。<span class="eg">例：把門市 POS 與電商訂單整合成同一份顧客資料。</span></dd>
+      <dt><span class="term">系統可擴展性</span><span class="en">Scalability</span></dt>
+      <dd>使用量或範圍擴大時，系統能否跟著擴充而不崩潰。<span class="eg">例：從一個部門 20 人用，擴大到全公司 2000 人用。</span></dd>
+      <dt><span class="term">試點應用</span><span class="en">Pilot</span></dt>
+      <dd>先在小範圍、可控條件下試行，驗證效果再擴大。<span class="eg">例：先讓一個門市試用 AI 排班一個月。</span></dd>
+      <dt><span class="term">模型偏誤</span><span class="en">Model Bias</span></dt>
+      <dd>模型輸出系統性偏向某些結果或族群，屬技術風險。<span class="eg">例：履歷篩選模型偏好特定學校。</span></dd>
+      <dt><span class="term">資源調度風險</span><span class="en">Resource Allocation Risk</span></dt>
+      <dd>人力、預算、算力分配不當造成專案延誤或失敗的風險。<span class="eg">例：GPU 資源被其他專案占用，導致上線延期。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>五大面向的內容要能對應：資源與基礎設施＝<b>技術人才、數據品質與基礎（完整性、清洗整合）、硬體與系統架構、可擴展性</b>；導入策略＝<b>試點→階段性擴展→長期目標→持續優化回饋</b>。歷屆高頻：企業導入的<b>第一步是設定明確、可量化的經營目標</b>，而非先買軟硬體。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>依勘誤表，學習指引 p.3-32 第一段的小標「（3）資源與基礎設施評估」應更正為「<b>（3）企業導入階段性實施策略</b>」——分階段策略（試點、擴展）是第 3 項；資源與基礎設施是第 2 項，別把兩者內容混在一起。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>NIST AI 風險管理框架（AI RMF 1.0）</b><span class="yr">（2023）</span>：美國 NIST 於 2023 年 1 月發布的自願性框架，以「治理（Govern）、對應（Map）、量測（Measure）、管理（Manage）」四大功能組織 AI 風險工作。可當作五大評估面向中「風險評估與管理」的實作骨架。</li>
+        <li><b>NIST 生成式 AI 剖繪（AI 600-1）</b><span class="yr">（2024）</span>：2024 年 7 月發布，是 AI RMF 針對生成式 AI 的補充，列出生成式 AI 特有或被放大的風險類別（如虛構內容、資訊安全、智慧財產等）與建議措施，可作導入評估的檢查清單。</li>
+      </ul></div>
+
+    <h3 id="sec4-2">導入策略與實施建議 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec4-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>導入順序像<b>減重計畫</b>：先挑「容易做到又馬上看得到成效」的（例如每天少喝一杯含糖飲料），建立信心；需要大量資源又短期看不到效果的（例如全馬訓練）先往後排。企業也是：先<b>試點驗證</b>（初始）、再<b>跨部門推廣</b>（成長）、最後<b>全面整合、創新領先</b>（成熟）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">先易後難、先快後慢；試點、推廣、領先</span><br>優先級：業務影響大＋技術難度低＋快速見效者優先；三階段：初始（試點與驗證）→成長（技術推廣與整合）→成熟（全面整合與創新領先）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">優先級排序</span><span class="en">Prioritization</span></dt>
+      <dd>依業務影響與實施難度決定先做哪些項目。<span class="eg">例：把候選專案畫在「效益高低 × 難度高低」四象限。</span></dd>
+      <dt><span class="term">快速見效項目</span><span class="en">Quick Win</span></dt>
+      <dd>低技術難度、短期即可看到效益的項目，用來建立信心與支持。<span class="eg">例：用 AI 自動整理會議紀錄。</span></dd>
+      <dt><span class="term">核心價值</span><span class="en">Core Value</span></dt>
+      <dd>企業最主要、最能創造競爭力的價值來源。<span class="eg">例：精品咖啡店的核心價值是風味與服務體驗。</span></dd>
+      <dt><span class="term">差異化競爭</span><span class="en">Differentiation</span></dt>
+      <dd>以別人難以模仿的特色取得競爭優勢。<span class="eg">例：用 AI 提供競爭對手做不到的即時客製報價。</span></dd>
+      <dt><span class="term">滾動式調整</span><span class="en">Rolling Adjustment</span></dt>
+      <dd>依市場與執行狀況定期檢討並修正計畫。<span class="eg">例：每季重新評估 AI 專案清單與預算。</span></dd>
+      <dt><span class="term">跨部門合作</span><span class="en">Cross-functional Collaboration</span></dt>
+      <dd>業務、資訊、法務等不同部門共同推動專案。<span class="eg">例：客服部提出需求、資訊部建置、法務審查個資。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>目標設定考量兩件事：<b>公司人力的業務影響</b>（能否創造核心價值、提升效率、滿意度或顯著降成本）與<b>技術實現的實施難度</b>（低難度、快見效者優先，資源高且短期難見效者延後）。三階段：初始＝<b>低成本、風險可控的小範圍試點</b>；成長＝<b>跨部門推廣到多個業務環節</b>；成熟＝<b>創新應用、差異化競爭、依市場滾動調整</b>。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>政府與產業的生成式 AI 使用指引</b><span class="yr">（2023–2024）</span>：行政院於 2023 年 8 月通過「行政院及所屬機關（構）使用生成式AI參考指引（草案）」（本科參考書目之一），重點包括機密文書不得使用生成式 AI、不得輸入公務機密或個資、最終仍由承辦人判斷；金管會於 2024 年 6 月發布「金融業運用人工智慧（AI）指引」，提出六大核心原則並涵蓋第三方業者管理。企業訂定導入策略時，可參考這類指引寫自己的 AI 使用政策。</li>
+        <li><b>企業 AI 使用政策成為導入前置作業</b><span class="yr">（2025）</span>：隨著員工自行使用外部 AI 服務（俗稱「影子 AI」，Shadow AI）普遍，常見做法是在試點前先明訂：可用的工具清單、禁止輸入的資料類別、產出需人工覆核的情境、以及帳號與紀錄管理。</li>
+      </ul></div>
+
+    <h3 id="sec4-3">技術人才培養 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec4-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>買了一台頂級咖啡機，沒有會用的咖啡師也煮不出好咖啡。AI 也一樣：<b>內部培訓</b>讓自己人學會（客製課程：LLM、微調、資料處理、選模型、系統整合）；<b>外部合作</b>請有經驗的顧問或服務商帶路，必要時招募高端人才。兩者並用（內外結合）最快補上能力缺口。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">內訓扎根、外援加速</span><br>內部人才培訓與技能提升＋外部資源整合與專家合作＝內外結合模式。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">客製化培訓</span><span class="en">Customized Training</span></dt>
+      <dd>依企業業務與員工程度設計的專屬課程。<span class="eg">例：給客服主管的「AI 回覆品質審核」工作坊。</span></dd>
+      <dt><span class="term">系統規劃集成</span><span class="en">System Integration Planning</span></dt>
+      <dd>規劃 AI 如何與既有系統結合運作。<span class="eg">例：規劃 AI 摘要結果自動寫回 CRM 客戶紀錄。</span></dd>
+      <dt><span class="term">技術服務商</span><span class="en">Technology Service Provider / System Integrator</span></dt>
+      <dd>提供 AI 建置、整合、顧問服務的外部廠商。<span class="eg">例：協助企業建置內部知識庫問答系統的廠商。</span></dd>
+      <dt><span class="term">學習曲線</span><span class="en">Learning Curve</span></dt>
+      <dd>從不會到熟練所需的時間與努力。引進外部專家可縮短學習曲線。<span class="eg">例：有顧問帶，三個月就能上線；自己摸索可能要一年。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>AI 導入「不只是引進工具」，必須深入了解企業業務結構、找出最能受益的環節；<b>技術人才培養是生成式 AI 導入的核心挑戰之一</b>；解法是內部培訓（含依業務場景選模型、系統規劃集成）＋外部專家合作，採<b>內外結合</b>。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>AI 素養義務</b><span class="yr">（2025）</span>：EU AI Act 第 4 條自 2025 年 2 月 2 日起要求提供者與部署者採取措施確保員工具備足夠 AI 素養；與歐盟有業務往來的台灣企業，教育訓練規劃可參考此要求。</li>
+        <li><b>台灣《人工智慧基本法》提到人才與勞動</b><span class="yr">（2026）</span>：2026 年 1 月公布施行，條文要求政府保障勞工權益、彌平 AI 發展造成的技能落差，並輔導因 AI 失業者，顯示「人才培養與轉型」已是國家政策層級議題。</li>
+      </ul></div>
+
+    <h2 class="chap" id="chap5">伍、生成式AI 導入規劃</h2>
+    <p>本章是全科最常出題的一章：四階段導入流程（準備→設計→驗證 POC→實施／營運）以及每一階段做什麼，還有模型訓練、驗證指標、監控與 ROI 計算的名詞。</p>
+
+    <h3 id="sec5-1">四階段導入流程 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>把導入 AI 想成<b>開一家新分店</b>：<br>① <b>準備</b>＝選地點、選賣什麼（挑 AI 應用方案）；<br>② <b>設計</b>＝畫藍圖、算預算（確認 AI 生成規格）；<br>③ <b>驗證 POC</b>＝先試營運一個月看生意（驗證 AI 效果、算 ROI）；<br>④ <b>實施／營運</b>＝正式開幕並持續改善，成功了再複製到其他分店（持續發揮價值）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">挑、規、驗、營</span><br>準備＝<b>挑</b>方案；設計＝定<b>規</b>格；POC＝<b>驗</b>效果；實施＝<b>營</b>運持續發揮價值。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">概念驗證</span><span class="en">Proof of Concept, POC</span></dt>
+      <dd>以小規模實驗測試模型在真實業務中的準確度、效率與融合度，並量化投入產出（ROI、回收週期），作為擴大導入的依據。<span class="eg">例：先讓 AI 處理一個月的客服信件，比較回覆時間與滿意度。</span></dd>
+      <dt><span class="term">關鍵績效指標</span><span class="en">Key Performance Indicator, KPI</span></dt>
+      <dd>可量化、用來追蹤目標達成程度的指標。<span class="eg">例：客服平均處理時間從 8 分鐘降到 5 分鐘。</span></dd>
+      <dt><span class="term">回收週期</span><span class="en">Payback Period</span></dt>
+      <dd>累積效益回收初始投資所需的時間。<span class="eg">例：投入 20 萬、每月省 2.9 萬，約 7 個月回本。</span></dd>
+      <dt><span class="term">模型監控</span><span class="en">Model Monitoring</span></dt>
+      <dd>上線後持續追蹤模型表現與輸入資料變化。<span class="eg">例：每週檢查 AI 回覆被客服修改的比例。</span></dd>
+      <dt><span class="term">重新訓練</span><span class="en">Retraining</span></dt>
+      <dd>用新資料再訓練模型，使其適應最新狀況。<span class="eg">例：新產品上市後，用新 FAQ 更新模型或知識庫。</span></dd>
+      <dt><span class="term">AI 價值擴散</span><span class="en">Scaling AI Value</span></dt>
+      <dd>把成功的單點 AI 應用推廣到全企業。<span class="eg">例：北區客服成功後，複製到中南區與電商客服。</span></dd>
+    </dl>
+    <table>
+      <tr><th>階段</th><th>核心任務</th><th>關鍵產出</th></tr>
+      <tr><td>（1）準備</td><td>挑選 AI 應用方案：掌握企業課題、檢視方案與資源、確定優先順序</td><td>候選方案與優先清單</td></tr>
+      <tr><td>（2）設計</td><td>確認 AI 生成規格：最終目標、數據狀態、使用情境、導入成本</td><td>KPI、資料與成本規劃</td></tr>
+      <tr><td>（3）驗證 POC</td><td>驗證 AI 效果：模型開發至部署、導入實務流程、ROI 計算</td><td>效果驗證與投資效益</td></tr>
+      <tr><td>（4）實施／營運</td><td>持續發揮價值：專案落地、模型監控與重新訓練、價值擴散</td><td>常態營運與推廣</td></tr>
+    </table>
+    <div class="exam"><span class="tag">📌 考試重點</span>四階段的<b>順序與名稱</b>必背：準備（挑選 AI 應用方案）→ 設計（確認 AI 生成規格）→ 驗證 POC（驗證 AI 效果）→ 實施／營運（持續發揮價值）。<b>ROI 計算放在 POC 階段</b>；<b>模型監控與重新訓練屬實施／營運階段</b>。規劃初期先明確經營目標（市場定位、核心產品價值、長期成長策略）。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>「估算導入成本」屬<b>設計階段</b>；「ROI 計算」屬<b>POC 階段</b>——一個是事前估算花多少，一個是驗證後算值不值得。「試點運行」出現在 POC 階段的「導入實務運作流程」五步驟中。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>評估驅動開發</b><span class="yr">（2023）</span>：生成式 AI 的輸出沒有唯一標準答案，業界常在 POC 一開始就建立「評估集」（代表性問題＋期望回答＋評分標準），每次改提示、換模型、調 RAG 都重跑一遍；評分常結合人工與「LLM 當評審」（LLM-as-a-judge，見 <a href="#sec5-4">5-4</a>）。這讓 POC 的「驗證 AI 效果」可重複、可比較。</li>
+      </ul></div>
+
+    <h3 id="sec5-2">準備階段 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>準備階段像<b>看醫生前先寫症狀清單</b>：先弄清楚哪裡痛（掌握企業課題）、家裡有什麼藥和預算（檢視方案與資源）、先治哪個症狀（優先順序）。最好的第一個 AI 專案通常是<b>重複性高、規則清楚、標準化</b>的工作，例如客服常見問答、內部資料檢索、報表生成。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">找課題、看資源、排順序；重複、規則、標準先上</span><br>A 掌握企業課題（設目標、選範圍、提取改善項目）→ B 檢視 AI 方案與企業資源 → C 確定應用領域優先順序。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">業務流程圖</span><span class="en">Business Process Map</span></dt>
+      <dd>把部門工作步驟畫成流程圖，用來找出瓶頸與低效環節。<span class="eg">例：畫出「報價→核准→下單」各步驟耗時。</span></dd>
+      <dt><span class="term">流程瓶頸</span><span class="en">Bottleneck</span></dt>
+      <dd>整個流程中速度最慢、最容易卡住的環節。<span class="eg">例：所有報價都要等同一位主管簽核。</span></dd>
+      <dt><span class="term">商業產品／開源平台／客製化服務</span><span class="en">Commercial Products / Open-source Platforms / Custom Services</span></dt>
+      <dd>AI 方案的三大來源：買現成產品、用開源自行建置、請廠商量身開發。<span class="eg">例：訂閱 AI 會議記錄服務 vs 自架開源模型 vs 委外開發專屬系統。</span></dd>
+      <dt><span class="term">軟體許可</span><span class="en">Software License</span></dt>
+      <dd>使用軟體的授權與費用條件。<span class="eg">例：按使用者人數計費的年度授權。</span></dd>
+      <dt><span class="term">隱性成本</span><span class="en">Hidden Costs</span></dt>
+      <dd>不在報價單上、但實際會發生的成本。<span class="eg">例：資料整理人力、員工學習期間的效率下降。</span></dd>
+      <dt><span class="term">專案管理架構</span><span class="en">Project Management Structure</span></dt>
+      <dd>明定專案負責人、角色分工與進度控管方式。<span class="eg">例：指定專案經理、每兩週開進度會議。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>理想的優先導入候選：<b>具重複性、規則性、標準化</b>的工作（數據處理、報表生成、客服查詢）；從<b>簡單且可行的核心專案</b>開始（如客服回應、內部資料檢索）。生成式 AI 必要性要檢視<b>數據完整性、準確性、格式一致性與歷史資料豐富度</b>、技術基礎設施與人力技能。優先順序綜合<b>商業價值、技術可行性與成熟度、資源與成本、長期戰略目標</b>。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>方案選擇多了「開放權重模型」選項</b><span class="yr">（2024–2025）</span>：除商業 API 外，Phi-3（2024）、DeepSeek-R1（2025，MIT 授權）等開放權重模型可自行部署，資料不出公司、可微調；代價是要自備算力、維運人力與安全評估。準備階段比較方案時，可把「API 服務／開放權重自建／混合」三種模式並列評估。</li>
+      </ul></div>
+
+    <h3 id="sec5-3">設計階段 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>設計階段像<b>蓋房子前的設計圖與估價單</b>：要蓋給誰住、幾年後要擴建（目標與 KPI）、建材夠不夠好（數據狀態）、每個房間做什麼用（使用情境）、總共多少錢（成本）。數據是地基：品質差、來源單一、沒有持續更新，房子再漂亮也會歪。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">目、數、情、本</span><br>A 確認最終<b>目</b>標（含 KPI）→ B 確認<b>數</b>據狀態 → C 確認使用<b>情</b>境 → D 估算導入成<b>本</b>。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">數據標記</span><span class="en">Data Labeling / Annotation</span></dt>
+      <dd>為資料加上正確答案或類別，供模型學習或評估。<span class="eg">例：把客訴信件標上「物流」「品質」「退款」。</span></dd>
+      <dt><span class="term">數據流程</span><span class="en">Data Pipeline</span></dt>
+      <dd>自動化收集、清理、轉換、更新資料的流程。<span class="eg">例：每天凌晨自動把新訂單整理進分析資料庫。</span></dd>
+      <dt><span class="term">預測性維護</span><span class="en">Predictive Maintenance</span></dt>
+      <dd>依設備感測資料預測故障，在壞掉前安排保養。<span class="eg">例：馬達震動異常時提前排程更換軸承。</span></dd>
+      <dt><span class="term">部署策略</span><span class="en">Deployment Strategy</span></dt>
+      <dd>規劃模型放在哪裡（雲端、地端、邊緣）、如何上線與更新。<span class="eg">例：先內部試用，再逐步開放給客戶。</span></dd>
+      <dt><span class="term">數據偏差</span><span class="en">Data Bias</span></dt>
+      <dd>資料來源單一或不具代表性，使模型學到偏頗結果；收集多來源數據可降低。<span class="eg">例：只用北部門市資料訓練，模型不懂南部顧客習慣。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>設計階段四步：A <b>讓 AI 方案與公司策略一致、定短長期目標、制定可量化 KPI</b>；B 數據品質、準確性與<b>多樣性</b>直接影響學習，收集多來源以減少偏差、清理與標記、<b>建立持續更新的數據流程避免模型因過時數據失效</b>；C 依業務規劃使用情境（自動化客服、數據分析、預測性維護）並規劃部署策略；D 成本含技術開發（建構、測試、部署、再訓練）、硬體與雲端、人員培訓、軟體維護升級。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>規格裡寫明「輸出格式」</b><span class="yr">（2024）</span>：結構化輸出（Structured Outputs，2024）讓模型保證輸出符合指定 JSON 結構；設計階段可直接把「欄位、型別、必填」寫進規格，方便後端系統承接與自動驗證。</li>
+        <li><b>情境工程納入設計</b><span class="yr">（2025）</span>：使用情境確認後，進一步規劃「模型每次要看到哪些資訊」：系統指示、相關文件（RAG）、可用工具（如透過 MCP）、對話記憶與權限範圍，這直接影響品質、成本與資安。</li>
+      </ul></div>
+
+    <h3 id="sec5-4">驗證 POC 階段 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-4">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>POC 階段就是<b>考駕照</b>：<br>・<b>模型開發</b>＝選車（自迴歸、自編碼器、擴散、Transformer），並設定好教練的教法（損失函數、優化器、學習率、批次、週期）。<br>・<b>防止過擬合</b>＝不要只會背考古題（過擬合），也不能什麼都沒學會（欠擬合）；所以要用交叉驗證、正則化、Dropout、早停。<br>・<b>驗證效能</b>＝筆試（BLEU、ROUGE、Perplexity 等自動指標）＋路考（人工檢查）＋惡劣天候測試（壓力與邊界）＋公平性檢查＋兩台車比一比（A/B 測試）。<br>・<b>導入實務流程</b>＝拿到駕照後先在社區小路開（試點運行），並上課（員工培訓）、持續改進、評估後推廣。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">BLEU 翻譯看準、ROUGE 摘要看全、困惑度越低越順</span><br>BLEU 偏重<b>精確率</b>（生成的詞有多少出現在參考答案），常用於機器翻譯；ROUGE 偏重<b>召回率</b>（參考答案的詞有多少被涵蓋），常用於摘要；Perplexity（困惑度）越低，代表模型對文字越「不困惑」、語言越流暢。<br>導入實務五步：<span class="mn">整、試、訓、改、推</span>（業務流程整合、試點運行、員工培訓、持續改進、效益評估與推廣）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">自迴歸模型</span><span class="en">Autoregressive Model</span></dt>
+      <dd>依前面已產生的內容，一個接一個預測下一個元素。<span class="eg">例：GPT 逐字接龍寫出整段文章。</span></dd>
+      <dt><span class="term">自編碼器</span><span class="en">Autoencoder</span></dt>
+      <dd>先把輸入壓縮成精簡表示，再還原回原貌的神經網路；VAE 是其機率版本。<span class="eg">例：把圖片壓成少量數字再還原，用來去雜訊或偵測異常。</span></dd>
+      <dt><span class="term">基於 Transformer 的多層神經網路</span><span class="en">Transformer-based Neural Network</span></dt>
+      <dd>以 Transformer 區塊堆疊而成的深度網路，是現今 LLM 主流架構。<span class="eg">例：數十層 Transformer 堆成的大型語言模型。</span></dd>
+      <dt><span class="term">創造性／生成控制能力</span><span class="en">Creativity / Generation Control</span></dt>
+      <dd>生成內容的新穎多樣程度／依需求控制輸出的能力；需調整生成參數平衡兩者。<span class="eg">例：行銷文案要創意，法規回覆要精確可控。</span></dd>
+      <dt><span class="term">損失函數</span><span class="en">Loss Function</span></dt>
+      <dd>衡量模型預測與正確答案差距的公式，訓練目標是讓它越小越好。<span class="eg">例：猜錯越離譜，扣分越多。</span></dd>
+      <dt><span class="term">交叉熵損失</span><span class="en">Cross-Entropy Loss</span></dt>
+      <dd>衡量預測機率分布與正確答案差距的損失函數，自迴歸語言模型常用。<span class="eg">例：正確下一個字是「貓」，模型給「貓」的機率越高，損失越小。</span></dd>
+      <dt><span class="term">優化器</span><span class="en">Optimizer</span></dt>
+      <dd>依損失決定如何調整模型參數的演算法。<span class="eg">例：AdamW、LAMB。</span></dd>
+      <dt><span class="term">AdamW</span><span class="en">Adam with decoupled Weight decay</span></dt>
+      <dd>Adam 優化器的改良版，把權重衰減（一種正則化）與梯度更新分開處理，訓練大型模型常用。<span class="eg">例：多數 Transformer 訓練預設使用 AdamW。</span></dd>
+      <dt><span class="term">LAMB</span><span class="en">Layer-wise Adaptive Moments optimizer for Batch training</span></dt>
+      <dd>為「超大批次訓練」設計的優化器，可逐層調整更新幅度，加速大規模訓練。<span class="eg">例：用很大的 Batch Size 平行訓練語言模型。</span></dd>
+      <dt><span class="term">學習率</span><span class="en">Learning Rate</span></dt>
+      <dd>每次調整參數的步伐大小；太大會暴衝、太小學很慢。<span class="eg">例：下山時每步跨多大。</span></dd>
+      <dt><span class="term">批次大小</span><span class="en">Batch Size</span></dt>
+      <dd>每次更新參數時一起計算的樣本數。<span class="eg">例：一次看 32 篇文章再調整一次。</span></dd>
+      <dt><span class="term">訓練週期數</span><span class="en">Epochs</span></dt>
+      <dd>整份訓練資料被完整看過幾輪。<span class="eg">例：課本從頭到尾讀了 3 遍＝3 個 epoch。</span></dd>
+      <dt><span class="term">超參數</span><span class="en">Hyperparameter</span></dt>
+      <dd>訓練前由人設定、不由模型自己學的參數，如學習率、批次大小。<span class="eg">例：烤蛋糕的溫度與時間。</span></dd>
+      <dt><span class="term">網格搜索</span><span class="en">Grid Search</span></dt>
+      <dd>把超參數的候選值排成網格，逐一組合試驗找最佳者。<span class="eg">例：學習率 3 種 × 批次 3 種＝試 9 組。</span></dd>
+      <dt><span class="term">交叉驗證</span><span class="en">Cross Validation</span></dt>
+      <dd>把資料輪流切成訓練與驗證部分多次評估，結果更可靠，降低過擬合／欠擬合風險。<span class="eg">例：資料分 5 份，輪流拿 1 份當驗證、做 5 次取平均。</span></dd>
+      <dt><span class="term">訓練集／驗證集／測試集</span><span class="en">Training / Validation / Test Set</span></dt>
+      <dd>分別用來學習、調參與最終評估；測試集要留到最後才用，確保泛化能力。<span class="eg">例：課本（訓練）、模擬考（驗證）、正式考試（測試）。</span></dd>
+      <dt><span class="term">泛化能力</span><span class="en">Generalization</span></dt>
+      <dd>模型面對沒看過的新資料仍表現良好的能力。<span class="eg">例：沒背過的題目也會解。</span></dd>
+      <dt><span class="term">過擬合</span><span class="en">Overfitting</span></dt>
+      <dd>模型把訓練資料背得太熟（連雜訊都學），遇到新資料表現差。<span class="eg">例：只會背考古題答案，題目換個數字就不會。</span></dd>
+      <dt><span class="term">欠擬合</span><span class="en">Underfitting</span></dt>
+      <dd>模型太簡單或學太少，連訓練資料都表現不好。<span class="eg">例：只讀了目錄就上考場。</span></dd>
+      <dt><span class="term">L2 正則化</span><span class="en">L2 Regularization</span></dt>
+      <dd>在損失中加入「參數平方和」的懲罰，讓參數不要太大，降低過擬合。<span class="eg">例：限制模型不要過度依賴少數特徵。</span></dd>
+      <dt><span class="term">Dropout（隨機丟棄）</span><span class="en">Dropout</span></dt>
+      <dd>訓練時隨機暫時關閉部分神經元，迫使模型不依賴特定路徑。<span class="eg">例：球隊練習時隨機讓主力休息，逼其他人也練強。</span></dd>
+      <dt><span class="term">早停策略</span><span class="en">Early Stopping</span></dt>
+      <dd>驗證表現不再進步時就停止訓練，避免過擬合。<span class="eg">例：模擬考成績開始下滑就不再狂刷同一本題庫。</span></dd>
+      <dt><span class="term">混合精度訓練</span><span class="en">Mixed Precision Training</span></dt>
+      <dd>部分計算用較低精度（如 16 位元）、關鍵部分保留高精度，以減少資源消耗並加速訓練。<span class="eg">例：草稿用鉛筆、定稿再用鋼筆。</span></dd>
+      <dt><span class="term">生成準確度</span><span class="en">Accuracy</span></dt>
+      <dd>生成或預測結果正確的比例。<span class="eg">例：100 題答對 92 題＝92%。</span></dd>
+      <dt><span class="term">語義連貫性</span><span class="en">Semantic Coherence</span></dt>
+      <dd>生成內容前後意思是否一致、通順合理。<span class="eg">例：前段說「下雨」，後段不該突然說「豔陽高照所以帶傘」。</span></dd>
+      <dt><span class="term">生成多樣性</span><span class="en">Diversity</span></dt>
+      <dd>生成內容是否豐富多變而不重複。<span class="eg">例：十則文案不要都是同一句型。</span></dd>
+      <dt><span class="term">模型剪枝</span><span class="en">Pruning</span></dt>
+      <dd>移除對結果影響小的參數或連結，讓模型變小變快。<span class="eg">例：修剪盆栽多餘的枝葉。</span></dd>
+      <dt><span class="term">BLEU</span><span class="en">Bilingual Evaluation Understudy</span></dt>
+      <dd>比較生成文字與參考答案的詞組重疊程度，偏重精確率，常用於機器翻譯。<span class="eg">例：AI 翻譯與專業譯文用詞越相同，分數越高。</span></dd>
+      <dt><span class="term">ROUGE</span><span class="en">Recall-Oriented Understudy for Gisting Evaluation</span></dt>
+      <dd>以召回率為導向，衡量參考答案中的內容有多少被生成文字涵蓋，常用於摘要。<span class="eg">例：AI 摘要是否涵蓋人工摘要中的重點詞。</span></dd>
+      <dt><span class="term">困惑度</span><span class="en">Perplexity</span></dt>
+      <dd>衡量語言模型對文字的預測不確定性，數值越低表示越能預測、語言越流暢。<span class="eg">例：讀到「台北 101 是一棟」時，模型很確定下一個詞是「大樓」。</span></dd>
+      <dt><span class="term">邊界檢查</span><span class="en">Boundary Testing</span></dt>
+      <dd>用稀有、極端或異常輸入檢測系統穩定性。<span class="eg">例：輸入空白、超長文字、混雜表情符號的提問。</span></dd>
+      <dt><span class="term">敏感性與公平性檢查</span><span class="en">Sensitivity &amp; Fairness Check</span></dt>
+      <dd>分析輸入小變化對輸出的影響，並檢測對特定群體是否不公平。<span class="eg">例：履歷只改姓名性別，評分是否改變。</span></dd>
+      <dt><span class="term">A/B 測試</span><span class="en">A/B Testing</span></dt>
+      <dd>把使用者分組，同時比較兩個版本的實際成效。<span class="eg">例：一半客戶收到舊版回覆、一半收到新版，比較滿意度。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>模型選擇常見四類：<b>自迴歸、自編碼器、擴散、基於 Transformer 的多層神經網路</b>，需考慮創造性與生成控制能力並結合提示工程。訓練：交叉熵損失、AdamW／LAMB、L2／Dropout／早停防過擬合、混合精度省資源、剪枝與量化、遷移學習。驗證六步：<b>設定基準（BLEU、ROUGE、Perplexity）→自動化與批量測試→主觀人工檢查→壓力與邊界檢查→敏感性與公平性檢查→A/B 測試與線上驗證</b>。導入實務五步：業務流程整合→試點運行→員工培訓→持續改進→效益評估與推廣。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>過擬合 vs 欠擬合</b>：訓練好、測試差＝過擬合；兩者都差＝欠擬合。<b>過擬合 vs 數據漂移</b>：過擬合是訓練當下就泛化差；漂移是上線後資料分布隨時間改變（見 <a href="#sec5-5">5-5</a>）。<b>Perplexity 越低越好</b>，BLEU／ROUGE 越高越好。<b>網格搜索</b>是調超參數，<b>交叉驗證</b>是評估方式，兩者常搭配但不同。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>LLM 當評審（LLM-as-a-judge）</b><span class="yr">（2023）</span>：Zheng 等人 2023 年的 MT-Bench／Chatbot Arena 研究顯示，強大的 LLM 評分與人類偏好的一致程度可達到人與人之間的一致水準，同時指出位置偏誤（偏好排在前面的答案）、冗長偏誤（偏好較長答案）、自我偏好等問題。它補足 BLEU／ROUGE 只看字面重疊、不懂語意的弱點，但重要場景仍需人工抽查。</li>
+        <li><b>參數高效微調（PEFT）：LoRA／QLoRA</b><span class="yr">（2021／2023）</span>：POC 若需要微調，業界多用 LoRA 或 QLoRA 只訓練少量外掛參數，成本遠低於全量微調，也方便保存多個任務版本、隨時切換。</li>
+        <li><b>RAG 的專屬評估</b><span class="yr">（2024–2025）</span>：導入 RAG 時，除了看最終答案，也要分開評估「檢索有沒有找對文件」與「回答是否忠於文件（不憑空捏造）」；這兩項常用 LLM-as-a-judge 搭配人工標註來衡量。</li>
+      </ul></div>
+
+    <h3 id="sec5-5">實施/營運階段 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-5">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>模型上線不是終點，而像<b>養一盆植物</b>：環境會變（季節＝數據漂移），要定期看葉子（監控 Accuracy、Recall、錯誤率），狀況變差就換土施肥（重新訓練），最好裝自動澆水系統（自動化重新訓練管道，效能低於警戒值就自動觸發）。養成功了再分株給其他部門（AI 價值擴散）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">落地、監控、擴散；漂移就重訓</span><br>A 專案落地 → B 模型監控與重新訓練 → C AI 價值擴散；數據漂移→更新訓練資料／觸發 Retraining Pipeline。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">準確率</span><span class="en">Accuracy</span></dt>
+      <dd>所有預測中預測正確的比例。<span class="eg">例：1000 封信分類正確 950 封＝95%。</span></dd>
+      <dt><span class="term">召回率</span><span class="en">Recall</span></dt>
+      <dd>所有真正的正例中，被模型成功找出的比例；重視「不要漏掉」。<span class="eg">例：100 筆真的詐騙交易抓到 90 筆＝召回率 90%。</span></dd>
+      <dt><span class="term">預測錯誤率</span><span class="en">Error Rate</span></dt>
+      <dd>預測錯誤的比例，等於 1 − 準確率。<span class="eg">例：準確率 95%，錯誤率就是 5%。</span></dd>
+      <dt><span class="term">數據漂移</span><span class="en">Data Drift</span></dt>
+      <dd>輸入資料的分布隨時間改變（業務場景或用戶行為改變），導致模型準確性下降。<span class="eg">例：疫情後網購比例暴增，原本的需求預測模型失準。</span></dd>
+      <dt><span class="term">自動化重新訓練管道</span><span class="en">Retraining Pipeline</span></dt>
+      <dd>自動收集新資料、重新訓練、測試並部署模型的流程，效能達警戒值時自動觸發。<span class="eg">例：準確率連續一週低於 90% 就自動啟動重訓。</span></dd>
+      <dt><span class="term">跨職能支持體系</span><span class="en">Cross-functional Support</span></dt>
+      <dd>由業務、IT、資料、法務等組成的支援團隊，協助專案長期運作。<span class="eg">例：每月由各部門代表檢討 AI 使用狀況。</span></dd>
+      <dt><span class="term">創新獎勵機制</span><span class="en">Innovation Incentives</span></dt>
+      <dd>獎勵提出或推廣 AI 應用的員工，促進良性循環。<span class="eg">例：年度 AI 應用提案競賽。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>監控指標：<b>準確率（Accuracy）、召回率（Recall）、預測錯誤率（Error Rate）</b>；定期檢查<b>數據漂移</b>；建構<b>自動化重新訓練管道</b>於效能達警戒值時自動觸發。AI 價值擴散：由單點推廣至全企業、分享成功案例、設立創新獎勵。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>準確率 vs 召回率</b>：資料不平衡時（例如詐騙只佔 1%），模型全猜「不是詐騙」也有 99% 準確率，但召回率是 0；所以「不能漏」的任務要看召回率。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>模型版本固定與供應商更版風險</b><span class="yr">（2023）</span>：使用雲端 API 時，供應商會更新或退役模型；OpenAI 於 2023 年 6 月起提供可指定日期版本的模型快照，讓輸出行為在版本固定期間保持穩定。營運階段要把「供應商換版」當成另一種漂移：換版前先用評估集回歸測試。</li>
+        <li><b>生成式 AI 的監控項目更多元</b><span class="yr">（2024–2025）</span>：除了準確率，常見還會監控幻覺率、被人工修改的比例、拒答率、不當內容攔截次數、回應延遲與 Token 用量（成本），並保留紀錄以便稽核。</li>
+      </ul></div>
+
+    <h3 id="sec5-6">ROI 計算方式 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec5-6">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>ROI 分析就是<b>老闆最在乎的那張表</b>：花了什麼錢（成本：開發部署、設備、維護、人力）、賺回什麼（直接：營收、滿意度、市場；間接：流程效率、人力最佳化）、多久回本（回本時間）、把未來的錢折成今天的價值還划不划算（NPV、IRR），以及「萬一情況變差」的試算（敏感性分析）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">本、益、指、險</span><br>成本構成、收益分析、財務指標（回本時間、NPV、IRR）、風險模擬（敏感性分析）。NPV＞0 划算；IRR＞資金成本划算。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">淨現值</span><span class="en">Net Present Value, NPV</span></dt>
+      <dd>把未來各期現金流以折現率換算成今天的價值後，再減去初始投資；大於 0 代表划算。<span class="eg">例：今天投入 100 萬，未來效益折現後值 130 萬，NPV＝30 萬。</span></dd>
+      <dt><span class="term">內部報酬率</span><span class="en">Internal Rate of Return, IRR</span></dt>
+      <dd>讓 NPV 剛好等於 0 的折現率，可想成專案的「年化報酬率」；高於資金成本才值得投資。<span class="eg">例：IRR 18%，公司借錢成本 5%，值得做。</span></dd>
+      <dt><span class="term">回本時間</span><span class="en">Payback Period</span></dt>
+      <dd>累積淨效益回收初始投資所需時間。<span class="eg">例：整合成本 20 萬、每月淨省 29,040 元，約 7 個月回本。</span></dd>
+      <dt><span class="term">敏感性分析</span><span class="en">Sensitivity Analysis</span></dt>
+      <dd>改變某個關鍵假設（市場、業務量、成本），觀察結果變化有多大。<span class="eg">例：若 API 用量多 50%，回本時間會從 7 個月變成幾個月？</span></dd>
+      <dt><span class="term">折現率</span><span class="en">Discount Rate</span></dt>
+      <dd>把未來的錢換算成現在價值時使用的比率，反映資金成本與風險。<span class="eg">例：明年的 100 元，以 5% 折現約等於今天的 95 元。</span></dd>
+    </dl>
+    <div class="box note"><span class="tag">公式</span>NPV ＝ Σ［第 t 期淨現金流 ÷（1＋折現率）<sup>t</sup>］− 初始投資　　ROI ＝（效益 − 成本）÷ 成本</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>四個層面：<b>成本構成</b>（技術開發與部署、設備購置、基礎設施維護、專業人力）、<b>收益分析</b>（直接：營收、滿意度、市場擴展；間接：流程效率、人力最佳化）、<b>財務指標</b>（回本時間、NPV、IRR）、<b>風險模擬</b>（敏感性分析）。歷屆常出回收期計算：回收期 ≈ 導入成本 ÷ 每期淨節省。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>NPV 是「金額」、IRR 是「比率」；回本時間沒考慮貨幣時間價值，NPV／IRR 有。<b>敏感性分析</b>屬「風險模擬」，不是「財務指標」。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>Token 計費讓成本變成「變動成本」</b><span class="yr">（2023 起）</span>：雲端 LLM API 多以輸入／輸出 Token 計費，成本隨用量浮動；推理模型（2024 起）在回答前會產生額外的思考內容，通常也計入用量。因此 ROI 試算應做「用量情境」的敏感性分析，而不只用單一平均值。</li>
+        <li><b>降低變動成本的手段</b><span class="yr">（2024–2025）</span>：依任務難度分流（簡單問題給小模型、難題給大模型）、批量處理、縮短提示與檢索內容、對重複的前置內容使用快取等，都是近年常見的成本優化手法。</li>
+      </ul></div>
+    <h2 class="chap" id="chap6">陸、生成式AI 風險管理</h2>
+    <p>本章重點：四項風險管理重點、資料安全的四種攻擊與三種防範、倫理偏見與黑箱、法規要點，以及風險矩陣與六種風險應對策略（溯源、文化、接受、緩解、迴避、轉移）。情境題最愛考「這個做法屬於哪一種策略」。</p>
+
+    <h3 id="sec6-1">風險管理重點 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec6-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>生成式 AI 的風險管理像<b>開餐廳的食安四件事</b>：食材來源合法（遵守法律、審查資料授權）、客人資料不外洩（資料隱私）、不歧視任何客人（降低倫理偏見）、出菜前有人試吃把關（建立審核機制）。任何一件出事，都會傷到資安、品牌與法律責任。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">私、偏、法、審</span><br>確保資料隱私（加密、匿名化、權限）、降低倫理偏見（多樣化資料＋公平性測試）、遵守法律規範（審查資料來源授權）、建立審核機制（監控審查生成內容）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">敏感資訊</span><span class="en">Sensitive Information</span></dt>
+      <dd>外洩會造成個人或企業傷害的資料，如個資、營業秘密、財務資料。<span class="eg">例：客戶身分證號、未公開的產品設計。</span></dd>
+      <dt><span class="term">公平性測試</span><span class="en">Fairness Testing</span></dt>
+      <dd>檢查模型對不同群體的結果是否有不合理差異。<span class="eg">例：比較不同年齡層客戶的貸款審核建議。</span></dd>
+      <dt><span class="term">內容審核機制</span><span class="en">Content Moderation / Review</span></dt>
+      <dd>對生成內容進行監控與審查，避免發布不適當內容。<span class="eg">例：AI 產生的新聞稿須經公關主管核可才發布。</span></dd>
+      <dt><span class="term">品牌聲譽風險</span><span class="en">Reputational Risk</span></dt>
+      <dd>因不當事件損及企業形象與信任的風險。<span class="eg">例：客服機器人回覆歧視言論被截圖瘋傳。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>常見風險三大類：<b>資料隱私與安全、倫理偏見、法律合規</b>，影響資訊安全、品牌聲譽與法律責任。四項重點：<b>確保資料隱私、降低倫理偏見、遵守法律規範、建立審核機制</b>。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>OWASP LLM 應用十大風險（2025 版）</b><span class="yr">（2025）</span>：可作為四項重點之外的技術檢查表，特別是指引較少提到的<b>提示注入、系統提示洩漏、過度代理權</b>（給 AI 太多權限，例如讓客服機器人能直接退款）與<b>無上限資源消耗</b>（被濫用導致費用暴增）。</li>
+        <li><b>AI Agent 讓風險從「說錯話」升級到「做錯事」</b><span class="yr">（2025）</span>：能呼叫工具的 Agent 若被誤導，可能刪檔、寄信、下單。常見對策是最小權限、高風險動作需人工確認、操作留存紀錄，呼應指引「建立審核機制」。</li>
+      </ul></div>
+
+    <h3 id="sec6-2">資料隱私與安全 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec6-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>模型讀過大量資料，有時會「<b>說溜嘴</b>」把訓練資料原文吐出來（訓練數據洩漏）；壞人也會<b>拆解模型</b>推敲它學了什麼（反向工程）、<b>一直問</b>想拼湊出敏感資料（提示詞攻擊）、或<b>設計陷阱輸入</b>騙它做壞事（對抗性攻擊）。防守三招：確認身分與權限、資料加密、差分隱私（在資料或結果中加入精心控制的雜訊，讓人無法回推出某一個人）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">漏、拆、問、騙 → 驗、密、噪</span><br>四風險：訓練數據洩漏（漏）、反向工程（拆）、提示詞攻擊（問）、對抗性攻擊（騙）；三防範：身份驗證與授權（驗）、加密（密）、差分隱私加雜訊（噪）。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">訓練數據洩漏</span><span class="en">Training Data Leakage</span></dt>
+      <dd>模型生成內容時無意間重複訓練資料中的片段或隱私資訊。<span class="eg">例：模型吐出某人的電話與住址。</span></dd>
+      <dt><span class="term">反向工程</span><span class="en">Reverse Engineering</span></dt>
+      <dd>透過分析模型行為，推斷模型參數或訓練資料。<span class="eg">例：大量查詢 API，仿製出功能相近的模型。</span></dd>
+      <dt><span class="term">提示詞攻擊</span><span class="en">Prompt Attack</span></dt>
+      <dd>透過精心設計或多次查詢的提示，試圖推斷、重建訓練資料中的敏感內容，或讓模型違反規則。<span class="eg">例：反覆換句話問「你訓練資料裡某公司的內部文件寫了什麼」。</span></dd>
+      <dt><span class="term">對抗性攻擊</span><span class="en">Adversarial Attack</span></dt>
+      <dd>精心設計的輸入（人眼幾乎看不出差異）操控模型輸出，甚至誘導洩密。<span class="eg">例：在圖片加入微小雜訊，讓模型把停車標誌認成速限標誌。</span></dd>
+      <dt><span class="term">身份驗證與授權</span><span class="en">Authentication &amp; Authorization</span></dt>
+      <dd>確認使用者身分，並只給他該有的存取權限。<span class="eg">例：只有人資部能查詢含薪資資料的 AI 助理。</span></dd>
+      <dt><span class="term">差分隱私</span><span class="en">Differential Privacy</span></dt>
+      <dd>在資料或統計結果中加入經數學設計的雜訊，使任何單一個人的資料是否在其中都難以判斷，同時保留整體統計意義。<span class="eg">例：公布各區平均收入時加入少量雜訊，無法回推某位居民的收入。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>四種常見風險：<b>訓練數據洩漏、反向工程、提示詞攻擊、對抗性攻擊</b>；三項防範：<b>身份驗證與授權、加密技術（儲存與傳輸）、差分隱私等資料雜訊技術</b>。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>差分隱私</b>是「加雜訊」；<b>匿名化</b>是「移除識別資訊」；<b>加密</b>是「沒金鑰看不懂」。另外常考：<b>同態加密</b>＝資料在加密狀態下仍可計算；<b>聯邦學習</b>＝原始資料不離開各端，只交換模型更新。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>訓練資料萃取攻擊</b><span class="yr">（2021）</span>：Carlini 等人在 2021 年的研究示範，可從大型語言模型中萃取出逐字的訓練資料（含個人資訊），是「訓練數據洩漏」的實證。</li>
+        <li><b>間接提示注入（Indirect Prompt Injection）</b><span class="yr">（2023）</span>：Greshake 等人 2023 年的論文指出，攻擊者不必直接和模型對話，只要把惡意指令藏在模型會讀到的網頁、文件或 Email 中，就能操控整合了 LLM 的應用。RAG 與 AI Agent 普及後，這成為最主要的新型風險之一，對策包括把外部內容當「資料」不當「指令」、限制工具權限、敏感動作需人工確認。</li>
+        <li><b>員工把機密貼進公開 AI 服務</b><span class="yr">（2023 起）</span>：資料外洩不一定來自駭客，常見的是員工為了方便，把原始碼、會議紀錄或客戶資料貼到外部聊天機器人。對策：企業版服務（約定不拿來訓練）、資料外洩防護（Data Loss Prevention, DLP）工具、明確的 AI 使用政策與教育訓練。</li>
+      </ul></div>
+
+    <h3 id="sec6-3">倫理與偏見 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec6-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>模型是從歷史資料學的，歷史有偏見，模型就會<b>照單全收、甚至放大</b>：問「護理師」就畫女性、問「工程師」就畫男性。而且它像<b>黑箱</b>，說不清楚為什麼這樣判斷，出了事也不知道該怪誰。對策：資料要多元、用去偏見技術調整、持續監控輸出、推動可解釋 AI、引入第三方評估。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">資料多元、決策透明、外部檢驗</span><br>三招對應指引：多樣化資料＋去偏見＋監控；透明決策流程＋XAI；第三方評估。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">偏見</span><span class="en">Bias</span></dt>
+      <dd>模型對特定性別、種族、文化等群體產生系統性的不公平傾向。<span class="eg">例：圖像生成模型在膚色與性別分佈上不均衡。</span></dd>
+      <dt><span class="term">黑箱</span><span class="en">Black Box</span></dt>
+      <dd>使用者無法理解 AI 的推理與決策過程，削弱可信度並使責任歸屬模糊。<span class="eg">例：貸款被拒，但系統說不出原因。</span></dd>
+      <dt><span class="term">去偏見技術</span><span class="en">Bias Mitigation Techniques</span></dt>
+      <dd>在資料、訓練或輸出階段降低偏見的方法，如重新加權、過濾規則、調整門檻。<span class="eg">例：提高少數群體樣本權重後再訓練。</span></dd>
+      <dt><span class="term">可解釋性 AI</span><span class="en">Explainable AI, XAI</span></dt>
+      <dd>讓人能理解 AI 為何做出某個決策的技術與研究。<span class="eg">例：顯示「收入、負債比」是影響這次評分的前兩大因素。</span></dd>
+      <dt><span class="term">第三方評估</span><span class="en">Third-party Audit / Assessment</span></dt>
+      <dd>由獨立外部單位客觀審視 AI 系統結果。<span class="eg">例：委託外部機構檢測招募 AI 是否歧視。</span></dd>
+      <dt><span class="term">責任歸屬</span><span class="en">Accountability</span></dt>
+      <dd>AI 出錯時由誰負責、如何追究與補救。<span class="eg">例：明定 AI 產生的報價錯誤由哪個部門覆核負責。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>偏見來自<b>歷史資料</b>；黑箱削弱可信度並造成<b>責任歸屬模糊</b>。三項對策：<b>確保訓練數據多樣性＋去偏見技術＋輸出監控</b>、<b>透明決策流程＋推進 XAI</b>、<b>引入第三方評估</b>。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>偏見檢測 vs 偏見緩解</b>：「比較不同族群的預測分布或錯誤率」是<b>檢測</b>；「重新加權、過濾規則、調整門檻」是<b>緩解</b>。XAI 解決的是「看不懂」（透明），不是直接解決「不公平」。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>以原則對齊模型：Constitutional AI</b><span class="yr">（2022）</span>：Anthropic 提出讓模型依一組書面原則自我批評與修正、並用 AI 回饋取代部分人類標註，降低有害輸出。和 RLHF 的差別：價值判斷寫成可公開檢視的原則，較透明。</li>
+        <li><b>AI 評審本身也有偏見</b><span class="yr">（2023）</span>：用 LLM 評估 LLM 時，研究發現有位置、冗長、自我偏好等偏誤；因此公平性檢查不能完全交給 AI 評審，需搭配人工與第三方評估。</li>
+        <li><b>台灣《人工智慧基本法》七大原則</b><span class="yr">（2026）</span>：包含「透明與可解釋」「公平與不歧視」「問責」等，與指引的黑箱、偏見、責任歸屬議題直接對應（詳見 <a href="#sec6-4">6-4</a>）。</li>
+      </ul></div>
+
+    <h3 id="sec6-4">生成式AI 與法規 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec6-4">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>法規就是 AI 的<b>交通規則</b>：個資要匿名或假名化、使用前讓人知情同意（隱私）；訓練與生成不能侵犯別人的著作（資料來源合法）；醫療、自駕、公共政策這種「出事會出人命」的路段要特別嚴格審查（高風險限制）；出了事誰負責要先講好（責任分擔）；規則各地不同，所以要定期檢查、找法律專家一起訂內規（多層次對應）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">隱、源、高、責、多</span><br>資料隱私保護、資料來源合法性、高風險應用限制、責任分擔、多層次法規對應。代表法規：歐盟 <b>GDPR</b>、美國加州 <b>CCPA</b>。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">假名化</span><span class="en">Pseudonymization</span></dt>
+      <dd>以代號取代可直接識別的資訊，但保有對照表，必要時仍可還原；仍屬個資，需妥善保護。<span class="eg">例：病歷中姓名改為「P0231」，對照表另外鎖在院內。</span></dd>
+      <dt><span class="term">知情同意</span><span class="en">Informed Consent</span></dt>
+      <dd>讓當事人清楚了解資料用途後再同意使用。<span class="eg">例：App 說明「對話紀錄將用於改善服務」並讓使用者勾選同意。</span></dd>
+      <dt><span class="term">智慧財產權／著作權</span><span class="en">Intellectual Property, IP / Copyright</span></dt>
+      <dd>保護創作與發明的權利；生成圖像、文本、音樂時須避免侵犯第三方權利。<span class="eg">例：生成與某知名角色幾乎相同的圖案用於商品可能侵權。</span></dd>
+      <dt><span class="term">高風險應用</span><span class="en">High-risk Applications</span></dt>
+      <dd>錯誤可能造成重大傷害、須特別嚴格審查的應用，如重大醫療決策、自動駕駛、公共政策建議。<span class="eg">例：AI 建議化療劑量必須經醫師與嚴格驗證。</span></dd>
+      <dt><span class="term">合規性審查</span><span class="en">Compliance Review</span></dt>
+      <dd>檢查系統與流程是否符合法規與內部政策。<span class="eg">例：上線前由法務確認個資處理符合規定。</span></dd>
+      <dt><span class="term">內部使用政策</span><span class="en">Internal AI Use Policy</span></dt>
+      <dd>企業自訂的 AI 使用規範，與法律專家合作制定。<span class="eg">例：規定哪些資料可輸入哪些 AI 工具。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>GDPR 與 CCPA 對<b>資料匿名化處理、差分隱私技術應用</b>提出要求；五項法規要點：資料隱私保護（匿名化或假名化、知情授權）、資料來源合法性（版權與 IP）、高風險應用限制（醫療、自駕、公共政策→技術標準與合規審查）、責任分擔、多層次法規對應（定期審查、與法律專家制定內部政策）。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>匿名化 vs 假名化</b>：匿名化後無法再識別個人；假名化可透過對照表還原，在 GDPR 下仍屬個人資料。<b>GDPR</b> 是歐盟、<b>CCPA</b> 是美國加州，別記反。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>歐盟《人工智慧法》（EU AI Act）</b><span class="yr">（2024）</span>：全球第一部全面性 AI 法規，以風險分級管理。2024 年 8 月 1 日生效；2025 年 2 月 2 日起禁止特定 AI 用途並要求 AI 素養；2025 年 8 月 2 日起規範通用目的 AI 模型；第 50 條透明義務（如告知使用者正與 AI 互動、標示 AI 生成內容）自 2026 年 8 月 2 日起適用。</li>
+        <li><b>歐盟 AI 法簡化修正（Digital Omnibus on AI）</b><span class="yr">（2026）</span>：2026 年 7 月正式通過並生效，將獨立高風險 AI 系統的義務延後至 2027 年 12 月 2 日、嵌入產品的高風險 AI 延後至 2028 年 8 月 2 日；禁止條款、AI 素養、通用目的 AI 規則與透明義務維持原時程。（以上依法律事務所整理之公開資訊，實際條文以歐盟公報為準。）</li>
+        <li><b>台灣《人工智慧基本法》</b><span class="yr">（2025–2026）</span>：立法院 2025 年 12 月 23 日三讀，總統 2026 年 1 月 14 日公布施行，中央主管機關為國科會；揭示永續發展與福祉、人類自主、隱私保護與資料治理、資安與安全、透明與可解釋、公平與不歧視、問責七大原則；由數位發展部推動 AI 風險分類框架，被歸為高風險的 AI 產品或系統應明確標示注意事項或警語。</li>
+        <li><b>台灣《個人資料保護法》修正</b><span class="yr">（2025）</span>：2025 年 10 月三讀、11 月 11 日公布，配合「個人資料保護委員會」成立，賦予其監管與執法權限並明定個資事故通報義務；施行日期由行政院另定。</li>
+        <li><b>亞洲其他 AI 立法</b><span class="yr">（2025–2026）</span>：日本《AI 推進法》2025 年 5 月通過、以促進為主、對民間不設罰則；韓國《AI 基本法》2026 年 1 月 22 日施行，含高影響 AI 與生成式 AI 標示等規定。</li>
+        <li><b>內容來源標記：C2PA 與數位浮水印</b><span class="yr">（2021／2023）</span>：C2PA（Coalition for Content Provenance and Authenticity，內容來源與真實性聯盟）制定在檔案中嵌入「來源憑證」中繼資料的開放標準；Google DeepMind 的 SynthID 自 2023 年起在生成內容中嵌入肉眼不可見的浮水印。前者容易被移除中繼資料、後者不依賴中繼資料，兩者常搭配使用，用於落實「標示 AI 生成內容」的透明義務。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>指引寫法（作答依此）vs 業界現況</b>：指引以 GDPR、CCPA 作為代表法規，作答時以此為準；實務上 2024 年後各國已陸續出現「AI 專法」（歐盟 AI Act、台灣 AI 基本法、韓國 AI 基本法等），導入專案除了個資法，也要檢查 AI 專法的分級與標示義務。</div>
+
+    <h3 id="sec6-5">風險種類與管理策略 <a class="back" href="初級_科目2_生成式AI應用與規劃.html#sec6-5">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>先用<b>風險矩陣</b>把每個風險放進「發生機率 × 影響程度」的九宮格，紅區先處理。接著對每個風險選一種應對方式，就像面對「下雨」：<br>・<b>迴避</b>：今天不出門（暫緩高風險應用）；<br>・<b>緩解</b>：帶傘、穿雨鞋（從資料管理、內容審查著手降低機率或影響）；<br>・<b>轉移</b>：叫計程車、買保險（風險責任轉給第三方，但仍要監督）；<br>・<b>接受</b>：毛毛雨就算了，但準備備用衣服（影響有限時接受，並訂應急計畫）。<br>再加上兩個「基礎建設」：<b>風險溯源</b>（查清楚雨從哪來：資料來源與生成過程可追溯）與<b>風險文化</b>（全家都養成看天氣預報的習慣：培訓與通報獎勵）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">溯、文、接、緩、避、轉</span><br>A 風險溯源、B 風險文化、C 風險接受、D 風險緩解、E 風險迴避、F 風險轉移。四種經典應對可記「<b>避、減、轉、受</b>」。</div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">風險矩陣</span><span class="en">Risk Matrix</span></dt>
+      <dd>把風險的發生機率與影響程度交叉對比的定量／定性工具，用來排序優先處理順序。<span class="eg">例：「客戶個資外洩」機率中、影響極高→列為紅色優先處理。</span></dd>
+      <dt><span class="term">風險溯源</span><span class="en">Risk Traceability</span></dt>
+      <dd>審核資料來源的合法性與可靠性，並用可解釋性技術讓生成過程（輸入、處理邏輯、參數）可追溯。<span class="eg">例：每份 AI 報告都記錄引用了哪些文件與模型版本。</span></dd>
+      <dt><span class="term">風險文化</span><span class="en">Risk Culture</span></dt>
+      <dd>透過培訓、通報機制與獎勵，讓全員主動辨識與回報風險。<span class="eg">例：員工回報 AI 錯誤回覆可獲得表揚。</span></dd>
+      <dt><span class="term">風險接受</span><span class="en">Risk Acceptance</span></dt>
+      <dd>影響有限或無法完全避免時，評估容忍度後接受，並制定應急計畫。<span class="eg">例：內部草稿工具偶爾錯字，接受並要求人工校對。</span></dd>
+      <dt><span class="term">風險緩解</span><span class="en">Risk Mitigation</span></dt>
+      <dd>採取措施降低風險發生機率或影響：從資料管理開始、審查生成內容、定期更新控制策略。<span class="eg">例：對外發布前加一道人工審稿。</span></dd>
+      <dt><span class="term">風險迴避</span><span class="en">Risk Avoidance</span></dt>
+      <dd>技術不成熟或可能造成重大損害時，暫緩或不進行該應用，並設明確迴避標準。<span class="eg">例：暫不讓 AI 直接給病患用藥建議。</span></dd>
+      <dt><span class="term">風險轉移</span><span class="en">Risk Transfer</span></dt>
+      <dd>透過保險或合約，把部分或全部風險責任轉給第三方；仍須保留監控與審核權。<span class="eg">例：購買資安保險、外包資安管理並簽訂責任條款。</span></dd>
+      <dt><span class="term">風險容忍度</span><span class="en">Risk Tolerance / Appetite</span></dt>
+      <dd>組織願意承受的風險程度。<span class="eg">例：行銷文案可容忍少量修改，財報數字零容忍。</span></dd>
+      <dt><span class="term">應急計畫</span><span class="en">Contingency Plan</span></dt>
+      <dd>風險發生時的預先備案。<span class="eg">例：AI 客服故障時自動轉接真人客服。</span></dd>
+      <dt><span class="term">透明承諾</span><span class="en">Transparency Commitment</span></dt>
+      <dd>向外界公開風險管理做法，例如標示「此內容由 AI 生成」，以增加信任、減少誤解。<span class="eg">例：網站文章底部註明「本文由 AI 協助撰寫並經編輯審閱」。</span></dd>
+    </dl>
+    <div class="exam"><span class="tag">📌 考試重點</span>風險評估核心＝<b>依嚴重性與發生可能性排序</b>（風險矩陣＝機率 × 影響）。情境判斷：<b>暫緩不做→迴避</b>；<b>加審查、改善資料→緩解</b>；<b>買保險、外包簽約→轉移</b>（仍需保留監控與審核權限）；<b>影響有限、評估容忍度＋應急計畫→接受</b>；<b>審核資料來源、可追溯→溯源</b>；<b>培訓、通報獎勵→文化</b>。透明承諾：標示「此內容由 AI 生成」。</div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span><b>轉移 ≠ 撒手不管</b>：指引明寫即便轉移仍需保留監控與審核權限。<b>接受 ≠ 忽略</b>：要先評估容忍度並準備應急計畫。<b>迴避 vs 緩解</b>：迴避是「不做」，緩解是「做但降低風險」。</div>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>ISO/IEC 42001 AI 管理系統</b><span class="yr">（2023）</span>：2023 年 12 月發布的國際標準，要求組織建立 AI 政策、風險評估與處理、影響評估、持續改善等管理制度，並可接受第三方驗證。把指引的六種策略「制度化」，讓風險管理不是一次性的專案。</li>
+        <li><b>NIST AI RMF 與生成式 AI 剖繪</b><span class="yr">（2023／2024）</span>：以治理、對應、量測、管理四功能循環運作；生成式 AI 剖繪（AI 600-1，2024）列出生成式 AI 特有風險與建議行動，可直接拿來填風險矩陣的「風險清單」。</li>
+        <li><b>來源標記落實「透明承諾」</b><span class="yr">（2023 起）</span>：除了文字標示「此內容由 AI 生成」，C2PA 來源憑證與 SynthID 等浮水印讓標示可被機器驗證；歐盟 AI Act 第 50 條也把標示 AI 生成內容列為法律義務（2026 年 8 月起適用）。</li>
+      </ul></div>
+
+    <section id="glossary">
+      <h2 class="chap">總整理：名詞速查</h2>
+      <p>依主題整理本頁「名詞小辭典」中的核心名詞，點章節連結可跳回該節詳細說明。</p>
+      <h4>考試與職能</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>職能基準</td><td>Occupational Competency Standard</td><td>完成工作所需的知識＋技能＋態度</td><td><a href="#sec1-1">1-1</a></td></tr>
+        <tr><td>商業智慧</td><td>Business Intelligence, BI</td><td>把資料變成報表與儀表板輔助決策</td><td><a href="#sec1-1">1-1</a></td></tr>
+        <tr><td>鑑別式 AI</td><td>Discriminative AI</td><td>負責判斷、分類、預測</td><td><a href="#sec1-2">1-2</a></td></tr>
+        <tr><td>生成式 AI</td><td>Generative AI</td><td>負責產生新內容</td><td><a href="#sec1-2">1-2</a></td></tr>
+        <tr><td>AI 治理</td><td>AI Governance</td><td>確保 AI 安全合法使用的規則與分工</td><td><a href="#sec1-2">1-2</a></td></tr>
+      </table>
+      <h4>No Code／Low Code 與 AI 民主化</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>No Code</td><td>No Code</td><td>拖放、零程式碼，給非技術者做原型</td><td><a href="#sec2-1">2-1</a></td></tr>
+        <tr><td>Low Code</td><td>Low Code</td><td>視覺化＋少量程式碼，做企業級可擴展應用</td><td><a href="#sec2-1">2-1</a></td></tr>
+        <tr><td>快速原型設計</td><td>Rapid Prototyping</td><td>先做陽春可用版試水溫</td><td><a href="#sec2-1">2-1</a></td></tr>
+        <tr><td>使用者介面／體驗</td><td>UI / UX</td><td>看到的畫面／用起來的感受</td><td><a href="#sec2-2">2-2</a></td></tr>
+        <tr><td>CRM／ERP</td><td>Customer Relationship Management / Enterprise Resource Planning</td><td>客戶關係系統／企業資源規劃系統</td><td><a href="#sec2-4">2-4</a></td></tr>
+        <tr><td>總擁有成本</td><td>Total Cost of Ownership, TCO</td><td>買＋建＋用＋維護的全部成本</td><td><a href="#sec2-4">2-4</a></td></tr>
+        <tr><td>投資報酬率</td><td>Return On Investment, ROI</td><td>（效益−成本）÷ 成本</td><td><a href="#sec2-4">2-4</a></td></tr>
+        <tr><td>API</td><td>Application Programming Interface</td><td>系統之間呼叫功能的窗口</td><td><a href="#sec2-4">2-4</a></td></tr>
+        <tr><td>GDPR／CCPA</td><td>General Data Protection Regulation / California Consumer Privacy Act</td><td>歐盟個資規則／美國加州隱私法</td><td><a href="#sec2-5">2-5</a></td></tr>
+        <tr><td>人機協作</td><td>Human-in-the-loop, HITL</td><td>關鍵處由人審核把關</td><td><a href="#sec2-5">2-5</a></td></tr>
+        <tr><td>上市時間</td><td>Time to Market</td><td>從構想到推出所需時間</td><td><a href="#sec2-6">2-6</a></td></tr>
+        <tr><td>AI 民主化</td><td>AI Democratization</td><td>讓更多人與中小企業用得起 AI</td><td><a href="#sec2-7">2-7</a></td></tr>
+        <tr><td>市民開發者</td><td>Citizen Developer</td><td>用 NC/LC 自動化工作的非技術人員</td><td><a href="#sec2-7">2-7</a></td></tr>
+      </table>
+      <h4>生成式 AI 技術</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>GAN</td><td>Generative Adversarial Network</td><td>生成器與判別器對抗學習</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>VAE</td><td>Variational Autoencoder</td><td>壓成機率潛在空間再生成</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>Transformer</td><td>Transformer</td><td>以注意力為核心的架構，GPT 的基礎</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>自注意力</td><td>Self-Attention</td><td>每個字看其他字，處理長距離依賴</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>標記化</td><td>Tokenization</td><td>把文字切成 Token</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>向量化</td><td>Vectorization / Embedding</td><td>把資料轉成數值向量</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>溫度</td><td>Temperature</td><td>低＝保守、高＝創意</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>Top-k 採樣</td><td>Top-k Sampling</td><td>只從前 k 名候選抽</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>核採樣</td><td>Nucleus (Top-p) Sampling</td><td>從累積機率達閾值的候選群抽</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>AI 幻覺</td><td>AI Hallucination</td><td>一本正經地胡說八道</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>量化</td><td>Quantization</td><td>用較少位元存參數，省記憶體</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>遷移學習</td><td>Transfer Learning</td><td>把學過的能力轉用到新任務</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>多模態</td><td>Multimodal</td><td>同時處理文、圖、聲、影</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>流式生成模型</td><td>Flow-based Generative Model</td><td>可逆轉換、可算精確機率</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>擴散模型</td><td>Diffusion Model</td><td>從雜訊一步步去噪生成</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>大型語言模型</td><td>Large Language Model, LLM</td><td>海量文字預訓練的巨型語言模型</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>預訓練／微調</td><td>Pre-training / Fine-tuning</td><td>先通用打底／再專門加工</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>RLHF</td><td>Reinforcement Learning from Human Feedback</td><td>用人類偏好當獎勵調整模型</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>提示工程</td><td>Prompt Engineering</td><td>設計提示提升生成品質</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>vLLM</td><td>vLLM</td><td>高效 LLM 推理服務引擎</td><td><a href="#sec3-3">3-3</a></td></tr>
+        <tr><td>邊緣計算</td><td>Edge Computing</td><td>在裝置或現場就近運算</td><td><a href="#sec3-3">3-3</a></td></tr>
+      </table>
+      <h4>工具與應用</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>AI 即服務</td><td>AI as a Service, AIaaS</td><td>雲端 API 按量使用 AI</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>Whisper</td><td>Whisper</td><td>OpenAI 開源語音辨識模型</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>本地部署</td><td>On-premises Deployment</td><td>模型裝在自家主機，資料不出門</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>深偽</td><td>Deepfake</td><td>AI 偽造的逼真影音</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>RAG</td><td>Retrieval-Augmented Generation</td><td>先檢索文件再生成答案</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>MCP</td><td>Model Context Protocol</td><td>AI 連接工具與資料的開放標準</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>精準醫療</td><td>Precision Medicine</td><td>依個人基因與狀況量身治療</td><td><a href="#sec3-5">3-5</a></td></tr>
+        <tr><td>VR／AR</td><td>Virtual Reality / Augmented Reality</td><td>全虛擬環境／虛實疊合</td><td><a href="#sec3-5">3-5</a></td></tr>
+      </table>
+      <h4>導入評估與規劃</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>數據完整性</td><td>Data Integrity</td><td>資料齊全正確一致</td><td><a href="#sec4-1">4-1</a></td></tr>
+        <tr><td>可擴展性</td><td>Scalability</td><td>規模變大也撐得住</td><td><a href="#sec4-1">4-1</a></td></tr>
+        <tr><td>試點</td><td>Pilot</td><td>小範圍先試</td><td><a href="#sec4-1">4-1</a></td></tr>
+        <tr><td>快速見效項目</td><td>Quick Win</td><td>難度低、短期見效的先做</td><td><a href="#sec4-2">4-2</a></td></tr>
+        <tr><td>概念驗證</td><td>Proof of Concept, POC</td><td>小規模驗證效果與 ROI</td><td><a href="#sec5-1">5-1</a></td></tr>
+        <tr><td>KPI</td><td>Key Performance Indicator</td><td>可量化的績效指標</td><td><a href="#sec5-1">5-1</a></td></tr>
+        <tr><td>數據標記</td><td>Data Labeling</td><td>幫資料加上答案或類別</td><td><a href="#sec5-3">5-3</a></td></tr>
+        <tr><td>預測性維護</td><td>Predictive Maintenance</td><td>壞掉前先保養</td><td><a href="#sec5-3">5-3</a></td></tr>
+      </table>
+      <h4>模型訓練與評估</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>自迴歸模型</td><td>Autoregressive Model</td><td>一個接一個預測下一個</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>損失函數／交叉熵</td><td>Loss Function / Cross-Entropy</td><td>預測與答案的差距（越小越好）</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>優化器（AdamW、LAMB）</td><td>Optimizer</td><td>決定怎麼調參數的演算法</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>學習率／批次／週期</td><td>Learning Rate / Batch Size / Epochs</td><td>步伐大小／每次看幾筆／看幾輪</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>超參數／網格搜索</td><td>Hyperparameter / Grid Search</td><td>人設定的參數／逐格試出最佳組合</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>交叉驗證</td><td>Cross Validation</td><td>輪流切資料多次評估</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>過擬合／欠擬合</td><td>Overfitting / Underfitting</td><td>背太熟不會變通／學太少</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>正則化／Dropout／早停</td><td>Regularization / Dropout / Early Stopping</td><td>三種防過擬合手段</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>混合精度訓練</td><td>Mixed Precision Training</td><td>高低精度混用以省資源</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>剪枝</td><td>Pruning</td><td>剪掉不重要的參數</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>BLEU／ROUGE</td><td>BLEU / ROUGE</td><td>翻譯看精確／摘要看召回</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>困惑度</td><td>Perplexity</td><td>越低代表語言越流暢</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>A/B 測試</td><td>A/B Testing</td><td>兩版本分組比成效</td><td><a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>準確率／召回率</td><td>Accuracy / Recall</td><td>整體猜對比例／真正例被抓出比例</td><td><a href="#sec5-5">5-5</a></td></tr>
+        <tr><td>數據漂移</td><td>Data Drift</td><td>上線後輸入資料分布改變</td><td><a href="#sec5-5">5-5</a></td></tr>
+        <tr><td>重新訓練管道</td><td>Retraining Pipeline</td><td>效能低於警戒值自動重訓</td><td><a href="#sec5-5">5-5</a></td></tr>
+        <tr><td>NPV／IRR</td><td>Net Present Value / Internal Rate of Return</td><td>折現後淨值／讓 NPV＝0 的報酬率</td><td><a href="#sec5-6">5-6</a></td></tr>
+        <tr><td>敏感性分析</td><td>Sensitivity Analysis</td><td>改變假設看結果變多少</td><td><a href="#sec5-6">5-6</a></td></tr>
+      </table>
+      <h4>風險管理與法規</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>訓練數據洩漏</td><td>Training Data Leakage</td><td>模型說溜嘴吐出訓練資料</td><td><a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>反向工程</td><td>Reverse Engineering</td><td>分析模型行為推回參數或資料</td><td><a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>提示詞攻擊</td><td>Prompt Attack</td><td>用提示套出敏感資料或破規則</td><td><a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>對抗性攻擊</td><td>Adversarial Attack</td><td>設計陷阱輸入操控模型</td><td><a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>差分隱私</td><td>Differential Privacy</td><td>加入控制過的雜訊保護個人</td><td><a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>黑箱</td><td>Black Box</td><td>看不懂 AI 為何如此判斷</td><td><a href="#sec6-3">6-3</a></td></tr>
+        <tr><td>可解釋性 AI</td><td>Explainable AI, XAI</td><td>讓決策理由看得懂</td><td><a href="#sec6-3">6-3</a></td></tr>
+        <tr><td>去偏見技術</td><td>Bias Mitigation</td><td>降低模型偏見的方法</td><td><a href="#sec6-3">6-3</a></td></tr>
+        <tr><td>匿名化／假名化</td><td>Anonymization / Pseudonymization</td><td>無法再識別／以代號替換可還原</td><td><a href="#sec6-4">6-4</a></td></tr>
+        <tr><td>高風險應用</td><td>High-risk Applications</td><td>醫療、自駕、公共政策等須嚴審</td><td><a href="#sec6-4">6-4</a></td></tr>
+        <tr><td>風險矩陣</td><td>Risk Matrix</td><td>機率 × 影響排優先順序</td><td><a href="#sec6-5">6-5</a></td></tr>
+        <tr><td>風險迴避／緩解／轉移／接受</td><td>Avoidance / Mitigation / Transfer / Acceptance</td><td>不做／降低／轉給第三方／評估後承受</td><td><a href="#sec6-5">6-5</a></td></tr>
+        <tr><td>風險溯源／風險文化</td><td>Traceability / Risk Culture</td><td>來源可追溯／全員風險意識</td><td><a href="#sec6-5">6-5</a></td></tr>
+      </table>
+    </section>
+
+    <section id="update-all">
+      <h2 class="chap">總整理：新進展地圖</h2>
+      <p>以下時間軸彙整本頁各節「🚀 延伸與新進展」提到的技術與法規里程碑（皆<span class="badge out">考試範圍外</span>），年份為論文、發表或施行年。</p>
+      <h4>技術與工具時間軸</h4>
+      <div class="timeline">
+        <p><b>2017</b> Transformer 架構提出，成為 GPT 等大型語言模型的基礎（<a href="#sec3-1">3-1</a>）。</p>
+        <p><b>2019</b> 以 BERT 做段落重排序，成為今日 RAG「混合檢索＋重排序」的前身（<a href="#sec3-4">3-4</a>）。</p>
+        <p><b>2020</b> GPT-3 展示少樣本提示（Few-shot）；RAG 檢索增強生成提出（<a href="#sec3-1">3-1</a>、<a href="#sec3-4">3-4</a>）。</p>
+        <p><b>2021</b> LoRA 參數高效微調；訓練資料萃取攻擊研究；C2PA 內容來源聯盟成立（<a href="#sec3-3">3-3</a>、<a href="#sec6-2">6-2</a>、<a href="#sec6-4">6-4</a>）。</p>
+        <p><b>2022</b> 思維鏈（CoT）與自我一致性提示；FlashAttention；Constitutional AI；ChatGPT 於 11 月推出（<a href="#sec3-1">3-1</a>、<a href="#sec3-3">3-3</a>、<a href="#sec6-3">6-3</a>）。</p>
+        <p><b>2023</b> 函式呼叫（Function calling）、QLoRA、DPO、PagedAttention／vLLM、Tree of Thoughts、LLM-as-a-judge、間接提示注入研究、NeMo Guardrails、SynthID 浮水印、Mixtral（MoE）（<a href="#sec2-2">2-2</a>、<a href="#sec3-3">3-3</a>、<a href="#sec5-4">5-4</a>、<a href="#sec6-2">6-2</a>）。</p>
+        <p><b>2024</b> Sora 文字生成影片、Stable Diffusion 3（Transformer＋整流）、Phi-3 小型語言模型、GraphRAG、AlphaFold 3、Structured Outputs、o1 推理模型、MCP 開放標準；諾貝爾化學獎肯定 AI 蛋白質研究（<a href="#sec3-3">3-3</a>、<a href="#sec3-4">3-4</a>、<a href="#sec2-3">2-3</a>）。</p>
+        <p><b>2025</b> DeepSeek-R1 開放權重推理模型、Agentic RAG、vibe coding 一詞出現、AI coding agent（Claude Code、Copilot coding agent）、A2A 協定、Veo 3 有聲影片、情境工程、OWASP LLM 十大風險 2025 版、Agentic AI Foundation 成立（<a href="#sec2-1">2-1</a>、<a href="#sec2-6">2-6</a>、<a href="#sec3-4">3-4</a>、<a href="#sec6-1">6-1</a>）。</p>
+      </div>
+      <h4>治理與法規時間軸</h4>
+      <div class="timeline">
+        <p><b>2023</b> NIST AI RMF 1.0（1 月）；行政院生成式 AI 參考指引草案（8 月）；ISO/IEC 42001（12 月）（<a href="#sec4-1">4-1</a>、<a href="#sec4-2">4-2</a>、<a href="#sec6-5">6-5</a>）。</p>
+        <p><b>2024</b> 金管會金融業運用 AI 指引（6 月）；NIST 生成式 AI 剖繪 AI 600-1（7 月）；EU AI Act 生效（8 月 1 日）（<a href="#sec4-2">4-2</a>、<a href="#sec6-4">6-4</a>）。</p>
+        <p><b>2025</b> EU AI Act 禁止條款與 AI 素養義務（2 月 2 日）、通用目的 AI 義務（8 月 2 日）；日本 AI 推進法（5 月）；台灣個資法修正公布（11 月）；台灣 AI 基本法三讀（12 月 23 日）（<a href="#sec4-3">4-3</a>、<a href="#sec6-4">6-4</a>）。</p>
+        <p><b>2026</b> 台灣 AI 基本法公布施行（1 月 14 日）；韓國 AI 基本法施行（1 月 22 日）；歐盟 AI 法簡化修正生效（7 月）；EU AI Act 第 50 條透明義務適用（8 月 2 日）（<a href="#sec6-4">6-4</a>）。</p>
+        <p><b>2027–2028</b> 依簡化修正，歐盟獨立高風險 AI 義務延至 2027 年 12 月 2 日、嵌入產品的高風險 AI 延至 2028 年 8 月 2 日（<a href="#sec6-4">6-4</a>）。</p>
+      </div>
+      <h4>依主題分類速覽</h4>
+      <table>
+        <tr><th>主題</th><th>指引中的舊說法</th><th>延伸的新進展</th><th>章節</th></tr>
+        <tr><td>開發方式</td><td>No Code／Low Code、AI 自動生成程式碼</td><td>Vibe coding、AI coding agent、Function calling、Structured Outputs</td><td><a href="#sec2-1">2-1</a>、<a href="#sec2-2">2-2</a></td></tr>
+        <tr><td>提示與推理</td><td>提示工程、少樣本學習、溫度與採樣</td><td>CoT、Self-consistency、ToT、推理模型、情境工程</td><td><a href="#sec3-1">3-1</a></td></tr>
+        <tr><td>知識整合</td><td>領域知識整合、微調</td><td>RAG、混合檢索＋重排序、GraphRAG、Agentic RAG；RAG vs 微調</td><td><a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>工具與代理</td><td>API、外掛、生態系</td><td>MCP、A2A、AI Agent 工作流</td><td><a href="#sec2-6">2-6</a>、<a href="#sec3-4">3-4</a></td></tr>
+        <tr><td>微調與對齊</td><td>微調、RLHF</td><td>LoRA、QLoRA（PEFT）、DPO、Constitutional AI</td><td><a href="#sec3-3">3-3</a>、<a href="#sec6-3">6-3</a></td></tr>
+        <tr><td>效率與部署</td><td>vLLM、壓縮、量化、本地部署</td><td>PagedAttention、FlashAttention、MoE、小型語言模型、開放權重模型</td><td><a href="#sec3-3">3-3</a>、<a href="#sec2-7">2-7</a></td></tr>
+        <tr><td>多模態生成</td><td>GAN、擴散、DALL-E、Midjourney</td><td>Stable Diffusion 3、Sora、Veo 3、AlphaFold 3</td><td><a href="#sec3-3">3-3</a>、<a href="#sec3-5">3-5</a></td></tr>
+        <tr><td>評估</td><td>BLEU、ROUGE、Perplexity、人工檢查、A/B 測試</td><td>LLM-as-a-judge、評估集驅動開發、RAG 分段評估</td><td><a href="#sec5-1">5-1</a>、<a href="#sec5-4">5-4</a></td></tr>
+        <tr><td>安全</td><td>洩漏、反向工程、提示詞攻擊、對抗性攻擊</td><td>間接提示注入、OWASP LLM 十大風險、護欄工具、影子 AI 對策</td><td><a href="#sec6-1">6-1</a>、<a href="#sec6-2">6-2</a></td></tr>
+        <tr><td>治理與法規</td><td>GDPR、CCPA、風險矩陣、六種策略</td><td>EU AI Act、台灣 AI 基本法、個資法修正、NIST AI RMF、ISO/IEC 42001、C2PA、SynthID</td><td><a href="#sec6-4">6-4</a>、<a href="#sec6-5">6-5</a></td></tr>
+      </table>
+      <h4>如何持續追新</h4>
+      <ul>
+        <li><b>先分清「考試」與「實務」</b>：作答一律以官方學習指引與勘誤表為準；延伸內容用來理解題目情境與日後工作，不要拿新名詞去推翻指引的標準答案。</li>
+        <li><b>法規看官方來源</b>：台灣法規查「全國法規資料庫」與主管機關（國科會、數位發展部、個資會、金管會）公告；歐盟 AI Act 以歐盟公報（EUR-Lex）為準，新聞與事務所整理只當導讀。</li>
+        <li><b>技術看原始發表</b>：模型與方法以廠商官方部落格、技術報告或 arXiv 論文為準，留意「發表年」與「正式上線年」可能不同。</li>
+        <li><b>避免追逐容易過時的數字</b>：基準分數、價格、參數量變化很快；規劃導入時應用自己的評估集實測，而不是只看排行榜。</li>
+        <li><b>建立固定節奏</b>：例如每季檢視一次公司 AI 使用政策、供應商模型版本與相關法規進度，對應 <a href="#sec5-5">5-5</a> 的持續監控精神。</li>
+      </ul>
+    </section>
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：以經濟部產業人才能力鑑定 iPAS 初級學習指引《生成式AI應用與規劃》為骨架整理，名詞解說、白話說明與延伸新進展為學習補充，並非官方評鑑內容；考試請以官方學習指引、勘誤表與公告為準。延伸內容截至 2026 年 10 月，技術發展快速，引用前請再查證。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = -1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].offsetTop <= pos) current = i;
+    }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

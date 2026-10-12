@@ -1,0 +1,1774 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級科目3 機器學習技術與應用（白話加強版）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#be185d;--accent-soft:#fce7f3;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+main{padding:40px 52px;max-width:920px;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+h2.chap{margin:46px 0 16px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+h3{margin:30px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:20px 0 8px;font-size:16px;}
+p{margin:10px 0;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;}
+th{background:var(--accent-soft);color:var(--accent);}
+tr:nth-child(even) td{background:#fafbfc;}
+.box{border-radius:8px;padding:13px 18px;margin:16px 0;border-left:4px solid;}
+.box.def{background:#eef6ff;border-color:#3b82f6;}
+.box.key{background:#fff7e6;border-color:#f59e0b;}
+.box.note{background:#f0fdf4;border-color:#22c55e;}
+.box .tag{font-weight:700;font-size:13px;display:block;margin-bottom:4px;}
+.box.def .tag{color:#1d4ed8;} .box.key .tag{color:#b45309;} .box.note .tag{color:#15803d;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+.term{font-weight:600;color:var(--accent);}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:24px}}
+.formula{background:#f4f5fb;border:1px dashed #c7cbe8;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:"Cambria Math","Segoe UI",serif;}
+/* ===== 白話加強版元件 ===== */
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.plain,.memo,.update,.exam,.pitfall{border-radius:10px;padding:12px 18px;margin:16px 0;border:1px solid;}
+.plain .tag,.memo .tag,.update .tag,.exam .tag,.pitfall .tag{display:block;font-weight:700;font-size:13px;margin-bottom:4px;}
+.plain{background:#f0f7ff;border-color:#bfdbfe;} .plain .tag{color:#1d4ed8;}
+.memo{background:#fdf4ff;border-color:#f0abfc;} .memo .tag{color:#a21caf;}
+.memo .mn{font-size:17px;font-weight:700;letter-spacing:.04em;}
+.update{background:#f0fdf4;border-color:#86efac;} .update .tag{color:#15803d;}
+.exam{background:#fff7e6;border-color:#fcd34d;} .exam .tag{color:#b45309;}
+.pitfall{background:#fef2f2;border-color:#fca5a5;} .pitfall .tag{color:#b91c1c;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:0 8px;border-radius:999px;margin-left:6px;vertical-align:2px;background:#dcfce7;color:#166534;}
+.badge.out{background:#e0e7ff;color:#3730a3;}
+.yr{font-size:12px;color:var(--muted);font-weight:400;}
+dl.terms{display:grid;grid-template-columns:minmax(150px,220px) 1fr;margin:14px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+dl.terms dt,dl.terms dd{margin:0;padding:9px 14px;border-bottom:1px solid var(--line);}
+dl.terms dt{background:var(--accent-soft);font-weight:700;}
+dl.terms dt .en{display:block;font-weight:400;font-size:12.5px;color:var(--muted);}
+dl.terms dd .eg{display:block;font-size:14px;color:var(--muted);margin-top:2px;}
+dl.terms dt:last-of-type,dl.terms dd:last-of-type{border-bottom:none;}
+.timeline{border-left:3px solid var(--accent);margin:14px 0;padding-left:16px;}
+.timeline p{margin:6px 0;} .timeline b{color:var(--accent);}
+@media(max-width:860px){dl.terms{grid-template-columns:1fr}dl.terms dt{border-bottom:none}}
+/* 深色 */
+[data-theme="dark"] .plain{background:#13223a;border-color:#2c4a77;} [data-theme="dark"] .plain .tag{color:#8ab4ff;}
+[data-theme="dark"] .memo{background:#2a1630;border-color:#6b2f78;} [data-theme="dark"] .memo .tag{color:#f0a6ff;}
+[data-theme="dark"] .update{background:#12271a;border-color:#2f6b45;} [data-theme="dark"] .update .tag{color:#5fd38a;}
+[data-theme="dark"] .exam{background:#2b2210;border-color:#6b5420;} [data-theme="dark"] .exam .tag{color:#f5b74e;}
+[data-theme="dark"] .pitfall{background:#2d1517;border-color:#7a2f33;} [data-theme="dark"] .pitfall .tag{color:#ff9b9b;}
+[data-theme="dark"] .badge{background:#14532d;color:#bbf7d0;} [data-theme="dark"] .badge.out{background:#312e81;color:#c7d2fe;}
+[data-theme="dark"] dl.terms dt{background:var(--accent-soft);}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="中級_科目3_機器學習技術與應用.html">↗ 對照完整教材</a>
+    <a href="#guide">使用說明</a>
+    <a href="#chap3">第三章 機器學習基礎數學</a>
+    <a class="sub" href="#sec3-1">3.1 機率/統計之機器學習基礎應用</a>
+    <a class="sub" href="#sec3-2">3.2 線性代數之機器學習基礎應用</a>
+    <a class="sub" href="#sec3-3">3.3 數值優化技術與方法</a>
+    <a href="#chap4">第四章 機器學習與深度學習</a>
+    <a class="sub" href="#sec4-1">4.1 機器學習原理與技術</a>
+    <a class="sub" href="#sec4-2">4.2 常見機器學習演算法</a>
+    <a class="sub" href="#sec4-3">4.3 深度學習原理與框架</a>
+    <a href="#chap5">第五章 機器學習建模與參數調校</a>
+    <a class="sub" href="#sec5-1">5.1 數據準備與特徵工程</a>
+    <a class="sub" href="#sec5-2">5.2 模型選擇與架構設計</a>
+    <a class="sub" href="#sec5-3">5.3 模型訓練、評估與驗證</a>
+    <a class="sub" href="#sec5-4">5.4 模型調整與優化</a>
+    <a href="#chap6">第六章 機器學習治理</a>
+    <a class="sub" href="#sec6-1">6.1 數據隱私、安全與合規</a>
+    <a class="sub" href="#sec6-2">6.2 演算法偏見與公平性</a>
+    <a href="#glossary">總整理：名詞速查</a>
+    <a href="#update-all">總整理：新進展地圖</a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 3 · 白話加強版</span>
+      <h1>機器學習技術與應用</h1>
+      <p class="sub">非官方補充教材 · 以官方學習指引為骨架，補名詞解說、白話說明與最新發展</p>
+      <div class="tags"><span>內容更新至 2026 年 10 月</span><span>考試以官方學習指引為準</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明</h2>
+      <p>本頁依完整教材的章節順序，每一節用以下幾種區塊加強；考試範圍以官方學習指引為準，標示<span class="badge out">考試範圍外</span>的內容是延伸知識，幫助理解與實務應用。</p>
+      <div class="howto">
+        <div><b style="color:#1d4ed8">💬 白話說</b><br>用生活比喻講清楚概念</div>
+        <div><b style="color:#a21caf">🧠 記憶口訣</b><br>一句話記住重點</div>
+        <div><b>📖 名詞小辭典</b><br>本節專有名詞中英對照與白話解釋</div>
+        <div><b style="color:#15803d">🚀 延伸與新進展</b><br>更新的演算法、模型、訓練與微調方法</div>
+        <div><b style="color:#b45309">📌 考試重點</b><br>官方指引的必考觀念</div>
+        <div><b style="color:#b91c1c">⚠️ 易混淆</b><br>常見誤解與相似名詞辨析</div>
+      </div>
+    </section>
+
+    <h2 class="chap" id="chap3">第三章 機器學習基礎數學</h2>
+    <p>這一章是全科的「數學地基」：機率統計負責<b>描述不確定</b>、線性代數負責<b>把資料變成數字表格來運算</b>、數值優化負責<b>把模型一步步調到最好</b>。考試不會要你推導，但會考「哪個分佈用在哪裡」「哪個公式代表什麼」「哪個優化器有什麼特性」，以及幾個小計算（條件機率、矩陣維度、PCA 解釋變異比例）。</p>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">機率管不確定、線代管表示、優化管學習</span><br>三大數學各有分工：模型「信心多少」看機率，「資料怎麼放」看線代，「參數怎麼調」看優化。</div>
+
+    <h3 id="sec3-1">3.1 機率/統計之機器學習基礎應用 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>機器學習模型其實很少說「一定是」，它說的是「<b>在看到這些線索（X）的情況下，答案是 Y 的機會有多大</b>」——這就是條件機率 P(Y|X)。就像氣象預報說「明天降雨機率 70%」，而不是「明天一定下雨」。這個 70% 本身就是有用的資訊：機率高就帶傘、機率中等就看情況，這就是指引說的「不確定性評估有助於風險控制與決策」。</p>
+      <p><b>離散 vs 連續</b>：數得出來的（擲骰子點數、今天訂單幾筆）用 PMF，每個值都有自己的機率、加起來等於 1；量出來的（身高、溫度）用 PDF，因為身高「剛好 170.000…公分」的機率是 0，只能問「落在 168～172 之間的機率」，所以要用積分（算曲線下面積）。</p>
+    </div>
+    <h4>常見分佈一句話認人</h4>
+    <table>
+      <tr><th>分佈</th><th>一句話</th><th>生活例子</th><th>機器學習中的位置</th></tr>
+      <tr><td>伯努利</td><td>只丟一次的硬幣：成功 1 或失敗 0</td><td>這封信是不是垃圾信</td><td>邏輯迴歸假設目標服從伯努利</td></tr>
+      <tr><td>二項</td><td>丟 n 次硬幣，成功幾次</td><td>寄 100 封 EDM，有幾人點開</td><td>多次伯努利的累計</td></tr>
+      <tr><td>泊松</td><td>固定時段內「稀有事件」發生幾次</td><td>客服每小時接到幾通電話</td><td>計數資料建模（事件獨立、平均發生率固定）</td></tr>
+      <tr><td>常態</td><td>中間多、兩邊少的鐘形</td><td>成年男性身高</td><td>線性迴歸假設誤差服從常態、標準化</td></tr>
+      <tr><td>均勻</td><td>區間內每個值機會一樣</td><td>抽籤、亂數</td><td>權重初始化、隨機抽樣</td></tr>
+      <tr><td>指數</td><td>等下一件事發生要多久；無記憶性</td><td>等公車、設備多久故障</td><td>等待/存活時間</td></tr>
+      <tr><td>卡方</td><td>標準常態變數「平方後加總」</td><td>檢查骰子公不公平</td><td>適合度檢定、列聯表獨立性檢定</td></tr>
+    </table>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">伯一次、二多次、泊稀有、指等待</span><br>伯努利只做一次試驗、二項是做多次的累計、泊松數「固定區間內稀有事件次數」、指數量「事件間的等待時間」。連續型另外記「常態鐘、均勻平、卡方平方和」。</div>
+
+    <h4>貝氏定理：用新證據更新舊看法</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>貝氏定理就是「<b>先有成見，看到證據後修正</b>」。先驗 P(A) 是你原本的看法；似然 P(B|A) 是「如果 A 為真，看到證據 B 的可能性」；後驗 P(A|B) 是看完證據後的新看法。</p>
+    </div>
+    <div class="formula">小算例（罕見疾病篩檢）：盛行率 1%、檢驗靈敏度 99%（有病驗出陽性）、偽陽性率 5%（沒病卻驗出陽性）。<br>
+      P(陽性) = 0.99×0.01 + 0.05×0.99 = 0.0099 + 0.0495 = 0.0594<br>
+      P(有病 | 陽性) = 0.0099 ÷ 0.0594 ≈ <b>16.7%</b><br>
+      直覺：因為沒病的人太多，就算偽陽性率只有 5%，「驗出陽性」的人裡面大多數其實沒病。先驗（盛行率）很重要！</div>
+    <div class="formula">條件機率計數題：100 位客戶中 40 位買了 A，其中 10 位也買了 B。<br>P(B | A) = P(A∩B) / P(A) = 10/40 = 0.25 —— 分母永遠是「條件」那一邊（已知發生的 A）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">後驗 ＝ 似然 × 先驗 ÷ 證據</span><br>「後來的看法 ＝ 證據有多支持 × 原本的看法，再除以證據本身多常見」。考題常把四個名詞對應錯位，記住：P(A) 先驗、P(B|A) 似然、P(B) 邊際、P(A|B) 後驗。</div>
+
+    <h4>假設檢定：法庭審判的邏輯</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>假設檢定像法院審判：<b>虛無假設 H₀ ＝「被告無罪」（新藥沒效、兩組沒差）</b>，除非證據夠強，否則維持原判。p 值是「如果被告真的無罪，還會看到這麼不利（甚至更不利）證據的機率」；p 值很小，代表「無罪卻剛好這麼巧」不太可能，所以拒絕 H₀。顯著水準 α（常設 0.05）是事先講好的「冤枉好人的容忍上限」，也就是<b>型一錯誤</b>機率。</p>
+    </div>
+    <table>
+      <tr><th></th><th>H₀ 其實為真</th><th>H₀ 其實為假</th></tr>
+      <tr><td>拒絕 H₀</td><td>型一錯誤（α，冤枉好人／假警報）</td><td>正確（檢定力 1−β）</td></tr>
+      <tr><td>不拒絕 H₀</td><td>正確</td><td>型二錯誤（β，放走壞人／漏報）</td></tr>
+    </table>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>機器學習本質：學習條件機率分佈 <b>P(Y|X)</b>；機率輸出反映模型信心。</li>
+        <li>離散型用 <b>PMF</b>（總和為 1）；連續型用 <b>PDF</b>，以積分算區間機率。</li>
+        <li>邏輯迴歸 ↔ 伯努利；線性迴歸誤差 ↔ 常態；指數分佈特徵是<b>無記憶性</b>；泊松假設事件獨立且平均發生率為常數。</li>
+        <li>參數估計 → 點估計與信賴區間；假設檢定 → p 值、檢定統計量；p &lt; α 拒絕 H₀。α 是型一錯誤機率。</li>
+        <li>統計量：期望值（平均趨勢）、變異數/標準差（離散程度，判斷是否標準化）、偏態（對稱性，過大用對數或 Box-Cox）、峰度（尖峰厚尾）。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>p 值不是「H₀ 為真的機率」</b>，而是「假設 H₀ 為真時，看到這種或更極端資料的機率」。</li>
+        <li><b>不拒絕 H₀ ≠ 證明 H₀ 為真</b>，只是證據不足（無罪推定 ≠ 證明清白）。</li>
+        <li><b>似然 vs 機率</b>：機率是「參數固定、看資料」；似然是「資料固定、看哪個參數最能解釋資料」。</li>
+        <li><b>PDF 的值可以大於 1</b>（它是密度不是機率），只有曲線下面積才是機率。</li>
+        <li>95% 信賴區間的意思是「用同樣方法重複抽樣，約 95% 的區間會蓋住真值」，不是「真值有 95% 機率在這個區間」。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">條件機率分佈</span><span class="en">Conditional Probability Distribution, P(Y|X)</span></dt>
+      <dd>已知輸入 X 時，各種結果 Y 的機率分配。<span class="eg">例：已知「信中含『中獎』二字」，是垃圾信的機率 90%。</span></dd>
+      <dt><span class="term">特徵／標籤</span><span class="en">Feature / Label</span></dt>
+      <dd>特徵是模型的輸入線索；標籤是要預測的答案。<span class="eg">例：房屋坪數、屋齡是特徵；房價是標籤。</span></dd>
+      <dt><span class="term">隨機變數</span><span class="en">Random Variable</span></dt>
+      <dd>把隨機結果對應成數字的規則。<span class="eg">例：擲骰子出現的點數 X。</span></dd>
+      <dt><span class="term">機率質量函數</span><span class="en">PMF, Probability Mass Function</span></dt>
+      <dd>離散變數每一個值的機率，全部加起來等於 1。<span class="eg">例：公正骰子每點機率 1/6。</span></dd>
+      <dt><span class="term">機率密度函數</span><span class="en">PDF, Probability Density Function</span></dt>
+      <dd>連續變數的「密度曲線」，區間內曲線下面積才是機率。<span class="eg">例：身高落在 165～175 公分的機率＝該段面積。</span></dd>
+      <dt><span class="term">伯努利分佈</span><span class="en">Bernoulli Distribution</span></dt>
+      <dd>只有兩種結果（1/0）的單次試驗。<span class="eg">例：使用者這次有沒有點廣告。</span></dd>
+      <dt><span class="term">二項分佈</span><span class="en">Binomial Distribution</span></dt>
+      <dd>n 次獨立伯努利試驗中成功的次數。<span class="eg">例：投籃 10 次進幾球。</span></dd>
+      <dt><span class="term">泊松分佈</span><span class="en">Poisson Distribution</span></dt>
+      <dd>固定時間或空間內稀有事件發生的次數。<span class="eg">例：某路口每天發生幾起車禍。</span></dd>
+      <dt><span class="term">常態分佈</span><span class="en">Normal / Gaussian Distribution</span></dt>
+      <dd>對稱鐘形分佈，平均數附近最多。<span class="eg">例：量測誤差、考試成績大致呈常態。</span></dd>
+      <dt><span class="term">均勻分佈</span><span class="en">Uniform Distribution</span></dt>
+      <dd>區間內每個值機會相同。<span class="eg">例：0～1 之間隨機抽一個數。</span></dd>
+      <dt><span class="term">指數分佈</span><span class="en">Exponential Distribution</span></dt>
+      <dd>事件之間等待時間的分佈。<span class="eg">例：下一位顧客多久後進門。</span></dd>
+      <dt><span class="term">無記憶性</span><span class="en">Memoryless Property</span></dt>
+      <dd>已經等了多久，不影響還要再等多久的機率。<span class="eg">例：燈泡（理想化）已亮 100 小時，再撐 10 小時的機率跟新燈泡一樣。</span></dd>
+      <dt><span class="term">卡方分佈</span><span class="en">Chi-square Distribution</span></dt>
+      <dd>多個標準常態變數平方相加的分佈，用於檢定。<span class="eg">例：檢查性別與購買偏好是否獨立。</span></dd>
+      <dt><span class="term">先驗假設</span><span class="en">Prior Assumption</span></dt>
+      <dd>建模前對資料如何產生的預設看法。<span class="eg">例：假設誤差是常態分佈，就選線性迴歸。</span></dd>
+      <dt><span class="term">變分自編碼器</span><span class="en">VAE, Variational Autoencoder</span></dt>
+      <dd>把潛在變數的機率分佈寫進架構的生成模型，可從潛在空間抽樣生成新資料。<span class="eg">例：生成新的手寫數字圖片。</span></dd>
+      <dt><span class="term">條件機率</span><span class="en">Conditional Probability</span></dt>
+      <dd>已知 B 發生下 A 發生的機率，P(A|B)=P(A∩B)/P(B)。<span class="eg">例：已知下雨，塞車的機率。</span></dd>
+      <dt><span class="term">貝氏定理／貝氏推論</span><span class="en">Bayes' Theorem / Bayesian Inference</span></dt>
+      <dd>用新證據更新原先信念的公式與推論方式。<span class="eg">例：看到陽性檢驗後更新「真的生病」的機率。</span></dd>
+      <dt><span class="term">先驗／似然／邊際／後驗</span><span class="en">Prior / Likelihood / Marginal / Posterior</span></dt>
+      <dd>看證據前的信念／假設成立時看到證據的可能性／證據整體出現的機率／看證據後的新信念。<span class="eg">例：盛行率／靈敏度／陽性率／陽性者真有病的機率。</span></dd>
+      <dt><span class="term">隱馬可夫模型</span><span class="en">HMM, Hidden Markov Model</span></dt>
+      <dd>觀察得到的序列背後，有一串看不見的狀態在依機率轉換。<span class="eg">例：從語音訊號推測背後的音素序列。</span></dd>
+      <dt><span class="term">統計推論</span><span class="en">Statistical Inference</span></dt>
+      <dd>用樣本推論母體並量化不確定性。<span class="eg">例：抽 1,000 人民調推估全國支持率。</span></dd>
+      <dt><span class="term">母體／樣本</span><span class="en">Population / Sample</span></dt>
+      <dd>想了解的全體／實際拿到手的部分資料。<span class="eg">例：全台成人／受訪的 1,000 人。</span></dd>
+      <dt><span class="term">點估計／信賴區間</span><span class="en">Point Estimate / Confidence Interval, CI</span></dt>
+      <dd>給一個最佳猜測值／給一個可能範圍與信心水準。<span class="eg">例：平均體重 68 公斤，95% CI [66, 70]。</span></dd>
+      <dt><span class="term">虛無假設／對立假設</span><span class="en">Null Hypothesis H₀ / Alternative Hypothesis H₁</span></dt>
+      <dd>預設「沒差異、沒效果」／想證明的「有差異、有效果」。<span class="eg">例：H₀ 新藥無效；H₁ 新藥有效。</span></dd>
+      <dt><span class="term">檢定統計量</span><span class="en">Test Statistic</span></dt>
+      <dd>把樣本濃縮成一個數字，用來判斷是否拒絕 H₀。<span class="eg">例：t 值、卡方值。</span></dd>
+      <dt><span class="term">顯著水準</span><span class="en">Significance Level, α</span></dt>
+      <dd>事先設定可容忍的型一錯誤機率上限。<span class="eg">例：α=0.05 表示最多容忍 5% 冤枉好人。</span></dd>
+      <dt><span class="term">p 值</span><span class="en">p-value</span></dt>
+      <dd>若 H₀ 為真，看到目前或更極端資料的機率；越小越反對 H₀。<span class="eg">例：p=0.03 &lt; 0.05，拒絕 H₀。</span></dd>
+      <dt><span class="term">型一錯誤／型二錯誤</span><span class="en">Type I Error / Type II Error</span></dt>
+      <dd>H₀ 真卻拒絕（假警報）／H₀ 假卻沒拒絕（漏報）。<span class="eg">例：健康的人被判有病／生病的人被判健康。</span></dd>
+      <dt><span class="term">期望值</span><span class="en">Expected Value</span></dt>
+      <dd>長期平均下來的值。<span class="eg">例：公正骰子期望值 3.5。</span></dd>
+      <dt><span class="term">變異數／標準差</span><span class="en">Variance / Standard Deviation</span></dt>
+      <dd>資料離平均有多分散；標準差是變異數開根號、單位與原資料相同。<span class="eg">例：兩班平均都 70 分，標準差大的那班成績較兩極。</span></dd>
+      <dt><span class="term">偏態</span><span class="en">Skewness</span></dt>
+      <dd>分佈歪向哪邊；右偏表示右邊有長尾巴。<span class="eg">例：所得分佈右偏（少數人極高收入）。</span></dd>
+      <dt><span class="term">峰度</span><span class="en">Kurtosis</span></dt>
+      <dd>分佈尖不尖、尾巴厚不厚，厚尾代表極端值較常出現。<span class="eg">例：股票報酬常見厚尾。</span></dd>
+      <dt><span class="term">Box-Cox 轉換</span><span class="en">Box-Cox Transformation</span></dt>
+      <dd>自動找參數把偏態資料轉得更接近常態（限正值）。<span class="eg">例：把右偏的房價轉成較對稱。</span></dd>
+      <dt><span class="term">直方圖／箱型圖／QQ 圖</span><span class="en">Histogram / Box Plot / QQ-plot</span></dt>
+      <dd>看分佈形狀／看中位數、四分位與離群值／比對資料是否符合某理論分佈（點落在直線上即符合）。<span class="eg">例：QQ 圖尾端翹起代表厚尾。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>機率校準 Calibration（溫度縮放 Temperature Scaling）</b><span class="yr">（2017）</span>：Guo 等人發現現代深度網路常「過度自信」——說 90% 把握但實際只對 70%。溫度縮放在 softmax 前除以一個溫度 T，讓輸出機率「說到做到」。補強了指引「機率反映信心」的前提：機率要先校準過才可信。</li>
+        <li><b>保形預測 Conformal Prediction</b><span class="yr">（理論 2005；普及教學 2021）</span>：不管底層是什麼模型，用一份校準資料算出「預測區間/預測集合」，保證在資料可交換的前提下以指定機率（如 90%）涵蓋真值。比傳統信賴區間更「不挑模型」，近年在醫療、金融的風險控管很流行，Python 有 MAPIE 等套件。</li>
+        <li><b>貝氏深度學習的實用替代：Deep Ensembles、MC Dropout</b><span class="yr">（2016–2017）</span>：完整的貝氏神經網路很難算，業界常用「訓練多個模型看意見分歧」或「推論時也開 Dropout 多跑幾次」來估計不確定性。</li>
+      </ul></div>
+
+    <h3 id="sec3-2">3.2 線性代數之機器學習基礎應用 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p><b>向量</b>就是「一筆資料的特徵清單」，例如一間房子 = [坪數, 屋齡, 樓層]；<b>矩陣</b>就是「很多筆資料疊成的 Excel 表」，每列一筆樣本、每欄一個特徵（n×d）。模型做預測，本質上就是「表格 × 權重」的矩陣乘法，所以 GPU（很會做大量乘加）才會成為 AI 的引擎。</p>
+      <p><b>點積</b>可以想成「兩個向量方向有多一致」：兩個使用者喜好向量的點積大，代表口味相近——推薦系統、語意搜尋都靠它。<b>L2 範數</b>就是向量的長度（畢氏定理推廣到多維）。</p>
+    </div>
+    <div class="formula">點積小算例：x = [2, 1, 3]、θ = [0.5, −1, 2]<br>ŷ = θᵀx = 0.5×2 + (−1)×1 + 2×3 = 1 − 1 + 6 = <b>6</b><br>
+      L2 範數：‖x‖₂ = √(2² + 1² + 3²) = √14 ≈ 3.74</div>
+    <div class="formula">矩陣維度口訣：(a × b) · (b × c) → (a × c)，<b>中間要相同、外面留下來</b>。<br>例：1 筆樣本 (1×10) × 權重 (10×64) → (1×64)；若是 (1×10) × (64×10) 就不能直接乘，要先轉置成 (10×64)。</div>
+    <h4>線性變換的四種「動作」</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>把矩陣想成「對整個空間施魔法」：<b>縮放</b>像把照片拉寬拉長；<b>旋轉</b>像轉動照片但大小不變；<b>剪切</b>像把一疊撲克牌推斜；<b>投影</b>像陽光把 3D 物體投成地上的 2D 影子——會丟失一個維度的資訊，但保留最主要的形狀。PCA 就是在找「影子最能保留原物形狀」的方向。</p>
+    </div>
+    <h4>矩陣分解：把大表拆成有意義的小零件</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>特徵值分解（EVD）</b>：只能用在「對稱方陣」（例如協方差矩陣）。特徵向量是「資料被拉伸最厲害的方向」，特徵值是「拉伸多少」。PCA 取特徵值最大的幾個方向。</li>
+        <li><b>SVD</b>：任何矩陣都能拆，是最「萬用」的分解。推薦系統裡把「使用者×電影評分表」拆成「使用者口味」×「電影風格」兩張小表，就能補出沒看過的電影評分。</li>
+        <li><b>NMF</b>：要求全部非負，所以結果只能「加」不能「減」，像樂高零件疊加——文章 ＝ 0.6×運動主題 + 0.4×財經主題，特別好解釋。</li>
+      </ul>
+    </div>
+    <div class="formula">PCA 解釋變異比例小算例：協方差矩陣特徵值為 6、3、1（總和 10）<br>
+      第一主成分解釋 6/10 = 60%；前兩個主成分合計 (6+3)/10 = <b>90%</b> → 從 3 維降到 2 維只丟 10% 的變異。</div>
+    <h4>最小平方法的直覺</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>OLS 找一條線，讓「每個點到線的垂直距離（殘差）平方後加總」最小。平方的好處是正負不會抵銷、數學好算（有封閉解 θ = (XᵀX)⁻¹Xᵀy）；壞處是離群點的大誤差會被平方放大，把整條線「拉歪」。當 XᵀX 不可逆（特徵高度共線或特徵比樣本多）時，就用偽逆或加 L2 正則化（嶺迴歸）。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">特方、奇任、非負加</span><br>特徵值分解要「方陣（且對稱）」、奇異值分解「任意矩陣」都行、非負矩陣分解「只能相加」所以好解釋（勘誤表補充：X≥0 指<b>每個元素</b>都 ≥ 0）。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>點積＝投影/相似度，是線性模型預測核心；L2 範數＝向量長度，是 L2 正則化基礎。</li>
+        <li>線性迴歸 ŷ=Xθ；神經網路前向傳播 z=Wa+b；PCA 需對協方差矩陣做特徵值分解。</li>
+        <li>EVD：A=QΛQᵀ（對稱方陣）→ PCA、LDA；SVD：X=UΣVᵀ（任意矩陣）→ 降維、推薦、LSA、影像壓縮；NMF：X≈WH（皆非負）→ 主題建模，具語意解釋力與稀疏性。</li>
+        <li>OLS 最小化殘差平方和；幾何上是投影；對離群點敏感。</li>
+        <li>維度簡化好處：提升訓練效率、去除雜訊與共線性降低過擬合、強化解釋性、利於視覺化。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>正規化 vs 正則化</b>：中文常混用。「正規化/標準化」（Normalization）多指把資料尺度調一致；「正則化」（Regularization）指在損失函數加懲罰項防過擬合。L2 範數兩者都會用到。</li>
+        <li><b>PCA vs LDA</b>：PCA 不看標籤、找「變異最大」方向（非監督）；LDA 看標籤、找「最能分開類別」方向（監督）。</li>
+        <li><b>矩陣乘法不能交換</b>：AB 一般不等於 BA，維度不合甚至不能乘。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">線性代數</span><span class="en">Linear Algebra</span></dt>
+      <dd>研究向量、矩陣與線性變換的數學。<span class="eg">例：把整個資料集當矩陣一次運算。</span></dd>
+      <dt><span class="term">向量</span><span class="en">Vector</span></dt>
+      <dd>有方向和大小的一串數字，常代表一筆樣本。<span class="eg">例：[坪數 30, 屋齡 10, 樓層 5]。</span></dd>
+      <dt><span class="term">參數向量</span><span class="en">Parameter Vector, θ</span></dt>
+      <dd>模型要學的權重排成的向量。<span class="eg">例：房價模型中每個特徵各配一個權重。</span></dd>
+      <dt><span class="term">點積（內積）</span><span class="en">Dot Product / Inner Product</span></dt>
+      <dd>對應元素相乘再加總，代表投影量或相似度。<span class="eg">例：[1,2]·[3,4]=11。</span></dd>
+      <dt><span class="term">範數／L2 範數</span><span class="en">Norm / L2 (Euclidean) Norm</span></dt>
+      <dd>向量長度的量法；L2 是各分量平方和開根號。<span class="eg">例：‖[3,4]‖₂=5。</span></dd>
+      <dt><span class="term">L1 範數</span><span class="en">L1 Norm (Manhattan)</span></dt>
+      <dd>各分量絕對值相加，像在棋盤街道走的距離。<span class="eg">例：‖[3,−4]‖₁=7。</span></dd>
+      <dt><span class="term">線性組合</span><span class="en">Linear Combination</span></dt>
+      <dd>向量各乘一個係數後相加。<span class="eg">例：2×[1,0]+3×[0,1]=[2,3]。</span></dd>
+      <dt><span class="term">矩陣</span><span class="en">Matrix</span></dt>
+      <dd>數字排成的長方形表格，可代表多筆樣本或權重。<span class="eg">例：1,000 筆×20 特徵的資料表。</span></dd>
+      <dt><span class="term">特徵矩陣／權重矩陣</span><span class="en">Feature Matrix X / Weight Matrix W</span></dt>
+      <dd>X 每列是一筆樣本；W 存放把輸入轉成輸出的權重。<span class="eg">例：X 為 n×d，W 為 d×k。</span></dd>
+      <dt><span class="term">矩陣乘法</span><span class="en">Matrix Multiplication</span></dt>
+      <dd>列乘行再加總，用來批次預測、轉換特徵空間。<span class="eg">例：(n×d)(d×1) 一次算出 n 筆預測。</span></dd>
+      <dt><span class="term">轉置</span><span class="en">Transpose, ᵀ</span></dt>
+      <dd>列與行對調。<span class="eg">例：3×2 矩陣轉置成 2×3。</span></dd>
+      <dt><span class="term">反矩陣／偽逆</span><span class="en">Inverse / Pseudo-Inverse (Moore–Penrose)</span></dt>
+      <dd>反矩陣像「除法」，但只有部分方陣有；偽逆是不可逆時的最佳近似。<span class="eg">例：用偽逆求最小平方解。</span></dd>
+      <dt><span class="term">封閉解</span><span class="en">Closed-form Solution</span></dt>
+      <dd>直接套公式算出答案，不用反覆迭代。<span class="eg">例：OLS 的 θ=(XᵀX)⁻¹Xᵀy。</span></dd>
+      <dt><span class="term">前向傳播</span><span class="en">Forward Propagation</span></dt>
+      <dd>輸入一層層乘權重、過激活函數算到輸出。<span class="eg">例：z⁽ˡ⁾=W⁽ˡ⁾a⁽ˡ⁻¹⁾+b⁽ˡ⁾。</span></dd>
+      <dt><span class="term">線性變換</span><span class="en">Linear Transformation</span></dt>
+      <dd>用矩陣乘向量把空間縮放、旋轉、剪切或投影。<span class="eg">例：把 3 維資料投影到 2 維平面。</span></dd>
+      <dt><span class="term">縮放／旋轉／剪切／投影</span><span class="en">Scaling / Rotation / Shearing / Projection</span></dt>
+      <dd>改長度／改方向不改長度／推斜／投到低維子空間。<span class="eg">例：投影像物體在地上的影子。</span></dd>
+      <dt><span class="term">正交</span><span class="en">Orthogonal</span></dt>
+      <dd>互相垂直、點積為 0，彼此資訊不重疊。<span class="eg">例：PCA 的各主成分彼此正交。</span></dd>
+      <dt><span class="term">特徵空間</span><span class="en">Feature Space</span></dt>
+      <dd>以每個特徵為一個座標軸所形成的空間，每筆資料是其中一點。<span class="eg">例：身高×體重平面上的點。</span></dd>
+      <dt><span class="term">子空間／超平面</span><span class="en">Subspace / Hyperplane</span></dt>
+      <dd>高維空間中較低維的平面；超平面比原空間少一維，常當分類邊界。<span class="eg">例：3 維空間中的 2 維平面。</span></dd>
+      <dt><span class="term">嵌入層</span><span class="en">Embedding Layer</span></dt>
+      <dd>把離散類別（字、商品 ID）轉成可學習的連續向量。<span class="eg">例：「貓」→ 300 維向量，與「狗」距離很近。</span></dd>
+      <dt><span class="term">矩陣分解</span><span class="en">Matrix Factorization</span></dt>
+      <dd>把大矩陣拆成幾個小矩陣相乘，用於降維、壓縮與推薦。<span class="eg">例：評分表＝使用者口味×電影風格。</span></dd>
+      <dt><span class="term">特徵值分解</span><span class="en">Eigenvalue Decomposition, EVD</span></dt>
+      <dd>對稱方陣 A=QΛQᵀ；特徵向量是拉伸方向、特徵值是拉伸量。<span class="eg">例：PCA 對協方差矩陣做 EVD。</span></dd>
+      <dt><span class="term">特徵值／特徵向量</span><span class="en">Eigenvalue / Eigenvector</span></dt>
+      <dd>矩陣作用後只被伸縮、不改方向的向量，與其伸縮倍數。<span class="eg">例：PCA 特徵值越大，該方向保留越多變異。</span></dd>
+      <dt><span class="term">奇異值分解</span><span class="en">SVD, Singular Value Decomposition</span></dt>
+      <dd>任意矩陣 X=UΣVᵀ，數值穩定的萬用分解。<span class="eg">例：只保留前 k 個奇異值做影像壓縮。</span></dd>
+      <dt><span class="term">非負矩陣分解</span><span class="en">NMF, Non-negative Matrix Factorization</span></dt>
+      <dd>把非負矩陣拆成兩個非負矩陣 X≈WH，結果是「部件相加」。<span class="eg">例：文章＝主題的加權組合。</span></dd>
+      <dt><span class="term">協方差矩陣</span><span class="en">Covariance Matrix</span></dt>
+      <dd>記錄每兩個特徵一起變動程度的對稱方陣。<span class="eg">例：身高與體重協方差為正。</span></dd>
+      <dt><span class="term">主成分分析</span><span class="en">PCA, Principal Component Analysis</span></dt>
+      <dd>找資料變異最大的正交方向來降維。<span class="eg">例：100 個問卷題目濃縮成 5 個構面。</span></dd>
+      <dt><span class="term">線性判別分析</span><span class="en">LDA, Linear Discriminant Analysis</span></dt>
+      <dd>利用標籤找最能分開類別的投影方向。<span class="eg">例：把花的 4 個特徵投影成最好分品種的 2 維。</span></dd>
+      <dt><span class="term">潛在語意分析</span><span class="en">LSA, Latent Semantic Analysis</span></dt>
+      <dd>對「詞×文件」矩陣做 SVD，找出隱藏的語意主題。<span class="eg">例：「汽車」與「車輛」被歸到同一主題。</span></dd>
+      <dt><span class="term">共線性</span><span class="en">Collinearity / Multicollinearity</span></dt>
+      <dd>特徵之間高度相關，讓係數估計不穩。<span class="eg">例：同時放「坪數」與「平方公尺」。</span></dd>
+      <dt><span class="term">普通最小平方法</span><span class="en">OLS, Ordinary Least Squares</span></dt>
+      <dd>找讓殘差平方和最小的參數。<span class="eg">例：畫出最貼近散佈點的迴歸直線。</span></dd>
+      <dt><span class="term">殘差</span><span class="en">Residual</span></dt>
+      <dd>實際值減預測值。<span class="eg">例：實際房價 1,000 萬、預測 950 萬，殘差 50 萬。</span></dd>
+      <dt><span class="term">離群點</span><span class="en">Outlier</span></dt>
+      <dd>明顯偏離大多數資料的點。<span class="eg">例：一筆「屋齡 300 年」的輸入錯誤。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>低秩分解走進大模型微調：LoRA</b><span class="yr">（2021）</span>：把「要更新的大權重矩陣 ΔW」近似成兩個瘦長小矩陣相乘 B·A（秩 r 很小），只訓練這兩個小矩陣。本質就是本節的矩陣分解思想，讓微調大型語言模型的參數量大幅下降（詳見 5.4）。</li>
+        <li><b>向量資料庫與近似最近鄰搜尋 ANN</b><span class="yr">（HNSW 2016）</span>：嵌入向量 + 點積/餘弦相似度，就是今日「語意搜尋」與 RAG 檢索的核心；HNSW 等圖索引讓上億向量也能毫秒級找到最相似的。</li>
+        <li><b>注意力就是一大堆點積</b><span class="yr">（2017）</span>：Transformer 的自注意力 softmax(QKᵀ/√d)V，本質是「查詢向量和每個鍵向量做點積算相似度，再加權平均值向量」——線性代數直接決定了大模型的運算量與硬體需求。</li>
+      </ul></div>
+
+    <h3 id="sec3-3">3.3 數值優化技術與方法 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>訓練模型就像<b>在濃霧中下山</b>：你看不到山谷（最佳解）在哪，只能用腳感覺「哪個方向最陡往下」（梯度），然後往那邊走一步（學習率決定步伐大小）。</p>
+      <ul>
+        <li><b>GD（批次梯度下降）</b>：每走一步前，先問遍全村的人（整個訓練集）意見再決定方向——很準但很慢。</li>
+        <li><b>SGD</b>：每次只問一個路人就走——很快但容易東倒西歪。</li>
+        <li><b>Mini-batch</b>：每次問一小群人（如 32～256 人）——兼顧速度與穩定，還剛好適合 GPU 平行運算，是深度學習的預設做法。</li>
+      </ul>
+      <p><b>凸 vs 非凸</b>：凸函數像一個碗，只有一個谷底，從哪出發都走得到；非凸函數像山區，有很多小山谷（局部最小值）和馬鞍形的平地（鞍點），神經網路屬於後者。</p>
+    </div>
+    <div class="formula">梯度下降一步小算例：損失 L(w) = (w − 3)²，梯度 dL/dw = 2(w − 3)<br>
+      起點 w=0、學習率 η=0.1：w ← 0 − 0.1×2×(0−3) = <b>0.6</b>；下一步 w ← 0.6 − 0.1×2×(0.6−3) = 1.08 … 逐步接近 3。<br>
+      若 η=1.1（太大）：w ← 0 − 1.1×(−6) = 6.6 → 越過谷底且越跳越遠（發散）。</div>
+    <h4>損失函數怎麼選？</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>損失函數就是「<b>你要怎麼罰錯</b>」。MSE 把誤差平方：錯 1 罰 1、錯 10 罰 100，所以特別在意大錯（也特別怕離群值）；MAE 錯多少罰多少，對極端值比較淡定；Huber 是折衷——小錯用平方（平滑好優化）、大錯改線性（不被離群值綁架）。分類用交叉熵：如果你對正確答案只給 1% 機率，它會重重罰你（−log 0.01 ≈ 4.6），給 90% 只罰一點（−log 0.9 ≈ 0.1）。Focal Loss 則是「對已經答對的簡單題少罰，把力氣花在難題」，適合不平衡資料。</p>
+    </div>
+    <h4>優化器演化：從「走路」到「開有避震的車」</h4>
+    <table>
+      <tr><th>優化器</th><th>白話比喻</th><th>解決了什麼</th></tr>
+      <tr><td>SGD</td><td>每步照坡度走</td><td>基本款</td></tr>
+      <tr><td>Momentum</td><td>滾下山的球有慣性</td><td>減少左右震盪、衝過小坑</td></tr>
+      <tr><td>Adagrad</td><td>常走的路步伐變小、少走的路步伐保持大</td><td>適合稀疏特徵；但步伐越縮越小，最後走不動</td></tr>
+      <tr><td>RMSprop</td><td>只看「最近」的路況來調步伐</td><td>用滑動平均修正 Adagrad 學習率衰減過快</td></tr>
+      <tr><td>Adam</td><td>慣性（一階動量）＋自動調步伐（二階動量）＋偏差修正</td><td>集大成，深度學習最常用</td></tr>
+    </table>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">動量加慣性，Ada 自調步，RMS 看最近，Adam 兩者併</span><br>Adam ＝ Momentum ＋ RMSprop。Adagrad 的缺點是「學習率越來越小、可能停止學習」，RMSprop 就是為修正它而生。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>最佳化問題四要素：目標函數、決策變數、可行域、函數性質（凸性與可導性）。凸問題（線性/邏輯迴歸）可找到全域最佳解；神經網路為非凸，有局部最小值與鞍點。</li>
+        <li>迴歸：MSE（放大大誤差）、MAE（抗異常值）、Huber（折衷）；分類：交叉熵（標準選擇）、對比損失（相似度學習，人臉辨識）、Focal Loss（難樣本、不平衡）；排序損失（搜尋推薦）、重建損失（自編碼器）。</li>
+        <li>GD 穩但慢、SGD 快但震盪、Mini-batch 折衷且最常用。</li>
+        <li>學習率過高 → 震盪或發散；過低 → 收斂極慢。穩定訓練策略：學習率調度（Step Decay、Cosine Annealing、ReduceLROnPlateau）、Early Stopping、梯度裁剪（防梯度爆炸）、Batch Normalization。</li>
+        <li>收斂判準：損失變化量低於 ε、驗證效能不再提升、梯度趨近 0、步數或時間上限。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>參數 vs 超參數</b>：權重是模型自己學的「參數（決策變數）」；學習率、批次大小是人設定的「超參數」。</li>
+        <li><b>梯度消失 vs 梯度爆炸</b>：前者梯度越傳越小、前面層學不動（用 ReLU、殘差、BN 改善）；後者越傳越大、數值炸成 NaN（用梯度裁剪）。</li>
+        <li><b>Epoch / Batch / Iteration</b>：1 個 epoch ＝ 全部資料看過一遍；1,000 筆資料、batch size 100 → 每個 epoch 有 10 次 iteration（參數更新）。</li>
+        <li><b>Adam 並非永遠最好</b>：指引也提到 Adam「部分情境泛化略輸 SGD」，電腦視覺常見 SGD＋Momentum 仍很有競爭力。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">數值優化</span><span class="en">Numerical Optimization</span></dt>
+      <dd>用反覆計算逐步逼近最佳參數的方法。<span class="eg">例：用梯度下降訓練神經網路。</span></dd>
+      <dt><span class="term">目標函數／損失函數／成本函數</span><span class="en">Objective / Loss / Cost Function</span></dt>
+      <dd>衡量模型錯多少的分數，要讓它最小。<span class="eg">例：預測房價的平均平方誤差。</span></dd>
+      <dt><span class="term">決策變數</span><span class="en">Decision Variables</span></dt>
+      <dd>優化過程中要調整的數值，在機器學習就是模型參數。<span class="eg">例：迴歸係數、神經網路權重與偏差。</span></dd>
+      <dt><span class="term">可行域（參數空間）</span><span class="en">Feasible Region / Parameter Space</span></dt>
+      <dd>參數允許的範圍。<span class="eg">例：NMF 要求非負；機率總和必須是 1。</span></dd>
+      <dt><span class="term">凸函數</span><span class="en">Convex Function</span></dt>
+      <dd>像碗一樣只有一個谷底的函數，局部最佳就是全域最佳。<span class="eg">例：線性迴歸的 MSE。</span></dd>
+      <dt><span class="term">可導性</span><span class="en">Differentiability</span></dt>
+      <dd>函數每處都能算斜率，是梯度下降的前提。<span class="eg">例：MAE 在 0 點不可導，實務用次梯度處理。</span></dd>
+      <dt><span class="term">全域最佳解／局部最小值</span><span class="en">Global Optimum / Local Minimum</span></dt>
+      <dd>整座山最低點／附近看起來最低但不是全山最低。<span class="eg">例：困在小山谷以為到了谷底。</span></dd>
+      <dt><span class="term">鞍點</span><span class="en">Saddle Point</span></dt>
+      <dd>某方向是谷底、另一方向是山頂的平坦點，梯度為 0 但不是最低點。<span class="eg">例：像馬鞍中央。</span></dd>
+      <dt><span class="term">均方誤差</span><span class="en">MSE, Mean Squared Error</span></dt>
+      <dd>誤差平方的平均，放大大誤差。<span class="eg">例：誤差 1、3 → (1+9)/2=5。</span></dd>
+      <dt><span class="term">平均絕對誤差</span><span class="en">MAE, Mean Absolute Error</span></dt>
+      <dd>誤差絕對值的平均，對極端值較不敏感。<span class="eg">例：誤差 1、3 → 2。</span></dd>
+      <dt><span class="term">Huber 損失</span><span class="en">Huber Loss</span></dt>
+      <dd>小誤差用平方、大誤差用線性，兼顧平滑與抗雜訊。<span class="eg">例：含少量感測器異常值的迴歸。</span></dd>
+      <dt><span class="term">交叉熵損失（對數損失）</span><span class="en">Cross-Entropy / Log Loss</span></dt>
+      <dd>衡量預測機率和真實標籤的差距，對「很有把握卻答錯」重罰。<span class="eg">例：正解機率 0.01 → 損失約 4.6。</span></dd>
+      <dt><span class="term">對比損失</span><span class="en">Contrastive Loss</span></dt>
+      <dd>讓相似樣本靠近、不相似樣本遠離。<span class="eg">例：同一人的兩張臉照片向量要很接近。</span></dd>
+      <dt><span class="term">Focal Loss</span><span class="en">Focal Loss</span></dt>
+      <dd>降低簡單樣本的權重，聚焦難分樣本。<span class="eg">例：物件偵測中大量背景框是簡單負樣本。</span></dd>
+      <dt><span class="term">排序損失／重建損失</span><span class="en">Ranking Loss / Reconstruction Loss</span></dt>
+      <dd>在乎相對順序是否正確／輸出和輸入有多像。<span class="eg">例：搜尋結果排序；自編碼器還原圖片。</span></dd>
+      <dt><span class="term">假陽性／假陰性</span><span class="en">False Positive / False Negative</span></dt>
+      <dd>沒事卻報有事／有事卻沒報。<span class="eg">例：正常郵件被當垃圾信／詐騙交易沒被抓到。</span></dd>
+      <dt><span class="term">梯度</span><span class="en">Gradient</span></dt>
+      <dd>損失對每個參數的偏導數組成的向量，指向上升最快方向，往反方向走就下降。<span class="eg">例：霧中下山時腳下的坡度。</span></dd>
+      <dt><span class="term">梯度下降</span><span class="en">GD, Gradient Descent</span></dt>
+      <dd>用全部訓練資料算梯度後更新參數。<span class="eg">例：小資料集上穩定收斂。</span></dd>
+      <dt><span class="term">隨機梯度下降</span><span class="en">SGD, Stochastic Gradient Descent</span></dt>
+      <dd>每次只用一筆樣本估計梯度並更新。<span class="eg">例：線上學習即時更新模型。</span></dd>
+      <dt><span class="term">小批次梯度下降</span><span class="en">Mini-batch SGD</span></dt>
+      <dd>每次用一小批樣本，平衡穩定與效率。<span class="eg">例：batch size 64 搭配 GPU。</span></dd>
+      <dt><span class="term">學習率</span><span class="en">Learning Rate, η</span></dt>
+      <dd>每次更新的步伐大小。<span class="eg">例：0.001 是 Adam 常見預設值。</span></dd>
+      <dt><span class="term">動量法</span><span class="en">Momentum</span></dt>
+      <dd>累積過去梯度方向產生慣性，減少震盪。<span class="eg">例：球滾下坡會越滾越順。</span></dd>
+      <dt><span class="term">Adagrad</span><span class="en">Adaptive Gradient</span></dt>
+      <dd>依每個參數過去梯度平方和調整各自學習率。<span class="eg">例：NLP 稀疏詞特徵。</span></dd>
+      <dt><span class="term">RMSprop</span><span class="en">Root Mean Square Propagation</span></dt>
+      <dd>用梯度平方的滑動平均調學習率，修正 Adagrad 衰減過快。<span class="eg">例：訓練 RNN。</span></dd>
+      <dt><span class="term">Adam</span><span class="en">Adaptive Moment Estimation</span></dt>
+      <dd>結合一階動量（方向）與二階動量（尺度）並做偏差修正。<span class="eg">例：多數深度學習專案的預設優化器。</span></dd>
+      <dt><span class="term">一階／二階動量</span><span class="en">First / Second Moment</span></dt>
+      <dd>梯度的移動平均（方向）／梯度平方的移動平均（波動大小）。<span class="eg">例：波動大的參數步伐自動變小。</span></dd>
+      <dt><span class="term">收斂</span><span class="en">Convergence</span></dt>
+      <dd>訓練穩定下來、損失不再明顯下降。<span class="eg">例：連續多輪損失變化小於 ε。</span></dd>
+      <dt><span class="term">發散</span><span class="en">Divergence</span></dt>
+      <dd>損失越訓練越大甚至變成無限大。<span class="eg">例：學習率設太大。</span></dd>
+      <dt><span class="term">學習率調度</span><span class="en">Learning Rate Scheduling</span></dt>
+      <dd>訓練過程中依規則改變學習率。<span class="eg">例：Step Decay 每 30 epoch 減半。</span></dd>
+      <dt><span class="term">餘弦退火</span><span class="en">Cosine Annealing</span></dt>
+      <dd>學習率依餘弦曲線平滑下降。<span class="eg">例：從 0.1 平滑降到接近 0。</span></dd>
+      <dt><span class="term">ReduceLROnPlateau</span><span class="en">Reduce LR on Plateau</span></dt>
+      <dd>驗證指標停滯時自動調低學習率。<span class="eg">例：驗證損失 5 輪沒改善就學習率 ×0.1。</span></dd>
+      <dt><span class="term">提早停止</span><span class="en">Early Stopping</span></dt>
+      <dd>驗證表現不再進步就停止訓練，防過擬合。<span class="eg">例：patience=10。</span></dd>
+      <dt><span class="term">梯度裁剪</span><span class="en">Gradient Clipping</span></dt>
+      <dd>梯度太大時把它截到上限，防止梯度爆炸。<span class="eg">例：梯度範數超過 1.0 就縮放回 1.0。</span></dd>
+      <dt><span class="term">批次正規化</span><span class="en">Batch Normalization, BN</span></dt>
+      <dd>把每層輸出依批次統計標準化，讓訓練更穩更快。<span class="eg">例：CNN 卷積層後接 BN。</span></dd>
+      <dt><span class="term">梯度爆炸／梯度消失</span><span class="en">Exploding / Vanishing Gradient</span></dt>
+      <dd>反向傳播時梯度變得極大／極小，導致訓練失控或停滯。<span class="eg">例：深層 RNN 常見。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>AdamW（解耦權重衰減）</b><span class="yr">（2017 論文，ICLR 2019）</span>：Loshchilov 與 Hutter 指出 Adam 裡「L2 正則化」和「權重衰減」並不等價，把權重衰減從梯度更新中分開（decoupled）後泛化更好。現今訓練 Transformer 與大型語言模型的預設優化器幾乎都是 AdamW。</li>
+        <li><b>Warmup ＋ Cosine 學習率排程</b><span class="yr">（SGDR 2016；Transformer 2017 起普及）</span>：先用很小的學習率「熱身」幾百到幾千步，再依餘弦曲線慢慢降。指引已提到預熱策略與 Cosine Annealing；兩者組合是大模型訓練的標配，可避免一開始 Adam 二階動量估計不準造成的不穩。</li>
+        <li><b>WSD 排程（Warmup–Stable–Decay）</b><span class="yr">（2024）</span>：MiniCPM 論文提出「熱身 → 長時間維持高學習率 → 最後快速衰減」，好處是不必事先決定總訓練步數，中途存的檢查點可以接著續訓。</li>
+        <li><b>Schedule-Free 優化器</b><span class="yr">（2024）</span>：Defazio 等人（NeurIPS 2024）以「迭代平均」取代學習率排程，不需事先知道總步數，提供 SGD 與 AdamW 版本。</li>
+        <li><b>Lion 優化器</b><span class="yr">（2023）</span>：Google 以程式搜尋「找出來」的優化器，只追蹤動量並用 sign（正負號）決定更新方向，比 Adam 省記憶體，通常需要較小的學習率。</li>
+        <li><b>Muon 優化器</b><span class="yr">（2024）</span>：Keller Jordan 以部落格發表，對 2D 權重矩陣的動量更新做「正交化」（Newton–Schulz 迭代）；Moonshot AI 的 Kimi K2 技術報告<span class="yr">（2025）</span>以加上 QK-Clip 的 MuonClip 訓練大型 MoE 模型。注意它只用於矩陣參數，其他參數仍配 AdamW。</li>
+        <li><b>梯度累積 Gradient Accumulation</b><span class="yr">（工程技巧）</span>：GPU 記憶體只放得下 batch 8，但想要 batch 64 的效果？連跑 8 個小批次、把梯度加總後才更新一次參數，等效擴大批次。</li>
+      </ul></div>
+    <h2 class="chap" id="chap4">第四章 機器學習與深度學習</h2>
+    <p>這一章是全科的主菜：先講「機器怎麼學」的三種方式，再逐一認識經典演算法，最後進入深度學習的神經網路家族。考題最愛考「這個情境該用哪個演算法」「這個演算法的優缺點」，建議用比喻記住每個演算法的「個性」。</p>
+
+    <h3 id="sec4-1">4.1 機器學習原理與技術 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>監督式學習</b>＝有老師批改的練習本：每題都有標準答案（標籤），學會「看題目 → 給答案」。答案是類別（是否詐騙）叫分類；答案是數字（明天氣溫）叫迴歸。</li>
+        <li><b>非監督式學習</b>＝沒有答案的整理房間：自己把東西分堆（分群）、把雜物壓縮收納（降維）、發現「買啤酒的人常買尿布」（關聯規則）。</li>
+        <li><b>強化式學習</b>＝訓練寵物：做對給零食（獎勵），做錯沒零食，寵物（代理人）在一次次嘗試中學會「長期拿最多零食」的行為策略。</li>
+      </ul>
+      <p><b>假設空間</b>就是「模型能想像出的答案形狀」：線性模型只會畫直線/平面，決策樹只會畫一格一格的規則，神經網路能畫任意彎曲的邊界。選模型就是選「你相信資料長什麼樣」。</p>
+    </div>
+    <h4>強化學習 MDP 對照：玩超級瑪利歐</h4>
+    <table>
+      <tr><th>MDP 元素</th><th>瑪利歐裡是什麼</th></tr>
+      <tr><td>代理人 Agent</td><td>操控瑪利歐的 AI</td></tr>
+      <tr><td>環境 Environment</td><td>遊戲關卡</td></tr>
+      <tr><td>狀態 State</td><td>目前畫面（位置、敵人、剩餘時間）</td></tr>
+      <tr><td>動作 Action</td><td>左、右、跳</td></tr>
+      <tr><td>報酬 Reward</td><td>吃金幣 +、碰到敵人 −、過關大 +</td></tr>
+      <tr><td>策略 Policy</td><td>「看到什麼畫面就按什麼鍵」的規則</td></tr>
+      <tr><td>價值函數 Value Function</td><td>「站在這個位置，未來總共預期能拿多少分」</td></tr>
+    </table>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">監有答案、非找結構、強靠獎懲</span><br>再加一句「分類離散、迴歸連續」。資料分三份：「訓練學參數、驗證調超參、測試考期末」。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>監督式：分類、迴歸；評估用 Accuracy、Precision/Recall、F1（分類），MAE、MSE、R²（迴歸）。</li>
+        <li>非監督式：聚類、降維、關聯規則、表示學習；內部指標 Silhouette、Davies-Bouldin、重建誤差；外部指標 Rand Index、AMI。</li>
+        <li>強化式：與環境互動、最大化<b>長期累積報酬</b>；形式化為 MDP（Agent、Environment、State、Action、Reward、Policy、Value Function）；有離散與連續動作空間；挑戰為樣本效率低、訓練不穩、部署門檻高。</li>
+        <li>訓練集學參數、驗證集調超參數與監控過擬合、測試集做最終評估。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>驗證集 vs 測試集</b>：驗證集可以反覆看、拿來調參；測試集只在最後看一次。拿測試集調參等於「先偷看期末考題」，成績會虛高。</li>
+        <li><b>強化學習的報酬 ≠ 監督學習的標籤</b>：報酬常常是延遲的（下棋要到最後才知道輸贏），代理人得自己推敲是哪一步做對。</li>
+        <li><b>半監督、自監督</b>不在三大類的表格內，但常見：半監督＝少量有標籤＋大量無標籤；自監督＝從資料本身造出題目（例如遮住一個字讓模型猜），大型語言模型預訓練就是這樣。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">機器學習</span><span class="en">Machine Learning, ML</span></dt>
+      <dd>讓電腦從資料中自動學出規律，而不是人工寫死規則。<span class="eg">例：從歷史交易學會辨識詐騙。</span></dd>
+      <dt><span class="term">深度學習</span><span class="en">Deep Learning, DL</span></dt>
+      <dd>用多層神經網路自動學習特徵的機器學習子領域。<span class="eg">例：影像辨識、語音轉文字。</span></dd>
+      <dt><span class="term">監督式學習</span><span class="en">Supervised Learning</span></dt>
+      <dd>用有標準答案的資料學習輸入到輸出的對應。<span class="eg">例：用已標記的貓狗照片訓練分類器。</span></dd>
+      <dt><span class="term">非監督式學習</span><span class="en">Unsupervised Learning</span></dt>
+      <dd>在沒有答案的資料中找結構。<span class="eg">例：依消費行為把客戶分群。</span></dd>
+      <dt><span class="term">強化式學習</span><span class="en">Reinforcement Learning, RL</span></dt>
+      <dd>透過試誤與獎懲學出最大化長期報酬的策略。<span class="eg">例：AlphaGo 下棋。</span></dd>
+      <dt><span class="term">分類／迴歸</span><span class="en">Classification / Regression</span></dt>
+      <dd>預測類別／預測連續數值。<span class="eg">例：是否違約／明天用電量。</span></dd>
+      <dt><span class="term">聚類（分群）</span><span class="en">Clustering</span></dt>
+      <dd>把相似資料自動分成同一群。<span class="eg">例：新聞自動分主題。</span></dd>
+      <dt><span class="term">降維</span><span class="en">Dimensionality Reduction</span></dt>
+      <dd>用較少的特徵保留主要資訊。<span class="eg">例：把 1,000 維基因資料壓成 2 維畫圖。</span></dd>
+      <dt><span class="term">表示學習</span><span class="en">Representation Learning</span></dt>
+      <dd>自動學出好用的資料表示（向量）。<span class="eg">例：詞嵌入讓意思相近的詞向量靠近。</span></dd>
+      <dt><span class="term">假設空間</span><span class="en">Hypothesis Space</span></dt>
+      <dd>某種模型所有可能學出的函數集合，反映它對資料的預設。<span class="eg">例：線性模型只能畫直線邊界。</span></dd>
+      <dt><span class="term">訓練集／驗證集／測試集</span><span class="en">Training / Validation / Test Set</span></dt>
+      <dd>學參數／調超參數與監控／最終評估。<span class="eg">例：常見 70/15/15 切分。</span></dd>
+      <dt><span class="term">輪廓係數</span><span class="en">Silhouette Coefficient</span></dt>
+      <dd>衡量每點與自己群的緊密度相對於鄰近群的距離，−1～1，越大分群越好。<span class="eg">例：比較 K=3 與 K=5 哪個分得好。</span></dd>
+      <dt><span class="term">Davies-Bouldin 指數</span><span class="en">Davies-Bouldin Index</span></dt>
+      <dd>群內分散度與群間距離的比值，越小越好。<span class="eg">例：分群內部指標之一。</span></dd>
+      <dt><span class="term">Rand Index／AMI</span><span class="en">Rand Index / Adjusted Mutual Information</span></dt>
+      <dd>有真實標籤時，比對分群結果與標籤一致程度的外部指標。<span class="eg">例：分群結果與真實客戶類型的吻合度。</span></dd>
+      <dt><span class="term">關聯規則學習</span><span class="en">Association Rule Learning</span></dt>
+      <dd>找出「買了 A 也常買 B」的規則。<span class="eg">例：購物籃分析。</span></dd>
+      <dt><span class="term">馬可夫決策過程</span><span class="en">MDP, Markov Decision Process</span></dt>
+      <dd>描述強化學習問題的數學框架，下一狀態只依目前狀態與動作而定。<span class="eg">例：棋盤局面＋落子→新局面。</span></dd>
+      <dt><span class="term">代理人／環境</span><span class="en">Agent / Environment</span></dt>
+      <dd>做決策的學習者／它所互動的外部世界。<span class="eg">例：掃地機器人／房間。</span></dd>
+      <dt><span class="term">狀態／動作／報酬</span><span class="en">State / Action / Reward</span></dt>
+      <dd>目前情況／可做的選擇／做完得到的分數回饋。<span class="eg">例：車速與位置／踩油門／安全抵達加分。</span></dd>
+      <dt><span class="term">策略</span><span class="en">Policy</span></dt>
+      <dd>在每個狀態該採取什麼動作的規則。<span class="eg">例：紅燈就停。</span></dd>
+      <dt><span class="term">價值函數</span><span class="en">Value Function</span></dt>
+      <dd>從某狀態出發，預期未來能拿到的累積報酬。<span class="eg">例：棋局中這個局面的勝算。</span></dd>
+      <dt><span class="term">離散／連續動作空間</span><span class="en">Discrete / Continuous Action Space</span></dt>
+      <dd>動作可一一列舉／動作是連續數值。<span class="eg">例：上下左右／方向盤轉 12.5 度。</span></dd>
+      <dt><span class="term">樣本效率</span><span class="en">Sample Efficiency</span></dt>
+      <dd>學會一件事需要多少互動經驗；越少越好。<span class="eg">例：RL 常需數百萬局遊戲才學會。</span></dd>
+      <dt><span class="term">自監督學習</span><span class="en">Self-supervised Learning</span></dt>
+      <dd>從未標註資料自己造出學習任務。<span class="eg">例：遮住句子中的詞讓模型猜（BERT）。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>RLHF（人類回饋強化學習）</b><span class="yr">（InstructGPT 2022）</span>：先用人類偏好資料訓練「獎勵模型」，再用強化學習（PPO）讓語言模型的回答更符合人類偏好，是 ChatGPT 類助理的關鍵步驟——強化學習從遊戲走進了大型語言模型。</li>
+        <li><b>DPO（直接偏好最佳化）</b><span class="yr">（2023）</span>：Rafailov 等人證明可以跳過獎勵模型與 RL 迴圈，直接用「偏好回答 vs 不偏好回答」成對資料以類似監督式的損失訓練，流程更簡單穩定。</li>
+        <li><b>GRPO（群組相對策略最佳化）</b><span class="yr">（2024）</span>：DeepSeekMath 論文提出的 PPO 變形，拿掉價值網路（critic），改用「同一題多個回答的分數平均」當基準，降低訓練成本；後來因 DeepSeek-R1<span class="yr">（2025）</span>以可驗證答案（數學、程式）做強化學習訓練推理能力而廣為人知。</li>
+        <li><b>自監督預訓練 → 微調</b>成為主流範式<span class="yr">（BERT/GPT 2018 起）</span>：先用海量無標籤資料自監督學通用表示，再用少量標籤資料微調，大幅降低監督式學習對標註的依賴。</li>
+      </ul></div>
+
+    <h3 id="sec4-2">4.2 常見機器學習演算法 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-2">完整教材 ↗</a></h3>
+    <h4>迴歸家族：怎麼畫那條線</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>線性迴歸</b>：用一把直尺穿過散佈點。簡單好解釋，但遇到彎曲關係或離群值就不準。</li>
+        <li><b>Lasso（L1）</b>：像「斷捨離教練」，罰係數的絕對值，會把不重要的特徵係數直接砍成 0 → 自動挑特徵。</li>
+        <li><b>Ridge（L2）</b>：像「節制教練」，罰係數平方，讓大家都縮小但不砍到 0 → 共線性時估計更穩。</li>
+        <li><b>SVR</b>：在預測線周圍畫一條寬 ε 的「容忍管」，管子裡的小誤差都不算錯，只在乎跑出管外的點。</li>
+        <li><b>決策樹迴歸</b>：一直問是非題切割資料（坪數 &gt; 30？屋齡 &lt; 10？），每個葉子給該區平均值，所以預測曲線是「階梯狀」。</li>
+      </ul>
+    </div>
+    <div class="formula">為什麼 L1 會變 0、L2 不會？直覺：<br>
+      L2 的懲罰 λβ² 在 β 接近 0 時「斜率也接近 0」，越小越不想再推，所以只會縮小；<br>
+      L1 的懲罰 λ|β| 不管 β 多小「斜率都是固定的 λ」，一路推到剛好 0 為止。<br>
+      幾何上：L1 的限制區是有尖角的菱形，最佳解很容易落在座標軸的尖角上（某係數＝0）；L2 是圓形，沒有尖角。</div>
+    <h4>集成學習：三個臭皮匠勝過一個諸葛亮</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p><b>Bagging（隨機森林）</b>＝找 100 位專家，每人只看部分資料、部分特徵，<b>各自獨立</b>判斷再投票。個別專家容易鑽牛角尖（高變異），但平均後就穩了 → <b>降變異</b>。</p>
+      <p><b>Boosting（梯度提升）</b>＝接力改考卷：第一位學生寫完，第二位專門訂正第一位寫錯（殘差）的地方，第三位再訂正剩下的錯…… <b>串聯</b>起來越來越準 → <b>降偏差</b>。</p>
+      <p><b>XGBoost vs LightGBM</b>：XGBoost 一層一層長樹（Level-wise，整齊穩健）；LightGBM 專挑損失下降最多的葉子先長（Leaf-wise，快但小資料易過擬合），並用直方圖把連續值分箱加速。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">Bag 並聯降變異，Boost 串聯降偏差</span><br>Bagging 代表隨機森林；Boosting 代表 GBDT、XGBoost、LightGBM。XGBoost「二階、層級、正則」；LightGBM「葉子、直方、省記憶」。</div>
+    <h4>分類家族的個性</h4>
+    <table>
+      <tr><th>演算法</th><th>白話比喻</th><th>關鍵詞</th></tr>
+      <tr><td>邏輯迴歸</td><td>把分數丟進 S 形曲線，壓成 0～1 的機率</td><td>名為迴歸實為分類、sigmoid、log-odds 線性、可解釋</td></tr>
+      <tr><td>SVM</td><td>在兩群人中間畫一條「最寬的馬路」</td><td>最大間隔、支援向量、核函數、C 與 γ</td></tr>
+      <tr><td>決策樹</td><td>20 個問題猜猜看</td><td>基尼不純度、資訊增益（熵）、易過擬合</td></tr>
+      <tr><td>KNN</td><td>近朱者赤：看最近的 K 個鄰居投票</td><td>惰性學習、需特徵縮放、維度詛咒、K 值</td></tr>
+      <tr><td>樸素貝氏</td><td>假設每個線索互不相干，各自算機率再相乘</td><td>條件獨立、文本分類、拉普拉斯平滑</td></tr>
+    </table>
+    <div class="formula">決策樹基尼不純度小算例：節點有 10 筆，6 筆 A、4 筆 B<br>Gini = 1 − (0.6² + 0.4²) = 1 − (0.36 + 0.16) = <b>0.48</b>（全是同一類時 Gini＝0，最「純」）。<br>
+      樸素貝氏零機率：訓練資料從沒出現過「優惠碼」這個詞 → P(優惠碼|正常信)=0 → 整封信機率被乘成 0。拉普拉斯平滑＝每個詞次數先 +1，避免「一票否決」。</div>
+    <h4>非監督家族</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>k-means</b>：先插 K 支旗子，每個人走到最近的旗子，旗子再移到該群中心，反覆到不動。只能分出「圓圓一團」的群，對月牙形就沒轍。</li>
+        <li><b>階層式分群</b>：像家族族譜，從每人一群開始兩兩合併，最後得到樹狀圖，想切幾群就在哪一層剪。</li>
+        <li><b>DBSCAN</b>：看「人潮密度」：周圍 Eps 半徑內有至少 MinPts 個人的是核心點，密度相連的就是同一群，孤零零的人標成雜訊。可分任意形狀。</li>
+        <li><b>PCA vs t-SNE vs UMAP</b>：PCA 是「找最佳角度拍照」（線性、可當模型輸入）；t-SNE 是「把好朋友圈畫在一起的社交地圖」（只保留局部鄰居關係、只拿來看）；UMAP 類似 t-SNE 但更快、較保留全局結構。</li>
+        <li><b>關聯規則</b>：支持度＝多常一起出現；信賴度＝買了 A 的人有多少也買 B；提升度＞1 才代表「真的有加成」，不是只因為 B 本來就熱賣。</li>
+        <li><b>Isolation Forest</b>：隨機切資料，異常點「很快就被孤立」（切幾刀就單獨一格），路徑越短越可疑。<b>One-Class SVM</b>：只看正常資料，畫一個圈，圈外就是異常。</li>
+      </ul>
+    </div>
+    <div class="formula">關聯規則小算例：1,000 筆交易；含麵包 200 筆、含牛奶 250 筆、兩者都有 100 筆。<br>
+      支持度(麵包⇒牛奶) = 100/1000 = 0.10<br>
+      信賴度 = 100/200 = 0.50<br>
+      提升度 = 0.50 ÷ (250/1000) = 0.50 ÷ 0.25 = <b>2.0</b>（&gt;1，正相關：買麵包的人買牛奶機率是一般人的 2 倍）</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>迴歸指標：MSE、RMSE、MAE、R²、調整後 R²；分類指標：Accuracy、Precision、Recall、F1、ROC-AUC。</li>
+        <li>Lasso 會將係數壓為 0（特徵選擇），高度相關變數可能只保留其一；Ridge 不會壓到 0，無法自動選特徵。</li>
+        <li>邏輯迴歸：sigmoid 輸出機率、二元分類；勘誤表更正其假設為「<b>對數勝算的線性關係（Linearity in Log-Odds）</b>」；多類別需 OvR 或 Multinomial 擴展。</li>
+        <li>決策樹分裂依據：基尼不純度、資訊增益（熵）、分類誤差。KNN 為惰性學習、需特徵縮放、有維度詛咒。樸素貝氏假設特徵條件獨立、零機率需拉普拉斯平滑、不適用迴歸。</li>
+        <li>Bagging 降變異（隨機森林）、Boosting 降偏差（GBDT、XGBoost、LightGBM）。XGBoost 二階導數＋Level-wise＋L1/L2 正則；LightGBM Leaf-wise＋直方圖，Leaf-wise 可能過擬合。</li>
+        <li>k-means 需指定 K、只能球形群、對初始值與離群值敏感；階層式不需 K、樹狀圖、合併不可撤銷；DBSCAN 依 Eps/MinPts、任意形狀、可辨識雜訊。</li>
+        <li>t-SNE 僅用於視覺化、不適合當下游預處理；UMAP 更快且保留局部與全局結構。</li>
+        <li>Apriori：頻繁項集的子集必頻繁、需多次掃描；FP-Growth：FP 樹、兩次掃描、不需候選集。Lift&gt;1 正相關、=1 獨立、&lt;1 負相關。</li>
+        <li>Isolation Forest：異常點路徑短；One-Class SVM：只用正常資料學邊界。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>邏輯迴歸是分類模型</b>，不是迴歸模型（名字騙人）。</li>
+        <li><b>K-means 的 K vs KNN 的 K</b>：前者是「分幾群」（非監督）；後者是「看幾個鄰居」（監督式分類）。</li>
+        <li><b>SVM vs SVR</b>：SVM 要「馬路越寬越好、點不要進馬路」；SVR 反過來要「點盡量待在 ε 管子裡」。</li>
+        <li><b>信賴度高不代表有關聯</b>：若 B 本來就人人買，信賴度自然高，要看 Lift。</li>
+        <li><b>隨機森林的「隨機」有兩層</b>：Bootstrap 抽樣（列）＋隨機特徵子集（欄）。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">自變數／應變數</span><span class="en">Independent / Dependent Variable</span></dt>
+      <dd>拿來預測的輸入／被預測的目標。<span class="eg">例：廣告預算／銷售額。</span></dd>
+      <dt><span class="term">均方根誤差</span><span class="en">RMSE, Root Mean Squared Error</span></dt>
+      <dd>MSE 開根號，單位與目標相同。<span class="eg">例：房價 RMSE 50 萬元。</span></dd>
+      <dt><span class="term">決定係數／調整後 R²</span><span class="en">R² / Adjusted R²</span></dt>
+      <dd>模型解釋目標變異的比例；調整後版本會懲罰多餘特徵。<span class="eg">例：R²=0.85 表示解釋 85% 變異。</span></dd>
+      <dt><span class="term">線性迴歸</span><span class="en">Linear Regression</span></dt>
+      <dd>用直線或超平面描述輸入與輸出的線性關係。<span class="eg">例：坪數越大房價越高。</span></dd>
+      <dt><span class="term">Lasso 迴歸</span><span class="en">Least Absolute Shrinkage and Selection Operator</span></dt>
+      <dd>加 L1 懲罰的迴歸，可把部分係數壓成 0。<span class="eg">例：從 500 個基因中挑出 20 個關鍵基因。</span></dd>
+      <dt><span class="term">嶺迴歸</span><span class="en">Ridge Regression</span></dt>
+      <dd>加 L2 懲罰的迴歸，縮小係數但不歸零。<span class="eg">例：多個高度相關的經濟指標一起放。</span></dd>
+      <dt><span class="term">正則化項／λ</span><span class="en">Regularization Term / Lambda</span></dt>
+      <dd>損失函數中懲罰模型複雜度的部分，λ 控制力道。<span class="eg">例：λ 越大係數越小。</span></dd>
+      <dt><span class="term">支援向量迴歸</span><span class="en">SVR, Support Vector Regression</span></dt>
+      <dd>讓多數點落在寬度 ε 的管子內的迴歸，管內誤差不計。<span class="eg">例：抗離群值的需求預測。</span></dd>
+      <dt><span class="term">ε-管</span><span class="en">ε-tube / ε-insensitive Loss</span></dt>
+      <dd>預測線周圍可容忍誤差的帶狀區域。<span class="eg">例：誤差小於 ε 視為 0。</span></dd>
+      <dt><span class="term">核函數</span><span class="en">Kernel Function (Kernel Trick)</span></dt>
+      <dd>不用真的升維就能計算高維空間相似度，讓線性方法處理非線性。<span class="eg">例：RBF 核把同心圓資料分開。</span></dd>
+      <dt><span class="term">非參數模型</span><span class="en">Non-parametric Model</span></dt>
+      <dd>不預設固定的函數形式，複雜度可隨資料成長。<span class="eg">例：決策樹、KNN。</span></dd>
+      <dt><span class="term">決策樹</span><span class="en">Decision Tree</span></dt>
+      <dd>一連串「如果…那麼…」規則切分資料的樹狀模型。<span class="eg">例：年收入&gt;50 萬且無逾期 → 核貸。</span></dd>
+      <dt><span class="term">葉節點</span><span class="en">Leaf Node</span></dt>
+      <dd>決策樹最末端、給出預測值的節點。<span class="eg">例：葉節點輸出「核准」。</span></dd>
+      <dt><span class="term">集成學習</span><span class="en">Ensemble Learning</span></dt>
+      <dd>結合多個模型的預測以提升準確度與穩定性。<span class="eg">例：100 棵樹投票。</span></dd>
+      <dt><span class="term">隨機森林</span><span class="en">Random Forest</span></dt>
+      <dd>多棵在不同抽樣與特徵子集上訓練的決策樹投票或平均。<span class="eg">例：信用評分常用基準模型。</span></dd>
+      <dt><span class="term">自助抽樣</span><span class="en">Bootstrap Sampling</span></dt>
+      <dd>從原資料「可重複地」抽出同樣大小的樣本。<span class="eg">例：同一筆資料可能被抽到兩次。</span></dd>
+      <dt><span class="term">Bagging</span><span class="en">Bootstrap Aggregating</span></dt>
+      <dd>多個獨立模型各在自助樣本上訓練再聚合，降低變異。<span class="eg">例：隨機森林。</span></dd>
+      <dt><span class="term">Boosting</span><span class="en">Boosting</span></dt>
+      <dd>依序訓練模型，每個新模型修正前面的錯誤，降低偏差。<span class="eg">例：AdaBoost、梯度提升。</span></dd>
+      <dt><span class="term">梯度提升</span><span class="en">Gradient Boosting / GBDT</span></dt>
+      <dd>每棵新樹擬合前面模型的殘差（負梯度）。<span class="eg">例：表格資料競賽常勝軍。</span></dd>
+      <dt><span class="term">XGBoost</span><span class="en">eXtreme Gradient Boosting</span></dt>
+      <dd>使用二階導數、正則化與層級式生長的高效梯度提升實作。<span class="eg">例：Kaggle 表格競賽熱門。</span></dd>
+      <dt><span class="term">LightGBM</span><span class="en">Light Gradient Boosting Machine</span></dt>
+      <dd>微軟開發，用葉子式生長與直方圖演算法，大資料更快更省記憶體。<span class="eg">例：千萬筆點擊資料建模。</span></dd>
+      <dt><span class="term">海森矩陣（二階導數）</span><span class="en">Hessian</span></dt>
+      <dd>損失函數的曲率資訊，告訴你坡度變化多快。<span class="eg">例：XGBoost 用它決定葉子權重。</span></dd>
+      <dt><span class="term">層級式／葉子式生長</span><span class="en">Level-wise / Leaf-wise Growth</span></dt>
+      <dd>一層層平均長樹／專挑收益最大的葉子往下長。<span class="eg">例：XGBoost／LightGBM。</span></dd>
+      <dt><span class="term">直方圖演算法</span><span class="en">Histogram-based Algorithm</span></dt>
+      <dd>先把連續特徵分箱，只在箱與箱之間找切點，大幅加速。<span class="eg">例：年齡分成 255 個箱。</span></dd>
+      <dt><span class="term">特徵重要性</span><span class="en">Feature Importance</span></dt>
+      <dd>各特徵對模型預測的整體貢獻度。<span class="eg">例：信用模型中「逾期次數」最重要。</span></dd>
+      <dt><span class="term">邏輯迴歸</span><span class="en">Logistic Regression</span></dt>
+      <dd>用 sigmoid 把線性分數轉成機率的分類模型。<span class="eg">例：預測顧客是否流失。</span></dd>
+      <dt><span class="term">對數勝算</span><span class="en">Log-Odds / Logit</span></dt>
+      <dd>log(p/(1−p))；邏輯迴歸假設它與特徵成線性。<span class="eg">例：p=0.8 → 勝算 4 → log-odds≈1.39。</span></dd>
+      <dt><span class="term">支援向量機</span><span class="en">SVM, Support Vector Machine</span></dt>
+      <dd>找出讓兩類間隔最大的超平面。<span class="eg">例：高維小樣本的基因分類。</span></dd>
+      <dt><span class="term">間隔／支援向量</span><span class="en">Margin / Support Vectors</span></dt>
+      <dd>邊界到最近樣本的距離／決定邊界位置的那些最近樣本。<span class="eg">例：馬路寬度／站在路邊的人。</span></dd>
+      <dt><span class="term">C、γ 參數</span><span class="en">C (penalty) / Gamma (RBF)</span></dt>
+      <dd>C 越大越不容忍分錯（易過擬合）；γ 越大單一樣本影響範圍越小（邊界越彎）。<span class="eg">例：Grid Search 調 C 與 γ。</span></dd>
+      <dt><span class="term">基尼不純度</span><span class="en">Gini Impurity</span></dt>
+      <dd>隨機抽兩次標籤不同的機率，越低越純。<span class="eg">例：全同類時為 0。</span></dd>
+      <dt><span class="term">熵／資訊增益</span><span class="en">Entropy / Information Gain</span></dt>
+      <dd>熵衡量混亂度；資訊增益是分裂後熵減少多少。<span class="eg">例：選讓熵下降最多的特徵切分。</span></dd>
+      <dt><span class="term">K 最近鄰</span><span class="en">KNN, K-Nearest Neighbors</span></dt>
+      <dd>找最近的 K 個訓練樣本投票決定類別。<span class="eg">例：看附近 5 間房子的類型。</span></dd>
+      <dt><span class="term">惰性學習</span><span class="en">Lazy Learning</span></dt>
+      <dd>訓練時只記住資料，預測時才計算。<span class="eg">例：KNN 預測時要算與所有樣本的距離。</span></dd>
+      <dt><span class="term">維度詛咒</span><span class="en">Curse of Dimensionality</span></dt>
+      <dd>維度越高，資料越稀疏、距離越沒有區別力。<span class="eg">例：1,000 維中每個點都「差不多遠」。</span></dd>
+      <dt><span class="term">樸素貝氏</span><span class="en">Naïve Bayes</span></dt>
+      <dd>以貝氏定理加上「特徵條件獨立」假設的分類器。<span class="eg">例：垃圾郵件過濾。</span></dd>
+      <dt><span class="term">拉普拉斯平滑</span><span class="en">Laplace (Add-one) Smoothing</span></dt>
+      <dd>每個計數先加 1，避免沒出現過的特徵讓機率變 0。<span class="eg">例：新詞彙不會讓整封信機率歸零。</span></dd>
+      <dt><span class="term">一對多／一對一</span><span class="en">OvR (One-vs-Rest) / OvO (One-vs-One)</span></dt>
+      <dd>每類對其他所有類各訓一個分類器／每兩類訓一個分類器再投票。<span class="eg">例：3 類 → OvR 3 個、OvO 3 個；10 類 → OvO 45 個。</span></dd>
+      <dt><span class="term">k-means</span><span class="en">K-means Clustering</span></dt>
+      <dd>反覆「分配到最近質心 → 更新質心」直到穩定。<span class="eg">例：把會員分成 4 種消費型態。</span></dd>
+      <dt><span class="term">質心</span><span class="en">Centroid</span></dt>
+      <dd>一群點的平均位置。<span class="eg">例：群中心。</span></dd>
+      <dt><span class="term">階層式分群／樹狀圖</span><span class="en">Hierarchical Clustering / Dendrogram</span></dt>
+      <dd>凝聚式由下往上合併或分裂式由上往下切，結果畫成樹狀圖。<span class="eg">例：物種演化樹。</span></dd>
+      <dt><span class="term">DBSCAN</span><span class="en">Density-Based Spatial Clustering of Applications with Noise</span></dt>
+      <dd>以密度定義群、可找任意形狀並標記雜訊的分群法。<span class="eg">例：地圖上找熱門打卡區。</span></dd>
+      <dt><span class="term">Eps／MinPts／核心點</span><span class="en">Epsilon / Minimum Points / Core Point</span></dt>
+      <dd>鄰域半徑／成為核心點所需的最少鄰居數／符合條件的高密度點。<span class="eg">例：半徑 1 公里內至少 5 間店。</span></dd>
+      <dt><span class="term">t-SNE</span><span class="en">t-distributed Stochastic Neighbor Embedding</span></dt>
+      <dd>保留局部鄰居關係的非線性降維，專供視覺化。<span class="eg">例：把手寫數字嵌入畫成 2D 圖。</span></dd>
+      <dt><span class="term">KL 散度</span><span class="en">Kullback–Leibler Divergence</span></dt>
+      <dd>衡量兩個機率分佈差多少（不對稱）。<span class="eg">例：t-SNE 最小化高低維相似度分佈的 KL 散度。</span></dd>
+      <dt><span class="term">困惑度</span><span class="en">Perplexity</span></dt>
+      <dd>t-SNE 中「每點大約考慮幾個鄰居」的參數。<span class="eg">例：常設 5～50。</span></dd>
+      <dt><span class="term">UMAP</span><span class="en">Uniform Manifold Approximation and Projection</span></dt>
+      <dd>以模糊拓撲結構做非線性降維，比 t-SNE 快且較保留全局結構。<span class="eg">例：單細胞基因資料視覺化。</span></dd>
+      <dt><span class="term">Apriori 演算法</span><span class="en">Apriori Algorithm</span></dt>
+      <dd>用「不頻繁項集的超集也不頻繁」剪枝，逐層找頻繁項目集。<span class="eg">例：超市購物籃分析。</span></dd>
+      <dt><span class="term">FP-Growth／FP 樹</span><span class="en">Frequent Pattern Growth / FP-Tree</span></dt>
+      <dd>把交易壓成前綴樹，免產生候選集、只掃描兩次資料。<span class="eg">例：大型電商關聯分析。</span></dd>
+      <dt><span class="term">頻繁項目集</span><span class="en">Frequent Itemset</span></dt>
+      <dd>支持度超過門檻的商品組合。<span class="eg">例：{麵包, 牛奶}。</span></dd>
+      <dt><span class="term">支持度／信賴度／提升度</span><span class="en">Support / Confidence / Lift</span></dt>
+      <dd>一起出現的比例／買 A 也買 B 的條件機率／信賴度相對於 B 本身熱門度的倍數。<span class="eg">例：Lift=2 表示有加成。</span></dd>
+      <dt><span class="term">異常偵測</span><span class="en">Anomaly Detection</span></dt>
+      <dd>找出與多數資料明顯不同的樣本。<span class="eg">例：信用卡盜刷、設備異常。</span></dd>
+      <dt><span class="term">孤立森林</span><span class="en">Isolation Forest</span></dt>
+      <dd>用隨機切分孤立樣本，越快被孤立越可能是異常。<span class="eg">例：伺服器流量異常偵測。</span></dd>
+      <dt><span class="term">單類別支援向量機</span><span class="en">One-Class SVM</span></dt>
+      <dd>只用正常資料學出包圍邊界，邊界外為異常。<span class="eg">例：只有正常產品照片的瑕疵偵測。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>CatBoost</b><span class="yr">（2017）</span>：Yandex 開發的梯度提升，三大特色是「原生處理類別特徵（用有序的目標統計避免洩漏）」「對稱樹（每層同一切點，推論快）」「預設參數就很好用」。與 XGBoost（層級式＋二階）、LightGBM（葉子式＋直方圖）並列三大 GBDT 工具。</li>
+        <li><b>scikit-learn HistGradientBoosting</b><span class="yr">（2019 起）</span>：把 LightGBM 式的直方圖技巧內建進 scikit-learn，支援缺值，可當表格任務的快速基準。</li>
+        <li><b>表格基礎模型 TabPFN</b><span class="yr">（2022；v2 刊於 Nature 2025）</span>：用大量「合成資料集」預訓練的 Transformer，面對新的小型表格資料集時不需逐一訓練、一次前向推論就給預測（in-context learning）。後續版本 TabPFN-2.5<span class="yr">（2025）</span>擴大可處理的資料規模。它挑戰「表格資料樹模型無敵」的傳統看法，但在大型資料集上 GBDT 仍是主流選擇。</li>
+        <li><b>HDBSCAN</b><span class="yr">（2013）</span>：DBSCAN 的階層化改良，不必手動指定單一 Eps，能處理密度不均的群——正好解決指引所說 DBSCAN「處理密度不均效果不佳」的缺點；scikit-learn 1.3 起內建。</li>
+      </ul></div>
+
+    <h3 id="sec4-3">4.3 深度學習原理與框架 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p><b>一個神經元＝一個打分數的評審</b>：把每個線索乘上重要性（權重）加總，再加上個人基準分（偏置 b），最後經過「激活函數」決定要不要「舉牌」。如果不用激活函數，疊再多層也只是「線性 × 線性 = 線性」，就像把好幾片透明直尺疊在一起還是一把直尺，畫不出彎曲的邊界——感知器解不了 XOR 就是這個道理。</p>
+      <p><b>前向傳播＝考試作答</b>，<b>反向傳播＝對答案後檢討</b>：從最後一題錯在哪，用連鎖律一路往前追「每個權重該負多少責任」（梯度），再由優化器修正。</p>
+    </div>
+    <div class="formula">連鎖律直覺：y = f(g(x))，dy/dx = f′(g(x)) × g′(x)<br>
+      像齒輪傳動：大齒輪轉 1 圈 → 中齒輪轉 2 圈 → 小齒輪轉 3 倍 → 總共 6 倍。每一層的「局部影響」相乘，就得到最前面權重對損失的影響。<br>
+      也因此：若每層都乘一個小於 1 的數（如 sigmoid 導數最大才 0.25），20 層後 0.25²⁰ 幾乎為 0 → <b>梯度消失</b>。</div>
+    <h4>架構家族一覽：各有擅長的資料形狀</h4>
+    <table>
+      <tr><th>架構</th><th>白話比喻</th><th>擅長</th><th>弱點</th></tr>
+      <tr><td>MLP</td><td>每個人都跟下一層每個人講話的大會議</td><td>表格資料</td><td>攤平後丟失空間/順序資訊、參數多</td></tr>
+      <tr><td>CNN</td><td>拿放大鏡（卷積核）在圖上滑動找花紋，同一支放大鏡到處用（權重共享）</td><td>影像</td><td>需大量標註、算力需求高</td></tr>
+      <tr><td>RNN/LSTM/GRU</td><td>邊讀邊做筆記，筆記傳給下一個字；LSTM 有「要記/要忘/要說」三道門</td><td>序列、時間序列</td><td>串行慢、長距離依賴難</td></tr>
+      <tr><td>Transformer</td><td>每個字同時環顧全句，決定該注意誰（注意力）</td><td>語言、也延伸到影像（ViT）</td><td>O(L²) 計算、記憶體大、需大量資料</td></tr>
+      <tr><td>Autoencoder</td><td>把照片壓成縮圖再還原</td><td>降維、去噪、異常偵測</td><td>生成能力有限</td></tr>
+      <tr><td>GAN</td><td>偽鈔製造者 vs 驗鈔員互相進步</td><td>高品質影像生成</td><td>訓練不穩、模式崩潰</td></tr>
+    </table>
+    <h4>注意力機制：Q、K、V 是什麼？</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>想像在圖書館找資料：<b>Query（查詢）</b>是你手上的問題；每本書的<b>Key（鍵）</b>是書背標籤；<b>Value（值）</b>是書的內容。你拿問題跟每個書背比對相似度（點積），越相關的書給越高權重（softmax），最後把各書內容依權重混合起來，就是這個字的「上下文向量」。<b>多頭注意力</b>＝同時派好幾位館員，各自用不同標準找書（一位看文法、一位看語意），最後彙整。</p>
+      <p>因為所有字同時計算、沒有先後依賴，所以能<b>高度平行</b>；但每個字都要跟所有字比對，長度 L 的句子要比對 L² 次——這就是 O(L²) 的由來。也因為沒有順序概念，要加<b>位置編碼</b>告訴模型「誰在第幾個」。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">CNN 看圖、RNN 看序、Transformer 看全局</span><br>再記衍生模型：「BERT 編碼懂理解、GPT 解碼會生成、T5 全部轉文字、ViT 把圖切成字」。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">Sigmoid 各自獨立、Softmax 總和為一</span><br>多標籤（一張圖可同時有貓和狗）用 Sigmoid；多類別單選（只能是貓或狗或鳥）用 Softmax；隱藏層首選 ReLU。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>人工神經元 Z=Σwᵢxᵢ+b（勘誤表已更正下標為 wᵢxᵢ）→ 激活函數；無激活函數則多層等同單層。感知器（Rosenblatt 1957）用步階函數，無法解 XOR。</li>
+        <li>激活函數作用：引入非線性、決定激活狀態、壓縮輸出範圍（Sigmoid [0,1]、Tanh [-1,1]）。</li>
+        <li>反向傳播用連鎖律計算梯度；RNN 用 BPTT。分類損失＝交叉熵（Log Loss），二元/類別交叉熵。</li>
+        <li>過擬合：訓練好、驗證差；原因：模型太複雜、資料不足、訓練太久。正則化：L1、L2、Elastic Net、Dropout、Early Stopping。</li>
+        <li>MLP 輸出層：二元 1 神經元＋Sigmoid；多類別「類別數」個神經元＋Softmax；迴歸無激活或線性。</li>
+        <li>CNN：卷積層（權重共享）、ReLU、池化層（Max/Average，降採樣、平移不變）、全連接層。AlexNet 2012、VGG 3×3 小卷積堆疊、GoogLeNet 多尺度並行、ResNet 殘差連接、DenseNet 密集連接、MobileNet/EfficientNet 輕量化。</li>
+        <li>RNN 長期依賴問題（梯度消失/爆炸）；LSTM 輸入門/遺忘門/輸出門＋細胞狀態；GRU 只有更新門與重置門。</li>
+        <li>Transformer（2017《Attention Is All You Need》）：自注意力 Q/K/V、多頭注意力、位置編碼、FFN、殘差＋層歸一化；解碼器用遮罩自注意力防偷看；缺點 O(L²)。BERT 編碼器雙向、GPT 解碼器自迴歸、T5 Text-to-Text、ViT 切塊。</li>
+        <li>Autoencoder 最小化重構誤差；GAN 生成器 vs 判別器、納什均衡、模式崩潰、評估用 IS 與 FID。</li>
+        <li>框架：TensorFlow（Google 2015）、Keras（TF 高階 API）、PyTorch（FAIR，動態計算圖、Autograd）、JAX（Google，函數式）、MXNet（AWS）。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>Batch Norm vs Layer Norm</b>：BN 在「同一特徵、跨批次樣本」做標準化，依賴批次大小；LN 在「同一樣本、跨特徵」做標準化，不依賴批次，所以 Transformer/序列模型用 LN。</li>
+        <li><b>池化層沒有可學習參數</b>，只是取最大或平均；卷積層才有權重。VGG16 的參數多集中在全連接層，運算量（FLOPs）則集中在卷積層。</li>
+        <li><b>Dropout 只在訓練時開</b>，推論時關閉（並做縮放）。</li>
+        <li><b>BERT 是理解型（編碼器）、GPT 是生成型（解碼器）</b>，別顛倒。</li>
+        <li><b>Autoencoder vs VAE</b>：一般 AE 的潛在空間沒有規律，不適合抽樣生成；VAE 把潛在空間約束成機率分佈，才能抽樣生成新資料。</li>
+        <li><b>指引寫法 vs 業界現況（Transformer 細節）</b>：指引描述的是 2017 原始架構（後置層歸一化、ReLU FFN、正弦位置編碼）——作答依此。現今大型語言模型多改用前置歸一化（Pre-LN）或 RMSNorm、SwiGLU 激活、RoPE 旋轉位置編碼，見下方延伸。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">人工神經元</span><span class="en">Artificial Neuron</span></dt>
+      <dd>加權求和後經激活函數輸出的計算單元。<span class="eg">例：Z=0.5×x₁+0.3×x₂+0.1。</span></dd>
+      <dt><span class="term">權重／偏置</span><span class="en">Weight / Bias</span></dt>
+      <dd>輸入的重要性係數／與輸入無關的基準位移量。<span class="eg">例：偏置讓直線不必通過原點。</span></dd>
+      <dt><span class="term">激活函數</span><span class="en">Activation Function</span></dt>
+      <dd>把加權和轉成輸出的非線性函數。<span class="eg">例：ReLU、Sigmoid、Tanh。</span></dd>
+      <dt><span class="term">感知器</span><span class="en">Perceptron</span></dt>
+      <dd>最早的人工神經元模型，用步階函數做二元分類。<span class="eg">例：只能分線性可分資料。</span></dd>
+      <dt><span class="term">步階函數</span><span class="en">Step Function</span></dt>
+      <dd>超過門檻輸出 1，否則 0。<span class="eg">例：分數 ≥ 0 就判正類。</span></dd>
+      <dt><span class="term">線性可分／XOR 問題</span><span class="en">Linearly Separable / XOR Problem</span></dt>
+      <dd>能用一條直線分開兩類／「互斥或」四個點無法用一條直線分開。<span class="eg">例：(0,0),(1,1) 為 0；(0,1),(1,0) 為 1。</span></dd>
+      <dt><span class="term">Sigmoid／Tanh／ReLU／Softmax</span><span class="en">Sigmoid / Hyperbolic Tangent / Rectified Linear Unit / Softmax</span></dt>
+      <dd>壓到 0～1／壓到 −1～1／負數變 0 正數不變／把多個分數轉成總和為 1 的機率。<span class="eg">例：ReLU(−3)=0、ReLU(2)=2。</span></dd>
+      <dt><span class="term">反向傳播</span><span class="en">Backpropagation</span></dt>
+      <dd>用連鎖律從輸出層往回計算各權重梯度的方法。<span class="eg">例：每個 batch 後更新所有權重。</span></dd>
+      <dt><span class="term">連鎖律</span><span class="en">Chain Rule</span></dt>
+      <dd>複合函數的導數＝各層局部導數相乘。<span class="eg">例：齒輪傳動倍數相乘。</span></dd>
+      <dt><span class="term">時間上的反向傳播</span><span class="en">BPTT, Backpropagation Through Time</span></dt>
+      <dd>把 RNN 依時間展開後再做反向傳播。<span class="eg">例：100 個時間步展開成 100 層。</span></dd>
+      <dt><span class="term">二元／類別交叉熵</span><span class="en">Binary / Categorical Cross-Entropy</span></dt>
+      <dd>是非題用的交叉熵／多選一用的交叉熵。<span class="eg">例：垃圾信判斷／手寫數字 0–9。</span></dd>
+      <dt><span class="term">過擬合／欠擬合</span><span class="en">Overfitting / Underfitting</span></dt>
+      <dd>死背題目、遇新題就錯／連練習題都學不好。<span class="eg">例：訓練 99%、驗證 70% 是過擬合。</span></dd>
+      <dt><span class="term">Elastic Net</span><span class="en">Elastic Net</span></dt>
+      <dd>同時加 L1 與 L2 懲罰。<span class="eg">例：高度相關特徵群的迴歸。</span></dd>
+      <dt><span class="term">Dropout</span><span class="en">Dropout</span></dt>
+      <dd>訓練時隨機關閉部分神經元，避免過度依賴少數神經元。<span class="eg">例：每次隨機讓一半組員請假，大家都得會。</span></dd>
+      <dt><span class="term">多層感知器</span><span class="en">MLP, Multi-Layer Perceptron</span></dt>
+      <dd>層與層全連接、資訊單向前饋的神經網路。<span class="eg">例：表格資料分類。</span></dd>
+      <dt><span class="term">前饋網路／全連接層</span><span class="en">Feedforward Network / Fully Connected (Dense) Layer</span></dt>
+      <dd>資訊只往前不回流／每個輸入都連到每個輸出。<span class="eg">例：CNN 最後的分類層。</span></dd>
+      <dt><span class="term">隱藏層</span><span class="en">Hidden Layer</span></dt>
+      <dd>輸入層與輸出層之間學習中間特徵的層。<span class="eg">例：「深度」指的是隱藏層多。</span></dd>
+      <dt><span class="term">卷積神經網路</span><span class="en">CNN, Convolutional Neural Network</span></dt>
+      <dd>以卷積核掃描提取局部特徵的網路。<span class="eg">例：人臉辨識、瑕疵檢測。</span></dd>
+      <dt><span class="term">卷積核（濾波器）／特徵圖</span><span class="en">Kernel (Filter) / Feature Map</span></dt>
+      <dd>滑動的小權重矩陣／卷積後得到的輸出圖。<span class="eg">例：3×3 邊緣偵測核。</span></dd>
+      <dt><span class="term">權重共享</span><span class="en">Weight Sharing</span></dt>
+      <dd>同一組權重在不同位置（或時間步）重複使用。<span class="eg">例：同一支放大鏡掃整張圖。</span></dd>
+      <dt><span class="term">池化／最大池化／平均池化</span><span class="en">Pooling / Max Pooling / Average Pooling</span></dt>
+      <dd>縮小特徵圖，取區域最大值或平均值。<span class="eg">例：2×2 取最大，尺寸減半。</span></dd>
+      <dt><span class="term">平移不變性</span><span class="en">Translation Invariance</span></dt>
+      <dd>物體在圖中移動位置，仍能被辨識。<span class="eg">例：貓在左上或右下都認得。</span></dd>
+      <dt><span class="term">扁平化</span><span class="en">Flatten</span></dt>
+      <dd>把多維特徵圖攤成一維向量。<span class="eg">例：7×7×512 → 25,088。</span></dd>
+      <dt><span class="term">ImageNet</span><span class="en">ImageNet</span></dt>
+      <dd>上千萬張標註影像的資料集與競賽，推動 CNN 崛起。<span class="eg">例：AlexNet 2012 奪冠。</span></dd>
+      <dt><span class="term">AlexNet／VGG／GoogLeNet／ResNet／DenseNet</span><span class="en">Classic CNN Architectures</span></dt>
+      <dd>經典 CNN：ReLU＋Dropout＋GPU／3×3 堆疊／Inception 多尺度並行／殘差連接／密集連接。<span class="eg">例：ResNet 能訓練上百層。</span></dd>
+      <dt><span class="term">MobileNet／EfficientNet</span><span class="en">Lightweight CNNs</span></dt>
+      <dd>為手機與邊緣裝置設計的輕量高效 CNN。<span class="eg">例：手機相機即時辨識。</span></dd>
+      <dt><span class="term">殘差連接（跳躍連接）</span><span class="en">Residual / Skip Connection</span></dt>
+      <dd>輸出＝輸入＋子層輸出，讓梯度有「直達車道」。<span class="eg">例：ResNet、Transformer 都用。</span></dd>
+      <dt><span class="term">遞迴神經網路</span><span class="en">RNN, Recurrent Neural Network</span></dt>
+      <dd>有循環連接、能記住前面資訊的序列模型。<span class="eg">例：逐字讀句子做情感分析。</span></dd>
+      <dt><span class="term">隱藏狀態</span><span class="en">Hidden State, Hₜ</span></dt>
+      <dd>RNN 在每個時間步的「記憶筆記」。<span class="eg">例：讀到第 5 個字時的摘要。</span></dd>
+      <dt><span class="term">長期依賴問題</span><span class="en">Long-term Dependency Problem</span></dt>
+      <dd>相隔很遠的資訊難以傳遞。<span class="eg">例：段落開頭的主詞到結尾已被「忘記」。</span></dd>
+      <dt><span class="term">長短期記憶</span><span class="en">LSTM, Long Short-Term Memory</span></dt>
+      <dd>用輸入門、遺忘門、輸出門與細胞狀態控制記憶的 RNN。<span class="eg">例：股價序列預測。</span></dd>
+      <dt><span class="term">門控循環單元</span><span class="en">GRU, Gated Recurrent Unit</span></dt>
+      <dd>LSTM 簡化版，只有更新門與重置門。<span class="eg">例：參數較少、訓練較快。</span></dd>
+      <dt><span class="term">雙向 RNN／深層 RNN</span><span class="en">Bi-RNN / Deep RNN</span></dt>
+      <dd>同時從前往後與從後往前讀／多層 RNN 堆疊。<span class="eg">例：命名實體辨識需看前後文。</span></dd>
+      <dt><span class="term">Transformer</span><span class="en">Transformer</span></dt>
+      <dd>完全以注意力機制處理序列、可高度平行的架構。<span class="eg">例：GPT、BERT 的基礎。</span></dd>
+      <dt><span class="term">注意力機制／自注意力</span><span class="en">Attention / Self-Attention</span></dt>
+      <dd>動態計算元素間相關性並加權；自注意力是序列內部互相關注。<span class="eg">例：「它」注意到前文的「貓」。</span></dd>
+      <dt><span class="term">查詢／鍵／值</span><span class="en">Query / Key / Value (Q, K, V)</span></dt>
+      <dd>用來比對的問題／被比對的標籤／被取用的內容。<span class="eg">例：圖書館找書的比喻。</span></dd>
+      <dt><span class="term">多頭注意力</span><span class="en">Multi-Head Attention</span></dt>
+      <dd>並行多組注意力，各自學不同關係再拼接。<span class="eg">例：一頭看語法、一頭看指代。</span></dd>
+      <dt><span class="term">位置編碼</span><span class="en">Positional Encoding</span></dt>
+      <dd>把位置資訊加入詞向量，彌補注意力不懂順序。<span class="eg">例：正弦/餘弦函數編碼。</span></dd>
+      <dt><span class="term">編碼器／解碼器</span><span class="en">Encoder / Decoder</span></dt>
+      <dd>把輸入轉成上下文表示／依表示逐步產生輸出。<span class="eg">例：機器翻譯讀中文、寫英文。</span></dd>
+      <dt><span class="term">遮罩自注意力</span><span class="en">Masked Self-Attention</span></dt>
+      <dd>解碼時遮住未來位置，避免偷看答案。<span class="eg">例：生成第 3 個字時看不到第 4 個字。</span></dd>
+      <dt><span class="term">層歸一化</span><span class="en">Layer Normalization, LN</span></dt>
+      <dd>對單一樣本的各特徵做標準化，不依賴批次大小。<span class="eg">例：Transformer 每個子層都用。</span></dd>
+      <dt><span class="term">內部協變偏移</span><span class="en">ICS, Internal Covariate Shift</span></dt>
+      <dd>訓練中前層參數改變導致後層輸入分佈一直變動。<span class="eg">例：BN/LN 被提出以減緩此現象。</span></dd>
+      <dt><span class="term">BERT／GPT／T5／ViT</span><span class="en">Bidirectional Encoder Representations from Transformers / Generative Pre-trained Transformer / Text-to-Text Transfer Transformer / Vision Transformer</span></dt>
+      <dd>雙向理解型編碼器／自迴歸生成型解碼器／一切任務轉成文字對文字／把影像切塊當序列。<span class="eg">例：BERT 做分類、GPT 寫文章。</span></dd>
+      <dt><span class="term">自迴歸</span><span class="en">Autoregressive</span></dt>
+      <dd>一次產生一個 token，再把它接回輸入產生下一個。<span class="eg">例：GPT 逐字生成。</span></dd>
+      <dt><span class="term">零樣本／少樣本學習</span><span class="en">Zero-shot / Few-shot Learning</span></dt>
+      <dd>不給或只給少量範例就能完成新任務。<span class="eg">例：提示中給 3 個翻譯範例。</span></dd>
+      <dt><span class="term">歸納偏置</span><span class="en">Inductive Bias</span></dt>
+      <dd>模型架構內建的先天假設。<span class="eg">例：CNN 假設局部像素相關；Transformer 這類假設較少，所以更吃資料。</span></dd>
+      <dt><span class="term">長序列 Transformer</span><span class="en">Longformer / Reformer / Performer</span></dt>
+      <dd>用稀疏、局部或近似注意力降低 O(L²) 成本的變體。<span class="eg">例：處理整份長篇合約。</span></dd>
+      <dt><span class="term">生成式模型</span><span class="en">Generative Model</span></dt>
+      <dd>學習資料分佈並能產生新樣本的模型。<span class="eg">例：生成人臉照片。</span></dd>
+      <dt><span class="term">自編碼器／瓶頸層</span><span class="en">Autoencoder / Bottleneck</span></dt>
+      <dd>壓縮再還原的網路／中間最窄的潛在表示層。<span class="eg">例：用重建誤差找異常品。</span></dd>
+      <dt><span class="term">潛在空間</span><span class="en">Latent Space</span></dt>
+      <dd>模型內部壓縮後的抽象表示空間。<span class="eg">例：人臉的「年齡」「微笑」方向。</span></dd>
+      <dt><span class="term">生成對抗網路</span><span class="en">GAN, Generative Adversarial Network</span></dt>
+      <dd>生成器與判別器互相對抗訓練的生成模型。<span class="eg">例：生成不存在的人像。</span></dd>
+      <dt><span class="term">生成器／判別器</span><span class="en">Generator / Discriminator</span></dt>
+      <dd>造假的一方／辨真偽的一方。<span class="eg">例：偽鈔製造者／驗鈔員。</span></dd>
+      <dt><span class="term">納什均衡</span><span class="en">Nash Equilibrium</span></dt>
+      <dd>雙方都無法單方面改變策略而獲利的穩定狀態。<span class="eg">例：判別器只能猜 50%。</span></dd>
+      <dt><span class="term">模式崩潰</span><span class="en">Mode Collapse</span></dt>
+      <dd>生成器只會產生少數幾種樣本。<span class="eg">例：只會畫同一張臉。</span></dd>
+      <dt><span class="term">IS／FID</span><span class="en">Inception Score / Fréchet Inception Distance</span></dt>
+      <dd>評估生成影像品質與多樣性的指標；FID 越低越好。<span class="eg">例：比較兩個 GAN 的生成品質。</span></dd>
+      <dt><span class="term">TensorFlow／Keras</span><span class="en">TensorFlow / Keras</span></dt>
+      <dd>Google 的深度學習框架／其高階易用 API。<span class="eg">例：TF Serving 部署模型。</span></dd>
+      <dt><span class="term">PyTorch</span><span class="en">PyTorch</span></dt>
+      <dd>以動態計算圖、Pythonic 介面著稱的框架。<span class="eg">例：研究界與 Hugging Face 主力。</span></dd>
+      <dt><span class="term">計算圖（靜態／動態）</span><span class="en">Computational Graph (Static / Dynamic)</span></dt>
+      <dd>運算步驟組成的圖；靜態先建好再跑，動態邊跑邊建。<span class="eg">例：PyTorch 可用一般 if/for 控制流程。</span></dd>
+      <dt><span class="term">即時執行</span><span class="en">Eager Execution</span></dt>
+      <dd>每行程式碼立即執行並得到結果。<span class="eg">例：TF 2.x 預設模式。</span></dd>
+      <dt><span class="term">自動微分</span><span class="en">Autograd / Automatic Differentiation</span></dt>
+      <dd>框架自動追蹤運算並算出梯度。<span class="eg">例：loss.backward() 一行完成。</span></dd>
+      <dt><span class="term">JAX／MXNet／PaddlePaddle</span><span class="en">JAX / Apache MXNet / PaddlePaddle</span></dt>
+      <dd>Google 函數式數值框架／AWS 曾主推的框架／百度開發的框架。<span class="eg">例：JAX 常用於 TPU 研究。</span></dd>
+      <dt><span class="term">TPU</span><span class="en">Tensor Processing Unit</span></dt>
+      <dd>Google 專為張量運算設計的 AI 加速晶片。<span class="eg">例：雲端訓練大型模型。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>現代 Transformer 的「標準改裝」</b>：<b>Pre-LN</b>（把層歸一化移到子層之前，深層更穩）、<b>RMSNorm</b><span class="yr">（2019）</span>（只除以均方根、不減平均，比 LayerNorm 更省計算）、<b>SwiGLU</b><span class="yr">（2020）</span>（取代 ReLU 的門控激活）、<b>RoPE 旋轉位置編碼</b><span class="yr">（2021）</span>（以旋轉方式編入相對位置，取代原始正弦編碼）。殘差連接則沿用至今。</li>
+        <li><b>GQA 分組查詢注意力</b><span class="yr">（2023）</span>：多個查詢頭共用一組 K/V 頭，減少推論時 KV 快取的記憶體，在品質與速度間折衷，已被許多開源大模型採用。</li>
+        <li><b>FlashAttention</b><span class="yr">（2022；FA-2 2023；FA-3 2024）</span>：數學上與標準注意力完全相同，但重新安排 GPU 記憶體讀寫（分塊、減少高頻寬記憶體往返），大幅加速並省記憶體；FA-3 針對 NVIDIA Hopper 架構並支援 FP8。它沒有改變 O(L²) 的計算量，而是解決「記憶體搬運」這個實際瓶頸。</li>
+        <li><b>混合專家 MoE</b><span class="yr">（Switch Transformer 2021；Mixtral 2024；DeepSeek-V3 2024）</span>：把 FFN 換成多位「專家」，路由器每個 token 只挑少數專家計算，總參數很大但每次只啟用一小部分。例如 Mixtral 8x7B 每層 8 位專家、每 token 選 2 位。</li>
+        <li><b>縮放定律 Scaling Laws</b><span class="yr">（Kaplan 2020；Chinchilla 2022）</span>：模型損失隨參數量、資料量、算力呈可預測的冪律下降；Chinchilla 指出在固定算力下，參數與訓練資料應同步放大，許多早期大模型其實「資料吃太少」。</li>
+        <li><b>狀態空間模型 Mamba</b><span class="yr">（2023）</span>：Gu 與 Dao 提出選擇性狀態空間模型，序列長度呈線性複雜度，是挑戰 Transformer O(L²) 的路線之一，也出現與注意力混合的架構。</li>
+        <li><b>擴散模型取代 GAN 成為影像生成主流</b><span class="yr">（DDPM 2020；Stable Diffusion 2022）</span>：逐步「去雜訊」生成影像，訓練比 GAN 穩定、較少模式崩潰問題。</li>
+        <li><b>框架動態</b>：PyTorch 2.0<span class="yr">（2023）</span>推出 <code>torch.compile</code> 編譯加速；Keras 3<span class="yr">（2023）</span>改為多後端，可跑在 TensorFlow、JAX 或 PyTorch 上；Apache MXNet 已於 2023 年退役並移入 Apache Attic<span class="yr">（2023）</span>，新專案不建議採用（指引仍列出 MXNet，作答依指引）。</li>
+      </ul></div>
+    <h2 class="chap" id="chap5">第五章 機器學習建模與參數調校</h2>
+    <p>前一章認識了「工具」，這一章講「怎麼把工具用好」：資料怎麼整理、模型怎麼挑、怎麼公平地打分數、怎麼調到最好。實務上這一章的功夫往往比換演算法更能提升成效，考題也最常以「情境題」出現。</p>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">洗、挑、考、調</span><br>5.1 洗資料（清理＋特徵工程）→ 5.2 挑模型（任務、規模、解釋性、資源）→ 5.3 考模型（指標＋交叉驗證）→ 5.4 調模型（超參數、正則化、重取樣、壓縮）。</div>
+
+    <h3 id="sec5-1">5.1 數據準備與特徵工程 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>「<b>垃圾進、垃圾出</b>（Garbage In, Garbage Out）」：再厲害的廚師，食材不新鮮也煮不出好菜。資料清理就是挑菜、洗菜、切菜；特徵工程是把食材處理成「最好入口」的樣子。</p>
+      <ul>
+        <li><b>缺失值</b>：缺很少就刪；不少就補（平均、中位數、眾數，或找相似樣本來補）；有時「缺失本身就是訊號」——例如沒填收入的人可能有特殊原因，可以加一欄「是否缺失」。</li>
+        <li><b>異常值</b>：Z 分數看「離平均幾個標準差」；IQR 看「超出 Q1−1.5×IQR 或 Q3+1.5×IQR」（就是箱型圖鬍鬚外的點）。但詐欺偵測裡，異常值正是要抓的目標，不能隨便刪！</li>
+        <li><b>尺度調整</b>：KNN、SVM、神經網路等「看距離或梯度」的模型，如果年收入（幾十萬）跟年齡（幾十）放一起，年收入會霸佔一切，所以要縮放；樹模型只看「大於小於」，不在乎尺度。</li>
+      </ul>
+    </div>
+    <div class="formula">尺度調整小算例：資料 [10, 20, 30, 40, 100]<br>
+      Min-Max：(x − 10)/(100 − 10) → 30 變成 20/90 ≈ 0.22（被極端值 100 壓縮了）<br>
+      Z-score：平均 40、標準差約 31.6（母體）→ 30 變成 (30−40)/31.6 ≈ −0.32<br>
+      Robust：中位數 30、IQR = Q3−Q1 = 40−20 = 20 → 30 變成 (30−30)/20 = 0；100 變成 3.5（極端值不影響其他點的縮放）<br>
+      IQR 異常值門檻：Q3 + 1.5×IQR = 40 + 30 = 70 → <b>100 為異常值</b>。</div>
+    <h4>類別編碼：怎麼把「文字類別」變成數字</h4>
+    <table>
+      <tr><th>方法</th><th>例子</th><th>白話</th><th>小心</th></tr>
+      <tr><td>Label Encoding</td><td>國小=1、國中=2、高中=3</td><td>有大小順序的才適合</td><td>把「紅=1、綠=2、藍=3」當數字，模型會以為藍 &gt; 紅</td></tr>
+      <tr><td>One-hot</td><td>is_紅、is_綠、is_藍</td><td>每類一欄，只有一欄是 1</td><td>類別多（如 3 萬個郵遞區號）會維度爆炸</td></tr>
+      <tr><td>Target Encoding</td><td>每個城市換成該城市的平均房價</td><td>直接用目標統計量代表類別</td><td>會偷看答案（資料洩漏），要用交叉擬合或平滑</td></tr>
+    </table>
+    <div class="formula">週期性編碼：月份 1～12 若直接用數字，12 月與 1 月差 11，但其實只差一個月。<br>
+      改成 sin(2π×月/12)、cos(2π×月/12) 兩欄，12 月與 1 月在圓上就相鄰了（像時鐘的 12 點與 1 點）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">過濾快、包裝準、嵌入順</span><br>Filter 用統計量篩、不看模型所以快；Wrapper 拿模型實測所以準但貴；Embedded 在訓練中順便選（Lasso、樹重要性）。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>缺失值：刪除、填補（均值/中位數/眾數、Hot Deck/KNN、預測模型）、缺失指標編碼。異常值：Z 分數、IQR、箱型圖、Isolation Forest、LOF；策略：移除、截尾轉換、標記保留。</li>
+        <li>樹模型對缺值與異常值容忍度較高；線性模型與神經網路較敏感，需補值與正規化。建立 Data Lineage。</li>
+        <li>特徵選擇：Filter（皮爾森、卡方、ANOVA）、Wrapper（RFE、前/後向）、Embedded（樹重要性、Lasso/Ridge）。降維：PCA、LDA、t-SNE/UMAP（只視覺化）、SVD（LSA、推薦）。</li>
+        <li>Min-Max（0～1，對極端值敏感）、Z-score（平均 0 標準差 1）、Robust Scaling（中位數＋IQR，抗極端值）。對數轉換處理右偏；Box-Cox/Yeo-Johnson 自動近常態化。</li>
+        <li>Label Encoding 用於有序類別；One-hot 用於無序類別（高基數維度爆炸）；Target Encoding 用於高基數且與目標相關（防洩漏）。時間特徵拆解、週期性用 sin/cos。</li>
+        <li>資料增強：圖像翻轉旋轉裁剪、文字同義替換、時序加噪/Jittering/窗口裁切、表格 SMOTE。特徵工程：滯後值（lag）、移動平均（rolling mean）。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>資料洩漏（Data Leakage）</b>：先用「全部資料」算平均來標準化或補值，再切訓練/測試 → 測試資訊已偷偷流進訓練。正確做法：只用訓練集 fit，再 transform 驗證/測試集（交叉驗證時每一折都要這樣做，最好用 Pipeline）。</li>
+        <li><b>資料增強要守住語意</b>：手寫數字「6」轉 180 度就變「9」；文字的水平翻轉會讓字母方向錯誤；醫學影像左右翻轉可能改變左右器官的意義。</li>
+        <li><b>SMOTE 只對訓練集做</b>，對測試集做等於造假考題。</li>
+        <li><b>標準化 ≠ 常態化</b>：Z-score 只改平均和尺度，<b>不會</b>把偏態分佈變成常態；要改形狀得用對數或 Box-Cox。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">資料清理</span><span class="en">Data Cleaning</span></dt>
+      <dd>處理缺失、異常、重複與格式不一致的資料。<span class="eg">例：把「男」「male」「M」統一。</span></dd>
+      <dt><span class="term">缺失值</span><span class="en">Missing Value</span></dt>
+      <dd>應有但沒有記錄的值。<span class="eg">例：問卷沒填收入。</span></dd>
+      <dt><span class="term">填補（插補）</span><span class="en">Imputation</span></dt>
+      <dd>用推估值補上缺失值。<span class="eg">例：用中位數補年齡。</span></dd>
+      <dt><span class="term">眾數</span><span class="en">Mode</span></dt>
+      <dd>出現次數最多的值。<span class="eg">例：最多人選的顏色。</span></dd>
+      <dt><span class="term">熱卡填補</span><span class="en">Hot Deck Imputation</span></dt>
+      <dd>從相似樣本借值來補。<span class="eg">例：用同區同齡者的收入補。</span></dd>
+      <dt><span class="term">缺失指標編碼</span><span class="en">Missing Indicator</span></dt>
+      <dd>新增一欄標示是否缺失。<span class="eg">例：income_missing=1。</span></dd>
+      <dt><span class="term">Z 分數</span><span class="en">Z-score</span></dt>
+      <dd>(x−平均)/標準差，表示離平均幾個標準差。<span class="eg">例：|Z|&gt;3 常視為異常。</span></dd>
+      <dt><span class="term">四分位距</span><span class="en">IQR, Interquartile Range</span></dt>
+      <dd>Q3−Q1，中間 50% 資料的範圍。<span class="eg">例：超出 Q3+1.5×IQR 為異常。</span></dd>
+      <dt><span class="term">局部離群因子</span><span class="en">LOF, Local Outlier Factor</span></dt>
+      <dd>比較某點與鄰居的密度，密度明顯較低者為異常。<span class="eg">例：偏遠孤立的交易點。</span></dd>
+      <dt><span class="term">截尾</span><span class="en">Winsorization / Capping</span></dt>
+      <dd>把極端值壓到某個上下限。<span class="eg">例：超過第 99 百分位的都設為該值。</span></dd>
+      <dt><span class="term">資料血緣</span><span class="en">Data Lineage</span></dt>
+      <dd>記錄資料從來源到使用的每一步處理，可追溯。<span class="eg">例：查出某欄位由哪個 ETL 產生。</span></dd>
+      <dt><span class="term">特徵工程</span><span class="en">Feature Engineering</span></dt>
+      <dd>從原始資料設計出對模型更有用的特徵。<span class="eg">例：由生日算出年齡。</span></dd>
+      <dt><span class="term">特徵選擇</span><span class="en">Feature Selection</span></dt>
+      <dd>挑出有用的特徵、去掉多餘或雜訊特徵。<span class="eg">例：200 欄挑出 30 欄。</span></dd>
+      <dt><span class="term">過濾法／包裝法／嵌入法</span><span class="en">Filter / Wrapper / Embedded Methods</span></dt>
+      <dd>用統計量篩選／用模型表現反覆試／訓練中順便選。<span class="eg">例：卡方檢定／RFE／Lasso。</span></dd>
+      <dt><span class="term">皮爾森相關係數</span><span class="en">Pearson Correlation Coefficient</span></dt>
+      <dd>衡量兩變數線性相關程度，−1～1。<span class="eg">例：身高與體重 r=0.7。</span></dd>
+      <dt><span class="term">變異數分析</span><span class="en">ANOVA, Analysis of Variance</span></dt>
+      <dd>檢定多組平均數是否有差異。<span class="eg">例：三種廣告的平均點擊率是否不同。</span></dd>
+      <dt><span class="term">遞迴特徵消除</span><span class="en">RFE, Recursive Feature Elimination</span></dt>
+      <dd>反覆訓練並移除最不重要的特徵。<span class="eg">例：每輪刪 5 個特徵直到剩 10 個。</span></dd>
+      <dt><span class="term">前向／後向選擇</span><span class="en">Forward / Backward Selection</span></dt>
+      <dd>從零逐一加入／從全部逐一刪除特徵。<span class="eg">例：每次加入讓成效提升最多的特徵。</span></dd>
+      <dt><span class="term">最小最大正規化</span><span class="en">Min-Max Normalization</span></dt>
+      <dd>線性縮放到 0～1。<span class="eg">例：影像像素 0～255 → 0～1。</span></dd>
+      <dt><span class="term">Z 分數標準化</span><span class="en">Z-score Standardization</span></dt>
+      <dd>轉成平均 0、標準差 1。<span class="eg">例：SVM 前的預處理。</span></dd>
+      <dt><span class="term">穩健縮放</span><span class="en">Robust Scaling</span></dt>
+      <dd>用中位數與 IQR 縮放，不受極端值影響。<span class="eg">例：含極端收入的資料。</span></dd>
+      <dt><span class="term">對數轉換</span><span class="en">Log Transformation</span></dt>
+      <dd>取對數壓縮大數值，改善右偏。<span class="eg">例：網站瀏覽次數。</span></dd>
+      <dt><span class="term">Yeo-Johnson 轉換</span><span class="en">Yeo-Johnson Transformation</span></dt>
+      <dd>Box-Cox 的延伸，可處理 0 與負值。<span class="eg">例：含虧損（負值）的獲利資料。</span></dd>
+      <dt><span class="term">標籤編碼</span><span class="en">Label Encoding</span></dt>
+      <dd>每個類別給一個整數。<span class="eg">例：S=1、M=2、L=3。</span></dd>
+      <dt><span class="term">獨熱編碼</span><span class="en">One-hot Encoding</span></dt>
+      <dd>每個類別一欄 0/1。<span class="eg">例：is_red、is_blue。</span></dd>
+      <dt><span class="term">目標編碼</span><span class="en">Target Encoding</span></dt>
+      <dd>以該類別的目標平均值取代類別。<span class="eg">例：各縣市平均違約率。</span></dd>
+      <dt><span class="term">高基數</span><span class="en">High Cardinality</span></dt>
+      <dd>類別種類非常多。<span class="eg">例：商品 ID 有 10 萬種。</span></dd>
+      <dt><span class="term">資料洩漏</span><span class="en">Data Leakage</span></dt>
+      <dd>訓練時不小心用到預測當下不該知道的資訊，導致評估虛高。<span class="eg">例：用「是否已退款」預測「是否詐騙」。</span></dd>
+      <dt><span class="term">週期性特徵</span><span class="en">Cyclical Features (sin/cos Encoding)</span></dt>
+      <dd>用三角函數表示循環變數，保留首尾相鄰。<span class="eg">例：23 點與 0 點相鄰。</span></dd>
+      <dt><span class="term">資料增強</span><span class="en">Data Augmentation</span></dt>
+      <dd>對既有資料做合理變化以增加多樣性。<span class="eg">例：翻轉、裁切照片。</span></dd>
+      <dt><span class="term">抖動</span><span class="en">Jittering / Scaling</span></dt>
+      <dd>對時序資料加入微小隨機擾動或縮放。<span class="eg">例：感測器訊號加小雜訊。</span></dd>
+      <dt><span class="term">SMOTE</span><span class="en">Synthetic Minority Over-sampling Technique</span></dt>
+      <dd>在少數類樣本與其近鄰之間插值合成新樣本。<span class="eg">例：詐騙樣本太少時合成更多。</span></dd>
+      <dt><span class="term">滯後特徵／移動平均</span><span class="en">Lag Feature / Rolling Mean</span></dt>
+      <dd>過去某時點的值／過去一段時間的平均。<span class="eg">例：昨天銷量、近 7 日平均銷量。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>scikit-learn TargetEncoder</b><span class="yr">（2023，v1.3）</span>：內建目標編碼並在 fit_transform 時自動使用「交叉擬合」（cross fitting）——每筆資料的編碼值只用其他折的資料計算，降低指引提醒的資料洩漏風險；同版本決策樹也開始原生支援缺失值。</li>
+        <li><b>資料為中心的 AI（Data-centric AI）</b><span class="yr">（2021 起倡議）</span>：主張與其一直換模型，不如系統化地改善標註品質、資料覆蓋與一致性；與本節「資料品質往往比演算法更決定表現」的觀點一致。</li>
+        <li><b>以大型語言模型做資料增強與合成資料</b><span class="yr">（2023 起普及）</span>：用 LLM 改寫句子、生成多樣化範例或補齊少數類文字資料，比同義詞替換更自然；但須人工抽檢，避免錯誤與偏見被放大。</li>
+        <li><b>特徵商店 Feature Store</b><span class="yr">（2017 起，Uber Michelangelo）</span>：集中管理特徵的定義與計算，確保訓練與線上推論用的是同一套特徵，避免「訓練/服務不一致」。</li>
+      </ul></div>
+
+    <h3 id="sec5-2">5.2 模型選擇與架構設計 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>選模型像選交通工具：去巷口買早餐騎腳踏車（簡單模型），跨縣市開車（樹集成），跨國搭飛機（深度學習）。沒有「最好的模型」，只有「最適合這趟旅程的」。四個問題幫你選：<b>任務是什麼？資料有多少？需不需要解釋？運算資源與延遲限制如何？</b></p>
+    </div>
+    <h4>偏差-變異權衡：射飛鏢的直覺</h4>
+    <table>
+      <tr><th></th><th>低變異（鏢很集中）</th><th>高變異（鏢很分散）</th></tr>
+      <tr><td>低偏差（中心對準靶心）</td><td>理想：又準又穩</td><td>過擬合：平均在靶心附近，但每次換資料結果差很多</td></tr>
+      <tr><td>高偏差（中心偏離靶心）</td><td>欠擬合：穩穩地射歪</td><td>最糟：又歪又亂</td></tr>
+    </table>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>總誤差 ≈ 偏差² ＋ 變異 ＋ 無法消除的雜訊。模型越複雜，偏差↓、變異↑，總誤差是一個「U 形」，最低點就是最佳複雜度（完整教材有重繪的指引第 5-16 頁示意圖）。判讀口訣：<b>訓練差、驗證也差 → 高偏差（欠擬合）</b>，要加複雜度或特徵；<b>訓練好、驗證差、換個切分又變很多 → 高變異（過擬合）</b>，要加資料、正則化或簡化模型。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">偏差太笨、變異太敏感</span><br>高偏差＝學得太少（太笨，欠擬合）；高變異＝連雜訊都當真（太敏感，過擬合）。小資料選簡單、中資料選樹集成、大資料／非結構化選深度。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>任務配對：分類（決策樹/RF、SVM、神經網路）、迴歸（線性、RF 迴歸、神經網路）、聚類（K-means 球狀已知群數、DBSCAN 有雜訊或群大小不均）、降維（PCA、自編碼器）、時序（RNN/LSTM/GRU、TCN、ARIMA）。</li>
+        <li>資料規模：小型（數百～數千）→ 線性/邏輯迴歸、決策樹、Lasso/Ridge；中型（數千～數十萬）→ RF、XGBoost、LightGBM；大型（百萬以上）→ 深度模型＋GPU/分散式。</li>
+        <li>高解釋性：線性/邏輯迴歸、淺層決策樹（醫療、信貸、法規）；低解釋性模型搭配 SHAP、LIME、PDP。SHAP 可解釋單筆預測（局部），特徵重要性屬全域。</li>
+        <li>資源受限（IoT、手機、邊緣）→ 簡單模型或剪枝/量化；即時推論 → 重視延遲，可用 caching、知識蒸餾。</li>
+        <li>偏差-變異權衡：複雜度↑ → 偏差↓、變異↑。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>統計學的「偏差 Bias」vs 治理的「偏見 Bias」</b>：本節的 bias 是「系統性猜不準」；第六章的 bias 是「對特定群體不公平」，英文同字、意義不同。神經元的「偏置 b」又是另一回事。</li>
+        <li><b>SHAP vs LIME</b>：兩者都能解釋單筆預測；SHAP 依博弈論 Shapley 值公平分配貢獻、具一致性；LIME 在該筆資料附近用簡單模型局部近似，較快但結果可能隨抽樣變動。</li>
+        <li><b>PDP 是全域、平均的效果</b>：看「某特徵變大時，平均而言預測怎麼變」，不是解釋某一筆。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">模型選擇</span><span class="en">Model Selection</span></dt>
+      <dd>依任務、資料與限制挑出最合適的模型。<span class="eg">例：小資料信貸評分選邏輯迴歸。</span></dd>
+      <dt><span class="term">時間卷積網路</span><span class="en">TCN, Temporal Convolutional Network</span></dt>
+      <dd>用因果、擴張卷積處理時序，可平行且長期依賴穩定。<span class="eg">例：設備感測序列預測。</span></dd>
+      <dt><span class="term">ARIMA</span><span class="en">AutoRegressive Integrated Moving Average</span></dt>
+      <dd>經典統計時序模型，結合自迴歸、差分與移動平均。<span class="eg">例：月營收短期預測。</span></dd>
+      <dt><span class="term">可解釋性</span><span class="en">Interpretability / Explainability</span></dt>
+      <dd>人能理解模型為何做出某預測的程度。<span class="eg">例：拒貸要能說明理由。</span></dd>
+      <dt><span class="term">黑箱模型</span><span class="en">Black-box Model</span></dt>
+      <dd>預測準但內部決策難以理解的模型。<span class="eg">例：深度神經網路。</span></dd>
+      <dt><span class="term">SHAP</span><span class="en">SHapley Additive exPlanations</span></dt>
+      <dd>用博弈論 Shapley 值把預測拆成各特徵的貢獻。<span class="eg">例：此人被拒貸，負債比貢獻 −0.3。</span></dd>
+      <dt><span class="term">LIME</span><span class="en">Local Interpretable Model-agnostic Explanations</span></dt>
+      <dd>在單筆資料附近擾動取樣，用簡單模型局部近似黑箱。<span class="eg">例：標出影響影像分類的區塊。</span></dd>
+      <dt><span class="term">偏依圖</span><span class="en">PDP, Partial Dependence Plot</span></dt>
+      <dd>顯示某特徵改變時，預測值的平均變化。<span class="eg">例：年齡對保費預測的平均影響曲線。</span></dd>
+      <dt><span class="term">邊緣裝置／物聯網</span><span class="en">Edge Device / IoT, Internet of Things</span></dt>
+      <dd>在資料產生端就地運算的小型裝置。<span class="eg">例：工廠感測器、智慧攝影機。</span></dd>
+      <dt><span class="term">推論延遲</span><span class="en">Inference Latency</span></dt>
+      <dd>模型從收到輸入到給出結果的時間。<span class="eg">例：刷卡授權需在 100 毫秒內判斷。</span></dd>
+      <dt><span class="term">快取</span><span class="en">Caching</span></dt>
+      <dd>把常用結果暫存起來重複使用。<span class="eg">例：熱門商品推薦結果先算好。</span></dd>
+      <dt><span class="term">偏差（統計）</span><span class="en">Bias</span></dt>
+      <dd>模型預測平均偏離真值的程度，過高即欠擬合。<span class="eg">例：用直線擬合拋物線。</span></dd>
+      <dt><span class="term">變異（統計）</span><span class="en">Variance</span></dt>
+      <dd>換一批訓練資料，模型預測變動的程度，過高即過擬合。<span class="eg">例：很深的決策樹。</span></dd>
+      <dt><span class="term">偏差-變異權衡</span><span class="en">Bias-Variance Tradeoff</span></dt>
+      <dd>降低偏差常提高變異，反之亦然，需找平衡點。<span class="eg">例：調整樹的最大深度。</span></dd>
+      <dt><span class="term">泛化能力</span><span class="en">Generalization</span></dt>
+      <dd>模型在沒看過的新資料上的表現。<span class="eg">例：考古題外的新題也會做。</span></dd>
+      <dt><span class="term">模型複雜度</span><span class="en">Model Complexity / Capacity</span></dt>
+      <dd>模型能表達的函數有多豐富。<span class="eg">例：參數越多、層數越深越複雜。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>表格資料模型選擇的新選項</b><span class="yr">（2022–2025）</span>：研究普遍顯示中型表格資料 GBDT 仍是強基準；小型表格可試 TabPFN 這類「表格基礎模型」（見 4.2）。「先建簡單基準 → 再試樹集成 → 必要時才上深度」仍是務實順序。</li>
+        <li><b>可解釋性新工具：機制可解釋性與稀疏自編碼器</b><span class="yr">（2023–2024）</span>：Anthropic 於 2023 年用稀疏自編碼器從小型 Transformer 中拆出可解釋的「特徵」，2024 年擴展到 Claude 3 Sonnet 這類生產級大模型。SHAP/LIME 解釋「輸入對輸出的貢獻」，這類方法則嘗試看懂「模型內部在想什麼」。</li>
+        <li><b>預訓練模型＋遷移學習成為預設選項</b><span class="yr">（2018 起）</span>：影像、文字任務多半不從零訓練，而是拿預訓練模型微調，大幅降低指引所說「大型資料才適合深度模型」的門檻。</li>
+        <li><b>AutoML</b><span class="yr">（如 AutoGluon 2020）</span>：自動嘗試多種模型、調參並做集成，適合快速建立強基準。</li>
+      </ul></div>
+
+    <h3 id="sec5-3">5.3 模型訓練、評估與驗證 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-3">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>混淆矩陣想成<b>機場安檢</b>：「正類」＝有違禁品。</p>
+      <ul>
+        <li><b>TP</b> 有違禁品且被攔下 ✔；<b>TN</b> 沒有且放行 ✔；<b>FP</b> 沒有卻被攔下（誤報，旅客不爽）；<b>FN</b> 有卻放行（漏報，危險！）。</li>
+        <li><b>Precision（精確率）</b>：被攔下的人中，真的有違禁品的比例——「我抓的準不準」。</li>
+        <li><b>Recall（召回率）</b>：所有帶違禁品的人中，被攔下的比例——「該抓的抓到幾成」。安檢、癌症篩檢、詐騙偵測最重視 Recall。</li>
+        <li><b>F1</b>：Precision 與 Recall 的調和平均，任一個很低 F1 就會很低，逼你兩邊都顧。</li>
+      </ul>
+    </div>
+    <div class="formula">混淆矩陣小算例：1,000 筆交易，其中 20 筆詐騙。模型標記 30 筆為詐騙，其中 15 筆真的是。<br>
+      TP=15、FP=15、FN=5、TN=965<br>
+      Accuracy = (15+965)/1000 = 98.0%<br>
+      Precision = 15/(15+15) = 50%<br>
+      Recall = 15/(15+5) = 75%<br>
+      F1 = 2×0.5×0.75/(0.5+0.75) = 0.75/1.25 = <b>0.60</b><br>
+      對照：「全部猜正常」的笨模型 Accuracy 也有 98%，但 Recall＝0 → 這就是<b>不平衡資料不能只看 Accuracy</b>。</div>
+    <h4>指標怎麼選？一張表帶走</h4>
+    <table>
+      <tr><th>情境</th><th>優先看</th><th>理由</th></tr>
+      <tr><td>類別均衡、錯誤代價相近</td><td>Accuracy</td><td>直觀</td></tr>
+      <tr><td>誤報代價高（垃圾信把重要信丟掉、推薦不相關商品）</td><td>Precision</td><td>寧可少抓，抓了要準</td></tr>
+      <tr><td>漏報代價高（癌症、詐騙、安檢）</td><td>Recall</td><td>寧可錯殺，不可放過</td></tr>
+      <tr><td>不平衡且兩者都要</td><td>F1</td><td>兼顧 P、R</td></tr>
+      <tr><td>要比較模型整體排序能力、之後再選閾值</td><td>ROC-AUC</td><td>不受單一閾值影響</td></tr>
+      <tr><td>迴歸、在意大誤差</td><td>MSE / RMSE</td><td>平方放大大錯；RMSE 單位與原值相同好報告</td></tr>
+      <tr><td>迴歸、有離群值</td><td>MAE</td><td>不被極端值綁架</td></tr>
+      <tr><td>迴歸、想知道解釋了多少變異</td><td>R²</td><td>1 完美、0 等同猜平均、負值比猜平均還差</td></tr>
+    </table>
+    <div class="formula">R² 小算例：TSS（總變異）=200、RSS（殘差平方和）=30 → R² = 1 − 30/200 = <b>0.85</b>：模型解釋了 85% 的變異（不是「準確率 85%」）。</div>
+    <div class="plain"><span class="tag">💬 白話說（交叉驗證）</span>
+      <p>只考一次模擬考可能剛好題目簡單或很難，<b>K-fold 就是輪流出題</b>：把資料切成 K 份，每次拿一份當考卷、其餘當教材，考 K 次取平均，成績更可信。<b>Stratified</b> 保證每份考卷裡各類題目比例一樣（不平衡資料必備）；<b>LOOCV</b> 是每次只留一題考，最徹底但最耗時；<b>時間序列</b>必須「用過去預測未來」，不能隨機打散（否則等於拿明天的報紙預測今天）。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">精確怕誤報、召回怕漏網</span><br>Precision 分母是「預測為正」（TP+FP），Recall 分母是「實際為正」（TP+FN）。勘誤表已更正：Recall＝TP/(TP+<b>FN</b>)。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>批次訓練：Batch GD、SGD、Mini-batch（最常用）。學習率：固定、遞減（Step/Exponential）、ReduceLROnPlateau、預熱（Transformer 常見）。早停：Patience、Minimum Delta。監控：TensorBoard、WandB、MLflow。</li>
+        <li>混淆矩陣與 Accuracy、Precision、Recall、F1、ROC-AUC 公式與適用；不平衡時 Accuracy 會誤導。</li>
+        <li>ROC：橫軸 FPR、縱軸 TPR，越靠左上越好、對角線為隨機（AUC=0.5）。</li>
+        <li>迴歸：MSE（大誤差敏感）、MAE（抗異常值）、RMSE（同單位）、R²=1−RSS/TSS（可為負）。</li>
+        <li>不平衡處理：類別重加權、SMOTE、異常值建模（Isolation Forest、One-Class SVM）；業務導向指標（誤判成本矩陣、NDCG、Profit Score）。</li>
+        <li>交叉驗證：K-fold（常 5 或 10）、Stratified K-fold（分類預設）、LOOCV（偏差最小、成本最高）、Repeated K-fold（更穩定，需報告標準差）。前處理須在每一折內擬合以免資料洩漏。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>TPR = Recall = 靈敏度</b>；<b>FPR = FP/(FP+TN)</b> = 1 − 特異度。ROC 的兩個軸都是「率」，分母不同。</li>
+        <li><b>極度不平衡時 ROC-AUC 可能看起來很漂亮</b>（因為 TN 很多讓 FPR 很小），實務常加看 PR 曲線（Precision-Recall 曲線）與 PR-AUC。</li>
+        <li><b>調整閾值</b>：把判定門檻從 0.5 降到 0.3，Recall ↑、Precision ↓；Precision 與 Recall 通常此消彼長。</li>
+        <li><b>R² 高 ≠ 模型正確</b>：還要看殘差圖；殘差呈漏斗形代表變異數不齊一，呈彎曲代表漏掉非線性。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">批次大小／Epoch／迭代</span><span class="en">Batch Size / Epoch / Iteration</span></dt>
+      <dd>每次更新用幾筆／全部資料看過一遍／一次參數更新。<span class="eg">例：1,000 筆、batch 100 → 每 epoch 10 次迭代。</span></dd>
+      <dt><span class="term">指數衰減／階梯衰減</span><span class="en">Exponential Decay / Step Decay</span></dt>
+      <dd>學習率按固定比例逐步／每隔幾輪一次性下降。<span class="eg">例：每 10 epoch 乘 0.5。</span></dd>
+      <dt><span class="term">學習率預熱</span><span class="en">Learning Rate Warmup</span></dt>
+      <dd>訓練初期從很小的學習率逐漸升高。<span class="eg">例：前 1,000 步線性升到目標值。</span></dd>
+      <dt><span class="term">耐心值／最小改善幅度</span><span class="en">Patience / Minimum Delta</span></dt>
+      <dd>早停前可容忍幾輪沒進步／多少改善才算進步。<span class="eg">例：patience=5、min_delta=0.001。</span></dd>
+      <dt><span class="term">TensorBoard／WandB／MLflow</span><span class="en">TensorBoard / Weights &amp; Biases / MLflow</span></dt>
+      <dd>訓練過程視覺化與實驗追蹤工具。<span class="eg">例：比較 20 次實驗的損失曲線。</span></dd>
+      <dt><span class="term">混淆矩陣</span><span class="en">Confusion Matrix</span></dt>
+      <dd>預測結果與實際類別的 2×2（或 n×n）對照表。<span class="eg">例：TP、FP、FN、TN。</span></dd>
+      <dt><span class="term">真正／假正／假負／真負</span><span class="en">TP / FP / FN / TN</span></dt>
+      <dd>正確抓到／誤報／漏報／正確放行。<span class="eg">例：安檢情境。</span></dd>
+      <dt><span class="term">準確率</span><span class="en">Accuracy</span></dt>
+      <dd>全部預測中正確的比例。<span class="eg">例：100 題對 90 題＝90%。</span></dd>
+      <dt><span class="term">精確率</span><span class="en">Precision</span></dt>
+      <dd>預測為正的樣本中，真的為正的比例。<span class="eg">例：被標為垃圾信中真的是垃圾信的比例。</span></dd>
+      <dt><span class="term">召回率（靈敏度）</span><span class="en">Recall / Sensitivity / TPR</span></dt>
+      <dd>實際為正的樣本中，被正確抓出的比例。<span class="eg">例：癌症病人中被驗出的比例。</span></dd>
+      <dt><span class="term">F1 分數</span><span class="en">F1-score</span></dt>
+      <dd>精確率與召回率的調和平均。<span class="eg">例：P=0.8、R=0.6 → F1≈0.686。</span></dd>
+      <dt><span class="term">調和平均</span><span class="en">Harmonic Mean</span></dt>
+      <dd>倒數的平均再取倒數，會被較小值拉低。<span class="eg">例：0.9 與 0.1 的調和平均只有 0.18。</span></dd>
+      <dt><span class="term">ROC 曲線／AUC</span><span class="en">Receiver Operating Characteristic / Area Under the Curve</span></dt>
+      <dd>不同閾值下 TPR 對 FPR 的曲線／曲線下面積，越接近 1 越好。<span class="eg">例：AUC=0.5 等於亂猜。</span></dd>
+      <dt><span class="term">假正率／特異度</span><span class="en">FPR, False Positive Rate / Specificity</span></dt>
+      <dd>實際為負卻被判正的比例／實際為負被正確判負的比例（兩者相加為 1）。<span class="eg">例：健康者被誤判有病的比例。</span></dd>
+      <dt><span class="term">閾值</span><span class="en">Threshold</span></dt>
+      <dd>機率大於多少就判為正類的門檻。<span class="eg">例：0.5 改 0.3 可提高召回率。</span></dd>
+      <dt><span class="term">殘差平方和／總變異平方和</span><span class="en">RSS / TSS</span></dt>
+      <dd>模型沒解釋到的誤差總量／資料相對平均的總變異。<span class="eg">例：R²=1−RSS/TSS。</span></dd>
+      <dt><span class="term">殘差圖</span><span class="en">Residual Plot</span></dt>
+      <dd>以預測值為橫軸、殘差為縱軸的診斷圖。<span class="eg">例：漏斗形代表異質變異。</span></dd>
+      <dt><span class="term">異質變異</span><span class="en">Heteroscedasticity</span></dt>
+      <dd>誤差大小隨預測值改變，違反變異數齊一假設。<span class="eg">例：高價房的預測誤差特別大。</span></dd>
+      <dt><span class="term">類別權重</span><span class="en">Class Weights</span></dt>
+      <dd>在損失中提高少數類的權重。<span class="eg">例：詐騙樣本權重設為 50。</span></dd>
+      <dt><span class="term">誤判成本矩陣</span><span class="en">Cost Matrix</span></dt>
+      <dd>為不同錯誤類型設定不同代價。<span class="eg">例：漏診成本是誤診的 10 倍。</span></dd>
+      <dt><span class="term">NDCG</span><span class="en">Normalized Discounted Cumulative Gain</span></dt>
+      <dd>衡量排序品質，越相關的項目排越前面分數越高。<span class="eg">例：搜尋結果排序評估。</span></dd>
+      <dt><span class="term">交叉驗證</span><span class="en">Cross-Validation, CV</span></dt>
+      <dd>多次輪流切分訓練與驗證，平均評估結果。<span class="eg">例：5-fold CV。</span></dd>
+      <dt><span class="term">K 折／分層 K 折</span><span class="en">K-fold / Stratified K-fold</span></dt>
+      <dd>平均分 K 份輪流驗證／每份保持類別比例。<span class="eg">例：詐騙比例 2% 時每折都約 2%。</span></dd>
+      <dt><span class="term">留一交叉驗證</span><span class="en">LOOCV, Leave-One-Out Cross-Validation</span></dt>
+      <dd>每次只留一筆驗證，共做 n 次。<span class="eg">例：只有 50 位病人的臨床研究。</span></dd>
+      <dt><span class="term">重複 K 折</span><span class="en">Repeated K-fold</span></dt>
+      <dd>K-fold 以不同隨機切分重複多次。<span class="eg">例：10-fold×5 次，共 50 次評估。</span></dd>
+      <dt><span class="term">時間序列交叉驗證</span><span class="en">Time Series Split / Rolling Window</span></dt>
+      <dd>永遠用較早資料訓練、較晚資料驗證。<span class="eg">例：1–6 月訓練、7 月驗證；1–7 月訓練、8 月驗證。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>保形預測用於評估與上線把關</b><span class="yr">（Angelopoulos &amp; Bates 教學 2021）</span>：在分類上可輸出「預測集合」（如 {肺炎, 支氣管炎}），保證以 90% 機率包含正解；不確定時集合變大，可據此轉人工審核。</li>
+        <li><b>機率校準評估</b><span class="yr">（可靠度圖、Brier score）</span>：除了「排得準不準」（AUC），也要看「機率準不準」——說 70% 的案例裡，實際是否約七成發生。對風險定價、醫療決策尤其重要。</li>
+        <li><b>MLOps：實驗追蹤到上線監控</b>：MLflow<span class="yr">（2018）</span>記錄參數、指標與模型版本，MLflow 3<span class="yr">（2025）</span>進一步擴充生成式 AI 的追蹤與評估；上線後以 Evidently 等開源工具監控<b>資料漂移</b>（輸入分佈改變）與<b>概念漂移</b>（輸入與答案的關係改變），觸發再訓練。</li>
+      </ul></div>
+
+    <h3 id="sec5-4">5.4 模型調整與優化 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-4">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p><b>參數</b>是模型自己學會的「肌肉記憶」；<b>超參數</b>是教練在訓練前定的「訓練計畫」（每天跑幾公里、休息多久）。調超參數就是找最好的訓練計畫：</p>
+      <ul>
+        <li><b>Grid Search</b>：把每種組合都試一遍——像把菜單上每道菜都點一次，保證不漏但很貴。</li>
+        <li><b>Random Search</b>：隨機挑組合試——在參數多、其中只有少數真正重要時，同樣預算下反而更常碰到好組合。</li>
+        <li><b>AutoML</b>：交給自動化工具幫你選模型、調參。</li>
+      </ul>
+    </div>
+    <div class="formula">Grid Search 組合數小算例：學習率 3 種 × 批次大小 4 種 × 層數 5 種 × 優化器 3 種 × Dropout 3 種 = 540 組，再乘 5-fold → 要訓練 <b>2,700</b> 個模型。</div>
+    <h4>正則化：給模型「加點限制」</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>L1/L2</b>：在損失上加「權重太大罰款」，讓模型不要過度依賴某幾個特徵。λ 是罰款力道：太大 → 什麼都不敢學（欠擬合）；太小 → 等於沒罰（過擬合）。</li>
+        <li><b>Dropout</b>：每次練習隨機讓一些隊員請假，逼大家都學會各種位置，比賽時（推論）全員到齊、但要依保留率調整力道。</li>
+        <li><b>Early Stopping</b>：模擬考成績開始退步就停止刷題，避免開始死背考古題。</li>
+      </ul>
+    </div>
+    <h4>不平衡資料的三種解法</h4>
+    <table>
+      <tr><th>方法</th><th>比喻</th><th>代價</th></tr>
+      <tr><td>過採樣（含 SMOTE）</td><td>把少數派的聲音複製或「合成」多一點</td><td>單純複製易過擬合；合成樣本可能不自然</td></tr>
+      <tr><td>欠採樣</td><td>請多數派只派代表出席</td><td>丟掉有用資訊</td></tr>
+      <tr><td>類別權重</td><td>少數派一票抵多票</td><td>權重要調得剛好</td></tr>
+    </table>
+    <h4>模型壓縮：讓大模型「瘦身上路」</h4>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <ul>
+        <li><b>知識蒸餾</b>：名師（大模型）把解題思路傳給學生（小模型）。學生不只學「正確答案」，還學老師的「機率分佈」（例如老師覺得這張圖 70% 像狗、25% 像狼），這種「暗知識」讓學生學得更快更好。</li>
+        <li><b>剪枝</b>：修剪盆栽，剪掉對造型沒幫助的枝葉。結構化剪枝剪整根枝（整個通道/神經元，硬體好加速）；非結構化剪枝剪零散葉子（壓縮率高但硬體不易加速）。</li>
+        <li><b>量化</b>：把 32 位元浮點數改用 8 位元整數存，像把高解析照片轉成較小的 JPG——檔案變小、跑得更快，畫質稍降。</li>
+        <li><b>混合精度訓練</b>：大部分運算用 16 位元算（快、省記憶體），關鍵的權重主副本與累加用 32 位元保持精準；FP16 數值範圍小，梯度太小會變 0，所以要「梯度縮放」。</li>
+      </ul>
+    </div>
+    <div class="formula">量化省多少？10 億參數的模型：FP32 每參數 4 bytes → 約 4 GB；INT8 每參數 1 byte → 約 1 GB；4-bit → 約 0.5 GB（不含其他開銷的粗估）。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">蒸師傳徒、剪枝修樹、量化降位、混精快算</span><br>四種壓縮加速技術一次記。降低過擬合的正確方向是「限制能力」（L1/L2、Dropout、早停、減特徵），「增加特徵、增加 Epoch」反而會加重過擬合。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>超參數＝人手動指定、非資料學得：學習率、批次大小、網路深度與寬度、激活函數、優化器、正則化係數 λ。</li>
+        <li>學習率過高 → 不穩、梯度爆炸；過低 → 收斂慢、卡局部極小。批次過小 → 梯度不穩；過大 → 泛化可能下降，與學習率耦合。過深 → 梯度消失（初始化/BN/殘差）；過寬 → 過擬合。</li>
+        <li>激活函數：Softmax（多類別單選）、ReLU（隱藏層、緩解梯度消失）、Sigmoid（二元/多標籤輸出）、Tanh（[-1,1]、中心對稱）。</li>
+        <li>優化器：SGD、Momentum（γ 常 0.5～0.9）、Adagrad（稀疏、學習率持續衰減）、Adam（一階＋二階動量＋偏差修正，記憶體較高、部分情境泛化略輸 SGD）。</li>
+        <li>正則化：L1（特徵選擇）、L2（不歸零）、Elastic Net（兩者兼具、兩個係數）、Dropout（常見 p=0.5，測試時關閉並縮放）、Early Stopping（patience）。</li>
+        <li>重取樣：過採樣、欠採樣、類別權重的優缺點。</li>
+        <li>壓縮：知識蒸餾（教師→學生）、剪枝（結構化 vs 非結構化）、量化（32-bit 浮點→8-bit 整數，可能需量化感知訓練 QAT）、混合精度（FP16＋FP32，需梯度縮放）。</li>
+        <li>調參：Grid Search（窮舉）、Random Search（高維更有效率）、AutoML。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>L2 正則化 vs 權重衰減（Weight Decay）</b>：在純 SGD 下兩者等價；在 Adam 這類自適應優化器下不等價，這正是 AdamW 誕生的原因（見 3.3 延伸）。考試把 L2 與 Weight Decay 視為同一類觀念即可。</li>
+        <li><b>訓練後量化（PTQ）vs 量化感知訓練（QAT）</b>：PTQ 訓練完直接轉，快但可能掉精度；QAT 訓練時就模擬量化誤差，精度較好但要重訓。</li>
+        <li><b>蒸餾 vs 剪枝</b>：蒸餾是「另外訓練一個小模型」；剪枝是「在原模型上剪」。</li>
+        <li><b>FP16 vs BF16</b>：同樣 16 位元，BF16 的指數位數與 FP32 相同、數值範圍大，較少需要梯度縮放；FP16 精度位數較多但範圍小。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">超參數</span><span class="en">Hyperparameter</span></dt>
+      <dd>訓練前由人設定、不由資料學得的設定值。<span class="eg">例：學習率、樹的最大深度。</span></dd>
+      <dt><span class="term">超參數調校</span><span class="en">Hyperparameter Tuning</span></dt>
+      <dd>系統化尋找最佳超參數組合的過程。<span class="eg">例：用驗證集比較 50 組設定。</span></dd>
+      <dt><span class="term">網格搜尋</span><span class="en">Grid Search</span></dt>
+      <dd>列出所有候選值組合逐一試。<span class="eg">例：3×4 共 12 組。</span></dd>
+      <dt><span class="term">隨機搜尋</span><span class="en">Random Search</span></dt>
+      <dd>在範圍內隨機抽組合試。<span class="eg">例：預算 60 次隨機抽樣。</span></dd>
+      <dt><span class="term">自動化機器學習</span><span class="en">AutoML, Automated Machine Learning</span></dt>
+      <dd>自動完成模型選擇、調參甚至特徵工程。<span class="eg">例：缺資料科學家時快速建基準。</span></dd>
+      <dt><span class="term">網路深度／寬度</span><span class="en">Network Depth / Width</span></dt>
+      <dd>層數／每層神經元數。<span class="eg">例：ResNet-50 有 50 層。</span></dd>
+      <dt><span class="term">優化器</span><span class="en">Optimizer</span></dt>
+      <dd>依梯度決定參數更新方向與步幅的演算法。<span class="eg">例：SGD、Adam。</span></dd>
+      <dt><span class="term">退火</span><span class="en">Annealing</span></dt>
+      <dd>訓練後期逐步降低學習率，讓參數穩定落點。<span class="eg">例：餘弦退火。</span></dd>
+      <dt><span class="term">偏差修正</span><span class="en">Bias Correction (Adam)</span></dt>
+      <dd>修正 Adam 動量在訓練初期因從 0 起算而偏小的問題。<span class="eg">例：前幾步除以 (1−β^t)。</span></dd>
+      <dt><span class="term">權重衰減</span><span class="en">Weight Decay</span></dt>
+      <dd>每次更新時讓權重稍微縮小，效果類似 L2 正則化。<span class="eg">例：weight_decay=0.01。</span></dd>
+      <dt><span class="term">保留機率</span><span class="en">Keep Probability, p</span></dt>
+      <dd>Dropout 中神經元被保留的機率。<span class="eg">例：p=0.5 表示每次約一半神經元參與。</span></dd>
+      <dt><span class="term">重取樣</span><span class="en">Resampling</span></dt>
+      <dd>改變各類樣本數量以平衡資料。<span class="eg">例：過採樣或欠採樣。</span></dd>
+      <dt><span class="term">過採樣／欠採樣</span><span class="en">Oversampling / Undersampling</span></dt>
+      <dd>增加少數類／減少多數類樣本。<span class="eg">例：複製詐騙樣本／隨機刪部分正常交易。</span></dd>
+      <dt><span class="term">類別不平衡</span><span class="en">Class Imbalance</span></dt>
+      <dd>各類樣本數相差懸殊。<span class="eg">例：正常 99%、詐騙 1%。</span></dd>
+      <dt><span class="term">模型壓縮</span><span class="en">Model Compression</span></dt>
+      <dd>縮小模型體積與運算量以利部署。<span class="eg">例：讓模型能跑在手機上。</span></dd>
+      <dt><span class="term">知識蒸餾</span><span class="en">Knowledge Distillation</span></dt>
+      <dd>用大教師模型的輸出訓練小學生模型。<span class="eg">例：大模型的「軟標籤」教小模型。</span></dd>
+      <dt><span class="term">教師模型／學生模型</span><span class="en">Teacher / Student Model</span></dt>
+      <dd>提供知識的大模型／學習模仿的小模型。<span class="eg">例：教師 1B 參數、學生 100M 參數。</span></dd>
+      <dt><span class="term">軟標籤</span><span class="en">Soft Labels / Soft Targets</span></dt>
+      <dd>教師輸出的完整機率分佈，而非只有正確答案。<span class="eg">例：狗 0.7、狼 0.25、貓 0.05。</span></dd>
+      <dt><span class="term">模型剪枝</span><span class="en">Pruning</span></dt>
+      <dd>移除貢獻低的權重、神經元或層。<span class="eg">例：剪掉 50% 接近 0 的權重。</span></dd>
+      <dt><span class="term">結構化／非結構化剪枝</span><span class="en">Structured / Unstructured Pruning</span></dt>
+      <dd>移除整個通道或層／移除零散個別權重。<span class="eg">例：前者 GPU 易加速，後者需稀疏運算支援。</span></dd>
+      <dt><span class="term">量化</span><span class="en">Quantization</span></dt>
+      <dd>以較少位元表示權重或激活值。<span class="eg">例：FP32 → INT8。</span></dd>
+      <dt><span class="term">量化感知訓練</span><span class="en">QAT, Quantization-Aware Training</span></dt>
+      <dd>訓練時模擬量化誤差，讓模型適應低精度。<span class="eg">例：部署到手機 NPU 前使用。</span></dd>
+      <dt><span class="term">訓練後量化</span><span class="en">PTQ, Post-Training Quantization</span></dt>
+      <dd>模型訓練完成後直接轉換精度。<span class="eg">例：不重訓直接轉 INT8。</span></dd>
+      <dt><span class="term">浮點數／整數精度</span><span class="en">FP32 / FP16 / BF16 / INT8</span></dt>
+      <dd>32 位元浮點／16 位元浮點／腦浮點 16（範圍同 FP32）／8 位元整數。<span class="eg">例：BF16 常用於大模型訓練。</span></dd>
+      <dt><span class="term">混合精度訓練</span><span class="en">Mixed Precision Training</span></dt>
+      <dd>訓練中混用 16 與 32 位元精度以加速並省記憶體。<span class="eg">例：PyTorch AMP。</span></dd>
+      <dt><span class="term">梯度縮放</span><span class="en">Gradient (Loss) Scaling</span></dt>
+      <dd>先放大損失避免小梯度在 FP16 下變 0，更新前再縮回。<span class="eg">例：損失 ×1024。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>貝氏最佳化與 Optuna</b><span class="yr">（Optuna 2019）</span>：與其盲目網格或隨機，貝氏最佳化依過去試驗結果建立「哪裡可能更好」的代理模型（如 TPE），下一組挑最有希望的；Optuna 是常用的開源框架，並支援提早淘汰沒希望的試驗（pruning）。</li>
+        <li><b>Hyperband／ASHA</b><span class="yr">（2016／2018）</span>：先用少量資源（少 epoch）同時跑很多組，表現差的早早淘汰，把資源集中給優勝者，像選秀的海選→複賽→決賽，比完整跑完每組省很多算力。</li>
+        <li><b>LoRA → QLoRA → DoRA：參數高效微調</b>：LoRA<span class="yr">（2021）</span>凍結原權重、只訓練低秩矩陣；QLoRA<span class="yr">（2023）</span>把凍結的底座量化成 4-bit（NF4）再訓練 LoRA，讓單張 48GB GPU 可微調 65B 模型；DoRA<span class="yr">（2024）</span>把權重拆成「大小」與「方向」，方向用 LoRA 更新，表現更接近全參數微調且不增加推論成本。這是本節「量化」與 3.2「低秩分解」的結合應用。</li>
+        <li><b>大模型的權重量化：GPTQ、AWQ</b><span class="yr">（2022／2023）</span>：專為大型語言模型設計的訓練後量化；AWQ 依激活值找出約 1% 最關鍵的權重加以保護，不需反向傳播，獲 MLSys 2024 最佳論文。</li>
+        <li><b>BF16 與 FP8 混合精度</b>：BF16 已是大模型訓練常態；DeepSeek-V3 技術報告<span class="yr">（2024）</span>宣稱首度在超大規模模型上驗證 FP8 混合精度訓練的可行性。指引所寫的「FP16＋FP32」仍是作答依據。</li>
+        <li><b>大模型蒸餾小模型</b><span class="yr">（2025）</span>：DeepSeek-R1 以其推理資料微調多個 Qwen、Llama 底座的小模型（R1-Distill 系列），是「教師→學生」在大型語言模型時代的典型案例。</li>
+      </ul></div>
+    <h2 class="chap" id="chap6">第六章 機器學習治理</h2>
+    <p>模型準不準是技術問題；能不能「合法、安全、公平」地用，是治理問題。這章考的多是名詞定義與情境判斷：哪種資料屬於直接或間接識別、哪種匿名化技術對應哪個描述、哪個公平性指標比較的是什麼。</p>
+
+    <h3 id="sec6-1">6.1 數據隱私、安全與合規 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-1">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p><b>直接識別</b>＝一看就知道是誰（姓名、身分證號）；<b>間接識別</b>＝單看不知道，但拼起來就知道（「住在某鄉、1985 年生、女性、牙醫」可能全鄉只有一人）；<b>再識別</b>＝明明已經匿名了，卻被外部資料「對回來」。所以只把姓名欄刪掉，遠遠不等於匿名化。</p>
+      <p>匿名化技術像<b>給照片打碼的不同手法</b>：遮蔽是把部分字蓋掉（王○○）；雜湊是把身分證號變成一串不可逆的亂碼（但同一人永遠變成同一串，可用來串資料）；泛化是把細節變模糊（1987-03-12 → 1980 年代）；分桶是把數字變區間（58,000 → 50K–60K）；隨機擾動是加一點雜訊（50,000 → 50,123），整體平均不變、個體看不清。</p>
+    </div>
+    <h4>K-匿名、L-多樣性、T-接近性：一層一層補漏洞</h4>
+    <table>
+      <tr><th>技術</th><th>要求</th><th>補的是哪個漏洞</th></tr>
+      <tr><td>K-匿名</td><td>每筆紀錄在準識別欄位上至少和 K−1 筆一樣（每組至少 K 人）</td><td>防止「指認出是哪一筆」</td></tr>
+      <tr><td>L-多樣性</td><td>每組的敏感欄位至少有 L 種不同值</td><td>K-匿名的漏洞：若同組 5 人都是「糖尿病」，雖認不出是誰，卻知道他有糖尿病（同質性攻擊）</td></tr>
+      <tr><td>T-接近性</td><td>每組敏感值的分佈要接近全體分佈（差距 ≤ T）</td><td>L-多樣性的漏洞：組內雖有 3 種病，但都是重症，仍可推測「病得很重」</td></tr>
+    </table>
+    <div class="plain"><span class="tag">💬 白話說（聯邦學習 vs 同態加密）</span>
+      <p><b>聯邦學習</b>＝「資料不出門，模型去拜訪」：各醫院在自己家訓練，只把「學到的心得（參數更新）」寄回總部彙整。<b>同態加密</b>＝「把資料鎖在透明保險箱裡，別人隔著箱子幫你計算」，算完你自己開箱看結果，對方從頭到尾看不到內容。</p>
+    </div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">K 藏身分、L 藏屬性、T 藏分佈</span><br>K-匿名讓你「混在 K 人中」；L-多樣性讓同組敏感值「至少 L 種」；T-接近性讓同組分佈「接近全體」。另記「聯邦不搬資料、同態不解密」。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">合法、最少、去識別、留紀錄、跨境審</span><br>合規實務五要點：合法來源與告知同意 → 資料最小化與目的限制 → 去識別化 → 透明度與紀錄保存 → 跨境傳輸規範。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>法規：GDPR、CCPA、個人資料保護法（PDPA）。</li>
+        <li>風險類型：直接識別（PII，最高優先）、間接識別（準識別資訊）、再識別（去識別化後被還原）。</li>
+        <li>評估方法：資料盤點與分類（資料清冊/資料地圖）、隱私影響評估 PIA（流程盤點、風險辨識、影響分析、策略擬定、責任分工）、風險矩陣（可能性×影響程度）、再識別模擬與滲透測試。</li>
+        <li>基礎匿名化：遮蔽、雜湊（不可逆但有彩虹表風險）、泛化、分桶、隨機擾動（保留整體統計特性）。</li>
+        <li>PETs：K-匿名、L-多樣性、T-接近性、聯邦學習（只傳參數；通訊成本高、有參數逆推風險）、同態加密（加密狀態下運算；效能較低，FHE 需高效能硬體）。</li>
+        <li>同意須具自由性、明確性與具體性、可撤回性；無法取得同意時檢視其他合法依據（履行契約、法定義務、正當利益）。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>雜湊 ≠ 加密</b>：加密可用金鑰解回原文；雜湊是單向的，不能解回。但若原值種類很少（例如身分證號格式固定），攻擊者可以把所有可能值都先算好雜湊來比對（彩虹表），所以實務會加鹽（salt）。</li>
+        <li><b>去識別化 vs 匿名化</b>：去識別化通常仍可能透過額外資訊重新連結（假名化），在 GDPR 下假名化資料仍是個人資料；真正無法再識別才算匿名化。</li>
+        <li><b>聯邦學習不是絕對安全</b>：參數更新也可能被逆推出原始資料，常需搭配差分隱私或安全聚合。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">機器學習治理</span><span class="en">ML Governance</span></dt>
+      <dd>系統性管理資料與模型風險，確保合法、安全、公平。<span class="eg">例：上線前的模型審查流程。</span></dd>
+      <dt><span class="term">一般資料保護規則</span><span class="en">GDPR, General Data Protection Regulation</span></dt>
+      <dd>歐盟個人資料保護法規。<span class="eg">例：違規罰款可達全球營業額一定比例。</span></dd>
+      <dt><span class="term">加州消費者隱私法案</span><span class="en">CCPA, California Consumer Privacy Act</span></dt>
+      <dd>美國加州的消費者個資權利法。<span class="eg">例：消費者可要求企業不得出售其個資。</span></dd>
+      <dt><span class="term">個人資料保護法</span><span class="en">PDPA, Personal Data Protection Act</span></dt>
+      <dd>台灣（及部分亞洲國家）規範個資蒐集、處理與利用的法律。<span class="eg">例：蒐集個資須告知目的。</span></dd>
+      <dt><span class="term">個人識別資訊</span><span class="en">PII, Personally Identifiable Information</span></dt>
+      <dd>可直接辨識特定個人的資料。<span class="eg">例：姓名、身分證號、手機號碼。</span></dd>
+      <dt><span class="term">準識別資訊</span><span class="en">Quasi-identifiers</span></dt>
+      <dd>單獨無法識別、組合後可推出身份的欄位。<span class="eg">例：郵遞區號＋生日＋性別。</span></dd>
+      <dt><span class="term">再識別</span><span class="en">Re-identification</span></dt>
+      <dd>把已去識別的資料重新對應回個人。<span class="eg">例：用公開選民名冊比對醫療資料。</span></dd>
+      <dt><span class="term">資料清冊／資料地圖</span><span class="en">Data Inventory / Data Map</span></dt>
+      <dd>記錄組織有哪些資料、從哪來、存哪、誰能用、流向何處。<span class="eg">例：個資盤點表。</span></dd>
+      <dt><span class="term">隱私影響評估</span><span class="en">PIA, Privacy Impact Assessment</span></dt>
+      <dd>上線前系統性評估處理個資的風險與對策。<span class="eg">例：導入人臉辨識門禁前先做 PIA。</span></dd>
+      <dt><span class="term">風險矩陣</span><span class="en">Risk Matrix</span></dt>
+      <dd>以發生可能性與影響程度交叉評定風險等級。<span class="eg">例：5×5 矩陣，紅區優先處理。</span></dd>
+      <dt><span class="term">滲透測試</span><span class="en">Penetration Test</span></dt>
+      <dd>模擬攻擊者實際嘗試攻破或還原資料。<span class="eg">例：請紅隊嘗試再識別匿名資料集。</span></dd>
+      <dt><span class="term">匿名化／去識別化</span><span class="en">Anonymization / De-identification</span></dt>
+      <dd>移除或轉換資料使其無法（或難以）識別個人。<span class="eg">例：開放資料前的處理。</span></dd>
+      <dt><span class="term">遮蔽</span><span class="en">Masking</span></dt>
+      <dd>用符號或假資料替換部分敏感內容。<span class="eg">例：0912-***-678。</span></dd>
+      <dt><span class="term">雜湊</span><span class="en">Hashing (e.g., SHA-256)</span></dt>
+      <dd>把資料轉成固定長度、不可逆的字串。<span class="eg">例：身分證號 → 64 位十六進位碼。</span></dd>
+      <dt><span class="term">彩虹表攻擊</span><span class="en">Rainbow Table Attack</span></dt>
+      <dd>預先算好大量可能值的雜湊來反查。<span class="eg">例：破解未加鹽的密碼雜湊。</span></dd>
+      <dt><span class="term">泛化</span><span class="en">Generalization (Privacy)</span></dt>
+      <dd>降低資料精細度。<span class="eg">例：完整地址 → 縣市。</span></dd>
+      <dt><span class="term">分桶</span><span class="en">Bucketing / Binning</span></dt>
+      <dd>把連續數值歸到區間。<span class="eg">例：年齡 → 20–29 歲。</span></dd>
+      <dt><span class="term">隨機擾動（加噪）</span><span class="en">Noise Injection / Perturbation</span></dt>
+      <dd>對數值加隨機雜訊保護個體，整體統計大致不變。<span class="eg">例：加入高斯噪聲。</span></dd>
+      <dt><span class="term">隱私強化技術</span><span class="en">PETs, Privacy-Enhancing Technologies</span></dt>
+      <dd>在利用資料的同時保護隱私的技術總稱。<span class="eg">例：聯邦學習、同態加密、差分隱私。</span></dd>
+      <dt><span class="term">K-匿名</span><span class="en">K-Anonymity</span></dt>
+      <dd>每筆紀錄在準識別欄位上至少與 K−1 筆相同。<span class="eg">例：K=5 時每組至少 5 人。</span></dd>
+      <dt><span class="term">L-多樣性</span><span class="en">L-Diversity</span></dt>
+      <dd>每組敏感欄位至少有 L 種不同值。<span class="eg">例：同組至少 3 種疾病。</span></dd>
+      <dt><span class="term">T-接近性</span><span class="en">T-Closeness</span></dt>
+      <dd>每組敏感值分佈與全體分佈差距不超過 T。<span class="eg">例：各組收入分佈都近似全國分佈。</span></dd>
+      <dt><span class="term">聯邦學習</span><span class="en">Federated Learning</span></dt>
+      <dd>資料留在本地訓練，只上傳參數更新彙整。<span class="eg">例：手機鍵盤輸入預測、跨醫院建模。</span></dd>
+      <dt><span class="term">同態加密／全同態加密</span><span class="en">Homomorphic Encryption / FHE, Fully Homomorphic Encryption</span></dt>
+      <dd>可直接在密文上運算，解密後與明文運算結果相同；FHE 支援任意運算但非常耗算力。<span class="eg">例：雲端在不解密下計算加密薪資總和。</span></dd>
+      <dt><span class="term">告知同意</span><span class="en">Informed Consent</span></dt>
+      <dd>當事人在充分了解後自由、明確、具體地同意，且可撤回。<span class="eg">例：App 首次啟動的隱私同意。</span></dd>
+      <dt><span class="term">資料最小化／目的限制</span><span class="en">Data Minimization / Purpose Limitation</span></dt>
+      <dd>只收必要的資料／只用於告知的目的。<span class="eg">例：外送 App 不需要你的血型。</span></dd>
+      <dt><span class="term">正當利益</span><span class="en">Legitimate Interest</span></dt>
+      <dd>GDPR 下無需同意的合法依據之一，須與當事人權益權衡。<span class="eg">例：為防詐騙分析交易紀錄。</span></dd>
+      <dt><span class="term">跨境傳輸／標準合約條款</span><span class="en">Cross-border Transfer / SCCs, Standard Contractual Clauses</span></dt>
+      <dd>個資傳到他國的規範／歐盟核可的跨境傳輸契約範本。<span class="eg">例：歐洲客戶資料傳到台灣伺服器。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>差分隱私 Differential Privacy</b><span class="yr">（2006；美國 2020 人口普查採用）</span>：用數學保證「任何一個人的資料加不加入，統計結果幾乎一樣」，以隱私預算 ε 控制加噪程度。它是指引中「隨機擾動」的嚴謹版，也常與聯邦學習搭配，降低參數逆推風險。</li>
+        <li><b>台灣《個人資料保護法》修正</b><span class="yr">（2025）</span>：2025 年 11 月經總統公布，主管機關改為獨立的「個人資料保護委員會」，並納入個資事故通報義務、強化公務機關監督等；施行日期由行政院另定（引用時請查最新公告）。</li>
+        <li><b>台灣《人工智慧基本法》</b><span class="yr">（2026）</span>：立法院 2025 年 12 月三讀，2026 年 1 月 14 日公布施行，以國家科學及技術委員會為中央主管機關，屬原則性框架法。</li>
+        <li><b>EU AI Act 與資料治理</b><span class="yr">（2024 生效；2026 修正）</span>：歐盟《人工智慧法》2024 年 8 月 1 日生效，高風險系統須符合資料治理、技術文件、紀錄保存、人類監督等義務。2026 年通過的「Digital Omnibus」修正將 Annex III 獨立高風險系統的義務適用日延至 2027 年 12 月 2 日、嵌入產品者延至 2028 年 8 月 2 日。</li>
+      </ul></div>
+
+    <h3 id="sec6-2">6.2 演算法偏見與公平性 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-2">完整教材 ↗</a></h3>
+    <div class="plain"><span class="tag">💬 白話說</span>
+      <p>AI 就像一面鏡子，<b>學的是過去的資料，所以也會學到過去的偏見</b>。如果過去十年公司錄取的工程師九成是男性，模型就可能學到「男性＝適合工程師」。偏見可能來自三個地方：</p>
+      <ul>
+        <li><b>來源偏誤</b>：資料蒐集時就沒涵蓋某些人（只在都市做問卷）。</li>
+        <li><b>內容偏誤</b>：資料內容本身帶刻板印象（「護士」總是配女性圖片）。</li>
+        <li><b>製程偏誤</b>：標註的人主觀不一致（同一句話，有人標「諷刺」有人標「正面」）。</li>
+      </ul>
+      <p>就算資料平衡，模型為了「整體平均分數最高」，也可能犧牲人數少的群體——就像老師只顧全班平均，忽略了跟不上的少數學生。</p>
+    </div>
+    <h4>四個公平性指標：比較的到底是什麼？</h4>
+    <div class="formula">情境：貸款審核，A、B 兩群各 100 人。<br>
+      A 群：核准 50 人；實際有還款能力 60 人，其中 48 人被核准。<br>
+      B 群：核准 30 人；實際有還款能力 40 人，其中 24 人被核准。<br>
+      ● <b>Demographic Parity</b>（看整體核准率）：A 50%、B 30% → 不相等。<br>
+      ● <b>Disparate Impact</b>（比值）：30% ÷ 50% = <b>0.6 &lt; 0.8</b> → 依 80% 法則可能構成不利影響。<br>
+      ● <b>Equal Opportunity</b>（只看「有能力者」被核准率＝TPR）：A 48/60 = 80%、B 24/40 = 60% → 不相等。<br>
+      ● <b>Equalized Odds</b>：除了 TPR，還要比較「沒能力者被錯誤核准率」（FPR）也要相等。<br>
+      A 群 FPR =（50−48）/40 = 5%；B 群 FPR =（30−24）/60 = 10%。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">DP 看結果、EO 看合格、EOdds 看真假、DI 看八成</span><br>Demographic Parity 比整體正向比例；Equal Opportunity 只比「真正合格者」的 TPR；Equalized Odds 同時比 TPR 與 FPR；Disparate Impact 看比值是否低於 80%。</div>
+    <div class="memo"><span class="tag">🧠 記憶口訣</span><span class="mn">前洗資料、中加約束、後調門檻</span><br>去偏三階段：前處理（重抽樣、特徵去偏、匿名泛化）→ 模型內（公平性約束、對抗式去偏、公平性正規化）→ 後處理（門檻調整、結果校準）。</div>
+    <div class="exam"><span class="tag">📌 考試重點</span>
+      <ul>
+        <li>資料偏誤：來源偏誤（群體分佈不均、取樣）、內容偏誤（刻板印象、歷史歧視）、製程偏誤（標註主觀）。</li>
+        <li>模型偏見：演算法偏見、目標函數偏誤、正規化與簡化偏誤、對抗式訓練不足。影響：弱勢受歧視、品牌受損、法律與監管風險。</li>
+        <li>公平性指標定義與限制（見上方算例）；工具：IBM AIF360（70+ 指標、多種去偏、文件完整）、Microsoft Fairlearn（與 scikit-learn 相容、易整合、適合中小型專案）。</li>
+        <li>去偏三階段方法與實例；組織治理：公平性政策與標準、跨部門審查委員會、問責機制（高階主管 KPI、ESG 報告）、多元團隊與培訓、定期稽核與即時監控、資訊揭露與第三方驗證。</li>
+      </ul></div>
+    <div class="pitfall"><span class="tag">⚠️ 易混淆</span>
+      <ul>
+        <li><b>刪掉敏感欄位 ≠ 消除偏見</b>：移除「性別」欄位後，模型仍可能從「代理變數」（如姓名、就讀學校、購買紀錄）推回性別。指引中的「特徵去偏處理」是方法之一，但需搭配檢測。</li>
+        <li><b>公平性指標彼此可能衝突</b>：當兩群真實比例不同時，通常無法同時滿足 Demographic Parity 與 Equalized Odds，必須依情境（招聘重結果平等、醫療重機會平等）選擇並記錄理由。</li>
+        <li><b>Equal Opportunity vs Equalized Odds</b>：前者只要求 TPR 相等；後者要求 TPR 和 FPR 都相等，更嚴格。</li>
+        <li><b>「結果校準」與第三章的「機率校準」</b>是同一概念：讓同一分數在不同群體代表相同的實際機率。</li>
+      </ul></div>
+    <h4>📖 名詞小辭典</h4>
+    <dl class="terms">
+      <dt><span class="term">演算法偏見</span><span class="en">Algorithmic Bias</span></dt>
+      <dd>AI 系統對特定群體產生系統性不公平的結果。<span class="eg">例：人臉辨識對深膚色族群錯誤率較高。</span></dd>
+      <dt><span class="term">公平性</span><span class="en">Fairness</span></dt>
+      <dd>AI 決策對不同群體一視同仁或依合理標準對待。<span class="eg">例：相同信用條件獲相同核貸機會。</span></dd>
+      <dt><span class="term">來源偏誤</span><span class="en">Source Bias / Sampling Bias</span></dt>
+      <dd>蒐集階段未均衡涵蓋各群體或情境。<span class="eg">例：只用網路問卷，漏掉不上網的長者。</span></dd>
+      <dt><span class="term">內容偏誤</span><span class="en">Content Bias</span></dt>
+      <dd>資料本身含刻板印象或歷史歧視。<span class="eg">例：新聞語料中「醫師」多指男性。</span></dd>
+      <dt><span class="term">製程偏誤</span><span class="en">Process Bias / Labeling Bias</span></dt>
+      <dd>標註或編輯過程因主觀判斷造成偏差。<span class="eg">例：不同標註者對「冒犯」定義不同。</span></dd>
+      <dt><span class="term">目標函數偏誤</span><span class="en">Objective Function Bias</span></dt>
+      <dd>以整體平均為目標，犧牲少數群體表現。<span class="eg">例：整體準確 95%，少數族群只有 70%。</span></dd>
+      <dt><span class="term">刻板印象</span><span class="en">Stereotype</span></dt>
+      <dd>對某群體過度簡化的固定看法。<span class="eg">例：「女生不擅長數學」。</span></dd>
+      <dt><span class="term">群體平等率</span><span class="en">Demographic Parity / Statistical Parity</span></dt>
+      <dd>各群體獲得正向預測的比例應相近。<span class="eg">例：男女錄取率相同。</span></dd>
+      <dt><span class="term">機會平等</span><span class="en">Equal Opportunity</span></dt>
+      <dd>實際合格者在各群體中被正確預測為正的機率（TPR）相同。<span class="eg">例：有病的人不論族群被驗出的比例相同。</span></dd>
+      <dt><span class="term">均衡機率</span><span class="en">Equalized Odds</span></dt>
+      <dd>各群體的 TPR 與 FPR 都要相同。<span class="eg">例：再犯預測對各族群誤判率一致。</span></dd>
+      <dt><span class="term">不利影響比／80% 法則</span><span class="en">Disparate Impact / Four-Fifths Rule</span></dt>
+      <dd>弱勢群體正向結果比例低於優勢群體的 80%，可能構成間接歧視。<span class="eg">例：30%÷50%=0.6。</span></dd>
+      <dt><span class="term">間接歧視</span><span class="en">Indirect Discrimination</span></dt>
+      <dd>表面中立的規則實際上對特定群體造成不利。<span class="eg">例：身高門檻間接排除多數女性。</span></dd>
+      <dt><span class="term">AIF360</span><span class="en">IBM AI Fairness 360</span></dt>
+      <dd>IBM 開源的公平性檢測與去偏工具包。<span class="eg">例：計算 70 多種公平性指標。</span></dd>
+      <dt><span class="term">Fairlearn</span><span class="en">Microsoft Fairlearn</span></dt>
+      <dd>微軟發起、與 scikit-learn 相容的公平性評估與緩解工具。<span class="eg">例：比較各群體的錯誤率儀表板。</span></dd>
+      <dt><span class="term">重新抽樣（去偏）</span><span class="en">Re-sampling</span></dt>
+      <dd>調整各群體樣本數使訓練資料更平衡。<span class="eg">例：補足女性工程師履歷樣本。</span></dd>
+      <dt><span class="term">特徵去偏處理</span><span class="en">Feature Neutralization</span></dt>
+      <dd>移除或中和與敏感屬性相關的特徵。<span class="eg">例：信用評分不使用族群特徵。</span></dd>
+      <dt><span class="term">代理變數</span><span class="en">Proxy Variable</span></dt>
+      <dd>與敏感屬性高度相關、可間接推出它的特徵。<span class="eg">例：居住地區可能代表族群。</span></dd>
+      <dt><span class="term">公平性約束</span><span class="en">Fairness Constraints</span></dt>
+      <dd>訓練時強制模型滿足某公平性條件。<span class="eg">例：不同性別核准率差距不超過 5%。</span></dd>
+      <dt><span class="term">對抗式去偏</span><span class="en">Adversarial Debiasing / Adversarial Fairness</span></dt>
+      <dd>加一個對手模型試圖從預測中猜敏感屬性，主模型要讓它猜不出來。<span class="eg">例：履歷模型的表示無法推斷性別。</span></dd>
+      <dt><span class="term">公平性正規化</span><span class="en">Fairness Regularization</span></dt>
+      <dd>在損失函數加入公平性懲罰項。<span class="eg">例：各族群錯誤率差越大罰越重。</span></dd>
+      <dt><span class="term">門檻調整</span><span class="en">Threshold Adjustment</span></dt>
+      <dd>針對不同群體設定不同判定門檻以平衡結果。<span class="eg">例：核准門檻 60 → 55 分。</span></dd>
+      <dt><span class="term">結果校準</span><span class="en">Calibration</span></dt>
+      <dd>讓同一預測分數在各群體代表相同實際機率。<span class="eg">例：各群「70 分」的人違約率都約 30%。</span></dd>
+      <dt><span class="term">公平性稽核</span><span class="en">Fairness Audit</span></dt>
+      <dd>定期檢查模型在各群體的表現差異並出具報告。<span class="eg">例：每季公布招聘模型稽核結果。</span></dd>
+      <dt><span class="term">問責機制</span><span class="en">Accountability</span></dt>
+      <dd>明確誰為 AI 決策結果負責並可追溯。<span class="eg">例：納入高階主管 KPI。</span></dd>
+      <dt><span class="term">ESG 報告</span><span class="en">Environmental, Social and Governance Report</span></dt>
+      <dd>企業揭露環境、社會與治理表現的報告。<span class="eg">例：揭露 AI 公平性治理作為。</span></dd>
+      <dt><span class="term">利益關係人</span><span class="en">Stakeholders</span></dt>
+      <dd>受 AI 系統影響或對其有利害關係的人與組織。<span class="eg">例：求職者、員工、監管機關。</span></dd>
+    </dl>
+    <div class="update"><span class="tag">🚀 延伸與新進展<span class="badge out">考試範圍外</span></span>
+      <ul>
+        <li><b>NIST AI 風險管理框架（AI RMF 1.0）</b><span class="yr">（2023）</span>：美國 NIST 於 2023 年 1 月發布的自願性框架，以「治理、對應、衡量、管理」（Govern、Map、Measure、Manage）四大功能組織 AI 風險管理，公平與偏見管理是可信賴 AI 的特性之一。</li>
+        <li><b>ISO/IEC 42001</b><span class="yr">（2023）</span>：2023 年 12 月發布的第一個「AI 管理系統」國際標準，可由第三方驗證，讓指引中的「公平性政策、委員會、稽核」有可認證的管理框架可依循。</li>
+        <li><b>EU AI Act 的偏見檢測條款</b><span class="yr">（2024；2026 修正）</span>：高風險 AI 的訓練資料須檢視可能的偏見（第 10 條），並在嚴格必要且有保護措施下允許處理特殊類別個資以偵測與修正偏見；2026 年 Digital Omnibus 修正擴大了此一法律依據的適用，高風險義務的適用日則延後（見 6.1）。</li>
+        <li><b>大型語言模型的偏見評估</b><span class="yr">（2020 年代起）</span>：除了表格模型的公平性指標，生成式 AI 還須評估輸出中的刻板印象與歧視性內容，常以紅隊測試與專用評測集檢查；概念上仍是本節「來源、內容、製程偏誤」的延伸。</li>
+      </ul></div>
+
+    <section id="glossary">
+      <h2 class="chap">總整理：名詞速查</h2>
+      <p>依主題分組的精簡總表，點章節連結可跳回該節詳細說明（含生活例子）。</p>
+      <h4>機率統計與線性代數</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>條件機率分佈</td><td>P(Y|X)</td><td>看到線索後答案的機率</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>PMF／PDF</td><td>Probability Mass / Density Function</td><td>數得出來的用質量、量出來的用密度</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>伯努利／二項／泊松</td><td>Bernoulli / Binomial / Poisson</td><td>丟一次／丟 n 次／固定區間稀有事件次數</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>常態／均勻／指數／卡方</td><td>Normal / Uniform / Exponential / Chi-square</td><td>鐘形／平的／等待時間（無記憶）／平方和用於檢定</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>貝氏定理</td><td>Bayes' Theorem</td><td>用新證據更新舊看法</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>先驗／似然／後驗</td><td>Prior / Likelihood / Posterior</td><td>原本看法／證據支持度／更新後看法</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>p 值／顯著水準 α</td><td>p-value / Significance Level</td><td>H₀ 為真時看到這種資料的機率／事先定的冤枉好人上限</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>型一／型二錯誤</td><td>Type I / Type II Error</td><td>假警報／漏報</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>偏態／峰度</td><td>Skewness / Kurtosis</td><td>歪向哪邊／尖不尖、尾巴厚不厚</td><td><a href="#sec3-1">3.1</a></td></tr>
+        <tr><td>點積／L2 範數</td><td>Dot Product / L2 Norm</td><td>方向一致程度／向量長度</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>轉置／偽逆</td><td>Transpose / Pseudo-Inverse</td><td>列行互換／不可逆時的最佳近似反矩陣</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>特徵值分解</td><td>EVD</td><td>對稱方陣拆出拉伸方向與倍數</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>奇異值分解</td><td>SVD</td><td>任意矩陣都能拆的萬用分解</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>非負矩陣分解</td><td>NMF</td><td>只能相加的零件組合，好解釋</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>嵌入層</td><td>Embedding Layer</td><td>把類別變成可學的向量</td><td><a href="#sec3-2">3.2</a></td></tr>
+        <tr><td>最小平方法</td><td>OLS</td><td>讓殘差平方和最小的直線</td><td><a href="#sec3-2">3.2</a></td></tr>
+      </table>
+      <h4>優化與訓練</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>損失函數</td><td>Loss Function</td><td>怎麼罰錯的規則</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>凸函數／鞍點</td><td>Convex Function / Saddle Point</td><td>只有一個谷底的碗／像馬鞍的假平地</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>MSE／MAE／Huber</td><td>Mean Squared / Absolute Error / Huber Loss</td><td>平方罰大錯／絕對值抗離群／兩者折衷</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>交叉熵／Focal Loss</td><td>Cross-Entropy / Focal Loss</td><td>有把握卻錯重罰／聚焦難題</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>GD／SGD／Mini-batch</td><td>(Stochastic) Gradient Descent</td><td>問全村／問一人／問一小群</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>Momentum／Adagrad／RMSprop／Adam</td><td>Optimizers</td><td>慣性／各自調步／看最近／集大成</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>梯度裁剪</td><td>Gradient Clipping</td><td>梯度太大就截斷</td><td><a href="#sec3-3">3.3</a></td></tr>
+        <tr><td>學習率調度／預熱</td><td>LR Scheduling / Warmup</td><td>訓練中調整步伐／開頭先小步熱身</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>早停</td><td>Early Stopping</td><td>驗證退步就停</td><td><a href="#sec5-4">5.4</a></td></tr>
+        <tr><td>超參數</td><td>Hyperparameter</td><td>人定的訓練計畫</td><td><a href="#sec5-4">5.4</a></td></tr>
+        <tr><td>Grid／Random Search</td><td>Grid / Random Search</td><td>全部試一遍／隨機抽著試</td><td><a href="#sec5-4">5.4</a></td></tr>
+      </table>
+      <h4>學習類型與演算法</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>監督／非監督／強化式學習</td><td>Supervised / Unsupervised / Reinforcement</td><td>有答案／找結構／靠獎懲</td><td><a href="#sec4-1">4.1</a></td></tr>
+        <tr><td>馬可夫決策過程</td><td>MDP</td><td>強化學習的代理人、環境、狀態、動作、報酬框架</td><td><a href="#sec4-1">4.1</a></td></tr>
+        <tr><td>Lasso／Ridge</td><td>L1 / L2 Regression</td><td>砍到 0 選特徵／縮小不歸零</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>SVR／SVM</td><td>Support Vector Regression / Machine</td><td>ε 容忍管／最寬的馬路</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>決策樹</td><td>Decision Tree</td><td>20 個問題猜猜看</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>Bagging／Boosting</td><td>Bootstrap Aggregating / Boosting</td><td>並聯投票降變異／串聯修錯降偏差</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>XGBoost／LightGBM</td><td>Gradient Boosting Libraries</td><td>二階＋層級＋正則／葉子＋直方圖</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>邏輯迴歸</td><td>Logistic Regression</td><td>名為迴歸實為分類</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>KNN</td><td>K-Nearest Neighbors</td><td>看最近 K 個鄰居投票</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>樸素貝氏</td><td>Naïve Bayes</td><td>假設線索互相獨立再相乘</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>基尼不純度／資訊增益</td><td>Gini Impurity / Information Gain</td><td>節點有多混／分裂後少亂多少</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>k-means／階層式／DBSCAN</td><td>Clustering Algorithms</td><td>插旗分群／族譜合併／看密度</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>PCA／t-SNE／UMAP</td><td>Dimensionality Reduction</td><td>最佳角度拍照／社交地圖只看鄰居／更快且顧全局</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>支持度／信賴度／提升度</td><td>Support / Confidence / Lift</td><td>多常一起／買 A 也買 B／是否真的有加成</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>Apriori／FP-Growth</td><td>Association Rule Algorithms</td><td>候選＋剪枝多次掃描／FP 樹兩次掃描</td><td><a href="#sec4-2">4.2</a></td></tr>
+        <tr><td>孤立森林／One-Class SVM</td><td>Isolation Forest / One-Class SVM</td><td>越快被孤立越可疑／只學正常的邊界</td><td><a href="#sec4-2">4.2</a></td></tr>
+      </table>
+      <h4>深度學習</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>激活函數</td><td>Activation Function</td><td>讓網路能畫彎曲邊界的非線性開關</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>感知器</td><td>Perceptron</td><td>最早的神經元，解不了 XOR</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>反向傳播／連鎖律</td><td>Backpropagation / Chain Rule</td><td>對答案後逐層追責任</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>Sigmoid／Softmax／ReLU／Tanh</td><td>Activation Functions</td><td>各自獨立機率／總和為 1／負變 0／−1 到 1</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>Dropout</td><td>Dropout</td><td>訓練時隨機讓神經元請假</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>CNN／卷積／池化</td><td>Convolutional Neural Network / Convolution / Pooling</td><td>放大鏡掃描花紋／縮小特徵圖</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>殘差連接</td><td>Residual Connection</td><td>給梯度一條直達車道</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>RNN／LSTM／GRU</td><td>Recurrent Networks</td><td>邊讀邊記筆記／三道門／兩道門</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>Transformer／自注意力</td><td>Transformer / Self-Attention</td><td>每個字同時環顧全句</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>Q／K／V</td><td>Query / Key / Value</td><td>問題／書背標籤／書的內容</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>位置編碼</td><td>Positional Encoding</td><td>告訴模型誰在第幾個</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>層歸一化</td><td>Layer Normalization</td><td>單一樣本內標準化，不靠批次</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>BERT／GPT／T5／ViT</td><td>Transformer Families</td><td>理解／生成／文字對文字／圖切成字</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>自編碼器／GAN</td><td>Autoencoder / Generative Adversarial Network</td><td>壓縮再還原／偽鈔與驗鈔員對抗</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>模式崩潰</td><td>Mode Collapse</td><td>GAN 只會生少數幾種樣子</td><td><a href="#sec4-3">4.3</a></td></tr>
+        <tr><td>TensorFlow／PyTorch／JAX</td><td>Deep Learning Frameworks</td><td>Google 生產部署／動態圖研究主力／函數式數值運算</td><td><a href="#sec4-3">4.3</a></td></tr>
+      </table>
+      <h4>資料準備、評估與調整</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>IQR／Z 分數</td><td>Interquartile Range / Z-score</td><td>箱型圖鬍鬚外為異常／離平均幾個標準差</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>Filter／Wrapper／Embedded</td><td>Feature Selection Methods</td><td>統計篩／模型試／訓練中選</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>Min-Max／Z-score／Robust</td><td>Scaling Methods</td><td>縮到 0～1／平均 0 標準差 1／中位數＋IQR</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>Label／One-hot／Target Encoding</td><td>Categorical Encoding</td><td>給編號／每類一欄／換成目標平均</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>資料洩漏</td><td>Data Leakage</td><td>訓練時偷看到考題</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>SMOTE</td><td>Synthetic Minority Over-sampling Technique</td><td>在少數類鄰居間合成新樣本</td><td><a href="#sec5-1">5.1</a></td></tr>
+        <tr><td>偏差-變異權衡</td><td>Bias-Variance Tradeoff</td><td>太笨 vs 太敏感的平衡</td><td><a href="#sec5-2">5.2</a></td></tr>
+        <tr><td>SHAP／LIME／PDP</td><td>Explainability Tools</td><td>公平分配貢獻／局部近似／平均效果曲線</td><td><a href="#sec5-2">5.2</a></td></tr>
+        <tr><td>混淆矩陣</td><td>Confusion Matrix</td><td>TP、FP、FN、TN 四格表</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>Precision／Recall／F1</td><td>Precision / Recall / F1-score</td><td>抓得準不準／抓到幾成／兩者調和平均</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>ROC／AUC</td><td>ROC Curve / Area Under the Curve</td><td>TPR 對 FPR 曲線／越接近 1 越好</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>R²</td><td>Coefficient of Determination</td><td>解釋了多少變異（可為負）</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>K-fold／Stratified／LOOCV</td><td>Cross-Validation Methods</td><td>輪流出題／保持比例／一次留一題</td><td><a href="#sec5-3">5.3</a></td></tr>
+        <tr><td>L1／L2／Elastic Net</td><td>Regularization</td><td>斷捨離／節制／兩者兼具</td><td><a href="#sec5-4">5.4</a></td></tr>
+        <tr><td>知識蒸餾</td><td>Knowledge Distillation</td><td>名師帶徒弟</td><td><a href="#sec5-4">5.4</a></td></tr>
+        <tr><td>剪枝／量化</td><td>Pruning / Quantization</td><td>剪掉沒用的枝／降低數字位數</td><td><a href="#sec5-4">5.4</a></td></tr>
+        <tr><td>混合精度訓練</td><td>Mixed Precision Training</td><td>16 位元快算、32 位元保精準</td><td><a href="#sec5-4">5.4</a></td></tr>
+      </table>
+      <h4>治理：隱私與公平</h4>
+      <table>
+        <tr><th>名詞</th><th>英文</th><th>一句話白話</th><th>章節</th></tr>
+        <tr><td>PII／準識別資訊</td><td>Personally Identifiable Information / Quasi-identifiers</td><td>一看就知道是誰／拼起來才知道</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>再識別</td><td>Re-identification</td><td>匿名資料被對回本人</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>PIA</td><td>Privacy Impact Assessment</td><td>上線前的隱私健檢</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>遮蔽／雜湊／泛化／分桶／擾動</td><td>Masking / Hashing / Generalization / Bucketing / Noise Injection</td><td>蓋字／不可逆亂碼／變模糊／變區間／加雜訊</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>K-匿名／L-多樣性／T-接近性</td><td>K-Anonymity / L-Diversity / T-Closeness</td><td>藏身分／藏屬性／藏分佈</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>聯邦學習</td><td>Federated Learning</td><td>資料不出門、模型去拜訪</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>同態加密</td><td>Homomorphic Encryption</td><td>隔著保險箱幫你算</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>GDPR／CCPA／PDPA</td><td>Privacy Laws</td><td>歐盟／加州／個資法</td><td><a href="#sec6-1">6.1</a></td></tr>
+        <tr><td>來源／內容／製程偏誤</td><td>Source / Content / Process Bias</td><td>沒收到／內容歪／標註歪</td><td><a href="#sec6-2">6.2</a></td></tr>
+        <tr><td>Demographic Parity</td><td>群體平等率</td><td>各群正向比例相同</td><td><a href="#sec6-2">6.2</a></td></tr>
+        <tr><td>Equal Opportunity</td><td>機會平等</td><td>合格者被選中機率相同（TPR）</td><td><a href="#sec6-2">6.2</a></td></tr>
+        <tr><td>Equalized Odds</td><td>均衡機率</td><td>TPR 與 FPR 都相同</td><td><a href="#sec6-2">6.2</a></td></tr>
+        <tr><td>Disparate Impact</td><td>不利影響比</td><td>低於 80% 可能構成間接歧視</td><td><a href="#sec6-2">6.2</a></td></tr>
+        <tr><td>AIF360／Fairlearn</td><td>Fairness Toolkits</td><td>IBM 指標多／微軟易整合</td><td><a href="#sec6-2">6.2</a></td></tr>
+      </table>
+    </section>
+
+    <section id="update-all">
+      <h2 class="chap">總整理：新進展地圖</h2>
+      <p>以下彙整本頁各節「🚀 延伸與新進展」的條目（皆<span class="badge out">考試範圍外</span>），依時間排列，方便看出技術演進脈絡。</p>
+      <div class="timeline">
+        <p><b>2006</b> 差分隱私提出 → 隱私保護有了數學保證（<a href="#sec6-1">6.1</a>）</p>
+        <p><b>2013</b> HDBSCAN：不必手調單一 Eps、處理密度不均的分群（<a href="#sec4-2">4.2</a>）</p>
+        <p><b>2016</b> SGDR 餘弦重啟排程；Hyperband 早淘汰調參；HNSW 向量索引（<a href="#sec3-3">3.3</a>、<a href="#sec5-4">5.4</a>、<a href="#sec3-2">3.2</a>）</p>
+        <p><b>2017</b> AdamW 解耦權重衰減；Transformer；機率校準（溫度縮放）；CatBoost（<a href="#sec3-3">3.3</a>、<a href="#sec4-3">4.3</a>、<a href="#sec3-1">3.1</a>、<a href="#sec4-2">4.2</a>）</p>
+        <p><b>2019</b> RMSNorm；Optuna 超參數框架（<a href="#sec4-3">4.3</a>、<a href="#sec5-4">5.4</a>）</p>
+        <p><b>2020</b> 縮放定律（Kaplan）；SwiGLU；DDPM 擴散模型（<a href="#sec4-3">4.3</a>）</p>
+        <p><b>2021</b> LoRA 低秩微調；RoPE 位置編碼；Switch Transformer（MoE）；保形預測教學普及（<a href="#sec5-4">5.4</a>、<a href="#sec4-3">4.3</a>、<a href="#sec5-3">5.3</a>）</p>
+        <p><b>2022</b> FlashAttention；Chinchilla 縮放定律；InstructGPT（RLHF）；TabPFN 初版；GPTQ（<a href="#sec4-3">4.3</a>、<a href="#sec4-1">4.1</a>、<a href="#sec4-2">4.2</a>、<a href="#sec5-4">5.4</a>）</p>
+        <p><b>2023</b> DPO；Lion；QLoRA；AWQ；GQA；FlashAttention-2；Mamba；PyTorch 2.0、Keras 3；MXNet 退役；scikit-learn 1.3（TargetEncoder、HDBSCAN）；NIST AI RMF 1.0、ISO/IEC 42001；稀疏自編碼器可解釋性（<a href="#sec4-1">4.1</a>、<a href="#sec3-3">3.3</a>、<a href="#sec5-4">5.4</a>、<a href="#sec4-3">4.3</a>、<a href="#sec5-1">5.1</a>、<a href="#sec6-2">6.2</a>、<a href="#sec5-2">5.2</a>）</p>
+        <p><b>2024</b> GRPO；WSD 排程；Schedule-Free；Muon；DoRA；FlashAttention-3；Mixtral、DeepSeek-V3（MoE、FP8 訓練）；EU AI Act 生效（<a href="#sec4-1">4.1</a>、<a href="#sec3-3">3.3</a>、<a href="#sec5-4">5.4</a>、<a href="#sec4-3">4.3</a>、<a href="#sec6-1">6.1</a>）</p>
+        <p><b>2025</b> TabPFN v2 刊於 Nature、TabPFN-2.5；DeepSeek-R1 與蒸餾小模型；Kimi K2（MuonClip）；MLflow 3；台灣個資法修正公布（<a href="#sec4-2">4.2</a>、<a href="#sec5-4">5.4</a>、<a href="#sec3-3">3.3</a>、<a href="#sec5-3">5.3</a>、<a href="#sec6-1">6.1</a>）</p>
+        <p><b>2026</b> 台灣《人工智慧基本法》公布施行；EU AI Act Digital Omnibus 修正，高風險義務延後（<a href="#sec6-1">6.1</a>、<a href="#sec6-2">6.2</a>）</p>
+      </div>
+      <h4>依主題看演進方向</h4>
+      <table>
+        <tr><th>主題</th><th>指引中的基礎</th><th>近年的演進方向</th></tr>
+        <tr><td>優化器與排程</td><td>SGD、Momentum、Adam；Step、Cosine、預熱</td><td>AdamW 成預設；Warmup＋Cosine、WSD、Schedule-Free；Lion、Muon 等新優化器</td></tr>
+        <tr><td>深度學習架構</td><td>2017 原始 Transformer、CNN、RNN</td><td>Pre-LN/RMSNorm、SwiGLU、RoPE、GQA、FlashAttention、MoE、狀態空間模型</td></tr>
+        <tr><td>表格資料</td><td>RF、XGBoost、LightGBM</td><td>CatBoost、HistGradientBoosting；TabPFN 等表格基礎模型</td></tr>
+        <tr><td>微調與壓縮</td><td>蒸餾、剪枝、量化、FP16 混合精度</td><td>LoRA/QLoRA/DoRA；GPTQ/AWQ；BF16、FP8；大模型蒸餾小模型</td></tr>
+        <tr><td>調參</td><td>Grid、Random、AutoML</td><td>貝氏最佳化（Optuna）、Hyperband/ASHA 早淘汰</td></tr>
+        <tr><td>評估與不確定性</td><td>混淆矩陣、ROC-AUC、交叉驗證</td><td>機率校準、保形預測、上線後漂移監控（MLOps）</td></tr>
+        <tr><td>強化學習</td><td>MDP、策略與價值</td><td>RLHF、DPO、GRPO 用於大型語言模型對齊與推理</td></tr>
+        <tr><td>治理</td><td>GDPR、PETs、公平性指標、AIF360/Fairlearn</td><td>差分隱私；NIST AI RMF、ISO/IEC 42001；EU AI Act；台灣個資法修正與人工智慧基本法</td></tr>
+      </table>
+      <h4>如何持續追新</h4>
+      <ul>
+        <li><b>先回到原始來源</b>：論文看 arXiv 與會議（NeurIPS、ICML、ICLR）頁面；工具看官方文件的 release notes（如 scikit-learn、PyTorch 的版本亮點）；法規看官方公報（歐盟 EUR-Lex、全國法規資料庫），不要只看二手摘要。</li>
+        <li><b>以「它改進了指引裡的哪個缺點」來讀新技術</b>：例如 FlashAttention 對應「Transformer 記憶體消耗大」、HDBSCAN 對應「DBSCAN 處理密度不均不佳」、QLoRA 對應「大模型微調資源需求高」，這樣新知識會掛在舊架構上，記得最牢。</li>
+        <li><b>區分「考試答案」與「業界現況」</b>：作答一律依官方學習指引與勘誤表；新進展用來理解與實務應用，遇到衝突時以指引為準。</li>
+        <li><b>法規類資訊時效性最高</b>：施行日期、適用範圍常會修正（如 EU AI Act 高風險義務延後），引用前務必再查證最新公告。</li>
+      </ul>
+    </section>
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：以經濟部產業人才能力鑑定 iPAS 中級學習指引《機器學習技術與應用》為骨架整理，名詞解說、白話說明與延伸新進展為學習補充，並非官方評鑑內容；考試請以官方學習指引、勘誤表與公告為準。延伸內容截至 2026 年 10 月，技術發展快速，引用前請再查證。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = -1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].offsetTop <= pos) current = i;
+    }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>
