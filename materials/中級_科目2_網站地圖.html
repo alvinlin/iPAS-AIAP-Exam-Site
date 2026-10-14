@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 由 tools/sitemap/gen.py 產生，請勿直接修改；改資料模組 tools/sitemap/data_*.py 後重新產生 -->
+<title>大數據處理分析與應用 網站地圖</title>
+<style>
+/* 版面：章節軌道→ 各章樹狀展開（節 → 小節 → 要點），節可收合、可搜尋 */
+:root{
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1c2133; --muted:#5f6781; --line:#dde1ee;
+  --accent:#4338ca;
+  --c1:#4338ca; --c2:#0f766e; --c3:#b45309; --c4:#be185d;
+  --c5:#0369a1; --c1s:#eceafd; --c2s:#e3f4f1; --c3s:#fbf0e2; --c4s:#fbe8f1; --c5s:#e2f0fa;
+  --mark:#fde68a;
+  --f-display:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PMingLiU",serif;
+  --f-body:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;}
+.mapwrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+a{color:inherit}
+.c1{--c:var(--c1);--cs:var(--c1s)} .c2{--c:var(--c2);--cs:var(--c2s)} .c3{--c:var(--c3);--cs:var(--c3s)} .c4{--c:var(--c4);--cs:var(--c4s)} .c5{--c:var(--c5);--cs:var(--c5s)}
+
+.top{display:flex;flex-direction:column;gap:8px;}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted);}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.4vw,40px);line-height:1.2;margin:0;text-wrap:balance;}
+.lead{margin:0;color:var(--muted);max-width:68ch;}
+.lead a{color:var(--accent);}
+.back{align-self:flex-start;font-size:14px;color:var(--accent);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-family:var(--f-mono);}
+
+/* 生命週期軌道 */
+.rail{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;position:relative;}
+.rail::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:var(--line);}
+.stop{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 10px 0 0;text-decoration:none;}
+.stop .code{align-self:flex-start;font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--c);padding:5px 9px;border-radius:999px;position:relative;margin-bottom:8px;}
+.stop .nm{font-weight:700;font-size:15px;line-height:1.35;}
+.stop .cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stop:hover .nm,.stop:focus-visible .nm{color:var(--c);text-decoration:underline;}
+.rail-note{font-size:12px;color:var(--muted);margin:-16px 0 0;}
+
+/* 工具列 */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;padding-right:52px;border-bottom:1px solid var(--line);}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);}
+.tools button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.tools button:hover{border-color:var(--accent);color:var(--accent);}
+.tools :focus-visible,.go:focus-visible,summary:focus-visible,.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+#hits{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+/* 章 */
+.chap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 28px;padding-top:8px;}
+.chead{display:flex;flex-direction:column;gap:6px;position:sticky;top:72px;align-self:start;}
+.chead .code{font-family:var(--f-mono);font-size:13px;color:var(--c);}
+.chead h2{font-family:var(--f-display);font-size:21px;line-height:1.3;margin:0;text-wrap:balance;}
+.chead h2 a{text-decoration:none;}
+.chead h2 a:hover{color:var(--c);text-decoration:underline;}
+.chead p{margin:0;font-size:13.5px;color:var(--muted);}
+.secs{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.check{grid-column:2;margin:0;font-size:13.5px;color:var(--muted);border-left:3px solid var(--c);padding:4px 0 4px 12px;}
+.check b{color:var(--ink);margin-right:8px;}
+
+/* 節 */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+.sec summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;}
+.sec[open] summary::before{transform:rotate(45deg);}
+.scode{font-family:var(--f-mono);font-size:12px;color:var(--c);background:var(--cs);padding:2px 7px;border-radius:5px;flex:none;}
+.st{font-weight:700;font-size:16px;flex:1;min-width:0;}
+.go{font-size:13px;color:var(--c);text-decoration:none;flex:none;padding:2px 4px;}
+.go:hover{text-decoration:underline;}
+
+/* 小節 → 要點（樹） */
+.subs{list-style:none;margin:0;padding:2px 16px 16px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px 22px;}
+.subs>li{min-width:0;}
+.sub{display:block;font-weight:700;font-size:14px;color:var(--c);margin-bottom:4px;}
+.leaves{list-style:none;margin:0;padding:0 0 0 12px;border-left:1.5px solid var(--line);}
+.leaves li{position:relative;font-size:13.5px;padding:2px 0 2px 10px;}
+.leaves li::before{content:"";position:absolute;left:-12px;top:13px;width:16px;border-top:1.5px solid var(--line);}
+.leaves li.fig{color:var(--muted);font-style:italic;}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px;}
+.dim{display:none!important;}
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+
+@media (max-width:760px){
+  .chap{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .chead{position:static;}
+  .check{grid-column:1;}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .rail::before{display:none;}
+  .subs{padding-left:16px;}
+}
+@media (prefers-reduced-motion:reduce){.sec summary::before{transition:none}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="mapwrap">
+  <div class="top">
+    <a class="back" href="index.html">← 回教材首頁</a>
+    <span class="eyebrow">iPAS AI 應用規劃師 · 中級 · 科目 2 · L22</span>
+    <h1>大數據處理分析與應用 網站地圖</h1>
+    <p class="lead">把<a href="中級_科目2_大數據處理分析與應用.html">完整教材</a>的內容整理成一張樹狀地圖：章 → 節 → 小節 → 要點。點節名右側的「開啟」會跳到完整教材的該節；虛線底線的名詞可點開名詞說明。</p>
+    <div class="stats"><span><b>4</b> 章</span><span><b>13</b> 節</span><span><b>49</b> 小節</span><span><b>204</b> 要點</span></div>
+  </div>
+
+  <nav class="rail" aria-label="各章" style="--n:4"><a class="stop c1" href="#m-chap3"><span class="code">L221</span><span class="nm">機率統計基礎</span><span class="cnt">3 節 · 12 小節</span></a><a class="stop c2" href="#m-chap4"><span class="code">L222</span><span class="nm">大數據處理技術</span><span class="cnt">3 節 · 12 小節</span></a><a class="stop c3" href="#m-chap5"><span class="code">L223</span><span class="nm">大數據分析方法與工具</span><span class="cnt">3 節 · 12 小節</span></a><a class="stop c4" href="#m-chap6"><span class="code">L224</span><span class="nm">大數據在人工智慧之應用</span><span class="cnt">4 節 · 13 小節</span></a></nav>
+  <p class="rail-note">四章依資料生命週期排列：統計奠基 → 收集、儲存與處理 → 分析與視覺化 → 應用於 AI。</p>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜尋名詞或關鍵字" aria-label="搜尋地圖">
+    <button id="openAll" type="button">全部展開</button>
+    <button id="closeAll" type="button">全部收合</button>
+    <span id="hits" aria-live="polite"></span>
+  </div>
+
+  <main>
+<section class="chap c1" id="m-chap3"><header class="chead"><span class="code">L221</span><h2><a href="中級_科目2_大數據處理分析與應用.html#chap3">第三章 機率統計基礎</a></h2><p>先打統計地基：描述資料、理解隨機性、做嚴謹推論。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L22101</span><span class="st">3.1 敘述性統計與資料摘要技術</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec31" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">集中趨勢測量</span><ul class="leaves"><li>算術平均（怕極端值）</li><li>幾何平均（成長率、報酬率）</li><li>調和平均（速率）</li><li>眾數（類別資料）</li><li>中位數（抗極端值）</li></ul></li><li><span class="sub">離散程度測量</span><ul class="leaves"><li>變異數 σ² ／標準差 σ</li><li>全距（易受極端值影響）</li><li>四分位數 Q1・Q2・Q3</li><li>IQR = Q3 − Q1</li><li>箱形圖：鬚 = Q1 − 1.5×IQR ～ Q3 + 1.5×IQR</li><li class="fig">附圖：箱形圖構造（指引 3-8）</li></ul></li><li><span class="sub">分佈形狀</span><ul class="leaves"><li>偏度：正偏（右尾長）&gt; 0、負偏（左尾長）&lt; 0</li><li>峰度（Pearson，常態 = 3）：高峰 &gt; 3、中峰 ≈ 3、扁平 &lt; 3</li><li class="fig">附圖：偏態、峰度（指引 3-11、3-12）</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22102</span><span class="st">3.2 機率分佈與資料分佈模型</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec32" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">期望值與變異數</span><ul class="leaves"><li>E(X)：長期加權平均</li><li>Var(X)：分散程度</li><li>離散用 Σ、連續用 ∫</li></ul></li><li><span class="sub">兩種類型</span><ul class="leaves"><li>離散型：PMF，總和 = 1</li><li>連續型：PDF，P(a ≤ X ≤ b) = ∫f(x)dx</li></ul></li><li><span class="sub">常見離散型分佈</span><ul class="leaves"><li>伯努利：E = p</li><li>二項：E = np、Var = np(1−p)</li><li>泊松：E = Var = λ</li></ul></li><li><span class="sub">常見連續型分佈</span><ul class="leaves"><li>常態：E = μ、Var = σ²，中央極限定理</li><li>指數：E = 1/λ，無記憶性</li><li>卡方：E = k、Var = 2k</li><li>自由度 df</li></ul></li><li><span class="sub">分佈擬合與資料建模</span><ul class="leaves"><li>最大似然估計找參數</li><li>先判斷離散或連續</li><li>偏態長尾：對數常態、t 分佈</li><li>檢查獨立性（自相關）</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22103</span><span class="st">3.3 假設檢定與統計推論</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec33" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">參數估計</span><ul class="leaves"><li>點估計（無法反映不確定性）</li><li>區間估計：95% 信賴區間的正確解讀</li></ul></li><li><span class="sub">假設檢定流程</span><ul class="leaves"><li>定 H₀／H₁ → 選檢定 → 定 α → 算 p 值 → 決策</li><li>α = 0.05／0.01／0.10</li><li>p ≤ α 拒絕 H₀；無法拒絕 ≠ 接受</li><li>多重比較：Bonferroni 校正</li></ul></li><li><span class="sub">兩種錯誤類型</span><ul class="leaves"><li>型一錯誤（誤判）= α</li><li>型二錯誤（漏判）= β</li><li>檢定力 = 1 − β</li><li>檢定力分析 (Power Analysis)</li></ul></li><li><span class="sub">常見統計檢定方法</span><ul class="leaves"><li>單樣本／獨立樣本／成對樣本 t 檢定</li><li>單因子 ANOVA（事後 Tukey HSD）</li><li>比例檢定、卡方檢定（Cramér&#x27;s V）</li><li>Pearson（線性）／Spearman（單調）相關</li><li>非參數：Mann-Whitney U、Kruskal-Wallis</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>敘述統計只概括不推論；極端值多用中位數；p &lt; α 拒絕 H₀；CLT 指「樣本平均數」趨近常態。</p></section>
+<section class="chap c2" id="m-chap4"><header class="chead"><span class="code">L222</span><h2><a href="中級_科目2_大數據處理分析與應用.html#chap4">第四章 大數據處理技術</a></h2><p>資料工程：從收集、清理、儲存，到分散式運算與管線。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L22201</span><span class="st">4.1 數據收集與清理</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec41" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">常見資料來源與蒐集方式</span><ul class="leaves"><li>感測器／IoT：MQTT、Kafka</li><li>系統日誌：Flume、Logstash、NiFi</li><li>API：RESTful + Airflow、Talend</li><li>爬蟲：Scrapy、BeautifulSoup</li><li>企業內部系統：Snowflake、BigQuery</li></ul></li><li><span class="sub">資料品質問題類型</span><ul class="leaves"><li>缺失值：MCAR／MAR／MNAR</li><li>異常值：IQR、Z 分數、孤立森林</li><li>重複值</li><li>一致性錯誤（臺北／台北）</li><li>邏輯錯誤（體溫 43°C）</li></ul></li><li><span class="sub">資料品質指標</span><ul class="leaves"><li>缺失率</li><li>唯一值比率</li><li>一致性比率</li><li>異常值比率</li><li>完整性比率</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22202</span><span class="st">4.2 數據儲存與管理</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec42" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">三種資料型態與儲存</span><ul class="leaves"><li>結構化 → RDBMS（ACID）</li><li>半結構化 → MongoDB、Elasticsearch</li><li>非結構化 → S3、MinIO、HDFS</li></ul></li><li><span class="sub">分散式儲存與資料湖</span><ul class="leaves"><li>橫向擴充、容錯（Paxos、Raft）</li><li>資料本地性</li><li>資料湖：Schema-on-Read</li><li>資料湖倉：Delta Lake、Iceberg、Hudi</li></ul></li><li><span class="sub">儲存效能優化與查詢加速</span><ul class="leaves"><li>分區、列式壓縮（Parquet、ORC）</li><li>冷熱分層、欄位裁剪</li><li>物化檢視、索引</li><li>Catalyst、Presto CBO</li></ul></li><li><span class="sub">一致性與版本管理</span><ul class="leaves"><li>強一致性 vs 最終一致性</li><li>ACID 四大特性</li><li>Time Travel、Incremental Query</li></ul></li><li><span class="sub">資料治理與存取控管</span><ul class="leaves"><li>元資料、Data Catalog、Data Lineage</li><li>RBAC／ABAC／PBAC／DAC</li><li>稽核紀錄（GDPR、CCPA）</li><li>零信任：最小權限、JIT</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22203</span><span class="st">4.3 數據處理技術與工具</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec43" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">資料準備與轉換</span><ul class="leaves"><li>型別轉換、ISO 8601</li><li>分箱：等寬、等頻、K-Means</li><li>Label／One-hot／Target Encoding</li><li>Min-Max、Z-score、Robust Scaling</li></ul></li><li><span class="sub">特徵工程</span><ul class="leaves"><li>防資料洩漏</li><li>特徵選擇：Filter／Wrapper／Embedded</li><li>交互、時間、聚合特徵</li><li>資料增強、SMOTE</li></ul></li><li><span class="sub">分散式運算框架</span><ul class="leaves"><li>Hadoop MapReduce：批次</li><li>Spark：記憶體內運算</li><li>Flink：原生串流</li><li>Beam：統一抽象</li></ul></li><li><span class="sub">資料處理管線</span><ul class="leaves"><li>可重現、容錯、擴充、可觀測</li><li>Airflow、Luigi、Prefect、Kubeflow</li><li>CI/CD、監控、容器化</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>感測器資料屬高頻串流；JSON/XML 適合文件型 NoSQL；資料湖不需預先定義結構；即時監控用串流處理。</p></section>
+<section class="chap c3" id="m-chap5"><header class="chead"><span class="code">L223</span><h2><a href="中級_科目2_大數據處理分析與應用.html#chap5">第五章 大數據分析方法與工具</a></h2><p>把整理好的資料變成洞察：統計、分析方法、視覺化。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L22301</span><span class="st">5.1 統計學在大數據中的應用</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec51" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">敘述統計的挑戰</span><ul class="leaves"><li>資料無法全載入記憶體</li><li>長尾偏態：改用中位數、分位數</li><li>多型態資料難統一</li><li>罕見異常被稀釋</li><li>資料動態變化</li></ul></li><li><span class="sub">統計推論的限制與風險</span><ul class="leaves"><li>樣本非隨機，偏誤被放大</li><li>p 值膨脹 → 看效果量</li><li>多重檢定：Bonferroni、FDR</li><li>樣本非獨立</li><li>母體定義不清</li></ul></li><li><span class="sub">實務應用情境</span><ul class="leaves"><li>行銷：邏輯迴歸、K-means</li><li>金融：ARIMA、蒙地卡羅</li><li>醫療：Kaplan-Meier、Cox</li><li>製造：SPC 控制圖</li><li>資安、政策、智慧城市</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22302</span><span class="st">5.2 常見的大數據分析方法</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec52" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">近似描述性統計</span><ul class="leaves"><li>t-digest（分位數）</li><li>Histogram Sketch</li><li>Count-Min Sketch（頻率）</li><li>Welford 線上均值／變異數</li></ul></li><li><span class="sub">時序分析</span><ul class="leaves"><li>移動平均、指數平滑</li><li>ARIMA、SARIMA</li><li>Prophet、LSTM、Transformer</li></ul></li><li><span class="sub">網路分析</span><ul class="leaves"><li>中心性：Degree、Betweenness、PageRank</li><li>社群偵測：Louvain</li><li>鏈結預測：GNN</li><li>Neo4j、NetworkX</li></ul></li><li><span class="sub">文字分析</span><ul class="leaves"><li>斷詞、詞形還原 vs 詞幹提取</li><li>TF-IDF</li><li>Word2Vec、GloVe、FastText</li><li>BERT、RoBERTa</li><li>LDA、NER</li></ul></li><li><span class="sub">地理空間分析</span><ul class="leaves"><li>點／線／面資料</li><li>熱點：KDE、Getis-Ord Gi*</li><li>DBSCAN</li><li>地理加權迴歸 GWR</li></ul></li><li><span class="sub">異常偵測</span><ul class="leaves"><li>Z-score、IQR</li><li>LOF、KNN</li><li>Isolation Forest</li><li>PyOD</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22303</span><span class="st">5.3 數據可視化工具</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec53" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">依資料型態選圖</span><ul class="leaves"><li>分佈：直方圖、箱型圖、KDE</li><li>關聯：散佈圖、相關矩陣、熱力圖</li><li>類別：長條、堆疊長條、圓餅</li><li>時間：折線圖</li><li class="fig">附圖：10 種圖表範例（指引 5-30～5-39）</li></ul></li><li><span class="sub">平台工具分類</span><ul class="leaves"><li>內建報表：Excel、Google Sheets</li><li>程式庫：Matplotlib、Plotly、D3.js</li><li>輕量 BI：Metabase、Superset、Grafana</li><li>商業平台：Tableau、Power BI</li></ul></li><li><span class="sub">設計原則</span><ul class="leaves"><li>以閱讀者為中心</li><li>圖表符合資料型態</li><li>簡化、去冗餘</li><li>合理用色</li><li>支援互動探索</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>類別分佈用長條圖、趨勢用折線圖；TF-IDF 排除常見詞；異常偵測典型為信用卡詐騙；品牌名稱比對用 NER。</p></section>
+<section class="chap c4" id="m-chap6"><header class="chead"><span class="code">L224</span><h2><a href="中級_科目2_大數據處理分析與應用.html#chap6">第六章 大數據在人工智慧之應用</a></h2><p>資料進入 AI：機器學習流程、鑑別式與生成式應用、隱私合規。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L22401</span><span class="st">6.1 大數據與機器學習</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec61" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">5V 對機器學習的衝擊</span><ul class="leaves"><li>Volume：Mini-Batch、分散式</li><li>Variety：多模態對齊與融合</li><li>Velocity：串流、增量學習</li><li>Veracity：漂移偵測（KS、KL）</li><li>Value：特徵選擇、主動學習</li><li>數據漂移 vs 概念漂移</li></ul></li><li><span class="sub">模型訓練加速</span><ul class="leaves"><li>資料並行／模型並行／混合並行</li><li>混合精度（FP32 + FP16）</li><li>梯度累積與壓縮</li><li>預訓練 + 微調</li><li>避免災難性遺忘</li></ul></li><li><span class="sub">端對端流程 MLOps</span><ul class="leaves"><li>資料整合與管線</li><li>訓練驗證：MLflow、W&amp;B</li><li>部署：Batch／Online／Streaming</li><li>監控與自動重訓</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22402</span><span class="st">6.2 大數據在鑑別式 AI 的應用</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec62" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">常見應用情境</span><ul class="leaves"><li>金融：信用評分、反洗錢</li><li>零售：流失預測、推薦</li><li>客服：情感分析</li><li>醫療：疾病診斷</li><li>資安：異常登入</li></ul></li><li><span class="sub">輸入資料型態</span><ul class="leaves"><li>結構化</li><li>半結構化（解析、展平）</li><li>非結構化（特徵萃取）</li><li>多模態（特徵級融合）</li></ul></li><li><span class="sub">資料標註策略</span><ul class="leaves"><li>人工標註</li><li>弱監督式標註</li><li>群眾外包</li><li>主動式學習</li></ul></li><li><span class="sub">跨來源整合挑戰</span><ul class="leaves"><li>主鍵不一致</li><li>時區對齊</li><li>更新頻率不一</li><li>品質不均影響推論</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22403</span><span class="st">6.3 大數據在生成式 AI 的應用</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec63" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">資料選擇影響生成品質</span><ul class="leaves"><li>多樣性</li><li>代表性與偏誤（性別、地區、社經）</li><li>品質與正確性</li><li>時效性</li></ul></li><li><span class="sub">典型應用情境</span><ul class="leaves"><li>語言生成：摘要、客服、程式碼</li><li>圖像生成：設計輔助</li><li>多模態：DALL·E</li><li>合成資料 (Synthetic Data)</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L22404</span><span class="st">6.4 大數據隱私保護、安全與合規</span><a class="go" href="中級_科目2_大數據處理分析與應用.html#sec64" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">個資識別風險</span><ul class="leaves"><li>直接識別資訊</li><li>準識別資訊</li><li>敏感資料</li><li>橫向比對、時間軸拼接</li></ul></li><li><span class="sub">資料匿名化技術</span><ul class="leaves"><li>遮蔽、雜湊、泛化、分桶、擾動</li><li>K-匿名／L-多樣性／T-接近性</li><li>差分隱私（DPSGD）</li><li>聯邦學習</li><li>同態加密</li></ul></li><li><span class="sub">合規資料處理</span><ul class="leaves"><li>GDPR／CCPA／台灣個資法</li><li>目的限制、資料最小化</li><li>被遺忘權</li><li>合法依據：同意、契約、研究</li></ul></li><li><span class="sub">企業 AI 與資料治理</span><ul class="leaves"><li>治理政策與 AI 倫理</li><li>治理委員會、Data Steward</li><li>Data Catalog、Model Card</li><li>監控偏誤與漂移</li><li>合規教育訓練</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>混合精度加速訓練；生成式品質看資料多樣性；強化隱私用差分隱私；合規可追溯靠版本管理與操作紀錄。</p></section>
+  </main>
+
+  <p class="foot">內容整理自經濟部產業人才能力鑑定 iPAS 中級學習指引《大數據處理分析與應用》對應之自製教材；非官方資料，考試以官方公告為準。</p>
+</div>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec'));
+  var q=document.getElementById('q'), hits=document.getElementById('hits');
+  document.getElementById('openAll').onclick=function(){secs.forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){secs.forEach(function(d){d.open=false;});};
+  var texts=[].slice.call(document.querySelectorAll('.st,.sub,.leaves li'));
+  var saved=false;
+  function save(){ if(saved)return; saved=true; texts.forEach(function(el){el.dataset.t=el.textContent;el.dataset.h=el.innerHTML;}); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function run(){
+    save();
+    var v=q.value.trim().toLowerCase(), n=0;
+    texts.forEach(function(el){
+      var t=el.dataset.t, i=v?t.toLowerCase().indexOf(v):-1;
+      if(!v){ el.innerHTML=el.dataset.h; return; }
+      el.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));
+      if(i>=0)n++;
+    });
+    document.querySelectorAll('.subs>li').forEach(function(li){
+      li.classList.toggle('dim',!!v&&!li.querySelector('mark')&&!li.closest('.sec').querySelector('.st mark'));
+    });
+    secs.forEach(function(d){
+      var hit=!!d.querySelector('mark');
+      d.classList.toggle('dim',!!v&&!hit);
+      if(v&&hit)d.open=true;
+    });
+    document.querySelectorAll('.chap').forEach(function(c){
+      c.classList.toggle('dim',!!v&&!c.querySelector('.sec:not(.dim)'));
+    });
+    hits.textContent=v?(n?'找到 '+n+' 處':'找不到「'+q.value.trim()+'」'):'';
+  }
+  q.addEventListener('input',run);
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

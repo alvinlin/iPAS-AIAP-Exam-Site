@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 由 tools/sitemap/gen.py 產生，請勿直接修改；改資料模組 tools/sitemap/data_*.py 後重新產生 -->
+<title>人工智慧技術應用規劃 網站地圖</title>
+<style>
+/* 版面：章節軌道→ 各章樹狀展開（節 → 小節 → 要點），節可收合、可搜尋 */
+:root{
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1c2133; --muted:#5f6781; --line:#dde1ee;
+  --accent:#4338ca;
+  --c1:#4338ca; --c2:#0f766e; --c3:#b45309; --c4:#be185d;
+  --c5:#0369a1; --c1s:#eceafd; --c2s:#e3f4f1; --c3s:#fbf0e2; --c4s:#fbe8f1; --c5s:#e2f0fa;
+  --mark:#fde68a;
+  --f-display:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PMingLiU",serif;
+  --f-body:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;}
+.mapwrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+a{color:inherit}
+.c1{--c:var(--c1);--cs:var(--c1s)} .c2{--c:var(--c2);--cs:var(--c2s)} .c3{--c:var(--c3);--cs:var(--c3s)} .c4{--c:var(--c4);--cs:var(--c4s)} .c5{--c:var(--c5);--cs:var(--c5s)}
+
+.top{display:flex;flex-direction:column;gap:8px;}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted);}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.4vw,40px);line-height:1.2;margin:0;text-wrap:balance;}
+.lead{margin:0;color:var(--muted);max-width:68ch;}
+.lead a{color:var(--accent);}
+.back{align-self:flex-start;font-size:14px;color:var(--accent);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-family:var(--f-mono);}
+
+/* 生命週期軌道 */
+.rail{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;position:relative;}
+.rail::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:var(--line);}
+.stop{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 10px 0 0;text-decoration:none;}
+.stop .code{align-self:flex-start;font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--c);padding:5px 9px;border-radius:999px;position:relative;margin-bottom:8px;}
+.stop .nm{font-weight:700;font-size:15px;line-height:1.35;}
+.stop .cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stop:hover .nm,.stop:focus-visible .nm{color:var(--c);text-decoration:underline;}
+.rail-note{font-size:12px;color:var(--muted);margin:-16px 0 0;}
+
+/* 工具列 */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;padding-right:52px;border-bottom:1px solid var(--line);}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);}
+.tools button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.tools button:hover{border-color:var(--accent);color:var(--accent);}
+.tools :focus-visible,.go:focus-visible,summary:focus-visible,.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+#hits{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+/* 章 */
+.chap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 28px;padding-top:8px;}
+.chead{display:flex;flex-direction:column;gap:6px;position:sticky;top:72px;align-self:start;}
+.chead .code{font-family:var(--f-mono);font-size:13px;color:var(--c);}
+.chead h2{font-family:var(--f-display);font-size:21px;line-height:1.3;margin:0;text-wrap:balance;}
+.chead h2 a{text-decoration:none;}
+.chead h2 a:hover{color:var(--c);text-decoration:underline;}
+.chead p{margin:0;font-size:13.5px;color:var(--muted);}
+.secs{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.check{grid-column:2;margin:0;font-size:13.5px;color:var(--muted);border-left:3px solid var(--c);padding:4px 0 4px 12px;}
+.check b{color:var(--ink);margin-right:8px;}
+
+/* 節 */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+.sec summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;}
+.sec[open] summary::before{transform:rotate(45deg);}
+.scode{font-family:var(--f-mono);font-size:12px;color:var(--c);background:var(--cs);padding:2px 7px;border-radius:5px;flex:none;}
+.st{font-weight:700;font-size:16px;flex:1;min-width:0;}
+.go{font-size:13px;color:var(--c);text-decoration:none;flex:none;padding:2px 4px;}
+.go:hover{text-decoration:underline;}
+
+/* 小節 → 要點（樹） */
+.subs{list-style:none;margin:0;padding:2px 16px 16px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px 22px;}
+.subs>li{min-width:0;}
+.sub{display:block;font-weight:700;font-size:14px;color:var(--c);margin-bottom:4px;}
+.leaves{list-style:none;margin:0;padding:0 0 0 12px;border-left:1.5px solid var(--line);}
+.leaves li{position:relative;font-size:13.5px;padding:2px 0 2px 10px;}
+.leaves li::before{content:"";position:absolute;left:-12px;top:13px;width:16px;border-top:1.5px solid var(--line);}
+.leaves li.fig{color:var(--muted);font-style:italic;}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px;}
+.dim{display:none!important;}
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+
+@media (max-width:760px){
+  .chap{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .chead{position:static;}
+  .check{grid-column:1;}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .rail::before{display:none;}
+  .subs{padding-left:16px;}
+}
+@media (prefers-reduced-motion:reduce){.sec summary::before{transition:none}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="mapwrap">
+  <div class="top">
+    <a class="back" href="index.html">← 回教材首頁</a>
+    <span class="eyebrow">iPAS AI 應用規劃師 · 中級 · 科目 1 · L21</span>
+    <h1>人工智慧技術應用規劃 網站地圖</h1>
+    <p class="lead">把<a href="中級_科目1_人工智慧技術應用規劃.html">完整教材</a>的內容整理成一張樹狀地圖：章 → 節 → 小節 → 要點。點節名右側的「開啟」會跳到完整教材的該節；虛線底線的名詞可點開名詞說明。</p>
+    <div class="stats"><span><b>3</b> 章</span><span><b>9</b> 節</span><span><b>47</b> 小節</span><span><b>195</b> 要點</span></div>
+  </div>
+
+  <nav class="rail" aria-label="各章" style="--n:3"><a class="stop c1" href="#m-chap3"><span class="code">L211</span><span class="nm">AI 相關技術應用</span><span class="cnt">4 節 · 24 小節</span></a><a class="stop c2" href="#m-chap4"><span class="code">L212</span><span class="nm">AI 導入評估規劃</span><span class="cnt">3 節 · 14 小節</span></a><a class="stop c3" href="#m-chap5"><span class="code">L213</span><span class="nm">AI 技術應用與系統部署</span><span class="cnt">2 節 · 9 小節</span></a></nav>
+  <p class="rail-note">三章由技術到落地：先認識 AI 技術應用 → 評估與規劃導入 → 資料、模型與系統部署。</p>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜尋名詞或關鍵字" aria-label="搜尋地圖">
+    <button id="openAll" type="button">全部展開</button>
+    <button id="closeAll" type="button">全部收合</button>
+    <span id="hits" aria-live="polite"></span>
+  </div>
+
+  <main>
+<section class="chap c1" id="m-chap3"><header class="chead"><span class="code">L211</span><h2><a href="中級_科目1_人工智慧技術應用規劃.html#chap3">第三章 AI 相關技術應用</a></h2><p>認識四大 AI 子領域：NLP、電腦視覺、生成式 AI、多模態 AI。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L21101</span><span class="st">3.1 自然語言處理技術與應用（NLP）</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec31" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">NLP、NLU 與 NLG 的關係</span><ul class="leaves"><li>NLP：總稱（理解、處理、生成）</li><li>NLU：意圖辨識、NER、情感分析</li><li>NLG：摘要、回應生成、報告撰寫</li></ul></li><li><span class="sub">技術演進脈絡</span><ul class="leaves"><li>規則式：ELIZA、專家系統</li><li>統計語言模型：N-gram、HMM、CRF</li><li>深度學習：RNN、LSTM、GRU</li><li>預訓練：BERT、GPT、RoBERTa、T5</li></ul></li><li><span class="sub">NLP 前處理</span><ul class="leaves"><li>分詞（Tokenization、BPE）</li><li>詞性標注（POS Tagging）</li><li>詞形還原 vs 詞幹提取</li><li>停用詞移除</li><li>中文分詞與停用詞取捨</li></ul></li><li><span class="sub">文字表示（向量化）技術比較</span><ul class="leaves"><li>One-hot、Bag of Words</li><li>TF-IDF = TF × IDF</li><li>N-grams（保留詞序）</li><li>靜態：Word2Vec、GloVe、FastText</li><li>語境型：ELMo、BERT、GPT</li><li>分布式 vs 非分布式</li></ul></li><li><span class="sub">深度學習在 NLP 中的應用</span><ul class="leaves"><li>RNN（梯度消失）</li><li>LSTM 門控、GRU 精簡版</li><li>Transformer：Self-Attention</li><li>Encoder-Decoder、全平行架構</li></ul></li><li><span class="sub">預訓練語言模型與強化技術</span><ul class="leaves"><li>Prompt-based Learning</li><li>少樣本 vs 零樣本學習</li><li>RAG 檢索增強生成</li><li>LoRA 低秩自適應</li></ul></li><li><span class="sub">NLP 應用情境與實務案例</span><ul class="leaves"><li>文字分類、情感分析</li><li>對話系統：任務導向／開放式</li><li>文字生成與總結、機器翻譯</li><li>NER、關係抽取（知識圖譜）</li></ul></li><li><span class="sub">NLP 技術挑戰與風險</span><ul class="leaves"><li>資料層：隱私、標註、版權</li><li>模型層：偏見（WEAT 檢測）</li><li>應用層：模型幻覺</li><li>去識別化 vs 匿名化</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21102</span><span class="st">3.2 電腦視覺技術與應用（CV）</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec32" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">CV 主要任務類型</span><ul class="leaves"><li>影像分類</li><li>物件偵測（邊界框）</li><li>語意分割 vs 實例分割</li><li>影像生成與合成</li></ul></li><li><span class="sub">技術演進三階段</span><ul class="leaves"><li>特徵工程：Canny、SIFT、SVM</li><li>CNN 革命：VGG、ResNet、YOLO</li><li>多模態：CLIP、ViT、SAM</li></ul></li><li><span class="sub">影像標註與資料前處理</span><ul class="leaves"><li>類別標籤／邊界框／像素遮罩</li><li>工具：LabelImg、CVAT、Roboflow</li><li>Auto-labeling、主動學習</li><li>正規化、資料擴增</li></ul></li><li><span class="sub">CV 關鍵技術與常用模型</span><ul class="leaves"><li>CNN：卷積、池化、激活、全連接</li><li>LeNet、AlexNet、VGG、ResNet</li><li>偵測：YOLO、Faster R-CNN、SSD</li><li>分割：FCN、U-Net、Mask R-CNN</li><li>IoU = 交集 / 聯集</li></ul></li><li><span class="sub">CV 應用情境</span><ul class="leaves"><li>監控：人臉、車牌辨識（ANPR）</li><li>醫療影像：U-Net 定位腫瘤</li><li>智慧製造：瑕疵偵測</li><li>自動駕駛：多模態融合</li></ul></li><li><span class="sub">CV 技術挑戰與風險</span><ul class="leaves"><li>人臉屬敏感個資：遮蔽、模糊</li><li>誤檢 vs 漏檢、Bias Audit</li><li>輕量化：MobileNet</li><li>資料漂移、MLOps</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21103</span><span class="st">3.3 生成式 AI 技術與應用</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec33" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">生成式 AI vs 鑑別式 AI</span><ul class="leaves"><li>AI 四階段：感知→生成→代理→物理</li><li>生成式：GPT、VAE、GAN、Diffusion</li><li>鑑別式：SVM、決策樹、Logistic</li><li>學習分佈生成 vs 特徵分類</li></ul></li><li><span class="sub">技術演進五階段</span><ul class="leaves"><li>VAE（生成模糊）</li><li>GAN：生成器 vs 判別器、模式崩潰</li><li>Transformer 崛起</li><li>擴散模型：逐步去噪</li><li>巨型模型與 Agent 化</li></ul></li><li><span class="sub">文本生成</span><ul class="leaves"><li>GPT、Claude、Gemini、LLaMA</li><li>幻覺、長文本連貫</li><li>BLEU（n-gram 重疊）</li><li>ROUGE（摘要召回）</li><li>人工評估</li></ul></li><li><span class="sub">圖像生成</span><ul class="leaves"><li>Stable Diffusion、DALL·E 2、Imagen</li><li>StyleGAN、BigGAN</li><li>ControlNet、InstructPix2Pix</li><li>Midjourney、Adobe Firefly</li></ul></li><li><span class="sub">語音合成（TTS, Text-to-Speech）</span><ul class="leaves"><li>Tacotron 2、FastSpeech 2</li><li>VITS（VAE＋GAN）</li><li>Whisper（語音辨識 STT）</li><li>MOS、WER、生成延遲</li></ul></li><li><span class="sub">生成式 AI 風險與未來趨勢</span><ul class="leaves"><li>深偽（Deepfake）、智財爭議</li><li>偏見放大、輸出不確定</li><li>RLHF、紅隊測試</li><li>EU AI Act</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21104</span><span class="st">3.4 多模態人工智慧應用</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec34" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">技術演進三階段</span><ul class="leaves"><li>早期：特徵拼接＋傳統 ML</li><li>深度學習：專屬網路＋融合層</li><li>當前：M3AE、Flamingo、BLIP-2</li><li>跨模態表示學習</li></ul></li><li><span class="sub">常見模型與工具</span><ul class="leaves"><li>CLIP：對比學習、圖文對齊</li><li>語音流程：ASR → NLU → TTS</li><li>早期融合 vs 晚期融合</li><li>BLIP-2（VQA）、Flamingo（少樣本）</li></ul></li><li><span class="sub">應用情境</span><ul class="leaves"><li>醫療：影像＋EMR＋生理訊號</li><li>零售：影像＋POS＋評論</li><li>虛實整合：虛擬人偶 Avatar</li></ul></li><li><span class="sub">風險與未來趨勢</span><ul class="leaves"><li>資料對齊：時序對齊 DTW</li><li>模型壓縮：剪枝、量化、蒸餾</li><li>隱私：匿名化、Deepfake 檢測</li><li>自我監督學習、代理式 AI</li></ul></li></ul></details></div></section>
+<section class="chap c2" id="m-chap4"><header class="chead"><span class="code">L212</span><h2><a href="中級_科目1_人工智慧技術應用規劃.html#chap4">第四章 AI 導入評估規劃</a></h2><p>從「是否導入」到「如何導入」：評估價值、規劃執行、管理風險。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L21201</span><span class="st">4.1 AI 導入評估</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec41" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">導入需求與可行性評估</span><ul class="leaves"><li>As-Is vs To-Be 流程差距</li><li>資料品質、IT 能力、AI 適配性</li><li>ROI（投資報酬率）</li><li>NPV 為正具價值</li><li>Payback Period（回收期）</li></ul></li><li><span class="sub">組織成熟度與導入條件盤點</span><ul class="leaves"><li>數位與資料成熟度</li><li>資料治理（Data Governance）</li><li>團隊能力與跨部門協作</li><li>資源與預算支持</li></ul></li><li><span class="sub">風險與合規初探</span><ul class="leaves"><li>個資法（PDPA）、GDPR</li><li>黑箱風險、可解釋 AI（XAI）</li><li>組織變革阻力</li><li>風險矩陣：機率 × 影響</li><li>緩解、轉移、POC</li></ul></li><li><span class="sub">概念驗證（POC, Proof of Concept）設計與評估</span><ul class="leaves"><li>範圍清晰、風險可控</li><li>量化評估 vs 質性評估</li><li>技術適配性、組織接受度</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21202</span><span class="st">4.2 AI 導入規劃</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec42" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">導入規劃的核心原則</span><ul class="leaves"><li>情境／目的導向</li><li>資源盤點</li><li>彈性調整</li></ul></li><li><span class="sub">資源盤點與配置</span><ul class="leaves"><li>PM、資料工程師、模型開發者</li><li>業務顧問、系統架構師</li><li>GPU 伺服器、雲端平台</li><li>TensorFlow、PyTorch、Git</li></ul></li><li><span class="sub">任務分解與時程設計</span><ul class="leaves"><li>甘特圖、關鍵路徑</li><li>工作分解結構（WBS）</li><li>Scrum：三角色、五活動、三產出</li><li>Sprint 通常 1–4 週</li></ul></li><li><span class="sub">任務追蹤工具比較</span><ul class="leaves"><li>Trello：輕量看板</li><li>Asana：跨部門協作</li><li>JIRA：技術團隊、敏捷</li><li>ClickUp：中型專案</li></ul></li><li><span class="sub">AI 導入模式的選擇</span><ul class="leaves"><li>現有商業服務（Low-code）</li><li>內部技術團隊開發</li><li>委外開發：合約與資安</li></ul></li><li><span class="sub">導入成果驗證與彙整</span><ul class="leaves"><li>POC：明確目標、快速迭代</li><li>技術效能、商業價值、使用者回饋</li><li>導入規劃文件、利害關係人審查</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21203</span><span class="st">4.3 AI 風險管理</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec43" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">風險類型與識別</span><ul class="leaves"><li>技術層：資料品質、模型穩定性</li><li>組織人力層：技能短缺、變革抵制</li><li>法規層：個資、侵權</li><li>資料漂移／模型漂移／概念漂移</li><li>過擬合</li></ul></li><li><span class="sub">法規與合規性評估</span><ul class="leaves"><li>GDPR：遺忘權、反對自動化決策</li><li>PDPA（台灣個資法）</li><li>CDPA（美國維吉尼亞州）</li><li>HIPAA、PCI-DSS</li></ul></li><li><span class="sub">偏見（Bias）與倫理（Ethics）</span><ul class="leaves"><li>資料、歷史、標註、演算法偏見</li><li>透明度、可解釋性、公平性、問責性</li><li>AI HLEG、OECD、UNESCO</li><li>倫理委員會、AI 審查流程</li></ul></li><li><span class="sub">風險緩解策略與工具</span><ul class="leaves"><li>迴避、轉移、緩解、接受</li><li>緩解最常見</li><li>風險管理計畫</li><li>MLOps 監控、自動重訓</li></ul></li></ul></details></div></section>
+<section class="chap c3" id="m-chap5"><header class="chead"><span class="code">L213</span><h2><a href="中級_科目1_人工智慧技術應用規劃.html#chap5">第五章 AI 技術應用與系統部署</a></h2><p>把構想變成可用系統：資料準備、模型選擇、整合部署與 MLOps。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L21301</span><span class="st">5.1 數據準備與模型選擇</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec51" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">資料收集與清理</span><ul class="leaves"><li>GIGO：垃圾進，垃圾出</li><li>內部：ERP、CRM、機台資料</li><li>外部：開放資料、Web Scraping</li><li>缺失值、重複值、異常值</li><li>完整、一致、準確、即時、唯一</li></ul></li><li><span class="sub">資料標註與特徵工程</span><ul class="leaves"><li>正規化 vs 標準化</li><li>One-hot vs Label Encoding</li><li>特徵選擇：資訊增益、Lasso</li><li>降維：PCA、t-SNE／UMAP</li><li>AutoML：H2O.ai、AutoKeras</li></ul></li><li><span class="sub">模型選擇策略</span><ul class="leaves"><li>迴歸 vs 分類</li><li>K-means vs DBSCAN</li><li>深度學習：CNN、RNN、Transformer</li><li>強化式：Q-learning、PPO</li><li>生成式：GAN、VAE、擴散</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L21302</span><span class="st">5.2 AI 技術系統集成與部署</span><a class="go" href="中級_科目1_人工智慧技術應用規劃.html#sec52" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">系統集成</span><ul class="leaves"><li>資料管線（Data Pipeline）</li><li>整合 ERP、CRM、POS、MES</li><li>RESTful API、gRPC</li><li>OAuth2／JWT、API Gateway</li><li>Service Mesh 跨雲整合</li></ul></li><li><span class="sub">系統架構設計</span><ul class="leaves"><li>微服務架構</li><li>Docker＋Kubernetes</li><li>滾動更新、自動擴縮</li><li>Flask、FastAPI、TF Serving</li><li>冗餘部署、容錯切換</li></ul></li><li><span class="sub">部署模式</span><ul class="leaves"><li>公有雲：彈性、供應商鎖定</li><li>私有雲：資安可控、成本高</li><li>邊緣運算：低延遲、資源有限</li><li>混合：雲端訓練＋邊緣推論</li></ul></li><li><span class="sub">MLOps 與持續維運</span><ul class="leaves"><li>DevOps 在 AI 的延伸</li><li>CI/CD、A/B 測試、藍綠部署</li><li>MLflow、DVC 版本控管</li><li>漂移監控、再訓練管線</li><li>Prometheus + Grafana</li></ul></li><li><span class="sub">成效追蹤與優化</span><ul class="leaves"><li>系統／應用／業務三層級 KPI</li><li>回收週期（Feedback Loop）</li><li>金絲雀部署</li><li>Human-in-the-Loop、在線學習</li></ul></li><li><span class="sub">跨部門整合</span><ul class="leaves"><li>業務、客服、法務、資訊部門</li><li>AI 專案工作小組</li><li>AI 治理委員會</li></ul></li></ul></details></div></section>
+  </main>
+
+  <p class="foot">內容整理自經濟部產業人才能力鑑定 iPAS 中級學習指引《人工智慧技術應用規劃》對應之自製教材；非官方資料，考試以官方公告為準。</p>
+</div>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec'));
+  var q=document.getElementById('q'), hits=document.getElementById('hits');
+  document.getElementById('openAll').onclick=function(){secs.forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){secs.forEach(function(d){d.open=false;});};
+  var texts=[].slice.call(document.querySelectorAll('.st,.sub,.leaves li'));
+  var saved=false;
+  function save(){ if(saved)return; saved=true; texts.forEach(function(el){el.dataset.t=el.textContent;el.dataset.h=el.innerHTML;}); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function run(){
+    save();
+    var v=q.value.trim().toLowerCase(), n=0;
+    texts.forEach(function(el){
+      var t=el.dataset.t, i=v?t.toLowerCase().indexOf(v):-1;
+      if(!v){ el.innerHTML=el.dataset.h; return; }
+      el.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));
+      if(i>=0)n++;
+    });
+    document.querySelectorAll('.subs>li').forEach(function(li){
+      li.classList.toggle('dim',!!v&&!li.querySelector('mark')&&!li.closest('.sec').querySelector('.st mark'));
+    });
+    secs.forEach(function(d){
+      var hit=!!d.querySelector('mark');
+      d.classList.toggle('dim',!!v&&!hit);
+      if(v&&hit)d.open=true;
+    });
+    document.querySelectorAll('.chap').forEach(function(c){
+      c.classList.toggle('dim',!!v&&!c.querySelector('.sec:not(.dim)'));
+    });
+    hits.textContent=v?(n?'找到 '+n+' 處':'找不到「'+q.value.trim()+'」'):'';
+  }
+  q.addEventListener('input',run);
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 由 tools/sitemap/gen.py 產生，請勿直接修改；改資料模組 tools/sitemap/data_*.py 後重新產生 -->
+<title>人工智慧基礎概論 網站地圖</title>
+<style>
+/* 版面：章節軌道→ 各章樹狀展開（節 → 小節 → 要點），節可收合、可搜尋 */
+:root{
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1c2133; --muted:#5f6781; --line:#dde1ee;
+  --accent:#4338ca;
+  --c1:#4338ca; --c2:#0f766e; --c3:#b45309; --c4:#be185d;
+  --c5:#0369a1; --c1s:#eceafd; --c2s:#e3f4f1; --c3s:#fbf0e2; --c4s:#fbe8f1; --c5s:#e2f0fa;
+  --mark:#fde68a;
+  --f-display:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PMingLiU",serif;
+  --f-body:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;}
+.mapwrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+a{color:inherit}
+.c1{--c:var(--c1);--cs:var(--c1s)} .c2{--c:var(--c2);--cs:var(--c2s)} .c3{--c:var(--c3);--cs:var(--c3s)} .c4{--c:var(--c4);--cs:var(--c4s)} .c5{--c:var(--c5);--cs:var(--c5s)}
+
+.top{display:flex;flex-direction:column;gap:8px;}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted);}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.4vw,40px);line-height:1.2;margin:0;text-wrap:balance;}
+.lead{margin:0;color:var(--muted);max-width:68ch;}
+.lead a{color:var(--accent);}
+.back{align-self:flex-start;font-size:14px;color:var(--accent);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-family:var(--f-mono);}
+
+/* 生命週期軌道 */
+.rail{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;position:relative;}
+.rail::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:var(--line);}
+.stop{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 10px 0 0;text-decoration:none;}
+.stop .code{align-self:flex-start;font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--c);padding:5px 9px;border-radius:999px;position:relative;margin-bottom:8px;}
+.stop .nm{font-weight:700;font-size:15px;line-height:1.35;}
+.stop .cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stop:hover .nm,.stop:focus-visible .nm{color:var(--c);text-decoration:underline;}
+.rail-note{font-size:12px;color:var(--muted);margin:-16px 0 0;}
+
+/* 工具列 */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;padding-right:52px;border-bottom:1px solid var(--line);}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);}
+.tools button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.tools button:hover{border-color:var(--accent);color:var(--accent);}
+.tools :focus-visible,.go:focus-visible,summary:focus-visible,.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+#hits{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+/* 章 */
+.chap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 28px;padding-top:8px;}
+.chead{display:flex;flex-direction:column;gap:6px;position:sticky;top:72px;align-self:start;}
+.chead .code{font-family:var(--f-mono);font-size:13px;color:var(--c);}
+.chead h2{font-family:var(--f-display);font-size:21px;line-height:1.3;margin:0;text-wrap:balance;}
+.chead h2 a{text-decoration:none;}
+.chead h2 a:hover{color:var(--c);text-decoration:underline;}
+.chead p{margin:0;font-size:13.5px;color:var(--muted);}
+.secs{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.check{grid-column:2;margin:0;font-size:13.5px;color:var(--muted);border-left:3px solid var(--c);padding:4px 0 4px 12px;}
+.check b{color:var(--ink);margin-right:8px;}
+
+/* 節 */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+.sec summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;}
+.sec[open] summary::before{transform:rotate(45deg);}
+.scode{font-family:var(--f-mono);font-size:12px;color:var(--c);background:var(--cs);padding:2px 7px;border-radius:5px;flex:none;}
+.st{font-weight:700;font-size:16px;flex:1;min-width:0;}
+.go{font-size:13px;color:var(--c);text-decoration:none;flex:none;padding:2px 4px;}
+.go:hover{text-decoration:underline;}
+
+/* 小節 → 要點（樹） */
+.subs{list-style:none;margin:0;padding:2px 16px 16px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px 22px;}
+.subs>li{min-width:0;}
+.sub{display:block;font-weight:700;font-size:14px;color:var(--c);margin-bottom:4px;}
+.leaves{list-style:none;margin:0;padding:0 0 0 12px;border-left:1.5px solid var(--line);}
+.leaves li{position:relative;font-size:13.5px;padding:2px 0 2px 10px;}
+.leaves li::before{content:"";position:absolute;left:-12px;top:13px;width:16px;border-top:1.5px solid var(--line);}
+.leaves li.fig{color:var(--muted);font-style:italic;}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px;}
+.dim{display:none!important;}
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+
+@media (max-width:760px){
+  .chap{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .chead{position:static;}
+  .check{grid-column:1;}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .rail::before{display:none;}
+  .subs{padding-left:16px;}
+}
+@media (prefers-reduced-motion:reduce){.sec summary::before{transition:none}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="mapwrap">
+  <div class="top">
+    <a class="back" href="index.html">← 回教材首頁</a>
+    <span class="eyebrow">iPAS AI 應用規劃師 · 初級 · 科目 1</span>
+    <h1>人工智慧基礎概論 網站地圖</h1>
+    <p class="lead">把<a href="初級_科目1_人工智慧基礎概論.html">完整教材</a>的內容整理成一張樹狀地圖：章 → 節 → 小節 → 要點。點節名右側的「開啟」會跳到完整教材的該節；虛線底線的名詞可點開名詞說明。</p>
+    <div class="stats"><span><b>4</b> 章</span><span><b>21</b> 節</span><span><b>46</b> 小節</span><span><b>172</b> 要點</span></div>
+  </div>
+
+  <nav class="rail" aria-label="各章" style="--n:4"><a class="stop c1" href="#m-chap1"><span class="code">1</span><span class="nm">人工智慧概念</span><span class="cnt">8 節 · 21 小節</span></a><a class="stop c2" href="#m-chap2"><span class="code">2</span><span class="nm">資料處理與分析概念</span><span class="cnt">5 節 · 8 小節</span></a><a class="stop c3" href="#m-chap3"><span class="code">3</span><span class="nm">機器學習概念</span><span class="cnt">3 節 · 8 小節</span></a><a class="stop c4" href="#m-chap4"><span class="code">4</span><span class="nm">鑑別式 AI 與生成式 AI 概念</span><span class="cnt">5 節 · 9 小節</span></a></nav>
+  <p class="rail-note">四章由廣而深：先建立 AI 全貌與治理概念，再補資料與統計基礎，接著深入機器學習，最後比較並整合鑑別式與生成式 AI。</p>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜尋名詞或關鍵字" aria-label="搜尋地圖">
+    <button id="openAll" type="button">全部展開</button>
+    <button id="closeAll" type="button">全部收合</button>
+    <span id="hits" aria-live="polite"></span>
+  </div>
+
+  <main>
+<section class="chap c1" id="m-chap1"><header class="chead"><h2><a href="初級_科目1_人工智慧基礎概論.html#chap1">一、人工智慧概念</a></h2><p>鳥瞰 AI：定義分類、應用領域、技術架構、資料與演算法、ML／DL、生成式訓練與治理。</p></header><div class="secs"><details class="sec" open><summary><span class="st">AI 的定義與分類</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">定義與發展</span><ul class="leaves"><li>模擬人類智慧：學習、推理、感知</li><li>算力、開放資料、演算法推動發展</li><li>企業目標：效率、決策、個人化、創新</li></ul></li><li><span class="sub">依功能分類</span><ul class="leaves"><li>分析型 AI：洞悉數據模式</li><li>預測型 AI：市場預測、風險評估</li><li>生成型 AI：依提示詞生成素材</li><li>生成式 AI 自 2022 年快速發展</li></ul></li></ul></details><details class="sec" open><summary><span class="st">AI 應用領域</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">產業應用實例</span><ul class="leaves"><li>醫療：影像診斷、藥物研發</li><li>金融：風險評估、欺詐檢測</li><li>製造：品質控制、預測性維護</li><li>交通：自動駕駛、流量預測</li><li>娛樂：遊戲、VR、內容推薦</li></ul></li></ul></details><details class="sec" open><summary><span class="st">AI 技術架構</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">技術底層</span><ul class="leaves"><li>資料處理與分析：ETL、Hadoop、Spark</li><li>演算法：迴歸、決策樹、基因演算法</li><li>機器學習：監督／非監督／強化</li><li>深度學習：TensorFlow、PyTorch</li><li>專家系統：規則與知識庫</li></ul></li><li><span class="sub">開發應用</span><ul class="leaves"><li>模型設計、訓練、測試、部署</li><li>將技術轉為功能與服務</li></ul></li><li><span class="sub">實際運用</span><ul class="leaves"><li>行業解決方案：智慧醫療、物流、製造</li><li>產品與服務：語音助理、推薦</li><li>優化業務流程</li></ul></li></ul></details><details class="sec" open><summary><span class="st">資料處理與分析（技術底層）</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">數據蒐集（Data Collection）</span><ul class="leaves"><li>結構化：MySQL、PostgreSQL</li><li>半結構化：XML、JSON、CSV</li><li>非結構化：圖片、影音、文字</li><li>問卷、自有產品、API、爬蟲、付費購買</li></ul></li><li><span class="sub">數據清洗（Data Cleaning）</span><ul class="leaves"><li>遺缺值：統計填補、插補或刪除</li><li>重複值：主鍵識別後去重</li><li>錯誤值：年齡 -5、拼寫錯誤</li><li>離群值：可能有意義，依業務處理</li></ul></li><li><span class="sub">數據轉換（Data Transformation）</span><ul class="leaves"><li>格式轉換（CSV → JSON）</li><li>類型轉換（字串 → 數值）</li><li>正規化／標準化：[0,1] 或 -1～1</li><li>離散化：年齡分青、中、老年</li><li>縮減：特徵選擇、PCA 降維</li></ul></li><li><span class="sub">數據分析（Data Analysis）</span><ul class="leaves"><li>敘述性：平均、中位數、直方圖</li><li>探索性：熱圖、箱型圖、聚類、PCA</li><li>診斷性：鑽取、Apriori、A/B 測試</li><li>預測性：迴歸、分類、ARIMA、集成</li></ul></li></ul></details><details class="sec" open><summary><span class="st">演算法：搜尋、排序與常見演算法</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">常見搜尋演算法</span><ul class="leaves"><li>線性搜尋：逐一比較</li><li>二分搜尋：比中間、折半範圍</li><li>DFS：沿路徑深入再回溯</li><li>BFS：逐層擴散</li></ul></li><li><span class="sub">幾種常見且應用廣泛的演算法</span><ul class="leaves"><li>線性迴歸：預測連續值、僅線性</li><li>邏輯迴歸：Sigmoid 輸出機率、實為分類</li><li>KNN：取最近 K 個鄰居</li></ul></li></ul></details><details class="sec" open><summary><span class="st">機器學習與深度學習概觀</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-6" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">機器學習的步驟（簡述）</span><ul class="leaves"><li>準備訓練資料</li><li>訓練模型、調整參數</li><li>測試及評估、反覆調校</li></ul></li><li><span class="sub">依訓練方式的三種學習方法</span><ul class="leaves"><li>監督式：標記資料，分類與迴歸</li><li>非監督式：無標記，分群、降維</li><li>強化學習：獎勵回饋、試錯學習</li></ul></li><li><span class="sub">深度學習（Deep Learning, DL）</span><ul class="leaves"><li>多層神經網路自動學習特徵</li><li>CNN：卷積、池化、全連接，擅長影像</li><li>RNN／LSTM／GRU：序列資料</li><li>GAN：生成器對抗判別器</li><li>GAN 缺點：模式崩潰</li></ul></li></ul></details><details class="sec" open><summary><span class="st">生成式 AI 的訓練流程</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-7" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">運作原理</span><ul class="leaves"><li>依文字機率分布逐字生成</li><li>參數越多越能捕捉語言細節</li></ul></li><li><span class="sub">訓練階段</span><ul class="leaves"><li>數據準備：蒐集、清洗、預處理</li><li>模型選擇：GAN、VAE、Transformer</li><li>損失函數＋優化器（Adam、SGD）</li><li>迭代訓練至收斂</li></ul></li><li><span class="sub">微調階段</span><ul class="leaves"><li>特定領域資料進一步訓練</li><li>調整超參數、添加特定層</li><li>數據增強提高泛化</li></ul></li><li><span class="sub">影響效果的因素</span><ul class="leaves"><li>數據品質、數量與多樣性</li><li>模型結構</li><li>超參數設置</li><li>計算資源</li></ul></li></ul></details><details class="sec" open><summary><span class="st">AI 治理概念</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec1-8" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">AI 透明性（Transparency）</span><ul class="leaves"><li>發布報告、技術文件揭露資訊</li><li>公開各決策環節的決策流程</li></ul></li><li><span class="sub">AI 治理中的國際合作</span><ul class="leaves"><li>統一 AI 發展標準</li><li>避免 AI 技術濫用</li><li>促進技術轉移、縮小數位鴻溝</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>動態互動決策用強化學習；AI 不限於深度學習；透明性靠揭露報告與技術文件；分布估計不用雷達圖；K-Means 的 K 為群數；正則化降過擬合。</p></section>
+<section class="chap c2" id="m-chap2"><header class="chead"><h2><a href="初級_科目1_人工智慧基礎概論.html#chap2">二、資料處理與分析概念</a></h2><p>統計是駕馭資料的指南針：測量數、機率模型、假設檢定、EDA／CDA 與隱私。</p></header><div class="secs"><details class="sec" open><summary><span class="st">統計測量數</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec2-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">中央趨勢（Central Tendency）</span><ul class="leaves"><li>平均數：易受極端值影響</li><li>中位數：不受極端值影響</li><li>眾數：出現最多，可能多個或無</li><li>另有幾何、調和平均數</li></ul></li><li><span class="sub">分散度（Dispersion）</span><ul class="leaves"><li>四分位數 Q1、Q2、Q3</li><li>全距 = 最大 − 最小</li><li>IQR = Q3 − Q1（中間 50%）</li><li>平均差</li><li>標準差：大則品質不穩、良率低</li></ul></li></ul></details><details class="sec" open><summary><span class="st">機率模型與統計方法分類</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec2-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">抽樣變異與機率模型</span><ul class="leaves"><li>樣本統計量 ≠ 母體參數</li><li>機率模型量化估計不確定性</li><li>支撐區間估計與假設檢定</li></ul></li><li><span class="sub">常見統計方法分類</span><ul class="leaves"><li>無因果：敘述統計、卡方、PCA</li><li>無因果：因素、集群、相關分析</li><li>有因果：迴歸、羅吉斯迴歸</li><li>有因果：變異數分析、區別分析</li></ul></li></ul></details><details class="sec" open><summary><span class="st">假設檢定（Hypothesis Testing）</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec2-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">檢定流程與名詞</span><ul class="leaves"><li>猜想 → 蒐集資料 → 檢定 → 決策</li><li>虛無假設 H₀／對立假設 H₁</li><li>接受域與拒絕域</li><li>顯著水準 α：0.1、0.05、0.01</li><li>p 值 &lt; α 則拒絕 H₀</li></ul></li><li><span class="sub">檢定的兩類錯誤</span><ul class="leaves"><li>Type I（α）：H₀ 為真卻拒絕</li><li>Type II（β）：H₀ 為假卻接受</li></ul></li></ul></details><details class="sec" open><summary><span class="st">探索性資料分析（EDA）與驗證性資料分析（CDA）</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec2-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">EDA 與 CDA 比較</span><ul class="leaves"><li>EDA：無預設假設、生成假設</li><li>EDA：研究初期、視覺化觀察</li><li>CDA：驗證 EDA 提出的假設</li><li>CDA：分類、分群、預測模型</li></ul></li></ul></details><details class="sec" open><summary><span class="st">資料隱私與安全</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec2-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">參考規範</span><ul class="leaves"><li>行政院生成式 AI 參考指引（草案）</li><li>金融機構運用 AI 作業規範</li><li>國科會 AI 科研發展指引</li><li>臺北市政府 AI 作業指引</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>極端值多用中位數、最常見類別用眾數；平均 &lt; 中位數為負偏、&gt; 為正偏；p &lt; α 拒絕 H₀；IQR = Q3 − Q1；標準差大表品質不穩；CDA 驗證假設。</p></section>
+<section class="chap c3" id="m-chap3"><header class="chead"><h2><a href="初級_科目1_人工智慧基礎概論.html#chap3">三、機器學習概念</a></h2><p>機器學習的原理、三大學習類型與從資料到調參的實現流程。</p></header><div class="secs"><details class="sec" open><summary><span class="st">機器學習基本原理</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec3-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">特徵與優勢</span><ul class="leaves"><li>數據驅動、自適應更新</li><li>處理結構化與非結構化數據</li><li>高度可擴展：推薦、自駕、需求預測</li></ul></li><li><span class="sub">挑戰與未來方向</span><ul class="leaves"><li>數據缺失、不平衡、雜訊</li><li>解釋性與透明性不足</li><li>偏見數據導致歧視輸出</li><li>可解釋、去偏演算法</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三大學習類型（常見機器學習模型）</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec3-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">監督式學習（Supervised Learning）</span><ul class="leaves"><li>有標記數據：迴歸與分類</li><li>線性迴歸：預測房價</li><li>SVM：最佳超平面、二元分類</li><li>神經網路：非線性、語音辨識</li></ul></li><li><span class="sub">非監督式學習（Unsupervised Learning）</span><ul class="leaves"><li>無標記：聚類與降維</li><li>K-Means：市場區隔、異常檢測</li><li>PCA：高維壓縮至低維</li></ul></li><li><span class="sub">強化學習（Reinforcement Learning）</span><ul class="leaves"><li>代理、環境、獎勵三要素</li><li>狀態 → 行動 → 新狀態與獎勵 → 更新策略</li><li>探索 vs 利用</li><li>Q-Learning、DQN（經驗回放）</li><li>應用：AlphaGo、機器人、自駕</li></ul></li></ul></details><details class="sec" open><summary><span class="st">機器學習的實現流程</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec3-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">數據處理</span><ul class="leaves"><li>清洗：遺缺值填補、異常值處理</li><li>Min-Max（0～1）／Z-score 標準化</li><li>特徵選擇：Filter、Wrapper、Embedded</li><li>降維：PCA</li></ul></li><li><span class="sub">模型訓練</span><ul class="leaves"><li>損失函數：MSE（迴歸）、交叉熵（分類）</li><li>優化：BGD、SGD、Adam</li><li>防過擬合：L1／L2、Early Stopping</li><li>資料增強：旋轉、翻轉</li></ul></li><li><span class="sub">模型評估與優化</span><ul class="leaves"><li>Accuracy、F1（不平衡）、MSE</li><li>K 折交叉驗證</li><li>調參：網格、隨機搜索</li><li>貝葉斯優化</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>三要素：數據、模型、損失函數；監督式含標記；過擬合是學到雜訊；交叉驗證降過擬合；梯度下降最小化損失；決策樹可解釋；隨機森林集成投票。</p></section>
+<section class="chap c4" id="m-chap4"><header class="chead"><h2><a href="初級_科目1_人工智慧基礎概論.html#chap4">四、鑑別式 AI 與生成式 AI 概念</a></h2><p>鑑別式學 P(y|x) 做決策、生成式學 P(x,y) 造內容，比較差異後談整合應用。</p></header><div class="secs"><details class="sec" open><summary><span class="st">基本原理與關鍵差異</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec4-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">關鍵差異</span><ul class="leaves"><li>鑑別式：條件機率 P(y|x)</li><li>生成式：聯合 P(x,y)／邊際 P(x)</li><li>生成式：提示工程、輸出固有變異</li><li>鑑別式：邊界判定 → 分類、預測</li><li class="fig">附圖：鑑別式與生成式流程（指引 3-49）</li></ul></li></ul></details><details class="sec" open><summary><span class="st">鑑別式 AI 的原理與常見模型</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec4-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">核心思想</span><ul class="leaves"><li>區分類別、找出決策邊界</li><li>不建構數據生成機制</li><li>解釋性與泛化能力佳</li></ul></li><li><span class="sub">常見模型</span><ul class="leaves"><li>邏輯迴歸：sigmoid、MLE</li><li>SVM：最大間隔、核函數</li><li>決策樹：資訊增益、吉尼係數</li><li>隨機森林：Bootstrap、投票</li><li>神經網路：激勵函數、反向傳播</li></ul></li></ul></details><details class="sec" open><summary><span class="st">生成式 AI 的原理與常見模型</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec4-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">核心思想</span><ul class="leaves"><li>模擬真實數據分佈</li><li>產生多樣化新樣本</li><li>數據稀缺時增強數據集</li></ul></li><li><span class="sub">常見模型</span><ul class="leaves"><li>GAN：生成器欺騙鑑別器</li><li>StyleGAN、風格遷移</li><li>VAE：編碼器／解碼器、隱變量空間</li><li>擴散模型：加噪再逐步去噪</li><li>文本到圖像生成</li></ul></li></ul></details><details class="sec" open><summary><span class="st">鑑別式 AI 與生成式 AI 的技術差異</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec4-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">四面向比較</span><ul class="leaves"><li>目標：決策邊界 vs 內在分佈</li><li>輸出：標籤／數值 vs 新數據樣本</li><li>應用：影像辨識 vs 內容生成</li><li>鑑別式挑戰：偏見、過擬合、標記成本</li><li>生成式挑戰：真實性、可控性、計算成本</li></ul></li></ul></details><details class="sec" open><summary><span class="st">鑑別式 AI 與生成式 AI 的整合應用</span><a class="go" href="初級_科目1_人工智慧基礎概論.html#sec4-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">整合應用的價值</span><ul class="leaves"><li>數據增強與分析協同</li><li>多模態數據處理</li><li>提升模型泛化能力</li></ul></li><li><span class="sub">整合應用的技術優勢</span><ul class="leaves"><li>生成與判斷融合：GAN 影像訓練 CNN</li><li>即時分析：自駕模擬濃霧冰雪</li><li>靈活適應：智慧客服、內容審核</li></ul></li><li><span class="sub">整合應用的挑戰與解決策略</span><ul class="leaves"><li>訓練穩定性：WGAN</li><li>數據偏差：去偏演算法、審核</li><li>整合架構：分層、共享層、動態學習</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>鑑別式主要做分類或迴歸；GAN 由生成器與鑑別器組成；分類醫學影像屬鑑別式；生成式資料增強解決數據稀缺不平衡；WGAN 改善訓練不穩。</p></section>
+  </main>
+
+  <p class="foot">內容整理自經濟部產業人才能力鑑定 iPAS 初級學習指引《人工智慧基礎概論》對應之自製教材；非官方資料，考試以官方公告為準。</p>
+</div>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec'));
+  var q=document.getElementById('q'), hits=document.getElementById('hits');
+  document.getElementById('openAll').onclick=function(){secs.forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){secs.forEach(function(d){d.open=false;});};
+  var texts=[].slice.call(document.querySelectorAll('.st,.sub,.leaves li'));
+  var saved=false;
+  function save(){ if(saved)return; saved=true; texts.forEach(function(el){el.dataset.t=el.textContent;el.dataset.h=el.innerHTML;}); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function run(){
+    save();
+    var v=q.value.trim().toLowerCase(), n=0;
+    texts.forEach(function(el){
+      var t=el.dataset.t, i=v?t.toLowerCase().indexOf(v):-1;
+      if(!v){ el.innerHTML=el.dataset.h; return; }
+      el.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));
+      if(i>=0)n++;
+    });
+    document.querySelectorAll('.subs>li').forEach(function(li){
+      li.classList.toggle('dim',!!v&&!li.querySelector('mark')&&!li.closest('.sec').querySelector('.st mark'));
+    });
+    secs.forEach(function(d){
+      var hit=!!d.querySelector('mark');
+      d.classList.toggle('dim',!!v&&!hit);
+      if(v&&hit)d.open=true;
+    });
+    document.querySelectorAll('.chap').forEach(function(c){
+      c.classList.toggle('dim',!!v&&!c.querySelector('.sec:not(.dim)'));
+    });
+    hits.textContent=v?(n?'找到 '+n+' 處':'找不到「'+q.value.trim()+'」'):'';
+  }
+  q.addEventListener('input',run);
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

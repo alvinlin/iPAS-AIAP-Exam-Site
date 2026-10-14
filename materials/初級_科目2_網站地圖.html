@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 由 tools/sitemap/gen.py 產生，請勿直接修改；改資料模組 tools/sitemap/data_*.py 後重新產生 -->
+<title>生成式 AI 應用與規劃 網站地圖</title>
+<style>
+/* 版面：章節軌道→ 各章樹狀展開（節 → 小節 → 要點），節可收合、可搜尋 */
+:root{
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1c2133; --muted:#5f6781; --line:#dde1ee;
+  --accent:#4338ca;
+  --c1:#4338ca; --c2:#0f766e; --c3:#b45309; --c4:#be185d;
+  --c5:#0369a1; --c1s:#eceafd; --c2s:#e3f4f1; --c3s:#fbf0e2; --c4s:#fbe8f1; --c5s:#e2f0fa;
+  --mark:#fde68a;
+  --f-display:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PMingLiU",serif;
+  --f-body:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;}
+.mapwrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+a{color:inherit}
+.c1{--c:var(--c1);--cs:var(--c1s)} .c2{--c:var(--c2);--cs:var(--c2s)} .c3{--c:var(--c3);--cs:var(--c3s)} .c4{--c:var(--c4);--cs:var(--c4s)} .c5{--c:var(--c5);--cs:var(--c5s)}
+
+.top{display:flex;flex-direction:column;gap:8px;}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted);}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.4vw,40px);line-height:1.2;margin:0;text-wrap:balance;}
+.lead{margin:0;color:var(--muted);max-width:68ch;}
+.lead a{color:var(--accent);}
+.back{align-self:flex-start;font-size:14px;color:var(--accent);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-family:var(--f-mono);}
+
+/* 生命週期軌道 */
+.rail{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;position:relative;}
+.rail::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:var(--line);}
+.stop{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 10px 0 0;text-decoration:none;}
+.stop .code{align-self:flex-start;font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--c);padding:5px 9px;border-radius:999px;position:relative;margin-bottom:8px;}
+.stop .nm{font-weight:700;font-size:15px;line-height:1.35;}
+.stop .cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stop:hover .nm,.stop:focus-visible .nm{color:var(--c);text-decoration:underline;}
+.rail-note{font-size:12px;color:var(--muted);margin:-16px 0 0;}
+
+/* 工具列 */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;padding-right:52px;border-bottom:1px solid var(--line);}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);}
+.tools button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.tools button:hover{border-color:var(--accent);color:var(--accent);}
+.tools :focus-visible,.go:focus-visible,summary:focus-visible,.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+#hits{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+/* 章 */
+.chap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 28px;padding-top:8px;}
+.chead{display:flex;flex-direction:column;gap:6px;position:sticky;top:72px;align-self:start;}
+.chead .code{font-family:var(--f-mono);font-size:13px;color:var(--c);}
+.chead h2{font-family:var(--f-display);font-size:21px;line-height:1.3;margin:0;text-wrap:balance;}
+.chead h2 a{text-decoration:none;}
+.chead h2 a:hover{color:var(--c);text-decoration:underline;}
+.chead p{margin:0;font-size:13.5px;color:var(--muted);}
+.secs{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.check{grid-column:2;margin:0;font-size:13.5px;color:var(--muted);border-left:3px solid var(--c);padding:4px 0 4px 12px;}
+.check b{color:var(--ink);margin-right:8px;}
+
+/* 節 */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+.sec summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;}
+.sec[open] summary::before{transform:rotate(45deg);}
+.scode{font-family:var(--f-mono);font-size:12px;color:var(--c);background:var(--cs);padding:2px 7px;border-radius:5px;flex:none;}
+.st{font-weight:700;font-size:16px;flex:1;min-width:0;}
+.go{font-size:13px;color:var(--c);text-decoration:none;flex:none;padding:2px 4px;}
+.go:hover{text-decoration:underline;}
+
+/* 小節 → 要點（樹） */
+.subs{list-style:none;margin:0;padding:2px 16px 16px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px 22px;}
+.subs>li{min-width:0;}
+.sub{display:block;font-weight:700;font-size:14px;color:var(--c);margin-bottom:4px;}
+.leaves{list-style:none;margin:0;padding:0 0 0 12px;border-left:1.5px solid var(--line);}
+.leaves li{position:relative;font-size:13.5px;padding:2px 0 2px 10px;}
+.leaves li::before{content:"";position:absolute;left:-12px;top:13px;width:16px;border-top:1.5px solid var(--line);}
+.leaves li.fig{color:var(--muted);font-style:italic;}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px;}
+.dim{display:none!important;}
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+
+@media (max-width:760px){
+  .chap{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .chead{position:static;}
+  .check{grid-column:1;}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .rail::before{display:none;}
+  .subs{padding-left:16px;}
+}
+@media (prefers-reduced-motion:reduce){.sec summary::before{transition:none}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="mapwrap">
+  <div class="top">
+    <a class="back" href="index.html">← 回教材首頁</a>
+    <span class="eyebrow">iPAS AI 應用規劃師 · 初級 · 科目 2</span>
+    <h1>生成式 AI 應用與規劃 網站地圖</h1>
+    <p class="lead">把<a href="初級_科目2_生成式AI應用與規劃.html">完整教材</a>的內容整理成一張樹狀地圖：章 → 節 → 小節 → 要點。點節名右側的「開啟」會跳到完整教材的該節；虛線底線的名詞可點開名詞說明。</p>
+    <div class="stats"><span><b>5</b> 章</span><span><b>26</b> 節</span><span><b>64</b> 小節</span><span><b>229</b> 要點</span></div>
+  </div>
+
+  <nav class="rail" aria-label="各章" style="--n:5"><a class="stop c1" href="#m-chap2"><span class="code">1</span><span class="nm">No Code / Low Code 概念</span><span class="cnt">7 節 · 16 小節</span></a><a class="stop c2" href="#m-chap3"><span class="code">2</span><span class="nm">生成式AI 應用領域與工具使用</span><span class="cnt">5 節 · 15 小節</span></a><a class="stop c3" href="#m-chap4"><span class="code">3</span><span class="nm">生成式AI 導入評估</span><span class="cnt">3 節 · 6 小節</span></a><a class="stop c4" href="#m-chap5"><span class="code">4</span><span class="nm">生成式AI 導入規劃</span><span class="cnt">6 節 · 16 小節</span></a><a class="stop c5" href="#m-chap6"><span class="code">5</span><span class="nm">生成式AI 風險管理</span><span class="cnt">5 節 · 11 小節</span></a></nav>
+  <p class="rail-note">五章由工具到落地：NC/LC 降低門檻 → 認識生成式 AI 技術與應用 → 評估導入 → 規劃四階段導入 → 管理風險。</p>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜尋名詞或關鍵字" aria-label="搜尋地圖">
+    <button id="openAll" type="button">全部展開</button>
+    <button id="closeAll" type="button">全部收合</button>
+    <span id="hits" aria-live="polite"></span>
+  </div>
+
+  <main>
+<section class="chap c1" id="m-chap2"><header class="chead"><h2><a href="初級_科目2_生成式AI應用與規劃.html#chap2">貳、No Code / Low Code 概念</a></h2><p>用視覺化、拖放平台降低開發門檻，結合生成式 AI 推動 AI 民主化。</p></header><div class="secs"><details class="sec" open><summary><span class="st">一、基本概念與差異</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">No Code</span><ul class="leaves"><li>視覺化介面＋拖放操作</li><li>無需編寫程式碼</li><li>非技術背景者、市民開發者</li><li>快速原型、小型應用</li></ul></li><li><span class="sub">Low Code</span><ul class="leaves"><li>視覺化工具＋少量程式碼</li><li>具基本技術背景的開發者</li><li>複雜邏輯、企業級應用</li><li>客製彈性較高、可深度整合</li></ul></li></ul></details><details class="sec" open><summary><span class="st">二、生成式AI 對 No Code / Low Code 的強化</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">開發面強化</span><ul class="leaves"><li>自動生成程式碼</li><li>模板設計優化</li><li>數據分析與決策建議</li></ul></li><li><span class="sub">應用面強化</span><ul class="leaves"><li>AI 驅動的 UI/UX 設計</li><li>自動化行銷文案生成</li><li>個人化 App 快速開發</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三、生成式AI 結合 NC/LC 的跨產業應用</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">醫療與製造</span><ul class="leaves"><li>醫療：藥物發現、個人化治療</li><li>醫療：病歷自動生成、輔助診斷</li><li>製造：產品設計與原型製作</li><li>製造：生產流程優化</li></ul></li><li><span class="sub">金融與零售</span><ul class="leaves"><li>金融：風險評估、投資組合優化</li><li>金融：自動化合規監管</li><li>零售：個人化行銷</li><li>零售：庫存與供應鏈管理</li></ul></li><li><span class="sub">教育與客服</span><ul class="leaves"><li>教育：自動化教材、個人化學習路徑</li><li>教育：智慧評量與回饋</li><li>客服：24/7 虛擬智慧客服</li><li>客服：客訴分析與優化</li></ul></li></ul></details><details class="sec" open><summary><span class="st">四、平台選擇與評估的 6 個關鍵因素</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">需求與功能</span><ul class="leaves"><li>目標用戶與技術需求</li><li>功能與擴展性（CRM、ERP 整合）</li><li>安全性與合規性（加密、權限）</li></ul></li><li><span class="sub">成本與口碑</span><ul class="leaves"><li>成本與效益：TCO、ROI</li><li>技術支援與社群資源</li><li>市場評價與成功案例</li></ul></li></ul></details><details class="sec" open><summary><span class="st">五、生成式AI 結合 NC/LC 的挑戰與因應策略</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">主要挑戰與解方</span><ul class="leaves"><li>準確性：多層次驗證＋人工審核</li><li>隱私：加密、匿名化、權限控管</li><li>倫理：倫理準則、公平性檢測</li><li>整合：API 開放平台、雲端分散</li></ul></li><li><span class="sub">克服挑戰的四大面向</span><ul class="leaves"><li>數據品質管理</li><li>模型效能評估（壓力測試）</li><li>人機協作機制（人工干預）</li><li>安全防護與風險控管</li></ul></li></ul></details><details class="sec" open><summary><span class="st">六、市場價值與未來發展</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-6" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">市場價值的三大面向</span><ul class="leaves"><li>降低開發成本</li><li>縮短上市時間</li><li>加速數位轉型</li></ul></li><li><span class="sub">結合 AI 的未來發展方向與潛力</span><ul class="leaves"><li>企業應用滲透率提升</li><li>特別有利於中小企業</li><li>自動化與智慧化升級</li><li>零程式碼 AI 應用開發</li></ul></li></ul></details><details class="sec" open><summary><span class="st">七、AI 民主化（AI Democratization）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec2-7" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">定義與關鍵名詞</span><ul class="leaves"><li>AI 從少數專家擴展到社會大眾</li><li>降低技術門檻、促進公平</li><li>市民開發者 (Citizen Developer)</li></ul></li><li><span class="sub">NC/LC 對 AI 民主化的五項主要影響</span><ul class="leaves"><li>降低技術門檻</li><li>擴大 AI 的可訪問性</li><li>推動跨領域創新</li><li>強化 AI 普及化應用</li><li>啟動全球性影響（技術平權）</li></ul></li><li><span class="sub">民主化的風險</span><ul class="leaves"><li>過度依賴致缺乏深層理解</li><li>模型偏差或誤用</li><li>需加強教育與規範</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>No Code 給非技術者、Low Code 給有技術背景者；市民開發者用 NC/LC 自動化日常工作；過度依賴恐缺乏深層理解。</p></section>
+<section class="chap c2" id="m-chap3"><header class="chead"><h2><a href="初級_科目2_生成式AI應用與規劃.html#chap3">參、生成式AI 應用領域與工具使用</a></h2><p>生成式 AI 的技術架構、市場價值、突破方向、工具趨勢與產業應用。</p></header><div class="secs"><details class="sec" open><summary><span class="st">一、技術架構與關鍵特徵</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec3-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">深度學習網路</span><ul class="leaves"><li>基礎模型：GAN、VAE、Transformer</li><li>多層神經網路：特徵提取</li><li>自注意力：處理長距離依賴</li></ul></li><li><span class="sub">訓練數據處理</span><ul class="leaves"><li>數據清洗：去雜訊、補遺缺值</li><li>標記化 (Tokenization)</li><li>向量化表示 (Vectorization)</li></ul></li><li><span class="sub">推理機制</span><ul class="leaves"><li>溫度參數：控制隨機性</li><li>頂部採樣 Top-k Sampling</li><li>核採樣：累積機率閾值（如 0.9）</li></ul></li><li><span class="sub">關鍵特點與挑戰</span><ul class="leaves"><li>上下文理解、遷移學習、多模態</li><li>挑戰：計算資源、AI 幻覺、偏見</li><li>演進：模型壓縮、量化、推理加速</li></ul></li></ul></details><details class="sec" open><summary><span class="st">二、市場價值與影響</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec3-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">市場與投資</span><ul class="leaves"><li>2030 年市場規模達數百億美元</li><li>創業聚焦垂直領域、工具平台</li><li>商業模式：訂閱制、客製化</li></ul></li><li><span class="sub">挑戰與產業影響</span><ul class="leaves"><li>技術、商業、社會三層面風險</li><li>提升內容創作、軟體開發生產力</li><li>新職務：AI 訓練師、提示工程師</li></ul></li><li><span class="sub">經濟與社會效益</span><ul class="leaves"><li>直接：降成本、提效率</li><li>間接：促創新、新商業模式</li><li>衍生：帶動 AI 硬體、雲端服務</li><li>教育、醫療、創意產業影響</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三、技術突破與發展方向</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec3-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">生成式AI 技術突破</span><ul class="leaves"><li>GAN：高品質圖像生成</li><li>VAE 與流式模型：穩定機率生成</li><li>Transformer／GPT：語言生成</li><li>RLHF 貼近用戶需求</li><li>vLLM：高效推理、邊緣運算</li></ul></li><li><span class="sub">工具的發展方向</span><ul class="leaves"><li>模型規模與能力提升（LLM）</li><li>輕量化與個人化（壓縮、量化）</li><li>GAN 與擴散模型融合</li><li>開源社群：Hugging Face</li></ul></li></ul></details><details class="sec" open><summary><span class="st">四、工具發展的八大趨勢（如何善用工具）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec3-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">應用層面趨勢</span><ul class="leaves"><li>專業化與垂直整合（法律、醫療）</li><li>多模態整合（DALL-E、Whisper）</li><li>AI 即服務 AIaaS</li><li>協作與即時回饋機制</li></ul></li><li><span class="sub">技術層面趨勢</span><ul class="leaves"><li>個人化生成：微調、提示工程</li><li>安全性：本地部署、資料加密</li><li>效能優化：模型壓縮與量化</li><li>生態系統建構（API、外掛）</li></ul></li><li><span class="sub">第 9 項：道德與法律規範</span><ul class="leaves"><li>內容版權管理</li><li>濫用防範：假新聞、深偽影像</li><li>法規遵循</li></ul></li></ul></details><details class="sec" open><summary><span class="st">五、產業應用領域</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec3-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">創作與醫療</span><ul class="leaves"><li>藝術設計：插畫、時尚、音樂</li><li>AI 負責細節、人專注創意</li><li>醫療：生成分子結構、醫學影像</li><li>深化精準醫療</li></ul></li><li><span class="sub">教育與娛樂</span><ul class="leaves"><li>個人化學習、智慧教學助理</li><li>遊戲地圖、角色、劇情生成</li><li>虛擬偶像與主播</li><li>結合 AR/VR 沉浸式體驗</li></ul></li><li><span class="sub">產品設計與製造</span><ul class="leaves"><li>創新產品設計</li><li>快速原型製作（3D 列印）</li><li>模擬測試、供應鏈管理</li><li>朝智慧製造與自動化發展</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>低溫度保守、高溫度創意；Top-k 取前 k 個、核採樣看累積機率閾值；主要挑戰含 AI 幻覺；第 9 項趨勢為道德與法律規範。</p></section>
+<section class="chap c3" id="m-chap4"><header class="chead"><h2><a href="初級_科目2_生成式AI應用與規劃.html#chap4">肆、生成式AI 導入評估</a></h2><p>導入前從需求、資源、策略、人員、風險五面向評估，再分階段推動並培養人才。</p></header><div class="secs"><details class="sec" open><summary><span class="st">一、導入時的五大評估面向</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec4-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">需求與資源</span><ul class="leaves"><li>需求與現狀：痛點識別、場景分析</li><li>資源與基礎設施：人才、硬體</li><li>數據品質與完整性</li><li>系統可擴展性</li></ul></li><li><span class="sub">策略、人員與風險</span><ul class="leaves"><li>導入策略：試點→階段性擴展</li><li>員工技能與數位轉型文化</li><li>風險：資安隱私、倫理法規</li><li>技術風險：模型偏誤、技術失效</li></ul></li></ul></details><details class="sec" open><summary><span class="st">二、導入策略與實施建議</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec4-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">明確目標設定與優先級排序</span><ul class="leaves"><li>公司人力的業務影響</li><li>優先提升效率、滿意度、降成本</li><li>技術實現的實施難度</li><li>低難度、快見效者優先</li></ul></li><li><span class="sub">根據企業規模與願景制定目標（三階段）</span><ul class="leaves"><li>初始：試點與驗證（低成本）</li><li>成長：技術推廣與跨部門整合</li><li>成熟：全面整合與創新領先</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三、技術人才的培養與發展</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec4-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">核心觀念</span><ul class="leaves"><li>導入不只是引進工具</li><li>須了解企業業務結構</li><li>人才培養是核心挑戰</li></ul></li><li><span class="sub">人才培養途徑</span><ul class="leaves"><li>內部培訓：LLM、微調、數據處理</li><li>外部專家與技術服務商合作</li><li>招募高端 AI 人才</li><li>內外結合模式</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>生成式 AI 高度依賴大量高品質數據（數據完整性）；優先執行低難度、快見效場景；導入分試點→成長→成熟三階段。</p></section>
+<section class="chap c4" id="m-chap5"><header class="chead"><h2><a href="初級_科目2_生成式AI應用與規劃.html#chap5">伍、生成式AI 導入規劃</a></h2><p>依準備、設計、POC 驗證、實施營運四階段落地，並以 ROI 評估財務效益。</p></header><div class="secs"><details class="sec" open><summary><span class="st">一、四階段導入流程總覽</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">四階段</span><ul class="leaves"><li>準備：挑選 AI 應用方案</li><li>設計：確認 AI 生成規格</li><li>驗證 POC：驗證 AI 效果</li><li>實施／營運：持續發揮價值</li></ul></li><li><span class="sub">概念驗證 POC</span><ul class="leaves"><li>小規模實驗測試模型效能</li><li>檢視準確度、效率、融合度</li><li>量化 ROI 與回收週期</li></ul></li></ul></details><details class="sec" open><summary><span class="st">二、準備階段（挑選 AI 應用方案）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">掌握企業課題</span><ul class="leaves"><li>設立明確的目標</li><li>選定應用範圍（從簡單專案起）</li><li>提取改善項目：繪製流程圖</li><li>重複性、規則性工作為候選</li></ul></li><li><span class="sub">檢視 AI 方案與企業資源</span><ul class="leaves"><li>生成式 AI 的必要性（數據、設施）</li><li>方案：商業產品／開源／客製化</li><li>分析成本結構、選供應商</li><li>專案預算與管理架構</li></ul></li><li><span class="sub">確定應用領域優先順序</span><ul class="leaves"><li>評估導入容易程度</li><li>與企業目標高度契合者優先</li><li>綜合商業價值、可行性、成本</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三、設計階段（確認 AI 生成規格）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">目標與數據</span><ul class="leaves"><li>確認導入最終目標</li><li>制定可量化 KPI</li><li>確認數據狀態：品質與多樣性</li><li>多來源數據減少偏差</li></ul></li><li><span class="sub">情境與成本</span><ul class="leaves"><li>確認使用情境（客服、預測維護）</li><li>規劃模型部署策略</li><li>估算 AI 導入成本</li><li>開發、硬體雲端、培訓維護成本</li></ul></li></ul></details><details class="sec" open><summary><span class="st">四、驗證 POC 階段（驗證 AI 效果）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">模型架構與演算法</span><ul class="leaves"><li>自迴歸模型、自編碼器</li><li>擴散模型、Transformer</li><li>平衡創造性與生成控制能力</li></ul></li><li><span class="sub">訓練模型與優化</span><ul class="leaves"><li>損失函數：交叉熵</li><li>優化器：AdamW、LAMB</li><li>防過擬合：L2、Dropout、早停</li><li>混合精度訓練</li><li>剪枝、量化、遷移學習</li></ul></li><li><span class="sub">驗證方案與檢查效能</span><ul class="leaves"><li>基準：BLEU、ROUGE、Perplexity</li><li>自動化與批量測試</li><li>主觀人工檢查</li><li>壓力測試與邊界檢查</li><li>敏感性與公平性、A/B 測試</li></ul></li><li><span class="sub">導入實務運作流程（五步驟）</span><ul class="leaves"><li>業務流程整合</li><li>試點運行</li><li>員工培訓</li><li>持續改進機制</li><li>效益評估與推廣</li></ul></li></ul></details><details class="sec" open><summary><span class="st">五、實施／營運階段（持續發揮價值）</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">專案落地</span><ul class="leaves"><li>培養內部專家團隊</li><li>跨職能支持體系</li><li>常態化回饋機制</li></ul></li><li><span class="sub">模型監控與重新訓練</span><ul class="leaves"><li>監控 Accuracy、Recall、Error Rate</li><li>數據漂移：輸入分佈隨時間變化</li><li>自動化重新訓練管道</li></ul></li><li><span class="sub">AI 價值擴散</span><ul class="leaves"><li>單點應用推廣至全企業</li><li>分享成功案例</li><li>設立創新獎勵機制</li></ul></li></ul></details><details class="sec" open><summary><span class="st">六、ROI 的計算方式</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec5-6" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">成本與收益</span><ul class="leaves"><li>成本：開發部署、設備、人力</li><li>直接效益：營收、滿意度</li><li>間接效益：流程效率、人力最佳化</li></ul></li><li><span class="sub">財務指標與風險模擬</span><ul class="leaves"><li>回本時間預估模型</li><li>淨現值 NPV</li><li>內部報酬率 IRR</li><li>敏感性分析</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>POC 小規模驗證效能並量化 ROI；BLEU、ROUGE、Perplexity 衡量生成品質；數據漂移需重新訓練；財務指標看 NPV、IRR。</p></section>
+<section class="chap c5" id="m-chap6"><header class="chead"><h2><a href="初級_科目2_生成式AI應用與規劃.html#chap6">陸、生成式AI 風險管理</a></h2><p>面對資料隱私、倫理偏見與法規合規風險，建立風險評估與應對策略。</p></header><div class="secs"><details class="sec" open><summary><span class="st">一、風險管理重點</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec6-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">四項重點</span><ul class="leaves"><li>確保資料隱私（加密、匿名化）</li><li>降低倫理偏見（多樣化數據）</li><li>遵守法律規範（數據授權）</li><li>建立審核機制（監控生成內容）</li></ul></li></ul></details><details class="sec" open><summary><span class="st">二、資料隱私與安全</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec6-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">常見風險識別</span><ul class="leaves"><li>訓練數據洩漏</li><li>反向工程</li><li>提示詞攻擊</li><li>對抗性攻擊</li></ul></li><li><span class="sub">防範措施</span><ul class="leaves"><li>身份驗證與授權機制</li><li>儲存與傳輸加密</li><li>差分隱私 (Differential Privacy)</li></ul></li></ul></details><details class="sec" open><summary><span class="st">三、倫理與偏見</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec6-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">偏見來源</span><ul class="leaves"><li>歷史資料反映性別、種族偏見</li><li>職業預設特定性別</li><li>黑箱：推理過程難理解</li></ul></li><li><span class="sub">因應作法</span><ul class="leaves"><li>多樣化數據＋去偏見技術</li><li>可解釋性 AI (XAI)</li><li>引入第三方評估機制</li></ul></li></ul></details><details class="sec" open><summary><span class="st">四、生成式AI 與法規</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec6-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">重點法規</span><ul class="leaves"><li>GDPR 一般資料保護規則</li><li>CCPA 加州消費者隱私法案</li><li>要求匿名化、差分隱私</li></ul></li><li><span class="sub">合規要點</span><ul class="leaves"><li>資料隱私：匿名化或假名化</li><li>資料來源合法性（版權）</li><li>高風險應用限制（醫療、自駕）</li><li>責任分擔</li><li>多層次法規對應</li></ul></li></ul></details><details class="sec" open><summary><span class="st">五、風險的種類與風險管理策略</span><a class="go" href="初級_科目2_生成式AI應用與規劃.html#sec6-5" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">風險評估</span><ul class="leaves"><li>風險矩陣：發生概率 × 影響程度</li><li>依嚴重性與可能性排序</li></ul></li><li><span class="sub">溯源與文化</span><ul class="leaves"><li>風險溯源：審核數據來源、XAI</li><li>風險文化：培訓、報告與獎勵</li></ul></li><li><span class="sub">四種應對策略</span><ul class="leaves"><li>接受：影響有限，訂應急計畫</li><li>緩解：數據管理、審查內容</li><li>迴避：暫緩高風險應用</li><li>轉移：保險或外部協議</li></ul></li><li><span class="sub">透明承諾</span><ul class="leaves"><li>標示「此內容由 AI 生成」</li><li>增強用戶信任</li></ul></li></ul></details></div><p class="check"><b>自我檢核</b>差分隱私以雜訊防外洩；黑箱問題靠 XAI 提升可解釋性；GDPR、CCPA 要求匿名化；風險矩陣交叉比對發生概率與影響程度。</p></section>
+  </main>
+
+  <p class="foot">內容整理自經濟部產業人才能力鑑定 iPAS 初級學習指引《生成式 AI 應用與規劃》對應之自製教材；非官方資料，考試以官方公告為準。</p>
+</div>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec'));
+  var q=document.getElementById('q'), hits=document.getElementById('hits');
+  document.getElementById('openAll').onclick=function(){secs.forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){secs.forEach(function(d){d.open=false;});};
+  var texts=[].slice.call(document.querySelectorAll('.st,.sub,.leaves li'));
+  var saved=false;
+  function save(){ if(saved)return; saved=true; texts.forEach(function(el){el.dataset.t=el.textContent;el.dataset.h=el.innerHTML;}); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function run(){
+    save();
+    var v=q.value.trim().toLowerCase(), n=0;
+    texts.forEach(function(el){
+      var t=el.dataset.t, i=v?t.toLowerCase().indexOf(v):-1;
+      if(!v){ el.innerHTML=el.dataset.h; return; }
+      el.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));
+      if(i>=0)n++;
+    });
+    document.querySelectorAll('.subs>li').forEach(function(li){
+      li.classList.toggle('dim',!!v&&!li.querySelector('mark')&&!li.closest('.sec').querySelector('.st mark'));
+    });
+    secs.forEach(function(d){
+      var hit=!!d.querySelector('mark');
+      d.classList.toggle('dim',!!v&&!hit);
+      if(v&&hit)d.open=true;
+    });
+    document.querySelectorAll('.chap').forEach(function(c){
+      c.classList.toggle('dim',!!v&&!c.querySelector('.sec:not(.dim)'));
+    });
+    hits.textContent=v?(n?'找到 '+n+' 處':'找不到「'+q.value.trim()+'」'):'';
+  }
+  q.addEventListener('input',run);
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

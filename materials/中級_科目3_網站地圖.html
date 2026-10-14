@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 由 tools/sitemap/gen.py 產生，請勿直接修改；改資料模組 tools/sitemap/data_*.py 後重新產生 -->
+<title>機器學習技術與應用 網站地圖</title>
+<style>
+/* 版面：章節軌道→ 各章樹狀展開（節 → 小節 → 要點），節可收合、可搜尋 */
+:root{
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1c2133; --muted:#5f6781; --line:#dde1ee;
+  --accent:#4338ca;
+  --c1:#4338ca; --c2:#0f766e; --c3:#b45309; --c4:#be185d;
+  --c5:#0369a1; --c1s:#eceafd; --c2s:#e3f4f1; --c3s:#fbf0e2; --c4s:#fbe8f1; --c5s:#e2f0fa;
+  --mark:#fde68a;
+  --f-display:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PMingLiU",serif;
+  --f-body:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1220; --surface:#171b2c; --ink:#dfe3f0; --muted:#98a0b8; --line:#2a3048;
+  --accent:#a5a0ff;
+  --c1:#a5a0ff; --c2:#5fd0c0; --c3:#f0b46a; --c4:#f58ab9;
+  --c5:#7cc4ee; --c1s:#22213f; --c2s:#152b2b; --c3s:#2c2316; --c4s:#2e1a26; --c5s:#132636;
+  --mark:#6b5a12; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;}
+.mapwrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+a{color:inherit}
+.c1{--c:var(--c1);--cs:var(--c1s)} .c2{--c:var(--c2);--cs:var(--c2s)} .c3{--c:var(--c3);--cs:var(--c3s)} .c4{--c:var(--c4);--cs:var(--c4s)} .c5{--c:var(--c5);--cs:var(--c5s)}
+
+.top{display:flex;flex-direction:column;gap:8px;}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted);}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4.4vw,40px);line-height:1.2;margin:0;text-wrap:balance;}
+.lead{margin:0;color:var(--muted);max-width:68ch;}
+.lead a{color:var(--accent);}
+.back{align-self:flex-start;font-size:14px;color:var(--accent);text-decoration:none;}
+.back:hover{text-decoration:underline;}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stats b{color:var(--ink);font-family:var(--f-mono);}
+
+/* 生命週期軌道 */
+.rail{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;position:relative;}
+.rail::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:var(--line);}
+.stop{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 10px 0 0;text-decoration:none;}
+.stop .code{align-self:flex-start;font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--c);padding:5px 9px;border-radius:999px;position:relative;margin-bottom:8px;}
+.stop .nm{font-weight:700;font-size:15px;line-height:1.35;}
+.stop .cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.stop:hover .nm,.stop:focus-visible .nm{color:var(--c);text-decoration:underline;}
+.rail-note{font-size:12px;color:var(--muted);margin:-16px 0 0;}
+
+/* 工具列 */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;padding-right:52px;border-bottom:1px solid var(--line);}
+.tools input{flex:1 1 220px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);}
+.tools button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.tools button:hover{border-color:var(--accent);color:var(--accent);}
+.tools :focus-visible,.go:focus-visible,summary:focus-visible,.stop:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+#hits{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+/* 章 */
+.chap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 28px;padding-top:8px;}
+.chead{display:flex;flex-direction:column;gap:6px;position:sticky;top:72px;align-self:start;}
+.chead .code{font-family:var(--f-mono);font-size:13px;color:var(--c);}
+.chead h2{font-family:var(--f-display);font-size:21px;line-height:1.3;margin:0;text-wrap:balance;}
+.chead h2 a{text-decoration:none;}
+.chead h2 a:hover{color:var(--c);text-decoration:underline;}
+.chead p{margin:0;font-size:13.5px;color:var(--muted);}
+.secs{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.check{grid-column:2;margin:0;font-size:13.5px;color:var(--muted);border-left:3px solid var(--c);padding:4px 0 4px 12px;}
+.check b{color:var(--ink);margin-right:8px;}
+
+/* 節 */
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+.sec summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;}
+.sec summary::-webkit-details-marker{display:none}
+.sec summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s;flex:none;}
+.sec[open] summary::before{transform:rotate(45deg);}
+.scode{font-family:var(--f-mono);font-size:12px;color:var(--c);background:var(--cs);padding:2px 7px;border-radius:5px;flex:none;}
+.st{font-weight:700;font-size:16px;flex:1;min-width:0;}
+.go{font-size:13px;color:var(--c);text-decoration:none;flex:none;padding:2px 4px;}
+.go:hover{text-decoration:underline;}
+
+/* 小節 → 要點（樹） */
+.subs{list-style:none;margin:0;padding:2px 16px 16px 30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px 22px;}
+.subs>li{min-width:0;}
+.sub{display:block;font-weight:700;font-size:14px;color:var(--c);margin-bottom:4px;}
+.leaves{list-style:none;margin:0;padding:0 0 0 12px;border-left:1.5px solid var(--line);}
+.leaves li{position:relative;font-size:13.5px;padding:2px 0 2px 10px;}
+.leaves li::before{content:"";position:absolute;left:-12px;top:13px;width:16px;border-top:1.5px solid var(--line);}
+.leaves li.fig{color:var(--muted);font-style:italic;}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px;}
+.dim{display:none!important;}
+.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+
+@media (max-width:760px){
+  .chap{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .chead{position:static;}
+  .check{grid-column:1;}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .rail::before{display:none;}
+  .subs{padding-left:16px;}
+}
+@media (prefers-reduced-motion:reduce){.sec summary::before{transition:none}}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<div class="mapwrap">
+  <div class="top">
+    <a class="back" href="index.html">← 回教材首頁</a>
+    <span class="eyebrow">iPAS AI 應用規劃師 · 中級 · 科目 3 · L23</span>
+    <h1>機器學習技術與應用 網站地圖</h1>
+    <p class="lead">把<a href="中級_科目3_機器學習技術與應用.html">完整教材</a>的內容整理成一張樹狀地圖：章 → 節 → 小節 → 要點。點節名右側的「開啟」會跳到完整教材的該節；虛線底線的名詞可點開名詞說明。</p>
+    <div class="stats"><span><b>4</b> 章</span><span><b>12</b> 節</span><span><b>43</b> 小節</span><span><b>192</b> 要點</span></div>
+  </div>
+
+  <nav class="rail" aria-label="各章" style="--n:4"><a class="stop c1" href="#m-chap3"><span class="code">L231</span><span class="nm">機器學習基礎數學</span><span class="cnt">3 節 · 12 小節</span></a><a class="stop c2" href="#m-chap4"><span class="code">L232</span><span class="nm">機器學習與深度學習</span><span class="cnt">3 節 · 8 小節</span></a><a class="stop c3" href="#m-chap5"><span class="code">L233</span><span class="nm">機器學習建模與參數調校</span><span class="cnt">4 節 · 16 小節</span></a><a class="stop c4" href="#m-chap6"><span class="code">L234</span><span class="nm">機器學習治理</span><span class="cnt">2 節 · 7 小節</span></a></nav>
+  <p class="rail-note">四章由理論到實務排列：基礎數學 → 機器學習與深度學習模型 → 建模與參數調校 → 治理（隱私與公平性）。</p>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜尋名詞或關鍵字" aria-label="搜尋地圖">
+    <button id="openAll" type="button">全部展開</button>
+    <button id="closeAll" type="button">全部收合</button>
+    <span id="hits" aria-live="polite"></span>
+  </div>
+
+  <main>
+<section class="chap c1" id="m-chap3"><header class="chead"><span class="code">L231</span><h2><a href="中級_科目3_機器學習技術與應用.html#chap3">第三章 機器學習基礎數學</a></h2><p>數學地基：機率統計處理不確定性、線性代數表示資料、數值優化求解參數。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L23101</span><span class="st">3.1 機率/統計之機器學習基礎應用</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec3-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">資料與隨機變數的機率表示</span><ul class="leaves"><li>條件機率分佈 P(Y｜X)</li><li>離散型：PMF，總和 = 1</li><li>連續型：PDF，積分求 P(a≤X≤b)</li><li>伯努利、二項、泊松</li><li>常態、均勻、指數（無記憶性）、卡方</li><li>分佈即先驗假設</li></ul></li><li><span class="sub">條件機率與貝氏推論</span><ul class="leaves"><li>P(A|B) = P(A∩B) / P(B)</li><li>貝氏定理：P(B|A)·P(A) / P(B)</li><li>先驗、似然、邊際、後驗</li><li>應用：貝氏分類器、VAE、HMM</li></ul></li><li><span class="sub">假設檢定與統計推論</span><ul class="leaves"><li>參數估計 vs 假設檢定</li><li>點估計與 95% 信賴區間</li><li>檢定五步驟：H₀／H₁ → 決策</li><li>顯著水準 α = 型一錯誤機率</li><li>p &lt; α 拒絕虛無假設</li></ul></li><li><span class="sub">統計量與機器學習中的應用</span><ul class="leaves"><li>期望值：預測基準</li><li>變異數／標準差：判斷需否標準化</li><li>偏態：對數或 Box-Cox 轉換</li><li>峰度：尖峰、厚尾</li><li>直方圖、箱型圖、QQ-plot</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23102</span><span class="st">3.2 線性代數之機器學習基礎應用</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec3-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">向量與矩陣表示</span><ul class="leaves"><li>點積：投影與相似度</li><li>L2 範數：向量長度</li><li>矩陣乘法、轉置</li><li>求逆與偽逆</li><li>線性迴歸 ŷ = Xθ</li></ul></li><li><span class="sub">線性變換與特徵空間</span><ul class="leaves"><li>縮放、旋轉、剪切、投影</li><li>特徵空間</li><li>嵌入層：類別轉連續向量</li><li>LDA、Autoencoder 投影壓縮</li></ul></li><li><span class="sub">矩陣分解與維度簡化</span><ul class="leaves"><li>特徵值分解 A = QΛQᵀ（PCA）</li><li>SVD X = UΣVᵀ（推薦、LSA）</li><li>NMF X ≈ WH（主題建模）</li><li>降維：去雜訊與共線性</li></ul></li><li><span class="sub">最小平方估計與線性迴歸</span><ul class="leaves"><li>OLS：誤差平方和最小</li><li>幾何觀點：投影至平面</li><li>離群點會扭曲擬合</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23103</span><span class="st">3.3 數值優化技術與方法</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec3-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">最佳化問題的基本結構</span><ul class="leaves"><li>目標函數（損失／成本函數）</li><li>決策變數：權重與偏差</li><li>可行域（參數空間）</li><li>凸函數必得全域最佳解</li><li>非凸：局部最小值與鞍點</li></ul></li><li><span class="sub">損失函數與學習目標</span><ul class="leaves"><li>迴歸：MSE、MAE、Huber</li><li>分類：交叉熵、對比損失</li><li>Focal Loss：資料不平衡</li><li>排序損失、重建損失</li></ul></li><li><span class="sub">常見優化演算法與比較</span><ul class="leaves"><li>GD／SGD／Mini-batch SGD</li><li>Momentum：累積梯度方向</li><li>Adagrad：學習率過度衰減</li><li>RMSprop：滑動平均</li><li>Adam：一階＋二階動量</li></ul></li><li><span class="sub">收斂判準與訓練穩定性</span><ul class="leaves"><li>損失變化低於 ε、梯度趨近零</li><li>學習率過高致震盪發散</li><li>學習率調度、Early Stopping</li><li>梯度裁剪、批次正規化</li></ul></li></ul></details></div></section>
+<section class="chap c2" id="m-chap4"><header class="chead"><span class="code">L232</span><h2><a href="中級_科目3_機器學習技術與應用.html#chap4">第四章 機器學習與深度學習</a></h2><p>三大學習類型、常見演算法，到深度學習架構與框架。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L23201</span><span class="st">4.1 機器學習原理與技術</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec4-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">機器學習的基本結構</span><ul class="leaves"><li>輸入資料與特徵空間</li><li>任務目標與標籤型態</li><li>模型與假設空間</li><li>訓練集／驗證集／測試集</li></ul></li><li><span class="sub">三大學習類型</span><ul class="leaves"><li>監督式：分類、迴歸</li><li>非監督式：聚類、降維、關聯規則</li><li>強化式：最大化長期累積報酬</li><li>MDP：Agent、State、Action、Reward</li><li>離散 vs 連續動作空間</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23202</span><span class="st">4.2 常見機器學習演算法</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec4-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">監督式學習 — 迴歸任務</span><ul class="leaves"><li>線性迴歸（對離群值敏感）</li><li>Lasso（L1，可特徵選擇）vs Ridge（L2）</li><li>SVR：ε-tube</li><li>決策樹迴歸（分段常數）</li><li>隨機森林、梯度提升、XGBoost／LightGBM</li><li class="fig">附圖：Level-wise vs Leaf-wise（指引 4-23）</li></ul></li><li><span class="sub">監督式學習 — 分類任務</span><ul class="leaves"><li>邏輯迴歸：sigmoid 輸出機率</li><li>SVM：最大化間隔、核函數</li><li>決策樹：基尼、資訊增益</li><li>KNN（需特徵縮放）、樸素貝氏</li><li>Bagging 降變異、Boosting 降偏差</li><li>OvR、Softmax、OvO</li></ul></li><li><span class="sub">非監督式學習</span><ul class="leaves"><li>分群：k-means、階層式、DBSCAN</li><li>降維：PCA、t-SNE、UMAP</li><li>關聯規則：Apriori、FP-Growth</li><li>支持度、信賴度、提升度（Lift）</li><li>異常偵測：孤立森林、One-Class SVM</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23203</span><span class="st">4.3 深度學習原理與框架</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec4-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">深度學習基本概念</span><ul class="leaves"><li>人工神經元：Z = Σwx + b</li><li>感知器無法解 XOR</li><li>激活函數引入非線性</li><li>前向傳播 vs 反向傳播（連鎖律）</li><li>過擬合：L1、L2、Dropout、早停</li></ul></li><li><span class="sub">深度學習模型架構</span><ul class="leaves"><li>MLP：全連接前饋</li><li>CNN：卷積、池化、權重共享</li><li>RNN：梯度消失 → LSTM、GRU</li><li>Transformer：自注意力 Q/K/V、位置編碼</li><li>BERT（編碼器）vs GPT（解碼器）</li><li>生成式：自編碼器、GAN</li></ul></li><li><span class="sub">深度學習主流框架</span><ul class="leaves"><li>TensorFlow／Keras（Google）</li><li>PyTorch：動態計算圖、Autograd</li><li>JAX：函數式數值計算</li><li>MXNet（AWS）、PaddlePaddle</li></ul></li></ul></details></div></section>
+<section class="chap c3" id="m-chap5"><header class="chead"><span class="code">L233</span><h2><a href="中級_科目3_機器學習技術與應用.html#chap5">第五章 機器學習建模與參數調校</a></h2><p>完整建模流程：資料準備、模型選擇、訓練評估、調校與壓縮。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L23301</span><span class="st">5.1 數據準備與特徵工程</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec5-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">數據清理</span><ul class="leaves"><li>缺失值：刪除、填補、缺失指標</li><li>異常值：Z 分數、IQR、Isolation Forest</li><li>重複樣本與一致性</li><li>樹模型對缺值容忍度較高</li></ul></li><li><span class="sub">特徵選擇與降維方法</span><ul class="leaves"><li>Filter：統計量篩選</li><li>Wrapper：RFE、前向／後向選擇</li><li>Embedded：樹重要性、Lasso</li><li>PCA、LDA、t-SNE／UMAP、SVD</li></ul></li><li><span class="sub">特徵轉換與資料標準化</span><ul class="leaves"><li>Min-Max、Z-score、Robust Scaling</li><li>對數、Box-Cox／Yeo-Johnson</li><li>Label／One-hot／Target Encoding</li><li>週期特徵 sin/cos 編碼</li></ul></li><li><span class="sub">資料增強 (Data Augmentation)</span><ul class="leaves"><li>圖像：翻轉、旋轉、裁剪</li><li>文字：同義字替換</li><li>時序：Jittering、窗口裁切</li><li>表格：SMOTE</li></ul></li><li><span class="sub">特徵工程策略</span><ul class="leaves"><li>依任務類型設計</li><li>依模型性質調整</li><li>欄位合成、統計聚合</li><li>滯後值 lag、移動平均</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23302</span><span class="st">5.2 模型選擇與架構設計</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec5-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">任務類型與模型特性配對</span><ul class="leaves"><li>分類：樹、SVM、神經網路</li><li>聚類：K-means vs DBSCAN</li><li>降維：PCA vs 自編碼器</li><li>時序：LSTM、TCN、ARIMA</li></ul></li><li><span class="sub">資料規模與模型選擇</span><ul class="leaves"><li>小型：線性、決策樹、Lasso/Ridge</li><li>中型：隨機森林、XGBoost</li><li>大型：深度模型、GPU 分散式</li></ul></li><li><span class="sub">模型解釋性需求</span><ul class="leaves"><li>高解釋性：線性、淺層決策樹</li><li>低解釋性：集成、深度網路</li><li>SHAP、LIME、PDP</li></ul></li><li><span class="sub">運算資源與實務部署限制</span><ul class="leaves"><li>邊緣裝置：剪枝、量化</li><li>即時推論：注意延遲</li><li>模型蒸餾、caching</li><li>偏差-變異權衡</li><li class="fig">附圖：偏差-變異權衡（指引 5-16）</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23303</span><span class="st">5.3 模型訓練、評估與驗證</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec5-3" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">模型訓練流程與策略</span><ul class="leaves"><li>資料分割與 K-fold</li><li>Batch GD／SGD／Mini-batch</li><li>學習率衰減與預熱</li><li>早停：Patience、Min Delta</li><li>TensorBoard、MLflow</li></ul></li><li><span class="sub">評估指標與模型效果衡量</span><ul class="leaves"><li>混淆矩陣 TP／FP／FN／TN</li><li>Precision = TP/(TP+FP)</li><li>Recall = TP/(TP+FN)</li><li>F1、ROC-AUC</li><li>MSE、MAE、RMSE、R²</li><li class="fig">附圖：ROC 曲線（指引 5-22）</li></ul></li><li><span class="sub">交叉驗證 (Cross-Validation)</span><ul class="leaves"><li>K-fold（K = 5 或 10）</li><li>Stratified K-fold：分類預設</li><li>LOOCV：偏差最小、成本極高</li><li>Repeated K-fold</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23304</span><span class="st">5.4 模型調整與優化</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec5-4" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">超參數調校 (Hyperparameter Tuning)</span><ul class="leaves"><li>學習率、批次大小</li><li>網路深度與寬度</li><li>Softmax、ReLU、Sigmoid、Tanh</li><li>SGD、Momentum、Adagrad、Adam</li><li>正則化係數 λ</li></ul></li><li><span class="sub">正則化技術與模型穩定化</span><ul class="leaves"><li>L1（Lasso）：權重歸零</li><li>L2（Ridge）：權重不壓到零</li><li>Elastic Net：L1 + L2</li><li>Dropout（常見 p = 0.5）</li><li>Early Stopping（patience）</li></ul></li><li><span class="sub">資料增強與重取樣</span><ul class="leaves"><li>影像、文字、音訊增強</li><li>過採樣（SMOTE）</li><li>欠採樣</li><li>類別權重調整</li></ul></li><li><span class="sub">模型壓縮與加速技術</span><ul class="leaves"><li>知識蒸餾：教師 → 學生</li><li>剪枝：結構化 vs 非結構化</li><li>量化：FP32 → INT8、QAT</li><li>混合精度訓練 FP16 + FP32</li></ul></li></ul></details></div></section>
+<section class="chap c4" id="m-chap6"><header class="chead"><span class="code">L234</span><h2><a href="中級_科目3_機器學習技術與應用.html#chap6">第六章 機器學習治理</a></h2><p>系統性控管資料與模型風險：隱私、安全、合規與公平性。</p></header><div class="secs"><details class="sec" open><summary><span class="scode">L23401</span><span class="st">6.1 數據隱私、安全與合規</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec6-1" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">數據隱私風險的辨識與評估</span><ul class="leaves"><li>GDPR、CCPA、PDPA</li><li>直接識別（PII）、準識別、再識別</li><li>資料盤點與 Data Map</li><li>隱私影響評估 PIA 五步驟</li><li>風險矩陣：可能性 × 影響</li></ul></li><li><span class="sub">隱私保護與匿名化技術實務應用</span><ul class="leaves"><li>遮蔽、雜湊、泛化、分桶、擾動</li><li>K-匿名／L-多樣性／T-接近性</li><li>聯邦學習：資料留本地</li><li>同態加密：加密資料上運算</li></ul></li><li><span class="sub">合規實務建議</span><ul class="leaves"><li>合法來源與告知同意</li><li>資料最小化與目的限制</li><li>去識別化與再識別測試</li><li>透明度與紀錄保存</li><li>跨境傳輸規範</li></ul></li></ul></details><details class="sec" open><summary><span class="scode">L23402</span><span class="st">6.2 演算法偏見與公平性</span><a class="go" href="中級_科目3_機器學習技術與應用.html#sec6-2" title="開啟完整教材本節">開啟 →</a></summary><ul class="subs"><li><span class="sub">偏見的成因與類型</span><ul class="leaves"><li>來源偏誤、內容偏誤、製程偏誤</li><li>演算法與目標函數偏誤</li><li>影響：歧視、商譽、法律風險</li></ul></li><li><span class="sub">公平性指標與評估工具</span><ul class="leaves"><li>Demographic Parity：結果均等</li><li>Equal Opportunity：TPR 相同</li><li>Equalized Odds：TPR 與 FPR 一致</li><li>Disparate Impact：80% Rule</li><li>AIF360、Fairlearn</li></ul></li><li><span class="sub">降低演算法偏見的方法論</span><ul class="leaves"><li>前處理：重新抽樣、特徵去偏</li><li>模型內：公平性約束、對抗式去偏</li><li>後處理：門檻調整、結果校準</li></ul></li><li><span class="sub">組織面向的 AI 公平性治理策略</span><ul class="leaves"><li>公平性政策與審查委員會</li><li>多元化團隊與教育訓練</li><li>公平性稽核（Fairness Audits）</li><li>資訊揭露與第三方驗證</li></ul></li></ul></details></div></section>
+  </main>
+
+  <p class="foot">內容整理自經濟部產業人才能力鑑定 iPAS 中級學習指引《機器學習技術與應用》對應之自製教材；非官方資料，考試以官方公告為準。</p>
+</div>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec'));
+  var q=document.getElementById('q'), hits=document.getElementById('hits');
+  document.getElementById('openAll').onclick=function(){secs.forEach(function(d){d.open=true;});};
+  document.getElementById('closeAll').onclick=function(){secs.forEach(function(d){d.open=false;});};
+  var texts=[].slice.call(document.querySelectorAll('.st,.sub,.leaves li'));
+  var saved=false;
+  function save(){ if(saved)return; saved=true; texts.forEach(function(el){el.dataset.t=el.textContent;el.dataset.h=el.innerHTML;}); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function run(){
+    save();
+    var v=q.value.trim().toLowerCase(), n=0;
+    texts.forEach(function(el){
+      var t=el.dataset.t, i=v?t.toLowerCase().indexOf(v):-1;
+      if(!v){ el.innerHTML=el.dataset.h; return; }
+      el.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));
+      if(i>=0)n++;
+    });
+    document.querySelectorAll('.subs>li').forEach(function(li){
+      li.classList.toggle('dim',!!v&&!li.querySelector('mark')&&!li.closest('.sec').querySelector('.st mark'));
+    });
+    secs.forEach(function(d){
+      var hit=!!d.querySelector('mark');
+      d.classList.toggle('dim',!!v&&!hit);
+      if(v&&hit)d.open=true;
+    });
+    document.querySelectorAll('.chap').forEach(function(c){
+      c.classList.toggle('dim',!!v&&!c.querySelector('.sec:not(.dim)'));
+    });
+    hits.textContent=v?(n?'找到 '+n+' 處':'找不到「'+q.value.trim()+'」'):'';
+  }
+  q.addEventListener('input',run);
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

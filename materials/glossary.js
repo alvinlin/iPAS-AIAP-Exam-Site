@@ -386,7 +386,7 @@
   /* ========== 掃描內文並包上 .gl ==========
    * 跳過：連結、程式碼、標題、表頭、導覽、頁首尾、題號/答案標籤與已定義的 .term 名詞。
    * 遇到 h2（分章標題）重設「本章已標示」集合。 */
-  var SKIP_TAG = { A: 1, CODE: 1, PRE: 1, SCRIPT: 1, STYLE: 1, H1: 1, H2: 1, H3: 1, H4: 1, TH: 1, NAV: 1, HEADER: 1, FOOTER: 1, BUTTON: 1, INPUT: 1, SELECT: 1, TEXTAREA: 1 };
+  var SKIP_TAG = { A: 1, CODE: 1, PRE: 1, SCRIPT: 1, STYLE: 1, H1: 1, H2: 1, H3: 1, H4: 1, TH: 1, NAV: 1, HEADER: 1, FOOTER: 1, BUTTON: 1, SUMMARY: 1, INPUT: 1, SELECT: 1, TEXTAREA: 1 };
   var SKIP_CLS = ['tag', 'term', 'ans', 'qno', 'gl'];
 
   function collect(root) {
