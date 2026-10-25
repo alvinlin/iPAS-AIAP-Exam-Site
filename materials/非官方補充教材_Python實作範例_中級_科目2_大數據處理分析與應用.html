@@ -1,0 +1,1340 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級 科目 2（Python 實作範例）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#0f766e;--accent-soft:#ccfbf1;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;
+  --code-bg:#0f172a;--code-ink:#e2e8f0;--code-k:#c792ea;--code-s:#c3e88d;--code-c:#7c8aa5;--code-n:#f78c6c;--code-b:#82aaff;--code-d:#ffcb6b;
+  --out-bg:#f4f6fa;--out-ink:#1f2933;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+nav.toc .cnt{display:inline-block;min-width:18px;text-align:center;font-size:11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:4px;padding:0 5px;line-height:17px;}
+main{padding:40px 52px;max-width:960px;min-width:0;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+h2.chap{margin:46px 0 10px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+p.chlead{color:var(--muted);margin:0 0 10px;}
+h3{margin:34px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:0;font-size:17px;}
+p{margin:10px 0;}
+ul,ol{margin:8px 0;padding-left:24px;}
+li{margin:4px 0;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+.env{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
+.env span{font-size:12.5px;font-family:Consolas,Menlo,monospace;background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:999px;}
+pre.setup{background:var(--out-bg);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13.5px;overflow-x:auto;margin:8px 0;}
+/* 範例卡 */
+article.ex{border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;margin:18px 0 26px;background:#fff;scroll-margin-top:16px;}
+.exhead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.exhead .num{font-size:12px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--accent);padding:2px 10px;border-radius:999px;white-space:nowrap;}
+p.scn{margin:6px 0 8px;} p.scn b{color:var(--accent);margin-right:6px;}
+.pts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;margin:6px 0 12px;}
+.pts .lbl{color:var(--muted);margin-right:2px;}
+.pts span:not(.lbl){background:var(--accent-soft);color:var(--accent);padding:1px 10px;border-radius:999px;font-weight:600;}
+.codewrap,.outwrap{border-radius:10px;overflow:hidden;margin:10px 0;border:1px solid var(--line);}
+.cbar{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 12px;letter-spacing:.04em;}
+.codewrap .cbar{background:#1e293b;color:#cbd5e1;} .outwrap .cbar{background:var(--accent-soft);color:var(--accent);font-weight:700;}
+button.copy{font:inherit;font-size:12px;background:transparent;color:#cbd5e1;border:1px solid #475569;border-radius:6px;padding:2px 10px;cursor:pointer;}
+button.copy:hover{background:#334155;color:#fff;} button.copy.done{color:#86efac;border-color:#4ade80;}
+pre.code,pre.out{margin:0;padding:14px 16px;overflow-x:auto;font-family:Consolas,"Cascadia Mono",Menlo,"Noto Sans Mono CJK TC",monospace;font-size:13.5px;line-height:1.6;tab-size:4;}
+pre.code{background:var(--code-bg);color:var(--code-ink);} pre.code code{background:none;padding:0;font-size:inherit;color:inherit;}
+pre.code .k{color:var(--code-k);} pre.code .s{color:var(--code-s);} pre.code .c{color:var(--code-c);font-style:italic;} pre.code .n{color:var(--code-n);} pre.code .b{color:var(--code-b);} pre.code .d{color:var(--code-d);}
+pre.out{background:var(--out-bg);color:var(--out-ink);white-space:pre;}
+.read,.tip{border-radius:10px;padding:10px 16px;margin:12px 0 4px;border:1px solid;}
+.read .tag,.tip .tag{display:block;font-weight:700;font-size:13px;margin-bottom:2px;}
+.read{background:#f0f7ff;border-color:#bfdbfe;} .read .tag{color:#1d4ed8;} .read ul{margin:4px 0;}
+.tip{background:#fdf4ff;border-color:#f0abfc;} .tip .tag{color:#a21caf;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:20px 16px}article.ex{padding:14px 12px 10px}pre.code,pre.out{font-size:12.5px;padding:12px}}
+/* 深色 */
+[data-theme="dark"] article.ex{background:#131a29;}
+[data-theme="dark"] .read{background:#13223a;border-color:#2c4a77;} [data-theme="dark"] .read .tag{color:#8ab4ff;}
+[data-theme="dark"] .tip{background:#2a1630;border-color:#6b2f78;} [data-theme="dark"] .tip .tag{color:#f0a6ff;}
+[data-theme="dark"]{--out-bg:#0f1522;--out-ink:#d9e0eb;--code-bg:#0b1020;}
+[data-theme="dark"] pre.setup{border-color:#2b3447;}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="中級_科目2_大數據處理分析與應用.html">↗ 對照完整教材</a>
+    <a href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html">↗ 白話加強版</a>
+    <a href="#guide">使用說明與執行環境</a>
+    <a href="#chap3">第三章 機率統計基礎</a><a class="sub" href="#sec31">3.1 敘述性統計與資料摘要技術 <span class="cnt">1</span></a><a class="sub" href="#sec32">3.2 機率分佈與資料分佈模型 <span class="cnt">1</span></a><a class="sub" href="#sec33">3.3 假設檢定與統計推論 <span class="cnt">2</span></a><a href="#chap4">第四章 大數據處理技術</a><a class="sub" href="#sec41">4.1 數據收集與清理 <span class="cnt">2</span></a><a class="sub" href="#sec42">4.2 數據儲存與管理 <span class="cnt">2</span></a><a class="sub" href="#sec43">4.3 數據處理技術與工具 <span class="cnt">4</span></a><a href="#chap5">第五章 大數據分析方法與工具</a><a class="sub" href="#sec51">5.1 統計學在大數據中的應用 <span class="cnt">1</span></a><a class="sub" href="#sec52">5.2 常見的大數據分析方法 <span class="cnt">4</span></a><a class="sub" href="#sec53">5.3 數據可視化工具 <span class="cnt">1</span></a><a href="#chap6">第六章 大數據在人工智慧之應用</a><a class="sub" href="#sec61">6.1 大數據與機器學習 <span class="cnt">1</span></a><a class="sub" href="#sec62">6.2 大數據在鑑別式 AI 的應用 <span class="cnt">1</span></a><a class="sub" href="#sec63">6.3 大數據在生成式 AI 的應用 <span class="cnt">1</span></a><a class="sub" href="#sec64">6.4 大數據隱私保護、安全與合規 <span class="cnt">1</span></a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 2 · Python 實作範例</span>
+      <h1>大數據處理分析與應用</h1>
+      <p class="sub">非官方補充教材 · 依完整教材章節，用可執行的 Python 程式把考點做出來、看結果</p>
+      <div class="tags"><span>共 22 個範例</span><span>所有輸出皆為實際執行結果</span><span>考試以官方學習指引為準</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明與執行環境</h2>
+      <p>本科的四章剛好是一條資料生命週期：統計基礎 → 收集、儲存與處理 → 分析與視覺化 → 用於 AI。這裡不碰 Hadoop、Spark 這類需要叢集的系統，而是用 Python 標準庫與 pandas、scipy、scikit-learn 把每個觀念的「核心動作」做出來：統計量怎麼算、檢定怎麼選、資料品質怎麼量化、MapReduce 與資料管線在做什麼、串流統計如何不吃記憶體、漂移怎麼偵測、匿名化到什麼程度才安全。看懂了這些小程式，再去讀大系統的架構圖就不會只是背名詞。</p>
+      <div class="howto">
+        <div><b style="color:var(--accent)">🎯 情境</b><br>一個貼近實務的小任務，說明「為什麼要算這個」</div>
+        <div><b style="color:var(--accent)">🏷️ 對應考點</b><br>這段程式對應的官方指引觀念，考題多從這裡出</div>
+        <div><b>🐍 Python</b><br>可直接複製執行的完整程式，重點都有中文註解</div>
+        <div><b>▶ 執行結果</b><br>產生本頁時實際跑出的輸出，不是手寫的</div>
+        <div><b style="color:#1d4ed8">🔍 結果解讀</b><br>把輸出的數字對回教材的觀念與結論</div>
+        <div><b style="color:#a21caf">💡 延伸練習</b><br>改一個參數再跑一次，自己驗證觀念</div>
+      </div>
+      <h4 style="margin-top:16px">執行環境</h4>
+      <p>範例只用四個常見套件，在任何能裝 Python 3.10 以上的電腦即可執行（不需 GPU、不需網路、不需 API 金鑰）。本頁輸出由下列版本產生；版本不同時小數位數可能略有差異，結論不變。</p>
+      <div class="env"><span>Python 3.12.3</span><span>numpy 2.5.4</span><span>pandas 3.1.0</span><span>scikit-learn 1.9.1</span><span>scipy 1.18.1</span></div>
+<pre class="setup">python3 -m venv .venv &amp;&amp; source .venv/bin/activate   # Windows：.venv\Scripts\activate
+pip install numpy pandas scikit-learn scipy
+python3 範例.py                                      # 把範例貼進檔案後執行</pre>
+      <p style="font-size:14px;color:var(--muted)">資料都是程式內隨機產生或手寫的小型玩具資料（固定隨機種子，可重現），目的是讓觀念看得見，不代表真實業務數據。依據：中級學習指引《大數據處理分析與應用》。</p>
+    </section>
+
+    <h2 class="chap" id="chap3">第三章 機率統計基礎</h2>
+<p class="chlead">先打統計地基：敘述統計與分佈形狀、常見機率分佈與中央極限定理、信賴區間與各種假設檢定。</p>
+<h3 id="sec31">3.1 敘述性統計與資料摘要技術 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec31">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec31">白話版 ↗</a></h3>
+<article class="ex" id="ex-desc">
+<div class="exhead"><span class="num">範例 1</span><h4>三種平均數、五個離散指標與偏度峰度：一張薪資表的完整摘要</h4></div>
+<p class="scn"><b>情境</b>一家公司 12 個人的月薪，其中一位是高薪主管。算出集中趨勢（三種平均、中位數、眾數）、離散程度（變異數、標準差、全距、四分位數、IQR 與箱形圖鬚界限）與分佈形狀（偏度、峰度），並說明幾何平均、調和平均該用在哪。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>算術／幾何／調和平均</span><span>中位數抗極端值、眾數用於類別</span><span>變異數、標準差、全距、IQR</span><span>箱形圖鬚 = Q1 − 1.5×IQR ～ Q3 + 1.5×IQR</span><span>偏度（正偏右尾長）、峰度（常態 = 3）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+salary = np.array([<span class="n">32</span>, <span class="n">35</span>, <span class="n">36</span>, <span class="n">38</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">42</span>, <span class="n">45</span>, <span class="n">48</span>, <span class="n">52</span>, <span class="n">60</span>, <span class="n">250</span>])   <span class="c"># 千元，最後一位是主管</span>
+<span class="b">print</span>(<span class="s">&quot;── 集中趨勢 ──&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;算術平均 = {salary.mean():.1f}   中位數 = {np.median(salary):.1f}   眾數 = {stats.mode(salary, keepdims=False).mode}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;去掉主管後的算術平均 = {salary[:-1].mean():.1f}  ← 一個極端值把平均拉高 {salary.mean() - salary[:-1].mean():.1f} 千&quot;</span>)
+growth = np.array([<span class="n">1.10</span>, <span class="n">1.25</span>, <span class="n">0.80</span>, <span class="n">1.05</span>])               <span class="c"># 四年營收成長倍數</span>
+<span class="b">print</span>(<span class="s">f&quot;\n年均成長：幾何平均 = {stats.gmean(growth):.4f}（正確），算術平均 = {growth.mean():.4f}（高估）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;  驗證：{growth.prod():.4f} = {stats.gmean(growth):.4f}^4 = {stats.gmean(growth)**4:.4f}&quot;</span>)
+speed = np.array([<span class="n">60</span>, <span class="n">40</span>])                                 <span class="c"># 去程 60 km/h、回程 40 km/h，同距離</span>
+<span class="b">print</span>(<span class="s">f&quot;平均速率：調和平均 = {stats.hmean(speed):.1f} km/h（正確），算術平均 = {speed.mean():.1f}（高估）&quot;</span>)
+
+<span class="b">print</span>(<span class="s">&quot;\n── 離散程度 ──&quot;</span>)
+q1, q2, q3 = np.percentile(salary, [<span class="n">25</span>, <span class="n">50</span>, <span class="n">75</span>]); iqr = q3 - q1
+<span class="b">print</span>(<span class="s">f&quot;變異數 = {salary.var(ddof=1):.1f}（樣本，ddof=1）  標準差 = {salary.std(ddof=1):.1f}  全距 = {salary.max() - salary.min()}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;Q1 = {q1:.1f}  Q2 = {q2:.1f}  Q3 = {q3:.1f}  IQR = {iqr:.1f}&quot;</span>)
+lo, hi = q1 - <span class="n">1.5</span>*iqr, q3 + <span class="n">1.5</span>*iqr
+<span class="b">print</span>(<span class="s">f&quot;箱形圖鬚界限 = [{lo:.1f}, {hi:.1f}]  → 超出者視為離群值：{salary[(salary &lt; lo) | (salary &gt; hi)]}&quot;</span>)
+
+<span class="b">print</span>(<span class="s">&quot;\n── 分佈形狀 ──&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;偏度 = {stats.skew(salary):.2f}（&gt; 0 正偏，右尾長）   峰度(Pearson) = {stats.kurtosis(salary, fisher=False):.2f}（&gt; 3 高峰厚尾）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;平均 {salary.mean():.1f} &gt; 中位數 {np.median(salary):.1f} → 也印證正偏&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">── 集中趨勢 ──
+算術平均 = 59.8   中位數 = 41.0   眾數 = 40
+去掉主管後的算術平均 = 42.5  ← 一個極端值把平均拉高 17.3 千
+
+年均成長：幾何平均 = 1.0367（正確），算術平均 = 1.0500（高估）
+  驗證：1.1550 = 1.0367^4 = 1.1550
+平均速率：調和平均 = 48.0 km/h（正確），算術平均 = 50.0（高估）
+
+── 離散程度 ──
+變異數 = 3647.8（樣本，ddof=1）  標準差 = 60.4  全距 = 218
+Q1 = 37.5  Q2 = 41.0  Q3 = 49.0  IQR = 11.5
+箱形圖鬚界限 = [20.2, 66.2]  → 超出者視為離群值：[250]
+
+── 分佈形狀 ──
+偏度 = 2.93（&gt; 0 正偏，右尾長）   峰度(Pearson) = 9.76（&gt; 3 高峰厚尾）
+平均 59.8 &gt; 中位數 41.0 → 也印證正偏</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>一位 250 千的主管把算術平均拉高了 17 千，中位數幾乎不動：薪資、房價這類右偏資料要報中位數，這是本節最常考的判斷。</li><li>成長率要用幾何平均（乘起來才對）、同距離的往返速率要用調和平均；算術平均在這兩種情境都會高估。</li><li>箱形圖的鬚不是最大最小值，而是 Q1 − 1.5×IQR 與 Q3 + 1.5×IQR，超出的點才畫成離群點；這裡只有主管那一筆被標出。</li><li>偏度大於 0、峰度遠大於 3，加上平均大於中位數，三個訊號一致指向「正偏、厚尾」。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把主管的 250 改成 60，再看偏度、峰度與鬚界限如何變化；再試試把 ddof 改成 0，比較母體與樣本變異數的差異。</div>
+</article>
+<h3 id="sec32">3.2 機率分佈與資料分佈模型 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec32">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec32">白話版 ↗</a></h3>
+<article class="ex" id="ex-dist">
+<div class="exhead"><span class="num">範例 2</span><h4>常見分佈的期望值與變異數、無記憶性，以及中央極限定理的模擬</h4></div>
+<p class="scn"><b>情境</b>用 scipy 核對六種分佈的 E(X)、Var(X) 公式，驗證指數分佈的無記憶性，再從一個很偏的分佈反覆抽樣，看「樣本平均數」的分佈是不是真的趨近常態，最後用最大似然估計把參數找回來。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>伯努利 E = p；二項 E = np、Var = np(1−p)</span><span>泊松 E = Var = λ</span><span>常態 E = μ、Var = σ²；指數 E = 1/λ、無記憶性</span><span>卡方 E = k、Var = 2k</span><span>中央極限定理：樣本平均數趨近常態</span><span>最大似然估計</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+rng = np.random.default_rng(<span class="n">0</span>)
+n, p, lam, mu, sigma, k = <span class="n">20</span>, <span class="n">0.3</span>, <span class="n">4</span>, <span class="n">10</span>, <span class="n">2</span>, <span class="n">5</span>
+dists = {<span class="s">&quot;伯努利(p=.3)&quot;</span>:      (stats.bernoulli(p),            p,       p*(<span class="n">1</span>-p)),
+         <span class="s">&quot;二項(n=20,p=.3)&quot;</span>:   (stats.binom(n, p),             n*p,     n*p*(<span class="n">1</span>-p)),
+         <span class="s">&quot;泊松(λ=4)&quot;</span>:         (stats.poisson(lam),            lam,     lam),
+         <span class="s">&quot;常態(μ=10,σ=2)&quot;</span>:    (stats.norm(mu, sigma),         mu,      sigma**<span class="n">2</span>),
+         <span class="s">&quot;指數(λ=4)&quot;</span>:         (stats.expon(scale=<span class="n">1</span>/lam),      <span class="n">1</span>/lam,   <span class="n">1</span>/lam**<span class="n">2</span>),
+         <span class="s">&quot;卡方(k=5)&quot;</span>:         (stats.chi2(k),                 k,       <span class="n">2</span>*k)}
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;分佈&#x27;:16s}{&#x27;公式 E&#x27;:&gt;8s}{&#x27;scipy E&#x27;:&gt;9s}{&#x27;公式 Var&#x27;:&gt;9s}{&#x27;scipy Var&#x27;:&gt;10s}&quot;</span>)
+<span class="k">for</span> name, (d, E, V) <span class="k">in</span> dists.items():
+    <span class="b">print</span>(<span class="s">f&quot;{name:16s}{E:8.3f}{d.mean():9.3f}{V:9.3f}{d.var():10.3f}&quot;</span>)
+
+<span class="c"># 指數分佈的無記憶性：P(X &gt; s+t | X &gt; s) = P(X &gt; t)</span>
+ex = stats.expon(scale=<span class="n">1</span>/lam); s_, t_ = <span class="n">0.5</span>, <span class="n">0.3</span>
+<span class="b">print</span>(<span class="s">f&quot;\n無記憶性：P(X&gt;{s_+t_}|X&gt;{s_}) = {ex.sf(s_+t_)/ex.sf(s_):.4f}，P(X&gt;{t_}) = {ex.sf(t_):.4f}  → 相等&quot;</span>)
+
+<span class="c"># 中央極限定理：母體是很偏的指數分佈，但「樣本平均數」的分佈趨近常態</span>
+pop = stats.expon(scale=<span class="n">1</span>/lam)
+<span class="b">print</span>(<span class="s">f&quot;\n母體（指數分佈）偏度 = {pop.stats(moments=&#x27;s&#x27;):.2f}&quot;</span>)
+<span class="k">for</span> size <span class="k">in</span> [<span class="n">2</span>, <span class="n">10</span>, <span class="n">50</span>]:
+    means = pop.rvs(size=(<span class="n">5000</span>, size), random_state=rng).mean(axis=<span class="n">1</span>)   <span class="c"># 5000 次抽樣，每次 size 筆</span>
+    <span class="b">print</span>(<span class="s">f&quot;  每次抽 {size:2d} 筆的樣本平均數：偏度 = {stats.skew(means):5.2f}，標準差 = {means.std():.4f}&quot;</span>
+          <span class="s">f&quot;（理論 σ/√n = {pop.std()/np.sqrt(size):.4f}）&quot;</span>)
+
+<span class="c"># 最大似然估計：從資料反推參數</span>
+data = stats.norm(mu, sigma).rvs(<span class="n">500</span>, random_state=rng)
+m_hat, s_hat = stats.norm.fit(data)
+<span class="b">print</span>(<span class="s">f&quot;\nMLE 估計常態參數：μ̂ = {m_hat:.3f}（真值 {mu}），σ̂ = {s_hat:.3f}（真值 {sigma}）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">分佈                  公式 E  scipy E   公式 Var scipy Var
+伯努利(p=.3)          0.300    0.300    0.210     0.210
+二項(n=20,p=.3)      6.000    6.000    4.200     4.200
+泊松(λ=4)            4.000    4.000    4.000     4.000
+常態(μ=10,σ=2)      10.000   10.000    4.000     4.000
+指數(λ=4)            0.250    0.250    0.062     0.062
+卡方(k=5)            5.000    5.000   10.000    10.000
+
+無記憶性：P(X&gt;0.8|X&gt;0.5) = 0.3012，P(X&gt;0.3) = 0.3012  → 相等
+
+母體（指數分佈）偏度 = 2.00
+  每次抽  2 筆的樣本平均數：偏度 =  1.38，標準差 = 0.1765（理論 σ/√n = 0.1768）
+  每次抽 10 筆的樣本平均數：偏度 =  0.66，標準差 = 0.0791（理論 σ/√n = 0.0791）
+  每次抽 50 筆的樣本平均數：偏度 =  0.28，標準差 = 0.0358（理論 σ/√n = 0.0354）
+
+MLE 估計常態參數：μ̂ = 10.072（真值 10），σ̂ = 2.198（真值 2）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>scipy 算出的期望值與變異數和指引公式完全一致，可以把這張表當公式對照表背：二項 np 與 np(1−p)、泊松兩者都是 λ、指數 1/λ 與 1/λ²、卡方 k 與 2k。</li><li>無記憶性是指數分佈的獨門特性：已經等了 s 單位時間，再等 t 的機率和一開始就等 t 一樣，所以常用來模擬「下一次故障／下一位顧客到達」。</li><li>中央極限定理說的是「樣本平均數」的分佈，不是原始資料：母體偏度 2 的指數分佈，每次抽 50 筆取平均，平均數的偏度就降到接近 0，而且標準差正好是 σ/√n。</li><li>MLE 就是「找出讓這批資料最可能出現的參數」，常態分佈的 MLE 剛好是樣本平均與（分母 n 的）樣本標準差。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 size 改成 500 看偏度是否更接近 0；把母體換成 stats.uniform() 或 stats.chi2(2)，確認 CLT 對任何有限變異數的母體都成立。</div>
+</article>
+<h3 id="sec33">3.3 假設檢定與統計推論 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec33">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec33">白話版 ↗</a></h3>
+<article class="ex" id="ex-ttest">
+<div class="exhead"><span class="num">範例 3</span><h4>信賴區間怎麼讀、t 檢定怎麼做、型一／型二錯誤與檢定力怎麼算</h4></div>
+<p class="scn"><b>情境</b>模擬 1000 次抽樣看「95% 信賴區間」到底有多少次包住真值；比較兩個網頁版本的停留時間做獨立樣本 t 檢定；再用模擬量化 α、β 與檢定力隨樣本數的變化，以及多重比較的 Bonferroni 校正。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>點估計 vs 區間估計：95% CI 的正確解讀</span><span>檢定流程：H₀／H₁ → 選檢定 → α → p 值 → 決策</span><span>p ≤ α 拒絕 H₀；無法拒絕 ≠ 接受</span><span>型一錯誤 = α、型二錯誤 = β、檢定力 = 1 − β</span><span>Bonferroni 校正</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+rng = np.random.default_rng(<span class="n">1</span>)
+mu_true = <span class="n">50</span>
+hit = <span class="n">0</span>
+<span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">1000</span>):
+    x = rng.normal(mu_true, <span class="n">10</span>, <span class="n">30</span>)
+    lo, hi = stats.t.interval(<span class="n">0.95</span>, df=<span class="n">29</span>, loc=x.mean(), scale=stats.sem(x))
+    hit += lo &lt;= mu_true &lt;= hi
+<span class="b">print</span>(<span class="s">f&quot;1000 個 95% 信賴區間中包住真值 μ=50 的比例 = {hit/1000:.1%}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;→ 正確解讀：『用這個方法反覆抽樣，95% 的區間會包住母體平均』，不是『μ 有 95% 機率落在這一個區間』&quot;</span>)
+
+<span class="c"># 獨立樣本 t 檢定：新版網頁 (B) 的停留時間是否比舊版 (A) 長？</span>
+A = rng.normal(<span class="n">120</span>, <span class="n">30</span>, <span class="n">40</span>); B = rng.normal(<span class="n">135</span>, <span class="n">30</span>, <span class="n">40</span>)
+t, p = stats.ttest_ind(A, B, equal_var=<span class="k">False</span>)                  <span class="c"># Welch t 檢定，不假設變異數相等</span>
+alpha = <span class="n">0.05</span>
+<span class="b">print</span>(<span class="s">f&quot;\nA 平均 {A.mean():.1f} 秒，B 平均 {B.mean():.1f} 秒；t = {t:.3f}，p = {p:.4f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;p {&#x27;≤&#x27; if p &lt;= alpha else &#x27;&gt;&#x27;} α={alpha} → {&#x27;拒絕 H₀：兩版停留時間有顯著差異&#x27; if p &lt;= alpha else &#x27;無法拒絕 H₀（不等於證明兩版相同）&#x27;}&quot;</span>)
+
+<span class="c"># 型一錯誤：H₀ 為真（兩組同分佈）時，仍有 α 的機率誤判</span>
+sims = <span class="n">4000</span>
+false_pos = np.mean([stats.ttest_ind(rng.normal(<span class="n">120</span>, <span class="n">30</span>, <span class="n">40</span>), rng.normal(<span class="n">120</span>, <span class="n">30</span>, <span class="n">40</span>)).pvalue &lt;= alpha <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(sims)])
+<span class="b">print</span>(<span class="s">f&quot;\nH₀ 為真時誤拒的比例（型一錯誤率）= {false_pos:.3f} ≈ α&quot;</span>)
+<span class="c"># 檢定力：真差距 15 秒時，不同樣本數抓得到的機率 = 1 − β</span>
+<span class="b">print</span>(<span class="s">&quot;真實差距 15 秒時的檢定力（1 − β）：&quot;</span>)
+<span class="k">for</span> n <span class="k">in</span> [<span class="n">10</span>, <span class="n">20</span>, <span class="n">40</span>, <span class="n">80</span>]:
+    power = np.mean([stats.ttest_ind(rng.normal(<span class="n">120</span>, <span class="n">30</span>, n), rng.normal(<span class="n">135</span>, <span class="n">30</span>, n)).pvalue &lt;= alpha <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">1500</span>)])
+    <span class="b">print</span>(<span class="s">f&quot;  每組 n={n:3d} → 檢定力 = {power:.2f}，型二錯誤 β = {1-power:.2f}&quot;</span>)
+
+<span class="c"># 多重比較：同時做 20 個檢定，至少一個假陽性的機率</span>
+m = <span class="n">20</span>
+<span class="b">print</span>(<span class="s">f&quot;\n同時做 {m} 個獨立檢定、α=0.05：至少一次假陽性的機率 = {1 - (1-alpha)**m:.2f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;Bonferroni 校正：每個檢定改用 α/m = {alpha/m:.4f}，整體錯誤率壓回 ≈ {1 - (1-alpha/m)**m:.3f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">1000 個 95% 信賴區間中包住真值 μ=50 的比例 = 96.3%
+→ 正確解讀：『用這個方法反覆抽樣，95% 的區間會包住母體平均』，不是『μ 有 95% 機率落在這一個區間』
+
+A 平均 119.9 秒，B 平均 133.6 秒；t = -1.723，p = 0.0888
+p &gt; α=0.05 → 無法拒絕 H₀（不等於證明兩版相同）
+
+H₀ 為真時誤拒的比例（型一錯誤率）= 0.048 ≈ α
+真實差距 15 秒時的檢定力（1 − β）：
+  每組 n= 10 → 檢定力 = 0.17，型二錯誤 β = 0.83
+  每組 n= 20 → 檢定力 = 0.33，型二錯誤 β = 0.67
+  每組 n= 40 → 檢定力 = 0.62，型二錯誤 β = 0.38
+  每組 n= 80 → 檢定力 = 0.88，型二錯誤 β = 0.12
+
+同時做 20 個獨立檢定、α=0.05：至少一次假陽性的機率 = 0.64
+Bonferroni 校正：每個檢定改用 α/m = 0.0025，整體錯誤率壓回 ≈ 0.049</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>1000 個區間裡約 95% 包住真值：信賴水準描述的是「方法的長期命中率」，單一區間要嘛包住要嘛沒包住，沒有機率可言。</li><li>t 檢定的 p 值是「若 H₀ 為真，看到這麼極端（或更極端）資料的機率」，p ≤ α 才拒絕；p &gt; α 只能說「證據不足」，不能說兩版一樣。</li><li>模擬出的誤拒率正好約等於 α：顯著水準本身就是我們願意承擔的型一錯誤機率。檢定力隨樣本數上升，每組 10 人時連真差距都抓不太到（β 很大），這就是為什麼實驗前要做檢定力分析估樣本數。</li><li>做 20 個檢定至少中一個假陽性的機率高達六成多，Bonferroni 把每個檢定的 α 除以檢定數，是最簡單但也最保守的校正。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 B 的平均改成 122（真差距只有 2 秒），看 n 要多大 p 才會穩定小於 0.05；再把 alpha 改成 0.01，觀察檢定力如何下降。</div>
+</article>
+<article class="ex" id="ex-tests">
+<div class="exhead"><span class="num">範例 4</span><h4>檢定方法選用：成對 t、ANOVA + Tukey、卡方 + Cramér&#x27;s V、Pearson vs Spearman、Mann-Whitney</h4></div>
+<p class="scn"><b>情境</b>五個常見情境各配一種檢定：訓練前後成績（成對）、三家門市營收（多組均值）、性別與偏好（兩個類別變數）、廣告與銷售的單調非線性關係（相關）、不符常態的小樣本（非參數）。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>單樣本／獨立樣本／成對樣本 t 檢定</span><span>單因子 ANOVA（事後 Tukey HSD）</span><span>卡方檢定與 Cramér&#x27;s V</span><span>Pearson（線性）vs Spearman（單調）</span><span>非參數：Mann-Whitney U、Kruskal-Wallis</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+rng = np.random.default_rng(<span class="n">7</span>)
+<span class="c"># 1) 成對樣本 t：同一群人訓練前後（配對，消除個人差異）</span>
+before = rng.normal(<span class="n">70</span>, <span class="n">10</span>, <span class="n">25</span>); after = before + rng.normal(<span class="n">4</span>, <span class="n">6</span>, <span class="n">25</span>)
+<span class="b">print</span>(<span class="s">f&quot;成對 t：前 {before.mean():.1f} → 後 {after.mean():.1f}，p = {stats.ttest_rel(before, after).pvalue:.4f}&quot;</span>
+      <span class="s">f&quot;（若誤用獨立樣本 t：p = {stats.ttest_ind(before, after).pvalue:.4f}，較不敏感）&quot;</span>)
+
+<span class="c"># 2) 單因子 ANOVA：三家門市的日營收是否有差異？事後用 Tukey HSD 找出哪兩家不同</span>
+s1, s2, s3 = rng.normal(<span class="n">100</span>, <span class="n">15</span>, <span class="n">30</span>), rng.normal(<span class="n">100</span>, <span class="n">15</span>, <span class="n">30</span>), rng.normal(<span class="n">112</span>, <span class="n">15</span>, <span class="n">30</span>)
+F, p = stats.f_oneway(s1, s2, s3)
+<span class="b">print</span>(<span class="s">f&quot;\nANOVA：F = {F:.2f}，p = {p:.4f} → 至少有一家不同&quot;</span>)
+tk = stats.tukey_hsd(s1, s2, s3)
+<span class="k">for</span> i, j <span class="k">in</span> [(<span class="n">0</span>, <span class="n">1</span>), (<span class="n">0</span>, <span class="n">2</span>), (<span class="n">1</span>, <span class="n">2</span>)]:
+    <span class="b">print</span>(<span class="s">f&quot;  Tukey 門市{i+1} vs 門市{j+1}：p = {tk.pvalue[i, j]:.4f}{&#x27;  ← 顯著&#x27; if tk.pvalue[i, j] &lt; .05 else &#x27;&#x27;}&quot;</span>)
+
+<span class="c"># 3) 卡方獨立性檢定：性別 × 偏好口味（列聯表），效果量 Cramér&#x27;s V</span>
+table = np.array([[<span class="n">40</span>, <span class="n">30</span>, <span class="n">10</span>],    <span class="c"># 男：A/B/C 口味</span>
+                  [<span class="n">20</span>, <span class="n">35</span>, <span class="n">25</span>]])   <span class="c"># 女</span>
+chi2, p, dof, _ = stats.chi2_contingency(table)
+n = table.<span class="b">sum</span>(); V = np.sqrt(chi2 / (n * (<span class="b">min</span>(table.shape) - <span class="n">1</span>)))
+<span class="b">print</span>(<span class="s">f&quot;\n卡方：χ² = {chi2:.2f}，df = {dof}，p = {p:.4f}；Cramér&#x27;s V = {V:.3f}（0 無關 ～ 1 完全相關）&quot;</span>)
+
+<span class="c"># 4) Pearson vs Spearman：廣告費與銷售量是單調但非線性（報酬遞減）</span>
+ad = np.linspace(<span class="n">1</span>, <span class="n">50</span>, <span class="n">40</span>); sales = <span class="n">100</span> * np.log(ad) + rng.normal(<span class="n">0</span>, <span class="n">8</span>, <span class="n">40</span>)
+<span class="b">print</span>(<span class="s">f&quot;\n報酬遞減的關係：Pearson r = {stats.pearsonr(ad, sales)[0]:.3f}，Spearman ρ = {stats.spearmanr(ad, sales)[0]:.3f}&quot;</span>)
+sales_out = sales.copy(); sales_out[-<span class="n">1</span>] = <span class="n">0</span>    <span class="c"># 一個離群值</span>
+<span class="b">print</span>(<span class="s">f&quot;加入一個離群值後：Pearson r = {stats.pearsonr(ad, sales_out)[0]:.3f}，Spearman ρ = {stats.spearmanr(ad, sales_out)[0]:.3f}&quot;</span>)
+
+<span class="c"># 5) 非參數：小樣本、嚴重偏態（例如客服處理時間）→ Mann-Whitney U</span>
+g1 = rng.exponential(<span class="n">10</span>, <span class="n">15</span>); g2 = rng.exponential(<span class="n">18</span>, <span class="n">15</span>)
+<span class="b">print</span>(<span class="s">f&quot;\n偏態小樣本：Shapiro p = {stats.shapiro(g1).pvalue:.3f}（不像常態）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;  Mann-Whitney U p = {stats.mannwhitneyu(g1, g2).pvalue:.4f}；t 檢定 p = {stats.ttest_ind(g1, g2).pvalue:.4f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;  三組以上的非參數版本 Kruskal-Wallis p = {stats.kruskal(g1, g2, rng.exponential(10, 15)).pvalue:.4f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">成對 t：前 66.3 → 後 69.0，p = 0.0319（若誤用獨立樣本 t：p = 0.2858，較不敏感）
+
+ANOVA：F = 5.17，p = 0.0076 → 至少有一家不同
+  Tukey 門市1 vs 門市2：p = 0.8596
+  Tukey 門市1 vs 門市3：p = 0.0392  ← 顯著
+  Tukey 門市2 vs 門市3：p = 0.0095  ← 顯著
+
+卡方：χ² = 13.48，df = 2，p = 0.0012；Cramér&#x27;s V = 0.290（0 無關 ～ 1 完全相關）
+
+報酬遞減的關係：Pearson r = 0.907，Spearman ρ = 0.991
+加入一個離群值後：Pearson r = 0.650，Spearman ρ = 0.846
+
+偏態小樣本：Shapiro p = 0.001（不像常態）
+  Mann-Whitney U p = 0.0014；t 檢定 p = 0.0019
+  三組以上的非參數版本 Kruskal-Wallis p = 0.0026</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>同一群人前後測要用成對 t：它把每個人的「前後差」拿來檢定，消掉個人差異，所以比誤用獨立樣本 t 敏感得多。</li><li>ANOVA 只告訴你「至少有一組不同」，哪兩組不同要靠事後檢定（Tukey HSD）；直接做三次 t 檢定會膨脹型一錯誤。</li><li>卡方檢定的 p 值會隨樣本數變小，所以要搭配效果量 Cramér&#x27;s V 判斷關聯「有多強」；Spearman 看的是排序的單調關係，對非線性與離群值都比 Pearson 穩健。</li><li>資料嚴重偏態又只有十幾筆時，t 檢定的常態假設站不住，Mann-Whitney U（兩組）與 Kruskal-Wallis（多組）是對應的非參數替代方案。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把門市 3 的平均改回 100，看 ANOVA 與 Tukey 的 p 值；把列聯表的數字全部乘 10，觀察卡方 p 值變小但 Cramér&#x27;s V 不變。</div>
+</article>
+<h2 class="chap" id="chap4">第四章 大數據處理技術</h2>
+<p class="chlead">資料工程動手做：解析各種來源、量化資料品質、交易與索引、轉換與防洩漏、MapReduce 與資料管線。</p>
+<h3 id="sec41">4.1 數據收集與清理 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec41">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec41">白話版 ↗</a></h3>
+<article class="ex" id="ex-ingest">
+<div class="exhead"><span class="num">範例 5</span><h4>三種來源的收集與結構化：系統日誌、半結構化 JSON、感測器串流</h4></div>
+<p class="scn"><b>情境</b>把 Web 伺服器日誌用正規表達式解析成表格、把巢狀的 API 回傳 JSON 展平、再把感測器逐筆到達的串流資料用「1 分鐘翻滾視窗」即時聚合。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>系統日誌：Logstash／Flume 做的事</span><span>API 回傳的半結構化 JSON</span><span>感測器／IoT 高頻串流（MQTT、Kafka）</span><span>結構化 vs 半結構化 vs 非結構化</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> re, json, pandas <span class="k">as</span> pd
+<span class="k">from</span> collections <span class="k">import</span> defaultdict
+<span class="c"># ── 1) 系統日誌（非結構化文字）→ 正規表達式 → 結構化表格 ──</span>
+logs = <span class="s">&quot;&quot;&quot;192.168.1.10 - - [25/Oct/2026:10:15:32 +0800] &quot;GET /api/items HTTP/1.1&quot; 200 532
+192.168.1.11 - - [25/Oct/2026:10:15:33 +0800] &quot;POST /api/order HTTP/1.1&quot; 201 88
+192.168.1.10 - - [25/Oct/2026:10:16:01 +0800] &quot;GET /api/items/9 HTTP/1.1&quot; 404 0
+10.0.0.7 - - [25/Oct/2026:10:16:05 +0800] &quot;GET /api/items HTTP/1.1&quot; 500 12&quot;&quot;&quot;</span>
+pat = re.compile(<span class="s">r&#x27;(?P&lt;ip&gt;\S+) .*?\[(?P&lt;ts&gt;[^\]]+)\] &quot;(?P&lt;method&gt;\w+) (?P&lt;path&gt;\S+)[^&quot;]*&quot; (?P&lt;status&gt;\d{3}) (?P&lt;bytes&gt;\d+)&#x27;</span>)
+df = pd.DataFrame([m.groupdict() <span class="k">for</span> m <span class="k">in</span> <span class="b">map</span>(pat.match, logs.splitlines())])
+df[<span class="s">&quot;ts&quot;</span>] = pd.to_datetime(df.ts, format=<span class="s">&quot;%d/%b/%Y:%H:%M:%S %z&quot;</span>)
+df[[<span class="s">&quot;status&quot;</span>, <span class="s">&quot;bytes&quot;</span>]] = df[[<span class="s">&quot;status&quot;</span>, <span class="s">&quot;bytes&quot;</span>]].astype(int)
+<span class="b">print</span>(df[[<span class="s">&quot;ip&quot;</span>, <span class="s">&quot;ts&quot;</span>, <span class="s">&quot;method&quot;</span>, <span class="s">&quot;path&quot;</span>, <span class="s">&quot;status&quot;</span>]].to_string(index=<span class="k">False</span>))
+<span class="b">print</span>(<span class="s">&quot;錯誤率（status ≥ 400）=&quot;</span>, <span class="s">f&quot;{(df.status &gt;= 400).mean():.0%}&quot;</span>, <span class="s">&quot;；各 IP 請求數：&quot;</span>, df.ip.value_counts().to_dict())
+
+<span class="c"># ── 2) 半結構化 JSON（API 回傳）→ json_normalize 展平 ──</span>
+payload = json.loads(<span class="s">&quot;&quot;&quot;[{&quot;id&quot;: 1, &quot;user&quot;: {&quot;name&quot;: &quot;Ann&quot;, &quot;tier&quot;: &quot;gold&quot;}, &quot;items&quot;: [{&quot;sku&quot;: &quot;A1&quot;, &quot;qty&quot;: 2}, {&quot;sku&quot;: &quot;B2&quot;, &quot;qty&quot;: 1}]},
+                          {&quot;id&quot;: 2, &quot;user&quot;: {&quot;name&quot;: &quot;Bob&quot;, &quot;tier&quot;: &quot;silver&quot;}, &quot;items&quot;: [{&quot;sku&quot;: &quot;A1&quot;, &quot;qty&quot;: 5}]}]&quot;&quot;&quot;</span>)
+flat = pd.json_normalize(payload, record_path=<span class="s">&quot;items&quot;</span>, meta=[<span class="s">&quot;id&quot;</span>, [<span class="s">&quot;user&quot;</span>, <span class="s">&quot;name&quot;</span>], [<span class="s">&quot;user&quot;</span>, <span class="s">&quot;tier&quot;</span>]])
+<span class="b">print</span>(<span class="s">&quot;\n展平後（一列一個品項）：\n&quot;</span>, flat.to_string(index=<span class="k">False</span>))
+
+<span class="c"># ── 3) 感測器串流：逐筆到達，用 1 分鐘翻滾視窗 (tumbling window) 即時聚合 ──</span>
+stream = [(<span class="s">&quot;2026-10-25 10:00:05&quot;</span>, <span class="n">21.3</span>), (<span class="s">&quot;2026-10-25 10:00:35&quot;</span>, <span class="n">21.8</span>), (<span class="s">&quot;2026-10-25 10:01:02&quot;</span>, <span class="n">22.9</span>),
+          (<span class="s">&quot;2026-10-25 10:01:40&quot;</span>, <span class="n">23.4</span>), (<span class="s">&quot;2026-10-25 10:01:55&quot;</span>, <span class="n">31.0</span>), (<span class="s">&quot;2026-10-25 10:02:10&quot;</span>, <span class="n">22.1</span>)]
+window = defaultdict(list)
+<span class="k">for</span> ts, temp <span class="k">in</span> stream:                              <span class="c"># 不存整批資料，只維護每個視窗的狀態</span>
+    window[ts[:<span class="n">16</span>]].append(temp)                     <span class="c"># 以「到分」為視窗鍵</span>
+    <span class="k">if</span> temp &gt; <span class="n">30</span>: <span class="b">print</span>(<span class="s">f&quot;⚠ 即時告警 {ts} 溫度 {temp}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;\n每分鐘聚合：&quot;</span>)
+<span class="k">for</span> k, v <span class="k">in</span> window.items():
+    <span class="b">print</span>(<span class="s">f&quot;  {k}  筆數={len(v)}  平均={sum(v)/len(v):.2f}  最大={max(v)}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">          ip                        ts method         path  status
+192.168.1.10 2026-10-25 10:15:32+08:00    GET   /api/items     200
+192.168.1.11 2026-10-25 10:15:33+08:00   POST   /api/order     201
+192.168.1.10 2026-10-25 10:16:01+08:00    GET /api/items/9     404
+    10.0.0.7 2026-10-25 10:16:05+08:00    GET   /api/items     500
+錯誤率（status ≥ 400）= 50% ；各 IP 請求數： {&#x27;192.168.1.10&#x27;: 2, &#x27;192.168.1.11&#x27;: 1, &#x27;10.0.0.7&#x27;: 1}
+
+展平後（一列一個品項）：
+ sku  qty id user.name user.tier
+ A1    2  1       Ann      gold
+ B2    1  1       Ann      gold
+ A1    5  2       Bob    silver
+⚠ 即時告警 2026-10-25 10:01:55 溫度 31.0
+
+每分鐘聚合：
+  2026-10-25 10:00  筆數=2  平均=21.55  最大=21.8
+  2026-10-25 10:01  筆數=3  平均=25.77  最大=31.0
+  2026-10-25 10:02  筆數=1  平均=22.10  最大=22.1</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>日誌是非結構化文字，用一條正規表達式切成欄位後就能算錯誤率、看哪個 IP 在狂打：這就是 Logstash、Flume、NiFi 這類工具的核心動作。</li><li>API 回傳的 JSON 是半結構化：有欄位名但巢狀又不等長；json_normalize 把「一筆訂單多個品項」展平成一列一品項，之後才能 groupby、join。</li><li>串流處理不等資料收齊，而是逐筆到達就更新視窗狀態並即時告警；這裡的翻滾視窗就是 Kafka Streams、Flink 的基本概念，差別只在它們要處理多機與亂序。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把日誌格式改成少一個欄位（例如沒有 bytes），看正規表達式會怎麼失敗、該怎麼讓它容錯；把視窗改成 30 秒（ts[:18] 不行，想想要怎麼切）。</div>
+</article>
+<article class="ex" id="ex-quality">
+<div class="exhead"><span class="num">範例 6</span><h4>資料品質報告：缺失率、唯一值比率、一致性、異常值比率、邏輯錯誤與重複值</h4></div>
+<p class="scn"><b>情境</b>一張 300 筆的病患體溫／年齡／城市資料表，裡面藏了缺值、「臺北／台北」不一致、體溫 43°C 的邏輯錯誤、負年齡與重複列。寫一個函數自動產出品質指標表。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>缺失值：MCAR／MAR／MNAR</span><span>異常值：IQR、Z 分數、孤立森林</span><span>一致性錯誤（臺北／台北）</span><span>邏輯錯誤（體溫 43°C）</span><span>品質指標：缺失率、唯一值比率、一致性比率、異常值比率、完整性比率</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> IsolationForest
+rng = np.random.default_rng(<span class="n">3</span>)
+n = <span class="n">300</span>
+df = pd.DataFrame({<span class="s">&quot;pid&quot;</span>: np.arange(<span class="n">1</span>, n + <span class="n">1</span>),
+                   <span class="s">&quot;age&quot;</span>: rng.integers(<span class="n">18</span>, <span class="n">85</span>, n).astype(float),
+                   <span class="s">&quot;temp&quot;</span>: rng.normal(<span class="n">36.8</span>, <span class="n">0.4</span>, n).<span class="b">round</span>(<span class="n">1</span>),
+                   <span class="s">&quot;city&quot;</span>: rng.choice([<span class="s">&quot;臺北&quot;</span>, <span class="s">&quot;台中&quot;</span>, <span class="s">&quot;高雄&quot;</span>], n)})
+df.loc[rng.choice(n, <span class="n">24</span>, replace=<span class="k">False</span>), <span class="s">&quot;temp&quot;</span>] = np.nan           <span class="c"># 缺值</span>
+df.loc[rng.choice(n, <span class="n">12</span>, replace=<span class="k">False</span>), <span class="s">&quot;city&quot;</span>] = <span class="s">&quot;台北&quot;</span>             <span class="c"># 不一致寫法</span>
+df.loc[[<span class="n">5</span>, <span class="n">17</span>], <span class="s">&quot;temp&quot;</span>] = [<span class="n">43.0</span>, <span class="n">29.5</span>]                                 <span class="c"># 邏輯錯誤</span>
+df.loc[[<span class="n">8</span>], <span class="s">&quot;age&quot;</span>] = -<span class="n">3</span>                                                 <span class="c"># 邏輯錯誤</span>
+df = pd.concat([df, df.iloc[[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]]], ignore_index=<span class="k">True</span>)            <span class="c"># 重複列</span>
+
+<span class="k">def</span> quality_report(df, rules):
+    rows = []
+    <span class="k">for</span> col <span class="k">in</span> df.columns:
+        s = df[col]
+        r = {<span class="s">&quot;欄位&quot;</span>: col, <span class="s">&quot;缺失率&quot;</span>: <span class="s">f&quot;{s.isna().mean():.1%}&quot;</span>, <span class="s">&quot;唯一值比率&quot;</span>: <span class="s">f&quot;{s.nunique() / len(s):.1%}&quot;</span>}
+        <span class="k">if</span> pd.api.types.is_numeric_dtype(s):
+            x = s.dropna(); q1, q3 = x.quantile([<span class="n">.25</span>, <span class="n">.75</span>]); iqr = q3 - q1
+            r[<span class="s">&quot;IQR異常率&quot;</span>] = <span class="s">f&quot;{((x &lt; q1 - 1.5*iqr) | (x &gt; q3 + 1.5*iqr)).mean():.1%}&quot;</span>
+            r[<span class="s">&quot;Z&gt;3異常率&quot;</span>] = <span class="s">f&quot;{(((x - x.mean()) / x.std()).abs() &gt; 3).mean():.1%}&quot;</span>
+        <span class="k">if</span> col <span class="k">in</span> rules:
+            lo, hi = rules[col]; bad = ((s &lt; lo) | (s &gt; hi)).<span class="b">sum</span>()
+            r[<span class="s">&quot;邏輯錯誤筆數&quot;</span>] = <span class="b">int</span>(bad)
+        rows.append(r)
+    <span class="k">return</span> pd.DataFrame(rows).fillna(<span class="s">&quot;&quot;</span>)
+
+rules = {<span class="s">&quot;age&quot;</span>: (<span class="n">0</span>, <span class="n">120</span>), <span class="s">&quot;temp&quot;</span>: (<span class="n">34.0</span>, <span class="n">42.0</span>)}          <span class="c"># 合理範圍</span>
+<span class="b">print</span>(quality_report(df, rules).to_string(index=<span class="k">False</span>))
+<span class="b">print</span>(<span class="s">f&quot;\n重複列數 = {df.duplicated().sum()}；city 寫法：{df.city.value_counts().to_dict()}&quot;</span>)
+norm = {<span class="s">&quot;台北&quot;</span>: <span class="s">&quot;臺北&quot;</span>}
+consistent = df.city.isin([<span class="s">&quot;臺北&quot;</span>, <span class="s">&quot;台中&quot;</span>, <span class="s">&quot;高雄&quot;</span>]).mean()
+<span class="b">print</span>(<span class="s">f&quot;一致性比率 = {consistent:.1%} → 正規化後 = {df.city.replace(norm).isin([&#x27;臺北&#x27;, &#x27;台中&#x27;, &#x27;高雄&#x27;]).mean():.0%}&quot;</span>)
+iso = IsolationForest(contamination=<span class="n">0.02</span>, random_state=<span class="n">0</span>).fit_predict(df[[<span class="s">&quot;age&quot;</span>, <span class="s">&quot;temp&quot;</span>]].fillna(df[[<span class="s">&quot;age&quot;</span>, <span class="s">&quot;temp&quot;</span>]].median()))
+<span class="b">print</span>(<span class="s">f&quot;孤立森林標為異常的筆數 = {(iso == -1).sum()}，其中含體溫 43°C 那筆：{iso[df.index[df.temp == 43.0][0]] == -1}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;完整性比率（無任何缺值的列）= {df.dropna().shape[0] / len(df):.1%}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">  欄位  缺失率 唯一值比率 IQR異常率 Z&gt;3異常率 邏輯錯誤筆數
+ pid 0.0% 99.0%   0.0%   0.0%       
+ age 0.0% 22.1%   0.0%   0.0%    1.0
+temp 7.9%  7.9%   1.8%   0.7%    2.0
+city 0.0%  1.3%                     
+
+重複列數 = 3；city 寫法：{&#x27;臺北&#x27;: 104, &#x27;台中&#x27;: 96, &#x27;高雄&#x27;: 91, &#x27;台北&#x27;: 12}
+一致性比率 = 96.0% → 正規化後 = 100%
+孤立森林標為異常的筆數 = 7，其中含體溫 43°C 那筆：True
+完整性比率（無任何缺值的列）= 92.1%</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>品質報告把指引列的五個指標一次算出來：缺失率、唯一值比率（pid 應接近 100%，city 應很低）、一致性比率、異常值比率、完整性比率，可以直接當資料驗收的檢查表。</li><li>統計方法（IQR、Z 分數、孤立森林）只能找「數值上奇怪」的點，體溫 43°C 與年齡 −3 是「邏輯上不可能」的值，要靠業務規則（合理範圍）才能確定是錯誤，兩者要並用。</li><li>「臺北／台北」是一致性錯誤，統計上完全看不出來，只能靠值域清單或正規化對照表修正；重複列用 duplicated() 偵測，但要先決定「哪些欄位相同才算重複」。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把缺值改成只出現在 age &gt; 70 的人身上（MAR：缺失與年齡有關），再看「直接刪除缺失列」會不會讓年齡分佈偏掉。</div>
+</article>
+<h3 id="sec42">4.2 數據儲存與管理 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec42">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec42">白話版 ↗</a></h3>
+<article class="ex" id="ex-storage">
+<div class="exhead"><span class="num">範例 7</span><h4>RDBMS 的 ACID 交易與索引加速、Schema-on-Read 的資料湖讀法</h4></div>
+<p class="scn"><b>情境</b>用 Python 內建的 SQLite 示範：轉帳交易失敗時 rollback 保證一致性、加索引前後的查詢計畫差異；再把一堆欄位不一致的 JSON 檔當成「資料湖」，讀取時才決定結構。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>結構化 → RDBMS（ACID）</span><span>ACID：原子性、一致性、隔離性、持久性</span><span>索引、分區、欄位裁剪加速查詢</span><span>資料湖：Schema-on-Read</span><span>資料倉儲：Schema-on-Write</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> sqlite3, json, time, pandas <span class="k">as</span> pd
+con = sqlite3.connect(<span class="s">&quot;:memory:&quot;</span>)
+cur = con.cursor()
+cur.execute(<span class="s">&quot;CREATE TABLE account (id INTEGER PRIMARY KEY, name TEXT, balance INTEGER CHECK(balance &gt;= 0))&quot;</span>)
+cur.executemany(<span class="s">&quot;INSERT INTO account VALUES (?, ?, ?)&quot;</span>, [(<span class="n">1</span>, <span class="s">&quot;Ann&quot;</span>, <span class="n">1000</span>), (<span class="n">2</span>, <span class="s">&quot;Bob&quot;</span>, <span class="n">200</span>)])
+con.commit()
+
+<span class="k">def</span> transfer(src, dst, amt):
+    <span class="k">try</span>:
+        <span class="k">with</span> con:                                       <span class="c"># 交易：全部成功才 commit，否則自動 rollback（原子性）</span>
+            con.execute(<span class="s">&quot;UPDATE account SET balance = balance - ? WHERE id = ?&quot;</span>, (amt, src))
+            con.execute(<span class="s">&quot;UPDATE account SET balance = balance + ? WHERE id = ?&quot;</span>, (amt, dst))
+        <span class="k">return</span> <span class="s">&quot;成功&quot;</span>
+    <span class="k">except</span> sqlite3.IntegrityError <span class="k">as</span> e:
+        <span class="k">return</span> <span class="s">f&quot;失敗並 rollback（{e}）&quot;</span>
+<span class="b">print</span>(<span class="s">&quot;轉 300 Ann→Bob：&quot;</span>, transfer(<span class="n">1</span>, <span class="n">2</span>, <span class="n">300</span>), <span class="s">&quot;| 餘額&quot;</span>, cur.execute(<span class="s">&quot;SELECT name, balance FROM account&quot;</span>).fetchall())
+<span class="b">print</span>(<span class="s">&quot;轉 900 Bob→Ann：&quot;</span>, transfer(<span class="n">2</span>, <span class="n">1</span>, <span class="n">900</span>), <span class="s">&quot;| 餘額&quot;</span>, cur.execute(<span class="s">&quot;SELECT name, balance FROM account&quot;</span>).fetchall())
+<span class="b">print</span>(<span class="s">&quot;→ 第二筆雖然 Ann 的加錢敘述可以執行，但 Bob 扣款違反 CHECK，整筆交易回到原狀（一致性）&quot;</span>)
+
+<span class="c"># ── 索引：50 萬筆訂單，依 customer_id 查詢 ──</span>
+cur.execute(<span class="s">&quot;CREATE TABLE orders (id INTEGER, customer_id INTEGER, amount REAL)&quot;</span>)
+cur.executemany(<span class="s">&quot;INSERT INTO orders VALUES (?, ?, ?)&quot;</span>, ((i, i % <span class="n">50000</span>, i * <span class="n">0.1</span>) <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(<span class="n">500000</span>)))
+q = <span class="s">&quot;SELECT COUNT(*), SUM(amount) FROM orders WHERE customer_id = 12345&quot;</span>
+t = time.perf_counter(); cur.execute(q).fetchone(); t_scan = time.perf_counter() - t
+<span class="b">print</span>(<span class="s">&quot;\n無索引計畫：&quot;</span>, cur.execute(<span class="s">&quot;EXPLAIN QUERY PLAN &quot;</span> + q).fetchall()[<span class="n">0</span>][-<span class="n">1</span>])
+cur.execute(<span class="s">&quot;CREATE INDEX idx_cust ON orders(customer_id)&quot;</span>)
+t = time.perf_counter(); cur.execute(q).fetchone(); t_idx = time.perf_counter() - t
+<span class="b">print</span>(<span class="s">&quot;有索引計畫：&quot;</span>, cur.execute(<span class="s">&quot;EXPLAIN QUERY PLAN &quot;</span> + q).fetchall()[<span class="n">0</span>][-<span class="n">1</span>])
+<span class="b">print</span>(<span class="s">f&quot;查詢時間：全表掃描 {t_scan*1000:.1f} ms → 索引 {t_idx*1000:.2f} ms（約 {t_scan/t_idx:.0f} 倍）&quot;</span>)
+
+<span class="c"># ── 資料湖 Schema-on-Read：原始 JSON 照存，讀的時候才決定結構 ──</span>
+lake = [<span class="s">&#x27;{&quot;user&quot;: &quot;u1&quot;, &quot;event&quot;: &quot;click&quot;, &quot;ts&quot;: &quot;2026-10-01&quot;}&#x27;</span>,
+        <span class="s">&#x27;{&quot;user&quot;: &quot;u2&quot;, &quot;event&quot;: &quot;buy&quot;, &quot;ts&quot;: &quot;2026-10-01&quot;, &quot;amount&quot;: 300}&#x27;</span>,
+        <span class="s">&#x27;{&quot;user&quot;: &quot;u1&quot;, &quot;event&quot;: &quot;buy&quot;, &quot;ts&quot;: &quot;2026-10-02&quot;, &quot;amount&quot;: 120, &quot;coupon&quot;: &quot;X9&quot;}&#x27;</span>]
+df = pd.DataFrame([json.loads(l) <span class="k">for</span> l <span class="k">in</span> lake])
+<span class="b">print</span>(<span class="s">&quot;\n資料湖讀出（欄位不齊也能讀，缺的補 NaN）：\n&quot;</span>, df.to_string(index=<span class="k">False</span>))
+<span class="b">print</span>(<span class="s">&quot;只取需要的欄位（欄位裁剪）→ 購買總額 =&quot;</span>, df.amount.<span class="b">sum</span>())</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">轉 300 Ann→Bob： 成功 | 餘額 [(&#x27;Ann&#x27;, 700), (&#x27;Bob&#x27;, 500)]
+轉 900 Bob→Ann： 失敗並 rollback（CHECK constraint failed: balance &gt;= 0） | 餘額 [(&#x27;Ann&#x27;, 700), (&#x27;Bob&#x27;, 500)]
+→ 第二筆雖然 Ann 的加錢敘述可以執行，但 Bob 扣款違反 CHECK，整筆交易回到原狀（一致性）
+
+無索引計畫： SCAN orders
+有索引計畫： SEARCH orders USING INDEX idx_cust (customer_id=?)
+查詢時間：全表掃描 10.0 ms → 索引 0.04 ms（約 281 倍）
+
+資料湖讀出（欄位不齊也能讀，缺的補 NaN）：
+ user event         ts  amount coupon
+  u1 click 2026-10-01     NaN    NaN
+  u2   buy 2026-10-01   300.0    NaN
+  u1   buy 2026-10-02   120.0     X9
+只取需要的欄位（欄位裁剪）→ 購買總額 = 420.0</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>第二筆轉帳的第一條 UPDATE 其實成功了，但第二條違反 CHECK 約束，整筆交易被 rollback、餘額回到原狀：這就是原子性（全有或全無）與一致性（約束永遠成立）。</li><li>沒有索引時 SQLite 必須掃完 50 萬列（SCAN），建索引後變成 SEARCH USING INDEX，快了幾十到幾百倍；索引、分區、列式格式（Parquet）的目的都是「少讀資料」。</li><li>資料湖把原始 JSON 照存，三筆的欄位都不一樣也沒關係，讀取時 pandas 自動對齊、缺的補 NaN，這就是 Schema-on-Read；傳統倉儲則是寫入前就要符合表結構（Schema-on-Write）。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 CHECK(balance &gt;= 0) 拿掉再轉 900，看 Bob 的餘額變成負數——約束就是「一致性」的具體實作；再試試對 amount 做範圍查詢，看索引還有沒有用。</div>
+</article>
+<article class="ex" id="ex-access">
+<div class="exhead"><span class="num">範例 8</span><h4>資料治理最小實作：RBAC 權限檢查、稽核紀錄與資料血緣</h4></div>
+<p class="scn"><b>情境</b>用幾十行 Python 做一個存取控制層：依角色決定能不能讀敏感欄位、每次存取都留稽核紀錄，並記錄每個衍生資料表是由哪些來源經過哪些步驟產生（血緣）。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>RBAC／ABAC 存取控管</span><span>最小權限原則</span><span>稽核紀錄（GDPR、CCPA 要求可追溯）</span><span>元資料、Data Catalog、Data Lineage</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> datetime <span class="k">as</span> dt, pandas <span class="k">as</span> pd
+ROLES = {<span class="s">&quot;analyst&quot;</span>:  {<span class="s">&quot;read&quot;</span>: {<span class="s">&quot;orders&quot;</span>, <span class="s">&quot;products&quot;</span>}},                       <span class="c"># 分析師：看不到個資</span>
+         <span class="s">&quot;cs_agent&quot;</span>: {<span class="s">&quot;read&quot;</span>: {<span class="s">&quot;orders&quot;</span>, <span class="s">&quot;customers&quot;</span>}},                      <span class="c"># 客服：可看客戶但不能看成本</span>
+         <span class="s">&quot;admin&quot;</span>:    {<span class="s">&quot;read&quot;</span>: {<span class="s">&quot;orders&quot;</span>, <span class="s">&quot;products&quot;</span>, <span class="s">&quot;customers&quot;</span>, <span class="s">&quot;costs&quot;</span>}, <span class="s">&quot;write&quot;</span>: {<span class="s">&quot;products&quot;</span>}}}
+SENSITIVE = {<span class="s">&quot;customers&quot;</span>: {<span class="s">&quot;phone&quot;</span>, <span class="s">&quot;address&quot;</span>}}                             <span class="c"># 欄位級遮罩</span>
+audit = []
+
+<span class="k">def</span> access(user, role, table, action, cols, df):
+    ok = table <span class="k">in</span> ROLES[role].get(action, <span class="b">set</span>())
+    audit.append({<span class="s">&quot;ts&quot;</span>: dt.datetime(<span class="n">2026</span>, <span class="n">10</span>, <span class="n">25</span>, <span class="n">9</span>, <span class="n">0</span>, <span class="b">len</span>(audit)), <span class="s">&quot;user&quot;</span>: user, <span class="s">&quot;role&quot;</span>: role,
+                  <span class="s">&quot;table&quot;</span>: table, <span class="s">&quot;action&quot;</span>: action, <span class="s">&quot;cols&quot;</span>: <span class="s">&quot;,&quot;</span>.join(cols), <span class="s">&quot;allowed&quot;</span>: ok})
+    <span class="k">if</span> <span class="k">not</span> ok:
+        <span class="k">raise</span> PermissionError(<span class="s">f&quot;{role} 不可 {action} {table}&quot;</span>)
+    out = df[cols].copy()
+    <span class="k">for</span> c <span class="k">in</span> SENSITIVE.get(table, <span class="b">set</span>()) &amp; <span class="b">set</span>(cols):                       <span class="c"># 敏感欄位遮罩（ABAC 式屬性規則）</span>
+        out[c] = out[c].astype(str).str[:<span class="n">3</span>] + <span class="s">&quot;***&quot;</span>
+    <span class="k">return</span> out
+
+customers = pd.DataFrame({<span class="s">&quot;cid&quot;</span>: [<span class="n">1</span>, <span class="n">2</span>], <span class="s">&quot;name&quot;</span>: [<span class="s">&quot;Ann&quot;</span>, <span class="s">&quot;Bob&quot;</span>], <span class="s">&quot;phone&quot;</span>: [<span class="s">&quot;0912345678&quot;</span>, <span class="s">&quot;0987654321&quot;</span>]})
+<span class="k">for</span> user, role, table, cols <span class="k">in</span> [(<span class="s">&quot;amy&quot;</span>, <span class="s">&quot;analyst&quot;</span>, <span class="s">&quot;customers&quot;</span>, [<span class="s">&quot;cid&quot;</span>, <span class="s">&quot;phone&quot;</span>]),
+                                (<span class="s">&quot;carl&quot;</span>, <span class="s">&quot;cs_agent&quot;</span>, <span class="s">&quot;customers&quot;</span>, [<span class="s">&quot;cid&quot;</span>, <span class="s">&quot;name&quot;</span>, <span class="s">&quot;phone&quot;</span>]),
+                                (<span class="s">&quot;carl&quot;</span>, <span class="s">&quot;cs_agent&quot;</span>, <span class="s">&quot;costs&quot;</span>, [<span class="s">&quot;sku&quot;</span>])]:
+    <span class="k">try</span>:
+        <span class="b">print</span>(<span class="s">f&quot;{user}({role}) 讀 {table}{cols} →\n{access(user, role, table, &#x27;read&#x27;, cols, customers).to_string(index=False)}&quot;</span>)
+    <span class="k">except</span> PermissionError <span class="k">as</span> e:
+        <span class="b">print</span>(<span class="s">f&quot;{user}({role}) 讀 {table}{cols} → 拒絕：{e}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;\n稽核紀錄：\n&quot;</span>, pd.DataFrame(audit)[[<span class="s">&quot;ts&quot;</span>, <span class="s">&quot;user&quot;</span>, <span class="s">&quot;table&quot;</span>, <span class="s">&quot;cols&quot;</span>, <span class="s">&quot;allowed&quot;</span>]].to_string(index=<span class="k">False</span>))
+
+<span class="c"># 資料血緣：每個產出表記錄「來源 + 轉換步驟」，出錯時可以往上追</span>
+lineage = {<span class="s">&quot;raw.orders&quot;</span>: {<span class="s">&quot;src&quot;</span>: [<span class="s">&quot;S3://logs/orders/*.json&quot;</span>], <span class="s">&quot;step&quot;</span>: <span class="s">&quot;ingest&quot;</span>},
+           <span class="s">&quot;clean.orders&quot;</span>: {<span class="s">&quot;src&quot;</span>: [<span class="s">&quot;raw.orders&quot;</span>], <span class="s">&quot;step&quot;</span>: <span class="s">&quot;去重、型別轉換、時區統一&quot;</span>},
+           <span class="s">&quot;mart.daily_sales&quot;</span>: {<span class="s">&quot;src&quot;</span>: [<span class="s">&quot;clean.orders&quot;</span>, <span class="s">&quot;raw.products&quot;</span>], <span class="s">&quot;step&quot;</span>: <span class="s">&quot;join + 依日彙總&quot;</span>}}
+<span class="k">def</span> trace(t, depth=<span class="n">0</span>):
+    <span class="b">print</span>(<span class="s">&quot;  &quot;</span> * depth + <span class="s">f&quot;{t}  ←  {lineage[t][&#x27;step&#x27;]}&quot;</span> <span class="k">if</span> t <span class="k">in</span> lineage <span class="k">else</span> <span class="s">&quot;  &quot;</span> * depth + t)
+    <span class="k">for</span> s <span class="k">in</span> lineage.get(t, {}).get(<span class="s">&quot;src&quot;</span>, []): trace(s, depth + <span class="n">1</span>)
+<span class="b">print</span>(<span class="s">&quot;\nmart.daily_sales 的血緣：&quot;</span>); trace(<span class="s">&quot;mart.daily_sales&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">amy(analyst) 讀 customers[&#x27;cid&#x27;, &#x27;phone&#x27;] → 拒絕：analyst 不可 read customers
+carl(cs_agent) 讀 customers[&#x27;cid&#x27;, &#x27;name&#x27;, &#x27;phone&#x27;] →
+ cid name  phone
+   1  Ann 091***
+   2  Bob 098***
+carl(cs_agent) 讀 costs[&#x27;sku&#x27;] → 拒絕：cs_agent 不可 read costs
+
+稽核紀錄：
+                  ts user     table           cols  allowed
+2026-10-25 09:00:00  amy customers      cid,phone    False
+2026-10-25 09:00:01 carl customers cid,name,phone     True
+2026-10-25 09:00:02 carl     costs            sku    False
+
+mart.daily_sales 的血緣：
+mart.daily_sales  ←  join + 依日彙總
+  clean.orders  ←  去重、型別轉換、時區統一
+    raw.orders  ←  ingest
+      S3://logs/orders/*.json
+  raw.products</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>RBAC 用「角色 → 可做的動作 → 表」決定能不能存取，分析師看不到客戶表、客服看不到成本表，這就是最小權限：只給完成工作所需的資料。</li><li>即使有權限，電話等敏感欄位仍自動遮罩，這類依「資料屬性」而非「角色」決定的規則就是 ABAC 的精神；GDPR、CCPA 都要求能回答「誰、何時、看了什麼」，稽核紀錄要連被拒絕的請求一起留。</li><li>血緣讓你從報表一路追回原始檔與每一步轉換：數字不對時知道該查哪一段、來源變更時知道會影響哪些下游，Data Catalog 工具做的正是這件事的規模化版本。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>加一條 ABAC 規則：只有工作時間（9–18 點）才允許讀 customers；再想想把稽核紀錄寫到可被同一個 admin 刪除的表會有什麼問題。</div>
+</article>
+<h3 id="sec43">4.3 數據處理技術與工具 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec43">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec43">白話版 ↗</a></h3>
+<article class="ex" id="ex-transform">
+<div class="exhead"><span class="num">範例 9</span><h4>資料轉換工具箱：型別與 ISO 8601、三種分箱、三種編碼、三種縮放</h4></div>
+<p class="scn"><b>情境</b>一張原始訂單表：時間是各種格式的字串、金額是帶千分位的文字、年齡要分組、城市要編碼、金額要縮放。逐步把它整理成模型能吃的樣子。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>型別轉換、ISO 8601 時間格式</span><span>分箱：等寬、等頻、K-Means</span><span>Label／One-hot／Target Encoding</span><span>Min-Max、Z-score、Robust Scaling</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+<span class="k">from</span> sklearn.cluster <span class="k">import</span> KMeans
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> MinMaxScaler, StandardScaler, RobustScaler
+raw = pd.DataFrame({<span class="s">&quot;ts&quot;</span>: [<span class="s">&quot;2026-10-25T10:15:00+08:00&quot;</span>, <span class="s">&quot;2026/10/25 11:20&quot;</span>, <span class="s">&quot;25 Oct 2026 12:05&quot;</span>, <span class="s">&quot;2026-10-25 23:59:59&quot;</span>],
+                    <span class="s">&quot;amount&quot;</span>: [<span class="s">&quot;1,250&quot;</span>, <span class="s">&quot;320&quot;</span>, <span class="s">&quot;18,900&quot;</span>, <span class="s">&quot;75&quot;</span>], <span class="s">&quot;age&quot;</span>: [<span class="n">23</span>, <span class="n">37</span>, <span class="n">58</span>, <span class="n">71</span>], <span class="s">&quot;city&quot;</span>: [<span class="s">&quot;北&quot;</span>, <span class="s">&quot;中&quot;</span>, <span class="s">&quot;南&quot;</span>, <span class="s">&quot;北&quot;</span>],
+                    <span class="s">&quot;churn&quot;</span>: [<span class="n">0</span>, <span class="n">1</span>, <span class="n">0</span>, <span class="n">1</span>]})
+<span class="c"># ── 型別：千分位文字 → 數值；各種時間格式 → 統一為 ISO 8601（含時區）──</span>
+df = raw.copy()
+df[<span class="s">&quot;amount&quot;</span>] = df.amount.str.replace(<span class="s">&quot;,&quot;</span>, <span class="s">&quot;&quot;</span>).astype(int)
+<span class="k">def</span> to_tpe(x):                                    <span class="c"># 有時區就換算、沒時區就視為台北時間</span>
+    t = pd.Timestamp(x)
+    <span class="k">return</span> t.tz_localize(<span class="s">&quot;Asia/Taipei&quot;</span>) <span class="k">if</span> t.tzinfo <span class="k">is</span> <span class="k">None</span> <span class="k">else</span> t.tz_convert(<span class="s">&quot;Asia/Taipei&quot;</span>)
+df[<span class="s">&quot;ts&quot;</span>] = pd.to_datetime(df.ts.<span class="b">map</span>(to_tpe))
+df[<span class="s">&quot;hour&quot;</span>], df[<span class="s">&quot;weekday&quot;</span>] = df.ts.dt.hour, df.ts.dt.day_name().str[:<span class="n">3</span>]
+<span class="b">print</span>(df[[<span class="s">&quot;ts&quot;</span>, <span class="s">&quot;amount&quot;</span>, <span class="s">&quot;hour&quot;</span>, <span class="s">&quot;weekday&quot;</span>]].to_string(index=<span class="k">False</span>))
+<span class="b">print</span>(<span class="s">&quot;ISO 8601 輸出：&quot;</span>, df.ts.iloc[<span class="n">0</span>].isoformat())
+
+<span class="c"># ── 分箱：等寬 / 等頻 / K-Means ──</span>
+ages = pd.Series([<span class="n">18</span>, <span class="n">22</span>, <span class="n">23</span>, <span class="n">25</span>, <span class="n">27</span>, <span class="n">30</span>, <span class="n">37</span>, <span class="n">45</span>, <span class="n">58</span>, <span class="n">60</span>, <span class="n">65</span>, <span class="n">71</span>, <span class="n">80</span>])
+fmt = <span class="k">lambda</span> vc: {<span class="s">f&quot;{iv.left:.0f}–{iv.right:.0f}&quot;</span>: <span class="b">int</span>(c) <span class="k">for</span> iv, c <span class="k">in</span> vc.items()}
+<span class="b">print</span>(<span class="s">&quot;\n等寬 3 箱（區間一樣寬）：&quot;</span>, fmt(pd.cut(ages, bins=<span class="n">3</span>).value_counts(sort=<span class="k">False</span>)))
+<span class="b">print</span>(<span class="s">&quot;等頻 3 箱（每箱人數一樣）：&quot;</span>, fmt(pd.qcut(ages, q=<span class="n">3</span>).value_counts(sort=<span class="k">False</span>)))
+km = KMeans(<span class="n">3</span>, n_init=<span class="n">10</span>, random_state=<span class="n">0</span>).fit(ages.to_frame())
+<span class="b">print</span>(<span class="s">&quot;K-Means 3 箱（依資料自然聚集）：&quot;</span>, {<span class="s">f&quot;中心{c:.0f}&quot;</span>: <span class="b">int</span>((km.labels_ == i).<span class="b">sum</span>()) <span class="k">for</span> i, c <span class="k">in</span> <span class="b">enumerate</span>(km.cluster_centers_.ravel())})
+
+<span class="c"># ── 編碼 ──</span>
+<span class="b">print</span>(<span class="s">&quot;\nLabel：&quot;</span>, df.city.<span class="b">map</span>({<span class="s">&quot;北&quot;</span>: <span class="n">0</span>, <span class="s">&quot;中&quot;</span>: <span class="n">1</span>, <span class="s">&quot;南&quot;</span>: <span class="n">2</span>}).tolist(), <span class="s">&quot;（有假的大小順序，適合樹模型）&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;One-hot：\n&quot;</span>, pd.get_dummies(df.city, prefix=<span class="s">&quot;city&quot;</span>, dtype=int).to_string(index=<span class="k">False</span>))
+<span class="b">print</span>(<span class="s">&quot;Target（該類別的 churn 平均）：&quot;</span>, df.city.<span class="b">map</span>(df.groupby(<span class="s">&quot;city&quot;</span>).churn.mean()).<span class="b">round</span>(<span class="n">2</span>).tolist(), <span class="s">&quot;← 只能用訓練集算，否則洩漏&quot;</span>)
+
+<span class="c"># ── 縮放 ──</span>
+x = df[[<span class="s">&quot;amount&quot;</span>]]
+<span class="k">for</span> name, sc <span class="k">in</span> [(<span class="s">&quot;Min-Max&quot;</span>, MinMaxScaler()), (<span class="s">&quot;Z-score&quot;</span>, StandardScaler()), (<span class="s">&quot;Robust&quot;</span>, RobustScaler())]:
+    <span class="b">print</span>(<span class="s">f&quot;{name:8s}&quot;</span>, sc.fit_transform(x).ravel().<span class="b">round</span>(<span class="n">2</span>))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">                       ts  amount  hour weekday
+2026-10-25 10:15:00+08:00    1250    10     Sun
+2026-10-25 11:20:00+08:00     320    11     Sun
+2026-10-25 12:05:00+08:00   18900    12     Sun
+2026-10-25 23:59:59+08:00      75    23     Sun
+ISO 8601 輸出： 2026-10-25T10:15:00+08:00
+
+等寬 3 箱（區間一樣寬）： {&#x27;18–39&#x27;: 7, &#x27;39–59&#x27;: 2, &#x27;59–80&#x27;: 4}
+等頻 3 箱（每箱人數一樣）： {&#x27;18–27&#x27;: 5, &#x27;27–58&#x27;: 4, &#x27;58–80&#x27;: 4}
+K-Means 3 箱（依資料自然聚集）： {&#x27;中心41&#x27;: 2, &#x27;中心67&#x27;: 5, &#x27;中心24&#x27;: 6}
+
+Label： [0, 1, 2, 0] （有假的大小順序，適合樹模型）
+One-hot：
+  city_中  city_北  city_南
+      0       1       0
+      1       0       0
+      0       0       1
+      0       1       0
+Target（該類別的 churn 平均）： [0.5, 1.0, 0.0, 0.5] ← 只能用訓練集算，否則洩漏
+Min-Max  [0.06 0.01 1.   0.  ]
+Z-score  [-0.49 -0.61  1.73 -0.64]
+Robust   [ 0.09 -0.09  3.35 -0.13]</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>四種寫法的時間先統一成帶時區的 ISO 8601（沒標時區的要明確決定視為哪個時區），之後取小時、星期才不會差 8 小時；千分位文字一定要先拆掉逗號才能轉數值。</li><li>等寬分箱在偏態資料會讓某箱特別擠、等頻保證每箱人數相同但區間寬度不一、K-Means 分箱依資料自然的群聚切；三者沒有絕對好壞，要看下游用途。</li><li>Label 編碼會讓模型以為「南 &gt; 中 &gt; 北」，線性模型不適合；One-hot 沒有這個問題但欄位會爆增；Target 編碼最省欄位，但一定要在訓練集內算、最好加平滑，否則把答案洩漏進特徵。</li><li>金額 18,900 這個大值讓 Min-Max 把其他三筆壓到 0.07 以下；Z-score 受影響較小；Robust 用中位數與 IQR，最不受極端值牽動。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 to_tpe 裡沒時區的情況改成視為 UTC，看第 2、3 筆的小時怎麼跳；再把 Target Encoding 改成「留一法」（算某列時排除自己），比較結果差異。</div>
+</article>
+<article class="ex" id="ex-leak">
+<div class="exhead"><span class="num">範例 10</span><h4>資料洩漏三種抓法：縮放器先看了測試集、目標編碼偷看答案、時間序列隨機切分</h4></div>
+<p class="scn"><b>情境</b>同一組資料，用「錯的流程」與「對的流程」各做一次交叉驗證，看分數差多少。這些差距就是洩漏讓你高估的部分。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>防資料洩漏（Data Leakage）</span><span>Pipeline 把前處理包進交叉驗證</span><span>Target Encoding 的洩漏</span><span>時間序列要依時間切分</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+<span class="k">from</span> sklearn.feature_selection <span class="k">import</span> SelectKBest, f_classif
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.pipeline <span class="k">import</span> make_pipeline
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> cross_val_score, StratifiedKFold, KFold, TimeSeriesSplit
+rng = np.random.default_rng(<span class="n">0</span>)
+<span class="c"># ── 1) 特徵選擇在交叉驗證「外面」做：2000 個純雜訊特徵也能拿高分 ──</span>
+X = rng.normal(size=(<span class="n">120</span>, <span class="n">2000</span>)); y = rng.integers(<span class="n">0</span>, <span class="n">2</span>, <span class="n">120</span>)          <span class="c"># X 與 y 完全無關！</span>
+cv = StratifiedKFold(<span class="n">5</span>, shuffle=<span class="k">True</span>, random_state=<span class="n">0</span>)
+Xsel = SelectKBest(f_classif, k=<span class="n">20</span>).fit_transform(X, y)                    <span class="c"># 錯：先用全部資料選特徵</span>
+wrong = cross_val_score(LogisticRegression(max_iter=<span class="n">1000</span>), Xsel, y, cv=cv).mean()
+right = cross_val_score(make_pipeline(SelectKBest(f_classif, k=<span class="n">20</span>), LogisticRegression(max_iter=<span class="n">1000</span>)), X, y, cv=cv).mean()
+<span class="b">print</span>(<span class="s">f&quot;純雜訊資料的交叉驗證準確率：選特徵在 CV 外 = {wrong:.3f}（假的！）；放進 Pipeline = {right:.3f}（≈ 0.5 才是真相）&quot;</span>)
+
+<span class="c"># ── 2) Target Encoding 在整份資料上算 ──</span>
+n = <span class="n">400</span>
+cat = rng.integers(<span class="n">0</span>, <span class="n">50</span>, n)                                               <span class="c"># 50 個類別、每類只有約 8 筆</span>
+y2 = rng.integers(<span class="n">0</span>, <span class="n">2</span>, n)                                                 <span class="c"># 與類別無關</span>
+df = pd.DataFrame({<span class="s">&quot;cat&quot;</span>: cat, <span class="s">&quot;y&quot;</span>: y2})
+df[<span class="s">&quot;te_leak&quot;</span>] = df.cat.<span class="b">map</span>(df.groupby(<span class="s">&quot;cat&quot;</span>).y.mean())                     <span class="c"># 錯：每筆都「看到自己的 y」</span>
+<span class="k">def</span> te_oof(df, cv):                                                        <span class="c"># 對：折外 (out-of-fold) 編碼</span>
+    out = np.zeros(<span class="b">len</span>(df))
+    <span class="k">for</span> tr, va <span class="k">in</span> cv.split(df, df.y):
+        m = df.iloc[tr].groupby(<span class="s">&quot;cat&quot;</span>).y.mean()
+        out[va] = df.iloc[va].cat.<span class="b">map</span>(m).fillna(df.iloc[tr].y.mean())
+    <span class="k">return</span> out
+df[<span class="s">&quot;te_oof&quot;</span>] = te_oof(df, cv)
+<span class="k">for</span> col <span class="k">in</span> [<span class="s">&quot;te_leak&quot;</span>, <span class="s">&quot;te_oof&quot;</span>]:
+    s = cross_val_score(LogisticRegression(), df[[col]], df.y, cv=cv).mean()
+    <span class="b">print</span>(<span class="s">f&quot;Target Encoding {col}: CV 準確率 = {s:.3f}&quot;</span>)
+
+<span class="c"># ── 3) 時間序列：隨機切分 vs 依時間切分 ──</span>
+t = np.arange(<span class="n">600</span>); trend = <span class="n">0.05</span> * t + np.sin(t / <span class="n">20</span>) * <span class="n">3</span> + rng.normal(<span class="n">0</span>, <span class="n">1</span>, <span class="n">600</span>)
+Xt = np.column_stack([trend[:-<span class="n">1</span>]]); yt = trend[<span class="n">1</span>:]                          <span class="c"># 用前一期預測下一期</span>
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LinearRegression
+rand = cross_val_score(LinearRegression(), Xt, yt, cv=KFold(<span class="n">5</span>, shuffle=<span class="k">True</span>, random_state=<span class="n">0</span>), scoring=<span class="s">&quot;r2&quot;</span>).mean()
+tss  = cross_val_score(LinearRegression(), Xt, yt, cv=TimeSeriesSplit(<span class="n">5</span>), scoring=<span class="s">&quot;r2&quot;</span>).mean()
+<span class="b">print</span>(<span class="s">f&quot;\n時間序列 R²：隨機 K-fold = {rand:.3f}（偷看了未來）；TimeSeriesSplit = {tss:.3f}（只用過去預測未來）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">純雜訊資料的交叉驗證準確率：選特徵在 CV 外 = 0.783（假的！）；放進 Pipeline = 0.433（≈ 0.5 才是真相）
+Target Encoding te_leak: CV 準確率 = 0.607
+Target Encoding te_oof: CV 準確率 = 0.542
+
+時間序列 R²：隨機 K-fold = 0.974（偷看了未來）；TimeSeriesSplit = 0.227（只用過去預測未來）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>X 與 y 完全無關，但先在全部資料上挑出「最相關」的 20 個特徵再做交叉驗證，準確率卻飆高：挑特徵時已經偷看了驗證折的答案。把前處理放進 Pipeline，每折只用訓練部分擬合，分數就回到該有的 0.5。</li><li>每個類別只有幾筆時，直接用全資料算 Target Encoding 等於把那筆自己的 y 寫進特徵，分數虛高；折外（out-of-fold）編碼讓每筆的編碼值都來自別的折。</li><li>時間序列隨機切分會讓訓練集裡有「未來」的點，R² 虛高；TimeSeriesSplit 永遠用過去預測未來，分數較低但才是上線後會看到的表現。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把第一段的 k 改成 2 或 200，看洩漏造成的虛高幅度如何變化；再把類別數從 50 改成 5（每類 80 筆），Target Encoding 的洩漏還嚴重嗎？</div>
+</article>
+<article class="ex" id="ex-mapreduce">
+<div class="exhead"><span class="num">範例 11</span><h4>MapReduce 字數統計：Map → Shuffle → Reduce，以及批次與串流的差別</h4></div>
+<p class="scn"><b>情境</b>用 Python 把 MapReduce 的三個階段原汁原味做出來（並且真的用多個執行緒分攤 Map），再用同一份資料示範「批次一次算完」與「串流逐筆更新」的差別。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Hadoop MapReduce：批次處理</span><span>Spark：記憶體內運算、惰性求值</span><span>Flink：原生串流</span><span>分散式運算的基本模式</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">from</span> collections <span class="k">import</span> Counter, defaultdict
+<span class="k">from</span> concurrent.futures <span class="k">import</span> ThreadPoolExecutor
+<span class="k">import</span> re
+docs = [<span class="s">&quot;big data needs distributed processing&quot;</span>, <span class="s">&quot;spark keeps data in memory&quot;</span>,
+        <span class="s">&quot;flink processes streaming data&quot;</span>, <span class="s">&quot;hadoop mapreduce processes big data in batches&quot;</span>,
+        <span class="s">&quot;data data data&quot;</span>]
+
+<span class="c"># ── Map：每個 worker 各自處理一塊資料，輸出 (key, 1) ──</span>
+<span class="k">def</span> mapper(doc):
+    <span class="k">return</span> [(w, <span class="n">1</span>) <span class="k">for</span> w <span class="k">in</span> re.findall(<span class="s">r&quot;\w+&quot;</span>, doc.lower())]
+<span class="k">with</span> ThreadPoolExecutor(max_workers=<span class="n">3</span>) <span class="k">as</span> pool:            <span class="c"># 真實叢集：每個 worker 在不同機器</span>
+    mapped = <span class="b">list</span>(pool.<span class="b">map</span>(mapper, docs))
+<span class="b">print</span>(<span class="s">&quot;Map 輸出（第 1 份文件）：&quot;</span>, mapped[<span class="n">0</span>])
+
+<span class="c"># ── Shuffle：把相同 key 的值送到同一個 reducer（依 key 分組）──</span>
+shuffled = defaultdict(list)
+<span class="k">for</span> pairs <span class="k">in</span> mapped:
+    <span class="k">for</span> k, v <span class="k">in</span> pairs:
+        shuffled[k].append(v)
+<span class="b">print</span>(<span class="s">&quot;Shuffle 後 &#x27;data&#x27; 這個 key 收到：&quot;</span>, shuffled[<span class="s">&quot;data&quot;</span>])
+<span class="c"># 真實系統用 hash(key) % reducer 數 決定送到哪台機器</span>
+partition = {k: <span class="b">hash</span>(k) % <span class="n">2</span> <span class="k">for</span> k <span class="k">in</span> shuffled}
+<span class="b">print</span>(<span class="s">&quot;分到 reducer 0 的 key 數 =&quot;</span>, <span class="b">sum</span>(v == <span class="n">0</span> <span class="k">for</span> v <span class="k">in</span> partition.values()), <span class="s">&quot;，reducer 1 =&quot;</span>, <span class="b">sum</span>(v == <span class="n">1</span> <span class="k">for</span> v <span class="k">in</span> partition.values()))
+
+<span class="c"># ── Reduce：每個 key 彙總 ──</span>
+<span class="k">def</span> reducer(k, values): <span class="k">return</span> k, <span class="b">sum</span>(values)
+<span class="k">with</span> ThreadPoolExecutor(max_workers=<span class="n">2</span>) <span class="k">as</span> pool:
+    counts = <span class="b">dict</span>(pool.<span class="b">map</span>(<span class="k">lambda</span> kv: reducer(*kv), shuffled.items()))
+<span class="b">print</span>(<span class="s">&quot;Reduce 結果前 5：&quot;</span>, Counter(counts).most_common(<span class="n">5</span>))
+
+<span class="c"># ── 批次 vs 串流：同樣算字數 ──</span>
+<span class="b">print</span>(<span class="s">&quot;\n批次（資料到齊才算一次）：&quot;</span>, Counter(w <span class="k">for</span> d <span class="k">in</span> docs <span class="k">for</span> w <span class="k">in</span> d.split()).most_common(<span class="n">1</span>))
+running = Counter()
+<span class="k">for</span> i, d <span class="k">in</span> <span class="b">enumerate</span>(docs, <span class="n">1</span>):                              <span class="c"># 串流：每來一份就更新狀態、可隨時回答</span>
+    running.update(d.split())
+    <span class="b">print</span>(<span class="s">f&quot;  串流收到第 {i} 份 → 目前 &#x27;data&#x27; 出現 {running[&#x27;data&#x27;]} 次&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">Map 輸出（第 1 份文件）： [(&#x27;big&#x27;, 1), (&#x27;data&#x27;, 1), (&#x27;needs&#x27;, 1), (&#x27;distributed&#x27;, 1), (&#x27;processing&#x27;, 1)]
+Shuffle 後 &#x27;data&#x27; 這個 key 收到： [1, 1, 1, 1, 1, 1, 1]
+分到 reducer 0 的 key 數 = 8 ，reducer 1 = 7
+Reduce 結果前 5： [(&#x27;data&#x27;, 7), (&#x27;big&#x27;, 2), (&#x27;in&#x27;, 2), (&#x27;processes&#x27;, 2), (&#x27;needs&#x27;, 1)]
+
+批次（資料到齊才算一次）： [(&#x27;data&#x27;, 7)]
+  串流收到第 1 份 → 目前 &#x27;data&#x27; 出現 1 次
+  串流收到第 2 份 → 目前 &#x27;data&#x27; 出現 2 次
+  串流收到第 3 份 → 目前 &#x27;data&#x27; 出現 3 次
+  串流收到第 4 份 → 目前 &#x27;data&#x27; 出現 4 次
+  串流收到第 5 份 → 目前 &#x27;data&#x27; 出現 7 次</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>Map 把每份文件獨立變成 (單字, 1)，因為彼此不相依所以可以丟到任意多台機器平行做；Shuffle 用 key 的雜湊值決定要送到哪個 reducer，保證同一個字一定在同一台；Reduce 只要把收到的值加總。</li><li>Hadoop MapReduce 每個階段都把中間結果寫到磁碟，Spark 把它放在記憶體並把多步轉換串成一個 DAG 惰性執行，所以迭代型工作（機器學習）快很多。</li><li>批次要等資料到齊才算，串流每來一筆就更新狀態、隨時可以回答「目前為止」的結果，Flink 是原生串流引擎，Spark Structured Streaming 則是用小批次模擬串流。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 docs 擴成一萬份、把 ThreadPoolExecutor 換成 ProcessPoolExecutor（記得加 if __name__ == &quot;__main__&quot;），比較單執行緒與多行程的時間；想一想 Shuffle 為什麼是整個流程最貴的一步。</div>
+</article>
+<article class="ex" id="ex-pipeline">
+<div class="exhead"><span class="num">範例 12</span><h4>資料管線的四個要求：可重現、容錯重試、冪等寫入、可觀測</h4></div>
+<p class="scn"><b>情境</b>用一個小型的 DAG 執行器模擬 Airflow：任務有依賴關係要拓撲排序、失敗要自動重試、重跑不能重複寫入、每一步要留下紀錄。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>資料處理管線：可重現、容錯、擴充、可觀測</span><span>Airflow／Luigi／Prefect 的 DAG 概念</span><span>冪等性（Idempotency）</span><span>CI/CD 與監控</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> time, random
+<span class="k">from</span> graphlib <span class="k">import</span> TopologicalSorter
+random.seed(<span class="n">3</span>)
+store = {}                                             <span class="c"># 模擬目標資料庫：key = (表, 分區日期)</span>
+logs = []
+
+<span class="k">def</span> extract(ctx):      ctx[<span class="s">&quot;raw&quot;</span>] = [(<span class="s">&quot;2026-10-25&quot;</span>, <span class="s">&quot;A&quot;</span>, <span class="n">100</span>), (<span class="s">&quot;2026-10-25&quot;</span>, <span class="s">&quot;B&quot;</span>, <span class="n">250</span>), (<span class="s">&quot;2026-10-25&quot;</span>, <span class="s">&quot;A&quot;</span>, <span class="n">50</span>)]
+<span class="k">def</span> validate(ctx):
+    <span class="k">if</span> random.random() &lt; <span class="n">0.5</span>: <span class="k">raise</span> ConnectionError(<span class="s">&quot;暫時性網路錯誤&quot;</span>)     <span class="c"># 模擬偶發失敗</span>
+    <span class="k">assert</span> <span class="b">all</span>(r[<span class="n">2</span>] &gt; <span class="n">0</span> <span class="k">for</span> r <span class="k">in</span> ctx[<span class="s">&quot;raw&quot;</span>]), <span class="s">&quot;金額必須 &gt; 0&quot;</span>
+<span class="k">def</span> transform(ctx):
+    agg = {}
+    <span class="k">for</span> d, k, v <span class="k">in</span> ctx[<span class="s">&quot;raw&quot;</span>]: agg[(d, k)] = agg.get((d, k), <span class="n">0</span>) + v
+    ctx[<span class="s">&quot;agg&quot;</span>] = agg
+<span class="k">def</span> load(ctx):                                         <span class="c"># 冪等：先刪該分區再寫入，重跑結果一樣</span>
+    <span class="k">for</span> d <span class="k">in</span> {d <span class="k">for</span> d, _ <span class="k">in</span> ctx[<span class="s">&quot;agg&quot;</span>]}:
+        <span class="k">for</span> key <span class="k">in</span> [k <span class="k">for</span> k <span class="k">in</span> store <span class="k">if</span> k[<span class="n">0</span>] == <span class="s">&quot;daily_sales&quot;</span> <span class="k">and</span> k[<span class="n">1</span>] == d]: <span class="k">del</span> store[key]
+    <span class="k">for</span> (d, k), v <span class="k">in</span> ctx[<span class="s">&quot;agg&quot;</span>].items(): store[(<span class="s">&quot;daily_sales&quot;</span>, d, k)] = v
+
+DAG = {<span class="s">&quot;extract&quot;</span>: <span class="b">set</span>(), <span class="s">&quot;validate&quot;</span>: {<span class="s">&quot;extract&quot;</span>}, <span class="s">&quot;transform&quot;</span>: {<span class="s">&quot;validate&quot;</span>}, <span class="s">&quot;load&quot;</span>: {<span class="s">&quot;transform&quot;</span>}}
+TASKS = {<span class="s">&quot;extract&quot;</span>: extract, <span class="s">&quot;validate&quot;</span>: validate, <span class="s">&quot;transform&quot;</span>: transform, <span class="s">&quot;load&quot;</span>: load}
+
+<span class="k">def</span> run_pipeline(run_id, max_retry=<span class="n">3</span>):
+    ctx = {}
+    <span class="k">for</span> task <span class="k">in</span> TopologicalSorter(DAG).static_order():          <span class="c"># 依依賴關係排序</span>
+        <span class="k">for</span> attempt <span class="k">in</span> <span class="b">range</span>(<span class="n">1</span>, max_retry + <span class="n">1</span>):
+            <span class="k">try</span>:
+                TASKS[task](ctx); logs.append((run_id, task, attempt, <span class="s">&quot;ok&quot;</span>)); <span class="k">break</span>
+            <span class="k">except</span> Exception <span class="k">as</span> e:
+                logs.append((run_id, task, attempt, <span class="s">f&quot;fail: {e}&quot;</span>))
+                <span class="k">if</span> attempt == max_retry: <span class="k">raise</span>
+                time.sleep(<span class="n">0.01</span>)                                  <span class="c"># 真實系統：指數退避</span>
+
+<span class="b">print</span>(<span class="s">&quot;執行順序：&quot;</span>, <span class="b">list</span>(TopologicalSorter(DAG).static_order()))
+run_pipeline(<span class="s">&quot;run-1&quot;</span>); <span class="b">print</span>(<span class="s">&quot;第 1 次執行後 store =&quot;</span>, store)
+run_pipeline(<span class="s">&quot;run-2&quot;</span>); <span class="b">print</span>(<span class="s">&quot;重跑一次後 store  =&quot;</span>, store, <span class="s">&quot;← 冪等，沒有重複累加&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;\n可觀測：每次執行、每個任務、每次嘗試都有紀錄&quot;</span>)
+<span class="k">for</span> l <span class="k">in</span> logs: <span class="b">print</span>(<span class="s">&quot;  &quot;</span>, l)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">執行順序： [&#x27;extract&#x27;, &#x27;validate&#x27;, &#x27;transform&#x27;, &#x27;load&#x27;]
+第 1 次執行後 store = {(&#x27;daily_sales&#x27;, &#x27;2026-10-25&#x27;, &#x27;A&#x27;): 150, (&#x27;daily_sales&#x27;, &#x27;2026-10-25&#x27;, &#x27;B&#x27;): 250}
+重跑一次後 store  = {(&#x27;daily_sales&#x27;, &#x27;2026-10-25&#x27;, &#x27;A&#x27;): 150, (&#x27;daily_sales&#x27;, &#x27;2026-10-25&#x27;, &#x27;B&#x27;): 250} ← 冪等，沒有重複累加
+
+可觀測：每次執行、每個任務、每次嘗試都有紀錄
+   (&#x27;run-1&#x27;, &#x27;extract&#x27;, 1, &#x27;ok&#x27;)
+   (&#x27;run-1&#x27;, &#x27;validate&#x27;, 1, &#x27;fail: 暫時性網路錯誤&#x27;)
+   (&#x27;run-1&#x27;, &#x27;validate&#x27;, 2, &#x27;ok&#x27;)
+   (&#x27;run-1&#x27;, &#x27;transform&#x27;, 1, &#x27;ok&#x27;)
+   (&#x27;run-1&#x27;, &#x27;load&#x27;, 1, &#x27;ok&#x27;)
+   (&#x27;run-2&#x27;, &#x27;extract&#x27;, 1, &#x27;ok&#x27;)
+   (&#x27;run-2&#x27;, &#x27;validate&#x27;, 1, &#x27;fail: 暫時性網路錯誤&#x27;)
+   (&#x27;run-2&#x27;, &#x27;validate&#x27;, 2, &#x27;ok&#x27;)
+   (&#x27;run-2&#x27;, &#x27;transform&#x27;, 1, &#x27;ok&#x27;)
+   (&#x27;run-2&#x27;, &#x27;load&#x27;, 1, &#x27;ok&#x27;)</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>DAG（有向無環圖）描述任務的依賴，拓撲排序決定執行順序；Airflow、Prefect、Kubeflow Pipelines 的核心都是這個，差別在排程、分散執行與 UI。</li><li>暫時性錯誤（網路、鎖）用自動重試解決，資料本身錯誤（金額為負）則應該立刻失敗並通知人：兩種錯誤要分開處理。</li><li>載入步驟先刪除該分區再寫入，所以重跑同一天不會把數字加兩次：冪等性是「可重現」與「容錯重試」的前提，否則重試反而製造髒資料。</li><li>每個任務每次嘗試都留下紀錄，才能回答「昨天的管線為什麼慢」「哪一步失敗了幾次」，這就是可觀測性。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 load 改成「直接累加」再重跑，看 store 變成什麼；再加一個與 transform 平行的任務（例如 profile），確認拓撲排序如何處理分支。</div>
+</article>
+<h2 class="chap" id="chap5">第五章 大數據分析方法與工具</h2>
+<p class="chlead">把資料變洞察：不吃記憶體的串流統計、時序與文字與異常與網路分析，以及依資料型態選圖。</p>
+<h3 id="sec51">5.1 統計學在大數據中的應用 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec51">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec51">白話版 ↗</a></h3>
+<article class="ex" id="ex-stream">
+<div class="exhead"><span class="num">範例 13</span><h4>資料放不進記憶體時：Welford 線上均值／變異數、水塘抽樣與 Count-Min Sketch</h4></div>
+<p class="scn"><b>情境</b>假設有 100 萬筆資料只能逐筆讀一次、不能存下來。用三種「一次掃描」演算法算出平均與變異數、抽出一個均勻的 1000 筆樣本、估計每個類別出現次數，再與精確值比對。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>資料無法全載入記憶體</span><span>近似描述性統計：Welford 線上均值／變異數</span><span>水塘抽樣（Reservoir Sampling）</span><span>Count-Min Sketch（頻率）</span><span>t-digest／Histogram Sketch（分位數）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, hashlib
+rng = np.random.default_rng(<span class="n">0</span>)
+N = <span class="n">300_000</span>
+<span class="k">def</span> stream():                                        <span class="c"># 產生器：一筆一筆吐出，不會一次佔用記憶體</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(N):
+        <span class="k">yield</span> rng.lognormal(<span class="n">3</span>, <span class="n">1</span>)
+
+<span class="c"># ── Welford：單次掃描、數值穩定的均值與變異數 ──</span>
+n = <span class="n">0</span>; mean = <span class="n">0.0</span>; M2 = <span class="n">0.0</span>
+sample = []                                          <span class="c"># 水塘抽樣：固定只留 k 筆</span>
+k = <span class="n">1000</span>
+<span class="c"># Count-Min Sketch：d 列 × w 欄的計數表，估計每個類別的出現次數（只會高估）</span>
+d, w = <span class="n">4</span>, <span class="n">32</span>                                    <span class="c"># 故意用很小的表，讓碰撞看得見</span>
+cms = np.zeros((d, w), dtype=np.int64)
+<span class="k">def</span> buckets(key): <span class="k">return</span> [<span class="b">int</span>(hashlib.md5(<span class="s">f&quot;{s}-{key}&quot;</span>.encode()).hexdigest(), <span class="n">16</span>) % w <span class="k">for</span> s <span class="k">in</span> <span class="b">range</span>(d)]
+exact = {}
+<span class="k">for</span> i, x <span class="k">in</span> <span class="b">enumerate</span>(stream(), <span class="n">1</span>):
+    n += <span class="n">1</span>; delta = x - mean; mean += delta / n; M2 += delta * (x - mean)     <span class="c"># Welford 更新</span>
+    <span class="k">if</span> i &lt;= k: sample.append(x)
+    <span class="k">else</span>:
+        j = rng.integers(<span class="n">0</span>, i)                       <span class="c"># 以 k/i 的機率取代水塘中的一筆</span>
+        <span class="k">if</span> j &lt; k: sample[j] = x
+    cat = <span class="b">int</span>(x // <span class="n">20</span>)                               <span class="c"># 把金額分級當類別（0, 1, 2, ...）</span>
+    <span class="k">for</span> r, b <span class="k">in</span> <span class="b">enumerate</span>(buckets(cat)): cms[r, b] += <span class="n">1</span>
+    exact[cat] = exact.get(cat, <span class="n">0</span>) + <span class="n">1</span>
+
+var = M2 / (n - <span class="n">1</span>)
+<span class="b">print</span>(<span class="s">f&quot;Welford   平均 = {mean:.4f}，變異數 = {var:.3f}（只存 3 個數字）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;水塘樣本   平均 = {np.mean(sample):.4f}，P90 ≈ {np.percentile(sample, 90):.2f}（只存 {k} 筆）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;Count-Min 估計 vs 精確（共 {len(exact)} 個類別，表只有 {d}×{w} 格）：&quot;</span>)
+<span class="k">for</span> cat <span class="k">in</span> [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">5</span>, <span class="n">10</span>, <span class="n">20</span>, <span class="n">40</span>]:
+    bs = buckets(cat)
+    one = cms[<span class="n">0</span>, bs[<span class="n">0</span>]]                                <span class="c"># 只用 1 個雜湊：碰撞直接灌進來</span>
+    est = <span class="b">min</span>(cms[r, b] <span class="k">for</span> r, b <span class="k">in</span> <span class="b">enumerate</span>(bs))     <span class="c"># 4 個雜湊取最小：碰撞要同時發生才會高估</span>
+    <span class="b">print</span>(<span class="s">f&quot;  類別 {cat:2d}: 精確 {exact.get(cat, 0):6d}  1 列估計 {one:6d}（高估 {one - exact.get(cat, 0):5d}）  4 列取最小 {est:6d}（高估 {est - exact.get(cat, 0)}）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;CMS 記憶體 = {d*w} 個計數器，不隨類別數成長；估計值永遠 ≥ 精確值&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">Welford   平均 = 33.1171，變異數 = 1883.752（只存 3 個數字）
+水塘樣本   平均 = 33.6328，P90 ≈ 74.86（只存 1000 筆）
+Count-Min 估計 vs 精確（共 59 個類別，表只有 4×32 格）：
+  類別  0: 精確 149524  1 列估計 150523（高估   999）  4 列取最小 149528（高估 4）
+  類別  1: 精確  76551  1 列估計  76555（高估     4）  4 列取最小  76554（高估 3）
+  類別  2: 精確  32735  1 列估計  32748（高估    13）  4 列取最小  32735（高估 0）
+  類別  5: 精確   5201  1 列估計   5205（高估     4）  4 列取最小   5201（高估 0）
+  類別 10: 精確    746  1 列估計    778（高估    32）  4 列取最小    746（高估 0）
+  類別 20: 精確     44  1 列估計     44（高估     0）  4 列取最小     44（高估 0）
+  類別 40: 精確      7  1 列估計  16300（高估 16293）  4 列取最小      8（高估 1）
+CMS 記憶體 = 128 個計數器，不隨類別數成長；估計值永遠 ≥ 精確值</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>Welford 演算法每來一筆只更新三個數字（n、mean、M2），不需要兩次掃描也不會有「平方和相減」的數值誤差，是串流系統算平均與變異數的標準做法。</li><li>水塘抽樣保證掃完後每一筆都以 k/N 的機率留在樣本中，所以用樣本估的平均、P90 都接近真實分佈；指引提的 t-digest 是估分位數更精準的專用結構。</li><li>Count-Min Sketch 用固定大小的計數表加多個雜湊函數估頻率，記憶體不隨類別數成長；只用一列時別的類別會撞進同一格造成高估，取 4 列的最小值後高估幾乎消失。它永遠只會高估、不會低估。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 w 改成 8 或 d 改成 1，看高估幅度如何放大；把 k 改成 100，比較水塘樣本估出的 P90 波動多大。</div>
+</article>
+<h3 id="sec52">5.2 常見的大數據分析方法 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec52">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec52">白話版 ↗</a></h3>
+<article class="ex" id="ex-timeseries">
+<div class="exhead"><span class="num">範例 14</span><h4>時序分析：移動平均、指數平滑、自相關與季節分解，再做一步預測</h4></div>
+<p class="scn"><b>情境</b>兩年的每日來客數，有上升趨勢、每週循環與雜訊。先平滑看趨勢、算自相關找週期、分解成趨勢＋季節＋殘差，最後用簡單模型預測下一週並評估。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>移動平均、指數平滑</span><span>自相關（ACF）與週期</span><span>季節分解：趨勢＋季節＋殘差</span><span>ARIMA／SARIMA／Prophet 的基本概念</span><span>MAE 評估預測</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+rng = np.random.default_rng(<span class="n">5</span>)
+days = pd.date_range(<span class="s">&quot;2025-01-01&quot;</span>, periods=<span class="n">730</span>, freq=<span class="s">&quot;D&quot;</span>)
+t = np.arange(<span class="n">730</span>)
+season = np.where(days.dayofweek &gt;= <span class="n">5</span>, <span class="n">40</span>, <span class="n">0</span>)                   <span class="c"># 週末多 40 人</span>
+y = pd.Series(<span class="n">200</span> + <span class="n">0.1</span>*t + season + rng.normal(<span class="n">0</span>, <span class="n">12</span>, <span class="n">730</span>), index=days).<span class="b">round</span>()
+
+ma7 = y.rolling(<span class="n">7</span>).mean()                                       <span class="c"># 7 日移動平均：剛好抹平一週循環</span>
+ewm = y.ewm(alpha=<span class="n">0.3</span>).mean()                                   <span class="c"># 指數平滑：近期權重大</span>
+<span class="b">print</span>(<span class="s">f&quot;最後一天 原始={y.iloc[-1]:.0f}  MA7={ma7.iloc[-1]:.1f}  EWM(α=.3)={ewm.iloc[-1]:.1f}&quot;</span>)
+
+acf = <span class="k">lambda</span> lag: y.autocorr(lag)
+<span class="b">print</span>(<span class="s">&quot;自相關：&quot;</span>, {<span class="s">f&quot;lag{l}&quot;</span>: <span class="b">round</span>(<span class="b">float</span>(acf(l)), <span class="n">3</span>) <span class="k">for</span> l <span class="k">in</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">7</span>, <span class="n">14</span>]}, <span class="s">&quot;→ lag 7、14 明顯高：週期 = 7&quot;</span>)
+
+<span class="c"># 經典加法分解：趨勢 = 中心化移動平均，季節 = 去趨勢後依星期平均，殘差 = 剩下的</span>
+trend = y.rolling(<span class="n">7</span>, center=<span class="k">True</span>).mean()
+detrended = y - trend
+seasonal = detrended.groupby(detrended.index.dayofweek).mean()
+resid = detrended - detrended.index.dayofweek.<span class="b">map</span>(seasonal).values
+<span class="b">print</span>(<span class="s">&quot;\n季節成分（週一～週日相對趨勢的偏移）：&quot;</span>, seasonal.<span class="b">round</span>(<span class="n">1</span>).tolist())
+<span class="b">print</span>(<span class="s">f&quot;殘差標準差 = {resid.std():.2f}（接近雜訊的 12 → 趨勢與季節已充分抽出）&quot;</span>)
+
+<span class="c"># 預測下一週：趨勢用最近 60 天線性外推 + 季節成分；與「用上週同日」的天真預測比較 MAE</span>
+train, test = y[:-<span class="n">7</span>], y[-<span class="n">7</span>:]
+tr = train.rolling(<span class="n">7</span>, center=<span class="k">True</span>).mean().dropna()[-<span class="n">60</span>:]
+slope, intercept = np.polyfit(np.arange(<span class="n">60</span>), tr.values, <span class="n">1</span>)
+fc = intercept + slope*np.arange(<span class="n">60</span> + <span class="n">3</span>, <span class="n">60</span> + <span class="n">10</span>) + test.index.dayofweek.<span class="b">map</span>(seasonal).values
+naive = train[-<span class="n">7</span>:].values                                        <span class="c"># 季節天真法：同一星期幾抄上週</span>
+<span class="b">print</span>(<span class="s">f&quot;\n下週預測 MAE：趨勢+季節 = {np.abs(fc - test.values).mean():.1f}，季節天真法 = {np.abs(naive - test.values).mean():.1f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">最後一天 原始=272  MA7=286.1  EWM(α=.3)=281.5
+自相關： {&#x27;lag1&#x27;: 0.599, &#x27;lag2&#x27;: 0.339, &#x27;lag3&#x27;: 0.392, &#x27;lag7&#x27;: 0.843, &#x27;lag14&#x27;: 0.846} → lag 7、14 明顯高：週期 = 7
+
+季節成分（週一～週日相對趨勢的偏移）： [-12.6, -12.6, -9.6, -9.4, -12.0, 29.2, 27.1]
+殘差標準差 = 10.92（接近雜訊的 12 → 趨勢與季節已充分抽出）
+
+下週預測 MAE：趨勢+季節 = 9.2，季節天真法 = 8.4</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>7 日移動平均剛好覆蓋一個完整週期，所以能把週末效應抹平只留趨勢；指數平滑則讓近期資料權重較大，反應較快但也較跳。</li><li>自相關在 lag 7 與 14 明顯高於其他 lag，直接告訴你資料有 7 天週期：這是決定 SARIMA 季節階數、或 Prophet 季節性設定的依據。</li><li>加法分解把序列拆成趨勢＋季節＋殘差，殘差的標準差接近我們放進去的雜訊 12，表示結構已經被抽乾淨。「趨勢外推＋季節成分」的預測 MAE 和「抄上週同日」的季節天真法差不多——這組資料趨勢每週只增 0.7 人，天真法已內含季節性。做時序預測一定要先打敗天真基準，打不贏就不值得上複雜模型。</li><li>ARIMA 是把這些想法（差分去趨勢、自迴歸、移動平均）參數化的模型，Prophet 則把趨勢與多重季節性拆開擬合，LSTM／Transformer 則在資料量大、關係複雜時才有優勢。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 season 改成每月循環（days.day &lt;= 5 時 +40），看 lag 7 的自相關消失、哪個 lag 變高；再把雜訊標準差改成 40，比較兩種預測法的 MAE 差距。</div>
+</article>
+<article class="ex" id="ex-text">
+<div class="exhead"><span class="num">範例 15</span><h4>文字分析：TF-IDF 關鍵詞、LDA 主題模型與規則式實體抽取</h4></div>
+<p class="scn"><b>情境</b>十則客服留言（已斷詞）。用 TF-IDF 找每則留言的關鍵詞並看它如何自動壓低「的、我、了」這類常見詞，再用 LDA 分出主題，最後用正規表達式抽出訂單編號、金額與品牌。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>斷詞、停用詞、詞形還原 vs 詞幹提取</span><span>TF-IDF = TF × IDF，排除常見詞</span><span>LDA 主題模型</span><span>NER 命名實體辨識（品牌、金額）</span><span>Word2Vec／BERT 的定位</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> re, numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.feature_extraction.text <span class="k">import</span> CountVectorizer, TfidfVectorizer
+<span class="k">from</span> sklearn.decomposition <span class="k">import</span> LatentDirichletAllocation
+docs = [<span class="s">&quot;我 的 訂單 A12345 還 沒 到貨 物流 太慢 了&quot;</span>, <span class="s">&quot;物流 進度 查 不 到 我 的 包裹 卡 在 轉運 站&quot;</span>,
+        <span class="s">&quot;到貨 時間 比 預計 晚 了 三天 物流 要 加強&quot;</span>, <span class="s">&quot;手機 螢幕 有 刮痕 要求 退貨 退款&quot;</span>,
+        <span class="s">&quot;收到 的 耳機 是 瑕疵品 要 退貨&quot;</span>, <span class="s">&quot;商品 外盒 破損 申請 退款 退貨 流程 怎麼 走&quot;</span>,
+        <span class="s">&quot;我 的 iPhone 保護殼 尺寸 不 合 想 換貨&quot;</span>, <span class="s">&quot;請問 退款 多久 會 入帳 金額 NT$1,290&quot;</span>,
+        <span class="s">&quot;Sony 耳機 音質 很好 但 物流 慢 了 兩天&quot;</span>, <span class="s">&quot;ASUS 筆電 到貨 很 快 包裝 完整 滿意&quot;</span>]
+<span class="c"># ── TF-IDF：常見詞的 IDF 低，自動被壓下去 ──</span>
+STOP = [<span class="s">&quot;我&quot;</span>, <span class="s">&quot;的&quot;</span>, <span class="s">&quot;了&quot;</span>, <span class="s">&quot;要&quot;</span>, <span class="s">&quot;是&quot;</span>, <span class="s">&quot;不&quot;</span>, <span class="s">&quot;到&quot;</span>, <span class="s">&quot;在&quot;</span>, <span class="s">&quot;有&quot;</span>, <span class="s">&quot;很&quot;</span>, <span class="s">&quot;但&quot;</span>, <span class="s">&quot;會&quot;</span>, <span class="s">&quot;還&quot;</span>, <span class="s">&quot;比&quot;</span>, <span class="s">&quot;走&quot;</span>, <span class="s">&quot;合&quot;</span>, <span class="s">&quot;想&quot;</span>, <span class="s">&quot;查&quot;</span>]
+tfidf = TfidfVectorizer(token_pattern=<span class="s">r&quot;[^ ]+&quot;</span>)                       <span class="c"># 先不去停用詞，看 IDF 怎麼自動壓低它們</span>
+X = tfidf.fit_transform(docs); vocab = tfidf.get_feature_names_out()
+idf = <span class="b">dict</span>(<span class="b">zip</span>(vocab, tfidf.idf_))
+<span class="b">print</span>(<span class="s">&quot;IDF 最低（最常見、最沒鑑別力）：&quot;</span>, <span class="b">sorted</span>(idf, key=idf.get)[:<span class="n">5</span>])
+<span class="b">print</span>(<span class="s">&quot;IDF 最高（罕見、鑑別力強）示例：&quot;</span>, <span class="b">sorted</span>(idf, key=idf.get)[-<span class="n">5</span>:])
+X2 = TfidfVectorizer(token_pattern=<span class="s">r&quot;[^ ]+&quot;</span>, stop_words=STOP).fit(docs); vocab2 = X2.get_feature_names_out(); M2 = X2.transform(docs)
+<span class="k">for</span> i <span class="k">in</span> [<span class="n">0</span>, <span class="n">3</span>]:
+    row = M2[i].toarray().ravel(); top = row.argsort()[::-<span class="n">1</span>][:<span class="n">3</span>]
+    <span class="b">print</span>(<span class="s">f&quot;留言 {i+1} 關鍵詞（去停用詞後）：&quot;</span>, [(vocab2[j], <span class="b">round</span>(<span class="b">float</span>(row[j]), <span class="n">2</span>)) <span class="k">for</span> j <span class="k">in</span> top])
+
+<span class="c"># ── LDA：用詞袋找出 2 個主題 ──</span>
+cv = CountVectorizer(token_pattern=<span class="s">r&quot;[^ ]+&quot;</span>, stop_words=STOP)
+bow = cv.fit_transform(docs)
+lda = LatentDirichletAllocation(n_components=<span class="n">2</span>, random_state=<span class="n">1</span>, max_iter=<span class="n">100</span>).fit(bow)   <span class="c"># 語料很小，不同種子結果會變</span>
+words = cv.get_feature_names_out()
+<span class="k">for</span> k, comp <span class="k">in</span> <span class="b">enumerate</span>(lda.components_):
+    <span class="b">print</span>(<span class="s">f&quot;主題 {k} 代表詞：&quot;</span>, [words[j] <span class="k">for</span> j <span class="k">in</span> comp.argsort()[::-<span class="n">1</span>][:<span class="n">5</span>]])
+topic_of = lda.transform(bow).argmax(axis=<span class="n">1</span>)
+<span class="b">print</span>(<span class="s">&quot;各留言主題：&quot;</span>, topic_of.tolist())
+
+<span class="c"># ── 規則式 NER：訂單編號、金額、品牌 ──</span>
+BRANDS = {<span class="s">&quot;iPhone&quot;</span>, <span class="s">&quot;Sony&quot;</span>, <span class="s">&quot;ASUS&quot;</span>, <span class="s">&quot;Samsung&quot;</span>}
+<span class="k">for</span> d <span class="k">in</span> [docs[<span class="n">0</span>], docs[<span class="n">7</span>], docs[<span class="n">8</span>]]:
+    ents = {<span class="s">&quot;訂單&quot;</span>: re.findall(<span class="s">r&quot;\b[A-Z]\d{5}\b&quot;</span>, d), <span class="s">&quot;金額&quot;</span>: re.findall(<span class="s">r&quot;NT\$[\d,]+&quot;</span>, d),
+            <span class="s">&quot;品牌&quot;</span>: [w <span class="k">for</span> w <span class="k">in</span> d.split() <span class="k">if</span> w <span class="k">in</span> BRANDS]}
+    <span class="b">print</span>({k: v <span class="k">for</span> k, v <span class="k">in</span> ents.items() <span class="k">if</span> v})</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">IDF 最低（最常見、最沒鑑別力）： [&#x27;物流&#x27;, &#x27;的&#x27;, &#x27;了&#x27;, &#x27;到貨&#x27;, &#x27;我&#x27;]
+IDF 最高（罕見、鑑別力強）示例： [&#x27;進度&#x27;, &#x27;還&#x27;, &#x27;金額&#x27;, &#x27;音質&#x27;, &#x27;預計&#x27;]
+留言 1 關鍵詞（去停用詞後）： [(&#x27;a12345&#x27;, 0.45), (&#x27;太慢&#x27;, 0.45), (&#x27;沒&#x27;, 0.45)]
+留言 4 關鍵詞（去停用詞後）： [(&#x27;手機&#x27;, 0.44), (&#x27;要求&#x27;, 0.44), (&#x27;螢幕&#x27;, 0.44)]
+主題 0 代表詞： [&#x27;物流&#x27;, &#x27;到貨&#x27;, &#x27;耳機&#x27;, &#x27;預計&#x27;, &#x27;晚&#x27;]
+主題 1 代表詞： [&#x27;退款&#x27;, &#x27;退貨&#x27;, &#x27;申請&#x27;, &#x27;怎麼&#x27;, &#x27;外盒&#x27;]
+各留言主題： [0, 0, 0, 1, 1, 1, 1, 1, 0, 0]
+{&#x27;訂單&#x27;: [&#x27;A12345&#x27;]}
+{&#x27;金額&#x27;: [&#x27;NT$1,290&#x27;]}
+{&#x27;品牌&#x27;: [&#x27;Sony&#x27;]}</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>「我、的、了、物流」這些幾乎每則都出現的詞 IDF 最低，所以即使出現頻率高，TF-IDF 分數也不高；真正的關鍵詞是「只在少數文件出現」的詞，這就是 TF-IDF 排除常見詞的機制。</li><li>LDA 不需要標籤就把留言分成「物流／到貨」與「退貨／退款」兩個主題，每則留言是主題的機率混合；停用詞要先拿掉，否則主題會被「的、我」佔滿。只有 10 則留言時結果對種子很敏感，真實應用要幾千則以上才穩定。</li><li>品牌名稱比對、訂單編號、金額這類格式固定的實體，規則式（字典＋正規表達式）就很準；人名、地名這類開放集合才需要 BERT 類的序列標註 NER 模型。</li><li>TF-IDF 與詞袋是「數詞」的表示法，詞與詞之間沒有語意；Word2Vec、BERT 這些嵌入才能知道「耳機」與「音質」相近。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 stop_words 拿掉再跑 LDA，看主題代表詞變成什麼；把 n_components 改成 3，第三個主題會不會是「品牌評價」？</div>
+</article>
+<article class="ex" id="ex-anomaly">
+<div class="exhead"><span class="num">範例 16</span><h4>異常偵測四法：Z-score、IQR、LOF、Isolation Forest 抓信用卡詐欺</h4></div>
+<p class="scn"><b>情境</b>3000 筆交易裡藏了 30 筆詐欺（金額大、深夜、離家遠）。四種方法各抓前 1% 最可疑的交易，比較抓到幾筆真詐欺（Precision@30）。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Z-score、IQR（單變數）</span><span>LOF 局部離群因子、KNN（密度）</span><span>Isolation Forest（孤立森林）</span><span>典型應用：信用卡詐騙</span><span>PyOD 工具箱</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.neighbors <span class="k">import</span> LocalOutlierFactor
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> IsolationForest
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+rng = np.random.default_rng(<span class="n">0</span>)
+n, n_fraud = <span class="n">3000</span>, <span class="n">30</span>
+amount = rng.lognormal(<span class="n">5</span>, <span class="n">0.7</span>, n)                      <span class="c"># 一般金額</span>
+hour = rng.normal(<span class="n">14</span>, <span class="n">4</span>, n) % <span class="n">24</span>                         <span class="c"># 一般在白天</span>
+dist = rng.exponential(<span class="n">5</span>, n)                             <span class="c"># 距離住家公里</span>
+is_fraud = np.zeros(n, bool); idx = rng.choice(n, n_fraud, replace=<span class="k">False</span>); is_fraud[idx] = <span class="k">True</span>
+amount[idx] = rng.lognormal(<span class="n">7.5</span>, <span class="n">0.4</span>, n_fraud)          <span class="c"># 詐欺：金額大</span>
+hour[idx] = rng.normal(<span class="n">3</span>, <span class="n">1.5</span>, n_fraud) % <span class="n">24</span>             <span class="c">#       深夜</span>
+dist[idx] = rng.exponential(<span class="n">300</span>, n_fraud)                <span class="c">#       離家遠</span>
+X = np.column_stack([np.log(amount), hour, np.log1p(dist)])
+Xs = StandardScaler().fit_transform(X)
+k = n_fraud                                               <span class="c"># 每種方法都取前 30 名最可疑</span>
+
+<span class="k">def</span> precision_at_k(score, name):
+    top = np.argsort(score)[::-<span class="n">1</span>][:k]
+    <span class="b">print</span>(<span class="s">f&quot;{name:26s} 抓到真詐欺 {is_fraud[top].sum():2d}/{k}  → Precision@{k} = {is_fraud[top].mean():.2f}&quot;</span>)
+
+precision_at_k(np.<span class="b">abs</span>(Xs[:, <span class="n">0</span>]), <span class="s">&quot;Z-score（只看金額）&quot;</span>)
+precision_at_k(np.<span class="b">abs</span>(Xs).<span class="b">max</span>(axis=<span class="n">1</span>), <span class="s">&quot;Z-score（三欄取最大）&quot;</span>)
+q1, q3 = np.percentile(X, [<span class="n">25</span>, <span class="n">75</span>], axis=<span class="n">0</span>); iqr = q3 - q1
+precision_at_k(((X - q3) / iqr).clip(min=<span class="n">0</span>).<span class="b">sum</span>(axis=<span class="n">1</span>), <span class="s">&quot;IQR 超出程度加總&quot;</span>)
+lof = LocalOutlierFactor(n_neighbors=<span class="n">20</span>).fit(Xs)
+precision_at_k(-lof.negative_outlier_factor_, <span class="s">&quot;LOF（局部密度）&quot;</span>)
+iso = IsolationForest(n_estimators=<span class="n">300</span>, contamination=<span class="n">0.01</span>, random_state=<span class="n">0</span>).fit(Xs)
+precision_at_k(-iso.score_samples(Xs), <span class="s">&quot;Isolation Forest&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;\n隨機亂猜的期望值 = {n_fraud/n:.2f}；真正的詐欺比例只有 {is_fraud.mean():.0%}，所以準確率毫無意義，要看 Precision／Recall&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">Z-score（只看金額）              抓到真詐欺 24/30  → Precision@30 = 0.80
+Z-score（三欄取最大）             抓到真詐欺 28/30  → Precision@30 = 0.93
+IQR 超出程度加總                 抓到真詐欺 30/30  → Precision@30 = 1.00
+LOF（局部密度）                  抓到真詐欺  5/30  → Precision@30 = 0.17
+Isolation Forest           抓到真詐欺 30/30  → Precision@30 = 1.00
+
+隨機亂猜的期望值 = 0.01；真正的詐欺比例只有 1%，所以準確率毫無意義，要看 Precision／Recall</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>只看金額的 Z-score 會漏掉「金額普通但深夜又離家很遠」的詐欺，多欄位一起看的方法明顯較好：異常往往是多個特徵「組合起來」才奇怪。</li><li>LOF 這次幾乎失靈：它比的是「我的密度和鄰居比起來是否特別低」，但 30 筆詐欺彼此很像、自成一小群，局部密度並不低，所以不算離群。LOF 擅長抓零星的局部異常，不擅長抓「成群的異常」。Isolation Forest 用隨機切分，越容易被孤立的點越異常，不假設分佈、對高維也快，是目前最常用的通用方法。</li><li>詐欺只佔 1%，任何方法的準確率都接近 99%，所以必須用 Precision@k、Recall 這類指標；PyOD 把這些演算法統一成同一套介面方便比較。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 n_fraud 改成 3（詐欺變成零星個案），LOF 會不會翻身？再把詐欺的 dist 改回正常，看哪些方法最先失效。</div>
+</article>
+<article class="ex" id="ex-network">
+<div class="exhead"><span class="num">範例 17</span><h4>網路分析：度中心性、PageRank 與連通元件</h4></div>
+<p class="scn"><b>情境</b>一個 9 人的社群互動網路。算每個人的度中心性，用冪次法手算 PageRank 找出「被重要人物連到的人」，再找出網路裡的獨立社群（連通元件）。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>中心性：Degree、Betweenness、PageRank</span><span>社群偵測（Louvain 的基本想法）</span><span>鄰接矩陣表示</span><span>NetworkX／Neo4j 工具</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> collections <span class="k">import</span> deque
+names = [<span class="s">&quot;Ann&quot;</span>, <span class="s">&quot;Bob&quot;</span>, <span class="s">&quot;Cat&quot;</span>, <span class="s">&quot;Dan&quot;</span>, <span class="s">&quot;Eve&quot;</span>, <span class="s">&quot;Fay&quot;</span>, <span class="s">&quot;Gus&quot;</span>, <span class="s">&quot;Hal&quot;</span>, <span class="s">&quot;Ivy&quot;</span>]
+edges = [(<span class="n">0</span>, <span class="n">1</span>), (<span class="n">0</span>, <span class="n">2</span>), (<span class="n">1</span>, <span class="n">2</span>), (<span class="n">2</span>, <span class="n">3</span>), (<span class="n">3</span>, <span class="n">4</span>), (<span class="n">3</span>, <span class="n">5</span>), (<span class="n">6</span>, <span class="n">7</span>), (<span class="n">7</span>, <span class="n">8</span>)]   <span class="c"># Gus-Hal-Ivy 是另一個島</span>
+n = <span class="b">len</span>(names); A = np.zeros((n, n))
+<span class="k">for</span> i, j <span class="k">in</span> edges: A[i, j] = A[j, i] = <span class="n">1</span>                 <span class="c"># 無向圖的鄰接矩陣（對稱）</span>
+
+deg = A.<span class="b">sum</span>(axis=<span class="n">1</span>)
+<span class="b">print</span>(<span class="s">&quot;度中心性：&quot;</span>, {names[i]: <span class="b">int</span>(deg[i]) <span class="k">for</span> i <span class="k">in</span> np.argsort(-deg)[:<span class="n">4</span>]}, <span class="s">&quot;…&quot;</span>)
+
+<span class="c"># PageRank（冪次法）：重要性 = 連到我的人把他們的重要性平均分給我，加上隨機跳轉</span>
+d = <span class="n">0.85</span>; pr = np.ones(n) / n
+M = A / np.where(deg == <span class="n">0</span>, <span class="n">1</span>, deg)[:, <span class="k">None</span>]              <span class="c"># 每個節點把分數平均分給鄰居</span>
+<span class="k">for</span> it <span class="k">in</span> <span class="b">range</span>(<span class="n">100</span>):
+    new = (<span class="n">1</span> - d) / n + d * M.T @ pr
+    <span class="k">if</span> np.<span class="b">abs</span>(new - pr).<span class="b">sum</span>() &lt; <span class="n">1e-10</span>: <span class="k">break</span>
+    pr = new
+<span class="b">print</span>(<span class="s">f&quot;PageRank（{it} 次迭代收斂）：&quot;</span>, {names[i]: <span class="b">round</span>(<span class="b">float</span>(pr[i]), <span class="n">3</span>) <span class="k">for</span> i <span class="k">in</span> np.argsort(-pr)[:<span class="n">4</span>]}, <span class="s">&quot;…&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;→ Cat 與 Dan 度數相同，但 Eve、Fay 只認識 Dan，把全部分數都給他，所以 Dan &gt; Cat；Hal 是小島唯一的樞紐，分數也高&quot;</span>)
+
+<span class="c"># 連通元件：BFS 走得到的就是同一個社群</span>
+seen, comps = <span class="b">set</span>(), []
+<span class="k">for</span> s <span class="k">in</span> <span class="b">range</span>(n):
+    <span class="k">if</span> s <span class="k">in</span> seen: <span class="k">continue</span>
+    q, comp = deque([s]), []
+    <span class="k">while</span> q:
+        u = q.popleft()
+        <span class="k">if</span> u <span class="k">in</span> seen: <span class="k">continue</span>
+        seen.add(u); comp.append(names[u]); q.extend(np.flatnonzero(A[u]))
+    comps.append(comp)
+<span class="b">print</span>(<span class="s">&quot;連通元件（獨立社群）：&quot;</span>, comps)
+<span class="b">print</span>(<span class="s">&quot;Cat–Dan 這條邊是左邊三角形通往 Eve、Fay 的唯一橋 → 介數中心性 (betweenness) 最高的會是 Dan 與 Cat&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">度中心性： {&#x27;Cat&#x27;: 3, &#x27;Dan&#x27;: 3, &#x27;Ann&#x27;: 2, &#x27;Bob&#x27;: 2} …
+PageRank（99 次迭代收斂）： {&#x27;Dan&#x27;: 0.171, &#x27;Hal&#x27;: 0.162, &#x27;Cat&#x27;: 0.155, &#x27;Ann&#x27;: 0.105} …
+→ Cat 與 Dan 度數相同，但 Eve、Fay 只認識 Dan，把全部分數都給他，所以 Dan &gt; Cat；Hal 是小島唯一的樞紐，分數也高
+連通元件（獨立社群）： [[&#x27;Ann&#x27;, &#x27;Bob&#x27;, &#x27;Cat&#x27;, &#x27;Dan&#x27;, &#x27;Eve&#x27;, &#x27;Fay&#x27;], [&#x27;Gus&#x27;, &#x27;Hal&#x27;, &#x27;Ivy&#x27;]]
+Cat–Dan 這條邊是左邊三角形通往 Eve、Fay 的唯一橋 → 介數中心性 (betweenness) 最高的會是 Dan 與 Cat</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>度中心性只數朋友數，PageRank 還看「朋友是誰」：被重要節點連到、而且對方的連結沒有分散出去，分數就高，這是 Google 排序網頁與推薦系統找關鍵人物的原理。</li><li>連通元件是最簡單的社群：走不到就不是同一群。Louvain 這類社群偵測則是在連通的網路裡，找出「內部連結密、對外連結疏」的子群。</li><li>介數中心性衡量「多少最短路徑經過我」，橋接兩個社群的節點最高；NetworkX 一行就能算，Neo4j 則是把這些當資料庫查詢來做。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>加一條 (4, 5) 讓 Eve、Fay 互相認識（他們就不會把全部分數給 Dan 了），看 Dan 與 Cat 的 PageRank 是否變成一樣；再加 (5, 6) 把兩個島連起來。</div>
+</article>
+<h3 id="sec53">5.3 數據可視化工具 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec53">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec53">白話版 ↗</a></h3>
+<article class="ex" id="ex-viz">
+<div class="exhead"><span class="num">範例 18</span><h4>依資料型態選圖，並用純文字畫出直方圖、箱形圖與相關熱力圖</h4></div>
+<p class="scn"><b>情境</b>寫一個「給我資料型態與分析目的，告訴我該畫什麼圖」的選圖函數；再用純文字在終端機畫出直方圖、箱形圖五數摘要與相關矩陣，體會圖表背後的數字是怎麼來的。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>分佈：直方圖、箱型圖、KDE</span><span>關聯：散佈圖、相關矩陣、熱力圖</span><span>類別：長條、堆疊長條、圓餅</span><span>時間：折線圖</span><span>設計原則：以閱讀者為中心、符合資料型態、去冗餘</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">def</span> pick_chart(x_type, purpose, n_series=<span class="n">1</span>):
+    <span class="s">&quot;&quot;&quot;x_type: &#x27;numeric&#x27; | &#x27;category&#x27; | &#x27;time&#x27; ; purpose: &#x27;distribution&#x27; | &#x27;compare&#x27; | &#x27;relation&#x27; | &#x27;trend&#x27; | &#x27;share&#x27;&quot;&quot;&quot;</span>
+    rules = {(<span class="s">&quot;numeric&quot;</span>, <span class="s">&quot;distribution&quot;</span>): <span class="s">&quot;直方圖／KDE（一組）或箱型圖（多組比較分佈）&quot;</span>,
+             (<span class="s">&quot;numeric&quot;</span>, <span class="s">&quot;relation&quot;</span>):     <span class="s">&quot;散佈圖（兩變數）；多變數用相關矩陣熱力圖&quot;</span>,
+             (<span class="s">&quot;category&quot;</span>, <span class="s">&quot;compare&quot;</span>):     <span class="s">&quot;長條圖（排序後）；兩個類別變數用堆疊或分組長條&quot;</span>,
+             (<span class="s">&quot;category&quot;</span>, <span class="s">&quot;share&quot;</span>):       <span class="s">&quot;圓餅圖（≤5 類）否則改用長條圖&quot;</span>,
+             (<span class="s">&quot;time&quot;</span>, <span class="s">&quot;trend&quot;</span>):           <span class="s">&quot;折線圖；多條線超過 5 條改用小倍數圖 (small multiples)&quot;</span>}
+    <span class="k">return</span> rules.get((x_type, purpose), <span class="s">&quot;先想清楚要回答什麼問題&quot;</span>)
+<span class="k">for</span> q <span class="k">in</span> [(<span class="s">&quot;numeric&quot;</span>, <span class="s">&quot;distribution&quot;</span>), (<span class="s">&quot;category&quot;</span>, <span class="s">&quot;compare&quot;</span>), (<span class="s">&quot;time&quot;</span>, <span class="s">&quot;trend&quot;</span>), (<span class="s">&quot;numeric&quot;</span>, <span class="s">&quot;relation&quot;</span>), (<span class="s">&quot;category&quot;</span>, <span class="s">&quot;share&quot;</span>)]:
+    <span class="b">print</span>(<span class="s">f&quot;{q[0]:9s} + {q[1]:13s} → {pick_chart(*q)}&quot;</span>)
+
+rng = np.random.default_rng(<span class="n">2</span>)
+x = rng.gamma(<span class="n">2</span>, <span class="n">20</span>, <span class="n">500</span>)                                   <span class="c"># 右偏的等待時間</span>
+<span class="b">print</span>(<span class="s">&quot;\n直方圖（等寬 8 箱）：&quot;</span>)
+counts, edges = np.histogram(x, bins=<span class="n">8</span>)
+<span class="k">for</span> c, lo, hi <span class="k">in</span> <span class="b">zip</span>(counts, edges[:-<span class="n">1</span>], edges[<span class="n">1</span>:]):
+    <span class="b">print</span>(<span class="s">f&quot;  {lo:6.1f}–{hi:6.1f} | {&#x27;█&#x27; * (c // 4):&lt;35s} {c}&quot;</span>)
+q1, med, q3 = np.percentile(x, [<span class="n">25</span>, <span class="n">50</span>, <span class="n">75</span>]); iqr = q3 - q1
+whisk_lo, whisk_hi = x[x &gt;= q1 - <span class="n">1.5</span>*iqr].<span class="b">min</span>(), x[x &lt;= q3 + <span class="n">1.5</span>*iqr].<span class="b">max</span>()
+<span class="b">print</span>(<span class="s">f&quot;\n箱形圖五數：鬚下 {whisk_lo:.1f} ├── Q1 {q1:.1f} ┤ 中位 {med:.1f} ├ Q3 {q3:.1f} ──┤ 鬚上 {whisk_hi:.1f}，離群點 {int((x &gt; whisk_hi).sum())} 個&quot;</span>)
+
+cols = [<span class="s">&quot;廣告費&quot;</span>, <span class="s">&quot;來客數&quot;</span>, <span class="s">&quot;營收&quot;</span>, <span class="s">&quot;氣溫&quot;</span>]
+ad = rng.normal(<span class="n">100</span>, <span class="n">20</span>, <span class="n">200</span>); visitors = <span class="n">3</span>*ad + rng.normal(<span class="n">0</span>, <span class="n">30</span>, <span class="n">200</span>); revenue = <span class="n">50</span>*visitors + rng.normal(<span class="n">0</span>, <span class="n">2000</span>, <span class="n">200</span>); temp = rng.normal(<span class="n">25</span>, <span class="n">5</span>, <span class="n">200</span>)
+C = np.corrcoef([ad, visitors, revenue, temp])
+<span class="b">print</span>(<span class="s">&quot;\n相關矩陣（熱力圖的底層數字）：&quot;</span>)
+shade = <span class="k">lambda</span> r: <span class="s">&quot; ░▒▓█&quot;</span>[<span class="b">min</span>(<span class="n">4</span>, <span class="b">int</span>(<span class="b">abs</span>(r) * <span class="n">4.999</span>))]
+<span class="b">print</span>(<span class="s">&quot;        &quot;</span> + <span class="s">&quot;&quot;</span>.join(<span class="s">f&quot;{c:&gt;8s}&quot;</span> <span class="k">for</span> c <span class="k">in</span> cols))
+<span class="k">for</span> name, row <span class="k">in</span> <span class="b">zip</span>(cols, C):
+    <span class="b">print</span>(<span class="s">f&quot;{name:8s}&quot;</span> + <span class="s">&quot;&quot;</span>.join(<span class="s">f&quot;{shade(r)}{r:7.2f}&quot;</span> <span class="k">for</span> r <span class="k">in</span> row))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">numeric   + distribution  → 直方圖／KDE（一組）或箱型圖（多組比較分佈）
+category  + compare       → 長條圖（排序後）；兩個類別變數用堆疊或分組長條
+time      + trend         → 折線圖；多條線超過 5 條改用小倍數圖 (small multiples)
+numeric   + relation      → 散佈圖（兩變數）；多變數用相關矩陣熱力圖
+category  + share         → 圓餅圖（≤5 類）否則改用長條圖
+
+直方圖（等寬 8 箱）：
+     1.0–  25.3 | ███████████████████████████████████████████████ 190
+    25.3–  49.6 | █████████████████████████████████████████ 165
+    49.6–  73.9 | ████████████████████                83
+    73.9–  98.2 | ██████████                          40
+    98.2– 122.5 | ███                                 12
+   122.5– 146.8 | █                                   6
+   146.8– 171.1 |                                     2
+   171.1– 195.4 |                                     2
+
+箱形圖五數：鬚下 1.0 ├── Q1 18.2 ┤ 中位 34.3 ├ Q3 54.0 ──┤ 鬚上 107.4，離群點 14 個
+
+相關矩陣（熱力圖的底層數字）：
+             廣告費     來客數      營收      氣溫
+廣告費     █   1.00█   0.89▓   0.76   -0.01
+來客數     █   0.89█   1.00█   0.86   -0.00
+營收      ▓   0.76█   0.86█   1.00    0.03
+氣溫         -0.01   -0.00    0.03█   1.00</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>選圖的第一步永遠是「資料型態 × 想回答的問題」：分佈看直方圖／箱形圖、類別比較用長條、趨勢用折線、兩變數關係用散佈圖，這就是指引「圖表符合資料型態」的意思。</li><li>直方圖只是把數值切成等寬箱再數個數；箱形圖只用五個數字（兩鬚、Q1、中位數、Q3）就能呈現偏態與離群值，所以適合多組並排比較。</li><li>相關矩陣是熱力圖的底層：廣告費→來客數→營收一路高相關，氣溫與誰都無關；熱力圖只是把這些數字塗上顏色，所以顏色尺度（發散型、以 0 為中心）要選對。</li><li>圓餅圖超過 5 類就難以比較、折線超過 5 條就打結，「簡化、去冗餘、以閱讀者為中心」是設計原則，不是美學偏好。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 bins 改成 3 與 30，看直方圖的形狀如何被箱數左右；用 matplotlib 把同一組數字畫成真正的圖（plt.hist、plt.boxplot、plt.imshow）對照。</div>
+</article>
+<h2 class="chap" id="chap6">第六章 大數據在人工智慧之應用</h2>
+<p class="chlead">資料進入 AI：串流增量學習與漂移偵測、主動學習挑標註樣本、合成資料的品質檢查、連結攻擊與匿名化。</p>
+<h3 id="sec61">6.1 大數據與機器學習 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec61">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec61">白話版 ↗</a></h3>
+<article class="ex" id="ex-drift">
+<div class="exhead"><span class="num">範例 19</span><h4>Velocity 與 Veracity：Mini-batch 增量學習，以及用 KS 檢定與 PSI 偵測數據漂移</h4></div>
+<p class="scn"><b>情境</b>模擬 12 個月的交易資料，第 7 個月起客群改變（特徵分佈移動）、第 10 個月起規則改變（標籤與特徵的關係變了）。用 SGD 做增量學習，並每月用 KS 檢定與 PSI 監控漂移，決定何時重訓。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Velocity：串流、增量學習、Mini-Batch</span><span>Veracity：漂移偵測（KS、KL／PSI）</span><span>數據漂移 vs 概念漂移</span><span>監控與自動重訓（MLOps）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> SGDClassifier
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+rng = np.random.default_rng(<span class="n">0</span>)
+
+<span class="k">def</span> month_data(m, n=<span class="n">1000</span>):
+    shift = <span class="n">1.5</span> <span class="k">if</span> m &gt;= <span class="n">7</span> <span class="k">else</span> <span class="n">0.0</span>                      <span class="c"># 第 7 月起：數據漂移（特徵分佈移動）</span>
+    X = rng.normal([<span class="n">0</span> + shift, <span class="n">0</span>], <span class="n">1</span>, (n, <span class="n">2</span>))
+    w = np.array([<span class="n">1.0</span>, -<span class="n">1.0</span>]) <span class="k">if</span> m &lt; <span class="n">10</span> <span class="k">else</span> np.array([-<span class="n">1.0</span>, <span class="n">1.0</span>])   <span class="c"># 第 10 月起：概念漂移（規則反轉）</span>
+    y = (X @ w + rng.normal(<span class="n">0</span>, <span class="n">0.5</span>, n) &gt; <span class="n">0</span>).astype(int)
+    <span class="k">return</span> X, y
+
+<span class="k">def</span> psi(ref, cur, bins=<span class="n">10</span>):                             <span class="c"># Population Stability Index</span>
+    edges = np.quantile(ref, np.linspace(<span class="n">0</span>, <span class="n">1</span>, bins + <span class="n">1</span>)); edges[<span class="n">0</span>], edges[-<span class="n">1</span>] = -np.inf, np.inf
+    p = np.histogram(ref, edges)[<span class="n">0</span>] / <span class="b">len</span>(ref) + <span class="n">1e-6</span>; q = np.histogram(cur, edges)[<span class="n">0</span>] / <span class="b">len</span>(cur) + <span class="n">1e-6</span>
+    <span class="k">return</span> <span class="b">float</span>(np.<span class="b">sum</span>((q - p) * np.log(q / p)))
+
+X0, y0 = month_data(<span class="n">1</span>)
+scaler = StandardScaler().fit(X0)
+clf = SGDClassifier(loss=<span class="s">&quot;log_loss&quot;</span>, random_state=<span class="n">0</span>).partial_fit(scaler.transform(X0), y0, classes=[<span class="n">0</span>, <span class="n">1</span>])
+prev = X0
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;月&#x27;:&gt;3s}{&#x27;準確率&#x27;:&gt;7s}{&#x27;KS p值&#x27;:&gt;9s}{&#x27;PSI&#x27;:&gt;7s}  判讀（KS、PSI 都是與上個月比）&quot;</span>)
+<span class="k">for</span> m <span class="k">in</span> <span class="b">range</span>(<span class="n">2</span>, <span class="n">13</span>):
+    X, y = month_data(m)
+    acc = clf.score(scaler.transform(X), y)             <span class="c"># 先用舊模型預測（上線時的真實表現）</span>
+    ks_p = stats.ks_2samp(prev[:, <span class="n">0</span>], X[:, <span class="n">0</span>]).pvalue   <span class="c"># 與上個月比較特徵 1 的分佈</span>
+    ps = psi(prev[:, <span class="n">0</span>], X[:, <span class="n">0</span>]); prev = X
+    flag = <span class="s">&quot;特徵分佈改變（數據漂移）&quot;</span> <span class="k">if</span> ps &gt; <span class="n">0.25</span> <span class="k">else</span> <span class="s">&quot;&quot;</span>
+    <span class="k">if</span> acc &lt; <span class="n">0.75</span> <span class="k">and</span> ps &lt;= <span class="n">0.25</span>: flag = <span class="s">&quot;分佈沒變但準確率崩 → 概念漂移，必須重訓&quot;</span>
+    <span class="k">if</span> acc &lt; <span class="n">0.75</span> <span class="k">and</span> ps &gt; <span class="n">0.25</span>: flag = <span class="s">&quot;數據漂移 + 準確率下降&quot;</span>
+    <span class="b">print</span>(<span class="s">f&quot;{m:3d}{acc:7.3f}{ks_p:9.4f}{ps:7.3f}  {flag}&quot;</span>)
+    <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(<span class="n">0</span>, <span class="b">len</span>(X), <span class="n">100</span>):                     <span class="c"># Mini-batch 增量學習：每 100 筆更新一次</span>
+        clf.partial_fit(scaler.transform(X[i:i+<span class="n">100</span>]), y[i:i+<span class="n">100</span>])</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">  月    準確率    KS p值    PSI  判讀（KS、PSI 都是與上個月比）
+  2  0.852   0.4660  0.009  
+  3  0.905   0.6855  0.016  
+  4  0.894   0.3137  0.015  
+  5  0.866   0.9690  0.008  
+  6  0.868   0.8595  0.013  
+  7  0.929   0.0000  2.011  特徵分佈改變（數據漂移）
+  8  0.934   0.2407  0.025  
+  9  0.936   0.6102  0.017  
+ 10  0.090   0.6855  0.009  分佈沒變但準確率崩 → 概念漂移，必須重訓
+ 11  0.936   0.0692  0.025  
+ 12  0.948   0.0196  0.026  </pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>第 7 個月 KS 檢定的 p 值掉到 0、PSI 遠超過 0.25：特徵分佈明顯移動，這是數據漂移（共變量漂移）；但模型準確率反而還上升，因為「特徵與標籤的關係」沒變、新資料只是落在模型本來就會判對的區域。</li><li>第 10 個月規則反轉，輸入分佈和上個月一樣（PSI、KS 都沒有告警）但準確率崩到接近 0：這是概念漂移，光看輸入分佈完全偵測不到，必須監控預測表現或等標籤回來比對。</li><li>partial_fit 每 100 筆更新一次就是 Mini-batch 增量學習，模型在下一個月就把準確率拉回來；KS 看兩個分佈的最大累積差，PSI 是 KL 散度的對稱版，業界常以 0.1／0.25 當警戒線。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 partial_fit 那兩行註解掉（模型凍結不更新），看第 7 月之後準確率如何一路下滑；再把 PSI 的 bins 改成 4，觀察靈敏度變化。</div>
+</article>
+<h3 id="sec62">6.2 大數據在鑑別式 AI 的應用 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec62">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec62">白話版 ↗</a></h3>
+<article class="ex" id="ex-active">
+<div class="exhead"><span class="num">範例 20</span><h4>資料標註策略：主動學習（不確定性抽樣）vs 隨機抽樣，同樣標 110 筆誰學得快？</h4></div>
+<p class="scn"><b>情境</b>有 3000 筆未標註的客訴文本向量，每標一筆要花錢。比較「隨機挑」與「挑模型最沒把握的」兩種策略，從 10 筆起步、每輪多標 10 筆，看準確率各上升多少。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>資料標註策略：人工、弱監督、群眾外包、主動式學習</span><span>不確定性抽樣（Least Confidence）</span><span>標註成本與模型效益</span><span>鑑別式 AI 需要大量標記資料</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+X, y = make_classification(n_samples=<span class="n">4000</span>, n_features=<span class="n">20</span>, n_informative=<span class="n">4</span>, class_sep=<span class="n">1.5</span>, flip_y=<span class="n">0.01</span>, shuffle=<span class="k">False</span>, random_state=<span class="n">1</span>)
+Xpool, Xte, ypool, yte = train_test_split(X, y, test_size=<span class="n">1000</span>, random_state=<span class="n">0</span>)
+rng = np.random.default_rng(<span class="n">0</span>)
+init = rng.choice(<span class="b">len</span>(Xpool), <span class="n">10</span>, replace=<span class="k">False</span>)                      <span class="c"># 兩種策略都從同樣的 10 筆起步</span>
+
+<span class="k">def</span> run(strategy, rounds=<span class="n">10</span>, batch=<span class="n">10</span>):
+    labeled = <span class="b">list</span>(init); acc = []
+    <span class="k">for</span> r <span class="k">in</span> <span class="b">range</span>(rounds + <span class="n">1</span>):
+        clf = LogisticRegression(max_iter=<span class="n">1000</span>).fit(Xpool[labeled], ypool[labeled])
+        acc.append(clf.score(Xte, yte))
+        <span class="k">if</span> r == rounds: <span class="k">break</span>
+        cand = np.setdiff1d(np.arange(<span class="b">len</span>(Xpool)), labeled)
+        <span class="k">if</span> strategy == <span class="s">&quot;random&quot;</span>:
+            pick = rng.choice(cand, batch, replace=<span class="k">False</span>)
+        <span class="k">else</span>:                                                           <span class="c"># 不確定性抽樣：機率最接近 0.5 的樣本</span>
+            p = clf.predict_proba(Xpool[cand])[:, <span class="n">1</span>]
+            pick = cand[np.argsort(np.<span class="b">abs</span>(p - <span class="n">0.5</span>))[:batch]]
+        labeled += pick.tolist()
+    <span class="k">return</span> acc
+
+ra, ac = run(<span class="s">&quot;random&quot;</span>), run(<span class="s">&quot;active&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;已標註筆數&#x27;:&gt;8s}{&#x27;隨機抽樣&#x27;:&gt;9s}{&#x27;主動學習&#x27;:&gt;9s}&quot;</span>)
+<span class="k">for</span> i, (a, b) <span class="k">in</span> <span class="b">enumerate</span>(<span class="b">zip</span>(ra, ac)):
+    <span class="k">if</span> i % <span class="n">2</span> == <span class="n">0</span>: <span class="b">print</span>(<span class="s">f&quot;{10 + i*10:8d}{a:9.3f}{b:9.3f}&quot;</span>)
+full = LogisticRegression(max_iter=<span class="n">1000</span>).fit(Xpool, ypool).score(Xte, yte)
+<span class="b">print</span>(<span class="s">f&quot;\n全部 {len(Xpool)} 筆都標註的上限 = {full:.3f}&quot;</span>)
+<span class="c"># 弱監督：用一條粗糙規則自動產生雜訊標籤，當作「免費但不準」的標註</span>
+rule = (Xpool[:, <span class="n">0</span>] &gt; <span class="n">0</span>).astype(int)                                    <span class="c"># shuffle=False → 第 0 欄是有資訊的特徵</span>
+<span class="b">print</span>(<span class="s">f&quot;弱監督規則標籤與真實標籤一致率 = {(rule == ypool).mean():.2f} → 便宜、量大、但有雜訊&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">   已標註筆數     隨機抽樣     主動學習
+      10    0.806    0.806
+      30    0.878    0.858
+      50    0.867    0.864
+      70    0.873    0.871
+      90    0.869    0.880
+     110    0.855    0.881
+
+全部 3000 筆都標註的上限 = 0.882
+弱監督規則標籤與真實標籤一致率 = 0.67 → 便宜、量大、但有雜訊</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>同樣只標 110 筆，主動學習挑「模型最猶豫」的樣本來標，準確率穩定上升到幾乎追上全部 3000 筆都標的上限；隨機抽樣的曲線忽高忽低、全看運氣。標註預算有限時，挑哪些資料來標比標多少更重要。</li><li>不確定性抽樣是主動學習最簡單的策略（還有委員會投票、期望模型變化等）；它假設標註者會給正確答案，所以常和人工標註平台一起用。</li><li>弱監督用規則、知識庫或舊模型自動產生「有雜訊的標籤」，一致率只有六七成但零成本、量無上限，Snorkel 這類工具就是把多條弱規則合併去噪；群眾外包則介於兩者之間。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 batch 改成 30、rounds 改成 4（總標註數相近），看主動學習的優勢是否縮小；把 class_sep 調低到 0.5 看哪個策略先崩。</div>
+</article>
+<h3 id="sec63">6.3 大數據在生成式 AI 的應用 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec63">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec63">白話版 ↗</a></h3>
+<article class="ex" id="ex-synthetic">
+<div class="exhead"><span class="num">範例 21</span><h4>合成資料：用高斯混合模型學會真實資料的分佈再生成，並檢查代表性與偏誤</h4></div>
+<p class="scn"><b>情境</b>真實客戶資料不能外流，改用「學會分佈後抽樣」的合成資料給外部團隊開發。檢查合成資料的統計分佈、相關結構是否保真，以及少數群體的比例有沒有被抹掉。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>合成資料（Synthetic Data）</span><span>資料多樣性、代表性與偏誤</span><span>品質與正確性、時效性</span><span>生成模型學分佈 vs 鑑別模型學邊界</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+<span class="k">from</span> sklearn.mixture <span class="k">import</span> GaussianMixture
+rng = np.random.default_rng(<span class="n">0</span>)
+<span class="c"># 真實資料：兩個客群（一般 90%、高消費 10%），欄位 = 年齡、年消費(萬)</span>
+n = <span class="n">5000</span>
+grp = rng.random(n) &lt; <span class="n">0.10</span>
+age = np.where(grp, rng.normal(<span class="n">48</span>, <span class="n">6</span>, n), rng.normal(<span class="n">32</span>, <span class="n">8</span>, n))
+spend = np.where(grp, rng.normal(<span class="n">60</span>, <span class="n">10</span>, n), rng.normal(<span class="n">12</span>, <span class="n">4</span>, n)) + <span class="n">0.3</span> * (age - <span class="n">35</span>)
+real = np.column_stack([age, spend])
+
+gmm = GaussianMixture(n_components=<span class="n">2</span>, random_state=<span class="n">0</span>).fit(real)        <span class="c"># 生成模型：學聯合分佈 P(年齡, 消費)</span>
+synth, comp = gmm.sample(n)
+<span class="b">print</span>(<span class="s">f&quot;真實  平均年齡 {real[:, 0].mean():5.1f}  平均消費 {real[:, 1].mean():5.1f}  相關係數 {np.corrcoef(real.T)[0, 1]:.3f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;合成  平均年齡 {synth[:, 0].mean():5.1f}  平均消費 {synth[:, 1].mean():5.1f}  相關係數 {np.corrcoef(synth.T)[0, 1]:.3f}&quot;</span>)
+<span class="k">for</span> j, col <span class="k">in</span> <span class="b">enumerate</span>([<span class="s">&quot;年齡&quot;</span>, <span class="s">&quot;消費&quot;</span>]):
+    <span class="b">print</span>(<span class="s">f&quot;KS 檢定 {col}：p = {stats.ks_2samp(real[:, j], synth[:, j]).pvalue:.3f}（p 大 → 分佈無顯著差異）&quot;</span>)
+
+<span class="c"># 代表性：高消費少數客群在合成資料中的比例有沒有被保住？</span>
+hi_real = (real[:, <span class="n">1</span>] &gt; <span class="n">55</span>).mean(); hi_syn = (synth[:, <span class="n">1</span>] &gt; <span class="n">55</span>).mean()
+<span class="b">print</span>(<span class="s">f&quot;\n高消費客群（年消費 &gt; 55 萬）比例：真實 {hi_real:.1%}，合成 {hi_syn:.1%}&quot;</span>)
+
+<span class="c"># 若生成模型只用 1 個成分（容量不足），少數群體會被「平均掉」→ 偏誤</span>
+bad = GaussianMixture(n_components=<span class="n">1</span>, random_state=<span class="n">0</span>).fit(real).sample(n)[<span class="n">0</span>]
+<span class="b">print</span>(<span class="s">f&quot;容量不足（1 成分）的模型：高消費比例 {(bad[:, 1] &gt; 55).mean():.1%}，消費分佈 KS p = {stats.ks_2samp(real[:, 1], bad[:, 1]).pvalue:.1e}  ← 少數群體被抹平、分佈失真&quot;</span>)
+
+<span class="c"># 隱私檢查：合成資料是否「抄」了真實樣本？看最近鄰距離</span>
+<span class="k">from</span> sklearn.neighbors <span class="k">import</span> NearestNeighbors
+d_syn = NearestNeighbors(n_neighbors=<span class="n">1</span>).fit(real).kneighbors(synth)[<span class="n">0</span>].ravel()
+d_real = NearestNeighbors(n_neighbors=<span class="n">2</span>).fit(real).kneighbors(real)[<span class="n">0</span>][:, <span class="n">1</span>]
+<span class="b">print</span>(<span class="s">f&quot;\n合成點到最近真實點的中位距離 {np.median(d_syn):.2f}，真實點彼此的中位距離 {np.median(d_real):.2f} → 沒有複製個別樣本&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">真實  平均年齡  33.7  平均消費  16.7  相關係數 0.621
+合成  平均年齡  33.9  平均消費  16.8  相關係數 0.617
+KS 檢定 年齡：p = 0.202（p 大 → 分佈無顯著差異）
+KS 檢定 消費：p = 0.933（p 大 → 分佈無顯著差異）
+
+高消費客群（年消費 &gt; 55 萬）比例：真實 8.7%，合成 8.5%
+容量不足（1 成分）的模型：高消費比例 1.0%，消費分佈 KS p = 2.8e-212  ← 少數群體被抹平、分佈失真
+
+合成點到最近真實點的中位距離 0.16，真實點彼此的中位距離 0.16 → 沒有複製個別樣本</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>高斯混合模型是生成模型：學的是「年齡與消費的聯合分佈」，所以能抽出新樣本；合成資料的平均、相關係數與 KS 檢定都與真實資料一致，統計上保真。</li><li>合成資料最常見的偏誤是「少數群體被抹平」：容量不足的模型把兩個客群平均成一團，高消費客群從 9% 掉到 1%、消費分佈的 KS 檢定 p 值趨近 0，下游模型就學不到他們。這就是指引強調「代表性與偏誤」的原因。</li><li>合成資料要同時過兩關：像真實資料（分佈、相關結構）但又不能太像任何一筆真實資料（最近鄰距離不能異常小），否則等於洩漏個資。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把高消費客群比例改成 2%，看 2 成分的 GMM 還保得住他們嗎？要加到幾個成分才行？再想想時效性：若真實資料是三年前的，合成資料會繼承什麼問題？</div>
+</article>
+<h3 id="sec64">6.4 大數據隱私保護、安全與合規 <a class="back" href="中級_科目2_大數據處理分析與應用.html#sec64">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目2_大數據處理分析與應用.html#sec64">白話版 ↗</a></h3>
+<article class="ex" id="ex-linkage">
+<div class="exhead"><span class="num">範例 22</span><h4>連結攻擊：兩張「各自匿名」的表如何拼出身分，以及泛化到 K-匿名後還剩多少風險</h4></div>
+<p class="scn"><b>情境</b>一份「去掉姓名」的健康資料與一份公開的選民名冊，都有郵遞區號、生日、性別。示範準識別欄位如何橫向比對再識別，再把準識別欄泛化、檢查 K-匿名與 T-接近性，並計算資訊損失。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>直接識別 vs 準識別資訊</span><span>橫向比對、時間軸拼接的再識別風險</span><span>泛化、分桶、遮蔽</span><span>K-匿名／L-多樣性／T-接近性</span><span>資料最小化與目的限制</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+rng = np.random.default_rng(<span class="n">1</span>)
+n = <span class="n">2000</span>
+zips = rng.choice([<span class="s">f&quot;10{i:03d}&quot;</span> <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(<span class="n">40</span>)], n)
+bday = pd.to_datetime(<span class="s">&quot;1960-01-01&quot;</span>) + pd.to_timedelta(rng.integers(<span class="n">0</span>, <span class="n">365</span>*<span class="n">40</span>, n), unit=<span class="s">&quot;D&quot;</span>)
+sex = rng.choice([<span class="s">&quot;M&quot;</span>, <span class="s">&quot;F&quot;</span>], n)
+health = pd.DataFrame({<span class="s">&quot;zip&quot;</span>: zips, <span class="s">&quot;birth&quot;</span>: bday, <span class="s">&quot;sex&quot;</span>: sex, <span class="s">&quot;diagnosis&quot;</span>: rng.choice([<span class="s">&quot;無&quot;</span>, <span class="s">&quot;糖尿病&quot;</span>, <span class="s">&quot;高血壓&quot;</span>, <span class="s">&quot;憂鬱症&quot;</span>], n, p=[<span class="n">.7</span>, <span class="n">.1</span>, <span class="n">.1</span>, <span class="n">.1</span>])})
+voters = pd.DataFrame({<span class="s">&quot;name&quot;</span>: [<span class="s">f&quot;person_{i}&quot;</span> <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(n)], <span class="s">&quot;zip&quot;</span>: zips, <span class="s">&quot;birth&quot;</span>: bday, <span class="s">&quot;sex&quot;</span>: sex})
+
+<span class="c"># ── 連結攻擊：用三個準識別欄 join ──</span>
+qi = [<span class="s">&quot;zip&quot;</span>, <span class="s">&quot;birth&quot;</span>, <span class="s">&quot;sex&quot;</span>]
+joined = health.merge(voters, on=qi)
+uniq = health.groupby(qi).size()
+<span class="b">print</span>(<span class="s">f&quot;健康資料沒有姓名，但 (郵遞區號, 生日, 性別) 唯一的人佔 {(uniq == 1).sum() / n:.1%}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;與選民名冊 join 後可直接指認姓名與診斷的筆數 = {(joined.groupby(qi).name.transform(&#x27;size&#x27;) == 1).sum()}&quot;</span>)
+<span class="b">print</span>(joined[joined.groupby(qi).name.transform(<span class="s">&quot;size&quot;</span>) == <span class="n">1</span>].head(<span class="n">3</span>)[[<span class="s">&quot;name&quot;</span>, <span class="s">&quot;zip&quot;</span>, <span class="s">&quot;birth&quot;</span>, <span class="s">&quot;sex&quot;</span>, <span class="s">&quot;diagnosis&quot;</span>]].to_string(index=<span class="k">False</span>))
+
+<span class="c"># ── 泛化：生日 → 出生年代（10 年）、郵遞區號 → 前 3 碼 ──</span>
+<span class="k">def</span> generalize(df, zip_len, year_bin):
+    g = df.copy()
+    g[<span class="s">&quot;zip&quot;</span>] = g.zip.str[:zip_len] + <span class="s">&quot;*&quot;</span> * (<span class="n">5</span> - zip_len)
+    g[<span class="s">&quot;birth&quot;</span>] = (g.birth.dt.year // year_bin * year_bin).astype(str) + <span class="s">&quot;s&quot;</span>
+    <span class="k">return</span> g
+<span class="k">def</span> k_anon(df): <span class="k">return</span> <span class="b">int</span>(df.groupby([<span class="s">&quot;zip&quot;</span>, <span class="s">&quot;birth&quot;</span>, <span class="s">&quot;sex&quot;</span>]).size().<span class="b">min</span>())
+<span class="k">def</span> t_closeness(df):                                   <span class="c"># 各等價類的診斷分佈與整體分佈的最大差距（越小越好）</span>
+    overall = df.diagnosis.value_counts(normalize=<span class="k">True</span>)
+    <span class="k">return</span> <span class="b">max</span>(<span class="b">abs</span>(g.diagnosis.value_counts(normalize=<span class="k">True</span>).reindex(overall.index, fill_value=<span class="n">0</span>) - overall).<span class="b">sum</span>() / <span class="n">2</span>
+               <span class="k">for</span> _, g <span class="k">in</span> df.groupby([<span class="s">&quot;zip&quot;</span>, <span class="s">&quot;birth&quot;</span>, <span class="s">&quot;sex&quot;</span>]))
+<span class="b">print</span>(<span class="s">f&quot;\n{&#x27;泛化程度&#x27;:16s}{&#x27;K&#x27;:&gt;4s}{&#x27;T 接近性&#x27;:&gt;9s}{&#x27;等價類數&#x27;:&gt;8s}&quot;</span>)
+<span class="k">for</span> zl, yb <span class="k">in</span> [(<span class="n">5</span>, <span class="n">1</span>), (<span class="n">5</span>, <span class="n">10</span>), (<span class="n">3</span>, <span class="n">10</span>), (<span class="n">2</span>, <span class="n">20</span>)]:
+    g = generalize(health, zl, yb)
+    <span class="b">print</span>(<span class="s">f&quot;zip前{zl}碼/{yb:2d}年   {k_anon(g):4d}{t_closeness(g):9.2f}{g.groupby([&#x27;zip&#x27;,&#x27;birth&#x27;,&#x27;sex&#x27;]).ngroups:8d}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;→ 泛化越粗 K 越大、T 越小（越安全），但等價類變少 = 資訊損失變大（分析價值下降）&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;\n資料最小化：若研究只需要『年代 × 診斷』，就只提供這兩欄 →&quot;</span>, generalize(health, <span class="n">0</span>, <span class="n">10</span>)[[<span class="s">&quot;birth&quot;</span>, <span class="s">&quot;diagnosis&quot;</span>]].drop_duplicates().shape[<span class="n">0</span>], <span class="s">&quot;種組合&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">健康資料沒有姓名，但 (郵遞區號, 生日, 性別) 唯一的人佔 99.8%
+與選民名冊 join 後可直接指認姓名與診斷的筆數 = 1996
+    name   zip      birth sex diagnosis
+person_0 10018 1985-02-14   M         無
+person_1 10020 1981-09-04   M       高血壓
+person_2 10030 1974-11-29   M         無
+
+泛化程度               K    T 接近性    等價類數
+zip前5碼/ 1年      1     0.90    1488
+zip前5碼/10年      1     0.90     320
+zip前3碼/10年    229     0.08       8
+zip前2碼/20年    473     0.05       4
+→ 泛化越粗 K 越大、T 越小（越安全），但等價類變少 = 資訊損失變大（分析價值下降）
+
+資料最小化：若研究只需要『年代 × 診斷』，就只提供這兩欄 → 16 種組合</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>健康資料雖然刪了姓名，但「郵遞區號＋完整生日＋性別」對絕大多數人是唯一的，和任何一份含這三欄的公開名冊 join 就能指認出姓名與診斷：這就是準識別資訊的橫向比對風險，也是 1990 年代麻州州長病歷被再識別的真實手法。</li><li>泛化（生日改年代、郵遞區號只留前幾碼）讓每個等價類變大，K 從 1 升到幾十；T-接近性檢查每個等價類的敏感值分佈是否和整體差太多，避免「這一組幾乎都是糖尿病」的推論攻擊。</li><li>匿名化永遠是「隱私 vs 可用性」的取捨：泛化越粗越安全但分析價值越低。資料最小化（只給研究真正需要的欄位）往往比事後匿名更有效，也是 GDPR 與個資法的基本原則。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 n 改成 50000（人多了等價類自然變大），看完整生日的 K 還會是 1 嗎；再加一欄「就診日期」想想「時間軸拼接」會怎麼讓再識別變容易。</div>
+</article>
+
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：依經濟部產業人才能力鑑定 iPAS 中級學習指引《大數據處理分析與應用》的章節，自製可執行的 Python 範例協助理解考點，並非官方評鑑內容；考試請以官方學習指引、勘誤表與公告為準。程式碼可自由取用、修改。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = -1;
+    for(var i=0;i<targets.length;i++){ if(targets[i] && targets[i].offsetTop <= pos) current = i; }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+// 複製程式碼
+document.addEventListener('click', function(ev){
+  var btn = ev.target.closest('button.copy'); if(!btn) return;
+  var pre = btn.closest('.codewrap').querySelector('pre.code');
+  var text = pre.textContent;
+  function done(){ btn.textContent = '已複製 ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = '複製程式碼'; btn.classList.remove('done'); }, 1600); }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  function fallback(){ var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+});
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

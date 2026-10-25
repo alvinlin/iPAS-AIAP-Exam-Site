@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級 科目 3（Python 實作範例）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#0f766e;--accent-soft:#ccfbf1;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;
+  --code-bg:#0f172a;--code-ink:#e2e8f0;--code-k:#c792ea;--code-s:#c3e88d;--code-c:#7c8aa5;--code-n:#f78c6c;--code-b:#82aaff;--code-d:#ffcb6b;
+  --out-bg:#f4f6fa;--out-ink:#1f2933;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:22px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+nav.toc .cnt{display:inline-block;min-width:18px;text-align:center;font-size:11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:4px;padding:0 5px;line-height:17px;}
+main{padding:40px 52px;max-width:960px;min-width:0;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+h2.chap{margin:46px 0 10px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:21px;scroll-margin-top:16px;}
+p.chlead{color:var(--muted);margin:0 0 10px;}
+h3{margin:34px 0 10px;font-size:18px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;scroll-margin-top:16px;}
+h4{margin:0;font-size:17px;}
+p{margin:10px 0;}
+ul,ol{margin:8px 0;padding-left:24px;}
+li{margin:4px 0;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+.env{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
+.env span{font-size:12.5px;font-family:Consolas,Menlo,monospace;background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:999px;}
+pre.setup{background:var(--out-bg);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13.5px;overflow-x:auto;margin:8px 0;}
+/* 範例卡 */
+article.ex{border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;margin:18px 0 26px;background:#fff;scroll-margin-top:16px;}
+.exhead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.exhead .num{font-size:12px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--accent);padding:2px 10px;border-radius:999px;white-space:nowrap;}
+p.scn{margin:6px 0 8px;} p.scn b{color:var(--accent);margin-right:6px;}
+.pts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;margin:6px 0 12px;}
+.pts .lbl{color:var(--muted);margin-right:2px;}
+.pts span:not(.lbl){background:var(--accent-soft);color:var(--accent);padding:1px 10px;border-radius:999px;font-weight:600;}
+.codewrap,.outwrap{border-radius:10px;overflow:hidden;margin:10px 0;border:1px solid var(--line);}
+.cbar{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 12px;letter-spacing:.04em;}
+.codewrap .cbar{background:#1e293b;color:#cbd5e1;} .outwrap .cbar{background:var(--accent-soft);color:var(--accent);font-weight:700;}
+button.copy{font:inherit;font-size:12px;background:transparent;color:#cbd5e1;border:1px solid #475569;border-radius:6px;padding:2px 10px;cursor:pointer;}
+button.copy:hover{background:#334155;color:#fff;} button.copy.done{color:#86efac;border-color:#4ade80;}
+pre.code,pre.out{margin:0;padding:14px 16px;overflow-x:auto;font-family:Consolas,"Cascadia Mono",Menlo,"Noto Sans Mono CJK TC",monospace;font-size:13.5px;line-height:1.6;tab-size:4;}
+pre.code{background:var(--code-bg);color:var(--code-ink);} pre.code code{background:none;padding:0;font-size:inherit;color:inherit;}
+pre.code .k{color:var(--code-k);} pre.code .s{color:var(--code-s);} pre.code .c{color:var(--code-c);font-style:italic;} pre.code .n{color:var(--code-n);} pre.code .b{color:var(--code-b);} pre.code .d{color:var(--code-d);}
+pre.out{background:var(--out-bg);color:var(--out-ink);white-space:pre;}
+.read,.tip{border-radius:10px;padding:10px 16px;margin:12px 0 4px;border:1px solid;}
+.read .tag,.tip .tag{display:block;font-weight:700;font-size:13px;margin-bottom:2px;}
+.read{background:#f0f7ff;border-color:#bfdbfe;} .read .tag{color:#1d4ed8;} .read ul{margin:4px 0;}
+.tip{background:#fdf4ff;border-color:#f0abfc;} .tip .tag{color:#a21caf;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:20px 16px}article.ex{padding:14px 12px 10px}pre.code,pre.out{font-size:12.5px;padding:12px}}
+/* 深色 */
+[data-theme="dark"] article.ex{background:#131a29;}
+[data-theme="dark"] .read{background:#13223a;border-color:#2c4a77;} [data-theme="dark"] .read .tag{color:#8ab4ff;}
+[data-theme="dark"] .tip{background:#2a1630;border-color:#6b2f78;} [data-theme="dark"] .tip .tag{color:#f0a6ff;}
+[data-theme="dark"]{--out-bg:#0f1522;--out-ink:#d9e0eb;--code-bg:#0b1020;}
+[data-theme="dark"] pre.setup{border-color:#2b3447;}
+</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>章節導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="中級_科目3_機器學習技術與應用.html">↗ 對照完整教材</a>
+    <a href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html">↗ 白話加強版</a>
+    <a href="#guide">使用說明與執行環境</a>
+    <a href="#chap3">第三章 機器學習基礎數學</a><a class="sub" href="#sec3-1">3.1 機率/統計之機器學習基礎應用 <span class="cnt">2</span></a><a class="sub" href="#sec3-2">3.2 線性代數之機器學習基礎應用 <span class="cnt">2</span></a><a class="sub" href="#sec3-3">3.3 數值優化技術與方法 <span class="cnt">2</span></a><a href="#chap4">第四章 機器學習與深度學習</a><a class="sub" href="#sec4-2">4.2 常見機器學習演算法 <span class="cnt">4</span></a><a class="sub" href="#sec4-3">4.3 深度學習原理與框架 <span class="cnt">2</span></a><a href="#chap5">第五章 機器學習建模與參數調校</a><a class="sub" href="#sec5-1">5.1 數據準備與特徵工程 <span class="cnt">2</span></a><a class="sub" href="#sec5-2">5.2 模型選擇與架構設計 <span class="cnt">1</span></a><a class="sub" href="#sec5-3">5.3 模型訓練、評估與驗證 <span class="cnt">2</span></a><a class="sub" href="#sec5-4">5.4 模型調整與優化 <span class="cnt">3</span></a><a href="#chap6">第六章 機器學習治理</a><a class="sub" href="#sec6-1">6.1 數據隱私、安全與合規 <span class="cnt">1</span></a><a class="sub" href="#sec6-2">6.2 演算法偏見與公平性 <span class="cnt">1</span></a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 3 · Python 實作範例</span>
+      <h1>機器學習技術與應用</h1>
+      <p class="sub">非官方補充教材 · 依完整教材章節，用可執行的 Python 程式把考點做出來、看結果</p>
+      <div class="tags"><span>共 22 個範例</span><span>所有輸出皆為實際執行結果</span><span>考試以官方學習指引為準</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明與執行環境</h2>
+      <p>本科是五科中最適合「動手做」的一科：指引裡的每個公式、每種演算法、每個評估指標都能用幾十行 Python 做出來。本頁依完整教材的章節順序，把基礎數學（貝氏、線代、優化）、常見演算法、建模流程（特徵工程、評估、調校、壓縮）與治理（隱私、公平性）各做成一個可執行的小範例，看完輸出再回頭讀指引，觀念會具體得多。</p>
+      <div class="howto">
+        <div><b style="color:var(--accent)">🎯 情境</b><br>一個貼近實務的小任務，說明「為什麼要算這個」</div>
+        <div><b style="color:var(--accent)">🏷️ 對應考點</b><br>這段程式對應的官方指引觀念，考題多從這裡出</div>
+        <div><b>🐍 Python</b><br>可直接複製執行的完整程式，重點都有中文註解</div>
+        <div><b>▶ 執行結果</b><br>產生本頁時實際跑出的輸出，不是手寫的</div>
+        <div><b style="color:#1d4ed8">🔍 結果解讀</b><br>把輸出的數字對回教材的觀念與結論</div>
+        <div><b style="color:#a21caf">💡 延伸練習</b><br>改一個參數再跑一次，自己驗證觀念</div>
+      </div>
+      <h4 style="margin-top:16px">執行環境</h4>
+      <p>範例只用四個常見套件，在任何能裝 Python 3.10 以上的電腦即可執行（不需 GPU、不需網路、不需 API 金鑰）。本頁輸出由下列版本產生；版本不同時小數位數可能略有差異，結論不變。</p>
+      <div class="env"><span>Python 3.12.3</span><span>numpy 2.5.4</span><span>pandas 3.1.0</span><span>scikit-learn 1.9.1</span><span>scipy 1.18.1</span></div>
+<pre class="setup">python3 -m venv .venv &amp;&amp; source .venv/bin/activate   # Windows：.venv\Scripts\activate
+pip install numpy pandas scikit-learn scipy
+python3 範例.py                                      # 把範例貼進檔案後執行</pre>
+      <p style="font-size:14px;color:var(--muted)">資料都是程式內隨機產生或手寫的小型玩具資料（固定隨機種子，可重現），目的是讓觀念看得見，不代表真實業務數據。依據：中級學習指引《機器學習技術與應用》。</p>
+    </section>
+
+    <h2 class="chap" id="chap3">第三章 機器學習基礎數學</h2>
+<p class="chlead">數學地基：用程式把貝氏定理、分佈轉換、線性代數運算、矩陣分解與各種優化器實際算一遍。</p>
+<h3 id="sec3-1">3.1 機率/統計之機器學習基礎應用 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-1">白話版 ↗</a></h3>
+<article class="ex" id="ex-bayes">
+<div class="exhead"><span class="num">範例 1</span><h4>貝氏定理：陽性結果到底多可信？再做一個樸素貝氏分類器</h4></div>
+<p class="scn"><b>情境</b>某疾病盛行率 1%，檢驗敏感度 95%、特異度 90%。病人檢驗陽性，真的患病的機率是多少？接著用同一個定理做一個「垃圾訊息」分類器。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>條件機率 P(A|B) = P(A∩B)/P(B)</span><span>貝氏定理：先驗、似然、邊際、後驗</span><span>貝氏分類器</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="c"># ── 一、貝氏定理手算 ─────────────────────────────</span>
+prior = <span class="n">0.01</span>            <span class="c"># P(病)：先驗（盛行率）</span>
+sens  = <span class="n">0.95</span>            <span class="c"># P(陽|病)：似然（敏感度）</span>
+spec  = <span class="n">0.90</span>            <span class="c"># P(陰|無病)：特異度 → P(陽|無病) = 1 - spec</span>
+p_pos = sens*prior + (<span class="n">1</span>-spec)*(<span class="n">1</span>-prior)      <span class="c"># 邊際機率 P(陽)</span>
+post  = sens*prior / p_pos                   <span class="c"># 後驗 P(病|陽)</span>
+<span class="b">print</span>(<span class="s">f&quot;P(陽性)        = {p_pos:.4f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;P(患病 | 陽性) = {post:.4f}  → 陽性者只有約 {post*100:.1f}% 真的患病&quot;</span>)
+post2 = sens*post / (sens*post + (<span class="n">1</span>-spec)*(<span class="n">1</span>-post))   <span class="c"># 第二次檢驗：後驗變新的先驗</span>
+<span class="b">print</span>(<span class="s">f&quot;連續兩次陽性   = {post2:.4f}&quot;</span>)
+
+<span class="c"># ── 二、樸素貝氏分類器（詞袋 + 多項式 NB）─────────</span>
+<span class="k">from</span> sklearn.feature_extraction.text <span class="k">import</span> CountVectorizer
+<span class="k">from</span> sklearn.naive_bayes <span class="k">import</span> MultinomialNB
+msgs = [<span class="s">&quot;免費 中獎 點擊 領取&quot;</span>, <span class="s">&quot;限時 免費 優惠 點擊&quot;</span>, <span class="s">&quot;中獎 通知 立即 領取&quot;</span>,
+        <span class="s">&quot;會議 下午 三點 討論&quot;</span>, <span class="s">&quot;請 回覆 會議 時間&quot;</span>,   <span class="s">&quot;下午 討論 專案 進度&quot;</span>]
+y = [<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>, <span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>]                        <span class="c"># 1 = 垃圾訊息</span>
+vec = CountVectorizer(token_pattern=<span class="s">r&quot;[^ ]+&quot;</span>)  <span class="c"># 已先用空白斷詞</span>
+X = vec.fit_transform(msgs)
+nb = MultinomialNB(alpha=<span class="n">1.0</span>).fit(X, y)        <span class="c"># alpha=1：拉普拉斯平滑，避免機率為 0</span>
+words = vec.get_feature_names_out()
+p_spam = {w: <span class="b">round</span>(<span class="b">float</span>(p), <span class="n">3</span>) <span class="k">for</span> w, p <span class="k">in</span> <span class="b">zip</span>(words, __import__(<span class="s">&#x27;numpy&#x27;</span>).exp(nb.feature_log_prob_[<span class="n">1</span>]))}
+<span class="b">print</span>(<span class="s">&quot;\nP(詞 | 垃圾) 前 5：&quot;</span>, <span class="b">sorted</span>(p_spam.items(), key=<span class="k">lambda</span> kv: -kv[<span class="n">1</span>])[:<span class="n">5</span>])
+<span class="k">for</span> t <span class="k">in</span> [<span class="s">&quot;免費 領取&quot;</span>, <span class="s">&quot;會議 進度&quot;</span>, <span class="s">&quot;免費 會議&quot;</span>]:
+    p = nb.predict_proba(vec.transform([t]))[<span class="n">0</span>, <span class="n">1</span>]
+    <span class="b">print</span>(<span class="s">f&quot;「{t}」 是垃圾訊息的後驗機率 = {p:.3f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">P(陽性)        = 0.1085
+P(患病 | 陽性) = 0.0876  → 陽性者只有約 8.8% 真的患病
+連續兩次陽性   = 0.4769
+
+P(詞 | 垃圾) 前 5： [(&#x27;中獎&#x27;, 0.103), (&#x27;免費&#x27;, 0.103), (&#x27;領取&#x27;, 0.103), (&#x27;點擊&#x27;, 0.103), (&#x27;優惠&#x27;, 0.069)]
+「免費 領取」 是垃圾訊息的後驗機率 = 0.900
+「會議 進度」 是垃圾訊息的後驗機率 = 0.143
+「免費 會議」 是垃圾訊息的後驗機率 = 0.500</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>盛行率只有 1% 時，即使檢驗很準，陽性者真正患病的機率也不到一成：先驗（基本率）會大幅影響後驗，這是貝氏推論最常考的直覺。</li><li>第二次檢驗把第一次的後驗當成新的先驗，機率才跳到四成多：「後驗變先驗」就是貝氏更新。</li><li>樸素貝氏假設每個詞彼此獨立，把 P(詞|類別) 相乘再乘先驗；alpha 平滑讓沒看過的詞不會把整個機率乘成 0。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 prior 改成 0.30（高風險族群）再跑一次，看 P(患病|陽性) 變成多少；也試試把 alpha 改成 0.01，觀察「免費 會議」這種混合訊息的機率怎麼變。</div>
+</article>
+<article class="ex" id="ex-skew">
+<div class="exhead"><span class="num">範例 2</span><h4>偏態與峰度：右偏的金額資料要不要取對數？</h4></div>
+<p class="scn"><b>情境</b>電商訂單金額通常「多數小額、少數超大額」。先算偏態、峰度判斷分佈形狀，再比較對數轉換與 Box-Cox 轉換後的效果。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>期望值、變異數、標準差</span><span>偏態：正偏右尾長</span><span>峰度：常態 = 3（Pearson）</span><span>對數／Box-Cox 轉換</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> scipy <span class="k">import</span> stats
+rng = np.random.default_rng(<span class="n">42</span>)
+amount = rng.lognormal(mean=<span class="n">6.5</span>, sigma=<span class="n">0.8</span>, size=<span class="n">2000</span>)     <span class="c"># 右偏的訂單金額</span>
+
+<span class="k">def</span> describe(x, name):
+    sk = stats.skew(x)
+    ku = stats.kurtosis(x, fisher=<span class="k">False</span>)   <span class="c"># fisher=False → Pearson 定義，常態分佈 = 3</span>
+    <span class="b">print</span>(<span class="s">f&quot;{name:10s} 平均={x.mean():9.1f} 中位數={np.median(x):9.1f} 標準差={x.std():9.1f} &quot;</span>
+          <span class="s">f&quot;偏態={sk:6.2f} 峰度={ku:6.2f}&quot;</span>)
+
+describe(amount, <span class="s">&quot;原始金額&quot;</span>)
+describe(np.log(amount), <span class="s">&quot;log 轉換&quot;</span>)
+bc, lam = stats.boxcox(amount)             <span class="c"># 自動找最佳 λ</span>
+describe(bc, <span class="s">f&quot;Box-Cox&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;\nBox-Cox 找到的 λ = {lam:.3f}（λ→0 即接近對數轉換）&quot;</span>)
+<span class="c"># 常態性檢定（Shapiro-Wilk）：p 越大越像常態</span>
+<span class="k">for</span> name, x <span class="k">in</span> [(<span class="s">&quot;原始&quot;</span>, amount), (<span class="s">&quot;log&quot;</span>, np.log(amount)), (<span class="s">&quot;Box-Cox&quot;</span>, bc)]:
+    <span class="b">print</span>(<span class="s">f&quot;Shapiro p 值 {name:8s} = {stats.shapiro(x[:500]).pvalue:.3f}&quot;</span>)
+<span class="c"># 平均 vs 中位數的位置關係也能判斷偏態方向</span>
+<span class="b">print</span>(<span class="s">&quot;\n平均 &gt; 中位數 → 正偏（右尾長）：&quot;</span>, amount.mean() &gt; np.median(amount))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">原始金額       平均=    874.0 中位數=    653.3 標準差=    805.2 偏態=  2.97 峰度= 17.17
+log 轉換     平均=      6.5 中位數=      6.5 標準差=      0.8 偏態= -0.05 峰度=  3.00
+Box-Cox    平均=      6.9 中位數=      6.9 標準差=      0.9 偏態=  0.00 峰度=  3.00
+
+Box-Cox 找到的 λ = 0.020（λ→0 即接近對數轉換）
+Shapiro p 值 原始       = 0.000
+Shapiro p 值 log      = 0.633
+Shapiro p 值 Box-Cox  = 0.445
+
+平均 &gt; 中位數 → 正偏（右尾長）： True</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>原始金額偏態為正、峰度遠大於 3：右尾又長又厚，平均被少數大單拉高、明顯高於中位數。</li><li>取對數後偏態接近 0、峰度接近 3，Shapiro p 值明顯變大：對數轉換是處理右偏資料最常用的方法，Box-Cox 則是「自動挑指數」的一般化版本。</li><li>指引強調偏態／峰度是決定「要不要轉換、要不要標準化」的依據：線性模型、距離型模型（KNN、SVM）對這類長尾很敏感，樹模型則較不在意。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 sigma 改成 0.2（右偏變輕微），看 Box-Cox 的 λ 是否不再接近 0、對數轉換是否反而過度修正。</div>
+</article>
+<h3 id="sec3-2">3.2 線性代數之機器學習基礎應用 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-2">白話版 ↗</a></h3>
+<article class="ex" id="ex-linalg">
+<div class="exhead"><span class="num">範例 3</span><h4>向量、矩陣與最小平方法：ŷ = Xθ 從頭算一次</h4></div>
+<p class="scn"><b>情境</b>用兩位使用者的偏好向量算相似度，再用正規方程 θ = (XᵀX)⁻¹Xᵀy 解線性迴歸，最後看一個離群點怎麼把擬合線拉歪。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>點積與餘弦相似度</span><span>L2 範數</span><span>矩陣乘法、轉置、求逆／偽逆</span><span>OLS：誤差平方和最小</span><span>離群點扭曲擬合</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+np.set_printoptions(precision=<span class="n">3</span>, suppress=<span class="k">True</span>)
+<span class="c"># ── 向量：點積、範數、餘弦相似度 ───────────────</span>
+u = np.array([<span class="n">5</span>, <span class="n">4</span>, <span class="n">1</span>, <span class="n">0</span>])     <span class="c"># 使用者 A 對四部電影的評分</span>
+v = np.array([<span class="n">4</span>, <span class="n">5</span>, <span class="n">0</span>, <span class="n">1</span>])     <span class="c"># 使用者 B</span>
+w = np.array([<span class="n">0</span>, <span class="n">1</span>, <span class="n">5</span>, <span class="n">4</span>])     <span class="c"># 使用者 C</span>
+cos = <span class="k">lambda</span> a, b: a @ b / (np.linalg.norm(a) * np.linalg.norm(b))
+<span class="b">print</span>(<span class="s">f&quot;u·v = {u @ v},  ||u||₂ = {np.linalg.norm(u):.3f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;cos(A,B) = {cos(u, v):.3f}   cos(A,C) = {cos(u, w):.3f}  → A 與 B 口味相近&quot;</span>)
+
+<span class="c"># ── 矩陣：線性迴歸的正規方程 ─────────────────</span>
+rng = np.random.default_rng(<span class="n">0</span>)
+x = np.linspace(<span class="n">0</span>, <span class="n">10</span>, <span class="n">12</span>)
+y = <span class="n">3</span> + <span class="n">2</span> * x + rng.normal(<span class="n">0</span>, <span class="n">1</span>, <span class="n">12</span>)          <span class="c"># 真實關係 y = 3 + 2x + 雜訊</span>
+X = np.column_stack([np.ones_like(x), x])     <span class="c"># 設計矩陣：第一欄全 1 代表截距</span>
+theta = np.linalg.inv(X.T @ X) @ X.T @ y      <span class="c"># θ = (XᵀX)⁻¹ Xᵀ y</span>
+<span class="b">print</span>(<span class="s">f&quot;\nX 形狀 {X.shape}，XᵀX 形狀 {(X.T @ X).shape}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;正規方程 θ (截距, 斜率) =&quot;</span>, theta)
+<span class="b">print</span>(<span class="s">&quot;偽逆 pinv 解          =&quot;</span>, np.linalg.pinv(X) @ y, <span class="s">&quot; ← 不可逆時仍可用&quot;</span>)
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LinearRegression
+lr = LinearRegression().fit(x.reshape(-<span class="n">1</span>, <span class="n">1</span>), y)
+<span class="b">print</span>(<span class="s">f&quot;sklearn               = [{lr.intercept_:.3f} {lr.coef_[0]:.3f}]&quot;</span>)
+sse = ((X @ theta - y) ** <span class="n">2</span>).<span class="b">sum</span>()
+<span class="b">print</span>(<span class="s">f&quot;誤差平方和 SSE = {sse:.3f}&quot;</span>)
+
+<span class="c"># ── 一個離群點的影響 ───────────────────────────</span>
+y_out = y.copy(); y_out[-<span class="n">1</span>] += <span class="n">40</span>             <span class="c"># 最後一點被灌水 40</span>
+theta_out = np.linalg.pinv(X) @ y_out
+<span class="b">print</span>(<span class="s">&quot;\n加入離群點後的 θ =&quot;</span>, theta_out, <span class="s">&quot; ← 斜率與截距都被拉偏&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">u·v = 40,  ||u||₂ = 6.481
+cos(A,B) = 0.952   cos(A,C) = 0.214  → A 與 B 口味相近
+
+X 形狀 (12, 2)，XᵀX 形狀 (2, 2)
+正規方程 θ (截距, 斜率) = [3.356 1.933]
+偽逆 pinv 解          = [3.356 1.933]  ← 不可逆時仍可用
+sklearn               = [3.356 1.933]
+誤差平方和 SSE = 5.425
+
+加入離群點後的 θ = [-1.773  3.626]  ← 斜率與截距都被拉偏</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>餘弦相似度只看方向、不看長度，所以常用來比對偏好或文字向量；點積則同時受長度影響。</li><li>正規方程、偽逆與 scikit-learn 三種解法得到一樣的 θ，驗證線性迴歸的本質就是「把 y 投影到 X 的欄空間」。</li><li>一個離群點就能把 OLS 的斜率和截距拉偏，因為平方誤差對大殘差懲罰極重，這是指引提到「離群點會扭曲擬合」的直接示範。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>試著把 X 多加一欄 2*x（與現有欄共線），看 inv 是否報錯而 pinv 仍能給出解。</div>
+</article>
+<article class="ex" id="ex-decomp">
+<div class="exhead"><span class="num">範例 4</span><h4>矩陣分解：用特徵值分解做 PCA，用 SVD 做低秩推薦</h4></div>
+<p class="scn"><b>情境</b>先把 3 維相關資料用共變異矩陣的特徵值分解投影到 2 維，和 scikit-learn 的 PCA 對照；再用 SVD 的低秩近似把使用者×商品評分矩陣壓縮、預測喜好。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>特徵值分解 A = QΛQᵀ（PCA）</span><span>SVD X = UΣVᵀ（推薦、LSA）</span><span>解釋變異比例</span><span>降維：去雜訊與共線性</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+np.set_printoptions(precision=<span class="n">3</span>, suppress=<span class="k">True</span>)
+rng = np.random.default_rng(<span class="n">1</span>)
+<span class="c"># ── PCA：共變異矩陣的特徵值分解 ─────────────────</span>
+t = rng.normal(size=<span class="n">200</span>)
+X = np.column_stack([t, <span class="n">0.8</span>*t + rng.normal(<span class="n">0</span>, <span class="n">.3</span>, <span class="n">200</span>), -<span class="n">0.5</span>*t + rng.normal(<span class="n">0</span>, <span class="n">.3</span>, <span class="n">200</span>)])
+Xc = X - X.mean(axis=<span class="n">0</span>)                       <span class="c"># 先中心化</span>
+C = Xc.T @ Xc / (<span class="b">len</span>(X) - <span class="n">1</span>)                  <span class="c"># 共變異矩陣（3×3）</span>
+vals, vecs = np.linalg.eigh(C)                <span class="c"># 對稱矩陣用 eigh</span>
+order = np.argsort(vals)[::-<span class="n">1</span>]; vals, vecs = vals[order], vecs[:, order]
+ratio = vals / vals.<span class="b">sum</span>()
+<span class="b">print</span>(<span class="s">&quot;特徵值 Λ      =&quot;</span>, vals)
+<span class="b">print</span>(<span class="s">&quot;解釋變異比例  =&quot;</span>, ratio, <span class="s">f&quot;→ 前 2 個主成分解釋 {ratio[:2].sum():.1%}&quot;</span>)
+Z = Xc @ vecs[:, :<span class="n">2</span>]                          <span class="c"># 投影到前 2 個主成分</span>
+<span class="k">from</span> sklearn.decomposition <span class="k">import</span> PCA
+pca = PCA(n_components=<span class="n">2</span>).fit(X)
+<span class="b">print</span>(<span class="s">&quot;sklearn 比例  =&quot;</span>, pca.explained_variance_ratio_)
+<span class="b">print</span>(<span class="s">&quot;兩者投影是否一致（允許正負號翻轉）：&quot;</span>,
+      np.allclose(np.<span class="b">abs</span>(Z), np.<span class="b">abs</span>(pca.transform(X)), atol=<span class="n">1e-6</span>))
+
+<span class="c"># ── SVD：評分矩陣的低秩近似（推薦系統）─────────</span>
+R = np.array([[<span class="n">5</span>, <span class="n">4</span>, <span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>],     <span class="c"># 列 = 使用者，欄 = 商品，0 代表未評分</span>
+              [<span class="n">4</span>, <span class="n">5</span>, <span class="n">1</span>, <span class="n">0</span>, <span class="n">1</span>],
+              [<span class="n">1</span>, <span class="n">1</span>, <span class="n">0</span>, <span class="n">5</span>, <span class="n">4</span>],
+              [<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>, <span class="n">4</span>, <span class="n">5</span>],
+              [<span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>, <span class="n">1</span>, <span class="n">0</span>]], dtype=float)
+U, S, Vt = np.linalg.svd(R, full_matrices=<span class="k">False</span>)
+<span class="b">print</span>(<span class="s">&quot;\n奇異值 Σ =&quot;</span>, S)
+k = <span class="n">2</span>
+R2 = U[:, :k] * S[:k] @ Vt[:k]               <span class="c"># 只保留前 2 個奇異值重建</span>
+<span class="b">print</span>(<span class="s">f&quot;rank-{k} 重建（四捨五入）：\n&quot;</span>, R2.<span class="b">round</span>(<span class="n">1</span>))
+<span class="b">print</span>(<span class="s">&quot;使用者 1 未評分的商品 3 預測分數 =&quot;</span>, <span class="b">round</span>(R2[<span class="n">0</span>, <span class="n">2</span>], <span class="n">2</span>), <span class="s">&quot;；商品 5 =&quot;</span>, <span class="b">round</span>(R2[<span class="n">4</span>, <span class="n">4</span>], <span class="n">2</span>))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">特徵值 Λ      = [1.657 0.078 0.043]
+解釋變異比例  = [0.932 0.044 0.024] → 前 2 個主成分解釋 97.6%
+sklearn 比例  = [0.932 0.044]
+兩者投影是否一致（允許正負號翻轉）： True
+
+奇異值 Σ = [12.241  8.284  1.98   0.775  0.   ]
+rank-2 重建（四捨五入）：
+ [[4.5 4.5 0.3 1.  0.9]
+ [4.5 4.5 0.3 0.6 0.5]
+ [0.8 1.2 0.5 4.4 4.5]
+ [0.3 0.7 0.5 4.5 4.6]
+ [5.  5.  0.3 0.5 0.4]]
+使用者 1 未評分的商品 3 預測分數 = 0.33 ；商品 5 = 0.44</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>特徵值的大小就是每個主成分的變異量，前兩個主成分就解釋了九成以上，第三個幾乎是雜訊，所以能安全地從 3 維降到 2 維。</li><li>手算的投影與 scikit-learn 的 PCA 一致（只差正負號），說明 PCA 真的就是「共變異矩陣的特徵值分解」。</li><li>評分矩陣只有前兩個奇異值明顯，保留 rank-2 就能重建出主要結構，連未評分的格子也有預測值，這正是 SVD 用於推薦與潛在語意分析（LSA）的原理。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 k 改成 1 或 4，比較重建矩陣與原矩陣的差距（np.abs(R2 - R).mean()），感受「低秩 = 去雜訊」與「秩太低 = 失真」的權衡。</div>
+</article>
+<h3 id="sec3-3">3.3 數值優化技術與方法 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-3">白話版 ↗</a></h3>
+<article class="ex" id="ex-optim">
+<div class="exhead"><span class="num">範例 5</span><h4>五種優化器同台：GD、Momentum、Adagrad、RMSprop、Adam</h4></div>
+<p class="scn"><b>情境</b>在兩個碗型損失函數上比較五種優化器各要幾步才收斂：碗 A 兩個方向彎曲程度差 10 倍，碗 B 差 1000 倍（一個方向幾乎是平的）。順便看學習率太高會發生什麼事。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>目標函數、決策變數、可行域</span><span>凸函數必得全域最佳解</span><span>GD／SGD／Momentum／Adagrad／RMSprop／Adam</span><span>學習率過高致震盪發散</span><span>收斂判準：梯度趨近零</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+bowls = {<span class="s">&quot;碗A x²+10y²&quot;</span>:      (<span class="k">lambda</span> p: p[<span class="n">0</span>]**<span class="n">2</span> + <span class="n">10</span>*p[<span class="n">1</span>]**<span class="n">2</span>,      <span class="k">lambda</span> p: np.array([<span class="n">2</span>*p[<span class="n">0</span>], <span class="n">20</span>*p[<span class="n">1</span>]])),
+         <span class="s">&quot;碗B 0.01x²+10y²&quot;</span>:  (<span class="k">lambda</span> p: <span class="n">0.01</span>*p[<span class="n">0</span>]**<span class="n">2</span> + <span class="n">10</span>*p[<span class="n">1</span>]**<span class="n">2</span>, <span class="k">lambda</span> p: np.array([<span class="n">0.02</span>*p[<span class="n">0</span>], <span class="n">20</span>*p[<span class="n">1</span>]]))}
+
+<span class="k">def</span> optimize(f, grad, method, lr=<span class="n">0.05</span>, steps=<span class="n">2000</span>, tol=<span class="n">1e-3</span>):
+    p = np.array([<span class="n">5.0</span>, <span class="n">2.0</span>]); m = np.zeros(<span class="n">2</span>); v = np.zeros(<span class="n">2</span>); b1, b2, eps = <span class="n">0.9</span>, <span class="n">0.999</span>, <span class="n">1e-8</span>
+    <span class="k">for</span> t <span class="k">in</span> <span class="b">range</span>(<span class="n">1</span>, steps + <span class="n">1</span>):
+        g = grad(p)
+        <span class="k">if</span> np.linalg.norm(g) &lt; tol:                          <span class="c"># 收斂判準：梯度趨近零</span>
+            <span class="k">return</span> t
+        <span class="k">if</span> method == <span class="s">&quot;GD&quot;</span>:         p = p - lr * g
+        <span class="k">elif</span> method == <span class="s">&quot;Momentum&quot;</span>: m = b1*m + g;             p = p - lr * m          <span class="c"># 累積方向</span>
+        <span class="k">elif</span> method == <span class="s">&quot;Adagrad&quot;</span>:  v = v + g**<span class="n">2</span>;             p = p - lr * g / (np.sqrt(v) + eps)   <span class="c"># 分母只增不減</span>
+        <span class="k">elif</span> method == <span class="s">&quot;RMSprop&quot;</span>:  v = b2*v + (<span class="n">1</span>-b2)*g**<span class="n">2</span>;   p = p - lr * g / (np.sqrt(v) + eps)   <span class="c"># 滑動平均</span>
+        <span class="k">elif</span> method == <span class="s">&quot;Adam&quot;</span>:
+            m = b1*m + (<span class="n">1</span>-b1)*g; v = b2*v + (<span class="n">1</span>-b2)*g**<span class="n">2</span>
+            p = p - lr * (m/(<span class="n">1</span>-b1**t)) / (np.sqrt(v/(<span class="n">1</span>-b2**t)) + eps)   <span class="c"># 一階+二階動量，含偏差修正</span>
+        <span class="k">if</span> <span class="k">not</span> np.isfinite(f(p)) <span class="k">or</span> f(p) &gt; <span class="n">1e12</span>:
+            <span class="k">return</span> <span class="k">None</span>                                        <span class="c"># 發散</span>
+    <span class="k">return</span> steps + <span class="n">1</span>                                           <span class="c"># 未收斂</span>
+
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;方法&#x27;:10s}&quot;</span> + <span class="s">&quot;&quot;</span>.join(<span class="s">f&quot;{n:&gt;18s}&quot;</span> <span class="k">for</span> n <span class="k">in</span> bowls))
+<span class="k">for</span> method <span class="k">in</span> [<span class="s">&quot;GD&quot;</span>, <span class="s">&quot;Momentum&quot;</span>, <span class="s">&quot;Adagrad&quot;</span>, <span class="s">&quot;RMSprop&quot;</span>, <span class="s">&quot;Adam&quot;</span>]:
+    row = <span class="s">f&quot;{method:10s}&quot;</span>
+    <span class="k">for</span> f, grad <span class="k">in</span> bowls.values():
+        t = optimize(f, grad, method)
+        row += <span class="s">f&quot;{&#x27;發散&#x27; if t is None else &#x27;&gt;2000 未收斂&#x27; if t &gt; 2000 else f&#x27;{t} 步&#x27;:&gt;18s}&quot;</span>
+    <span class="b">print</span>(row)
+
+<span class="b">print</span>(<span class="s">&quot;\n學習率對 GD 的影響（碗A 的 y 方向曲率 20 → 穩定條件 lr &lt; 2/20 = 0.1）：&quot;</span>)
+fA, gA = bowls[<span class="s">&quot;碗A x²+10y²&quot;</span>]
+<span class="k">for</span> lr <span class="k">in</span> [<span class="n">0.01</span>, <span class="n">0.05</span>, <span class="n">0.09</span>, <span class="n">0.11</span>]:
+    t = optimize(fA, gA, <span class="s">&quot;GD&quot;</span>, lr=lr)
+    <span class="b">print</span>(<span class="s">f&quot;  lr={lr:&lt;5} → {&#x27;發散&#x27; if t is None else f&#x27;{t} 步收斂&#x27;}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">方法                碗A x²+10y²    碗B 0.01x²+10y²
+GD                      89 步         &gt;2000 未收斂
+Momentum               180 步             424 步
+Adagrad            &gt;2000 未收斂         &gt;2000 未收斂
+RMSprop                 37 步              19 步
+Adam                   311 步             219 步
+
+學習率對 GD 的影響（碗A 的 y 方向曲率 20 → 穩定條件 lr &lt; 2/20 = 0.1）：
+  lr=0.01  → 457 步收斂
+  lr=0.05  → 89 步收斂
+  lr=0.09  → 50 步收斂
+  lr=0.11  → 發散</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>碗 A 裡純梯度下降 89 步就收斂，但碗 B 的 x 方向梯度只有 0.02x，GD 用同一個學習率走了 2000 步還到不了：固定學習率無法同時照顧「很陡」與「很平」的方向。</li><li>RMSprop 與 Adam 把每個座標的梯度除以自己的歷史均方根，等於「每個方向有自己的學習率」，所以在碗 B 幾乎不受影響；Momentum 靠累積方向也加速了，但仍要四百多步。</li><li>Adagrad 兩個碗都卡住：它的分母把歷史梯度平方一直累加，學習率過度衰減到幾乎走不動，這就是指引點出的 Adagrad 缺點，RMSprop 用滑動平均修正了它。</li><li>Adam 在碗 A 反而比 GD 慢：自適應方法每步最多走約 lr 的距離，從 5 走到 0 至少要上百步；它的強項是「不怕尺度差異」，不是在簡單凸碗上比 GD 快。</li><li>學習率超過 2/曲率（這裡是 0.1）時 GD 直接發散：學習率過高會震盪甚至發散，是訓練不穩定最常見的原因。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把起點改成 (5, 0.1)，或把碗 A 換成非凸的 p[0]**4 - 3*p[0]**2 + p[1]**2，觀察不同起點會不會停在不同的局部最小值。</div>
+</article>
+<article class="ex" id="ex-loss">
+<div class="exhead"><span class="num">範例 6</span><h4>損失函數怎麼選：MSE、MAE、Huber 與交叉熵、Focal Loss</h4></div>
+<p class="scn"><b>情境</b>同一組預測有一個離群誤差，比較三種迴歸損失的反應；再比較分類時「答對很有信心」「答錯很有信心」的交叉熵，以及 Focal Loss 如何壓低簡單樣本的權重。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>迴歸：MSE、MAE、Huber</span><span>分類：交叉熵</span><span>Focal Loss：資料不平衡</span><span>離群值敏感度</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+y    = np.array([<span class="n">10</span>, <span class="n">12</span>, <span class="n">14</span>, <span class="n">16</span>, <span class="n">18.0</span>])
+pred = np.array([<span class="n">11</span>, <span class="n">11</span>, <span class="n">15</span>, <span class="n">15</span>, <span class="n">18.0</span>])
+mse   = <span class="k">lambda</span> y, p: np.mean((y - p)**<span class="n">2</span>)
+mae   = <span class="k">lambda</span> y, p: np.mean(np.<span class="b">abs</span>(y - p))
+<span class="k">def</span> huber(y, p, d=<span class="n">1.0</span>):
+    r = np.<span class="b">abs</span>(y - p)
+    <span class="k">return</span> np.mean(np.where(r &lt;= d, <span class="n">0.5</span>*r**<span class="n">2</span>, d*(r - <span class="n">0.5</span>*d)))   <span class="c"># 小誤差像 MSE，大誤差像 MAE</span>
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;情境&#x27;:12s}{&#x27;MSE&#x27;:&gt;8s}{&#x27;MAE&#x27;:&gt;8s}{&#x27;Huber&#x27;:&gt;8s}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;一般誤差&#x27;:12s}{mse(y,pred):8.2f}{mae(y,pred):8.2f}{huber(y,pred):8.2f}&quot;</span>)
+pred_out = pred.copy(); pred_out[<span class="n">2</span>] = <span class="n">35</span>       <span class="c"># 一筆預測大錯</span>
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;含一個離群&#x27;:12s}{mse(y,pred_out):8.2f}{mae(y,pred_out):8.2f}{huber(y,pred_out):8.2f}&quot;</span>)
+
+<span class="c"># ── 二元交叉熵 ──────────────────────────────</span>
+bce = <span class="k">lambda</span> yt, p: -(yt*np.log(p) + (<span class="n">1</span>-yt)*np.log(<span class="n">1</span>-p))
+<span class="b">print</span>(<span class="s">&quot;\n交叉熵（真實標籤 = 1）：&quot;</span>)
+<span class="k">for</span> p <span class="k">in</span> [<span class="n">0.99</span>, <span class="n">0.7</span>, <span class="n">0.5</span>, <span class="n">0.3</span>, <span class="n">0.01</span>]:
+    <span class="b">print</span>(<span class="s">f&quot;  預測 P(y=1)={p:.2f} → loss = {bce(1, p):6.3f}&quot;</span>)
+
+<span class="c"># ── Focal Loss：(1-p_t)^γ 把「已經答得很好的簡單樣本」權重壓低 ──</span>
+<span class="k">def</span> focal(yt, p, gamma=<span class="n">2.0</span>):
+    pt = np.where(yt == <span class="n">1</span>, p, <span class="n">1</span> - p)
+    <span class="k">return</span> -(<span class="n">1</span> - pt)**gamma * np.log(pt)
+<span class="b">print</span>(<span class="s">&quot;\n交叉熵 vs Focal(γ=2)：&quot;</span>)
+<span class="k">for</span> p <span class="k">in</span> [<span class="n">0.95</span>, <span class="n">0.6</span>, <span class="n">0.2</span>]:
+    <span class="b">print</span>(<span class="s">f&quot;  p_t={p:.2f}  CE={bce(1,p):.3f}  Focal={focal(1,p):.4f}  （比例 {focal(1,p)/bce(1,p):.3f}）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">情境               MSE     MAE   Huber
+一般誤差            0.80    0.80    0.40
+含一個離群          88.80    4.80    4.40
+
+交叉熵（真實標籤 = 1）：
+  預測 P(y=1)=0.99 → loss =  0.010
+  預測 P(y=1)=0.70 → loss =  0.357
+  預測 P(y=1)=0.50 → loss =  0.693
+  預測 P(y=1)=0.30 → loss =  1.204
+  預測 P(y=1)=0.01 → loss =  4.605
+
+交叉熵 vs Focal(γ=2)：
+  p_t=0.95  CE=0.051  Focal=0.0001  （比例 0.003）
+  p_t=0.60  CE=0.511  Focal=0.0817  （比例 0.160）
+  p_t=0.20  CE=1.609  Focal=1.0300  （比例 0.640）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>一個離群誤差讓 MSE 暴增好幾倍，MAE 只線性增加，Huber 介於兩者之間：MSE 對離群值最敏感，要「抗離群」就選 MAE 或 Huber。</li><li>交叉熵在「很有信心卻答錯」（p=0.01）時損失極大，在「很有信心且答對」時接近 0，這就是它能逼模型校準機率的原因。</li><li>Focal Loss 把容易樣本（p_t=0.95）的損失壓到原本的千分之幾，困難樣本幾乎不變，所以能讓模型把注意力放在稀少類別上，用於資料不平衡。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 huber 的 d 改成 5，看它是不是越來越像 MSE；把 gamma 改成 0，確認 Focal Loss 就退化成交叉熵。</div>
+</article>
+<h2 class="chap" id="chap4">第四章 機器學習與深度學習</h2>
+<p class="chlead">把常見演算法逐一跑過：迴歸家族、分類家族、分群與關聯規則，再手刻神經網路與自注意力。</p>
+<h3 id="sec4-2">4.2 常見機器學習演算法 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec4-2">白話版 ↗</a></h3>
+<article class="ex" id="ex-regress">
+<div class="exhead"><span class="num">範例 7</span><h4>迴歸家族比較：線性、Ridge、Lasso、決策樹、隨機森林、梯度提升</h4></div>
+<p class="scn"><b>情境</b>10 個特徵裡只有 3 個真的有用。看 Lasso 能不能把無用特徵的係數壓成 0、決策樹迴歸的「分段常數」長什麼樣，以及集成模型的測試誤差。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>線性迴歸（對離群值敏感）</span><span>Lasso（L1，可特徵選擇）vs Ridge（L2）</span><span>決策樹迴歸：分段常數</span><span>隨機森林、梯度提升</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_regression
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LinearRegression, Ridge, Lasso
+<span class="k">from</span> sklearn.tree <span class="k">import</span> DecisionTreeRegressor
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> RandomForestRegressor, GradientBoostingRegressor
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> mean_squared_error
+np.set_printoptions(precision=<span class="n">1</span>, suppress=<span class="k">True</span>)
+X, y = make_regression(n_samples=<span class="n">300</span>, n_features=<span class="n">10</span>, n_informative=<span class="n">3</span>, noise=<span class="n">15</span>, random_state=<span class="n">7</span>)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="n">0.3</span>, random_state=<span class="n">0</span>)
+
+models = {<span class="s">&quot;線性迴歸&quot;</span>: LinearRegression(), <span class="s">&quot;Ridge(α=10)&quot;</span>: Ridge(alpha=<span class="n">10</span>), <span class="s">&quot;Lasso(α=5)&quot;</span>: Lasso(alpha=<span class="n">5</span>),
+          <span class="s">&quot;決策樹(depth=3)&quot;</span>: DecisionTreeRegressor(max_depth=<span class="n">3</span>, random_state=<span class="n">0</span>),
+          <span class="s">&quot;隨機森林&quot;</span>: RandomForestRegressor(<span class="n">200</span>, random_state=<span class="n">0</span>),
+          <span class="s">&quot;梯度提升&quot;</span>: GradientBoostingRegressor(random_state=<span class="n">0</span>)}
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;模型&#x27;:16s}{&#x27;訓練RMSE&#x27;:&gt;9s}{&#x27;測試RMSE&#x27;:&gt;9s}&quot;</span>)
+<span class="k">for</span> name, m <span class="k">in</span> models.items():
+    m.fit(Xtr, ytr)
+    r = <span class="k">lambda</span> X_, y_: mean_squared_error(y_, m.predict(X_)) ** <span class="n">0.5</span>
+    <span class="b">print</span>(<span class="s">f&quot;{name:16s}{r(Xtr,ytr):9.1f}{r(Xte,yte):9.1f}&quot;</span>)
+
+<span class="b">print</span>(<span class="s">&quot;\n係數比較（10 個特徵）：&quot;</span>)
+<span class="k">for</span> name <span class="k">in</span> [<span class="s">&quot;線性迴歸&quot;</span>, <span class="s">&quot;Ridge(α=10)&quot;</span>, <span class="s">&quot;Lasso(α=5)&quot;</span>]:
+    <span class="b">print</span>(<span class="s">f&quot;  {name:12s}&quot;</span>, models[name].coef_)
+<span class="b">print</span>(<span class="s">&quot;  Lasso 歸零的特徵數 =&quot;</span>, <span class="b">int</span>((models[<span class="s">&quot;Lasso(α=5)&quot;</span>].coef_ == <span class="n">0</span>).<span class="b">sum</span>()))
+
+tree = models[<span class="s">&quot;決策樹(depth=3)&quot;</span>]
+<span class="b">print</span>(<span class="s">f&quot;\n決策樹只有 {tree.get_n_leaves()} 個葉節點 → 整個測試集的預測值最多只有 {tree.get_n_leaves()} 種常數：&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;  &quot;</span>, np.unique(tree.predict(Xte)), <span class="s">f&quot;（實際出現 {len(np.unique(tree.predict(Xte)))} 種）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">模型                 訓練RMSE   測試RMSE
+線性迴歸                 15.3     14.8
+Ridge(α=10)          15.8     16.2
+Lasso(α=5)           17.3     17.2
+決策樹(depth=3)         42.9     51.3
+隨機森林                 12.0     28.1
+梯度提升                  7.3     25.1
+
+係數比較（10 個特徵）：
+  線性迴歸         [71.1 -1.1 52.   0.3 -1.   0.8  1.3 16.3  0.5 -0.2]
+  Ridge(α=10)  [68.1 -0.7 50.2  0.3 -1.4  0.6  1.3 15.8  0.2 -0.9]
+  Lasso(α=5)   [67.4 -0.  48.2  0.  -0.   0.   0.  11.9 -0.  -0. ]
+  Lasso 歸零的特徵數 = 7
+
+決策樹只有 8 個葉節點 → 整個測試集的預測值最多只有 8 種常數：
+   [-138.3 -106.3  -23.7    3.5   57.5   85.   156.7] （實際出現 7 種）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>Lasso 把多個無用特徵的係數壓成精確的 0，Ridge 只是把所有係數縮小：L1 能做特徵選擇、L2 不會歸零，是本節必考的差異。</li><li>深度 3 的決策樹只有 8 個葉節點，所以整個測試集的預測值最多 8 種（這裡出現 7 種）：樹迴歸是「分段常數」函數，無法外推、曲面不平滑，所以 RMSE 最差。</li><li>隨機森林與梯度提升訓練誤差很低但測試誤差未必最好；資料本身是線性生成的，簡單線性模型就很強，模型選擇要看資料結構而不是越複雜越好。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 noise 調到 60 或把 n_informative 改成 10，看哪些模型的排名會翻轉；把 Lasso 的 alpha 改成 0.1，觀察歸零的特徵數怎麼變。</div>
+</article>
+<article class="ex" id="ex-classify">
+<div class="exhead"><span class="num">範例 8</span><h4>分類家族比較：邏輯迴歸、SVM、決策樹、KNN、樸素貝氏與 Bagging／Boosting</h4></div>
+<p class="scn"><b>情境</b>在「兩個彎月」形狀的非線性資料上比較六種分類器，特別觀察 KNN 在特徵尺度差很多時為什麼一定要先縮放。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>邏輯迴歸：sigmoid 輸出機率</span><span>SVM：核函數</span><span>決策樹：基尼、資訊增益</span><span>KNN 需特徵縮放</span><span>樸素貝氏</span><span>Bagging 降變異、Boosting 降偏差</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_moons
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+<span class="k">from</span> sklearn.pipeline <span class="k">import</span> make_pipeline
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.svm <span class="k">import</span> SVC
+<span class="k">from</span> sklearn.tree <span class="k">import</span> DecisionTreeClassifier
+<span class="k">from</span> sklearn.neighbors <span class="k">import</span> KNeighborsClassifier
+<span class="k">from</span> sklearn.naive_bayes <span class="k">import</span> GaussianNB
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> BaggingClassifier, AdaBoostClassifier
+X, y = make_moons(n_samples=<span class="n">600</span>, noise=<span class="n">0.3</span>, random_state=<span class="n">0</span>)
+X[:, <span class="n">1</span>] *= <span class="n">100</span>            <span class="c"># 故意把第二個特徵放大 100 倍（例如一欄是公尺、一欄是公分）</span>
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="n">0.3</span>, random_state=<span class="n">1</span>, stratify=y)
+
+models = {
+  <span class="s">&quot;邏輯迴歸（線性邊界）&quot;</span>: make_pipeline(StandardScaler(), LogisticRegression()),
+  <span class="s">&quot;SVM rbf 核&quot;</span>:          make_pipeline(StandardScaler(), SVC(C=<span class="n">1</span>, gamma=<span class="s">&quot;scale&quot;</span>)),
+  <span class="s">&quot;決策樹（不限深度）&quot;</span>:     DecisionTreeClassifier(random_state=<span class="n">0</span>),
+  <span class="s">&quot;KNN k=7（未縮放）&quot;</span>:    KNeighborsClassifier(<span class="n">7</span>),
+  <span class="s">&quot;KNN k=7（Z-score）&quot;</span>:   make_pipeline(StandardScaler(), KNeighborsClassifier(<span class="n">7</span>)),
+  <span class="s">&quot;高斯樸素貝氏&quot;</span>:          GaussianNB(),
+  <span class="s">&quot;Bagging(決策樹×100)&quot;</span>:  BaggingClassifier(DecisionTreeClassifier(), n_estimators=<span class="n">100</span>, random_state=<span class="n">0</span>),
+  <span class="s">&quot;AdaBoost(樹樁×100)&quot;</span>:   AdaBoostClassifier(DecisionTreeClassifier(max_depth=<span class="n">1</span>), n_estimators=<span class="n">100</span>, random_state=<span class="n">0</span>),
+}
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;模型&#x27;:24s}{&#x27;訓練準確率&#x27;:&gt;8s}{&#x27;測試準確率&#x27;:&gt;8s}&quot;</span>)
+<span class="k">for</span> name, m <span class="k">in</span> models.items():
+    m.fit(Xtr, ytr)
+    <span class="b">print</span>(<span class="s">f&quot;{name:24s}{m.score(Xtr, ytr):10.3f}{m.score(Xte, yte):10.3f}&quot;</span>)
+
+lr = models[<span class="s">&quot;邏輯迴歸（線性邊界）&quot;</span>]
+<span class="b">print</span>(<span class="s">&quot;\n邏輯迴歸輸出的是機率（sigmoid）：前 3 筆 P(y=1) =&quot;</span>, lr.predict_proba(Xte[:<span class="n">3</span>])[:, <span class="n">1</span>].<span class="b">round</span>(<span class="n">3</span>))
+tree = models[<span class="s">&quot;決策樹（不限深度）&quot;</span>]
+<span class="b">print</span>(<span class="s">&quot;決策樹根節點用的特徵 =&quot;</span>, tree.tree_.feature[<span class="n">0</span>], <span class="s">&quot;，分裂門檻 =&quot;</span>, <span class="b">round</span>(<span class="b">float</span>(tree.tree_.threshold[<span class="n">0</span>]), <span class="n">2</span>),
+      <span class="s">&quot;，根節點基尼不純度 =&quot;</span>, <span class="b">round</span>(<span class="b">float</span>(tree.tree_.impurity[<span class="n">0</span>]), <span class="n">3</span>))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">模型                         訓練準確率   測試準確率
+邏輯迴歸（線性邊界）                   0.876     0.828
+SVM rbf 核                    0.902     0.872
+決策樹（不限深度）                    1.000     0.878
+KNN k=7（未縮放）                 0.860     0.778
+KNN k=7（Z-score）             0.914     0.883
+高斯樸素貝氏                       0.876     0.844
+Bagging(決策樹×100)             1.000     0.878
+AdaBoost(樹樁×100)             0.926     0.883
+
+邏輯迴歸輸出的是機率（sigmoid）：前 3 筆 P(y=1) = [0.013 0.024 0.96 ]
+決策樹根節點用的特徵 = 1 ，分裂門檻 = 30.91 ，根節點基尼不純度 = 0.5</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>邏輯迴歸只能畫一條直線，在彎月資料上明顯輸給非線性模型；SVM 用 rbf 核把資料映射到高維後就能切出弧形邊界。</li><li>未縮放的 KNN 準確率明顯掉下來：第二個特徵被放大 100 倍後，距離幾乎只由它決定，第一個特徵形同消失。距離型模型（KNN、SVM、K-means）必須先做特徵縮放。</li><li>不限深度的單一決策樹訓練準確率 1.0、測試卻掉很多（高變異、過擬合）；Bagging 把 100 棵這樣的樹平均起來降低變異，AdaBoost 把 100 個「很弱」的樹樁串起來降低偏差，兩者測試準確率都勝過單一樹。</li><li>樹模型不需要縮放（它只比較大小順序），基尼不純度 0.5 代表根節點兩類各半，最不純。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 noise 調到 0.1，看樸素貝氏與邏輯迴歸的差距；把 AdaBoost 的 max_depth 改成 5，觀察 Boosting 用強模型會不會更好。</div>
+</article>
+<article class="ex" id="ex-cluster">
+<div class="exhead"><span class="num">範例 9</span><h4>分群：K-means、階層式、DBSCAN 在不同形狀資料上的表現</h4></div>
+<p class="scn"><b>情境</b>兩組資料：圓球狀的客群與彎月狀的軌跡。看 K-means 在哪一組會分錯、DBSCAN 怎麼把雜訊標成 -1，並用輪廓係數與手肘法挑 k。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>k-means（需指定 K）</span><span>階層式分群</span><span>DBSCAN（密度、雜訊點）</span><span>輪廓係數、手肘法</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_blobs, make_moons
+<span class="k">from</span> sklearn.cluster <span class="k">import</span> KMeans, AgglomerativeClustering, DBSCAN
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> silhouette_score, adjusted_rand_score
+blobs, yb = make_blobs(n_samples=<span class="n">300</span>, centers=<span class="n">3</span>, cluster_std=<span class="n">0.5</span>, random_state=<span class="n">7</span>)
+moons, ym = make_moons(n_samples=<span class="n">300</span>, noise=<span class="n">0.06</span>, random_state=<span class="n">4</span>)
+
+<span class="k">def</span> run(X, ytrue, name):
+    X = StandardScaler().fit_transform(X)
+    algos = {<span class="s">&quot;K-means(k=2或3)&quot;</span>: KMeans(n_clusters=<span class="b">len</span>(<span class="b">set</span>(ytrue)), n_init=<span class="n">10</span>, random_state=<span class="n">0</span>),
+             <span class="s">&quot;階層式(ward)&quot;</span>:    AgglomerativeClustering(n_clusters=<span class="b">len</span>(<span class="b">set</span>(ytrue))),
+             <span class="s">&quot;DBSCAN&quot;</span>:          DBSCAN(eps=<span class="n">0.3</span>, min_samples=<span class="n">5</span>)}
+    <span class="b">print</span>(<span class="s">f&quot;\n【{name}】  指標：ARI 與真實分組的一致度(1 最好)，輪廓係數(-1~1)&quot;</span>)
+    <span class="k">for</span> n, a <span class="k">in</span> algos.items():
+        lab = a.fit_predict(X)
+        k = <span class="b">len</span>(<span class="b">set</span>(lab) - {-<span class="n">1</span>}); noise = <span class="b">int</span>((lab == -<span class="n">1</span>).<span class="b">sum</span>())
+        sil = silhouette_score(X, lab) <span class="k">if</span> k &gt; <span class="n">1</span> <span class="k">else</span> <span class="b">float</span>(<span class="s">&quot;nan&quot;</span>)
+        <span class="b">print</span>(<span class="s">f&quot;  {n:16s} 群數={k} 雜訊點={noise:3d}  ARI={adjusted_rand_score(ytrue, lab):.3f}  輪廓={sil:.3f}&quot;</span>)
+
+run(blobs, yb, <span class="s">&quot;圓球狀客群（3 群）&quot;</span>)
+run(moons, ym, <span class="s">&quot;彎月軌跡（2 群）&quot;</span>)
+
+<span class="b">print</span>(<span class="s">&quot;\n手肘法：K-means 的群內平方和 (inertia) 隨 k 下降&quot;</span>)
+Xb = StandardScaler().fit_transform(blobs)
+<span class="k">for</span> k <span class="k">in</span> <span class="b">range</span>(<span class="n">1</span>, <span class="n">7</span>):
+    km = KMeans(n_clusters=k, n_init=<span class="n">10</span>, random_state=<span class="n">0</span>).fit(Xb)
+    sil = silhouette_score(Xb, km.labels_) <span class="k">if</span> k &gt; <span class="n">1</span> <span class="k">else</span> <span class="b">float</span>(<span class="s">&quot;nan&quot;</span>)
+    <span class="b">print</span>(<span class="s">f&quot;  k={k}  inertia={km.inertia_:7.1f}  輪廓係數={sil:.3f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">
+【圓球狀客群（3 群）】  指標：ARI 與真實分組的一致度(1 最好)，輪廓係數(-1~1)
+  K-means(k=2或3)   群數=3 雜訊點=  0  ARI=1.000  輪廓=0.795
+  階層式(ward)        群數=3 雜訊點=  0  ARI=1.000  輪廓=0.795
+  DBSCAN           群數=3 雜訊點=  0  ARI=1.000  輪廓=0.795
+
+【彎月軌跡（2 群）】  指標：ARI 與真實分組的一致度(1 最好)，輪廓係數(-1~1)
+  K-means(k=2或3)   群數=2 雜訊點=  0  ARI=0.498  輪廓=0.490
+  階層式(ward)        群數=2 雜訊點=  0  ARI=0.527  輪廓=0.442
+  DBSCAN           群數=2 雜訊點=  0  ARI=1.000  輪廓=0.385
+
+手肘法：K-means 的群內平方和 (inertia) 隨 k 下降
+  k=1  inertia=  600.0  輪廓係數=nan
+  k=2  inertia=   78.2  輪廓係數=0.790
+  k=3  inertia=   16.3  輪廓係數=0.795
+  k=4  inertia=   12.5  輪廓係數=0.713
+  k=5  inertia=    9.2  輪廓係數=0.587
+  k=6  inertia=    6.4  輪廓係數=0.500</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>圓球狀資料三種方法都分得很好；彎月資料 K-means 與 ward 階層式都分錯（ARI 低），因為它們假設群是凸的、用距離中心點判斷。</li><li>DBSCAN 依密度連接，所以能正確分出兩個彎月，還會把低密度點標成 -1（雜訊），但它需要調 eps／min_samples，且密度不均時表現差。</li><li>手肘法在 k=3 之後 inertia 下降明顯趨緩（手肘），輪廓係數也在 k=3 最高，兩個指標都指向真實的 3 群。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 DBSCAN 的 eps 改成 0.15 或 0.6，看群數與雜訊點數如何劇烈變化，體會它對參數的敏感。</div>
+</article>
+<article class="ex" id="ex-apriori">
+<div class="exhead"><span class="num">範例 10</span><h4>關聯規則：從購物籃算支持度、信賴度與提升度</h4></div>
+<p class="scn"><b>情境</b>10 筆交易紀錄，找出常一起買的商品組合，並判斷「買尿布的人也買啤酒」是真的關聯還是啤酒本來就熱銷。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>關聯規則：Apriori</span><span>支持度 Support</span><span>信賴度 Confidence</span><span>提升度 Lift（&gt; 1 才有正關聯）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">from</span> itertools <span class="k">import</span> combinations
+T = [{<span class="s">&quot;尿布&quot;</span>, <span class="s">&quot;啤酒&quot;</span>, <span class="s">&quot;牛奶&quot;</span>}, {<span class="s">&quot;尿布&quot;</span>, <span class="s">&quot;啤酒&quot;</span>}, {<span class="s">&quot;牛奶&quot;</span>, <span class="s">&quot;麵包&quot;</span>}, {<span class="s">&quot;尿布&quot;</span>, <span class="s">&quot;啤酒&quot;</span>, <span class="s">&quot;麵包&quot;</span>}, {<span class="s">&quot;牛奶&quot;</span>, <span class="s">&quot;麵包&quot;</span>, <span class="s">&quot;雞蛋&quot;</span>},
+     {<span class="s">&quot;尿布&quot;</span>, <span class="s">&quot;牛奶&quot;</span>}, {<span class="s">&quot;麵包&quot;</span>, <span class="s">&quot;雞蛋&quot;</span>}, {<span class="s">&quot;尿布&quot;</span>, <span class="s">&quot;啤酒&quot;</span>, <span class="s">&quot;牛奶&quot;</span>, <span class="s">&quot;麵包&quot;</span>}, {<span class="s">&quot;牛奶&quot;</span>, <span class="s">&quot;雞蛋&quot;</span>}, {<span class="s">&quot;麵包&quot;</span>, <span class="s">&quot;牛奶&quot;</span>}]
+N = <span class="b">len</span>(T)
+support = <span class="k">lambda</span> items: <span class="b">sum</span>(items &lt;= t <span class="k">for</span> t <span class="k">in</span> T) / N      <span class="c"># 含該組合的交易比例</span>
+
+<span class="c"># Apriori：先找頻繁 1-項集，再只用頻繁項組合成 2-項集（剪枝）</span>
+min_sup = <span class="n">0.3</span>                                                <span class="c"># 至少出現 3/10 次</span>
+items = <span class="b">sorted</span>({i <span class="k">for</span> t <span class="k">in</span> T <span class="k">for</span> i <span class="k">in</span> t})
+L1 = [frozenset([i]) <span class="k">for</span> i <span class="k">in</span> items <span class="k">if</span> support({i}) &gt;= min_sup]
+<span class="b">print</span>(<span class="s">&quot;頻繁 1-項集：&quot;</span>, {<span class="b">tuple</span>(s)[<span class="n">0</span>]: <span class="b">round</span>(support(s), <span class="n">3</span>) <span class="k">for</span> s <span class="k">in</span> L1})
+L2 = [a | b <span class="k">for</span> a, b <span class="k">in</span> combinations(L1, <span class="n">2</span>) <span class="k">if</span> support(a | b) &gt;= min_sup]
+<span class="b">print</span>(<span class="s">&quot;頻繁 2-項集：&quot;</span>, {<span class="s">&quot; + &quot;</span>.join(<span class="b">sorted</span>(s)): <span class="b">round</span>(support(s), <span class="n">3</span>) <span class="k">for</span> s <span class="k">in</span> L2})
+
+<span class="b">print</span>(<span class="s">f&quot;\n{&#x27;規則&#x27;:14s}{&#x27;支持度&#x27;:&gt;7s}{&#x27;信賴度&#x27;:&gt;7s}{&#x27;提升度&#x27;:&gt;7s}&quot;</span>)
+<span class="k">for</span> pair <span class="k">in</span> L2:
+    <span class="k">for</span> a <span class="k">in</span> pair:
+        b = pair - {a}
+        conf = support(pair) / support({a})                  <span class="c"># P(B|A)</span>
+        lift = conf / support(b)                             <span class="c"># P(B|A) / P(B)</span>
+        <span class="b">print</span>(<span class="s">f&quot;{a} → {tuple(b)[0]:8s}{support(pair):7.3f}{conf:7.3f}{lift:7.2f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">頻繁 1-項集： {&#x27;啤酒&#x27;: 0.4, &#x27;尿布&#x27;: 0.5, &#x27;牛奶&#x27;: 0.7, &#x27;雞蛋&#x27;: 0.3, &#x27;麵包&#x27;: 0.6}
+頻繁 2-項集： {&#x27;啤酒 + 尿布&#x27;: 0.4, &#x27;尿布 + 牛奶&#x27;: 0.3, &#x27;牛奶 + 麵包&#x27;: 0.4}
+
+規則                支持度    信賴度    提升度
+啤酒 → 尿布        0.400  1.000   2.00
+尿布 → 啤酒        0.400  0.800   2.00
+牛奶 → 尿布        0.300  0.429   0.86
+尿布 → 牛奶        0.300  0.600   0.86
+牛奶 → 麵包        0.400  0.571   0.95
+麵包 → 牛奶        0.400  0.667   0.95</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>支持度衡量「這個組合有多常見」、信賴度衡量「買了 A 的人有多大比例也買 B」，兩者都高才值得做成促銷組合。</li><li>提升度 = 信賴度 ÷ B 的支持度：大於 1 表示 A 真的提高了買 B 的機率，接近 1 表示兩者獨立，小於 1 是負關聯。尿布→啤酒的提升度 2.0，表示買尿布的人買啤酒的機率是一般人的兩倍；牛奶→麵包信賴度不低，但提升度不到 1，只是因為兩者本來都熱銷。</li><li>Apriori 的核心是「非頻繁項集的超集合也一定不頻繁」，所以可以用頻繁 1-項集來剪掉大部分 2-項集的候選，不必枚舉所有組合。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 min_sup 調到 0.25，會多出哪些規則？再把「牛奶 → 麵包」的提升度跟「啤酒 → 麵包」比一比。</div>
+</article>
+<h3 id="sec4-3">4.3 深度學習原理與框架 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec4-3">白話版 ↗</a></h3>
+<article class="ex" id="ex-xor">
+<div class="exhead"><span class="num">範例 11</span><h4>感知器解不了 XOR，兩層神經網路可以：手刻前向與反向傳播</h4></div>
+<p class="scn"><b>情境</b>先讓單層感知器學 XOR（必定失敗），再用 numpy 寫一個 2-4-1 的小網路，用連鎖律手算梯度，看損失一路下降。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>人工神經元 Z = Σwx + b</span><span>感知器無法解 XOR</span><span>激活函數引入非線性</span><span>前向傳播 vs 反向傳播（連鎖律）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+X = np.array([[<span class="n">0</span>,<span class="n">0</span>],[<span class="n">0</span>,<span class="n">1</span>],[<span class="n">1</span>,<span class="n">0</span>],[<span class="n">1</span>,<span class="n">1</span>]], dtype=float)
+y = np.array([[<span class="n">0</span>],[<span class="n">1</span>],[<span class="n">1</span>],[<span class="n">0</span>]], dtype=float)           <span class="c"># XOR</span>
+
+<span class="c"># ── 單層感知器（線性 + 階梯函數）────────────────</span>
+w, b = np.zeros(<span class="n">2</span>), <span class="n">0.0</span>
+<span class="k">for</span> epoch <span class="k">in</span> <span class="b">range</span>(<span class="n">50</span>):
+    <span class="k">for</span> xi, yi <span class="k">in</span> <span class="b">zip</span>(X, y[:, <span class="n">0</span>]):
+        pred = <span class="n">1.0</span> <span class="k">if</span> xi @ w + b &gt; <span class="n">0</span> <span class="k">else</span> <span class="n">0.0</span>
+        w += <span class="n">0.1</span> * (yi - pred) * xi; b += <span class="n">0.1</span> * (yi - pred)   <span class="c"># 感知器學習規則</span>
+acc = np.mean([(<span class="n">1.0</span> <span class="k">if</span> xi @ w + b &gt; <span class="n">0</span> <span class="k">else</span> <span class="n">0.0</span>) == yi <span class="k">for</span> xi, yi <span class="k">in</span> <span class="b">zip</span>(X, y[:, <span class="n">0</span>])])
+<span class="b">print</span>(<span class="s">f&quot;感知器 50 輪後對 XOR 的準確率 = {acc:.2f}（一條直線切不開）&quot;</span>)
+
+<span class="c"># ── 2-4-1 多層感知器（sigmoid）────────────────</span>
+sig = <span class="k">lambda</span> z: <span class="n">1</span> / (<span class="n">1</span> + np.exp(-z))
+rng = np.random.default_rng(<span class="n">0</span>)
+W1, b1 = rng.normal(<span class="n">0</span>, <span class="n">1</span>, (<span class="n">2</span>, <span class="n">4</span>)), np.zeros((<span class="n">1</span>, <span class="n">4</span>))
+W2, b2 = rng.normal(<span class="n">0</span>, <span class="n">1</span>, (<span class="n">4</span>, <span class="n">1</span>)), np.zeros((<span class="n">1</span>, <span class="n">1</span>))
+lr = <span class="n">1.0</span>
+<span class="k">for</span> epoch <span class="k">in</span> <span class="b">range</span>(<span class="n">1</span>, <span class="n">5001</span>):
+    <span class="c"># 前向傳播</span>
+    Z1 = X @ W1 + b1;  A1 = sig(Z1)                     <span class="c"># 隱藏層</span>
+    Z2 = A1 @ W2 + b2; A2 = sig(Z2)                     <span class="c"># 輸出層（機率）</span>
+    loss = -np.mean(y*np.log(A2) + (<span class="n">1</span>-y)*np.log(<span class="n">1</span>-A2))  <span class="c"># 二元交叉熵</span>
+    <span class="c"># 反向傳播（連鎖律，由輸出層往回算）</span>
+    dZ2 = A2 - y                                        <span class="c"># ∂loss/∂Z2（交叉熵 + sigmoid 的簡潔結果）</span>
+    dW2 = A1.T @ dZ2 / <span class="n">4</span>;      db2 = dZ2.mean(<span class="n">0</span>, keepdims=<span class="k">True</span>)
+    dA1 = dZ2 @ W2.T
+    dZ1 = dA1 * A1 * (<span class="n">1</span> - A1)                           <span class="c"># sigmoid 導數 σ(1-σ)</span>
+    dW1 = X.T @ dZ1 / <span class="n">4</span>;       db1 = dZ1.mean(<span class="n">0</span>, keepdims=<span class="k">True</span>)
+    W2 -= lr*dW2; b2 -= lr*db2; W1 -= lr*dW1; b1 -= lr*db1
+    <span class="k">if</span> epoch <span class="k">in</span> (<span class="n">1</span>, <span class="n">100</span>, <span class="n">500</span>, <span class="n">1000</span>, <span class="n">5000</span>):
+        <span class="b">print</span>(<span class="s">f&quot;epoch {epoch:5d}  loss = {loss:.4f}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;MLP 預測：&quot;</span>, sig(sig(X @ W1 + b1) @ W2 + b2).<span class="b">round</span>(<span class="n">2</span>).ravel(), <span class="s">&quot; ← 目標 [0 1 1 0]&quot;</span>)
+
+<span class="b">print</span>(<span class="s">&quot;\n常見激活函數在 z = -2, 0, 2 的值：&quot;</span>)
+z = np.array([-<span class="n">2</span>., <span class="n">0</span>., <span class="n">2</span>.])
+<span class="b">print</span>(<span class="s">&quot;  sigmoid&quot;</span>, sig(z).<span class="b">round</span>(<span class="n">3</span>), <span class="s">&quot; tanh&quot;</span>, np.tanh(z).<span class="b">round</span>(<span class="n">3</span>), <span class="s">&quot; ReLU&quot;</span>, np.maximum(<span class="n">0</span>, z))</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">感知器 50 輪後對 XOR 的準確率 = 0.50（一條直線切不開）
+epoch     1  loss = 0.9258
+epoch   100  loss = 0.6905
+epoch   500  loss = 0.1114
+epoch  1000  loss = 0.0198
+epoch  5000  loss = 0.0024
+MLP 預測： [0. 1. 1. 0.]  ← 目標 [0 1 1 0]
+
+常見激活函數在 z = -2, 0, 2 的值：
+  sigmoid [0.119 0.5   0.881]  tanh [-0.964  0.     0.964]  ReLU [0. 0. 2.]</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>感知器只是一條直線（超平面），XOR 的四個點無法用一條線分開，準確率卡在 0.5 左右：這就是 1969 年讓神經網路研究停滯的著名限制。</li><li>加一層隱藏層＋非線性激活函數後，網路先把輸入映射到新空間，再切一刀就能分開，損失從 0.7 降到接近 0。</li><li>反向傳播就是連鎖律：先算輸出層的誤差 dZ2，再乘上 W2 與 sigmoid 導數得到隱藏層的誤差，一層層往回傳；用交叉熵搭配 sigmoid 時 dZ2 剛好等於「預測 − 真實」。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把隱藏層的 sig 換成 ReLU（np.maximum(0, Z1)，導數為 Z1 &gt; 0），或把隱藏層神經元改成 1 個，看看還學得起來嗎？</div>
+</article>
+<article class="ex" id="ex-attention">
+<div class="exhead"><span class="num">範例 12</span><h4>Transformer 的心臟：自注意力 Q、K、V 與位置編碼</h4></div>
+<p class="scn"><b>情境</b>用 4 個詞的小句子，手算一次縮放點積注意力：每個詞對其他詞的注意力權重是多少？再加上 GPT 式的因果遮罩與 sin/cos 位置編碼。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Transformer：自注意力 Q/K/V</span><span>縮放點積 softmax(QKᵀ/√d)V</span><span>位置編碼</span><span>BERT（編碼器，雙向）vs GPT（解碼器，因果遮罩）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+np.set_printoptions(precision=<span class="n">2</span>, suppress=<span class="k">True</span>)
+tokens = [<span class="s">&quot;貓&quot;</span>, <span class="s">&quot;追&quot;</span>, <span class="s">&quot;老鼠&quot;</span>, <span class="s">&quot;跑&quot;</span>]
+rng = np.random.default_rng(<span class="n">3</span>)
+d = <span class="n">4</span>                                            <span class="c"># 嵌入維度</span>
+E = rng.normal(size=(<span class="n">4</span>, d))                      <span class="c"># 4 個詞的嵌入向量（實際由模型學出）</span>
+Wq, Wk, Wv = (rng.normal(size=(d, d)) <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">3</span>))
+Q, K, V = E @ Wq, E @ Wk, E @ Wv                 <span class="c"># 查詢、鍵、值</span>
+
+<span class="k">def</span> softmax(z):
+    z = z - z.<span class="b">max</span>(axis=-<span class="n">1</span>, keepdims=<span class="k">True</span>)
+    <span class="k">return</span> np.exp(z) / np.exp(z).<span class="b">sum</span>(axis=-<span class="n">1</span>, keepdims=<span class="k">True</span>)
+
+scores = Q @ K.T / np.sqrt(d)                    <span class="c"># 相似度分數，÷√d 避免數值過大</span>
+A = softmax(scores)                              <span class="c"># 每一列是一個詞對所有詞的注意力權重</span>
+<span class="b">print</span>(<span class="s">&quot;注意力權重（列 = 查詢詞，欄 = 被注意的詞）：&quot;</span>)
+<span class="k">for</span> t, row <span class="k">in</span> <span class="b">zip</span>(tokens, A):
+    <span class="b">print</span>(<span class="s">f&quot;  {t:3s}&quot;</span>, row, <span class="s">&quot; 最注意 →&quot;</span>, tokens[<span class="b">int</span>(row.argmax())])
+<span class="b">print</span>(<span class="s">&quot;每列總和 =&quot;</span>, A.<span class="b">sum</span>(axis=<span class="n">1</span>))
+out = A @ V                                      <span class="c"># 加權求和後的新表示（形狀不變）</span>
+<span class="b">print</span>(<span class="s">&quot;輸出形狀&quot;</span>, out.shape, <span class="s">&quot;（每個詞都變成『看過整句』的向量）&quot;</span>)
+
+<span class="c"># ── 因果遮罩（GPT／解碼器）：只能看自己與左邊 ──</span>
+mask = np.triu(np.ones((<span class="n">4</span>, <span class="n">4</span>)), k=<span class="n">1</span>).astype(bool)
+A_causal = softmax(np.where(mask, -<span class="n">1e9</span>, scores))
+<span class="b">print</span>(<span class="s">&quot;\n因果遮罩後的權重（上三角被遮成 0）：\n&quot;</span>, A_causal)
+
+<span class="c"># ── 正弦位置編碼：讓模型知道詞序 ───────────────</span>
+pos = np.arange(<span class="n">4</span>)[:, <span class="k">None</span>]; i = np.arange(d)[<span class="k">None</span>, :]
+angle = pos / np.power(<span class="n">10000</span>, (<span class="n">2</span> * (i // <span class="n">2</span>)) / d)
+PE = np.where(i % <span class="n">2</span> == <span class="n">0</span>, np.sin(angle), np.cos(angle))
+<span class="b">print</span>(<span class="s">&quot;\n位置編碼 PE（每個位置一個獨特向量，加到嵌入上）：\n&quot;</span>, PE)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">注意力權重（列 = 查詢詞，欄 = 被注意的詞）：
+  貓   [0.99 0.01 0.   0.01]  最注意 → 貓
+  追   [0.09 0.14 0.59 0.18]  最注意 → 老鼠
+  老鼠  [0. 0. 1. 0.]  最注意 → 老鼠
+  跑   [0.31 0.35 0.01 0.33]  最注意 → 追
+每列總和 = [1. 1. 1. 1.]
+輸出形狀 (4, 4) （每個詞都變成『看過整句』的向量）
+
+因果遮罩後的權重（上三角被遮成 0）：
+ [[1.   0.   0.   0.  ]
+ [0.38 0.62 0.   0.  ]
+ [0.   0.   1.   0.  ]
+ [0.31 0.35 0.01 0.33]]
+
+位置編碼 PE（每個位置一個獨特向量，加到嵌入上）：
+ [[ 0.    1.    0.    1.  ]
+ [ 0.84  0.54  0.01  1.  ]
+ [ 0.91 -0.42  0.02  1.  ]
+ [ 0.14 -0.99  0.03  1.  ]]</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>注意力權重由查詢（Q）與鍵（K）的點積決定，經 softmax 後每列總和為 1，再用它對值（V）加權求和：輸出形狀和輸入一樣，但每個詞的向量已經「融合了整句的資訊」。</li><li>÷√d 是「縮放」的由來：維度越高點積越大，不縮放的話 softmax 會過度尖銳、梯度消失。</li><li>BERT 式編碼器讓每個詞看整句（雙向），GPT 式解碼器用上三角遮罩只看左邊，才能逐字生成；位置編碼則補上自注意力本身沒有的「順序」資訊。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 d 改成 64 並拿掉 /np.sqrt(d)，印出 softmax 前的 scores 大小與權重分佈，親眼看看為什麼要縮放。</div>
+</article>
+<h2 class="chap" id="chap5">第五章 機器學習建模與參數調校</h2>
+<p class="chlead">完整建模流程動手做：清理與特徵工程、模型選擇與解釋、評估與交叉驗證、調校與壓縮。</p>
+<h3 id="sec5-1">5.1 數據準備與特徵工程 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-1">白話版 ↗</a></h3>
+<article class="ex" id="ex-prep">
+<div class="exhead"><span class="num">範例 13</span><h4>資料清理與特徵轉換：缺失值、異常值、編碼、縮放、週期特徵</h4></div>
+<p class="scn"><b>情境</b>一張有缺值、有離群值、有類別欄與「小時」欄的顧客資料表。逐步處理：三種缺失值策略、三種異常值偵測、三種編碼、三種縮放，以及 sin/cos 週期編碼。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>缺失值：刪除、填補、缺失指標</span><span>異常值：Z 分數、IQR、Isolation Forest</span><span>Label／One-hot／Target Encoding</span><span>Min-Max、Z-score、Robust Scaling</span><span>週期特徵 sin/cos 編碼</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> IsolationForest
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> MinMaxScaler, StandardScaler, RobustScaler
+rng = np.random.default_rng(<span class="n">0</span>)
+n = <span class="n">200</span>
+df = pd.DataFrame({<span class="s">&quot;income&quot;</span>: rng.normal(<span class="n">60</span>, <span class="n">15</span>, n).<span class="b">round</span>(<span class="n">1</span>), <span class="s">&quot;city&quot;</span>: rng.choice([<span class="s">&quot;北&quot;</span>, <span class="s">&quot;中&quot;</span>, <span class="s">&quot;南&quot;</span>], n),
+                   <span class="s">&quot;hour&quot;</span>: rng.integers(<span class="n">0</span>, <span class="n">24</span>, n), <span class="s">&quot;buy&quot;</span>: rng.integers(<span class="n">0</span>, <span class="n">2</span>, n)})
+df.loc[rng.choice(n, <span class="n">20</span>, replace=<span class="k">False</span>), <span class="s">&quot;income&quot;</span>] = np.nan        <span class="c"># 10% 缺值</span>
+df.loc[[<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>], <span class="s">&quot;income&quot;</span>] = [<span class="n">400</span>, <span class="n">450</span>, -<span class="n">50</span>]                      <span class="c"># 三個離群／錯誤值</span>
+
+<span class="c"># ── 缺失值 ──────────────────────────────────</span>
+<span class="b">print</span>(<span class="s">f&quot;缺失率 income = {df.income.isna().mean():.1%}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;策略 A 刪除列 →&quot;</span>, df.dropna().shape, <span class="s">&quot; 策略 B 中位數填補 →&quot;</span>, <span class="b">round</span>(df.income.median(), <span class="n">1</span>), end=<span class="s">&quot;&quot;</span>)
+df[<span class="s">&quot;income_missing&quot;</span>] = df.income.isna().astype(int)                  <span class="c"># 策略 C：缺失指標欄</span>
+df[<span class="s">&quot;income&quot;</span>] = df.income.fillna(df.income.median())
+<span class="b">print</span>(<span class="s">&quot;  策略 C 另加缺失指標欄（保留『曾缺失』資訊）&quot;</span>)
+
+<span class="c"># ── 異常值：三種方法各抓到幾筆 ───────────────</span>
+x = df.income
+z = (x - x.mean()) / x.std()
+iqr = x.quantile(<span class="n">.75</span>) - x.quantile(<span class="n">.25</span>)
+lo, hi = x.quantile(<span class="n">.25</span>) - <span class="n">1.5</span>*iqr, x.quantile(<span class="n">.75</span>) + <span class="n">1.5</span>*iqr
+iso = IsolationForest(contamination=<span class="n">0.02</span>, random_state=<span class="n">0</span>).fit_predict(x.to_frame())
+<span class="b">print</span>(<span class="s">f&quot;\n異常值筆數  Z&gt;3: {(z.abs() &gt; 3).sum()}   IQR 法: {((x &lt; lo) | (x &gt; hi)).sum()}   IsolationForest: {(iso == -1).sum()}&quot;</span>)
+<span class="b">print</span>(<span class="s">&quot;IQR 法界限 = [%.1f, %.1f]&quot;</span> % (lo, hi))
+
+<span class="c"># ── 類別編碼 ────────────────────────────────</span>
+df[<span class="s">&quot;city_label&quot;</span>] = df.city.<span class="b">map</span>({<span class="s">&quot;北&quot;</span>: <span class="n">0</span>, <span class="s">&quot;中&quot;</span>: <span class="n">1</span>, <span class="s">&quot;南&quot;</span>: <span class="n">2</span>})             <span class="c"># Label：有假的大小順序</span>
+onehot = pd.get_dummies(df.city, prefix=<span class="s">&quot;city&quot;</span>, dtype=int)             <span class="c"># One-hot：三欄 0/1</span>
+df[<span class="s">&quot;city_target&quot;</span>] = df.city.<span class="b">map</span>(df.groupby(<span class="s">&quot;city&quot;</span>).buy.mean().<span class="b">round</span>(<span class="n">3</span>))  <span class="c"># Target：用該類別的 y 平均（需防洩漏）</span>
+<span class="b">print</span>(<span class="s">&quot;\n編碼結果前 3 列：\n&quot;</span>, pd.concat([df[[<span class="s">&quot;city&quot;</span>, <span class="s">&quot;city_label&quot;</span>, <span class="s">&quot;city_target&quot;</span>]], onehot], axis=<span class="n">1</span>).head(<span class="n">3</span>).to_string(index=<span class="k">False</span>))
+
+<span class="c"># ── 縮放：離群值對三種縮放的影響 ──────────────</span>
+col = df[[<span class="s">&quot;income&quot;</span>]]
+<span class="k">for</span> name, sc <span class="k">in</span> [(<span class="s">&quot;Min-Max&quot;</span>, MinMaxScaler()), (<span class="s">&quot;Z-score&quot;</span>, StandardScaler()), (<span class="s">&quot;Robust&quot;</span>, RobustScaler())]:
+    s = sc.fit_transform(col).ravel()
+    <span class="b">print</span>(<span class="s">f&quot;{name:8s} 一般值(第 10 筆)={s[10]:6.2f}   離群值(第 1 筆)={s[1]:6.2f}   中位數={np.median(s):6.2f}&quot;</span>)
+
+<span class="c"># ── 週期特徵：23 點與 0 點其實只差 1 小時 ───────</span>
+h = df.hour
+df[<span class="s">&quot;hour_sin&quot;</span>], df[<span class="s">&quot;hour_cos&quot;</span>] = np.sin(<span class="n">2</span>*np.pi*h/<span class="n">24</span>), np.cos(<span class="n">2</span>*np.pi*h/<span class="n">24</span>)
+d = <span class="k">lambda</span> a, b: np.hypot(np.sin(<span class="n">2</span>*np.pi*a/<span class="n">24</span>)-np.sin(<span class="n">2</span>*np.pi*b/<span class="n">24</span>), np.cos(<span class="n">2</span>*np.pi*a/<span class="n">24</span>)-np.cos(<span class="n">2</span>*np.pi*b/<span class="n">24</span>))
+<span class="b">print</span>(<span class="s">f&quot;\n原始距離 |23-0| = 23；sin/cos 編碼後距離(23,0) = {d(23,0):.3f}，距離(12,13) = {d(12,13):.3f} → 一樣近&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">缺失率 income = 9.5%
+策略 A 刪除列 → (181, 4)  策略 B 中位數填補 → 60.7  策略 C 另加缺失指標欄（保留『曾缺失』資訊）
+
+異常值筆數  Z&gt;3: 2   IQR 法: 3   IsolationForest: 4
+IQR 法界限 = [23.7, 96.8]
+
+編碼結果前 3 列：
+ city  city_label  city_target  city_中  city_北  city_南
+   中           1        0.562       1       0       0
+   北           0        0.545       0       1       0
+   中           1        0.562       1       0       0
+Min-Max  一般值(第 10 筆)=  0.20   離群值(第 1 筆)=  1.00   中位數=  0.22
+Z-score  一般值(第 10 筆)= -0.31   離群值(第 1 筆)=  9.73   中位數= -0.06
+Robust   一般值(第 10 筆)= -0.55   離群值(第 1 筆)= 21.30   中位數=  0.00
+
+原始距離 |23-0| = 23；sin/cos 編碼後距離(23,0) = 0.261，距離(12,13) = 0.261 → 一樣近</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>缺失指標欄保留「這筆原本是缺的」這個訊息，樹模型常能從中學到東西；單純填補會把這個訊息抹掉。</li><li>三種離群值偵測抓到的筆數不同：Z 分數用平均與標準差，本身會被離群值拉動；IQR 用分位數較穩健；Isolation Forest 不假設分佈，但要給 contamination。</li><li>Min-Max 的 1.0 被離群值佔走，一般值全被擠到 0.2 附近；Z-score 的平均與標準差被離群值拉動；Robust 用中位數與 IQR，中位數剛好落在 0、一般值維持正常尺度、離群值顯得更極端（反而更容易被看出來）：有離群值時優先用 Robust Scaling。</li><li>把小時直接當數字會讓 23 點與 0 點相距 23；sin/cos 編碼後兩者的距離與 12 點、13 點一樣近，這就是週期特徵編碼的目的。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>Target Encoding 若在整個資料集上算再拿去訓練，會把 y 洩漏進特徵。試著只用訓練集算 city_target，再套到測試集，比較兩種做法的測試分數。</div>
+</article>
+<article class="ex" id="ex-fselect">
+<div class="exhead"><span class="num">範例 14</span><h4>特徵選擇三流派：Filter、Wrapper、Embedded 與 PCA 降維</h4></div>
+<p class="scn"><b>情境</b>20 個特徵中只有 5 個真的有資訊、另有 5 個是它們的線性組合（冗餘）。看三種選法各挑出什麼，再用 PCA 看需要幾個主成分。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Filter：統計量篩選</span><span>Wrapper：RFE</span><span>Embedded：樹重要性、Lasso</span><span>PCA 與解釋變異</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.feature_selection <span class="k">import</span> SelectKBest, f_classif, mutual_info_classif, RFE
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> RandomForestClassifier
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> StandardScaler
+<span class="k">from</span> sklearn.decomposition <span class="k">import</span> PCA
+X, y = make_classification(n_samples=<span class="n">600</span>, n_features=<span class="n">20</span>, n_informative=<span class="n">5</span>, n_redundant=<span class="n">5</span>,
+                           n_repeated=<span class="n">0</span>, shuffle=<span class="k">False</span>, random_state=<span class="n">0</span>)   <span class="c"># shuffle=False → 前 5 欄有資訊、6~10 冗餘、其餘雜訊</span>
+X = StandardScaler().fit_transform(X)
+names = [<span class="s">f&quot;f{i}&quot;</span> <span class="k">for</span> i <span class="k">in</span> <span class="b">range</span>(<span class="n">20</span>)]
+show = <span class="k">lambda</span> idx: <span class="s">&quot;, &quot;</span>.join(names[i] <span class="k">for</span> i <span class="k">in</span> <span class="b">sorted</span>(idx))
+
+<span class="c"># Filter：單變數統計量（ANOVA F、互資訊），快但不看特徵間互動</span>
+f_idx  = SelectKBest(f_classif, k=<span class="n">5</span>).fit(X, y).get_support(indices=<span class="k">True</span>)
+mi_idx = SelectKBest(mutual_info_classif, k=<span class="n">5</span>).fit(X, y).get_support(indices=<span class="k">True</span>)
+<span class="b">print</span>(<span class="s">&quot;Filter  ANOVA F 前 5：&quot;</span>, show(f_idx))
+<span class="b">print</span>(<span class="s">&quot;Filter  互資訊 前 5：  &quot;</span>, show(mi_idx))
+
+<span class="c"># Wrapper：RFE 反覆訓練模型、每次剔除最弱特徵，準但慢</span>
+rfe = RFE(LogisticRegression(max_iter=<span class="n">1000</span>), n_features_to_select=<span class="n">5</span>).fit(X, y)
+<span class="b">print</span>(<span class="s">&quot;Wrapper RFE 前 5：     &quot;</span>, show(rfe.get_support(indices=<span class="k">True</span>)))
+
+<span class="c"># Embedded：模型訓練過程順便給出重要性</span>
+rf = RandomForestClassifier(<span class="n">300</span>, random_state=<span class="n">0</span>).fit(X, y)
+rf_idx = np.argsort(rf.feature_importances_)[::-<span class="n">1</span>][:<span class="n">5</span>]
+<span class="b">print</span>(<span class="s">&quot;Embedded 隨機森林前 5： &quot;</span>, show(rf_idx))
+l1 = LogisticRegression(penalty=<span class="s">&quot;l1&quot;</span>, C=<span class="n">0.05</span>, solver=<span class="s">&quot;liblinear&quot;</span>).fit(X, y)
+<span class="b">print</span>(<span class="s">&quot;Embedded L1 非零係數： &quot;</span>, show(np.flatnonzero(l1.coef_[<span class="n">0</span>])), <span class="s">f&quot;（{(l1.coef_[0] != 0).sum()} 個非零）&quot;</span>)
+
+<span class="c"># PCA：不是「選」特徵而是「合成」新軸</span>
+pca = PCA().fit(X)
+cum = np.cumsum(pca.explained_variance_ratio_)
+<span class="b">print</span>(<span class="s">f&quot;\nPCA 累積解釋變異：前 5 = {cum[4]:.1%}，前 10 = {cum[9]:.1%}，達 95% 需 {int(np.searchsorted(cum, .95)) + 1} 個，&quot;</span>
+      <span class="s">f&quot;達 99.9% 需 {int(np.searchsorted(cum, .999)) + 1} 個主成分（20 欄中有 5 欄是線性組合）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">Filter  ANOVA F 前 5： f0, f1, f2, f5, f6
+Filter  互資訊 前 5：   f0, f1, f5, f6, f7
+Wrapper RFE 前 5：      f1, f2, f6, f7, f9
+Embedded 隨機森林前 5：  f1, f2, f4, f6, f7
+Embedded L1 非零係數：  f0, f1, f2, f4, f7 （5 個非零）
+
+PCA 累積解釋變異：前 5 = 53.6%，前 10 = 79.4%，達 95% 需 14 個，達 99.9% 需 15 個主成分（20 欄中有 5 欄是線性組合）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>有資訊的特徵是 f0 到 f4，f5 到 f9 是它們的線性組合，所以四種方法選出來的都集中在前 10 欄、雜訊欄幾乎不會入選，但各自偏好的欄位不同。</li><li>Filter 法每個特徵獨立評分，看不出冗餘：它會把有資訊的欄和冗餘欄一起選進來；Wrapper（RFE）與 Embedded（L1）會互相比較，較能排除冗餘。</li><li>PCA 是非監督的：它不知道 y，雜訊欄的變異一樣會被保留，只有 5 個「線性相依」的冗餘欄會被壓掉，所以 20 欄只需 15 個主成分就接近 100%。PCA 去的是共線性，不是「與目標無關」的特徵，這點和特徵選擇根本不同。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 n_redundant 改成 0、n_features 改成 50，看 Filter 與 Wrapper 的結果會不會更一致，以及 RFE 的執行時間變化。</div>
+</article>
+<h3 id="sec5-2">5.2 模型選擇與架構設計 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-2">白話版 ↗</a></h3>
+<article class="ex" id="ex-biasvar">
+<div class="exhead"><span class="num">範例 15</span><h4>偏差－變異權衡與模型解釋：學習曲線、置換重要性與部分依賴</h4></div>
+<p class="scn"><b>情境</b>用多項式次數 1、3、15 擬合同一組資料，看欠擬合與過擬合的訓練／測試誤差；再對一個隨機森林做置換重要性與部分依賴，回答「哪個特徵重要、它怎麼影響預測」。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>偏差-變異權衡</span><span>欠擬合 vs 過擬合</span><span>資料規模與模型選擇</span><span>模型解釋性：SHAP／LIME／PDP（本例用置換重要性與 PDP）</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.pipeline <span class="k">import</span> make_pipeline
+<span class="k">from</span> sklearn.preprocessing <span class="k">import</span> PolynomialFeatures
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LinearRegression
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split, learning_curve
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> mean_squared_error
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> RandomForestRegressor
+<span class="k">from</span> sklearn.inspection <span class="k">import</span> permutation_importance, partial_dependence
+rng = np.random.default_rng(<span class="n">0</span>)
+x = rng.uniform(-<span class="n">3</span>, <span class="n">3</span>, <span class="n">120</span>); y = np.sin(x) + rng.normal(<span class="n">0</span>, <span class="n">0.3</span>, <span class="n">120</span>)
+Xtr, Xte, ytr, yte = train_test_split(x[:, <span class="k">None</span>], y, test_size=<span class="n">0.4</span>, random_state=<span class="n">0</span>)
+<span class="b">print</span>(<span class="s">f&quot;{&#x27;多項式次數&#x27;:8s}{&#x27;訓練MSE&#x27;:&gt;9s}{&#x27;測試MSE&#x27;:&gt;9s}  判讀&quot;</span>)
+<span class="k">for</span> deg <span class="k">in</span> [<span class="n">1</span>, <span class="n">3</span>, <span class="n">15</span>]:
+    m = make_pipeline(PolynomialFeatures(deg), LinearRegression()).fit(Xtr, ytr)
+    tr, te = mean_squared_error(ytr, m.predict(Xtr)), mean_squared_error(yte, m.predict(Xte))
+    tag = <span class="s">&quot;欠擬合（高偏差）&quot;</span> <span class="k">if</span> deg == <span class="n">1</span> <span class="k">else</span> <span class="s">&quot;過擬合（高變異）&quot;</span> <span class="k">if</span> deg == <span class="n">15</span> <span class="k">else</span> <span class="s">&quot;剛好&quot;</span>
+    <span class="b">print</span>(<span class="s">f&quot;{deg:8d}{tr:9.3f}{te:9.3f}  {tag}&quot;</span>)
+
+<span class="c"># 學習曲線：資料變多，過擬合模型的測試誤差才會下降</span>
+sizes, tr_s, te_s = learning_curve(make_pipeline(PolynomialFeatures(<span class="n">15</span>), LinearRegression()),
+                                   x[:, <span class="k">None</span>], y, train_sizes=[<span class="n">20</span>, <span class="n">40</span>, <span class="n">72</span>], cv=<span class="n">5</span>,
+                                   scoring=<span class="s">&quot;neg_mean_squared_error&quot;</span>, random_state=<span class="n">0</span>)
+<span class="b">print</span>(<span class="s">&quot;\n15 次多項式的學習曲線（訓練筆數 → 測試 MSE）：&quot;</span>,
+      {<span class="b">int</span>(s): <span class="b">round</span>(<span class="b">float</span>(-t.mean()), <span class="n">3</span>) <span class="k">for</span> s, t <span class="k">in</span> <span class="b">zip</span>(sizes, te_s)})
+
+<span class="c"># ── 模型解釋：置換重要性 + 部分依賴 ─────────────</span>
+n = <span class="n">500</span>
+F = np.column_stack([rng.uniform(<span class="n">0</span>, <span class="n">10</span>, n), rng.uniform(<span class="n">0</span>, <span class="n">10</span>, n), rng.uniform(<span class="n">0</span>, <span class="n">10</span>, n)])
+target = <span class="n">2</span>*F[:, <span class="n">0</span>] + np.where(F[:, <span class="n">1</span>] &gt; <span class="n">5</span>, <span class="n">5</span>, <span class="n">0</span>) + rng.normal(<span class="n">0</span>, <span class="n">1</span>, n)    <span class="c"># f2 完全無關</span>
+rf = RandomForestRegressor(<span class="n">200</span>, random_state=<span class="n">0</span>).fit(F, target)
+pi = permutation_importance(rf, F, target, n_repeats=<span class="n">10</span>, random_state=<span class="n">0</span>)
+<span class="b">print</span>(<span class="s">&quot;\n置換重要性（打亂該欄後 R² 下降多少）：&quot;</span>, {k: <span class="b">round</span>(<span class="b">float</span>(v), <span class="n">3</span>) <span class="k">for</span> k, v <span class="k">in</span> <span class="b">zip</span>([<span class="s">&quot;f0&quot;</span>, <span class="s">&quot;f1&quot;</span>, <span class="s">&quot;f2&quot;</span>], pi.importances_mean)})
+pd_ = partial_dependence(rf, F, features=[<span class="n">1</span>], grid_resolution=<span class="n">6</span>)
+<span class="b">print</span>(<span class="s">&quot;f1 的部分依賴（f1 取值 → 平均預測）：&quot;</span>)
+<span class="k">for</span> g, v <span class="k">in</span> <span class="b">zip</span>(pd_[<span class="s">&quot;grid_values&quot;</span>][<span class="n">0</span>], pd_[<span class="s">&quot;average&quot;</span>][<span class="n">0</span>]):
+    <span class="b">print</span>(<span class="s">f&quot;  f1={g:5.2f} → {v:6.2f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">多項式次數       訓練MSE    測試MSE  判讀
+       1    0.231    0.247  欠擬合（高偏差）
+       3    0.109    0.100  剛好
+      15    0.299    0.464  過擬合（高變異）
+
+15 次多項式的學習曲線（訓練筆數 → 測試 MSE）： {20: 371.465, 40: 17.125, 72: 0.395}
+
+置換重要性（打亂該欄後 R² 下降多少）： {&#x27;f0&#x27;: 1.653, &#x27;f1&#x27;: 0.333, &#x27;f2&#x27;: 0.01}
+f1 的部分依賴（f1 取值 → 平均預測）：
+  f1= 0.44 →  10.45
+  f1= 2.19 →  10.35
+  f1= 3.95 →  10.41
+  f1= 5.70 →  14.95
+  f1= 7.46 →  14.91
+  f1= 9.21 →  15.08</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>1 次多項式訓練與測試誤差都高（偏差大、欠擬合）；15 次的訓練誤差最低但測試誤差反而上升（變異大、過擬合）；3 次最平衡。選模型要看測試誤差，不是訓練誤差。</li><li>學習曲線顯示資料越多，複雜模型的測試誤差越低：資料少時用簡單模型、資料多時才撐得起複雜模型，對應指引「資料規模與模型選擇」。</li><li>置換重要性把某欄打亂後看分數掉多少，無關的 f2 幾乎為 0；部分依賴圖顯示 f1 在 5 附近預測值跳升約 5，正好還原了資料生成時的階梯規則。SHAP、LIME 是更細緻的同類工具。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把訓練資料增加到 2000 筆，再跑 15 次多項式，看過擬合是否大幅緩和；把 target 改成含 f0*f1 交互作用，看部分依賴圖能不能看出來（它看不出交互作用，這是 PDP 的限制）。</div>
+</article>
+<h3 id="sec5-3">5.3 模型訓練、評估與驗證 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-3">白話版 ↗</a></h3>
+<article class="ex" id="ex-metrics">
+<div class="exhead"><span class="num">範例 16</span><h4>評估指標全餐：混淆矩陣、Precision／Recall／F1、ROC-AUC 與門檻調整</h4></div>
+<p class="scn"><b>情境</b>一個詐欺偵測模型（正類只佔 5%）。先看準確率為什麼會騙人，再從混淆矩陣手算各指標，最後調整判定門檻看 Precision 與 Recall 怎麼拉鋸。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>混淆矩陣 TP／FP／FN／TN</span><span>Precision = TP/(TP+FP)</span><span>Recall = TP/(TP+FN)</span><span>F1、ROC-AUC</span><span>MSE、MAE、RMSE、R²</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> (confusion_matrix, accuracy_score, precision_score, recall_score, f1_score,
+                             roc_auc_score, mean_squared_error, mean_absolute_error, r2_score)
+X, y = make_classification(n_samples=<span class="n">4000</span>, n_features=<span class="n">10</span>, weights=[<span class="n">0.95</span>, <span class="n">0.05</span>], flip_y=<span class="n">0.02</span>, random_state=<span class="n">0</span>)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="n">0.5</span>, random_state=<span class="n">0</span>, stratify=y)
+clf = LogisticRegression(max_iter=<span class="n">1000</span>).fit(Xtr, ytr)
+proba = clf.predict_proba(Xte)[:, <span class="n">1</span>]
+<span class="b">print</span>(<span class="s">f&quot;測試集正類比例 = {yte.mean():.1%}  → 全部猜 0 的準確率就有 {1 - yte.mean():.1%}（準確率在不平衡時會誤導）&quot;</span>)
+
+<span class="k">def</span> report(th):
+    pred = (proba &gt;= th).astype(int)
+    tn, fp, fn, tp = confusion_matrix(yte, pred).ravel()
+    prec = tp / (tp + fp) <span class="k">if</span> tp + fp <span class="k">else</span> <span class="n">0.0</span>; rec = tp / (tp + fn)
+    f1 = <span class="n">2</span>*prec*rec / (prec + rec) <span class="k">if</span> prec + rec <span class="k">else</span> <span class="n">0.0</span>
+    <span class="b">print</span>(<span class="s">f&quot;門檻 {th:.2f} | TP={tp:3d} FP={fp:3d} FN={fn:3d} TN={tn:4d} | 準確率={accuracy_score(yte,pred):.3f} &quot;</span>
+          <span class="s">f&quot;Precision={prec:.3f} Recall={rec:.3f} F1={f1:.3f}&quot;</span>)
+    <span class="k">assert</span> <span class="b">abs</span>(prec - precision_score(yte, pred)) &lt; <span class="n">1e-9</span> <span class="k">and</span> <span class="b">abs</span>(rec - recall_score(yte, pred)) &lt; <span class="n">1e-9</span>
+<span class="k">for</span> th <span class="k">in</span> [<span class="n">0.5</span>, <span class="n">0.3</span>, <span class="n">0.1</span>]:
+    report(th)
+<span class="b">print</span>(<span class="s">f&quot;ROC-AUC = {roc_auc_score(yte, proba):.3f}（與門檻無關，衡量排序能力）&quot;</span>)
+
+<span class="c"># ── 迴歸指標 ────────────────────────────────</span>
+yt = np.array([<span class="n">3.0</span>, <span class="n">5.0</span>, <span class="n">7.0</span>, <span class="n">9.0</span>, <span class="n">11.0</span>]); yp = np.array([<span class="n">2.5</span>, <span class="n">5.5</span>, <span class="n">6.0</span>, <span class="n">9.5</span>, <span class="n">13.0</span>])
+mse = mean_squared_error(yt, yp)
+<span class="b">print</span>(<span class="s">f&quot;\n迴歸：MSE={mse:.3f}  RMSE={mse**0.5:.3f}  MAE={mean_absolute_error(yt, yp):.3f}  R²={r2_score(yt, yp):.3f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">測試集正類比例 = 5.9%  → 全部猜 0 的準確率就有 94.2%（準確率在不平衡時會誤導）
+門檻 0.50 | TP= 20 FP= 10 FN= 97 TN=1873 | 準確率=0.947 Precision=0.667 Recall=0.171 F1=0.272
+門檻 0.30 | TP= 44 FP= 36 FN= 73 TN=1847 | 準確率=0.946 Precision=0.550 Recall=0.376 F1=0.447
+門檻 0.10 | TP= 88 FP=225 FN= 29 TN=1658 | 準確率=0.873 Precision=0.281 Recall=0.752 F1=0.409
+ROC-AUC = 0.881（與門檻無關，衡量排序能力）
+
+迴歸：MSE=1.150  RMSE=1.072  MAE=0.900  R²=0.856</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>正類只有 5% 時，全部猜「不是詐欺」就有 95% 準確率，所以不平衡資料要看 Precision、Recall、F1 與 AUC，不能只看準確率。</li><li>門檻從 0.5 降到 0.1，Recall 大幅上升（抓到更多詐欺）但 Precision 下降（誤報變多）：兩者此消彼長，門檻要依「漏抓的代價 vs 誤報的代價」決定。</li><li>ROC-AUC 不隨門檻改變，衡量的是模型把正類排在負類前面的能力；RMSE 與 MSE 同單位量綱不同，MAE 對離群誤差較不敏感，R² 是解釋變異比例。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 weights 改成 [0.5, 0.5]，看準確率是不是就變得有參考價值；或用 precision_recall_curve 找 F1 最高的門檻。</div>
+</article>
+<article class="ex" id="ex-cv">
+<div class="exhead"><span class="num">範例 17</span><h4>交叉驗證與早停：K-fold、分層 K-fold、LOOCV 的成本，以及 patience 怎麼用</h4></div>
+<p class="scn"><b>情境</b>不平衡資料上比較普通 K-fold 與分層 K-fold 每折的正類比例；數一數 LOOCV 要訓練幾次；最後用梯度提升的逐步預測實作 patience 早停。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>資料分割與 K-fold</span><span>Stratified K-fold：分類預設</span><span>LOOCV：偏差最小、成本極高</span><span>早停：Patience、Min Delta</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> KFold, StratifiedKFold, LeaveOneOut, RepeatedKFold, cross_val_score, train_test_split
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> GradientBoostingClassifier
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> log_loss
+X, y = make_classification(n_samples=<span class="n">100</span>, n_features=<span class="n">8</span>, weights=[<span class="n">0.85</span>, <span class="n">0.15</span>], random_state=<span class="n">1</span>)
+<span class="b">print</span>(<span class="s">f&quot;整體正類比例 = {y.mean():.2f}&quot;</span>)
+<span class="k">for</span> name, cv <span class="k">in</span> [(<span class="s">&quot;KFold&quot;</span>, KFold(<span class="n">5</span>, shuffle=<span class="k">True</span>, random_state=<span class="n">0</span>)), (<span class="s">&quot;StratifiedKFold&quot;</span>, StratifiedKFold(<span class="n">5</span>, shuffle=<span class="k">True</span>, random_state=<span class="n">0</span>))]:
+    ratios = [<span class="b">round</span>(<span class="b">float</span>(y[te].mean()), <span class="n">2</span>) <span class="k">for</span> _, te <span class="k">in</span> cv.split(X, y)]
+    <span class="b">print</span>(<span class="s">f&quot;{name:16s} 各折驗證集正類比例 = {ratios}&quot;</span>)
+
+clf = LogisticRegression(max_iter=<span class="n">1000</span>)
+<span class="b">print</span>(<span class="s">f&quot;\n5-fold 準確率  = {cross_val_score(clf, X, y, cv=StratifiedKFold(5, shuffle=True, random_state=0)).mean():.3f}&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;LOOCV 準確率   = {cross_val_score(clf, X, y, cv=LeaveOneOut()).mean():.3f}（訓練了 {LeaveOneOut().get_n_splits(X)} 次）&quot;</span>)
+rep = cross_val_score(clf, X, y, cv=RepeatedKFold(n_splits=<span class="n">5</span>, n_repeats=<span class="n">10</span>, random_state=<span class="n">0</span>))
+<span class="b">print</span>(<span class="s">f&quot;Repeated 5×10  = {rep.mean():.3f} ± {rep.std():.3f}（{len(rep)} 次，估計更穩）&quot;</span>)
+
+<span class="c"># ── 早停（Early Stopping）：驗證損失連續 patience 回合沒改善 min_delta 就停 ──</span>
+X2, y2 = make_classification(n_samples=<span class="n">1500</span>, n_features=<span class="n">20</span>, flip_y=<span class="n">0.15</span>, random_state=<span class="n">0</span>)
+Xtr, Xva, ytr, yva = train_test_split(X2, y2, test_size=<span class="n">0.3</span>, random_state=<span class="n">0</span>)
+gb = GradientBoostingClassifier(n_estimators=<span class="n">400</span>, learning_rate=<span class="n">0.1</span>, max_depth=<span class="n">3</span>, random_state=<span class="n">0</span>).fit(Xtr, ytr)
+patience, min_delta, best, best_i, wait = <span class="n">15</span>, <span class="n">1e-4</span>, np.inf, <span class="n">0</span>, <span class="n">0</span>
+<span class="k">for</span> i, p <span class="k">in</span> <span class="b">enumerate</span>(gb.staged_predict_proba(Xva), start=<span class="n">1</span>):      <span class="c"># 第 i 棵樹時的驗證預測</span>
+    loss = log_loss(yva, p[:, <span class="n">1</span>])
+    <span class="k">if</span> best - loss &gt; min_delta: best, best_i, wait = loss, i, <span class="n">0</span>
+    <span class="k">else</span>:
+        wait += <span class="n">1</span>
+        <span class="k">if</span> wait &gt;= patience: <span class="k">break</span>
+<span class="b">print</span>(<span class="s">f&quot;\n早停：最佳驗證損失 {best:.4f} 出現在第 {best_i} 棵樹，第 {i} 棵時觸發停止（patience={patience}）&quot;</span>)
+<span class="b">print</span>(<span class="s">f&quot;對照：用完 400 棵樹的驗證損失 = {log_loss(yva, gb.predict_proba(Xva)[:, 1]):.4f}（持續訓練反而變差 → 過擬合）&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">整體正類比例 = 0.15
+KFold            各折驗證集正類比例 = [0.2, 0.05, 0.25, 0.15, 0.1]
+StratifiedKFold  各折驗證集正類比例 = [0.15, 0.15, 0.15, 0.15, 0.15]
+
+5-fold 準確率  = 0.990
+LOOCV 準確率   = 0.990（訓練了 100 次）
+Repeated 5×10  = 0.989 ± 0.023（50 次，估計更穩）
+
+早停：最佳驗證損失 0.3350 出現在第 38 棵樹，第 53 棵時觸發停止（patience=15）
+對照：用完 400 棵樹的驗證損失 = 0.4005（持續訓練反而變差 → 過擬合）</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>普通 K-fold 每折的正類比例忽高忽低，分層 K-fold 每折都接近整體比例，所以分類任務預設用分層抽樣，避免某折幾乎沒有正類。</li><li>LOOCV 要訓練 n 次（這裡 100 次），偏差最小但成本極高、估計變異也大；Repeated K-fold 用多次不同切法取平均，是穩定性與成本的折衷。</li><li>梯度提升的驗證損失先降後升，早停在最佳點之後等 patience 回合沒改善就停下，比用完全部的樹更好：早停本質是一種正則化。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 patience 改成 3 看會不會「停太早」（還沒到最佳點就停），改成 50 看會不會「停太晚」。</div>
+</article>
+<h3 id="sec5-4">5.4 模型調整與優化 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-4">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-4">白話版 ↗</a></h3>
+<article class="ex" id="ex-tune">
+<div class="exhead"><span class="num">範例 18</span><h4>超參數調校與正則化：網格搜索 vs 隨機搜索，L1／L2／Elastic Net 的係數路徑</h4></div>
+<p class="scn"><b>情境</b>對隨機森林調 3 個超參數：網格搜索要訓練幾次、隨機搜索只抽 12 組會差多少？再看 Ridge、Lasso、Elastic Net 的係數隨 λ 增大時怎麼變化。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>超參數：學習率、深度、正則化係數 λ</span><span>Grid Search vs Random Search</span><span>L1：權重歸零</span><span>L2：權重不壓到零</span><span>Elastic Net：L1 + L2</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np, time
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification, make_regression
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> RandomForestClassifier
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> GridSearchCV, RandomizedSearchCV, StratifiedKFold
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> Ridge, Lasso, ElasticNet
+np.set_printoptions(precision=<span class="n">2</span>, suppress=<span class="k">True</span>)
+X, y = make_classification(n_samples=<span class="n">600</span>, n_features=<span class="n">12</span>, n_informative=<span class="n">6</span>, random_state=<span class="n">0</span>)
+grid = {<span class="s">&quot;n_estimators&quot;</span>: [<span class="n">50</span>, <span class="n">100</span>, <span class="n">200</span>], <span class="s">&quot;max_depth&quot;</span>: [<span class="n">3</span>, <span class="n">6</span>, <span class="k">None</span>], <span class="s">&quot;min_samples_leaf&quot;</span>: [<span class="n">1</span>, <span class="n">3</span>, <span class="n">5</span>, <span class="n">10</span>]}
+cv = StratifiedKFold(<span class="n">3</span>, shuffle=<span class="k">True</span>, random_state=<span class="n">0</span>)
+t = time.time()
+gs = GridSearchCV(RandomForestClassifier(random_state=<span class="n">0</span>), grid, cv=cv, n_jobs=<span class="n">2</span>).fit(X, y)
+<span class="b">print</span>(<span class="s">f&quot;網格搜索：{len(gs.cv_results_[&#x27;params&#x27;])} 組 × 3 折 = {len(gs.cv_results_[&#x27;params&#x27;])*3} 次訓練，&quot;</span>
+      <span class="s">f&quot;最佳 {gs.best_score_:.3f} {gs.best_params_}  ({time.time()-t:.1f}s)&quot;</span>)
+t = time.time()
+rs = RandomizedSearchCV(RandomForestClassifier(random_state=<span class="n">0</span>), grid, n_iter=<span class="n">12</span>, cv=cv, n_jobs=<span class="n">2</span>, random_state=<span class="n">0</span>).fit(X, y)
+<span class="b">print</span>(<span class="s">f&quot;隨機搜索：12 組 × 3 折 = 36 次訓練，最佳 {rs.best_score_:.3f} {rs.best_params_}  ({time.time()-t:.1f}s)&quot;</span>)
+
+<span class="c"># ── 正則化係數路徑 ──────────────────────────</span>
+Xr, yr = make_regression(n_samples=<span class="n">200</span>, n_features=<span class="n">6</span>, n_informative=<span class="n">3</span>, noise=<span class="n">10</span>, random_state=<span class="n">0</span>)
+<span class="b">print</span>(<span class="s">f&quot;\n{&#x27;λ(alpha)&#x27;:&gt;9s}  {&#x27;Ridge 非零&#x27;:&gt;9s} {&#x27;Lasso 非零&#x27;:&gt;9s} {&#x27;ElasticNet 非零&#x27;:&gt;14s}   Lasso 係數&quot;</span>)
+<span class="k">for</span> a <span class="k">in</span> [<span class="n">0.1</span>, <span class="n">1</span>, <span class="n">10</span>, <span class="n">50</span>]:
+    r = Ridge(alpha=a).fit(Xr, yr); l = Lasso(alpha=a).fit(Xr, yr); en = ElasticNet(alpha=a, l1_ratio=<span class="n">0.5</span>).fit(Xr, yr)
+    nz = <span class="k">lambda</span> m: <span class="b">int</span>((np.<span class="b">abs</span>(m.coef_) &gt; <span class="n">1e-6</span>).<span class="b">sum</span>())
+    <span class="b">print</span>(<span class="s">f&quot;{a:9.1f}  {nz(r):9d} {nz(l):9d} {nz(en):14d}   {l.coef_}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">網格搜索：36 組 × 3 折 = 108 次訓練，最佳 0.860 {&#x27;max_depth&#x27;: None, &#x27;min_samples_leaf&#x27;: 1, &#x27;n_estimators&#x27;: 200}  (3.6s)
+隨機搜索：12 組 × 3 折 = 36 次訓練，最佳 0.858 {&#x27;n_estimators&#x27;: 200, &#x27;min_samples_leaf&#x27;: 3, &#x27;max_depth&#x27;: None}  (1.2s)
+
+ λ(alpha)   Ridge 非零  Lasso 非零  ElasticNet 非零   Lasso 係數
+      0.1          6         6              6   [ 1.17 35.43  5.99 -0.29 -1.23 22.55]
+      1.0          6         4              5   [ 0.29 34.34  5.1  -0.   -0.   21.65]
+     10.0          6         2              3   [ 0.   24.15  0.   -0.   -0.   12.73]
+     50.0          6         0              1   [0. 0. 0. 0. 0. 0.]</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>網格搜索把 3×3×4 = 36 組全部跑完，隨機搜索只抽 12 組就找到幾乎一樣好的分數、時間約三分之一：超參數很多時隨機搜索（或貝氏優化）更划算。</li><li>λ 越大正則化越強：Ridge 的係數變小但永遠不會是 0，Lasso 會把無用特徵的係數精確歸零（λ=50 時只剩有資訊的 3 個），Elastic Net 介於兩者之間。</li><li>這裡的 λ 就是指引所說的「正則化係數」超參數，它和學習率、深度一樣，要用交叉驗證而不是測試集來挑。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>在 grid 裡再加一個 max_features 參數（組數變 108 組），比較網格與隨機搜索的時間差距是否拉大。</div>
+</article>
+<article class="ex" id="ex-imbalance">
+<div class="exhead"><span class="num">範例 19</span><h4>資料不平衡三招：類別權重、過採樣（手刻 SMOTE）、欠採樣</h4></div>
+<p class="scn"><b>情境</b>正類只佔 4% 的客戶流失資料。原始模型 Recall 很低，比較 class_weight、SMOTE 合成少數類、隨機欠採樣三種做法對 Recall／F1 的影響。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>過採樣（SMOTE）</span><span>欠採樣</span><span>類別權重調整</span><span>Recall 與 F1 的取捨</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> make_classification
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.neighbors <span class="k">import</span> NearestNeighbors
+<span class="k">from</span> sklearn.metrics <span class="k">import</span> recall_score, precision_score, f1_score
+X, y = make_classification(n_samples=<span class="n">5000</span>, n_features=<span class="n">8</span>, weights=[<span class="n">0.96</span>, <span class="n">0.04</span>], class_sep=<span class="n">0.5</span>, random_state=<span class="n">3</span>)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="n">0.4</span>, random_state=<span class="n">0</span>, stratify=y)
+<span class="b">print</span>(<span class="s">f&quot;訓練集正類 {ytr.sum()} / {len(ytr)} 筆（{ytr.mean():.1%}）&quot;</span>)
+
+<span class="k">def</span> smote(X, y, k=<span class="n">5</span>, seed=<span class="n">0</span>):
+    <span class="s">&quot;&quot;&quot;手刻 SMOTE：在少數類樣本與其鄰居之間插值，合成到與多數類一樣多&quot;&quot;&quot;</span>
+    rng = np.random.default_rng(seed)
+    Xm = X[y == <span class="n">1</span>]; need = (y == <span class="n">0</span>).<span class="b">sum</span>() - <span class="b">len</span>(Xm)
+    nn = NearestNeighbors(n_neighbors=k + <span class="n">1</span>).fit(Xm)
+    idx = rng.integers(<span class="n">0</span>, <span class="b">len</span>(Xm), need)                              <span class="c"># 隨機挑少數類樣本</span>
+    nbr = nn.kneighbors(Xm[idx], return_distance=<span class="k">False</span>)[:, <span class="n">1</span>:]        <span class="c"># 它的 k 個鄰居（排除自己）</span>
+    pick = nbr[np.arange(need), rng.integers(<span class="n">0</span>, k, need)]
+    synth = Xm[idx] + rng.random((need, <span class="n">1</span>)) * (Xm[pick] - Xm[idx])     <span class="c"># 線段上隨機一點</span>
+    <span class="k">return</span> np.vstack([X, synth]), np.concatenate([y, np.ones(need, int)])
+
+rng = np.random.default_rng(<span class="n">0</span>)
+maj = np.flatnonzero(ytr == <span class="n">0</span>); keep = rng.choice(maj, size=(ytr == <span class="n">1</span>).<span class="b">sum</span>(), replace=<span class="k">False</span>)
+under = np.concatenate([keep, np.flatnonzero(ytr == <span class="n">1</span>)])
+Xs, ys = smote(Xtr, ytr)
+setups = {<span class="s">&quot;原始&quot;</span>:            (Xtr, ytr, {}),
+          <span class="s">&quot;class_weight&quot;</span>:    (Xtr, ytr, {<span class="s">&quot;class_weight&quot;</span>: <span class="s">&quot;balanced&quot;</span>}),
+          <span class="s">&quot;SMOTE 過採樣&quot;</span>:     (Xs, ys, {}),
+          <span class="s">&quot;隨機欠採樣&quot;</span>:        (Xtr[under], ytr[under], {})}
+<span class="b">print</span>(<span class="s">f&quot;\n{&#x27;做法&#x27;:14s}{&#x27;訓練筆數&#x27;:&gt;8s}{&#x27;Recall&#x27;:&gt;8s}{&#x27;Precision&#x27;:&gt;10s}{&#x27;F1&#x27;:&gt;7s}&quot;</span>)
+<span class="k">for</span> name, (Xa, ya, kw) <span class="k">in</span> setups.items():
+    m = LogisticRegression(max_iter=<span class="n">1000</span>, **kw).fit(Xa, ya); p = m.predict(Xte)
+    <span class="b">print</span>(<span class="s">f&quot;{name:14s}{len(ya):8d}{recall_score(yte,p):8.3f}{precision_score(yte,p):10.3f}{f1_score(yte,p):7.3f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">訓練集正類 134 / 3000 筆（4.5%）
+
+做法                訓練筆數  Recall Precision     F1
+原始                3000   0.511     1.000  0.676
+class_weight      3000   0.778     0.269  0.400
+SMOTE 過採樣         5732   0.778     0.270  0.401
+隨機欠採樣              268   0.767     0.237  0.362</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>原始模型 Precision 1.0 但 Recall 只有五成：正類太少，模型只敢在非常確定時才判正類，一半的流失客戶被漏掉。三種做法都把 Recall 拉高，代價是 Precision 大跌、F1 反而下降。</li><li>class_weight 不改資料、只在損失函數裡放大少數類的權重，最省事；SMOTE 在少數類樣本之間插值合成新點，比單純複製更不容易過擬合；欠採樣最快但丟掉大量多數類資訊。</li><li>F1 下降不代表做錯：漏掉一個流失客戶的成本遠高於多打一通挽留電話時，就該選 Recall 高的做法，指標要對應業務成本。SMOTE 只能在訓練集上做，測試集必須保持原始分佈。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 LogisticRegression 換成 RandomForestClassifier，看 SMOTE 與 class_weight 的差距是否改變；也試試 SMOTE 的 k 改成 1。</div>
+</article>
+<article class="ex" id="ex-compress">
+<div class="exhead"><span class="num">範例 20</span><h4>模型壓縮：剪枝與 INT8 量化對準確率與大小的影響</h4></div>
+<p class="scn"><b>情境</b>訓練一個小型 MLP，然後（1）把絕對值最小的 70% 權重剪成 0，（2）把 FP32 權重量化成 INT8，各自看準確率掉多少、模型小多少。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>剪枝：結構化 vs 非結構化</span><span>量化：FP32 → INT8</span><span>知識蒸餾（教師→學生）概念</span><span>邊緣裝置部署限制</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.datasets <span class="k">import</span> load_digits
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+<span class="k">from</span> sklearn.neural_network <span class="k">import</span> MLPClassifier
+X, y = load_digits(return_X_y=<span class="k">True</span>); X = X / <span class="n">16.0</span>
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=<span class="n">0.3</span>, random_state=<span class="n">0</span>, stratify=y)
+mlp = MLPClassifier(hidden_layer_sizes=(<span class="n">64</span>,), max_iter=<span class="n">400</span>, random_state=<span class="n">0</span>).fit(Xtr, ytr)
+W = [w.copy() <span class="k">for</span> w <span class="k">in</span> mlp.coefs_]
+n_param = <span class="b">sum</span>(w.size <span class="k">for</span> w <span class="k">in</span> W)
+<span class="b">print</span>(<span class="s">f&quot;原始 FP32 模型：{n_param} 個權重 ≈ {n_param*4/1024:.1f} KB，測試準確率 = {mlp.score(Xte, yte):.4f}&quot;</span>)
+
+<span class="k">def</span> eval_with(weights):
+    mlp.coefs_ = weights; <span class="k">return</span> mlp.score(Xte, yte)
+
+<span class="c"># ── 非結構化剪枝：全域絕對值最小的 r% 權重設為 0 ──</span>
+flat = np.concatenate([w.ravel() <span class="k">for</span> w <span class="k">in</span> W])
+<span class="k">for</span> r <span class="k">in</span> [<span class="n">0.5</span>, <span class="n">0.7</span>, <span class="n">0.9</span>]:
+    th = np.quantile(np.<span class="b">abs</span>(flat), r)
+    Wp = [np.where(np.<span class="b">abs</span>(w) &lt; th, <span class="n">0.0</span>, w) <span class="k">for</span> w <span class="k">in</span> W]
+    nz = <span class="b">sum</span>(<span class="b">int</span>((w != <span class="n">0</span>).<span class="b">sum</span>()) <span class="k">for</span> w <span class="k">in</span> Wp)
+    <span class="b">print</span>(<span class="s">f&quot;剪枝 {r:.0%}      ：非零權重 {nz:4d}（{nz/n_param:.0%}），稀疏儲存約 {nz*4/1024:4.1f} KB，準確率 = {eval_with(Wp):.4f}&quot;</span>)
+
+<span class="c"># ── 結構化剪枝：直接刪掉輸出權重範數最小的 32 個隱藏神經元 ──</span>
+norms = np.linalg.norm(W[<span class="n">1</span>], axis=<span class="n">1</span>); drop = np.argsort(norms)[:<span class="n">32</span>]
+Ws = [W[<span class="n">0</span>].copy(), W[<span class="n">1</span>].copy()]; Ws[<span class="n">0</span>][:, drop] = <span class="n">0</span>; Ws[<span class="n">1</span>][drop, :] = <span class="n">0</span>
+<span class="b">print</span>(<span class="s">f&quot;結構化剪枝 32 個神經元：準確率 = {eval_with(Ws):.4f}（整列整欄歸零，硬體真的能跳過）&quot;</span>)
+
+<span class="c"># ── INT8 量化：每層一個縮放因子 s，w ≈ s * q，q 為 -127..127 的整數 ──</span>
+<span class="k">def</span> quantize(w):
+    s = np.<span class="b">abs</span>(w).<span class="b">max</span>() / <span class="n">127</span>
+    q = np.clip(np.<span class="b">round</span>(w / s), -<span class="n">127</span>, <span class="n">127</span>).astype(np.int8)
+    <span class="k">return</span> s, q
+Wq = []
+<span class="k">for</span> w <span class="k">in</span> W:
+    s, q = quantize(w); Wq.append(s * q.astype(np.float32))           <span class="c"># 反量化後拿來推論</span>
+err = np.mean([np.<span class="b">abs</span>(a - b).mean() <span class="k">for</span> a, b <span class="k">in</span> <span class="b">zip</span>(W, Wq)])
+<span class="b">print</span>(<span class="s">f&quot;INT8 量化     ：≈ {n_param*1/1024:.1f} KB（1/4 大小），平均權重誤差 {err:.5f}，準確率 = {eval_with(Wq):.4f}&quot;</span>)
+mlp.coefs_ = W</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">原始 FP32 模型：4736 個權重 ≈ 18.5 KB，測試準確率 = 0.9778
+剪枝 50%      ：非零權重 2368（50%），稀疏儲存約  9.2 KB，準確率 = 0.9722
+剪枝 70%      ：非零權重 1421（30%），稀疏儲存約  5.6 KB，準確率 = 0.9074
+剪枝 90%      ：非零權重  474（10%），稀疏儲存約  1.9 KB，準確率 = 0.4019
+結構化剪枝 32 個神經元：準確率 = 0.7111（整列整欄歸零，硬體真的能跳過）
+INT8 量化     ：≈ 4.6 KB（1/4 大小），平均權重誤差 0.00294，準確率 = 0.9778</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>剪掉一半權重準確率幾乎不變、剪七成只掉約 7 個百分點、剪九成就崩了：訓練好的網路有大量接近 0 的冗餘權重，但也有臨界點。非結構化剪枝需要稀疏矩陣格式才省得到空間與時間；結構化剪枝（整個神經元刪除）任何硬體都受惠，但同樣的參數量下準確率掉得更多。</li><li>INT8 量化把每個權重從 4 bytes 變 1 byte，模型縮為四分之一，準確率只有微小變化；量化感知訓練（QAT）可以把這點損失再補回來。</li><li>這些技術就是為了邊緣裝置、即時推論的資源限制而生；知識蒸餾則是另一條路：用大模型（教師）的輸出機率來訓練一個小模型（學生）。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>剪枝後再用剩下的權重微調幾輪（fine-tune）通常能把準確率補回來，試試 mlp.partial_fit；或改用 4-bit（-7..7）量化，看誤差放大多少。</div>
+</article>
+<h2 class="chap" id="chap6">第六章 機器學習治理</h2>
+<p class="chlead">治理不是口號：用程式檢查 K-匿名、加差分隱私雜訊，並量化公平性指標、嘗試去偏。</p>
+<h3 id="sec6-1">6.1 數據隱私、安全與合規 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec6-1">白話版 ↗</a></h3>
+<article class="ex" id="ex-privacy">
+<div class="exhead"><span class="num">範例 21</span><h4>匿名化實作：遮蔽、雜湊、泛化、K-匿名檢查與差分隱私</h4></div>
+<p class="scn"><b>情境</b>一張含姓名、郵遞區號、年齡、疾病的病患表。先做遮蔽與雜湊，再把準識別欄泛化到滿足 K-匿名並檢查 L-多樣性，最後對「患病人數」這個統計查詢加拉普拉斯雜訊實現差分隱私。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>直接識別（PII）、準識別、再識別</span><span>遮蔽、雜湊、泛化、分桶、擾動</span><span>K-匿名／L-多樣性</span><span>差分隱私（ε 越小隱私越強）</span><span>資料最小化</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> hashlib, numpy <span class="k">as</span> np, pandas <span class="k">as</span> pd
+df = pd.DataFrame({<span class="s">&quot;name&quot;</span>: [<span class="s">&quot;王小明&quot;</span>, <span class="s">&quot;李美玲&quot;</span>, <span class="s">&quot;陳大文&quot;</span>, <span class="s">&quot;林雅婷&quot;</span>, <span class="s">&quot;張志豪&quot;</span>, <span class="s">&quot;黃淑芬&quot;</span>],
+                   <span class="s">&quot;zip&quot;</span>: [<span class="s">&quot;10041&quot;</span>, <span class="s">&quot;10042&quot;</span>, <span class="s">&quot;10651&quot;</span>, <span class="s">&quot;10652&quot;</span>, <span class="s">&quot;10043&quot;</span>, <span class="s">&quot;10653&quot;</span>],
+                   <span class="s">&quot;age&quot;</span>: [<span class="n">34</span>, <span class="n">37</span>, <span class="n">52</span>, <span class="n">58</span>, <span class="n">31</span>, <span class="n">55</span>],
+                   <span class="s">&quot;disease&quot;</span>: [<span class="s">&quot;流感&quot;</span>, <span class="s">&quot;流感&quot;</span>, <span class="s">&quot;糖尿病&quot;</span>, <span class="s">&quot;高血壓&quot;</span>, <span class="s">&quot;流感&quot;</span>, <span class="s">&quot;糖尿病&quot;</span>]})
+<span class="c"># 1) 直接識別欄：遮蔽或刪除；需要跨表串接時用加鹽雜湊（假名化）</span>
+salt = <span class="s">&quot;project-2026&quot;</span>
+df[<span class="s">&quot;name_masked&quot;</span>] = df.name.<span class="b">map</span>(<span class="k">lambda</span> s: s[<span class="n">0</span>] + <span class="s">&quot;○&quot;</span> * (<span class="b">len</span>(s) - <span class="n">1</span>))
+df[<span class="s">&quot;pid&quot;</span>] = df.name.<span class="b">map</span>(<span class="k">lambda</span> s: hashlib.sha256((salt + s).encode()).hexdigest()[:<span class="n">10</span>])
+<span class="c"># 2) 準識別欄：泛化（郵遞區號取前 3 碼、年齡分桶）</span>
+df[<span class="s">&quot;zip_g&quot;</span>] = df.zip.str[:<span class="n">3</span>] + <span class="s">&quot;**&quot;</span>
+df[<span class="s">&quot;age_g&quot;</span>] = pd.cut(df.age, bins=[<span class="n">0</span>, <span class="n">40</span>, <span class="n">60</span>, <span class="n">120</span>], labels=[<span class="s">&quot;≤40&quot;</span>, <span class="s">&quot;41-60&quot;</span>, <span class="s">&quot;&gt;60&quot;</span>]).astype(str)
+<span class="b">print</span>(df[[<span class="s">&quot;name_masked&quot;</span>, <span class="s">&quot;pid&quot;</span>, <span class="s">&quot;zip_g&quot;</span>, <span class="s">&quot;age_g&quot;</span>, <span class="s">&quot;disease&quot;</span>]].to_string(index=<span class="k">False</span>))
+
+<span class="c"># 3) K-匿名檢查：每一組準識別值至少要有 K 筆</span>
+qi = [<span class="s">&quot;zip_g&quot;</span>, <span class="s">&quot;age_g&quot;</span>]
+grp = df.groupby(qi, observed=<span class="k">True</span>)
+sizes = grp.size()
+<span class="b">print</span>(<span class="s">f&quot;\n各等價類大小：{sizes.to_dict()}  → K = {sizes.min()}（K-匿名達成 K={sizes.min()}）&quot;</span>)
+<span class="c"># L-多樣性：每個等價類內敏感值的種類數</span>
+ldiv = grp.disease.nunique()
+<span class="b">print</span>(<span class="s">f&quot;各等價類疾病種類數：{ldiv.to_dict()}  → L = {ldiv.min()}（L=1 的那組只要知道等價類就知道疾病！）&quot;</span>)
+
+<span class="c"># 4) 差分隱私：對計數查詢加 Laplace(敏感度/ε) 雜訊</span>
+true = <span class="b">int</span>((df.disease == <span class="s">&quot;流感&quot;</span>).<span class="b">sum</span>())
+rng = np.random.default_rng(<span class="n">0</span>)
+<span class="k">for</span> eps <span class="k">in</span> [<span class="n">0.1</span>, <span class="n">1.0</span>, <span class="n">10.0</span>]:
+    noisy = true + rng.laplace(<span class="n">0</span>, <span class="n">1</span>/eps, <span class="n">1000</span>)          <span class="c"># 敏感度 = 1（一個人最多改變計數 1）</span>
+    <span class="b">print</span>(<span class="s">f&quot;ε={eps:4}: 真實流感人數 {true}，加噪回答平均 {noisy.mean():.2f}，標準差 {noisy.std():.2f}&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">name_masked        pid zip_g age_g disease
+        王○○ e871535ee8 100**   ≤40      流感
+        李○○ 72e9c78733 100**   ≤40      流感
+        陳○○ a349b232d1 106** 41-60     糖尿病
+        林○○ 3293499478 106** 41-60     高血壓
+        張○○ d982f67d34 100**   ≤40      流感
+        黃○○ 99315a9c4d 106** 41-60     糖尿病
+
+各等價類大小：{(&#x27;100**&#x27;, &#x27;≤40&#x27;): 3, (&#x27;106**&#x27;, &#x27;41-60&#x27;): 3}  → K = 3（K-匿名達成 K=3）
+各等價類疾病種類數：{(&#x27;100**&#x27;, &#x27;≤40&#x27;): 1, (&#x27;106**&#x27;, &#x27;41-60&#x27;): 2}  → L = 1（L=1 的那組只要知道等價類就知道疾病！）
+ε= 0.1: 真實流感人數 3，加噪回答平均 3.53，標準差 14.19
+ε= 1.0: 真實流感人數 3，加噪回答平均 2.91，標準差 1.46
+ε=10.0: 真實流感人數 3，加噪回答平均 3.00，標準差 0.14</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>姓名是直接識別資訊，遮蔽後無法還原；加鹽雜湊產生的假名仍可在不同表之間串接同一個人，所以只是「假名化」而非匿名化，鹽值必須妥善保管。</li><li>郵遞區號＋年齡這類準識別欄單看無害，但組合起來能再識別；泛化後每個等價類有 3 筆（K=3），單憑準識別欄分不出是誰。然而其中一組的疾病只有一種（L=1），攻擊者只要知道某人在那一組就知道他的病，所以 K-匿名還要搭配 L-多樣性。</li><li>差分隱私加的雜訊規模是「敏感度 ÷ ε」：ε=0.1 時回答幾乎沒用但隱私最強，ε=10 時幾乎等於真實值；ε 是隱私預算，越小越安全、越不準。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把年齡分桶改成每 5 歲一桶，看 K 值會不會掉到 1；再把 ε 改成 0.5，想想「多少雜訊是可接受的」該由誰決定。</div>
+</article>
+<h3 id="sec6-2">6.2 演算法偏見與公平性 <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec6-2">白話版 ↗</a></h3>
+<article class="ex" id="ex-fairness">
+<div class="exhead"><span class="num">範例 22</span><h4>公平性指標與去偏：Demographic Parity、Equal Opportunity、80% 法則，再做後處理門檻調整</h4></div>
+<p class="scn"><b>情境</b>一個貸款核准模型，沒有用「群體」當特徵，但資料中 B 群體的收入與信用分數因歷史因素偏低。計算四個公平性指標找出差異，再用「各群體不同門檻」的後處理與「特徵去偏」的前處理嘗試改善。</p>
+<div class="pts"><span class="lbl">對應考點</span><span>Demographic Parity：結果均等</span><span>Equal Opportunity：TPR 相同</span><span>Equalized Odds：TPR 與 FPR 一致</span><span>Disparate Impact：80% Rule</span><span>前處理／模型內／後處理去偏</span></div>
+<div class="codewrap"><div class="cbar"><span>Python</span><button class="copy" type="button">複製程式碼</button></div><pre class="code"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">from</span> sklearn.linear_model <span class="k">import</span> LogisticRegression
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+rng = np.random.default_rng(<span class="n">0</span>)
+n = <span class="n">6000</span>
+g = rng.integers(<span class="n">0</span>, <span class="n">2</span>, n)                                   <span class="c"># 群體：0 = A，1 = B</span>
+income = rng.normal(<span class="n">60</span> - <span class="n">8</span>*g, <span class="n">15</span>, n)                        <span class="c"># 歷史因素讓 B 群收入偏低</span>
+score  = rng.normal(<span class="n">650</span> - <span class="n">20</span>*g, <span class="n">60</span>, n)
+true_repay = (<span class="n">0.03</span>*income + <span class="n">0.01</span>*score + rng.normal(<span class="n">0</span>, <span class="n">1.5</span>, n)) &gt; <span class="n">9.0</span>     <span class="c"># 真實還款能力</span>
+X = np.column_stack([income, score]); y = true_repay.astype(int)
+Xtr, Xte, ytr, yte, gtr, gte = train_test_split(X, y, g, test_size=<span class="n">0.5</span>, random_state=<span class="n">0</span>)
+clf = LogisticRegression().fit(Xtr, ytr)
+proba = clf.predict_proba(Xte)[:, <span class="n">1</span>]
+
+<span class="k">def</span> fairness(pred, label):
+    <span class="b">print</span>(<span class="s">f&quot;\n{label}   整體準確率 = {(pred == yte).mean():.3f}&quot;</span>)
+    rates = {}
+    <span class="k">for</span> grp <span class="k">in</span> [<span class="n">0</span>, <span class="n">1</span>]:
+        m = gte == grp; p = pred[m]; t = yte[m]
+        sel = p.mean(); tpr = p[t == <span class="n">1</span>].mean(); fpr = p[t == <span class="n">0</span>].mean()
+        rates[grp] = (sel, tpr, fpr)
+        <span class="b">print</span>(<span class="s">f&quot;  群體 {&#x27;AB&#x27;[grp]}: 核准率={sel:.3f}  TPR={tpr:.3f}  FPR={fpr:.3f}&quot;</span>)
+    (sA, tA, fA), (sB, tB, fB) = rates[<span class="n">0</span>], rates[<span class="n">1</span>]
+    <span class="b">print</span>(<span class="s">f&quot;  Demographic Parity 差 = {abs(sA-sB):.3f} | Equal Opportunity(TPR) 差 = {abs(tA-tB):.3f} | &quot;</span>
+          <span class="s">f&quot;Equalized Odds(FPR) 差 = {abs(fA-fB):.3f} | Disparate Impact = {min(sA,sB)/max(sA,sB):.3f} {&#x27;✔&#x27; if min(sA,sB)/max(sA,sB) &gt;= 0.8 else &#x27;✘ 低於 80% 法則&#x27;}&quot;</span>)
+
+fairness((proba &gt;= <span class="n">0.5</span>).astype(int), <span class="s">&quot;① 原始模型（單一門檻 0.5）&quot;</span>)
+
+<span class="c"># 後處理：為 B 群體調低門檻，讓兩群的核准率拉近</span>
+thB = <span class="n">0.5</span>
+<span class="k">while</span> ((proba[gte == <span class="n">1</span>] &gt;= thB).mean() &lt; (proba[gte == <span class="n">0</span>] &gt;= <span class="n">0.5</span>).mean()) <span class="k">and</span> thB &gt; <span class="n">0.05</span>:
+    thB -= <span class="n">0.01</span>
+pred_pp = np.where(gte == <span class="n">1</span>, proba &gt;= thB, proba &gt;= <span class="n">0.5</span>).astype(int)
+fairness(pred_pp, <span class="s">f&quot;② 後處理：A 門檻 0.5、B 門檻 {thB:.2f}&quot;</span>)
+
+<span class="c"># 前處理：特徵去偏——把收入與分數在「各群體內」分別標準化，抹掉群體間的平均差距</span>
+<span class="k">def</span> debias(Xa, ga, ref_X, ref_g):
+    out = Xa.astype(float).copy()
+    <span class="k">for</span> grp <span class="k">in</span> [<span class="n">0</span>, <span class="n">1</span>]:
+        mu, sd = ref_X[ref_g == grp].mean(<span class="n">0</span>), ref_X[ref_g == grp].std(<span class="n">0</span>)
+        out[ga == grp] = (Xa[ga == grp] - mu) / sd
+    <span class="k">return</span> out
+clf_db = LogisticRegression().fit(debias(Xtr, gtr, Xtr, gtr), ytr)
+fairness((clf_db.predict_proba(debias(Xte, gte, Xtr, gtr))[:, <span class="n">1</span>] &gt;= <span class="n">0.5</span>).astype(int), <span class="s">&quot;③ 前處理：特徵去偏後重訓&quot;</span>)</code></pre></div>
+<div class="outwrap"><div class="cbar"><span>執行結果</span></div><pre class="out">
+① 原始模型（單一門檻 0.5）   整體準確率 = 0.718
+  群體 A: 核准率=0.175  TPR=0.273  FPR=0.120
+  群體 B: 核准率=0.055  TPR=0.144  FPR=0.026
+  Demographic Parity 差 = 0.120 | Equal Opportunity(TPR) 差 = 0.129 | Equalized Odds(FPR) 差 = 0.093 | Disparate Impact = 0.314 ✘ 低於 80% 法則
+
+② 後處理：A 門檻 0.5、B 門檻 0.36   整體準確率 = 0.700
+  群體 A: 核准率=0.175  TPR=0.273  FPR=0.120
+  群體 B: 核准率=0.185  TPR=0.341  FPR=0.135
+  Demographic Parity 差 = 0.010 | Equal Opportunity(TPR) 差 = 0.068 | Equalized Odds(FPR) 差 = 0.015 | Disparate Impact = 0.945 ✔
+
+③ 前處理：特徵去偏後重訓   整體準確率 = 0.717
+  群體 A: 核准率=0.114  TPR=0.189  FPR=0.071
+  群體 B: 核准率=0.094  TPR=0.222  FPR=0.054
+  Demographic Parity 差 = 0.019 | Equal Opportunity(TPR) 差 = 0.032 | Equalized Odds(FPR) 差 = 0.018 | Disparate Impact = 0.831 ✔</pre></div>
+<div class="read"><span class="tag">🔍 結果解讀</span><ul><li>原始模型雖然沒有用「群體」當特徵，但收入與信用分數本身帶有歷史偏誤，B 群的核准率明顯較低、Disparate Impact 低於 0.8，不符 80% 法則：代理變數也會傳遞偏見。</li><li>後處理把 B 群門檻調低後核准率拉平（Demographic Parity 改善），但 TPR／FPR 的差距不一定同步縮小：各種公平性定義彼此會衝突，無法同時全部滿足，必須依情境選擇。</li><li>特徵去偏把兩群的收入、分數各自標準化，群體差距被抹掉後核准率幾乎相等，但整體準確率下降：公平與準確之間有取捨，而且這會抹掉「真實的」還款能力差異，是否合理要由政策決定。AIF360、Fairlearn 等工具內建的重新加權、公平性約束、門檻校準是另外幾條路。</li></ul></div>
+<div class="tip"><span class="tag">💡 延伸練習</span>把 true_repay 的門檻改成 8.0（放寬還款定義）或把 B 群的收入差距改成 0，觀察哪些指標會自動趨近、哪些不會。</div>
+</article>
+
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：依經濟部產業人才能力鑑定 iPAS 中級學習指引《機器學習技術與應用》的章節，自製可執行的 Python 範例協助理解考點，並非官方評鑑內容；考試請以官方學習指引、勘誤表與公告為準。程式碼可自由取用、修改。
+    </footer>
+  </main>
+</div>
+<script>
+// 捲動時高亮目前章節
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = -1;
+    for(var i=0;i<targets.length;i++){ if(targets[i] && targets[i].offsetTop <= pos) current = i; }
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0) links[current].classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+// 複製程式碼
+document.addEventListener('click', function(ev){
+  var btn = ev.target.closest('button.copy'); if(!btn) return;
+  var pre = btn.closest('.codewrap').querySelector('pre.code');
+  var text = pre.textContent;
+  function done(){ btn.textContent = '已複製 ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = '複製程式碼'; btn.classList.remove('done'); }, 1600); }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+  function fallback(){ var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+});
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>
