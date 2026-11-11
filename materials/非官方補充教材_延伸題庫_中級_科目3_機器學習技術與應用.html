@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級 科目 3（延伸題庫）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#4d7c0f;--accent-soft:#ecfccb;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;--ok:#15803d;--ok-soft:#dcfce7;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:14px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+nav.toc .cnt{display:inline-block;min-width:18px;text-align:center;font-size:11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:4px;padding:0 5px;line-height:17px;}
+main{padding:40px 52px;max-width:980px;min-width:0;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+h2.chap{margin:46px 0 14px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:20px;scroll-margin-top:16px;}
+h2.chap small{font-size:13px;font-weight:400;margin-left:8px;opacity:.9;}
+h2.chap a.back{color:#fff;border-color:rgba(255,255,255,.5);margin-top:4px;}
+h2.chap a.back:hover{background:rgba(255,255,255,.15);color:#fff;}
+h4{margin:0;font-size:17px;}
+p{margin:10px 0;} ul,ol{margin:8px 0;padding-left:24px;} li{margin:4px 0;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;white-space:nowrap;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+.kA{color:#1d4ed8} .kB{color:#b45309} .kC{color:#15803d} .kD{color:#7e22ce}
+.practice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0;padding:10px 14px;border:1px dashed var(--accent);border-radius:10px;background:var(--accent-soft);font-size:14.5px;}
+.practice label{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--accent);cursor:pointer;}
+.practice input{width:18px;height:18px;accent-color:var(--accent);} .practice span{color:var(--muted);}
+table.hot{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0;}
+table.hot th,table.hot td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center;}
+table.hot th{color:var(--accent);font-size:13px;}
+table.hot td:first-child,table.hot th:first-child{text-align:left;}
+table.hot td:first-child a:not(.back){color:var(--ink);text-decoration:none;font-weight:600;} table.hot td:first-child a:not(.back):hover{color:var(--accent);}
+table.hot td.bar{width:26%;padding-left:4px;} table.hot td.bar i{display:block;height:10px;border-radius:999px;background:var(--accent);opacity:.55;min-width:3px;overflow:hidden;}
+table.hot td.bar i b{display:block;height:100%;background:var(--accent);}
+table.hot a.back{float:none;margin-left:6px;font-size:11px;padding:0 8px;}
+article.q{border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;margin:18px 0 22px;background:#fff;scroll-margin-top:16px;overflow-wrap:anywhere;}
+.qhead{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;font-size:13px;}
+.qhead .num{font-weight:700;color:#fff;background:var(--accent);padding:2px 10px;border-radius:999px;white-space:nowrap;}
+.qhead .kind{font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid currentColor;}
+.qhead .src{margin-left:auto;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;}
+.qhead a.src:hover{color:var(--accent);border-color:var(--accent);}
+article.q .stem{font-weight:600;margin:0 0 10px;font-size:15.5px;}
+article.q .opts{list-style:none;padding:0;margin:0 0 10px;}
+article.q .opts li{padding:4px 10px;border-radius:6px;} article.q .opts li .k{font-weight:700;color:var(--muted);margin-right:2px;}
+article.q .opts li.ok{background:var(--ok-soft);color:var(--ok);font-weight:600;} article.q .opts li.ok .k{color:var(--ok);}
+.fig{margin:0 0 12px;overflow-x:auto;}
+.fig pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre;}
+.fig table{width:auto;max-width:100%;display:block;overflow-x:auto;margin:8px 0;font-size:14px;border-collapse:collapse;} .fig td,.fig th{border:1px solid var(--line);padding:3px 10px;}
+button.reveal{display:none;font:inherit;font-size:14px;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:6px 16px;cursor:pointer;margin:4px 0 6px;}
+html[data-qxhide] article.q:not(.open) button.reveal{display:inline-block;}
+html[data-qxhide] article.q:not(.open) .sol{display:none;}
+html[data-qxhide] article.q:not(.open) .opts li.ok{background:transparent;color:inherit;font-weight:400;} html[data-qxhide] article.q:not(.open) .opts li.ok .k{color:var(--muted);}
+.ansline{margin:6px 0 4px;} .ansline .ans{display:inline-block;background:var(--ok);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;font-size:14px;}
+.exp{background:var(--accent-soft);border-radius:8px;padding:8px 14px;margin:6px 0 4px;font-size:14.5px;} .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:20px 16px}article.q{padding:14px 12px 10px}.qhead .src{margin-left:0}table.hot{font-size:12.5px}table.hot td.bar,table.hot th.bar{display:none}}
+[data-theme="dark"]{--ok:#4ade80;--ok-soft:#14301f;}
+[data-theme="dark"] .kA{color:#8ab4ff} [data-theme="dark"] .kB{color:#f5b74e} [data-theme="dark"] .kC{color:#5fd38a} [data-theme="dark"] .kD{color:#d8b4fe}
+[data-theme="dark"] .fig pre{background:#0f1522;border-color:#2b3447;}
+[data-theme="dark"] .ansline .ans{background:#166534;}
+[data-theme="dark"] table.hot tr:nth-child(even) td{background:transparent;}
+[data-theme="dark"] .exp .lab,[data-theme="dark"] .practice label,[data-theme="dark"] .qhead a.src:hover,[data-theme="dark"] table.hot td:first-child a:not(.back):hover{color:var(--accent-bright);}
+[data-theme="dark"] .qhead .num,[data-theme="dark"] button.reveal{background:var(--accent);color:#fff;}
+</style>
+<script src="theme.js"></script>
+<script>(function(){try{if(localStorage.getItem('ipas-qx-hide')==='1')document.documentElement.setAttribute('data-qxhide','');}catch(e){}})();</script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>依考點導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="中級_科目3_機器學習技術與應用.html">↗ 對照完整教材</a>
+    <a href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html">↗ 白話加強版</a>
+    <a href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html">↗ 考古題逐題詳解</a>
+    <a href="../../模擬考網站/index.html">↗ 模擬考網站（可出模擬卷）</a>
+    <a href="#guide">使用說明與題數分佈</a>
+    <a class="sub" href="#sec-sec3-1">3.1 機率/統計之機器學習基礎應用 <span class="cnt">11</span></a><a class="sub" href="#sec-sec3-2">3.2 線性代數之機器學習基礎應用 <span class="cnt">9</span></a><a class="sub" href="#sec-sec3-3">3.3 數值優化技術與方法 <span class="cnt">13</span></a><a class="sub" href="#sec-sec4-1">4.1 機器學習原理與技術 <span class="cnt">11</span></a><a class="sub" href="#sec-sec4-2">4.2 常見機器學習演算法 <span class="cnt">14</span></a><a class="sub" href="#sec-sec4-3">4.3 深度學習原理與框架 <span class="cnt">20</span></a><a class="sub" href="#sec-sec5-1">5.1 數據準備與特徵工程 <span class="cnt">13</span></a><a class="sub" href="#sec-sec5-2">5.2 模型選擇與架構設計 <span class="cnt">11</span></a><a class="sub" href="#sec-sec5-3">5.3 模型訓練、評估與驗證 <span class="cnt">19</span></a><a class="sub" href="#sec-sec5-4">5.4 模型調整與優化 <span class="cnt">13</span></a><a class="sub" href="#sec-sec6-1">6.1 數據隱私、安全與合規 <span class="cnt">9</span></a><a class="sub" href="#sec-sec6-2">6.2 演算法偏見與公平性 <span class="cnt">7</span></a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 3 · 延伸題庫</span>
+      <h1>機器學習技術與應用</h1>
+      <p class="sub">非官方補充教材 · 以 100 道考古題與官方學習指引為基礎擴展的自製練習題</p>
+      <div class="tags"><span>共 150 題</span><span>非官方試題，答案為自行整理</span><span>可在模擬考網站組成全真模擬卷</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明與題數分佈</h2>
+      <p>考古題只有兩個梯次、100 題，深度學習與模型評估佔了四成，而機器學習原理、模型選擇、資料隱私等章節只有兩三題。本頁以每道考古題的考點為種子，換情境、換問法、把錯誤選項翻成正解，再依完整教材補足冷門章節，計算題與程式題則換數字重算。題目格式比照正式考試（單選、四選項、情境題為主），每題附解析與來源考古題連結；想計時作答請到模擬考網站的「中級延伸題庫」專卡。</p>
+      <div class="howto"><div><b class="kA">變體題</b><br>同考點換情境、換問法或反向問（54 題）</div><div><b class="kB">翻正題</b><br>把考古題的錯誤選項變成正解（38 題）</div><div><b class="kC">缺口題</b><br>依完整教材補出題數少的章節（38 題）</div><div><b class="kD">計算／程式題</b><br>換數字的計算題或改寫的程式題（20 題）</div></div>
+      <div class="practice">
+        <label><input type="checkbox" id="hide-ans">練習模式：先遮住答案與解析</label>
+        <span>勾選後每題先只看題目，按「顯示答案與解析」再對答案；設定與考古題詳解頁共用。要計時作答請到模擬考網站的「中級延伸題庫」專卡。</span>
+      </div>
+      <h4 style="margin-top:18px">各節題數（考古題＋延伸題）</h4>
+      <p style="font-size:14px;color:var(--muted);margin:4px 0 6px">長條深色部分為考古題、淺色為延伸題；延伸題優先補足考古題少的章節。</p>
+      <table class="hot"><thead><tr><th>考點（完整教材章節）</th><th>考古題</th><th>延伸題</th><th>合計</th><th class="bar"></th></tr></thead><tbody><tr><td><a href="#sec-sec3-1">3.1 機率/統計之機器學習基礎應用</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-1">教材 ↗</a></td><td>5</td><td>11</td><td><b>16</b></td><td class="bar"><i style="width:40%"><b style="width:31%"></b></i></td></tr><tr><td><a href="#sec-sec3-2">3.2 線性代數之機器學習基礎應用</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-2">教材 ↗</a></td><td>5</td><td>9</td><td><b>14</b></td><td class="bar"><i style="width:35%"><b style="width:36%"></b></i></td></tr><tr><td><a href="#sec-sec3-3">3.3 數值優化技術與方法</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-3">教材 ↗</a></td><td>8</td><td>13</td><td><b>21</b></td><td class="bar"><i style="width:52%"><b style="width:38%"></b></i></td></tr><tr><td><a href="#sec-sec4-1">4.1 機器學習原理與技術</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-1">教材 ↗</a></td><td>2</td><td>11</td><td><b>13</b></td><td class="bar"><i style="width:32%"><b style="width:15%"></b></i></td></tr><tr><td><a href="#sec-sec4-2">4.2 常見機器學習演算法</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-2">教材 ↗</a></td><td>5</td><td>14</td><td><b>19</b></td><td class="bar"><i style="width:48%"><b style="width:26%"></b></i></td></tr><tr><td><a href="#sec-sec4-3">4.3 深度學習原理與框架</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-3">教材 ↗</a></td><td>20</td><td>20</td><td><b>40</b></td><td class="bar"><i style="width:100%"><b style="width:50%"></b></i></td></tr><tr><td><a href="#sec-sec5-1">5.1 數據準備與特徵工程</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-1">教材 ↗</a></td><td>10</td><td>13</td><td><b>23</b></td><td class="bar"><i style="width:57%"><b style="width:43%"></b></i></td></tr><tr><td><a href="#sec-sec5-2">5.2 模型選擇與架構設計</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-2">教材 ↗</a></td><td>2</td><td>11</td><td><b>13</b></td><td class="bar"><i style="width:32%"><b style="width:15%"></b></i></td></tr><tr><td><a href="#sec-sec5-3">5.3 模型訓練、評估與驗證</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-3">教材 ↗</a></td><td>19</td><td>19</td><td><b>38</b></td><td class="bar"><i style="width:95%"><b style="width:50%"></b></i></td></tr><tr><td><a href="#sec-sec5-4">5.4 模型調整與優化</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-4">教材 ↗</a></td><td>15</td><td>13</td><td><b>28</b></td><td class="bar"><i style="width:70%"><b style="width:54%"></b></i></td></tr><tr><td><a href="#sec-sec6-1">6.1 數據隱私、安全與合規</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-1">教材 ↗</a></td><td>3</td><td>9</td><td><b>12</b></td><td class="bar"><i style="width:30%"><b style="width:25%"></b></i></td></tr><tr><td><a href="#sec-sec6-2">6.2 演算法偏見與公平性</a> <a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-2">教材 ↗</a></td><td>6</td><td>7</td><td><b>13</b></td><td class="bar"><i style="width:32%"><b style="width:46%"></b></i></td></tr></tbody></table>
+    </section>
+
+    <section class="secgrp" id="sec-sec3-1"><h2 class="chap">3.1 機率/統計之機器學習基礎應用 <small>11 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-1">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q5" data-sec="sec3-1" data-kind="A">
+<div class="qhead"><span class="num">第 5 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q22">衍生自 114-2 第 22 題 ↗</a></div>
+<p class="stem">某電商以貝氏定理估算「顧客展現某瀏覽行為後會購買的機率」。模型中用到四個量：整體歷史購買率、購買者展現該行為的比例、該行為在全體顧客中出現的比例，以及觀察行為後更新的購買機率。下列何者對應貝氏定理中的「先驗機率」？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 整體歷史購買率 P(購買)，尚未觀察任何行為前的初始信念</li><li><span class="k">(B)</span> 購買者展現該行為的比例 P(行為｜購買)</li><li><span class="k">(C)</span> 該行為在全體顧客中出現的比例 P(行為)</li><li><span class="k">(D)</span> 觀察行為後更新的購買機率 P(購買｜行為)</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>貝氏定理 P(A|B)=P(B|A)·P(A)/P(B) 中，P(A) 是尚未看到新證據前對事件的初始信念，稱先驗機率；題目裡「整體歷史購買率」正是觀察行為之前對購買的估計（指引 3.1 貝氏推論四元素）。(B) P(行為｜購買) 是似然；(C) P(行為) 是邊際機率，作為分母做正規化；(D) P(購買｜行為) 是整合先驗與似然後得到的後驗機率，也是模型最終輸出。</div></div>
+</article>
+<article class="q" id="延-中3-q6" data-sec="sec3-1" data-kind="D">
+<div class="qhead"><span class="num">第 6 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q41">衍生自 114-2 第 41 題 ↗</a></div>
+<p class="stem">某疾病盛行率 2%，篩檢工具的敏感度（患病者檢出陽性）為 90%、特異度（未患病者檢出陰性）為 95%。一位受檢者結果為陽性，依貝氏定理其真正患病的機率最接近下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 約 90%</li><li class="ok"><span class="k">(B)</span> 約 27%</li><li><span class="k">(C)</span> 約 2%</li><li><span class="k">(D)</span> 約 47%</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>P(病|陽)=P(陽|病)P(病)/P(陽)。分子 0.9×0.02=0.018；分母 P(陽)=0.9×0.02+(1−0.95)×0.98=0.018+0.049=0.067；後驗=0.018/0.067≈0.269，約 27%（指引 3.1 貝氏定理）。(A) 把敏感度當成陽性者患病機率，忽略了盛行率很低；(C) 2% 是先驗（盛行率），觀察陽性後應上修；(D) 47% 相當於把假陽性率誤算成約 2%，分母少算了一半的假陽性。</div></div>
+</article>
+<article class="q" id="延-中3-q7" data-sec="sec3-1" data-kind="D">
+<div class="qhead"><span class="num">第 7 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q41">衍生自 114-2 第 41 題 ↗</a></div>
+<p class="stem">以蒙地卡羅方法模擬擲一顆公正骰子十萬次，定義事件 A 為「擲出偶數」、事件 B 為「點數大於 3」，程式中 A、B 為布林陣列。若要估計條件機率 P(B｜A)，其估計值理論上最接近下列何者？</p>
+<div class="fig"><pre>import numpy as np
+np.random.seed(0)
+rolls = np.random.randint(1, 7, size=100000)
+A = (rolls % 2 == 0)
+B = (rolls > 3)
+est = (A &amp; B).sum() / A.sum()</pre></div>
+<ul class="opts"><li><span class="k">(A)</span> 約 0.333</li><li><span class="k">(B)</span> 約 0.500</li><li class="ok"><span class="k">(C)</span> 約 0.667</li><li><span class="k">(D)</span> 約 0.750</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>P(B|A)=P(A∩B)/P(A)。A={2,4,6}、B={4,5,6}，A∩B={4,6}，所以 P(B|A)=(2/6)/(3/6)=2/3≈0.667；程式以 A 的計數為分母、A 且 B 的計數為分子，正是這個比例（指引 3.1 條件機率、蒙地卡羅估計）。(A) 1/3 是 P(A∩B) 本身；(B) 0.5 是 P(A) 或 P(B)；(D) 0.75 沒有對應的事件組合，是誤把分母當成 4 個點數。</div></div>
+</article>
+<article class="q" id="延-中3-q8" data-sec="sec3-1" data-kind="C">
+<div class="qhead"><span class="num">第 8 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某客服中心想以機率模型描述「每小時進線的電話通數」，已知通話彼此獨立且平均每小時約 12 通。依指引對常見分佈的說明，最適合描述此變數的分佈為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 伯努利分佈</li><li><span class="k">(B)</span> 常態分佈</li><li><span class="k">(C)</span> 均勻分佈</li><li class="ok"><span class="k">(D)</span> 泊松分佈</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>泊松分佈描述固定時間或空間區間內某事件發生的「次數」，假設事件彼此獨立且平均發生率為常數，客服來電、伺服器請求正是指引列舉的典型例子（指引 3.1 常見分佈與用途）。(A) 伯努利只描述單次試驗成功／失敗兩種結果；(B) 常態分佈是連續型分佈，來電通數是非負整數的離散變數；(C) 均勻分佈假設區間內每個值機率相同，與「平均 12 通附近最常見」的情況不符。</div></div>
+</article>
+<article class="q" id="延-中3-q9" data-sec="sec3-1" data-kind="C">
+<div class="qhead"><span class="num">第 9 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">維運團隊分析伺服器「兩次故障之間的間隔時間」，並希望採用的分佈具備「無記憶性」——已經正常運作多久不影響接下來故障的機率。此特性對應下列哪一種分佈？</p>
+<ul class="opts"><li><span class="k">(A)</span> 二項分佈</li><li class="ok"><span class="k">(B)</span> 指數分佈</li><li><span class="k">(C)</span> 卡方分佈</li><li><span class="k">(D)</span> 伯努利分佈</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指數分佈描述事件發生之間的間隔時間（等待時間、生存時間），特徵是無記憶性（Memoryless），正符合題幹的描述（指引 3.1 常見分佈）。(A) 二項分佈描述 n 次獨立試驗中成功的次數，是離散型；(C) 卡方分佈是獨立標準常態變數平方和的分佈，用於變異數分析與適合度檢定；(D) 伯努利分佈描述單次兩種結果的試驗，與時間間隔無關。</div></div>
+</article>
+<article class="q" id="延-中3-q10" data-sec="sec3-1" data-kind="C">
+<div class="qhead"><span class="num">第 10 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">資料科學家說：「選用哪一種機率分佈，其實就是對資料生成機制做了先驗假設。」依此觀點，邏輯迴歸與線性迴歸分別隱含了哪一種分佈假設？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 邏輯迴歸假設目標變數服從伯努利分佈；線性迴歸假設誤差項服從常態分佈</li><li><span class="k">(B)</span> 邏輯迴歸假設目標變數服從常態分佈；線性迴歸假設誤差項服從伯努利分佈</li><li><span class="k">(C)</span> 兩者都假設目標變數服從均勻分佈，差別只在輸出是否經過 sigmoid</li><li><span class="k">(D)</span> 兩者都假設誤差項服從泊松分佈，以處理計數型資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 3.1「分佈即先驗假設」明確舉例：邏輯迴歸假設目標變數服從伯努利分佈（二元結果），線性迴歸假設誤差項符合常態分佈，VAE 則把潛在變數分佈納入架構。(B) 兩者對調，邏輯迴歸的 0/1 輸出不可能是常態；(C) 均勻分佈不是這兩個模型的假設，sigmoid 只是把線性組合映射成機率；(D) 泊松分佈對應的是泊松迴歸等計數模型，不是一般線性迴歸。</div></div>
+</article>
+<article class="q" id="延-中3-q11" data-sec="sec3-1" data-kind="A">
+<div class="qhead"><span class="num">第 11 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q1">衍生自 115-1 第 1 題 ↗</a></div>
+<p class="stem">某保險公司想估計颱風季的理賠損失分佈與 95 百分位的極端損失，但損失同時受風速、路徑、投保區域等多個隨機因素影響，無法寫出解析式。公司以隨機抽樣產生十萬組情境並逐一計算損失。此做法屬於下列哪一種方法？</p>
+<ul class="opts"><li><span class="k">(A)</span> 馬可夫鏈（Markov Chain）</li><li><span class="k">(B)</span> 最大概似估計（MLE）</li><li><span class="k">(C)</span> 梯度下降法（Gradient Descent）</li><li class="ok"><span class="k">(D)</span> 蒙地卡羅方法（Monte Carlo Method）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>蒙地卡羅方法透過大量隨機抽樣模擬情境，用樣本統計量近似無法解析求解的機率分佈或數值結果，風險區間、極端損失估計是典型應用（指引 3.1 不確定性與機率建模）。(A) 馬可夫鏈描述狀態之間依轉移機率演進的隨機過程，題幹沒有狀態轉移結構；(B) 最大概似估計是給定分佈型態後估參數的方法，題幹連分佈型態都寫不出來；(C) 梯度下降是最佳化演算法，用來找損失最小的參數，不是估計分佈。</div></div>
+</article>
+<article class="q" id="延-中3-q12" data-sec="sec3-1" data-kind="B">
+<div class="qhead"><span class="num">第 12 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q1">衍生自 114-2 第 1 題 ↗</a></div>
+<p class="stem">產品團隊想檢驗「新版推薦演算法上線後，同一批 500 位使用者的每週平均停留時間，是否顯著高於上線前」。每位使用者都有上線前、上線後兩個量測值。最適合的統計方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> k 折交叉驗證</li><li><span class="k">(B)</span> 卡方獨立性檢定</li><li class="ok"><span class="k">(C)</span> 配對樣本 t 檢定</li><li><span class="k">(D)</span> F 檢定</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>同一群個體在兩個時點各量測一次，兩組資料成對、不獨立，要比較平均差異應用配對樣本 t 檢定（指引 3.1 假設檢定流程與檢定方法選擇）。(A) 交叉驗證是評估模型泛化能力的方法，不是比較兩組平均數的統計檢定；(B) 卡方檢定處理類別變數之間是否獨立，停留時間是連續變數；(D) F 檢定用於比較變異數或多組平均數（ANOVA），兩時點的成對比較用 t 檢定更直接。</div></div>
+</article>
+<article class="q" id="延-中3-q13" data-sec="sec3-1" data-kind="B">
+<div class="qhead"><span class="num">第 13 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q1">衍生自 114-2 第 1 題 ↗</a></div>
+<p class="stem">行銷部門想知道「顧客性別」與「是否點擊促銷信」這兩個類別變數之間是否存在關聯，手上有 2×2 的列聯表計數。最適合的檢定方法為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 卡方獨立性檢定</li><li><span class="k">(B)</span> 配對樣本 t 檢定</li><li><span class="k">(C)</span> 交叉驗證</li><li><span class="k">(D)</span> 皮爾森相關係數檢定</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>兩個類別變數之間是否獨立，標準做法是以列聯表進行卡方獨立性檢定，比較觀察次數與獨立假設下的期望次數（指引 3.1 卡方分佈的用途：列聯表獨立性檢定）。(B) 配對 t 檢定比較同一群體兩次量測的平均，資料須為連續值；(C) 交叉驗證是模型驗證工具，不做統計推論；(D) 皮爾森相關係數衡量兩個連續變數的線性相關，不適用於二元類別資料。</div></div>
+</article>
+<article class="q" id="延-中3-q14" data-sec="sec3-1" data-kind="C">
+<div class="qhead"><span class="num">第 14 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某 A/B 測試報告寫道：「顯著水準 α 設為 0.05，計算得 p 值 0.03，因此拒絕虛無假設。」關於顯著水準 α=0.05 的意義，下列敘述何者正確？</p>
+<ul class="opts"><li><span class="k">(A)</span> 虛無假設為真的機率是 5%</li><li class="ok"><span class="k">(B)</span> 虛無假設為真時，仍因樣本隨機波動而錯誤拒絕它的機率上限為 5%</li><li><span class="k">(C)</span> 對立假設成立的機率至少有 95%</li><li><span class="k">(D)</span> 有 5% 的樣本平均數會落在信賴區間之外</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>顯著水準 α 是研究者事先設定的可接受錯誤機率上限，代表虛無假設為真時仍被拒絕的機率，即型一錯誤的機率（指引 3.1 顯著水準與 p 值）。(A)(C) 把 α 誤解成假設本身為真或為假的機率——頻率學派的檢定並不對假設指派機率；(D) 混淆了顯著水準與信賴區間的涵蓋率，信賴區間描述的是估計量的重複抽樣性質，不是單一樣本平均數落在區間外的比例。</div></div>
+</article>
+<article class="q" id="延-中3-q15" data-sec="sec3-1" data-kind="A">
+<div class="qhead"><span class="num">第 15 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q25">衍生自 115-1 第 25 題 ↗</a></div>
+<p class="stem">信貸模型的「年收入」特徵呈嚴重右偏，少數高收入者拉長了右尾，模型訓練收斂緩慢且係數不穩定。依指引對統計量的說明，最合適的處理方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 以 Min-Max 縮放把年收入壓到 0 到 1 之間</li><li><span class="k">(B)</span> 刪除所有高於平均數的樣本以消除右尾</li><li><span class="k">(C)</span> 把年收入改成 One-Hot 編碼</li><li class="ok"><span class="k">(D)</span> 對年收入做對數或 Box-Cox 轉換以降低偏態</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 3.1 指出偏態過大時常需對數轉換或 Box-Cox 轉換，把右偏分佈拉近對稱，改善收斂性與參數穩定性。(A) Min-Max 只做線性縮放，分佈形狀（偏態）完全不變，長尾依舊；(B) 刪掉高於平均的樣本會丟掉一半以上資料並造成取樣偏差；(C) 連續變數改成 One-Hot 會失去數值大小資訊且產生大量欄位，不是處理偏態的方法。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec3-2"><h2 class="chap">3.2 線性代數之機器學習基礎應用 <small>9 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-2">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q16" data-sec="sec3-2" data-kind="D">
+<div class="qhead"><span class="num">第 16 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q3">衍生自 115-1 第 3 題 ↗</a></div>
+<p class="stem">神經網路某層一次處理 64 筆樣本，每筆有 10 維特徵，輸入矩陣 X 形狀為 (64, 10)；該層權重矩陣 W 形狀為 (10, 32)。執行 X × W 後輸出的形狀為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> (10, 32)</li><li><span class="k">(B)</span> 維度不相容，無法相乘</li><li class="ok"><span class="k">(C)</span> (64, 32)</li><li><span class="k">(D)</span> (32, 64)</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>矩陣相乘要求前者的行數等於後者的列數：(64,10)×(10,32) 內維 10 相符，結果取外維 (64, 32)，即每筆樣本都得到 32 維輸出（指引 3.2 矩陣乘法與前向傳播）。(A) 誤把輸出形狀寫成權重形狀；(B) 內維相符所以可以相乘；(D) 把結果轉置了，輸出的列應對應樣本數 64。</div></div>
+</article>
+<article class="q" id="延-中3-q17" data-sec="sec3-2" data-kind="D">
+<div class="qhead"><span class="num">第 17 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q40">衍生自 114-2 第 40 題 ↗</a></div>
+<p class="stem">依據下列 NumPy 程式碼，哪一項敘述正確？</p>
+<div class="fig"><pre>import numpy as np
+v1 = np.array([2, 1, 3])
+v2 = np.array([1, 4, 2])</pre></div>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> np.dot(v1, v2) 的結果為 12</li><li><span class="k">(B)</span> v1 * v2 的結果為 12</li><li><span class="k">(C)</span> np.dot(v1, v2) 的結果為 array([2, 4, 6])</li><li><span class="k">(D)</span> v1 + v2 的結果為 array([2, 4, 6])</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>點積是對應元素相乘後加總：2×1+1×4+3×2=12，np.dot 回傳純量 12（指引 3.2 點積的意義：投影與相似度）。(B) v1 * v2 是逐元素相乘，結果是 array([2, 4, 6])，不是純量；(C) 把逐元素乘積誤當成點積；(D) v1 + v2 是逐元素相加，結果為 array([3, 5, 5])。</div></div>
+</article>
+<article class="q" id="延-中3-q18" data-sec="sec3-2" data-kind="C">
+<div class="qhead"><span class="num">第 18 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某串流平台有「使用者 × 影片」的評分矩陣（20 萬列 × 5 萬行，非方陣），想分解出使用者與影片的潛在因子以做推薦。依指引對矩陣分解方法的說明，最適合的方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 特徵值分解，因為它適用任意形狀的矩陣</li><li class="ok"><span class="k">(B)</span> 奇異值分解（SVD），適用任意實數矩陣且數值穩定</li><li><span class="k">(C)</span> 先對矩陣求反矩陣再取對角線元素</li><li><span class="k">(D)</span> 對矩陣做轉置後進行列向量正規化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>SVD 把任意實數矩陣分解為 X=UΣVᵀ，不要求方陣或對稱，數值穩定且解構能力強，指引列舉的應用正包含推薦系統與潛在語意分析（指引 3.2 矩陣分解）。(A) 特徵值分解只適用對稱方陣 A=QΛQᵀ，評分矩陣不是方陣；(C) 非方陣沒有反矩陣，反矩陣也不是分解潛在因子的工具；(D) 轉置與正規化只是改變排列與尺度，分解不出潛在結構。</div></div>
+</article>
+<article class="q" id="延-中3-q19" data-sec="sec3-2" data-kind="C">
+<div class="qhead"><span class="num">第 19 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">文字分析團隊想把「文件 × 詞彙」矩陣分解成兩個矩陣，並要求所有分解出的元素都非負，好把每篇文件解釋成「若干主題的可加疊組合」。最符合此需求的方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 主成分分析（PCA）</li><li><span class="k">(B)</span> 奇異值分解（SVD）</li><li class="ok"><span class="k">(C)</span> 非負矩陣分解（NMF）</li><li><span class="k">(D)</span> 線性判別分析（LDA）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>NMF 要求 X≥0 且分解為兩個非負矩陣 X≈WH，把資料視為可加疊的部件，天然具備語意解釋力與稀疏性，主題建模是指引列出的典型應用（指引 3.2 矩陣分解）。(A) PCA 的主成分可含負值，難以解釋成「加疊的主題」；(B) SVD 的 U、V 也可含負值；(D) 線性判別分析是有標籤的監督式投影方法，目的是找最佳分類方向，不是做非負分解。</div></div>
+</article>
+<article class="q" id="延-中3-q20" data-sec="sec3-2" data-kind="C">
+<div class="qhead"><span class="num">第 20 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">將向量 x 左乘矩陣 A 後得到 Ax。若 A 是正交矩陣，使向量「方向改變但長度不變」，這種線性變換在幾何上稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 縮放（Scaling）</li><li><span class="k">(B)</span> 剪切（Shearing）</li><li><span class="k">(C)</span> 投影（Projection）</li><li class="ok"><span class="k">(D)</span> 旋轉（Rotation）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 3.2 列出線性變換的四種幾何意義：旋轉改變方向而不改變長度，常見於正交變換或特徵對齊，正是題幹描述。(A) 縮放調整各方向長度但不改變方向；(B) 剪切讓方向在空間中傾斜，長度與角度都會改變；(C) 投影把高維向量投到子空間，通常會縮短長度並損失資訊。</div></div>
+</article>
+<article class="q" id="延-中3-q21" data-sec="sec3-2" data-kind="D">
+<div class="qhead"><span class="num">第 21 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q35">衍生自 114-2 第 35 題 ↗</a></div>
+<p class="stem">對某製程資料做 PCA，四個主成分的特徵值依序為 λ₁=5、λ₂=2、λ₃=2、λ₄=1。若要求保留的主成分至少能解釋 85% 的總變異量，最少需要保留幾個主成分？</p>
+<ul class="opts"><li><span class="k">(A)</span> 1 個</li><li><span class="k">(B)</span> 2 個</li><li class="ok"><span class="k">(C)</span> 3 個</li><li><span class="k">(D)</span> 4 個</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>總變異＝5+2+2+1＝10。累積解釋比例：第 1 個 50%、前 2 個 70%、前 3 個 90%、全部 100%。第一次達到 85% 門檻的是前 3 個，故最少保留 3 個（指引 3.2 矩陣分解與維度簡化、PCA 的變異解釋）。(A) 只有 50%；(B) 70% 仍未達門檻；(D) 4 個等於沒有降維，雖然超過 85% 但不是「最少」。</div></div>
+</article>
+<article class="q" id="延-中3-q22" data-sec="sec3-2" data-kind="A">
+<div class="qhead"><span class="num">第 22 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q6">衍生自 115-1 第 6 題 ↗</a></div>
+<p class="stem">某團隊要把 300 維的製程感測特徵降到 20 維，作為每天重新訓練的 XGBoost 模型輸入，並且每天都有新資料要套用同一套轉換。相較於 t-SNE，PCA 在此情境的主要優點為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 能保留複雜的非線性流形結構</li><li class="ok"><span class="k">(B)</span> 有明確的線性轉換矩陣，可直接套用到新進資料</li><li><span class="k">(C)</span> 結果完全不受離群值影響</li><li><span class="k">(D)</span> 專為二維視覺化設計，群集分離效果最好</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>PCA 是線性降維，學到的投影矩陣可以直接對新資料做 transform，適合當作模型的前處理步驟；t-SNE 沒有可外推的轉換、每次需重新計算且只保留局部結構，指引明確指出它僅用於視覺化、不適合下游預處理（指引 3.2 維度簡化、4.2 降維技術）。(A) 捕捉非線性結構是 t-SNE／UMAP 的特性，PCA 只能捕捉線性關係；(C) 指引指出 PCA 對離群值敏感；(D) 視覺化是 t-SNE 的強項，不是 PCA 的相對優點。</div></div>
+</article>
+<article class="q" id="延-中3-q23" data-sec="sec3-2" data-kind="B">
+<div class="qhead"><span class="num">第 23 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q40">衍生自 114-2 第 40 題 ↗</a></div>
+<p class="stem">工程師想在求解線性迴歸封閉解之前，先確認特徵矩陣的 Gram 矩陣 A 是否可逆（行列式是否為 0）。在 NumPy 中應呼叫哪一個函式計算行列式？</p>
+<ul class="opts"><li><span class="k">(A)</span> np.linalg.inv(A)</li><li><span class="k">(B)</span> np.linalg.eig(A)</li><li class="ok"><span class="k">(C)</span> np.linalg.det(A)</li><li><span class="k">(D)</span> np.dot(A, A)</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>行列式由 np.linalg.det 計算，行列式為 0 代表矩陣奇異、沒有反矩陣，最小平方封閉解 (XᵀX)⁻¹Xᵀy 就無法直接求得（指引 3.2 求逆與偽逆）。(A) inv 直接求反矩陣，矩陣奇異時會報錯，不是「先判斷」的工具；(B) eig 做特徵值分解，雖然特徵值乘積等於行列式，但不是直接計算行列式的函式；(D) np.dot(A, A) 只是矩陣自乘。</div></div>
+</article>
+<article class="q" id="延-中3-q24" data-sec="sec3-2" data-kind="A">
+<div class="qhead"><span class="num">第 24 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q24">衍生自 114-2 第 24 題 ↗</a></div>
+<p class="stem">房價線性迴歸以最小平方法估計係數，資料中有三筆極端豪宅，擬合出的迴歸平面明顯被這三筆拉偏。從最小平方估計的定義來看，造成此現象的原因為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> OLS 最小化的是誤差平方和，離群點的大誤差經平方後被放大，主導了擬合結果</li><li><span class="k">(B)</span> OLS 以誤差的中位數為目標，所以對極端值特別敏感</li><li><span class="k">(C)</span> 離群點會使特徵矩陣無法轉置，導致係數估計失真</li><li><span class="k">(D)</span> OLS 預設會自動剔除離群點，是剔除門檻設定錯誤</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>普通最小平方法以「預測值與實際值差異的平方總和最小」為目標，誤差越大平方後懲罰越大，少數離群點就能扭曲整個平面，指引也提醒資料分散或存在離群點時擬合平面可能受扭曲（指引 3.2 最小平方估計）。(B) OLS 用的是平方和不是中位數，以中位數為目標的方法反而對極端值較穩健；(C) 任何矩陣都能轉置，與離群點無關；(D) OLS 本身不剔除任何樣本，剔除離群點是前處理的決策。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec3-3"><h2 class="chap">3.3 數值優化技術與方法 <small>13 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec3-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec3-3">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q25" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 25 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q3">衍生自 114-2 第 3 題 ↗</a></div>
+<p class="stem">同事問：「訓練神經網路要擔心卡在局部最小值，為什麼訓練邏輯迴歸時從來不用擔心這件事？」依指引對最佳化問題性質的說明，最合理的回答為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 邏輯迴歸的損失函數是凸函數，從任一起點沿下降方向走都能到達全域最佳解</li><li><span class="k">(B)</span> 邏輯迴歸的參數很少，所以梯度下降一步就能找到最佳解</li><li><span class="k">(C)</span> 邏輯迴歸輸出經過 sigmoid，sigmoid 會自動避開局部極值</li><li><span class="k">(D)</span> 邏輯迴歸的資料一定先做過標準化，標準化後損失面沒有極值</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 3.3 指出凸函數從任一初始點持續往下降方向走必能找到全域最佳解，線性迴歸與邏輯迴歸都屬凸問題；神經網路的損失則是非凸，才會有多個局部最小值與鞍點。(B) 參數少不代表一步到位，仍需迭代，且非凸問題參數再少也可能有局部極值；(C) sigmoid 只是把線性組合映射為機率，與損失面是否有局部極值無關；(D) 標準化改善收斂速度與尺度，不會改變損失函數的凸性。</div></div>
+</article>
+<article class="q" id="延-中3-q26" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 26 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q8">衍生自 115-1 第 8 題 ↗</a></div>
+<p class="stem">某影像分類模型訓練時損失曲線平滑且單調下降，但跑了 300 個 Epoch 仍遠未收斂，期間沒有任何震盪。最可能的原因為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 學習率過大，每步跨過最低點</li><li class="ok"><span class="k">(B)</span> 學習率過小，每步更新幅度不足</li><li><span class="k">(C)</span> 梯度爆炸，數值溢出</li><li><span class="k">(D)</span> 模型已經過擬合訓練資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>學習率決定每次更新的步伐：過小時每步只前進一點點，損失平滑下降但收斂極慢，正是題幹「單調下降、無震盪、久未收斂」的樣貌（指引 3.3 收斂判準與訓練穩定性）。(A) 學習率過大會造成損失震盪或發散，與平滑曲線矛盾；(C) 梯度爆炸會讓損失突然暴增或變成 NaN；(D) 過擬合的徵兆是訓練損失低而驗證損失上升，不是訓練損失下不去。</div></div>
+</article>
+<article class="q" id="延-中3-q27" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 27 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q11">衍生自 115-1 第 11 題 ↗</a></div>
+<p class="stem">某廣告點擊模型需要「資料一到就立刻更新參數」的線上學習，且部署機器記憶體有限、無法一次載入整批資料。依指引對梯度下降變形的比較，最適合的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 全批次梯度下降，用整個資料集算一次精確梯度</li><li><span class="k">(B)</span> 牛頓法，用二階導數一次跳到最佳解</li><li class="ok"><span class="k">(C)</span> 隨機梯度下降，每次用一筆樣本估算梯度並更新</li><li><span class="k">(D)</span> 小批次梯度下降，每次固定用 4096 筆資料更新</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 3.3 列出 SGD 的特點：每次用一筆樣本估算梯度，更新快、記憶體需求低，適用大型資料集、線上學習與即時訓練，正符合「資料一到就更新、記憶體有限」。(A) 全批次要載入整個資料集且每輪才更新一次，與線上學習矛盾；(B) 牛頓法需計算 Hessian，記憶體與運算成本都高，不適合線上更新；(D) 4096 筆的大批次需累積資料後才能更新，仍要相當記憶體，不符「立刻更新」。</div></div>
+</article>
+<article class="q" id="延-中3-q28" data-sec="sec3-3" data-kind="B">
+<div class="qhead"><span class="num">第 28 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q17">衍生自 114-2 第 17 題 ↗</a></div>
+<p class="stem">某文字分類模型的輸入是高維稀疏的詞袋向量，工程師選用的優化器在前幾個 Epoch 收斂很快，但之後參數幾乎不再更新、損失停滯。最可能的優化器與原因為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Adagrad：累積歷史梯度平方使學習率隨時間過度衰減，最終幾乎停止更新</li><li><span class="k">(B)</span> 動量法：累積的動量過大，使參數衝過最佳點後無法回頭</li><li><span class="k">(C)</span> Adam：一階動量在稀疏特徵上歸零，梯度方向無法更新</li><li><span class="k">(D)</span> 全批次梯度下降：批次過大導致每輪只能更新一次</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 3.3 說明 Adagrad 依每個參數的歷史梯度大小自動調整學習率，適合稀疏特徵，但限制是學習率隨時間過度衰減、可能收斂停止——題幹「稀疏詞袋、初期快、後期停滯」正是這個特徵。(B) 動量過大的徵兆是震盪或衝過頭，不是停止更新；(C) Adam 用滑動平均追蹤動量，不會在稀疏特徵上歸零；(D) 全批次每輪更新一次只是慢，不會「幾乎不再更新」。</div></div>
+</article>
+<article class="q" id="延-中3-q29" data-sec="sec3-3" data-kind="B">
+<div class="qhead"><span class="num">第 29 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q9">衍生自 115-1 第 9 題 ↗</a></div>
+<p class="stem">團隊希望優化器能「為每個參數自適應調整學習率」，又要避免 Adagrad 學習率不斷衰減到停滯的問題，但暫時不想引入動量項。依指引的優化器比較，最符合的選擇為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 全批次梯度下降（GD）</li><li class="ok"><span class="k">(B)</span> RMSprop</li><li><span class="k">(C)</span> 動量法（Momentum）</li><li><span class="k">(D)</span> 牛頓法（Newton）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>RMSprop 引入梯度平方的滑動平均來修正 Adagrad 學習率下降過快的問題，保留逐參數自適應學習率，且本身不含動量項，指引註明它穩定訓練、適合非穩定梯度（如 RNN）（指引 3.3 進階方法）。(A) 全批次 GD 對所有參數用同一個固定學習率；(C) 動量法的重點是累積梯度方向加速收斂，正是題幹說暫不引入的機制，且它不做自適應學習率；(D) 牛頓法是二階方法，不屬於自適應學習率家族。</div></div>
+</article>
+<article class="q" id="延-中3-q30" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 30 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q2">衍生自 115-1 第 2 題 ↗</a></div>
+<p class="stem">工業感測器的迴歸資料含有不少異常讀值。工程師希望損失函數在誤差小時像 MSE 一樣平滑、便於收斂，誤差很大時又像 MAE 一樣不被平方放大。最符合需求的損失函數為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 均方誤差（MSE）</li><li><span class="k">(B)</span> 交叉熵損失</li><li class="ok"><span class="k">(C)</span> Huber 損失</li><li><span class="k">(D)</span> Hinge 損失</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 3.3 的損失函數表說明 Huber 損失結合 MSE 與 MAE 的優點：小誤差區間用二次式（平滑、梯度隨誤差變化），大誤差區間改為線性（抗雜訊），正是題幹要的平衡。(A) MSE 會放大大誤差的懲罰，異常值會主導訓練；(B) 交叉熵是分類任務的損失，不適用連續目標；(D) Hinge 損失用於 SVM 等最大間隔分類器，同樣不是迴歸損失。</div></div>
+</article>
+<article class="q" id="延-中3-q31" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 31 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q10">衍生自 115-1 第 10 題 ↗</a></div>
+<p class="stem">晶圓瑕疵影像分類中，正常影像佔 99%。訓練時大量「容易分對的正常樣本」累積的損失淹沒了少數難分類的瑕疵樣本。希望損失函數能自動降低易分類樣本的權重、聚焦難分類樣本，應選擇下列何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Focal Loss</li><li><span class="k">(B)</span> 均方誤差（MSE）</li><li><span class="k">(C)</span> 對比損失（Contrastive Loss）</li><li><span class="k">(D)</span> 重建損失（Reconstruction Loss）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>Focal Loss 在交叉熵前加上 (1−p)^γ 的調節因子，預測機率已經很高的易分類樣本損失被大幅壓低，模型因而把注意力放在難分類樣本上，指引註明它適合資料不平衡問題（指引 3.3 損失函數與學習目標）。(B) MSE 是迴歸損失，對分類不平衡沒有調節機制；(C) 對比損失學的是樣本對之間的相似度，用於人臉辨識、語意匹配；(D) 重建損失衡量輸入與輸出相似度，用於自編碼器與生成模型。</div></div>
+</article>
+<article class="q" id="延-中3-q32" data-sec="sec3-3" data-kind="B">
+<div class="qhead"><span class="num">第 32 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q10">衍生自 115-1 第 10 題 ↗</a></div>
+<p class="stem">門禁系統要訓練人臉特徵抽取模型，目標是讓「同一人的兩張照片」在嵌入空間距離很近、「不同人的照片」距離很遠。依指引的損失函數分類，最適合的損失為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 交叉熵損失</li><li class="ok"><span class="k">(B)</span> 對比損失（Contrastive Loss）</li><li><span class="k">(C)</span> 平均絕對誤差（MAE）</li><li><span class="k">(D)</span> Huber 損失</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>對比損失以「樣本對」為單位學習相似度：相似對拉近、相異對推遠，指引指出它常用於人臉辨識與語意匹配（指引 3.3 損失函數表）。(A) 交叉熵需要固定的類別標籤，新員工加入就得重訓分類頭，不適合開放集合的人臉比對；(C)(D) MAE 與 Huber 是迴歸任務衡量數值誤差的損失，與「成對相似度」的學習目標無關。</div></div>
+</article>
+<article class="q" id="延-中3-q33" data-sec="sec3-3" data-kind="D">
+<div class="qhead"><span class="num">第 33 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q12">衍生自 114-2 第 12 題 ↗</a></div>
+<p class="stem">某線性模型只有一個權重 w，目前 w=2.0，學習率設為 0.1，當前批次算出損失對 w 的梯度為 4.0。依梯度下降的更新規則，更新後的 w 為多少？</p>
+<ul class="opts"><li><span class="k">(A)</span> 2.4</li><li><span class="k">(B)</span> 0.4</li><li><span class="k">(C)</span> 1.96</li><li class="ok"><span class="k">(D)</span> 1.6</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>梯度下降的更新為 w ← w − η·∇L = 2.0 − 0.1×4.0 = 1.6，沿梯度反方向前進以降低損失（指引 3.3 梯度下降）。(A) 2.4 是把梯度加上去，方向相反會使損失上升；(B) 0.4 只是學習率乘梯度的步長，不是更新後的權重；(C) 1.96 相當於誤用了 0.01 的學習率。</div></div>
+</article>
+<article class="q" id="延-中3-q34" data-sec="sec3-3" data-kind="D">
+<div class="qhead"><span class="num">第 34 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q11">衍生自 115-1 第 11 題 ↗</a></div>
+<p class="stem">訓練集共 50,000 筆，採小批次梯度下降，批次大小設為 250，共訓練 10 個 Epoch。整個訓練過程參數總共更新幾次？</p>
+<ul class="opts"><li><span class="k">(A)</span> 200 次</li><li class="ok"><span class="k">(B)</span> 2,000 次</li><li><span class="k">(C)</span> 500 次</li><li><span class="k">(D)</span> 5,000 次</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>一個 Epoch 要走完全部資料：50,000 ÷ 250 = 200 個批次，每個批次更新一次參數；10 個 Epoch 就是 200 × 10 = 2,000 次更新（指引 3.3 小批次梯度下降）。(A) 200 次只是單一 Epoch 的更新數；(C) 500 是誤用 50,000 ÷ 100；(D) 5,000 相當於批次大小 100 時的結果。</div></div>
+</article>
+<article class="q" id="延-中3-q35" data-sec="sec3-3" data-kind="A">
+<div class="qhead"><span class="num">第 35 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q50">衍生自 115-1 第 50 題 ↗</a></div>
+<p class="stem">某 RNN 語言模型訓練到第 12 個 Epoch 時損失突然跳成 NaN，檢查後確認是反向傳播時梯度範數暴增所致。依指引列出的穩定訓練策略，最直接針對此問題的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 提早停止（Early Stopping）</li><li><span class="k">(B)</span> 把訓練 Epoch 數加倍</li><li class="ok"><span class="k">(C)</span> 梯度裁剪（Gradient Clipping）</li><li><span class="k">(D)</span> 縮小批次大小到 1</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>梯度裁剪在更新前把梯度範數限制在上限內，專門用來防止梯度爆炸造成數值溢出，指引在穩定訓練策略中明列此法（指引 3.3 收斂判準與訓練穩定性）。(A) 提早停止監控驗證效能以防過擬合，不處理梯度大小；(B) 多訓練幾輪無法阻止爆炸，NaN 出現後繼續訓練也沒有意義；(D) 批次縮到 1 會讓梯度估計更不穩定，指引也指出批次過小是不穩定因素之一。</div></div>
+</article>
+<article class="q" id="延-中3-q36" data-sec="sec3-3" data-kind="C">
+<div class="qhead"><span class="num">第 36 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引對「收斂判準」的說明，下列何者不是常見的收斂判斷依據？</p>
+<ul class="opts"><li><span class="k">(A)</span> 損失函數的變化量低於預設的 ε</li><li><span class="k">(B)</span> 驗證集效能連續多輪不再提升</li><li><span class="k">(C)</span> 梯度的大小趨近於零</li><li class="ok"><span class="k">(D)</span> 訓練集準確率達到 100%</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 3.3 列出的收斂判準有四項：損失變化趨緩（變化量低於 ε）、驗證集效能不再提升、梯度趨近零、訓練步數或時間達上限。訓練集準確率達 100% 不是收斂判準，反而常是過擬合的訊號，此時驗證效能可能早已開始下降。(A)(B)(C) 都是指引明列的判準。</div></div>
+</article>
+<article class="q" id="延-中3-q37" data-sec="sec3-3" data-kind="C">
+<div class="qhead"><span class="num">第 37 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某主題模型採用非負矩陣分解，要求所有參數必須非負；另一個分類模型要求輸出的各類別機率總和為 1。依指引對最佳化問題結構的說明，這兩項限制屬於哪一個組成要素？</p>
+<ul class="opts"><li><span class="k">(A)</span> 目標函數（Objective Function）</li><li><span class="k">(B)</span> 決策變數（Decision Variables）</li><li class="ok"><span class="k">(C)</span> 可行域（Feasible Region）</li><li><span class="k">(D)</span> 收斂判準（Convergence Criteria）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>可行域又稱參數空間，定義決策變數的合法範圍，指引列舉的常見限制正包含非負條件（NMF）、總和約束（機率分佈總和為 1）、上下限與稀疏性限制（指引 3.3 最佳化問題的基本結構）。(A) 目標函數是要最小化的損失；(B) 決策變數是被調整的參數本身，限制是加在它身上的條件而不是變數本身；(D) 收斂判準決定何時停止迭代。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec4-1"><h2 class="chap">4.1 機器學習原理與技術 <small>11 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec4-1">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q3" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 3 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某電商想把數十萬筆「商品描述文字」自動分成若干主題，但沒有任何人工標註的類別。就機器學習的學習類型而言，這個任務最適合歸類為下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 監督式學習：以描述文字為輸入、商品類別為標籤</li><li class="ok"><span class="k">(B)</span> 非監督式學習：由資料本身的結構找出群組</li><li><span class="k">(C)</span> 強化學習：由環境回饋的獎勵調整分群策略</li><li><span class="k">(D)</span> 半監督式學習：以少量標註帶動大量未標註資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>沒有任何標籤、目標是從資料本身找出群組結構，是非監督式學習（分群、主題模型）的典型情境（指引 4.1 機器學習原理：監督／非監督／強化學習的差異）。(A) 監督式需要已標註的類別；(D) 半監督式至少要有少量標註，題幹明說「沒有任何人工標註」；(C) 強化學習需要代理人與環境互動並取得獎勵，分主題沒有這種回饋機制。</div></div>
+</article>
+<article class="q" id="延-中3-q38" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 38 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">以強化學習訓練自駕車，當車輛遇到紅燈時執行「煞車」，之後收到正向回饋。若以馬可夫決策過程描述，「煞車」這個行為對應下列哪一個組成要素？</p>
+<ul class="opts"><li><span class="k">(A)</span> 狀態（State）</li><li class="ok"><span class="k">(B)</span> 動作（Action）</li><li><span class="k">(C)</span> 報酬（Reward）</li><li><span class="k">(D)</span> 策略（Policy）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>MDP 的基本組成為代理人、環境、狀態、動作、報酬、策略與價值函數；代理人在某狀態下實際採取的行為就是動作（指引 4.1 馬可夫決策過程）。(A) 狀態是「遇到紅燈」這個環境情況；(C) 報酬是煞車後收到的正向回饋；(D) 策略是從狀態到動作的對應規則（「看到紅燈就煞車」），不是單一次的行為本身。</div></div>
+</article>
+<article class="q" id="延-中3-q39" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 39 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">在強化學習中，「從某個狀態出發、依照目前策略持續行動，預期能獲得的長期累積報酬」這個量稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 即時報酬（Reward）</li><li><span class="k">(B)</span> 策略（Policy）</li><li class="ok"><span class="k">(C)</span> 價值函數（Value Function）</li><li><span class="k">(D)</span> 環境（Environment）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>價值函數衡量狀態（或狀態—動作對）的長期價值，即依策略行動所能得到的累積報酬期望，是代理人判斷「哪個狀態比較好」的依據（指引 4.1 MDP 組成）。(A) 即時報酬只是單一步驟從環境得到的回饋；(B) 策略是狀態到動作的對應，是決策規則而非價值；(D) 環境是代理人互動的對象，提供狀態轉移與報酬。</div></div>
+</article>
+<article class="q" id="延-中3-q40" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 40 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某工廠用強化學習控制機械手臂，輸出是六個關節的旋轉角度，每個角度可以是範圍內的任意實數。依指引的分類，此任務的決策空間屬於下列何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 連續動作空間</li><li><span class="k">(B)</span> 離散動作空間</li><li><span class="k">(C)</span> 狀態空間</li><li><span class="k">(D)</span> 假設空間</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 依決策空間把強化學習分為離散動作空間（遊戲動作、導航決策）與連續動作空間（機械臂運動、車輛轉向）；關節角度可取任意實數，屬連續動作空間。(B) 離散動作空間是有限個可選動作，如上下左右；(C) 狀態空間描述環境可能的狀態，不是代理人的輸出；(D) 假設空間是模型能表示的函數集合，屬監督式學習的概念。</div></div>
+</article>
+<article class="q" id="延-中3-q41" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 41 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">行銷團隊用非監督式分群把 10 萬名顧客分成數群，但沒有任何「正確分群」的標籤可對照。依指引對三大學習類型評估方式的整理，最適合評估此分群結果的指標為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> F1-score</li><li><span class="k">(B)</span> 決定係數 R²</li><li class="ok"><span class="k">(C)</span> Silhouette 係數</li><li><span class="k">(D)</span> 平均累積報酬</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>非監督式學習的評估分內部指標（Silhouette、Davies-Bouldin、重建誤差）與外部指標（Rand Index、AMI，需有參考標籤）；沒有標籤時用內部指標，Silhouette 以群內緊密度與群間分離度評分（指引 4.1 三大學習類型表）。(A) F1 需要真實類別標籤，是監督式分類指標；(B) R² 是迴歸指標；(D) 平均累積報酬是強化學習的評估方式。</div></div>
+</article>
+<article class="q" id="延-中3-q42" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 42 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">探索資料後發現，目標變數的真實決策邊界呈「若 A&gt;3 且 B&lt;5 則為類別 1」這類階梯狀的條件規則。依指引對「模型與假設空間」的說明，哪一種模型的隱含假設與此結構最匹配？</p>
+<ul class="opts"><li><span class="k">(A)</span> 線性模型（假設線性邊界）</li><li><span class="k">(B)</span> 邏輯迴歸（假設線性可分）</li><li><span class="k">(C)</span> 樸素貝氏（假設特徵條件獨立）</li><li class="ok"><span class="k">(D)</span> 決策樹（假設條件規則）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 指出不同模型對資料隱含不同假設：線性模型假設線性邊界、決策樹假設條件規則、神經網路傾向非線性結構；階梯狀的「若…且…則」規則正是決策樹的假設空間。(A)(B) 線性邊界無法用一條直線切出階梯狀區域；(C) 樸素貝氏的核心假設是特徵之間條件獨立，與邊界形狀的描述無關。</div></div>
+</article>
+<article class="q" id="延-中3-q43" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 43 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某工程師把資料分成訓練集與測試集後，反覆在測試集上比較不同超參數的分數，最後挑出測試分數最高的組合當作模型成績對外報告。依指引對資料分割角色的說明，此做法的問題為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 測試集只能用於最終評估，選超參數應使用驗證集</li><li><span class="k">(B)</span> 測試集筆數必須大於訓練集，否則無法比較超參數</li><li><span class="k">(C)</span> 超參數應直接在訓練集上挑選，不需要驗證集</li><li><span class="k">(D)</span> 做法正確，測試集本來就是用來挑超參數的</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 定義三個資料集的角色：訓練集學參數、驗證集調超參數並監控過擬合、測試集做最終評估。反覆用測試集挑超參數，等於讓測試資訊洩漏進模型選擇，報告的分數會偏樂觀，失去「未見資料」的意義。(B) 測試集通常比訓練集小，大小不是問題所在；(C) 在訓練集上挑超參數會一味偏好複雜模型，無法偵測過擬合；(D) 挑超參數是驗證集的工作，不是測試集。</div></div>
+</article>
+<article class="q" id="延-中3-q44" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 44 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某電商的動態訂價系統每小時依市場反應調整價格，目標是讓整季的累積營收最大，而非單次定價正確。依指引對任務目標型態的分類，這最接近哪一種任務？</p>
+<ul class="opts"><li><span class="k">(A)</span> 迴歸（預測連續數值）</li><li><span class="k">(B)</span> 聚類（無標籤分群）</li><li class="ok"><span class="k">(C)</span> 序列決策（強化學習）</li><li><span class="k">(D)</span> 降維（壓縮特徵）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 把任務目標分為分類、迴歸、聚類、降維與序列決策；「持續依環境回饋調整行動、最大化長期累積報酬」是序列決策的特徵，對應強化學習（指引 4.1 任務目標與三大學習類型）。(A) 迴歸只預測一個數值，不處理行動與長期回饋的關係；(B) 聚類是在無標籤資料中找群組結構；(D) 降維是壓縮特徵維度，與定價決策無關。</div></div>
+</article>
+<article class="q" id="延-中3-q45" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 45 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">評估一個以強化學習訓練的倉儲機器人時，依指引對三大學習類型評估方式的整理，下列哪一組指標最適合？</p>
+<ul class="opts"><li><span class="k">(A)</span> Silhouette 與 Davies-Bouldin</li><li><span class="k">(B)</span> Precision、Recall 與 F1</li><li><span class="k">(C)</span> 重建誤差與 Rand Index</li><li class="ok"><span class="k">(D)</span> 平均累積報酬、任務成功率與策略穩定性</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 的三大學習類型表指出強化式學習以平均累積報酬、成功率、策略穩定性與收斂速度評估，因為它的目標是最大化長期報酬而非逐筆預測正確。(A) Silhouette、Davies-Bouldin 是分群的內部指標；(B) Precision／Recall／F1 是監督式分類指標；(C) 重建誤差與 Rand Index 都是非監督式學習的指標。</div></div>
+</article>
+<article class="q" id="延-中3-q46" data-sec="sec4-1" data-kind="C">
+<div class="qhead"><span class="num">第 46 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引對強化學習實務挑戰的說明，下列何者不是其列出的挑戰？</p>
+<ul class="opts"><li><span class="k">(A)</span> 樣本效率低，需要大量互動才能學會</li><li><span class="k">(B)</span> 訓練過程不穩定</li><li><span class="k">(C)</span> 實務部署門檻高</li><li class="ok"><span class="k">(D)</span> 必須先準備大量人工標註的標籤資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 4.1 指出強化學習的挑戰包含樣本效率低、訓練不穩定、實務部署門檻高。強化學習透過與環境互動取得報酬訊號學習，不依賴人工標註的標籤資料，「需要大量標註」是監督式學習的特性，故 (D) 不是指引列出的挑戰。(A)(B)(C) 皆為指引明列項目。</div></div>
+</article>
+<article class="q" id="延-中3-q47" data-sec="sec4-1" data-kind="A">
+<div class="qhead"><span class="num">第 47 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q29">衍生自 115-1 第 29 題 ↗</a></div>
+<p class="stem">某工廠的瑕疵影像有 50 萬張，但只有 2,000 張由品管人員標註過類別，其餘都未標註。團隊希望同時利用這少量標註與大量未標註影像來訓練分類器。這屬於哪一種學習型態？</p>
+<ul class="opts"><li><span class="k">(A)</span> 監督式學習</li><li class="ok"><span class="k">(B)</span> 半監督式學習</li><li><span class="k">(C)</span> 強化學習</li><li><span class="k">(D)</span> 非監督式學習</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>少量標註資料帶動大量未標註資料一起學習，是半監督式學習的定義；監督式只用有標籤資料、非監督式完全不用標籤（指引 4.1 三大學習類型與其延伸）。(A) 監督式學習只能用那 2,000 張，浪費 49.8 萬張未標註影像；(C) 強化學習需要環境與報酬訊號，影像分類沒有這種互動；(D) 非監督式學習不使用任何標籤，題幹明確要「同時利用」標註資料。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec4-2"><h2 class="chap">4.2 常見機器學習演算法 <small>14 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec4-2">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q48" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 48 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q4">衍生自 114-2 第 4 題 ↗</a></div>
+<p class="stem">以 DBSCAN 對門市座標分群，參數設 Eps=500 公尺、MinPts=5。某門市在半徑 500 公尺內（含自己）共有 7 家門市。依 DBSCAN 的定義，該門市屬於哪一種點？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 核心點（Core Point）</li><li><span class="k">(B)</span> 邊界點（Border Point）</li><li><span class="k">(C)</span> 雜訊點（Noise Point）</li><li><span class="k">(D)</span> 質心點（Centroid）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>DBSCAN 以 Eps 鄰域內的點數判斷：鄰域內點數達 MinPts 即為核心點，可向外擴展群集；7 ≥ 5，故為核心點（指引 4.2 DBSCAN 原理）。(B) 邊界點是自身鄰域點數不足、但落在某核心點鄰域內的點；(C) 雜訊點既非核心也不在任何核心點鄰域內；(D) 質心是 K-means 的概念，DBSCAN 沒有質心。</div></div>
+</article>
+<article class="q" id="延-中3-q49" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 49 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q8">衍生自 114-2 第 8 題 ↗</a></div>
+<p class="stem">決策樹在每個節點選擇分裂特徵時，需要一個衡量「分裂後純度提升多少」的準則。依指引，下列何者不是決策樹分類器使用的分裂依據？</p>
+<ul class="opts"><li><span class="k">(A)</span> 基尼不純度（Gini Impurity）</li><li><span class="k">(B)</span> 資訊增益（Information Gain）</li><li><span class="k">(C)</span> 分類誤差（Classification Error）</li><li class="ok"><span class="k">(D)</span> 歐氏距離（Euclidean Distance）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 指出決策樹分類器的分裂依據為基尼不純度、資訊增益（基於熵）與分類誤差，三者都在衡量節點的類別純度。歐氏距離是 KNN、K-means、SVM 等以距離為基礎的模型所用的度量，決策樹分裂時不計算樣本間距離，也因此對特徵尺度不敏感。</div></div>
+</article>
+<article class="q" id="延-中3-q50" data-sec="sec4-2" data-kind="B">
+<div class="qhead"><span class="num">第 50 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q7">衍生自 114-2 第 7 題 ↗</a></div>
+<p class="stem">某工廠每台設備有 400 個感測器通道，團隊想把這 400 維資料壓縮成 16 維的低維表示，並能從低維表示重建原始訊號以偵測異常。最適合的模型為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 自編碼器（Autoencoder）</li><li><span class="k">(B)</span> 長短期記憶網路（LSTM）</li><li><span class="k">(C)</span> 決策樹分類器</li><li><span class="k">(D)</span> 邏輯迴歸</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>自編碼器以編碼器把輸入壓縮到低維瓶頸層、再以解碼器重建輸入，重建誤差可用於異常偵測，是非線性降維與結構重建的代表（指引 4.2 降維技術、5.2 降維模型配對）。(B) LSTM 擅長的是時間序列的長期依賴，不是把維度壓縮成可重建的表示；(C)(D) 是監督式分類模型，需要標籤且不做降維重建。</div></div>
+</article>
+<article class="q" id="延-中3-q51" data-sec="sec4-2" data-kind="B">
+<div class="qhead"><span class="num">第 51 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q15">衍生自 115-1 第 15 題 ↗</a></div>
+<p class="stem">某城市的共享單車停放點座標呈現幾條沿河岸的狹長帶狀群集，資料中還混有 GPS 飄移產生的零星雜訊點，且事先不知道應分成幾群。依指引對分群演算法的比較，最適合的方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> K-means</li><li><span class="k">(B)</span> 階層式分群</li><li class="ok"><span class="k">(C)</span> DBSCAN</li><li><span class="k">(D)</span> 主成分分析（PCA）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>DBSCAN 基於密度，不需預先指定群數、可發現任意形狀的群集並能把低密度點標為雜訊，正好對應狹長帶狀群集、雜訊點與群數未知三項條件（指引 4.2 分群分析表）。(A) K-means 須指定 K、只能形成球形／凸形群集且對離群值敏感；(B) 階層式分群雖不需指定 K，但對離群值敏感且計算複雜度高，也不特別擅長帶狀群集；(D) PCA 是降維方法，不做分群。</div></div>
+</article>
+<article class="q" id="延-中3-q52" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 52 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q28">衍生自 115-1 第 28 題 ↗</a></div>
+<p class="stem">某集成模型的訓練方式是：先建一棵樹，再建第二棵樹去擬合第一棵的殘差，第三棵再修正前兩棵的誤差，依序累加。依指引對集成策略的分類，這屬於哪一類？</p>
+<ul class="opts"><li><span class="k">(A)</span> Bagging（隨機森林）</li><li class="ok"><span class="k">(B)</span> Boosting（梯度提升）</li><li><span class="k">(C)</span> 單棵決策樹的剪枝</li><li><span class="k">(D)</span> K 最近鄰的投票</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>逐步建立模型、每個新模型修正前一個的錯誤並加權整合，是 Boosting 的定義，梯度提升正是「每棵樹學習修正前一棵的殘差」，重點在降低偏差（指引 4.2 集成式迴歸與分類）。(A) Bagging 是在不同 Bootstrap 樣本上平行建立獨立模型再平均或投票，各樹之間沒有先後修正關係；(C) 剪枝是控制單棵樹複雜度的手段；(D) KNN 的投票是對鄰居標籤計票，與集成多個模型無關。</div></div>
+</article>
+<article class="q" id="延-中3-q53" data-sec="sec4-2" data-kind="C">
+<div class="qhead"><span class="num">第 53 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">單棵決策樹在訓練集準確率 99%、驗證集 78%，明顯過擬合。團隊希望用集成方法「主要降低變異」來改善。依指引對 Bagging 與 Boosting 重點的區分，應優先採用下列何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 隨機森林（Bagging）</li><li><span class="k">(B)</span> 梯度提升（Boosting）</li><li><span class="k">(C)</span> 線性迴歸</li><li><span class="k">(D)</span> 樸素貝氏</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 指出 Bagging 以隨機抽樣建立多個獨立模型再多數決，重點在降低變異性，隨機森林是代表；Boosting 逐步修正錯誤，重點在降低偏差。過擬合屬高變異問題，應選 Bagging。(B) Boosting 對付的是偏差（欠擬合），用在已過擬合的情況反而可能更過擬合；(C)(D) 是換成另一種單一模型，不是集成方法，也不針對變異。</div></div>
+</article>
+<article class="q" id="延-中3-q54" data-sec="sec4-2" data-kind="D">
+<div class="qhead"><span class="num">第 54 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q8">衍生自 114-2 第 8 題 ↗</a></div>
+<p class="stem">購物籃分析中，商品 A 出現在 40% 的交易、商品 B 出現在 50% 的交易，兩者同時出現在 20% 的交易。規則 A⇒B 的提升度（Lift）為何？應如何解讀？</p>
+<ul class="opts"><li><span class="k">(A)</span> Lift＝2.0，A 與 B 正相關</li><li><span class="k">(B)</span> Lift＝0.4，A 與 B 負相關</li><li><span class="k">(C)</span> Lift＝0.5，A 與 B 負相關</li><li class="ok"><span class="k">(D)</span> Lift＝1.0，A 與 B 彼此獨立</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>信賴度 Confidence(A⇒B)=Support(A∪B)/Support(A)=0.2/0.4=0.5；提升度 Lift=Confidence/P(B)=0.5/0.5=1.0。Lift=1 代表買 A 不改變買 B 的機率，兩者獨立（指引 4.2 關聯規則衡量標準）。(A) 2.0 是誤把 0.2/(0.4×0.5)… 算成 0.2/0.1；(B) 0.4 只是 Support(A)；(C) 0.5 是信賴度，不是提升度。</div></div>
+</article>
+<article class="q" id="延-中3-q55" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 55 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q9">衍生自 114-2 第 9 題 ↗</a></div>
+<p class="stem">資料集中「年收入」以元為單位（數十萬到數百萬）、「年齡」以歲為單位，工程師忘記做特徵縮放就直接訓練。依指引對各演算法限制的說明，下列哪一種模型受此疏忽的影響最小？</p>
+<ul class="opts"><li><span class="k">(A)</span> K 最近鄰（KNN）</li><li><span class="k">(B)</span> 支援向量機（SVM）</li><li class="ok"><span class="k">(C)</span> 決策樹</li><li><span class="k">(D)</span> 以梯度下降訓練的邏輯迴歸</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>決策樹依單一特徵的閾值分裂，只在意數值大小順序，不計算距離也不混合不同特徵的尺度，因此對縮放不敏感（指引 4.2 決策樹原理）。(A) KNN 以距離決定鄰居，指引明列它對特徵尺度敏感、需縮放；(B) SVM 找最大間隔超平面同樣依賴距離；(D) 邏輯迴歸以梯度下降求解時，尺度差異會讓損失面極度狹長、收斂困難，也需要縮放。</div></div>
+</article>
+<article class="q" id="延-中3-q56" data-sec="sec4-2" data-kind="B">
+<div class="qhead"><span class="num">第 56 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q18">衍生自 114-2 第 18 題 ↗</a></div>
+<p class="stem">某梯度提升實作採「葉子式（Leaf-wise）生長」並以「直方圖演算法」把連續特徵分桶，在千萬筆資料上比傳統實作更快、更省記憶體。依指引，這描述的是哪一個工具？</p>
+<ul class="opts"><li><span class="k">(A)</span> XGBoost</li><li class="ok"><span class="k">(B)</span> LightGBM</li><li><span class="k">(C)</span> 隨機森林</li><li><span class="k">(D)</span> 支援向量迴歸（SVR）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 區分兩者：XGBoost 用二階導數、層級式（Level-wise）生長、L1/L2 正則化與 Block 結構；LightGBM 用葉子式（Leaf-wise）生長與直方圖演算法，在大數據上更快更省記憶體，但 Leaf-wise 可能過擬合。(A) XGBoost 是層級式生長；(C) 隨機森林是 Bagging，不是梯度提升；(D) SVR 是支援向量迴歸，與樹模型無關。</div></div>
+</article>
+<article class="q" id="延-中3-q57" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 57 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q14">衍生自 115-1 第 14 題 ↗</a></div>
+<p class="stem">樸素貝氏垃圾郵件分類器上線後，只要信件含有訓練集中從未出現過的詞，整封信屬於任一類別的機率乘積就變成 0，無法判斷。最直接的修正方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 對詞頻做 Z-score 標準化後再訓練</li><li><span class="k">(B)</span> 增加訓練的 Epoch 數直到收斂</li><li class="ok"><span class="k">(C)</span> 加入拉普拉斯平滑</li><li><span class="k">(D)</span> 在損失函數加入 L2 正則化項</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 列出樸素貝氏的限制之一就是「零機率」問題，解法是拉普拉斯平滑：對每個詞的計數加上一個小常數，使未見過的詞不會把乘積歸零。(A) 樸素貝氏基於計數與機率，不需要也不會因標準化而解決零機率；(B) 樸素貝氏以計數估計機率，沒有 Epoch 迭代的概念；(D) L2 正則化是線性模型與神經網路的過擬合控制手段，與機率為零無關。</div></div>
+</article>
+<article class="q" id="延-中3-q58" data-sec="sec4-2" data-kind="C">
+<div class="qhead"><span class="num">第 58 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">信用卡交易異常偵測需在數千萬筆、數百維的資料上快速找出可疑交易，且資料極度不平衡；團隊希望方法不依賴距離度量、能並行處理。依指引對異常偵測方法的比較，最適合的是？</p>
+<ul class="opts"><li><span class="k">(A)</span> One-Class SVM</li><li><span class="k">(B)</span> K-means</li><li><span class="k">(C)</span> 邏輯迴歸</li><li class="ok"><span class="k">(D)</span> Isolation Forest</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 說明 Isolation Forest 以隨機孤立樹計算平均路徑長度得出異常分數，優點是高效、適合高維與大規模資料、不需距離度量、對不平衡資料表現良好。(A) One-Class SVM 可處理非線性邊界，但對參數敏感且計算成本高，不適合數千萬筆；(B) K-means 是分群而非異常偵測，且依賴歐氏距離；(C) 邏輯迴歸是監督式分類，極度不平衡且標籤稀少時效果差。</div></div>
+</article>
+<article class="q" id="延-中3-q59" data-sec="sec4-2" data-kind="A">
+<div class="qhead"><span class="num">第 59 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q6">衍生自 115-1 第 6 題 ↗</a></div>
+<p class="stem">團隊要把 768 維的文件嵌入降到 2 維做視覺化，希望同時保留局部與全局結構、速度比 t-SNE 快，且之後有新文件能增量加入投影。依指引對降維技術的比較，應選擇何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> UMAP</li><li><span class="k">(B)</span> t-SNE</li><li><span class="k">(C)</span> 主成分分析（PCA）</li><li><span class="k">(D)</span> 非負矩陣分解（NMF）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 指出 UMAP 比 t-SNE 更快、能保留局部與全局結構、參數較直觀並支援增量學習。(B) t-SNE 很會保留局部結構，但計算成本高、不保留全局結構，也無法對新資料增量投影；(C) PCA 是線性降維，對複雜的非線性嵌入結構視覺化效果有限；(D) NMF 要求資料非負，嵌入向量常含負值，且它的目的是部件分解而非視覺化。</div></div>
+</article>
+<article class="q" id="延-中3-q60" data-sec="sec4-2" data-kind="B">
+<div class="qhead"><span class="num">第 60 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q28">衍生自 115-1 第 28 題 ↗</a></div>
+<p class="stem">某實驗室要用 300 筆高維光譜資料預測材料強度，關係為非線性、資料含少數異常量測值，且希望誤差落在容忍範圍 ε 內的點不影響模型。依指引對迴歸演算法的比較，最適合的模型為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 線性迴歸</li><li class="ok"><span class="k">(B)</span> 支援向量迴歸（SVR）</li><li><span class="k">(C)</span> K-means</li><li><span class="k">(D)</span> 樸素貝氏</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>SVR 在多維空間尋找超平面使誤差落在 ε-tube 內，忽略誤差小於 ε 的點，提升對離群值的抵抗力，並可配合核函數處理非線性，指引註明適用非線性、中小規模、需抗離群值的情境（指引 4.2 迴歸演算法表）。(A) 線性迴歸無法捕捉非線性且對離群值敏感；(C) K-means 是分群，不做數值預測；(D) 樸素貝氏是分類器，指引明寫不適用迴歸。</div></div>
+</article>
+<article class="q" id="延-中3-q61" data-sec="sec4-2" data-kind="B">
+<div class="qhead"><span class="num">第 61 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q8">衍生自 114-2 第 8 題 ↗</a></div>
+<p class="stem">邏輯迴歸原本只處理二元分類。若要用它預測「客訴類型」共五個互斥類別，依指引應如何處理？</p>
+<ul class="opts"><li><span class="k">(A)</span> 邏輯迴歸無法處理多類別，必須改用決策樹</li><li class="ok"><span class="k">(B)</span> 採一對多（OvR）或多項式（Softmax）擴展</li><li><span class="k">(C)</span> 先用 K-means 把資料分成五群再各自訓練</li><li><span class="k">(D)</span> 先做 PCA 把類別數降到兩類</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引 4.2 指出邏輯迴歸適合二元分類，多類別需擴展，方式為一對多（One-vs-Rest）、Softmax 多類別機率或一對一（OvO）。(A) 邏輯迴歸可經擴展處理多類別，不必換模型；(C) K-means 是無監督分群，分出的群未必對應客訴類型，且仍沒解決多類別預測；(D) PCA 降的是特徵維度，不會也不能把類別數變少。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec4-3"><h2 class="chap">4.3 深度學習原理與框架 <small>20 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec4-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec4-3">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q4" data-sec="sec4-3" data-kind="D">
+<div class="qhead"><span class="num">第 4 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q38">衍生自 114-2 第 38 題 ↗</a></div>
+<p class="stem">下列 Keras 模型中，Dense 層的可訓練參數總數為多少？</p>
+<div class="fig"><pre>from tensorflow.keras import Sequential, layers
+model = Sequential([
+    layers.Input(shape=(20,)),
+    layers.Dense(16, activation="relu"),
+    layers.Dense(3, activation="softmax"),
+])</pre></div>
+<ul class="opts"><li><span class="k">(A)</span> 336</li><li><span class="k">(B)</span> 371</li><li class="ok"><span class="k">(C)</span> 387</li><li><span class="k">(D)</span> 400</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>全連接層參數 = 輸入維度 × 輸出單元數 + 偏置數。第一層 20×16 + 16 = 336；第二層 16×3 + 3 = 51；合計 336 + 51 = 387（指引 4.3 深度學習：全連接層的參數計算）。(A) 只算了第一層；(B) 第二層漏加偏置（336 + 48 = 384 再誤加）或算法錯誤；(D) 誤以 20×20 估算。</div></div>
+</article>
+<article class="q" id="延-中3-q62" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 62 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q5">衍生自 114-2 第 5 題 ↗</a></div>
+<p class="stem">一個瑕疵分類 CNN 依序由卷積層、池化層、攤平層與最後幾層組成。負責「把攤平後的特徵整合起來並輸出各類別分數」的是哪一種層？</p>
+<ul class="opts"><li><span class="k">(A)</span> 卷積層（Convolutional Layer）</li><li><span class="k">(B)</span> 池化層（Pooling Layer）</li><li class="ok"><span class="k">(C)</span> 全連接層（Fully Connected Layer）</li><li><span class="k">(D)</span> 批次正規化層（Batch Normalization）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>CNN 的分工：卷積層提取局部特徵、池化層降低空間維度、攤平後交給全連接層整合所有特徵並輸出最終分類分數（指引 4.3 CNN 架構）。(A) 卷積層負責特徵提取，不做最終整合；(B) 池化層只做降採樣；(D) 批次正規化層標準化每層輸入以穩定訓練，不產生類別輸出。</div></div>
+</article>
+<article class="q" id="延-中3-q63" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 63 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q6">衍生自 114-2 第 6 題 ↗</a></div>
+<p class="stem">CNN 的一個 3×3 卷積核在整張影像上滑動時，每個位置都使用同一組 9 個權重，而不是每個位置各自一組。這項設計稱為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 參數共享（Parameter Sharing）</li><li><span class="k">(B)</span> 區域感知（Local Receptive Field）</li><li><span class="k">(C)</span> 最大池化（Max Pooling）</li><li><span class="k">(D)</span> 隨機失活（Dropout）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>同一卷積核的權重在所有空間位置重複使用，就是參數共享，它讓 CNN 的參數量遠小於全連接網路，也是 CNN 效率優於 FCNN 的關鍵之一（指引 4.3 CNN 的核心機制）。(B) 區域感知指每個神經元只看輸入的一小塊區域，是另一個機制；(C) 最大池化是取區域最大值做降採樣；(D) Dropout 是訓練時隨機關閉神經元的正則化技術。</div></div>
+</article>
+<article class="q" id="延-中3-q64" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 64 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q47">衍生自 115-1 第 47 題 ↗</a></div>
+<p class="stem">某 CNN 在每個卷積層之後都加了一層 Batch Normalization。依指引，這一層的主要作用為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把 3D 特徵圖展平成 1D 向量以接全連接層</li><li><span class="k">(B)</span> 在訓練時隨機關閉一部分神經元以防止過擬合</li><li class="ok"><span class="k">(C)</span> 對每個小批次的層輸入做標準化，穩定分佈並改善梯度傳遞</li><li><span class="k">(D)</span> 對輸入影像做隨機翻轉與旋轉以擴增資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>批次正規化對每個小批次的層輸入減均值、除標準差再做仿射調整，使各層輸入分佈穩定，可加速收斂並減少梯度消失或爆炸，指引把它列為穩定訓練策略之一（指引 3.3、4.3）。(A) 展平是 Flatten 層的工作；(B) 隨機關閉神經元是 Dropout；(D) 翻轉旋轉是資料增強，在資料管線中而非網路層內進行。</div></div>
+</article>
+<article class="q" id="延-中3-q65" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 65 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q20">衍生自 115-1 第 20 題 ↗</a></div>
+<p class="stem">一張商品圖片可能同時帶有「有瑕疵」「包裝破損」「標籤缺失」等多個標籤（多標籤分類，標籤彼此不互斥）。輸出層的激活函數與損失函數應如何搭配？</p>
+<ul class="opts"><li><span class="k">(A)</span> Softmax 搭配 categorical cross-entropy</li><li class="ok"><span class="k">(B)</span> 每個輸出節點各用 Sigmoid，搭配二元交叉熵</li><li><span class="k">(C)</span> ReLU 搭配均方誤差（MSE）</li><li><span class="k">(D)</span> Tanh 搭配 Hinge 損失</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>多標籤任務中各標籤獨立成立或不成立，應讓每個輸出節點各自用 Sigmoid 輸出 0–1 的機率，並對每個標籤計算二元交叉熵（指引 4.3 輸出層設計）。(A) Softmax 會強制所有輸出機率總和為 1，只適合互斥的單標籤多類別；(C) ReLU 輸出無上界，MSE 也不是分類的標準損失；(D) Tanh 輸出 −1 到 1，Hinge 損失用於最大間隔分類器，皆不符多標籤機率輸出。</div></div>
+</article>
+<article class="q" id="延-中3-q66" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 66 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q23">衍生自 115-1 第 23 題 ↗</a></div>
+<p class="stem">客服系統要把每則留言分類為「投訴／詢問／讚美」，並標出留言中的產品名稱（命名實體辨識）。這兩個任務都需要同時利用上下文左右兩側的資訊來理解語意。依指引對 Transformer 架構的區分，最適合的預訓練模型類型為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> BERT（編碼器、雙向）</li><li><span class="k">(B)</span> GPT（解碼器、自迴歸）</li><li><span class="k">(C)</span> 卷積神經網路（CNN）</li><li><span class="k">(D)</span> 自編碼器（Autoencoder）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>BERT 是 Transformer 編碼器，以雙向注意力同時看到左右文脈，擅長分類、序列標註等理解型任務（指引 4.3 Transformer 與預訓練模型）。(B) GPT 是解碼器、單向自迴歸，專長是逐字生成文本，理解任務不如雙向編碼器；(C) CNN 以局部感受野為主，對長距離語意依賴較弱；(D) 自編碼器用於降維與重建，不是語言理解的預訓練架構。</div></div>
+</article>
+<article class="q" id="延-中3-q67" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 67 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q21">衍生自 114-2 第 21 題 ↗</a></div>
+<p class="stem">Transformer 沒有 RNN 的遞迴結構，自注意力機制本身對輸入的排列順序是不敏感的。為了讓模型知道「哪個 token 在前、哪個在後」，Transformer 加入了哪一項設計？</p>
+<ul class="opts"><li><span class="k">(A)</span> 多頭注意力（Multi-head Attention）</li><li class="ok"><span class="k">(B)</span> 位置編碼（Positional Encoding）</li><li><span class="k">(C)</span> 殘差連接（Residual Connection）</li><li><span class="k">(D)</span> 層正規化（Layer Normalization）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>位置編碼把每個位置的順序資訊以向量形式加到詞嵌入上，使自注意力能區分 token 的先後（指引 4.3 Transformer 組成）。(A) 多頭注意力的作用是從不同表示子空間同時捕捉多樣關聯，與順序無關；(C) 殘差連接讓梯度跨層傳遞、緩解深層退化；(D) 層正規化穩定每層輸出的分佈，三者都不提供位置資訊。</div></div>
+</article>
+<article class="q" id="延-中3-q68" data-sec="sec4-3" data-kind="D">
+<div class="qhead"><span class="num">第 68 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q49">衍生自 114-2 第 49 題 ↗</a></div>
+<p class="stem">依下列 Keras 模型定義，兩個 Dense 層的可訓練參數總數為多少？</p>
+<div class="fig"><pre>model = Sequential()
+model.add(Input(shape=(8,)))
+model.add(Dense(12, activation="relu"))
+model.add(Dense(1, activation="sigmoid"))</pre></div>
+<ul class="opts"><li><span class="k">(A)</span> 108</li><li><span class="k">(B)</span> 96</li><li><span class="k">(C)</span> 109</li><li class="ok"><span class="k">(D)</span> 121</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Dense 層參數＝輸入維度×輸出單元數＋偏置數。第一層：8×12＋12＝108；第二層：12×1＋1＝13；合計 108＋13＝121（指引 4.3 全連接層的參數計算）。(A) 108 只算了第一層；(B) 96 是第一層漏掉偏置；(C) 109 是第二層漏掉偏置或誤加。</div></div>
+</article>
+<article class="q" id="延-中3-q69" data-sec="sec4-3" data-kind="D">
+<div class="qhead"><span class="num">第 69 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q47">衍生自 115-1 第 47 題 ↗</a></div>
+<p class="stem">對一張 28×28、單通道的灰階影像套用 Keras 的 Conv2D(32, kernel_size=(3,3), padding=&quot;same&quot;)。輸出特徵圖的形狀與該層的參數量分別為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> (28, 28, 32)，參數 320 個</li><li><span class="k">(B)</span> (26, 26, 32)，參數 320 個</li><li><span class="k">(C)</span> (28, 28, 32)，參數 288 個</li><li><span class="k">(D)</span> (26, 26, 1)，參數 9 個</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>padding=&quot;same&quot; 會補邊使空間尺寸不變，32 個濾波器產生 32 個通道，輸出 (28, 28, 32)；參數＝3×3×輸入通道 1×32 個濾波器＋32 個偏置＝288＋32＝320（指引 4.3 卷積層輸出形狀與參數量）。(B) 26×26 是 padding=&quot;valid&quot; 時的尺寸；(C) 288 漏掉了 32 個偏置；(D) 把單一卷積核的 9 個權重當成整層參數，也忽略了 32 個濾波器。</div></div>
+</article>
+<article class="q" id="延-中3-q70" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 70 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q21">衍生自 115-1 第 21 題 ↗</a></div>
+<p class="stem">團隊有一個 70 層、準確率很高的教師模型，想訓練一個只有 8 層的小模型部署到手機，做法是讓小模型去學習教師模型輸出的機率分佈（軟標籤）。此技術稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型量化（Quantization）</li><li><span class="k">(B)</span> 權重剪枝（Pruning）</li><li class="ok"><span class="k">(C)</span> 知識蒸餾（Knowledge Distillation）</li><li><span class="k">(D)</span> 張量分解（Tensor Decomposition）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>知識蒸餾由大型教師模型指導小型學生模型，學生學習教師輸出的軟標籤而非只學硬標籤，在縮小模型的同時盡量保留效能（指引 4.3／5.2 模型壓縮與部署）。(A) 量化是把權重從 32 位元浮點數轉成低精度整數，不改變層數；(B) 剪枝是移除不重要的權重或通道；(D) 張量分解把大權重張量拆成小張量乘積，三者都不是「以教師指導學生」的訓練方式。</div></div>
+</article>
+<article class="q" id="延-中3-q71" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 71 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q41">衍生自 115-1 第 41 題 ↗</a></div>
+<p class="stem">交通號誌辨識模型要區分「僅准左轉」與「僅准右轉」兩種箭頭標誌。在訓練資料增強中，下列哪一項操作會直接破壞類別語意、導致標籤錯誤？</p>
+<ul class="opts"><li><span class="k">(A)</span> 隨機調整亮度</li><li><span class="k">(B)</span> 加入少量高斯雜訊</li><li><span class="k">(C)</span> 小角度隨機旋轉（±10°）</li><li class="ok"><span class="k">(D)</span> 隨機水平翻轉</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>左轉箭頭水平翻轉後就變成右轉箭頭，但標籤仍是「左轉」，模型會學到錯誤對應；凡類別本身帶有方向語意（箭頭、字母 b/d、數字），都不可用水平翻轉增強（指引 4.3 資料增強的適用性）。(A)(B) 改變亮度與雜訊只影響外觀不改變語意；(C) 小角度旋轉後箭頭方向仍可辨識，不會翻轉成另一類。</div></div>
+</article>
+<article class="q" id="延-中3-q72" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 72 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q17">衍生自 115-1 第 17 題 ↗</a></div>
+<p class="stem">某 12 層全連接網路每層都用 Sigmoid 激活，訓練時發現靠近輸入端的幾層權重幾乎不更新，整體損失下降極慢。最直接的改善措施為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 改用 ReLU 激活函數</li><li><span class="k">(B)</span> 把學習率提高十倍以加大更新</li><li><span class="k">(C)</span> 再多疊幾層 Sigmoid 以增加容量</li><li><span class="k">(D)</span> 把批次大小縮小到 8</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>Sigmoid 的導數最大只有 0.25，反向傳播連乘多層後梯度趨近於零，淺層幾乎學不到東西，這是梯度消失；ReLU 在正區間導數恆為 1，可大幅緩解（指引 4.3 激活函數與梯度消失）。(B) 提高學習率無法補救已被連乘壓成零的梯度，反而可能讓深層震盪；(C) 層數越多梯度消失越嚴重；(D) 批次大小影響梯度估計的穩定度，與梯度消失無關。</div></div>
+</article>
+<article class="q" id="延-中3-q73" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 73 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q27">衍生自 114-2 第 27 題 ↗</a></div>
+<p class="stem">改用 ReLU 後，工程師發現網路中有四成神經元的輸出在所有樣本上都恆為 0，且這些神經元的權重從此不再更新。這個現象稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 梯度爆炸（Exploding Gradient）</li><li><span class="k">(B)</span> 過擬合（Overfitting）</li><li><span class="k">(C)</span> 資料洩漏（Data Leakage）</li><li class="ok"><span class="k">(D)</span> 死亡 ReLU（Dying ReLU）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>ReLU 在輸入為負時輸出 0、梯度也為 0；若神經元因大梯度更新或學習率過大落入恆為負的區域，就永遠不再更新，稱為死亡 ReLU，可用 Leaky ReLU 或較小學習率改善（指引 4.3 激活函數）。(A) 梯度爆炸的徵兆是損失暴增或 NaN；(B) 過擬合是訓練好、驗證差，與神經元輸出恆為 0 無關；(C) 資料洩漏是驗證資訊混進訓練，屬資料問題。</div></div>
+</article>
+<article class="q" id="延-中3-q74" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 74 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q7">衍生自 114-2 第 7 題 ↗</a></div>
+<p class="stem">以基本 RNN 預測長度 500 步的設備感測序列時，模型幾乎記不住序列前段的資訊；改用 LSTM 後明顯改善。LSTM 能改善的主要原因為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> LSTM 的參數比 RNN 少，所以每一步更新更快</li><li class="ok"><span class="k">(B)</span> LSTM 以閘門控制記憶，保留長距離資訊</li><li><span class="k">(C)</span> LSTM 不需要依時間順序處理輸入</li><li><span class="k">(D)</span> LSTM 用卷積核取代了遞迴運算</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>LSTM 以輸入閘、遺忘閘、輸出閘控制細胞狀態的寫入與保留，讓重要資訊能跨很多時間步傳遞，緩解基本 RNN 在長序列上的梯度消失與遺忘問題（指引 4.3 RNN／LSTM）。(A) LSTM 每個單元有多個閘門，參數比基本 RNN 更多；(C) LSTM 仍是遞迴結構，必須依序處理；(D) 用卷積處理序列的是 TCN，不是 LSTM。</div></div>
+</article>
+<article class="q" id="延-中3-q75" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 75 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q42">衍生自 115-1 第 42 題 ↗</a></div>
+<p class="stem">團隊有 20 萬張標註好的醫學影像，要以 ImageNet 預訓練的 ResNet 做遷移學習。由於醫學影像與自然影像差異很大、且資料量充足，依遷移學習策略的選擇原則，最適合的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 特徵萃取：凍結全部卷積層，只訓練新的分類頭</li><li><span class="k">(B)</span> 零樣本學習：不做任何訓練直接推論</li><li class="ok"><span class="k">(C)</span> 全面微調：解凍所有層，以較小學習率訓練</li><li><span class="k">(D)</span> 知識蒸餾：讓 ResNet 學習一個更小的模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>目標領域與來源領域差異大、且目標資料量充足時，凍結的卷積特徵不一定適用，應解凍所有層做全面微調，並用較小學習率避免破壞預訓練特徵（指引 4.3 遷移學習策略）。(A) 特徵萃取適合資料少、領域相近的情況；(B) 零樣本學習不訓練，對差異大的醫學影像效果差；(D) 蒸餾的方向是小模型學大模型，且不是用來適配新領域的方法。</div></div>
+</article>
+<article class="q" id="延-中3-q76" data-sec="sec4-3" data-kind="D">
+<div class="qhead"><span class="num">第 76 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q42">衍生自 114-2 第 42 題 ↗</a></div>
+<p class="stem">VGG16 分類器中有一層全連接層 Linear(4096 → 4096)。該層的參數量（含偏置）為多少？</p>
+<ul class="opts"><li><span class="k">(A)</span> 16,777,216</li><li><span class="k">(B)</span> 4,096</li><li><span class="k">(C)</span> 8,192</li><li class="ok"><span class="k">(D)</span> 16,781,312</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>全連接層參數＝輸入維度×輸出維度＋偏置數＝4096×4096＋4096＝16,777,216＋4,096＝16,781,312，與 torchsummary 列出的 Linear-36 參數量一致（指引 4.3 全連接層參數計算）。(A) 16,777,216 漏掉了 4,096 個偏置；(B) 4,096 只是偏置數；(C) 8,192 是把輸入與輸出維度相加。</div></div>
+</article>
+<article class="q" id="延-中3-q77" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 77 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q19">衍生自 115-1 第 19 題 ↗</a></div>
+<p class="stem">工程師發現訓練 RNN 時 GPU 利用率只有 15%，換成 Transformer 後同樣資料 GPU 利用率接近 90%。造成 RNN 利用率低的根本原因為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 時間步之間有先後依賴，難以平行計算</li><li><span class="k">(B)</span> RNN 的參數量遠大於 Transformer</li><li><span class="k">(C)</span> RNN 無法使用小批次訓練</li><li><span class="k">(D)</span> RNN 的激活函數只能在 CPU 執行</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>RNN 的第 t 步隱狀態依賴第 t−1 步的結果，序列內的運算必須逐步進行，GPU 的大量核心大多在等待；Transformer 的自注意力讓序列內所有位置同時計算，可充分平行（指引 4.3 Transformer 相對 RNN 的優勢）。(B) RNN 參數通常比 Transformer 少；(C) RNN 可以用小批次，只是批次內每條序列仍要逐步算；(D) 激活函數在 GPU 上都能執行。</div></div>
+</article>
+<article class="q" id="延-中3-q78" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 78 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q22">衍生自 115-1 第 22 題 ↗</a></div>
+<p class="stem">某 RAG 系統把每份文件切成 2,000 token 的大片段。使用者問具體條款時，檢索回來的片段雖然包含答案，但九成內容是無關段落，LLM 常被干擾而答錯。在檢索前處理階段最直接的改善為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 縮小切片大小並在相鄰切片間保留重疊</li><li><span class="k">(B)</span> 改用參數量更大的 LLM</li><li><span class="k">(C)</span> 把檢索結果隨機打亂後再送入 LLM</li><li><span class="k">(D)</span> 移除向量索引改成全文逐字掃描</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>切片過大會讓單一向量混入大量無關語意，檢索命中後也把雜訊一起送進提示；縮小切片並保留重疊，可讓每個向量更聚焦、答案更精準（指引 4.3 RAG 檢索流程）。(B) 更大的 LLM 無法解決輸入本身充滿雜訊的問題；(C) 打亂順序只會讓相關內容更難被利用；(D) 全文掃描失去語意檢索能力且效率極差。</div></div>
+</article>
+<article class="q" id="延-中3-q79" data-sec="sec4-3" data-kind="B">
+<div class="qhead"><span class="num">第 79 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q35">衍生自 115-1 第 35 題 ↗</a></div>
+<p class="stem">團隊想讓 70 億參數的語言模型適應客服領域，但只有一張 24GB 顯示卡，無法儲存全部參數的梯度與優化器狀態。依參數高效微調的概念，最合適的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 完整微調所有 70 億參數</li><li class="ok"><span class="k">(B)</span> LoRA：凍結原權重，只訓練低秩適配矩陣</li><li><span class="k">(C)</span> 知識蒸餾出一個全新的小模型</li><li><span class="k">(D)</span> 用客服語料從頭重新預訓練</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>LoRA 凍結原始權重，只在部分層插入並訓練低秩矩陣，可訓練參數與優化器狀態只佔原模型的極小比例，顯存需求大幅降低（指引 4.3 參數高效微調）。(A) 完整微調需要全部參數的梯度與 Adam 狀態，24GB 遠遠不夠；(C) 蒸餾需要先有能在領域上表現好的教師模型，且仍要訓練學生；(D) 從頭預訓練的成本比微調高出數個數量級。</div></div>
+</article>
+<article class="q" id="延-中3-q80" data-sec="sec4-3" data-kind="A">
+<div class="qhead"><span class="num">第 80 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q18">衍生自 115-1 第 18 題 ↗</a></div>
+<p class="stem">某 CNN 最後一個卷積區塊輸出形狀為 (7, 7, 512)。工程師希望直接把它變成 512 維向量再接分類層，以大幅減少全連接層參數、降低過擬合。應使用哪一種層？</p>
+<ul class="opts"><li><span class="k">(A)</span> Flatten 層</li><li><span class="k">(B)</span> Dropout 層</li><li class="ok"><span class="k">(C)</span> 全局平均池化（Global Average Pooling）</li><li><span class="k">(D)</span> Batch Normalization 層</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>全局平均池化對每個通道的 7×7 特徵圖取平均，直接得到 512 維向量，後接分類層的參數量只有 Flatten 做法的 1/49，常用於減少參數與過擬合（指引 4.3 池化層）。(A) Flatten 會得到 7×7×512＝25,088 維，全連接層參數反而最多；(B) Dropout 不改變形狀；(D) Batch Normalization 只做標準化，形狀不變。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec5-1"><h2 class="chap">5.1 數據準備與特徵工程 <small>13 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-1">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q81" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 81 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q24">衍生自 115-1 第 24 題 ↗</a></div>
+<p class="stem">推薦模型的輸入含「商品 ID」這個有 3 萬個不同值的類別特徵，模型是深度神經網路。為避免維度爆炸又保留商品之間的相似關係，最適合的編碼方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> One-Hot 編碼</li><li class="ok"><span class="k">(B)</span> Embedding 層</li><li><span class="k">(C)</span> 直接刪除商品 ID 特徵</li><li><span class="k">(D)</span> Z-score 標準化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>Embedding 層把每個類別映射成低維稠密向量（例如 32 維），維度不隨類別數膨脹，且相似商品的向量會在訓練中靠近，是神經網路處理高基數類別的標準做法（指引 5.1 類別特徵編碼）。(A) One-Hot 會產生 3 萬個稀疏欄位，維度爆炸；(C) 刪除商品 ID 會失去推薦最重要的資訊；(D) 標準化是對數值特徵做的，類別 ID 沒有數值意義。</div></div>
+</article>
+<article class="q" id="延-中3-q82" data-sec="sec5-1" data-kind="B">
+<div class="qhead"><span class="num">第 82 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q24">衍生自 115-1 第 24 題 ↗</a></div>
+<p class="stem">工程師把「顏色」特徵（紅、綠、藍）以標籤編碼轉成 0、1、2 後，直接丟進線性迴歸。依指引對編碼方式的說明，此做法的主要問題為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 會引入不存在的大小順序</li><li><span class="k">(B)</span> 會造成維度爆炸</li><li><span class="k">(C)</span> 會導致資料洩漏</li><li><span class="k">(D)</span> 不會有任何影響</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>標籤編碼把無序類別變成整數，線性模型會把「藍(2) &gt; 綠(1) &gt; 紅(0)」當成有大小與等距的數值關係，學到不存在的順序；無序類別應用 One-Hot 或 Embedding（指引 5.1 標籤編碼與 One-Hot 的差異）。(B) 維度爆炸是 One-Hot 面對高基數時的問題；(C) 資料洩漏是用到不該用的資訊，與編碼順序無關；(D) 對線性模型確實會有影響，樹模型影響較小。</div></div>
+</article>
+<article class="q" id="延-中3-q83" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 83 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q26">衍生自 115-1 第 26 題 ↗</a></div>
+<p class="stem">某需求預測模型把「未來 7 天的平均銷量」也放進特徵，驗證分數極高，但上線後根本算不出這個特徵、預測也大幅失準。此問題稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 過擬合</li><li><span class="k">(B)</span> 多重共線性</li><li><span class="k">(C)</span> 類別不平衡</li><li class="ok"><span class="k">(D)</span> 資料洩漏（使用未來資訊）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>用預測時點之後才會知道的資訊當特徵，訓練與驗證時看起來準確，部署時卻取不到或等於偷看答案，是典型的資料洩漏；時間序列特徵只能用滑動窗口取「過去」的滯後值（指引 5.1 時間序列特徵工程）。(A) 過擬合是模型太複雜記住雜訊，驗證分數會變差而非極高；(B) 共線性是特徵彼此高度相關；(C) 類別不平衡是分類任務的標籤分佈問題。</div></div>
+</article>
+<article class="q" id="延-中3-q84" data-sec="sec5-1" data-kind="B">
+<div class="qhead"><span class="num">第 84 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q20">衍生自 114-2 第 20 題 ↗</a></div>
+<p class="stem">房價模型中「屋齡」與房價呈 U 型關係（新屋與老屋翻修後都偏貴）。工程師新增「屋齡的平方」作為特徵，讓線性模型也能捕捉此非線性。這種特徵工程稱為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 多項式特徵（Polynomial Features）</li><li><span class="k">(B)</span> 互動特徵（Interaction Features）</li><li><span class="k">(C)</span> 分箱（Binning）</li><li><span class="k">(D)</span> 對數轉換（Log Transform）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>對單一特徵取平方、立方等冪次，稱為多項式特徵，可讓線性模型擬合曲線關係（指引 5.1 特徵建構）。(B) 互動特徵是兩個以上特徵相乘或交互組合，用來捕捉特徵之間的交互效果，不是單一特徵的冪次；(C) 分箱是把連續值切成區間；(D) 對數轉換處理偏態與尺度，不會製造 U 型。</div></div>
+</article>
+<article class="q" id="延-中3-q85" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 85 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q19">衍生自 114-2 第 19 題 ↗</a></div>
+<p class="stem">詐欺偵測資料中正樣本僅佔 0.5%。團隊採用 SMOTE 處理不平衡。SMOTE 產生新樣本的方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 隨機複製多數類樣本以放大其比例</li><li class="ok"><span class="k">(B)</span> 在少數類樣本之間插值合成樣本</li><li><span class="k">(C)</span> 刪除與少數類距離最近的多數類樣本</li><li><span class="k">(D)</span> 調高少數類在損失函數中的權重</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>SMOTE（合成少數類過採樣）對每個少數類樣本找其少數類鄰居，在兩者連線上隨機插值生成新樣本，增加少數類數量且不只是重複複製（指引 5.1 類別不平衡處理）。(A) 複製的是少數類而非多數類，且單純複製是隨機過採樣，容易過擬合；(C) 刪除多數類樣本是欠採樣；(D) 調整損失權重是成本敏感學習，不產生新樣本。</div></div>
+</article>
+<article class="q" id="延-中3-q86" data-sec="sec5-1" data-kind="B">
+<div class="qhead"><span class="num">第 86 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q19">衍生自 114-2 第 19 題 ↗</a></div>
+<p class="stem">為處理 99：1 的類別不平衡，團隊把多數類隨機欠採樣到與少數類同數量。依指引，此做法最主要的風險為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 會讓少數類樣本變得更少</li><li><span class="k">(B)</span> 會造成特徵維度爆炸</li><li><span class="k">(C)</span> 會使模型參數量大幅增加</li><li class="ok"><span class="k">(D)</span> 可能丟失多數類中有用的資訊</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>隨機欠採樣直接丟掉大量多數類樣本，資料量從 100 萬可能只剩 2 萬，多數類的分佈細節與邊界樣本可能一併遺失，模型對多數類的判斷變差（指引 5.1 不平衡資料處理的取捨）。(A) 欠採樣不動少數類；(B)(C) 欠採樣只減少列數，不改變特徵維度與模型結構。</div></div>
+</article>
+<article class="q" id="延-中3-q87" data-sec="sec5-1" data-kind="D">
+<div class="qhead"><span class="num">第 87 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q16">衍生自 114-2 第 16 題 ↗</a></div>
+<p class="stem">某特徵在訓練集的平均數為 60、標準差為 10、最小值 20、最大值 100。一筆樣本的值為 80，分別做 Z-score 標準化與 Min-Max 縮放後的結果為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Z-score 0.75；Min-Max 2.0</li><li><span class="k">(B)</span> Z-score 8.0；Min-Max 0.8</li><li><span class="k">(C)</span> Z-score 2.0；Min-Max 0.8</li><li class="ok"><span class="k">(D)</span> Z-score 2.0；Min-Max 0.75</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Z-score＝(x−μ)/σ＝(80−60)/10＝2.0；Min-Max＝(x−min)/(max−min)＝(80−20)/(100−20)＝60/80＝0.75（指引 5.1 特徵縮放）。(A) 兩個結果對調；(B) 8.0 是誤以 x/σ 計算；(C) 0.8 是誤用 x/max。</div></div>
+</article>
+<article class="q" id="延-中3-q88" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 88 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q9">衍生自 114-2 第 9 題 ↗</a></div>
+<p class="stem">某特徵有少數極端離群值（99% 的值在 0–100，少數幾筆高達 10,000）。若用 Min-Max 縮放到 0–1，絕大多數資料會被壓到 0.01 以下。相對較不受極端值影響、較適合此情況的縮放方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Min-Max 縮放到 0–1</li><li class="ok"><span class="k">(B)</span> Z-score 標準化</li><li><span class="k">(C)</span> One-Hot 編碼</li><li><span class="k">(D)</span> 標籤編碼</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>Min-Max 以最大最小值定義範圍，極端值會把其餘資料壓縮在極窄區間；Z-score 以平均與標準差縮放，不設硬性上下限，極端值的影響相對較小，多數資料仍保有可區分的尺度（指引 5.1 標準化與歸一化的差異）。(A) 正是題幹描述會失效的做法；(C)(D) 是類別特徵的編碼方式，不適用連續數值。</div></div>
+</article>
+<article class="q" id="延-中3-q89" data-sec="sec5-1" data-kind="B">
+<div class="qhead"><span class="num">第 89 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q25">衍生自 114-2 第 25 題 ↗</a></div>
+<p class="stem">「月消費金額」欄位有 3% 的缺失值，該欄位分佈嚴重右偏且含少數高額離群值。依指引對缺失值處理的建議，最適合的填補方式為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 以中位數填補</li><li><span class="k">(B)</span> 以平均數填補</li><li><span class="k">(C)</span> 刪除整個欄位</li><li><span class="k">(D)</span> 一律填 0</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>右偏且有離群值時平均數會被拉高，中位數較能代表典型值，用中位數填補不會被極端值扭曲（指引 5.1 缺失值處理）。(B) 平均數受離群值影響大，填補值會偏離多數樣本；(C) 只缺 3% 就刪整欄會損失大量有效資訊；(D) 填 0 等於宣稱這些人沒有消費，會引入錯誤訊號。</div></div>
+</article>
+<article class="q" id="延-中3-q90" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 90 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q25">衍生自 115-1 第 25 題 ↗</a></div>
+<p class="stem">為讓模型更能捕捉非線性並減少年齡數值中的雜訊，工程師把連續的「年齡」轉成「18–30、31–45、46–60、60 以上」四個區間。這種處理稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> Z-score 標準化</li><li><span class="k">(B)</span> 主成分分析（PCA）</li><li class="ok"><span class="k">(C)</span> 分箱（Binning）</li><li><span class="k">(D)</span> 互動特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>把連續數值切成若干區間並以區間代表值或類別表示，稱為分箱（或離散化），可降低雜訊影響、讓線性模型捕捉分段非線性（指引 5.1 特徵轉換）。(A) 標準化只改變尺度，仍是連續值；(B) PCA 是把多個特徵投影到新座標的降維方法；(D) 互動特徵是多個特徵的組合。</div></div>
+</article>
+<article class="q" id="延-中3-q91" data-sec="sec5-1" data-kind="B">
+<div class="qhead"><span class="num">第 91 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q28">衍生自 114-2 第 28 題 ↗</a></div>
+<p class="stem">顧客流失模型加入了「是否已收到留客優惠」這個特徵後驗證準確率飆升，但該優惠是在系統判定顧客可能流失「之後」才發送的。此問題屬於哪一類？</p>
+<ul class="opts"><li><span class="k">(A)</span> 取樣偏差（Sampling Bias）</li><li><span class="k">(B)</span> 標籤偏差（Label Bias）</li><li class="ok"><span class="k">(C)</span> 目標洩漏（Target Leakage）</li><li><span class="k">(D)</span> 多重共線性</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>該特徵是目標結果發生後才產生、直接反映了標籤的資訊，訓練時看起來預測力極強，實際預測時卻不可能提前取得，屬目標洩漏（資料洩漏的一種）（指引 5.1 資料洩漏）。(A) 取樣偏差是訓練樣本無法代表母體；(B) 標籤偏差是標註過程帶有主觀偏見；(D) 共線性是特徵彼此高度相關，不涉及標籤資訊外洩。</div></div>
+</article>
+<article class="q" id="延-中3-q92" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 92 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q7">衍生自 115-1 第 7 題 ↗</a></div>
+<p class="stem">在特徵選擇階段，分析師想量化「某個特徵能被其他特徵線性解釋的程度」，以找出多重共線性嚴重的欄位。應使用哪一個指標？</p>
+<ul class="opts"><li><span class="k">(A)</span> Silhouette 係數</li><li class="ok"><span class="k">(B)</span> 變異數膨脹因子（VIF）</li><li><span class="k">(C)</span> 基尼不純度</li><li><span class="k">(D)</span> 提升度（Lift）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>VIF 以「該特徵對其他特徵迴歸的 R²」計算 1/(1−R²)，值越大代表越能被其他特徵解釋、共線性越嚴重，常以 10 為警戒值（指引 5.1 特徵選擇與多重共線性）。(A) Silhouette 評估分群品質；(C) 基尼不純度是決策樹的分裂準則；(D) 提升度是關聯規則的衡量標準。</div></div>
+</article>
+<article class="q" id="延-中3-q93" data-sec="sec5-1" data-kind="A">
+<div class="qhead"><span class="num">第 93 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q26">衍生自 115-1 第 26 題 ↗</a></div>
+<p class="stem">銷售預測模型使用「月份」特徵，工程師希望模型能理解 12 月與 1 月是相鄰的（週期性），而不是相差 11 個單位。最合適的編碼方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 對月份做 One-Hot 編碼</li><li><span class="k">(B)</span> 直接使用 1 到 12 的整數</li><li class="ok"><span class="k">(C)</span> 以 sin 與 cos 做週期性編碼</li><li><span class="k">(D)</span> 刪除月份特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>把月份映射到圓周上，以 sin(2πm/12) 與 cos(2πm/12) 兩個特徵表示，12 月與 1 月在這個空間中距離最近，保留了週期結構（指引 5.1 時間特徵工程）。(A) One-Hot 把每個月視為獨立類別，完全不知道相鄰關係；(B) 整數編碼會讓 12 與 1 相距最遠；(D) 月份對季節性銷售是重要資訊，不應刪除。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec5-2"><h2 class="chap">5.2 模型選擇與架構設計 <small>11 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-2">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q94" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 94 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某門市要預測未來兩週的每日來客數，手上只有兩年的每日資料，序列有明顯的週期性，且團隊只需要短期預測。依指引「任務類型與模型特性配對」，最適合的模型為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> LSTM（長序列記憶）</li><li class="ok"><span class="k">(B)</span> ARIMA</li><li><span class="k">(C)</span> TCN（時間卷積網路）</li><li><span class="k">(D)</span> 自編碼器（結構重建）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 的配對表指出 ARIMA 適合短期、具週期性、資料量不大的時間序列；RNN／LSTM／GRU 適合需要長序列記憶的情境，TCN 適合長期依賴穩定的序列。兩年的每日資料只有七百多筆，(A)(C) 深度序列模型需要更多資料才有優勢；(D) 自編碼器用於降維與重建，不做時間序列預測。</div></div>
+</article>
+<article class="q" id="延-中3-q95" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 95 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某研究團隊只有 400 筆病患資料、每筆 25 個檢驗指標，要預測是否再入院。依指引「資料規模與模型選擇」的原則，應優先考慮下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 深度神經網路，並以多機 GPU 分散式訓練</li><li><span class="k">(B)</span> XGBoost 搭配數千組超參數的網格搜尋</li><li><span class="k">(C)</span> 集成數十個不同架構的深度模型</li><li class="ok"><span class="k">(D)</span> 線性或邏輯迴歸等參數少的簡單模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出小型資料（數百至數千筆）應選結構簡單、參數少的模型，如線性／邏輯迴歸、決策樹、Lasso／Ridge，並提高前處理與特徵工程的比重。(A)(C) 深度模型需要大型資料才能發揮，400 筆極易過擬合；(B) 高表現力模型與大規模調參是中型資料（數千至數十萬）的建議，小樣本上數千組搜尋也容易挑到過擬合的組合。</div></div>
+</article>
+<article class="q" id="延-中3-q96" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 96 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">銀行的信貸評分模型受金融監管，每筆拒絕都必須能向客戶與主管機關說明決策依據。依指引「模型解釋性需求」的分類，應優先選擇何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 深度神經網路（搭配更多層數）</li><li><span class="k">(B)</span> 梯度提升樹（搭配早停）</li><li class="ok"><span class="k">(C)</span> 邏輯迴歸或淺層決策樹</li><li><span class="k">(D)</span> 隨機森林（數百棵樹）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 將線性／邏輯迴歸與淺層決策樹歸為高解釋性模型，決策過程明確，適用醫療診斷、信貸評分與法規監管；隨機森林、梯度提升樹、深度網路則屬低解釋性。(A)(B)(D) 預測力高但決策不易理解，若要使用須額外搭配 SHAP、LIME 等解釋技術，不是「優先」選擇。</div></div>
+</article>
+<article class="q" id="延-中3-q97" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 97 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">團隊為了準確率選用了 XGBoost，但稽核單位要求能說明每個特徵對預測的影響。依指引對低解釋性模型的建議，應如何處理？</p>
+<ul class="opts"><li><span class="k">(A)</span> 改用 K-means 分群取代預測模型</li><li><span class="k">(B)</span> 增加樹的數量以進一步提升準確率</li><li class="ok"><span class="k">(C)</span> 搭配 SHAP、LIME 或 PDP</li><li><span class="k">(D)</span> 移除所有數值型特徵只保留類別特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 建議低解釋性模型（隨機森林、梯度提升樹、深度網路）搭配解釋性技術：SHAP 計算各特徵對單筆預測的貢獻、LIME 以局部線性模型近似、偏依圖 PDP 顯示特徵與預測的關係。(A) 分群不是預測，也無法回答稽核的問題；(B) 更多樹只會更難解釋；(D) 刪特徵會損害模型且與可解釋性無關。</div></div>
+</article>
+<article class="q" id="延-中3-q98" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 98 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">要把語音喚醒詞偵測模型部署到只有 256KB 記憶體、無網路連線的穿戴裝置上。依指引「運算資源與實務部署限制」，最合適的策略為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 部署在雲端的大型集成模型</li><li><span class="k">(B)</span> 每次推論都呼叫遠端 GPU 伺服器</li><li><span class="k">(C)</span> 增加模型層數以提高準確率</li><li class="ok"><span class="k">(D)</span> 剪枝或量化後的輕量模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出資源受限（IoT、手機、邊緣裝置）宜用簡單模型，或以模型剪枝、量化瘦身後部署。(A)(B) 裝置無網路，無法依賴雲端或遠端 GPU；(C) 加深模型會讓記憶體與運算需求更高，與限制背道而馳。</div></div>
+</article>
+<article class="q" id="延-中3-q99" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 99 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">高頻交易的風險控管模型必須在 5 毫秒內回傳結果。依指引，在這類即時推論需求下，模型選擇時須優先考量的因素，以及可搭配的技術為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 推論延遲；可搭配快取與知識蒸餾</li><li><span class="k">(B)</span> 訓練所需的 Epoch 數；可搭配早停</li><li><span class="k">(C)</span> 標註資料的取得成本；可搭配主動學習</li><li><span class="k">(D)</span> 特徵的總數量；可搭配 One-Hot 編碼</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出即時推論需求（金融交易、推薦）須優先考量推論延遲，可搭配 caching 與模型蒸餾（用小模型達到接近大模型的效果）。(B) Epoch 數影響訓練時間，與上線後的回應速度無關；(C) 標註成本是資料準備階段的問題；(D) 特徵數量會影響延遲但不是指引提出的優先考量，One-Hot 反而會增加維度。</div></div>
+</article>
+<article class="q" id="延-中3-q100" data-sec="sec5-2" data-kind="B">
+<div class="qhead"><span class="num">第 100 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q30">衍生自 115-1 第 30 題 ↗</a></div>
+<p class="stem">某模型在訓練集與驗證集上的 AUC 都只有 0.62，兩者幾乎相同，且換不同切分結果也很穩定。依偏差—變異的框架，此模型的主要問題與對策為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 高變異（過擬合），應加強正則化</li><li class="ok"><span class="k">(B)</span> 高偏差（欠擬合），應提高模型複雜度</li><li><span class="k">(C)</span> 資料洩漏，應重新切分資料</li><li><span class="k">(D)</span> 類別不平衡，應做過採樣</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>訓練與驗證表現都差且一致，代表模型擬合能力不足、無法捕捉主要趨勢，是高偏差／欠擬合，應提高模型複雜度、增加有效特徵或減少正則化（指引 5.2 偏差—變異的權衡）。(A) 高變異的特徵是訓練好、驗證差，與題幹不符；(C) 資料洩漏會讓驗證分數異常高；(D) 題幹沒有任何不平衡的線索，且不平衡不會讓訓練集分數也低。</div></div>
+</article>
+<article class="q" id="延-中3-q101" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 101 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引對偏差—變異權衡的說明，當模型複雜度逐漸提高（例如決策樹越長越深）時，偏差與變異通常如何變化？</p>
+<ul class="opts"><li><span class="k">(A)</span> 偏差上升、變異下降，總誤差必然增加</li><li><span class="k">(B)</span> 偏差與變異同時下降，總誤差持續減少</li><li class="ok"><span class="k">(C)</span> 偏差下降、變異上升</li><li><span class="k">(D)</span> 偏差與變異都不變，只有不可約誤差改變</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出模型複雜度提升通常伴隨偏差降低、變異提高：低複雜度模型偏差高／變異低，高複雜度模型偏差低／變異高，總誤差＝偏差²＋變異＋不可約誤差在中間某處最低。(A) 方向顛倒；(B) 兩者不會同向下降，否則就沒有「權衡」；(D) 不可約誤差來自資料本身的雜訊，不隨模型複雜度改變。</div></div>
+</article>
+<article class="q" id="延-中3-q102" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 102 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">工程師要把 1,024 維的感測特徵做非線性降維，並希望能從低維表示重建原始輸入以檢查資訊損失。依指引的降維模型配對，應選擇何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 自編碼器</li><li><span class="k">(B)</span> 主成分分析（PCA，線性、最大變異）</li><li><span class="k">(C)</span> K-means（球狀分群）</li><li><span class="k">(D)</span> ARIMA（短期時間序列）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 配對表：PCA 適合最大變異、具解釋性的線性降維；自編碼器適合非線性降維與結構重建，其解碼器正是用來重建輸入。(B) PCA 只能捕捉線性關係，雖可逆轉換但不是非線性；(C) K-means 是分群；(D) ARIMA 是時間序列預測模型，與降維無關。</div></div>
+</article>
+<article class="q" id="延-中3-q103" data-sec="sec5-2" data-kind="C">
+<div class="qhead"><span class="num">第 103 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">行銷部門已依業務經驗決定把顧客分成 4 群，探索後各群在特徵空間大致呈球狀且大小相近。依指引的聚類模型配對，最直接的選擇為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> K-means</li><li><span class="k">(B)</span> DBSCAN（密度分群）</li><li><span class="k">(C)</span> 階層式分群（樹狀圖）</li><li><span class="k">(D)</span> One-Class SVM（異常偵測）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出 K-means 適合群集呈球狀且群數已知的情境，簡單快速；DBSCAN 適合有噪聲或群大小不均的資料。(B) DBSCAN 的優勢在任意形狀與雜訊處理，這裡用不上且需調 Eps／MinPts；(C) 階層式分群不需指定 K，但在 K 已知時計算成本偏高；(D) One-Class SVM 是異常偵測，不是分群。</div></div>
+</article>
+<article class="q" id="延-中3-q104" data-sec="sec5-2" data-kind="A">
+<div class="qhead"><span class="num">第 104 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q28">衍生自 115-1 第 28 題 ↗</a></div>
+<p class="stem">某基因研究以 2,000 個基因表現量預測腫瘤亞型，但只有 180 個樣本，初步分析顯示兩類之間的邊界相當清晰。依指引「分類」任務的模型配對，最適合的模型為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 深度神經網路（需大量資料）</li><li><span class="k">(B)</span> ARIMA（時間序列）</li><li><span class="k">(C)</span> Apriori（關聯規則）</li><li class="ok"><span class="k">(D)</span> 支援向量機（SVM）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 5.2 指出 SVM 適合邊界清晰、高維且小樣本的分類任務，以最大間隔超平面區分類別，並可用核函數處理非線性。(A) 深度網路需要大規模資料，180 筆極易過擬合；(B) ARIMA 用於時間序列預測；(C) Apriori 是找頻繁項目集的關聯規則演算法，不做分類。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec5-3"><h2 class="chap">5.3 模型訓練、評估與驗證 <small>19 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-3">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-3">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q1" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 1 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q1">衍生自 114-2 第 1 題 ↗</a></div>
+<p class="stem">某醫院以過去三年的門診資料訓練了一個「病患是否會回診」的分類模型，驗證集準確率 0.91。團隊擔心這個數字是運氣好的單次切分結果，想知道模型表現是否隨切分方式而大幅波動。下列做法何者最直接？</p>
+<ul class="opts"><li><span class="k">(A)</span> 改用更大的學習率重新訓練，觀察損失是否下降得更快</li><li class="ok"><span class="k">(B)</span> 以 k 折交叉驗證重複訓練與驗證，觀察各折分數的平均與標準差</li><li><span class="k">(C)</span> 對驗證集與訓練集的準確率做卡方檢定，判斷兩者是否獨立</li><li><span class="k">(D)</span> 把驗證集併入訓練集，用全部資料再訓練一次以提高準確率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>k 折交叉驗證輪流以不同子集驗證，各折分數的平均代表泛化能力、標準差代表對切分方式的敏感度，正是「表現是否隨切分波動」的直接量測（指引 5.3 模型評估與驗證）。(A) 學習率影響收斂速度，不回答穩定性；(C) 卡方檢定用於類別變數獨立性，不是模型驗證工具；(D) 把驗證集併入訓練後就沒有未見資料可評估，反而失去衡量泛化的依據。</div></div>
+</article>
+<article class="q" id="延-中3-q105" data-sec="sec5-3" data-kind="D">
+<div class="qhead"><span class="num">第 105 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q16">衍生自 114-2 第 16 題 ↗</a></div>
+<p class="stem">某詐欺偵測模型在 1,000 筆測試資料上的混淆矩陣為：TP＝40、FP＝10、FN＝20、TN＝930。模型的召回率（Recall）為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 0.80</li><li class="ok"><span class="k">(B)</span> 0.67</li><li><span class="k">(C)</span> 0.97</li><li><span class="k">(D)</span> 0.73</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>Recall＝TP/(TP＋FN)＝40/(40＋20)＝40/60≈0.667（指引 5.3 分類評估指標）。(A) 0.80 是 Precision＝40/(40＋10)；(C) 0.97 是 Accuracy＝(40＋930)/1000；(D) 0.73 是 F1 分數。</div></div>
+</article>
+<article class="q" id="延-中3-q106" data-sec="sec5-3" data-kind="D">
+<div class="qhead"><span class="num">第 106 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q16">衍生自 114-2 第 16 題 ↗</a></div>
+<p class="stem">延續上題的混淆矩陣（TP＝40、FP＝10、FN＝20、TN＝930），模型的 F1 分數最接近下列何者？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 0.73</li><li><span class="k">(B)</span> 0.80</li><li><span class="k">(C)</span> 0.67</li><li><span class="k">(D)</span> 0.97</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>Precision＝40/50＝0.8，Recall＝40/60≈0.667；F1＝2×0.8×0.667/(0.8＋0.667)＝1.067/1.467≈0.727（指引 5.3 F1 為調和平均）。(B) 0.80 是 Precision；(C) 0.67 是 Recall；(D) 0.97 是 Accuracy，在 97% 為負類的資料上無法反映對詐欺的偵測力。</div></div>
+</article>
+<article class="q" id="延-中3-q107" data-sec="sec5-3" data-kind="D">
+<div class="qhead"><span class="num">第 107 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q15">衍生自 114-2 第 15 題 ↗</a></div>
+<p class="stem">某迴歸模型的殘差平方和 SS_res＝20，目標變數的總平方和 SS_tot＝100。模型的決定係數 R² 為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 0.2</li><li><span class="k">(B)</span> 5.0</li><li><span class="k">(C)</span> 0.5</li><li class="ok"><span class="k">(D)</span> 0.8</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>R²＝1−SS_res/SS_tot＝1−20/100＝0.8，表示模型解釋了 80% 的目標變異（指引 5.3 迴歸評估指標）。(A) 0.2 是未被解釋的比例 SS_res/SS_tot；(B) 5.0 是 SS_tot/SS_res，沒有意義；(C) 0.5 沒有對應的計算。</div></div>
+</article>
+<article class="q" id="延-中3-q108" data-sec="sec5-3" data-kind="D">
+<div class="qhead"><span class="num">第 108 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q38">衍生自 114-2 第 38 題 ↗</a></div>
+<p class="stem">某迴歸模型對四筆測試資料的預測誤差（實際值減預測值）分別為 2、−1、3、0。模型的 MAE 與 MSE 分別為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> MAE＝1.5，MSE＝3.5</li><li><span class="k">(B)</span> MAE＝1.0，MSE＝3.5</li><li><span class="k">(C)</span> MAE＝1.5，MSE＝14</li><li><span class="k">(D)</span> MAE＝3.5，MSE＝1.5</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>MAE＝(|2|＋|−1|＋|3|＋|0|)/4＝6/4＝1.5；MSE＝(4＋1＋9＋0)/4＝14/4＝3.5（指引 5.3 迴歸指標）。(B) MAE 1.0 是誤把 −1 算成 −1 再相加（誤差正負抵消）；(C) 14 是平方和忘了除以筆數；(D) 兩個指標對調。</div></div>
+</article>
+<article class="q" id="延-中3-q109" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 109 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q12">衍生自 115-1 第 12 題 ↗</a></div>
+<p class="stem">早期癌症篩檢模型的首要目標是「盡量不漏掉任何真正的病患」，寧可多做幾次追加檢查。評估此模型時應最重視哪一個指標？</p>
+<ul class="opts"><li><span class="k">(A)</span> Accuracy（整體準確率）</li><li><span class="k">(B)</span> Precision（精確率）</li><li class="ok"><span class="k">(C)</span> Recall（召回率）</li><li><span class="k">(D)</span> R²（決定係數）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>Recall＝TP/(TP＋FN) 衡量所有真正陽性中被找出的比例，FN（漏診）越少 Recall 越高，正是「不漏掉病患」的目標（指引 5.3 指標的業務意涵）。(A) 在陽性稀少時 Accuracy 會被多數類主導；(B) Precision 關心的是「報陽性的人有多少真的陽性」，對應的是避免誤報而非漏診；(D) R² 是迴歸指標。</div></div>
+</article>
+<article class="q" id="延-中3-q110" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 110 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q32">衍生自 115-1 第 32 題 ↗</a></div>
+<p class="stem">垃圾郵件過濾系統最怕把客戶的正常來信誤判為垃圾信而遺失商機，寧可漏掉幾封垃圾信。評估此系統時應最重視哪一個指標？</p>
+<ul class="opts"><li><span class="k">(A)</span> Recall（找出所有垃圾信的比例）</li><li class="ok"><span class="k">(B)</span> Precision</li><li><span class="k">(C)</span> MSE（均方誤差）</li><li><span class="k">(D)</span> Silhouette 係數</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>Precision＝TP/(TP＋FP) 衡量被判為垃圾信的郵件中真正是垃圾信的比例，FP（正常信被誤判）越少 Precision 越高，正是題幹的優先目標（指引 5.3 Precision 與 Recall 的取捨）。(A) Recall 對應的是不漏掉垃圾信，題幹明說可以容忍；(C) MSE 是迴歸指標；(D) Silhouette 是分群指標。</div></div>
+</article>
+<article class="q" id="延-中3-q111" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 111 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q15">衍生自 114-2 第 15 題 ↗</a></div>
+<p class="stem">某二元分類模型的 ROC 曲線下面積（AUC）為 0.50。這代表模型的鑑別能力如何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 與隨機猜測無異</li><li><span class="k">(B)</span> 完美分類，沒有任何錯誤</li><li><span class="k">(C)</span> 準確率恰好等於 50%</li><li><span class="k">(D)</span> 召回率恰好等於 50%</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>AUC 衡量模型把隨機一個正例排在隨機一個負例前面的機率；0.5 代表排序能力等同擲硬幣，模型沒有鑑別力，1.0 才是完美（指引 5.3 ROC-AUC）。(B) 完美分類的 AUC 是 1.0；(C)(D) AUC 是對所有門檻的綜合排序指標，與特定門檻下的準確率或召回率沒有固定對應。</div></div>
+</article>
+<article class="q" id="延-中3-q112" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 112 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q31">衍生自 114-2 第 31 題 ↗</a></div>
+<p class="stem">工程師使用早期停止，把耐心值（patience）設為 0，也就是驗證損失只要有一輪沒改善就立刻停止。驗證損失本身帶有小幅隨機波動。此設定最可能造成什麼後果？</p>
+<ul class="opts"><li><span class="k">(A)</span> 會訓練到 Epoch 上限才停止</li><li><span class="k">(B)</span> 會讓訓練損失反而上升</li><li><span class="k">(C)</span> 會造成驗證資訊洩漏到訓練</li><li class="ok"><span class="k">(D)</span> 會因單輪小波動過早停止</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>驗證損失的隨機起伏很常見，patience＝0 時只要出現一次上揚就停，模型往往停在遠未收斂的階段；設定適度的耐心值讓模型在連續多輪未改善後才停，才能避開短期波動（指引 5.3 早期停止）。(A) 問題是停得太早，不是停不下來；(B) 早停不會讓訓練損失上升；(C) 用驗證集監控本來就是早停的設計，不算洩漏。</div></div>
+</article>
+<article class="q" id="延-中3-q113" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 113 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q31">衍生自 114-2 第 31 題 ↗</a></div>
+<p class="stem">某團隊沒有另外切驗證集，直接以「測試集損失」作為早期停止的依據，最後再以同一個測試集報告模型成績。此做法的問題為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 測試集筆數太少，無法可靠地判斷早停時機</li><li><span class="k">(B)</span> 會加速收斂但不影響最後的評估結果</li><li class="ok"><span class="k">(C)</span> 測試集資訊洩漏進模型選擇</li><li><span class="k">(D)</span> 沒有問題，測試集本來就可用來監控訓練</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>早停時機是一種模型選擇決策，用測試集做決策等於讓測試資料參與了訓練流程，最後在同一份資料上報告的成績會偏樂觀，失去「未見資料」的意義；正確做法是用驗證集早停、測試集只做最終評估（指引 5.3 資料集角色與資料洩漏）。(A) 問題不在筆數；(B) 評估結果確實會受影響；(D) 測試集只能用於最終評估。</div></div>
+</article>
+<article class="q" id="延-中3-q114" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 114 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q34">衍生自 114-2 第 34 題 ↗</a></div>
+<p class="stem">某罕見疾病資料集陽性僅佔 4%。以一般的 5 折交叉驗證隨機切分後，發現其中一折幾乎沒有陽性樣本，導致該折的召回率無法計算。應改用哪一種切分方式？</p>
+<ul class="opts"><li><span class="k">(A)</span> KFold（不分層，隨機切分）</li><li><span class="k">(B)</span> TimeSeriesSplit（依時間順序切分）</li><li><span class="k">(C)</span> LeaveOneOut（每次只留一筆驗證）</li><li class="ok"><span class="k">(D)</span> StratifiedKFold（分層切分）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>分層 K 折在每一折中維持與整體相同的類別比例，確保每折都有足夠的陽性樣本可評估（指引 5.3 交叉驗證方法）。(A) 正是題幹出問題的做法；(B) 時間序列切分用於有時間順序的資料，不保證類別比例；(C) 留一法每折只有一筆，單折根本算不出召回率，且運算量極大。</div></div>
+</article>
+<article class="q" id="延-中3-q115" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 115 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q27">衍生自 115-1 第 27 題 ↗</a></div>
+<p class="stem">對 2019–2024 年的每日用電量資料，工程師用 shuffle=True 的 K 折交叉驗證評估預測模型，分數很好，上線後卻明顯失準。評估方式的問題為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 未來資訊洩漏進訓練</li><li><span class="k">(B)</span> 每折訓練時間成倍增加</li><li><span class="k">(C)</span> 各折的類別比例嚴重失衡</li><li><span class="k">(D)</span> 沒有問題，K 折本就隨機切分</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>打亂後隨機切分會讓訓練集含有驗證期「之後」的資料，模型等於偷看了未來，分數偏樂觀；時間序列應用 TimeSeriesSplit 或滾動窗口，只以過去訓練、未來驗證（指引 5.3 時間序列驗證）。(B) 隨機切分不影響訓練時間；(C) 用電量是連續值，沒有類別比例的問題；(D) 對時間序列資料隨機切分正是錯誤所在。</div></div>
+</article>
+<article class="q" id="延-中3-q116" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 116 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q44">衍生自 115-1 第 44 題 ↗</a></div>
+<p class="stem">分析師在做交叉驗證前，先用「全部資料」擬合了 StandardScaler 再切折，被指出有資料洩漏。正確的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 切分前先用全部資料擬合標準化器，但只轉換訓練折</li><li class="ok"><span class="k">(B)</span> 把標準化納入 Pipeline 逐折擬合</li><li><span class="k">(C)</span> 完全不做標準化以避免任何洩漏</li><li><span class="k">(D)</span> 改用測試集來擬合標準化器</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>標準化的平均數與標準差也是從資料「學」來的參數，用全部資料擬合會把驗證折的統計量洩漏進訓練；把 scaler 放進 Pipeline 交給 cross_val_score，每折只用訓練部分 fit、再 transform 驗證部分，才是正確流程（指引 5.3 資料洩漏與驗證流程）。(A) 擬合時已經看過驗證資料，仍是洩漏；(C) 不標準化會傷害距離型與梯度型模型；(D) 用測試集擬合是更嚴重的洩漏。</div></div>
+</article>
+<article class="q" id="延-中3-q117" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 117 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q48">衍生自 115-1 第 48 題 ↗</a></div>
+<p class="stem">訓練曲線顯示：訓練準確率與驗證準確率都停在 0.62 左右，兩條曲線幾乎重合，再多訓練也不上升。此現象最可能代表什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 過擬合（訓練好、驗證差）</li><li class="ok"><span class="k">(B)</span> 欠擬合</li><li><span class="k">(C)</span> 資料洩漏（驗證分數異常高）</li><li><span class="k">(D)</span> 梯度爆炸（損失變成 NaN）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>兩條曲線都低且重合，代表模型連訓練資料都學不好，擬合能力不足，是欠擬合（高偏差），應提高模型複雜度、增加有效特徵或減少正則化（指引 5.3 學習曲線判讀）。(A) 過擬合的訓練準確率會明顯高於驗證；(C) 洩漏會讓驗證分數異常高；(D) 梯度爆炸會使損失發散，不會穩定停在 0.62。</div></div>
+</article>
+<article class="q" id="延-中3-q118" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 118 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q30">衍生自 114-2 第 30 題 ↗</a></div>
+<p class="stem">客訴分類有 8 個類別，其中 3 個類別只佔總量的 2%，但業務上每一類都同等重要。要讓評估指標不被大類別主導、平等反映每個類別的表現，應使用下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> micro F1（以總 TP、FP、FN 計算）</li><li class="ok"><span class="k">(B)</span> macro F1</li><li><span class="k">(C)</span> Accuracy（整體正確率）</li><li><span class="k">(D)</span> weighted F1（依各類樣本數加權）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>macro F1 先分別算每個類別的 F1 再取簡單平均，每類權重相同，小類別表現差會直接拉低分數（指引 5.3 多類別評估的平均方式）。(A) micro F1 彙總所有類別的計數，等同多類別 Accuracy，被大類主導；(C) Accuracy 同樣被大類主導；(D) weighted F1 依樣本數加權，小類別的影響仍然很小。</div></div>
+</article>
+<article class="q" id="延-中3-q119" data-sec="sec5-3" data-kind="A">
+<div class="qhead"><span class="num">第 119 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q44">衍生自 115-1 第 44 題 ↗</a></div>
+<p class="stem">醫學影像資料集中每位病患有 10–20 張影像。團隊隨機把「影像」切成訓練與驗證集，驗證 AUC 高達 0.98，上線對新病患卻只有 0.80。最合理的修正方式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 增加 K 折的折數到 20 以降低變異</li><li><span class="k">(B)</span> 改用留一法逐張影像驗證</li><li><span class="k">(C)</span> 把影像順序打亂後重新隨機切分</li><li class="ok"><span class="k">(D)</span> 以病患為單位分組切分</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>同一病患的影像高度相似，隨機切分讓同一人的影像同時出現在訓練與驗證集，模型靠「記住病患」得到虛高分數；應以病患為單位分組（GroupKFold），確保驗證集的病患在訓練時從未出現（指引 5.3 資料洩漏與切分單位）。(A)(B)(C) 仍以影像為切分單位，同一病患依舊會跨集洩漏。</div></div>
+</article>
+<article class="q" id="延-中3-q120" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 120 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q12">衍生自 115-1 第 12 題 ↗</a></div>
+<p class="stem">某模型對 1% 陽性的資料「一律預測為陰性」，Accuracy 仍有 99%。下列哪一個指標最能直接揭露這個模型其實毫無偵測能力？</p>
+<ul class="opts"><li><span class="k">(A)</span> Accuracy（整體準確率）</li><li><span class="k">(B)</span> Specificity（真陰性率）</li><li class="ok"><span class="k">(C)</span> 陽性類的 Recall</li><li><span class="k">(D)</span> 整體錯誤率（1−Accuracy）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>全部預測為陰性時 TP＝0，陽性類的 Recall＝0/(0＋FN)＝0，一眼就看出模型完全抓不到陽性（指引 5.3 不平衡資料的指標選擇）。(A)(D) Accuracy 99%、錯誤率 1%，都被多數類掩蓋；(B) Specificity＝TN/(TN＋FP) 在此情況下反而是 100%，看起來更完美，無法揭露問題。</div></div>
+</article>
+<article class="q" id="延-中3-q121" data-sec="sec5-3" data-kind="D">
+<div class="qhead"><span class="num">第 121 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q34">衍生自 115-1 第 34 題 ↗</a></div>
+<p class="stem">對隨機森林做網格搜尋：n_estimators 有 5 個候選值、max_depth 有 5 個、min_samples_leaf 有 4 個，每個組合都做 3 折交叉驗證。總共需要訓練幾個模型？</p>
+<ul class="opts"><li><span class="k">(A)</span> 100 個</li><li><span class="k">(B)</span> 14 個</li><li><span class="k">(C)</span> 42 個</li><li class="ok"><span class="k">(D)</span> 300 個</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>網格組合數＝5×5×4＝100，每個組合訓練 3 折，共 100×3＝300 次模型訓練（指引 5.3／5.4 超參數搜尋成本）。(A) 100 只是組合數，忘了乘折數；(B) 14 是把候選值相加 5＋5＋4；(C) 42 是相加後再乘 3。</div></div>
+</article>
+<article class="q" id="延-中3-q122" data-sec="sec5-3" data-kind="B">
+<div class="qhead"><span class="num">第 122 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q29">衍生自 114-2 第 29 題 ↗</a></div>
+<p class="stem">設備故障預測模型上線一年後準確率逐月下滑，分析發現是設備老化與操作習慣改變使資料分佈漂移。針對這類長期運行環境，最適當的驗證與維運策略為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 固定使用上線前的驗證集並加強 L2 正則化</li><li class="ok"><span class="k">(B)</span> 定期以最新資料重新驗證與再訓練</li><li><span class="k">(C)</span> 把原驗證集併入訓練集以增加資料量</li><li><span class="k">(D)</span> 減少特徵數量以降低模型對漂移的敏感度</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>資料隨時間漂移時，舊驗證集已不代表現況，應採滑動視窗或時間序列驗證，定期用最新區間的資料重新評估並再訓練，讓模型跟上環境（指引 5.3 時間序列驗證與模型維運）。(A) 正則化處理的是過擬合，無法讓模型認識新的分佈；(C) 併入舊驗證集既不反映新資料，也失去評估依據；(D) 減少特徵不會讓分佈漂移消失。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec5-4"><h2 class="chap">5.4 模型調整與優化 <small>13 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec5-4">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec5-4">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q2" data-sec="sec5-4" data-kind="B">
+<div class="qhead"><span class="num">第 2 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q2">衍生自 114-2 第 2 題 ↗</a></div>
+<p class="stem">一個線性迴歸模型有 200 個彼此高度相關的特徵，分析師希望在「不把任何係數歸零」的前提下壓低係數大小、降低共線性造成的不穩定。最適合加入的懲罰項為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> L1 正則化：以係數絕對值之和作為懲罰</li><li class="ok"><span class="k">(B)</span> L2 正則化：以係數平方和作為懲罰</li><li><span class="k">(C)</span> Dropout：訓練時隨機關閉部分特徵</li><li><span class="k">(D)</span> 早停：在驗證誤差回升前停止迭代</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>L2（Ridge）以 λΣw² 為懲罰，會把所有係數一起「縮小」但不會剛好歸零，特別適合特徵共線的情況（指引 5.4 正則化）。(A) L1 會把部分係數壓成 0，違反題目「不歸零」的前提；(C) Dropout 是神經網路的正則化手段，線性迴歸沒有隱藏層可隨機關閉；(D) 早停控制訓練輪數，不直接作用於係數大小與共線性。</div></div>
+</article>
+<article class="q" id="延-中3-q123" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 123 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q11">衍生自 114-2 第 11 題 ↗</a></div>
+<p class="stem">團隊要同時調整 8 個超參數、每個有 5 個候選值，發現用網格搜尋幾乎跑不完。網格搜尋在此情境的根本限制為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 組合數呈指數成長</li><li><span class="k">(B)</span> 網格搜尋無法與交叉驗證一起使用</li><li><span class="k">(C)</span> 網格搜尋一次只能調整一個超參數</li><li><span class="k">(D)</span> 網格搜尋的結果每次執行都不同</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>網格搜尋窮舉所有候選值的笛卡兒積，8 個參數各 5 個值就是 5⁸＝390,625 組，組合數隨參數數量指數成長，且其中大多是無效嘗試；隨機搜尋以固定次數抽樣能更有效率地覆蓋高維空間（指引 5.4 超參數搜尋）。(B) 網格搜尋通常就是搭配交叉驗證；(C) 它正是同時調多個參數；(D) 網格搜尋是確定性的窮舉，結果可重現。</div></div>
+</article>
+<article class="q" id="延-中3-q124" data-sec="sec5-4" data-kind="B">
+<div class="qhead"><span class="num">第 124 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q11">衍生自 114-2 第 11 題 ↗</a></div>
+<p class="stem">相較於隨機搜尋，網格搜尋仍有其適用之處。下列何者是網格搜尋的優點？</p>
+<ul class="opts"><li><span class="k">(A)</span> 在高維參數空間中搜尋效率最高</li><li><span class="k">(B)</span> 能自動生成最佳的模型架構</li><li class="ok"><span class="k">(C)</span> 窮舉所有指定組合</li><li><span class="k">(D)</span> 能從根本上避免模型過擬合</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>網格搜尋會把指定的每一個組合都試過，不會漏掉任何一組，結果確定且可重現，在參數少、候選值少時是可靠的選擇（指引 5.4 超參數調整方法比較）。(A) 高維空間的效率優勢屬於隨機搜尋；(B) 自動生成架構是神經架構搜尋（NAS）／AutoML 的範疇；(D) 超參數搜尋本身不能避免過擬合，仍需靠驗證集評估。</div></div>
+</article>
+<article class="q" id="延-中3-q125" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 125 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q26">衍生自 114-2 第 26 題 ↗</a></div>
+<p class="stem">某模型在訓練集與驗證集上表現都偏低（欠擬合）。下列哪一個調整方向才是對症下藥？</p>
+<ul class="opts"><li><span class="k">(A)</span> 加強 L2 正則化以限制係數</li><li><span class="k">(B)</span> 把 Dropout 比例從 0.2 提高到 0.5</li><li><span class="k">(C)</span> 更早觸發早期停止</li><li class="ok"><span class="k">(D)</span> 增加模型容量或特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>欠擬合代表模型表達能力不足，應增加模型容量（更多層／更多樹、更深的樹）、加入更有資訊量的特徵或減少正則化，讓模型能捕捉主要趨勢（指引 5.4 過擬合與欠擬合的對策）。(A)(B)(C) 正則化、Dropout、早停都是限制學習能力以對付過擬合的手段，用在欠擬合上會讓表現更差。</div></div>
+</article>
+<article class="q" id="延-中3-q126" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 126 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q33">衍生自 115-1 第 33 題 ↗</a></div>
+<p class="stem">某迴歸模型有 300 個特徵，其中很多成群高度相關。團隊既希望把不重要的特徵係數壓成 0 做自動選擇，又希望在一群相關特徵中不要只隨機留下一個、造成每次訓練結果不同。最合適的正則化為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Lasso（只有 L1 懲罰）</li><li><span class="k">(B)</span> Ridge（只有 L2 懲罰）</li><li class="ok"><span class="k">(C)</span> Elastic Net</li><li><span class="k">(D)</span> 無正則化的最小平方法</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>Elastic Net 同時含 L1 與 L2 懲罰：L1 提供稀疏性與特徵選擇，L2 讓高度相關的特徵傾向一起被保留或縮小，避免 Lasso 在相關特徵中隨機挑一個的不穩定（指引 5.4 正則化方法）。(A) Lasso 面對相關特徵會隨機保留其一；(B) Ridge 不會把係數歸零，無法自動選擇特徵；(D) 無正則化無法控制過擬合也不做選擇。</div></div>
+</article>
+<article class="q" id="延-中3-q127" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 127 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q39">衍生自 114-2 第 39 題 ↗</a></div>
+<p class="stem">某神經網路訓練時使用 Dropout（p＝0.5）。模型上線做推論時，Dropout 應如何處理？</p>
+<ul class="opts"><li><span class="k">(A)</span> 仍隨機關閉一半神經元並重複推論多次取平均</li><li><span class="k">(B)</span> 把學習率減半後再做推論</li><li><span class="k">(C)</span> 以相同資料再重新訓練一次</li><li class="ok"><span class="k">(D)</span> 關閉 Dropout</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Dropout 只在訓練階段隨機關閉神經元以減少共適應；推論時應關閉 Dropout、使用全部神經元（框架會自動依保留比例縮放輸出，使期望值一致），否則預測會帶有隨機性且效能下降（指引 5.4 Dropout 正則化）。(A) 推論時隨機失活會讓同一輸入得到不同結果；(B) 推論沒有學習率的概念；(C) 重新訓練與 Dropout 的推論行為無關。</div></div>
+</article>
+<article class="q" id="延-中3-q128" data-sec="sec5-4" data-kind="B">
+<div class="qhead"><span class="num">第 128 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q39">衍生自 114-2 第 39 題 ↗</a></div>
+<p class="stem">某訓練程式把損失函數寫成 loss = mse + lam * sum(w ** 2)，其中 w 是全部權重。這段程式實現的是哪一種正則化？</p>
+<ul class="opts"><li><span class="k">(A)</span> L1 正則化（權重絕對值和）</li><li class="ok"><span class="k">(B)</span> L2 正則化</li><li><span class="k">(C)</span> Dropout（隨機失活）</li><li><span class="k">(D)</span> 早期停止（Early Stopping）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>在損失中加入權重平方和乘上係數 λ，就是 L2 正則化（權重衰減），會把所有權重一起縮小但不歸零（指引 5.4 正則化）。(A) L1 加的是絕對值和 Σ|w|；(C) Dropout 是在前向傳播時隨機遮罩神經元，不在損失函數裡；(D) 早停是監控驗證損失決定何時停止，與損失函數的形式無關。</div></div>
+</article>
+<article class="q" id="延-中3-q129" data-sec="sec5-4" data-kind="D">
+<div class="qhead"><span class="num">第 129 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q12">衍生自 114-2 第 12 題 ↗</a></div>
+<p class="stem">某訓練採 Step Decay 學習率排程：初始學習率 0.1，每滿 10 個 Epoch 就乘以 0.5。第 25 個 Epoch 時使用的學習率為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 0.1</li><li><span class="k">(B)</span> 0.05</li><li class="ok"><span class="k">(C)</span> 0.025</li><li><span class="k">(D)</span> 0.0125</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>Epoch 0–9 為 0.1；滿 10 個後 Epoch 10–19 為 0.05；滿 20 個後 Epoch 20–29 為 0.025，第 25 個 Epoch 落在此區間（指引 5.4 學習率排程）。(A) 是初始值；(B) 只衰減了一次；(D) 要到第 30 個 Epoch 才會降到 0.0125。</div></div>
+</article>
+<article class="q" id="延-中3-q130" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 130 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q13">衍生自 115-1 第 13 題 ↗</a></div>
+<p class="stem">某文字分類模型訓練 F1 0.95、驗證 F1 0.70，明顯過擬合。下列哪一項調整最可能讓過擬合更嚴重？</p>
+<ul class="opts"><li><span class="k">(A)</span> 在全連接層加入 Dropout</li><li><span class="k">(B)</span> 加入 L2 權重衰減</li><li><span class="k">(C)</span> 把 Embedding 維度從 300 降到 100</li><li class="ok"><span class="k">(D)</span> 增加訓練 Epoch 到 500</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>過擬合是模型過度記憶訓練資料，再多訓練幾百個 Epoch 只會讓訓練損失更低、驗證損失更高，差距擴大（指引 5.4 過擬合的成因與對策）。(A) Dropout 與 (B) L2 都是限制模型複雜度的正則化手段；(C) 降低 Embedding 維度減少參數量，同樣有助於緩解過擬合。</div></div>
+</article>
+<article class="q" id="延-中3-q131" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 131 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q10">衍生自 114-2 第 10 題 ↗</a></div>
+<p class="stem">依指引對 AutoML 適用情境的說明，下列哪一種情況最不適合導入 AutoML？</p>
+<ul class="opts"><li><span class="k">(A)</span> 缺乏專職工程師，需要快速比較多種模型</li><li><span class="k">(B)</span> 新產品必須在兩週內上線第一版預測模型</li><li class="ok"><span class="k">(C)</span> 法規要求精細控制特徵工程</li><li><span class="k">(D)</span> 團隊想快速建立一個基準模型再逐步改進</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>AutoML 自動化特徵處理、模型選擇與調參，適合缺人力、缺時間、需快速比較或建立基準的場景；需要精細控制每一步特徵工程與演算法細節（如受監管的高度客製模型）時，自動化流程反而成為限制（指引 5.4 AutoML 的適用與限制）。(A)(B)(D) 都是 AutoML 發揮優勢的典型情境。</div></div>
+</article>
+<article class="q" id="延-中3-q132" data-sec="sec5-4" data-kind="B">
+<div class="qhead"><span class="num">第 132 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q21">衍生自 115-1 第 21 題 ↗</a></div>
+<p class="stem">為了把模型部署到邊緣裝置，工程師把網路中數值接近零的權重移除、再微調，使模型體積縮小一半而準確率幾乎不變。此技術稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 量化（降低數值精度）</li><li><span class="k">(B)</span> 知識蒸餾（教師指導學生）</li><li><span class="k">(C)</span> 張量分解（拆成小張量乘積）</li><li class="ok"><span class="k">(D)</span> 剪枝</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>剪枝移除不重要的權重、神經元或通道，讓模型稀疏化、縮小體積並加速推論，通常配合微調恢復精度（指引 5.4 模型壓縮技術）。(A) 量化是把 32 位元浮點數改成 8 位元整數，權重數量不變；(B) 蒸餾是訓練一個新的小模型；(C) 張量分解把大矩陣拆成低秩乘積，不是移除權重。</div></div>
+</article>
+<article class="q" id="延-中3-q133" data-sec="sec5-4" data-kind="B">
+<div class="qhead"><span class="num">第 133 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q35">衍生自 115-1 第 35 題 ↗</a></div>
+<p class="stem">使用 LoRA 微調大型語言模型時，若把 rank 從 8 提高到 64、其餘設定不變，最直接的影響為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 可訓練參數與顯存增加</li><li><span class="k">(B)</span> 可訓練參數減少、顯存需求下降</li><li><span class="k">(C)</span> 可訓練參數量不變，只影響推論速度</li><li><span class="k">(D)</span> 模型的表達能力下降</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>LoRA 在每個目標層插入兩個低秩矩陣（d×r 與 r×k），可訓練參數量與 rank r 成正比，rank 提高 8 倍，適配矩陣的參數、梯度與優化器狀態也隨之增加，顯存需求上升；代價是換來更強的適配能力（指引 5.4 參數高效微調）。(B)(C) 方向錯誤；(D) rank 越高表達能力越強，不是下降。</div></div>
+</article>
+<article class="q" id="延-中3-q134" data-sec="sec5-4" data-kind="A">
+<div class="qhead"><span class="num">第 134 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q11">衍生自 115-1 第 11 題 ↗</a></div>
+<p class="stem">工程師把批次大小從 32 一口氣調到 4096，其他設定不變，訓練同樣 20 個 Epoch。相較於原設定，最直接的差異為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 每個 Epoch 更新次數減少</li><li><span class="k">(B)</span> 每次梯度估計的雜訊變得更大</li><li><span class="k">(C)</span> GPU 記憶體需求明顯下降</li><li><span class="k">(D)</span> 一定能更快收斂到更好的解</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>一個 Epoch 的更新次數＝資料筆數÷批次大小，批次放大 128 倍，更新次數就只剩 1/128，相同 Epoch 數下參數走的步數大幅減少，常需同步調高學習率或增加 Epoch（指引 5.4 批次大小與學習率的搭配）。(B) 大批次的梯度估計更穩定、雜訊更小；(C) 大批次需要更多記憶體；(D) 大批次未必收斂更好，過大的批次常被指出泛化較差。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec6-1"><h2 class="chap">6.1 數據隱私、安全與合規 <small>9 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-1">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec6-1">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q135" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 135 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某公開資料集已移除姓名與身分證號，但保留「出生年月、郵遞區號、性別」三個欄位。依指引對隱私風險類型的分類，這三個欄位組合後最主要構成哪一類風險？</p>
+<ul class="opts"><li><span class="k">(A)</span> 直接識別風險（單一欄位即可辨識個人）</li><li class="ok"><span class="k">(B)</span> 間接識別風險</li><li><span class="k">(C)</span> 再識別風險（去識別化後仍被還原）</li><li><span class="k">(D)</span> 不構成任何隱私風險</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>出生年月、郵遞區號、性別都是準識別資訊（Quasi-identifiers）：單獨看無法辨識，但交叉比對後可「推導」出身份，屬間接識別風險（指引 6.1 常見數據隱私風險分類）。(A) 直接識別風險指姓名、身分證號等 PII，已被移除；(C) 再識別風險是已去識別化的資料因外部資料而被還原，是間接識別風險進一步被利用的結果；(D) 指引明列這些欄位為風險來源。</div></div>
+</article>
+<article class="q" id="延-中3-q136" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 136 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引以風險矩陣評估隱私風險時，「風險等級」是由哪兩個因素以何種方式決定？</p>
+<ul class="opts"><li><span class="k">(A)</span> 發生可能性 ＋ 影響程度</li><li><span class="k">(B)</span> 影響程度 ÷ 發生可能性</li><li><span class="k">(C)</span> 只看影響程度，可能性僅供參考</li><li class="ok"><span class="k">(D)</span> 發生可能性 × 影響程度</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 6.1 說明風險矩陣以「發生可能性」與「影響程度」交叉評估（3×3 或 5×5），風險等級＝發生機率×影響程度，再分為低、中、高風險並對應監控、規劃對策、優先處理。(A)(B) 運算方式不符；(C) 兩個維度都要納入，可能性不是參考值。</div></div>
+</article>
+<article class="q" id="延-中3-q137" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 137 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引的隱私影響評估（PIA）五步驟，第一個步驟為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 策略擬定與對策規劃</li><li><span class="k">(B)</span> 治理責任分工與追蹤</li><li class="ok"><span class="k">(C)</span> 資料流程盤點</li><li><span class="k">(D)</span> 影響程度分析與排序</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 6.1 的 PIA 五步驟依序為：資料流程盤點、風險辨識、影響程度分析、策略擬定、治理責任分工。先弄清楚資料從哪來、經過哪些處理、流向何處，才能辨識風險，所以盤點是第一步。(A)(B)(D) 都是後續步驟。</div></div>
+</article>
+<article class="q" id="延-中3-q138" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 138 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">為降低識別風險，資料工程師把出生日期「1987-03-12」改成「1980 年代」。依指引對基礎匿名化技術的分類，此作法屬於哪一種？</p>
+<ul class="opts"><li><span class="k">(A)</span> 遮蔽（以符號取代部分內容）</li><li><span class="k">(B)</span> 雜湊（轉成不可逆字串）</li><li><span class="k">(C)</span> 隨機擾動（加入噪聲）</li><li class="ok"><span class="k">(D)</span> 泛化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>泛化是降低資料精度（1987-03-12→1980 年代），簡單有效且保留分佈特性，代價是精度降低可能影響分析（指引 6.1 基礎資料匿名化技術表）。(A) 遮蔽是用符號或虛構資料取代部分內容，如王大明→王○○；(B) 雜湊產生不可逆字串，不保留可讀的日期資訊；(C) 隨機擾動是在數值上加噪聲，如 50,000→50,123。</div></div>
+</article>
+<article class="q" id="延-中3-q139" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 139 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某醫療資料集已做到 K-匿名（K＝5），但稽核發現某個等價群組內 5 筆紀錄的「疾病」欄位全都是同一種病，外人仍可推測該群組成員的病情。依指引，應進一步採用哪一種技術？</p>
+<ul class="opts"><li><span class="k">(A)</span> 再提高 K-匿名的 K 值到 20</li><li><span class="k">(B)</span> 改用遮蔽取代泛化</li><li><span class="k">(C)</span> 對敏感欄位做單向雜湊</li><li class="ok"><span class="k">(D)</span> L-多樣性</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>L-多樣性在 K-匿名基礎上要求每個群組的敏感欄位至少有 L 種不同值，避免「群組內敏感值全相同」造成的屬性推測（指引 6.1 進階隱私強化技術）。(A) 提高 K 只增加群組人數，不保證敏感值多樣；(B) 遮蔽處理的是識別欄位；(C) 雜湊疾病欄位會讓資料失去分析價值，且同病仍得到同一雜湊值，推測問題依舊。</div></div>
+</article>
+<article class="q" id="延-中3-q140" data-sec="sec6-1" data-kind="A">
+<div class="qhead"><span class="num">第 140 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q36">衍生自 115-1 第 36 題 ↗</a></div>
+<p class="stem">三家醫院想聯合訓練一個影像診斷模型，但法規規定病患原始影像不得離開各醫院。依指引的隱私強化技術，最符合此需求的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 同態加密（在加密狀態下運算）</li><li><span class="k">(B)</span> 差分隱私（對輸出加入噪聲）</li><li class="ok"><span class="k">(C)</span> 聯邦學習</li><li><span class="k">(D)</span> 資料遮蔽（部分欄位以符號取代）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>聯邦學習讓模型在各客戶端本地訓練，只回傳參數更新（梯度）至中央伺服器，原始資料留在本地，指引列舉的應用正是跨院建模（指引 6.1 進階隱私強化技術）。(A) 同態加密是把資料加密後交給他方運算，資料仍會「離開」醫院（雖是密文）；(B) 差分隱私處理的是查詢輸出的隱私，不解決資料不得外流的問題；(D) 遮蔽影像會破壞診斷資訊。</div></div>
+</article>
+<article class="q" id="延-中3-q141" data-sec="sec6-1" data-kind="B">
+<div class="qhead"><span class="num">第 141 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q36">衍生自 114-2 第 36 題 ↗</a></div>
+<p class="stem">某統計查詢平台在回傳群體統計結果前加入精心設計的隨機雜訊，使任何單一個人是否在資料集中都無法從結果推斷。此技術為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 差分隱私</li><li><span class="k">(B)</span> 同態加密（在加密資料上直接運算）</li><li><span class="k">(C)</span> 安全多方計算（多方聯合計算而不互揭資料）</li><li><span class="k">(D)</span> 單向雜湊（產生不可逆字串）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>差分隱私透過在輸出加入校準過的隨機雜訊，保證加入或移除任一個人對結果的影響被控制在 ε 內，從而保護個體（指引 6.1 隱私保護技術）。(B) 同態加密的特性是在密文上運算、解密後結果與明文運算相同，不加雜訊；(C) MPC 讓多方在不揭露各自輸入的情況下共同計算；(D) 雜湊是單向轉換識別欄位，與統計輸出無關。</div></div>
+</article>
+<article class="q" id="延-中3-q142" data-sec="sec6-1" data-kind="C">
+<div class="qhead"><span class="num">第 142 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某電商為了「配送」目的向顧客收集地址，後來未經告知就把地址資料拿去做區域行銷分析。依指引的合規實務建議，此行為主要違反哪一項原則？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 目的限制</li><li><span class="k">(B)</span> 資料最小化（只收集必要的最低限度資料）</li><li><span class="k">(C)</span> 跨境傳輸規範（不同國家的個資傳輸限制）</li><li><span class="k">(D)</span> 透明度與紀錄保存</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 6.1 指出資料不得用於未告知、未同意的其他目的，這是目的限制原則；為配送收集的地址拿去做行銷，就是超出原目的使用。(B) 資料最小化談的是收集範圍，地址對配送是必要的；(C) 題幹沒有跨境傳輸；(D) 透明度要求記錄來源與處理情況並提供隱私聲明，是配套義務，不是本題的核心違反點。</div></div>
+</article>
+<article class="q" id="延-中3-q143" data-sec="sec6-1" data-kind="A">
+<div class="qhead"><span class="num">第 143 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q37">衍生自 114-2 第 37 題 ↗</a></div>
+<p class="stem">資料團隊對「身分證字號」欄位做 SHA-256 雜湊後對外釋出，認為已不可逆。依指引對雜湊處理限制的說明，此做法仍存在什麼風險？</p>
+<ul class="opts"><li><span class="k">(A)</span> 雜湊可以用金鑰直接解密還原</li><li><span class="k">(B)</span> 雜湊後不同紀錄無法做一致性比對</li><li><span class="k">(C)</span> 雜湊後的字串仍可直接做數值統計</li><li class="ok"><span class="k">(D)</span> 值域有限時易被彩虹表反查</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引 6.1 指出雜湊的限制：原始資料種類有限時易受彩虹表攻擊——身分證字號格式固定、可能值有限，攻擊者可預先算出所有可能值的雜湊再比對反查；實務上須加鹽（salt）或改用其他技術。(A) 雜湊是單向函數，沒有金鑰可解密；(B) 相同輸入得到相同雜湊，正好支援一致性比對，是它的優點；(C) 雜湊字串沒有數值意義，指引也指出它不適合數值分析。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec6-2"><h2 class="chap">6.2 演算法偏見與公平性 <small>7 題</small><a class="back" href="中級_科目3_機器學習技術與應用.html#sec6-2">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目3_機器學習技術與應用.html#sec6-2">白話版 ↗</a></h2>
+<article class="q" id="延-中3-q144" data-sec="sec6-2" data-kind="C">
+<div class="qhead"><span class="num">第 144 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某皮膚病變辨識模型的訓練影像幾乎都來自淺膚色病患，對深膚色病患的辨識率明顯偏低。依指引對偏誤類型的分類，這主要屬於哪一種？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 來源偏誤</li><li><span class="k">(B)</span> 內容偏誤（資料內容含歧視觀點）</li><li><span class="k">(C)</span> 製程偏誤（標註過程主觀不一致）</li><li><span class="k">(D)</span> 演算法偏誤（目標函數忽略少數群體）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>來源偏誤指資料蒐集階段無法均衡涵蓋所有群體或情境，例如群體分佈不均、某年齡層或膚色缺乏資料（指引 6.2 資料代表性與偏誤風險）。(B) 內容偏誤是資料內容本身帶有不公平觀點，如「醫師」預設男性；(C) 製程偏誤來自標註者主觀不一致；(D) 演算法偏誤發生在模型階段，題幹的問題源頭在蒐集階段。</div></div>
+</article>
+<article class="q" id="延-中3-q145" data-sec="sec6-2" data-kind="D">
+<div class="qhead"><span class="num">第 145 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q38">衍生自 115-1 第 38 題 ↗</a></div>
+<p class="stem">某招聘篩選模型對男性申請者的通過率為 50%，女性為 35%。依「80% 法則」（不利影響比）評估，結果為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 0.70，低於 80% 門檻</li><li><span class="k">(B)</span> 1.43，超過門檻，符合要求</li><li><span class="k">(C)</span> 相差 15 個百分點，在容許範圍內</li><li><span class="k">(D)</span> 須知道各群樣本數才能判斷</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>不利影響比＝弱勢群體正向結果比例÷優勢群體比例＝35%÷50%＝0.70，低於 0.8，依 80% 法則可能構成間接歧視，需進一步檢視（指引 6.2 公平性指標 Disparate Impact）。(B) 1.43 是把分子分母顛倒；(C) 80% 法則看的是比率而非百分點差距；(D) 比率本身不需要樣本數即可計算。</div></div>
+</article>
+<article class="q" id="延-中3-q146" data-sec="sec6-2" data-kind="A">
+<div class="qhead"><span class="num">第 146 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q38">衍生自 115-1 第 38 題 ↗</a></div>
+<p class="stem">醫療資源分配模型的公平性目標是：「在真正需要治療的病患中，不同族群被模型正確判定為需要治療的比例應相同」。依指引，這對應哪一個公平性指標？</p>
+<ul class="opts"><li><span class="k">(A)</span> Demographic Parity（各群正向預測比例相同）</li><li class="ok"><span class="k">(B)</span> Equal Opportunity</li><li><span class="k">(C)</span> Equalized Odds（TPR 與 FPR 皆須一致）</li><li><span class="k">(D)</span> Disparate Impact（80% 法則）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>機會平等（Equal Opportunity）要求實際應獲正向預測者中，不同群體被正確預測的機率（真陽性率）相同，確保真正該被服務者不被忽略，指引列舉的情境正是醫療診斷與社會福利（指引 6.2 公平性指標表）。(A) 群體平等率只看正向預測比例，不管實際資格；(C) 均衡機率還額外要求假陽性率一致，條件更強；(D) 不利影響比是正向結果比例的比率。</div></div>
+</article>
+<article class="q" id="延-中3-q147" data-sec="sec6-2" data-kind="A">
+<div class="qhead"><span class="num">第 147 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q39">衍生自 115-1 第 39 題 ↗</a></div>
+<p class="stem">貸款模型已訓練完成且不打算重訓，稽核後決定「對弱勢族群把核准門檻從 60 分調整為 55 分」以平衡核准率。依指引對降低偏見方法的階段分類，此作法屬於哪一階段？</p>
+<ul class="opts"><li><span class="k">(A)</span> 資料前處理（重新抽樣或特徵去偏）</li><li><span class="k">(B)</span> 模型內部處理（公平性約束訓練）</li><li class="ok"><span class="k">(C)</span> 模型後處理</li><li><span class="k">(D)</span> 資料匿名化與泛化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引 6.2 把去偏方法分為資料前處理、模型內部處理與模型後處理；針對不同群體調整正向預測閾值（如核准門檻 60→55）正是後處理的「結果門檻調整」，不需重新訓練。(A) 前處理在訓練前調整資料；(B) 內部處理在訓練時加入公平性約束或對抗式去偏，都需要重訓；(D) 匿名化是前處理的一種手段。</div></div>
+</article>
+<article class="q" id="延-中3-q148" data-sec="sec6-2" data-kind="B">
+<div class="qhead"><span class="num">第 148 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e114b-q13">衍生自 114-2 第 13 題 ↗</a></div>
+<p class="stem">某銀行用過去二十年的核貸紀錄訓練模型，但這些歷史決策本身就長期對特定族群較不利，模型學到後延續了同樣的差別待遇。依指引，這屬於哪一種偏誤？</p>
+<ul class="opts"><li><span class="k">(A)</span> 來源偏誤（蒐集時群體涵蓋不均）</li><li class="ok"><span class="k">(B)</span> 內容偏誤</li><li><span class="k">(C)</span> 製程偏誤（標註者主觀不一致）</li><li><span class="k">(D)</span> 演算法偏誤（模型追求整體效能）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>內容偏誤指資料本身的內容含有不公平或歧視觀點，指引舉例正是信用審核歷史隱含種族／性別歧視；資料不是不夠多，而是內容本身就有偏（指引 6.2 偏誤類型表）。(A) 來源偏誤是各群體樣本數不均；(C) 製程偏誤來自標註過程；(D) 演算法偏誤是模型階段的問題，題幹的偏見在資料就已存在。</div></div>
+</article>
+<article class="q" id="延-中3-q149" data-sec="sec6-2" data-kind="C">
+<div class="qhead"><span class="num">第 149 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某中小型團隊的模型全部以 scikit-learn 開發，想在既有流程中加入公平性指標評估與基本的去偏功能，希望整合成本最低。依指引對公平性評估工具的比較，最合適的工具為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Microsoft Fairlearn</li><li><span class="k">(B)</span> IBM AI Fairness 360（支援 70 多種指標）</li><li><span class="k">(C)</span> SHAP（計算特徵對預測的貢獻）</li><li><span class="k">(D)</span> LIME（以局部線性模型解釋）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引 6.2 指出 Fairlearn 與 scikit-learn 高度相容、容易整合，去偏功能雖比 AIF360 少，但適合中小型專案；AIF360 指標與去偏技術最完整、文件齊全，但整合成本較高。(B) 功能強但對本題的「整合成本最低」不是最佳解；(C)(D) SHAP 與 LIME 是可解釋性工具，不是公平性評估工具。</div></div>
+</article>
+<article class="q" id="延-中3-q150" data-sec="sec6-2" data-kind="A">
+<div class="qhead"><span class="num">第 150 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目3_機器學習技術與應用.html#e115a-q39">衍生自 115-1 第 39 題 ↗</a></div>
+<p class="stem">履歷篩選模型在訓練時另外接上一個「判別網路」，專門從模型的中間表示推斷申請者性別；主模型則被訓練成讓判別網路猜不出性別。依指引的去偏方法分類，這屬於哪一種？</p>
+<ul class="opts"><li><span class="k">(A)</span> 結果校準（後處理）</li><li><span class="k">(B)</span> 結果門檻調整（後處理）</li><li><span class="k">(C)</span> 資料重新抽樣（前處理）</li><li class="ok"><span class="k">(D)</span> 對抗式去偏</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>對抗式去偏模型屬模型內部處理：透過對抗網路使主模型的表示無法推斷敏感屬性，指引舉例正是「使履歷分析無法推斷申請者性別」（指引 6.2 降低演算法偏見的方法論）。(A)(B) 校準與門檻調整都在模型訓練完後處理輸出；(C) 重新抽樣是訓練前調整資料分佈，與對抗訓練無關。</div></div>
+</article>
+</section>
+
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：題目由自製，以 iPAS 公告試題（考古題）的考點與 中級學習指引《機器學習技術與應用》的內容為基礎擴展，<b>並非官方試題</b>，答案與解析為自行整理；若與官方學習指引、勘誤表或公告不符，以官方為準。
+    </footer>
+  </main>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, cb=document.getElementById('hide-ans');
+  cb.checked=root.hasAttribute('data-qxhide');
+  cb.addEventListener('change',function(){
+    if(cb.checked) root.setAttribute('data-qxhide',''); else root.removeAttribute('data-qxhide');
+    document.querySelectorAll('article.q').forEach(function(c){c.classList.remove('open');});
+    try{localStorage.setItem('ipas-qx-hide',cb.checked?'1':'0');}catch(e){}
+  });
+  document.addEventListener('click',function(ev){var b=ev.target.closest('button.reveal');if(b)b.closest('article.q').classList.add('open');});
+  var links=Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  function onScroll(){var pos=window.scrollY+120,cur=null,best=-1;links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));a.classList.remove('active');if(!t)return;if(t.offsetTop<=pos&&t.offsetTop>best){best=t.offsetTop;cur=a;}});if(cur)cur.classList.add('active');}
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>

@@ -206,6 +206,7 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
   <h1 class="pg">選擇科目開始測驗</h1>
   <p class="lead">題庫共 <b id="bank-total"></b> 題，全數取自 iPAS 官方公告試題（含官方答案），解析為學習整理。每題 2 分、滿分 100、70 分及格。</p>
   <div class="grid2" id="subject-cards"></div>
+  <div id="derived-card" class="hidden" style="margin-top:18px"></div>
   <div id="extra-card" class="hidden" style="margin-top:18px"></div>
   <div class="notice">💡 模式說明 — <b>全真模擬</b>：隨機抽 50 題、依正式考試時間倒數（初級 75 分鐘、中級 90 分鐘）、交卷後才對答案。<b>歷屆原卷</b>：依原始梯次卷面順序作答。<b>快速練習</b>：自訂題數、每題作答後立即顯示答案與解析。作答時可用鍵盤 <kbd>1</kbd>–<kbd>4</kbd> 選答、<kbd>←</kbd><kbd>→</kbd> 換題、<kbd>F</kbd> 標記。</div>
 </div>
@@ -287,11 +288,13 @@ document.addEventListener('DOMContentLoaded',syncThemeBtn);
 <footer>
   題庫來源：iPAS 公告試題（官方答案）；解析為依官方學習指引撰寫之學習整理，非官方標準解析。<br>
   「非官方補充題」為依外部課程（YouTube・VISION PRO）整理之自製練習題，已與官方學習指引交叉核對，與官方題庫分開統計，僅供延伸練習。<br>
+  「中級延伸題庫」為以公告試題考點與官方學習指引為基礎擴展之自製練習題，非官方試題，答案與解析為自行整理，與官方題庫分開統計。<br>
   本網站為離線學習工具，成績與錯題僅儲存於本機瀏覽器；可於「成績紀錄」頁匯出／匯入備份以跨裝置延續紀錄。
 </footer>
 
 <script src="data/questions.js"></script>
 <script src="data/questions-extra.js"></script>
+<script src="data/questions-derived.js"></script>
 <script>
 /* ================= 資料層 ================= */
 const SUBJECTS = [
@@ -315,7 +318,10 @@ const attachHtml=q=>(q.ctx?`<div class="qctx"><span class="lab">題組共用資�
 /* 非官方補充題庫（data/questions-extra.js，可能不存在）：與官方題庫完全分離，
    不列入官方科目卡與題數統計，僅供「非官方補充題」專卡練習。 */
 const EXTRA = (typeof EXTRA_BANK!=="undefined" && Array.isArray(EXTRA_BANK)) ? EXTRA_BANK : [];
-const QMAP = Object.fromEntries([...QUESTION_BANK,...EXTRA].map(q=>[q.id,q]));
+/* 中級延伸題庫（data/questions-derived.js，可能不存在）：以考古題與官方指引擴展的自製題，level 固定 "延伸"、subject 1–3；
+   與官方題庫分開統計，僅供「中級延伸題庫」專卡的全真模擬／快速練習。 */
+const DERIVED = (typeof DERIVED_BANK!=="undefined" && Array.isArray(DERIVED_BANK)) ? DERIVED_BANK : [];
+const QMAP = Object.fromEntries([...QUESTION_BANK,...EXTRA,...DERIVED].map(q=>[q.id,q]));
 const poolOf = (level,no)=>QUESTION_BANK.filter(q=>q.level===level&&q.subject===no);
 const sessionsOf = pool=>[...new Set(pool.map(q=>q.session))];
 const extraWeeks = ()=>{ // 依週次分組 [{no,name,count}]
@@ -324,8 +330,11 @@ const extraWeeks = ()=>{ // 依週次分組 [{no,name,count}]
   return [...m.values()].sort((a,b)=>a.no-b.no);
 };
 const isExtra = q=>q&&q.level==="補充";
-const metaOf = q=>isExtra(q)?`非官方補充題・${q.subjectName}・${q.lesson}`:`${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題`;
-const ansLabel = q=>isExtra(q)?"參考答案":"官方答案";
+const isDerived = q=>q&&q.level==="延伸";
+const derivedPool = no=>no?DERIVED.filter(q=>q.subject===no):DERIVED.slice();
+const DERIVED_FILES = {1:"非官方補充教材_延伸題庫_中級_科目1_人工智慧技術應用規劃.html",2:"非官方補充教材_延伸題庫_中級_科目2_大數據處理分析與應用.html",3:"非官方補充教材_延伸題庫_中級_科目3_機器學習技術與應用.html"};
+const metaOf = q=>isExtra(q)?`非官方補充題・${q.subjectName}・${q.lesson}`:isDerived(q)?`中級延伸題（非官方）・科目${q.subject} ${q.subjectName}・第 ${q.no} 題・${q.src}`:`${q.level}・科目${q.subject}・${q.session} 第 ${q.no} 題`;
+const ansLabel = q=>(isExtra(q)||isDerived(q))?"參考答案":"官方答案";
 
 /* ================= 儲存層 ================= */
 const store = {
@@ -376,7 +385,26 @@ function renderHome(){
       }).join("")}
     </div>`;
   }).join("");
+  renderDerivedCard();
   renderExtraCard();
+}
+function renderDerivedCard(){
+  if(!DERIVED.length) return;
+  const holder=document.getElementById("derived-card");
+  holder.classList.remove("hidden");
+  const subs=SUBJECTS.filter(s=>s.level==="中級"&&derivedPool(s.no).length);
+  holder.innerHTML=`<div class="card" style="border-top:4px solid var(--md)">
+    <span class="lv" style="background:var(--md)">中級延伸題庫・非官方</span>
+    <h2 style="font-size:17px;margin:0 0 2px">以考古題為基礎擴展的練習題</h2>
+    <p class="sub">共 ${DERIVED.length} 題，依 114-2、115-1 公告試題的考點換情境、翻轉錯誤選項、補足冷門章節並換數字重算而成，每題附解析與來源考古題；<b>非官方試題</b>，與上方官方題庫分開計算。題目與解析見教材「非官方補充教材」區的延伸題庫頁。</p>
+    ${subs.map(s=>`<div class="subject-row">
+      <div class="name">科目 ${s.no}・${s.name}<small>延伸題 ${derivedPool(s.no).length} 題</small></div>
+      <div class="btnrow">
+        <button class="btn primary" onclick="dlgDerivedMock(${s.no})">全真模擬</button>
+        <button class="btn" onclick="dlgDerivedPractice(${s.no})">快速練習</button>
+      </div>
+    </div>`).join("")}
+  </div>`;
 }
 function renderExtraCard(){
   if(!EXTRA.length) return;
@@ -410,7 +438,11 @@ function renderCourses(){
       <a href="${COURSE_BASE}${f.full}" target="_blank">📖 完整教材</a>
       <a href="${COURSE_BASE}${f.cram}" target="_blank">🎯 考前重點＋解析</a>
     </div>`;
-  }).join("");
+  }).join("")+(DERIVED.length?`<div class="course-card md">
+      <h3>中級・延伸題庫（非官方）</h3>
+      <div class="sub">以考古題擴展的練習題｜共 ${DERIVED.length} 題</div>
+      ${[1,2,3].filter(no=>derivedPool(no).length).map(no=>`<a href="${COURSE_BASE}${DERIVED_FILES[no]}" target="_blank">📝 科目 ${no} 延伸題庫（${derivedPool(no).length} 題）</a>`).join("")}
+    </div>`:"");
 }
 
 /* ================= 開始測驗對話框 ================= */
@@ -480,6 +512,30 @@ function dlgExtraPractice(week){
       const qids=shuffle(pool).slice(0,n).map(q=>q.id);
       startExam({qids, mode:"practice", instant:true, seconds:0,
         title:`非官方補充題｜${name}`, level:"補充", subject:week||0});
+    });
+}
+function dlgDerivedMock(no){
+  const s=SUBJECTS.find(x=>x.level==="中級"&&x.no===no), pool=derivedPool(no);
+  openDlg(`全真模擬｜中級延伸題庫 科目${no} ${s.name}`,
+    "從延伸題庫隨機抽出 50 題並打亂順序，依中級正式考試時間倒數，交卷後才顯示答案（非官方試題）。",
+    timeOptions("中級",[60,45,30]),
+    ()=>{
+      const min=+document.getElementById("f-min").value;
+      const qids=shuffle(pool).slice(0,50).map(q=>q.id);
+      startExam({qids, mode:"mock", instant:false, seconds:min*60,
+        title:`全真模擬｜中級延伸題庫 科目${no} ${s.name}`, level:"延伸", subject:no});
+    });
+}
+function dlgDerivedPractice(no){
+  const s=SUBJECTS.find(x=>x.level==="中級"&&x.no===no), pool=derivedPool(no);
+  openDlg(`快速練習｜中級延伸題庫 科目${no} ${s.name}`,
+    "隨機抽題、不計時，每題作答後立即顯示參考答案與解析（非官方試題）。",
+    `<label>題數（延伸題庫共 ${pool.length} 題）</label><select id="f-n"><option>10</option><option selected>20</option><option>30</option><option>50</option></select>`,
+    ()=>{
+      const n=Math.min(+document.getElementById("f-n").value, pool.length);
+      const qids=shuffle(pool).slice(0,n).map(q=>q.id);
+      startExam({qids, mode:"practice", instant:true, seconds:0,
+        title:`快速練習｜中級延伸題庫 科目${no} ${s.name}`, level:"延伸", subject:no});
     });
 }
 function startWrongRetry(level,no){
@@ -739,6 +795,7 @@ function renderWrongbook(){
         const n=ids.filter(id=>QMAP[id]&&QMAP[id].level===s.level&&QMAP[id].subject===s.no).length;
         return n?`<button class="btn" onclick="startWrongRetry('${s.level}',${s.no})">${s.level}科${s.no}（${n}）</button>`:"";
       }).join("")}
+      ${[1,2,3].map(no=>{const n=ids.filter(id=>isDerived(QMAP[id])&&QMAP[id].subject===no).length;return n?`<button class="btn" onclick="startWrongRetry('延伸',${no})">延伸科${no}（${n}）</button>`:"";}).join("")}
       ${(()=>{const n=ids.filter(id=>isExtra(QMAP[id])).length;return n?`<button class="btn" onclick="startWrongRetry('補充')">非官方補充題（${n}）</button>`:"";})()}
       <button class="btn ghost" onclick="if(confirm('清空整本錯題本？')){store.set('${WKEY}',{});updateWbBadge();renderWrongbook();}">清空錯題本</button>
     </div>`+

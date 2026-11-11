@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中級 科目 1（延伸題庫）— iPAS AI 應用規劃師 非官方補充教材</title>
+<style>
+:root{--accent:#4d7c0f;--accent-soft:#ecfccb;--ink:#1f2933;--muted:#647084;--line:#e2e8f0;--bg:#f7f9fb;--ok:#15803d;--ok-soft:#dcfce7;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.78;}
+.wrap{display:grid;grid-template-columns:280px 1fr;max-width:1400px;margin:0 auto;background:#fff;}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:24px 18px;background:#fbfdfe;border-right:1px solid var(--line);font-size:14px;}
+nav.toc h2{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 12px;}
+nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 8px;border-radius:6px;}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent);}
+nav.toc a.sub{padding-left:14px;font-size:13px;color:var(--muted);}
+nav.toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600;}
+nav.toc .cnt{display:inline-block;min-width:18px;text-align:center;font-size:11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:4px;padding:0 5px;line-height:17px;}
+main{padding:40px 52px;max-width:980px;min-width:0;}
+header.page{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px;}
+header.page .level{display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px;}
+header.page h1{margin:12px 0 4px;font-size:28px;}
+header.page .sub{color:var(--muted);margin:0;}
+header.page .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+header.page .tags span{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+h2.chap{margin:46px 0 14px;padding:11px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:20px;scroll-margin-top:16px;}
+h2.chap small{font-size:13px;font-weight:400;margin-left:8px;opacity:.9;}
+h2.chap a.back{color:#fff;border-color:rgba(255,255,255,.5);margin-top:4px;}
+h2.chap a.back:hover{background:rgba(255,255,255,.15);color:#fff;}
+h4{margin:0;font-size:17px;}
+p{margin:10px 0;} ul,ol{margin:8px 0;padding-left:24px;} li{margin:4px 0;}
+code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:90%;}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+a.back{float:right;font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-left:8px;white-space:nowrap;}
+a.back:hover{color:var(--accent);border-color:var(--accent);}
+.howto{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:14px 0 6px;font-size:14px;}
+.howto div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+.kA{color:#1d4ed8} .kB{color:#b45309} .kC{color:#15803d} .kD{color:#7e22ce}
+.practice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0;padding:10px 14px;border:1px dashed var(--accent);border-radius:10px;background:var(--accent-soft);font-size:14.5px;}
+.practice label{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--accent);cursor:pointer;}
+.practice input{width:18px;height:18px;accent-color:var(--accent);} .practice span{color:var(--muted);}
+table.hot{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0;}
+table.hot th,table.hot td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center;}
+table.hot th{color:var(--accent);font-size:13px;}
+table.hot td:first-child,table.hot th:first-child{text-align:left;}
+table.hot td:first-child a:not(.back){color:var(--ink);text-decoration:none;font-weight:600;} table.hot td:first-child a:not(.back):hover{color:var(--accent);}
+table.hot td.bar{width:26%;padding-left:4px;} table.hot td.bar i{display:block;height:10px;border-radius:999px;background:var(--accent);opacity:.55;min-width:3px;overflow:hidden;}
+table.hot td.bar i b{display:block;height:100%;background:var(--accent);}
+table.hot a.back{float:none;margin-left:6px;font-size:11px;padding:0 8px;}
+article.q{border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;margin:18px 0 22px;background:#fff;scroll-margin-top:16px;overflow-wrap:anywhere;}
+.qhead{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;font-size:13px;}
+.qhead .num{font-weight:700;color:#fff;background:var(--accent);padding:2px 10px;border-radius:999px;white-space:nowrap;}
+.qhead .kind{font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid currentColor;}
+.qhead .src{margin-left:auto;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;}
+.qhead a.src:hover{color:var(--accent);border-color:var(--accent);}
+article.q .stem{font-weight:600;margin:0 0 10px;font-size:15.5px;}
+article.q .opts{list-style:none;padding:0;margin:0 0 10px;}
+article.q .opts li{padding:4px 10px;border-radius:6px;} article.q .opts li .k{font-weight:700;color:var(--muted);margin-right:2px;}
+article.q .opts li.ok{background:var(--ok-soft);color:var(--ok);font-weight:600;} article.q .opts li.ok .k{color:var(--ok);}
+.fig{margin:0 0 12px;overflow-x:auto;}
+.fig pre{background:#f4f6f9;border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:8px 0;font-family:Consolas,"Cascadia Mono",Menlo,"Courier New",monospace;white-space:pre;}
+.fig table{width:auto;max-width:100%;display:block;overflow-x:auto;margin:8px 0;font-size:14px;border-collapse:collapse;} .fig td,.fig th{border:1px solid var(--line);padding:3px 10px;}
+button.reveal{display:none;font:inherit;font-size:14px;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:6px 16px;cursor:pointer;margin:4px 0 6px;}
+html[data-qxhide] article.q:not(.open) button.reveal{display:inline-block;}
+html[data-qxhide] article.q:not(.open) .sol{display:none;}
+html[data-qxhide] article.q:not(.open) .opts li.ok{background:transparent;color:inherit;font-weight:400;} html[data-qxhide] article.q:not(.open) .opts li.ok .k{color:var(--muted);}
+.ansline{margin:6px 0 4px;} .ansline .ans{display:inline-block;background:var(--ok);color:#fff;font-weight:700;border-radius:6px;padding:2px 12px;font-size:14px;}
+.exp{background:var(--accent-soft);border-radius:8px;padding:8px 14px;margin:6px 0 4px;font-size:14.5px;} .exp .lab{font-weight:700;color:var(--accent);margin-right:6px;}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:20px 16px}article.q{padding:14px 12px 10px}.qhead .src{margin-left:0}table.hot{font-size:12.5px}table.hot td.bar,table.hot th.bar{display:none}}
+[data-theme="dark"]{--ok:#4ade80;--ok-soft:#14301f;}
+[data-theme="dark"] .kA{color:#8ab4ff} [data-theme="dark"] .kB{color:#f5b74e} [data-theme="dark"] .kC{color:#5fd38a} [data-theme="dark"] .kD{color:#d8b4fe}
+[data-theme="dark"] .fig pre{background:#0f1522;border-color:#2b3447;}
+[data-theme="dark"] .ansline .ans{background:#166534;}
+[data-theme="dark"] table.hot tr:nth-child(even) td{background:transparent;}
+[data-theme="dark"] .exp .lab,[data-theme="dark"] .practice label,[data-theme="dark"] .qhead a.src:hover,[data-theme="dark"] table.hot td:first-child a:not(.back):hover{color:var(--accent-bright);}
+[data-theme="dark"] .qhead .num,[data-theme="dark"] button.reveal{background:var(--accent);color:#fff;}
+</style>
+<script src="theme.js"></script>
+<script>(function(){try{if(localStorage.getItem('ipas-qx-hide')==='1')document.documentElement.setAttribute('data-qxhide','');}catch(e){}})();</script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc">
+    <h2>依考點導覽</h2>
+    <a href="index.html">← 回教材首頁</a>
+    <a href="中級_科目1_人工智慧技術應用規劃.html">↗ 對照完整教材</a>
+    <a href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html">↗ 白話加強版</a>
+    <a href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html">↗ 考古題逐題詳解</a>
+    <a href="../../模擬考網站/index.html">↗ 模擬考網站（可出模擬卷）</a>
+    <a href="#guide">使用說明與題數分佈</a>
+    <a class="sub" href="#sec-sec31">3.1 自然語言處理技術與應用（NLP） <span class="cnt">12</span></a><a class="sub" href="#sec-sec32">3.2 電腦視覺技術與應用（CV） <span class="cnt">12</span></a><a class="sub" href="#sec-sec33">3.3 生成式 AI 技術與應用 <span class="cnt">12</span></a><a class="sub" href="#sec-sec34">3.4 多模態人工智慧應用 <span class="cnt">12</span></a><a class="sub" href="#sec-sec41">4.1 AI 導入評估 <span class="cnt">16</span></a><a class="sub" href="#sec-sec42">4.2 AI 導入規劃 <span class="cnt">16</span></a><a class="sub" href="#sec-sec43">4.3 AI 風險管理 <span class="cnt">14</span></a><a class="sub" href="#sec-sec51">5.1 數據準備與模型選擇 <span class="cnt">28</span></a><a class="sub" href="#sec-sec52">5.2 AI 技術系統集成與部署 <span class="cnt">28</span></a>
+  </nav>
+  <main>
+    <header class="page">
+      <span class="level">中級 · 科目 1 · 延伸題庫</span>
+      <h1>人工智慧技術應用規劃</h1>
+      <p class="sub">非官方補充教材 · 以 100 道考古題與官方學習指引為基礎擴展的自製練習題</p>
+      <div class="tags"><span>共 150 題</span><span>非官方試題，答案為自行整理</span><span>可在模擬考網站組成全真模擬卷</span></div>
+    </header>
+
+    <section id="guide">
+      <h2 class="chap">使用說明與題數分佈</h2>
+      <p>本科兩個梯次 100 道考古題明顯偏重第五章：5.1 數據準備與模型選擇 24 題、5.2 系統集成與部署 22 題，加上 3.1 NLP 15 題就佔了六成；相對地 4.1 AI 導入評估只有 1 題、4.2 AI 導入規劃只有 2 題，ROI／NPV、風險矩陣、WBS、Scrum、導入模式等指引內容幾乎沒被考過。本頁用四種方式擴展：變體題把考古題的考點換成另一個產業情境或反過來問；翻正題把考古題的錯誤選項所代表的觀念拿來當正解出題；缺口題直接依完整教材補足第四章與多模態；計算題則把 IoU、混淆矩陣、ROI、NPV、吞吐量換數字重算。每題附解析與來源考古題連結，想計時作答請到模擬考網站的「中級延伸題庫」專卡。</p>
+      <div class="howto"><div><b class="kA">變體題</b><br>同考點換情境、換問法或反向問（63 題）</div><div><b class="kB">翻正題</b><br>把考古題的錯誤選項變成正解（37 題）</div><div><b class="kC">缺口題</b><br>依完整教材補出題數少的章節（42 題）</div><div><b class="kD">計算／程式題</b><br>換數字的計算題或改寫的程式題（8 題）</div></div>
+      <div class="practice">
+        <label><input type="checkbox" id="hide-ans">練習模式：先遮住答案與解析</label>
+        <span>勾選後每題先只看題目，按「顯示答案與解析」再對答案；設定與考古題詳解頁共用。要計時作答請到模擬考網站的「中級延伸題庫」專卡。</span>
+      </div>
+      <h4 style="margin-top:18px">各節題數（考古題＋延伸題）</h4>
+      <p style="font-size:14px;color:var(--muted);margin:4px 0 6px">長條深色部分為考古題、淺色為延伸題；延伸題優先補足考古題少的章節。</p>
+      <table class="hot"><thead><tr><th>考點（完整教材章節）</th><th>考古題</th><th>延伸題</th><th>合計</th><th class="bar"></th></tr></thead><tbody><tr><td><a href="#sec-sec31">3.1 自然語言處理技術與應用（NLP）</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec31">教材 ↗</a></td><td>15</td><td>12</td><td><b>27</b></td><td class="bar"><i style="width:52%"><b style="width:56%"></b></i></td></tr><tr><td><a href="#sec-sec32">3.2 電腦視覺技術與應用（CV）</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec32">教材 ↗</a></td><td>10</td><td>12</td><td><b>22</b></td><td class="bar"><i style="width:42%"><b style="width:45%"></b></i></td></tr><tr><td><a href="#sec-sec33">3.3 生成式 AI 技術與應用</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec33">教材 ↗</a></td><td>10</td><td>12</td><td><b>22</b></td><td class="bar"><i style="width:42%"><b style="width:45%"></b></i></td></tr><tr><td><a href="#sec-sec34">3.4 多模態人工智慧應用</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec34">教材 ↗</a></td><td>7</td><td>12</td><td><b>19</b></td><td class="bar"><i style="width:37%"><b style="width:37%"></b></i></td></tr><tr><td><a href="#sec-sec41">4.1 AI 導入評估</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec41">教材 ↗</a></td><td>1</td><td>16</td><td><b>17</b></td><td class="bar"><i style="width:33%"><b style="width:6%"></b></i></td></tr><tr><td><a href="#sec-sec42">4.2 AI 導入規劃</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec42">教材 ↗</a></td><td>2</td><td>16</td><td><b>18</b></td><td class="bar"><i style="width:35%"><b style="width:11%"></b></i></td></tr><tr><td><a href="#sec-sec43">4.3 AI 風險管理</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec43">教材 ↗</a></td><td>9</td><td>14</td><td><b>23</b></td><td class="bar"><i style="width:44%"><b style="width:39%"></b></i></td></tr><tr><td><a href="#sec-sec51">5.1 數據準備與模型選擇</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec51">教材 ↗</a></td><td>24</td><td>28</td><td><b>52</b></td><td class="bar"><i style="width:100%"><b style="width:46%"></b></i></td></tr><tr><td><a href="#sec-sec52">5.2 AI 技術系統集成與部署</a> <a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec52">教材 ↗</a></td><td>22</td><td>28</td><td><b>50</b></td><td class="bar"><i style="width:96%"><b style="width:44%"></b></i></td></tr></tbody></table>
+    </section>
+
+    <section class="secgrp" id="sec-sec31"><h2 class="chap">3.1 自然語言處理技術與應用（NLP） <small>12 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec31">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec31">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q1" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 1 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q1">衍生自 114-2 第 1 題 ↗</a></div>
+<p class="stem">某保險公司每月收到上萬封客訴與諮詢郵件，想自動判斷每封郵件的客戶情緒屬於正面、負面或中立，以便優先處理負面案件。這個任務在自然語言處理中屬於下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 機器翻譯：把郵件轉成統一語言後再分派</li><li><span class="k">(B)</span> 命名實體辨識：找出郵件中的保單號與人名</li><li class="ok"><span class="k">(C)</span> 情感分析：把文本依情緒傾向做分類</li><li><span class="k">(D)</span> 文本摘要：把長郵件濃縮成重點句</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>依文本判斷情緒傾向（正面／負面／中立）並據以分類，正是情感分析的定義與典型用途（指引 3.1 NLP 應用）。(A) 機器翻譯處理的是語言轉換，不產生情緒標籤；(B) 命名實體辨識抽取的是人名、編號等實體，與情緒無關；(D) 文本摘要輸出的是縮短後的內容，不會給出情緒類別。</div></div>
+</article>
+<article class="q" id="延-中1-q2" data-sec="sec31" data-kind="B">
+<div class="qhead"><span class="num">第 2 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q1">衍生自 114-2 第 1 題 ↗</a></div>
+<p class="stem">客服主管每天要讀數百封長篇客訴信，希望系統先把每封信自動濃縮成三句話的重點，再決定是否親自處理。最適合採用下列哪一種 NLP 任務？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 文本摘要（Text Summarization）</li><li><span class="k">(B)</span> 情感分析（Sentiment Analysis）</li><li><span class="k">(C)</span> 詞性標註（POS Tagging）</li><li><span class="k">(D)</span> 主題分類（Topic Classification）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>把長文本壓縮成保留主要內容的短文本，是文本摘要的任務定義；Seq2Seq 或 Transformer 架構常用於生成式摘要（指引 3.1 NLP 應用）。(B) 情感分析只輸出情緒標籤，不產生重點內容；(C) 詞性標註是前處理步驟，為每個詞標語法類別；(D) 主題分類只回答「這封信屬於哪一類」，不會濃縮內容。</div></div>
+</article>
+<article class="q" id="延-中1-q3" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 3 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q2">衍生自 114-2 第 2 題 ↗</a></div>
+<p class="stem">某法務團隊原本用 LSTM 建立合約條款比對模型，發現條款越長、彼此距離越遠的條文關聯越抓不到，且訓練時無法充分利用 GPU 平行運算。改用 Transformer 後兩個問題同時改善，主要原因為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Transformer 以卷積核掃描序列，局部特徵抽取更穩定</li><li><span class="k">(B)</span> Transformer 參數量更少，因此更容易收斂</li><li><span class="k">(C)</span> Transformer 以遞迴方式傳遞隱藏狀態，記憶更長</li><li class="ok"><span class="k">(D)</span> 自注意力讓任一 token 直接與所有 token 計算關聯，且序列可平行處理</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Transformer 的自注意力機制讓序列中任兩個位置直接計算關聯，距離不再隨步數衰減，而且整個序列可同時運算，不必像 RNN 逐步遞迴，因此長距離依賴與平行化同時改善（指引 3.1 Transformer）。(A) 卷積是 CNN 的做法，Transformer 不用卷積核；(B) Transformer 參數量通常更大；(C) 遞迴傳遞隱藏狀態正是 LSTM／RNN 的做法，也是長距離資訊衰減的來源。</div></div>
+</article>
+<article class="q" id="延-中1-q4" data-sec="sec31" data-kind="B">
+<div class="qhead"><span class="num">第 4 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q4">衍生自 114-2 第 4 題 ↗</a></div>
+<p class="stem">某研究團隊想用整個語料庫的「詞與詞共同出現次數矩陣」做矩陣分解，直接從全域統計量學出詞向量，而不是用神經網路逐一預測上下文。這個做法對應下列哪一種詞向量方法？</p>
+<ul class="opts"><li><span class="k">(A)</span> Word2Vec 的 Skip-gram</li><li class="ok"><span class="k">(B)</span> GloVe</li><li><span class="k">(C)</span> One-Hot 編碼</li><li><span class="k">(D)</span> TF-IDF 向量</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>GloVe 的核心正是以全域共現統計矩陣為基礎，透過矩陣分解學得詞向量；Word2Vec 則是以神經網路「預測」上下文的方法（指引 3.1 詞嵌入：Word2Vec 與 GloVe 的差異）。(A) Skip-gram 以中心詞預測周圍詞，屬預測式；(C) One-Hot 是高維稀疏表示，不含語意；(D) TF-IDF 是詞在文件中的權重，不是語意向量。</div></div>
+</article>
+<article class="q" id="延-中1-q5" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 5 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q5">衍生自 114-2 第 5 題 ↗</a></div>
+<p class="stem">在 TF-IDF 計算中，「的」「是」「公司」這類幾乎每份客訴文件都出現的詞，最終權重通常很低。這主要是由公式中哪個部分造成的？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> IDF：出現在越多文件的詞，逆文件頻率越小</li><li><span class="k">(B)</span> TF：這些詞在單一文件中出現次數少</li><li><span class="k">(C)</span> 詞向量維度：常見詞被壓縮到較低維度</li><li><span class="k">(D)</span> 停用詞表：TF-IDF 內建自動刪除這些詞</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>IDF＝log(文件總數／含該詞的文件數)，一個詞出現在越多文件，IDF 越接近 0，整體 TF-IDF 權重因此被壓低，這就是 TF-IDF 能凸顯「特定文件才有的關鍵詞」的原因（指引 3.1 文本表示）。(B) 這些詞在單篇中的 TF 通常反而很高；(C) TF-IDF 不涉及詞向量維度；(D) 停用詞表是另外的前處理步驟，不是 TF-IDF 公式本身的作用。</div></div>
+</article>
+<article class="q" id="延-中1-q6" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 6 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q6">衍生自 114-2 第 6 題 ↗</a></div>
+<p class="stem">某團隊把客服語言模型從 bigram（n=2）改成 5-gram，希望句子更連貫，結果很多合理句子的機率被估成 0，模型反而更常拒答。此現象的主因為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型隨 n 增大而偏好生成較短的句子</li><li><span class="k">(B)</span> 5-gram 無法套用機率的鏈式法則來分解</li><li class="ok"><span class="k">(C)</span> 資料稀疏：語料未見過的五詞組合變多，機率被估為 0</li><li><span class="k">(D)</span> 5-gram 必須搭配詞嵌入層才能估計機率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>N-gram 以前 n−1 個詞估計下一個詞的機率，n 越大，可能的詞組合數呈指數成長，訓練語料中沒見過的組合機率就是 0，這是資料稀疏問題，需要平滑（Smoothing）或退回較短的 n-gram 處理（指引 3.1 語言模型）。(A) n 與句長偏好無關；(B) N-gram 正是鏈式法則的近似；(D) N-gram 是計數式統計模型，不需要詞嵌入。</div></div>
+</article>
+<article class="q" id="延-中1-q7" data-sec="sec31" data-kind="B">
+<div class="qhead"><span class="num">第 7 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q16">衍生自 114-2 第 16 題 ↗</a></div>
+<p class="stem">某律師事務所要從數萬份合約中自動抓出「簽約公司名稱、負責人姓名、簽約日期、金額」等欄位。下列哪一種 NLP 技術最直接對應此需求？</p>
+<ul class="opts"><li><span class="k">(A)</span> 機器翻譯</li><li><span class="k">(B)</span> 文本生成</li><li><span class="k">(C)</span> 情感分析</li><li class="ok"><span class="k">(D)</span> 命名實體辨識（NER）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>從文本中找出人名、組織、日期、金額等具特定類型的片段並標記，是命名實體辨識（序列標註）的任務，也是資訊擷取的核心步驟（指引 3.1 NLP 應用）。(A) 機器翻譯做語言轉換；(B) 文本生成產生新文字而非抽取既有欄位；(C) 情感分析輸出情緒傾向，與抽取實體無關。</div></div>
+</article>
+<article class="q" id="延-中1-q8" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 8 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q1">衍生自 115-1 第 1 題 ↗</a></div>
+<p class="stem">中文新聞「台積電宣布擴廠」在進入 BERT 之前，必須先被切成「台積電／宣布／擴廠」或更細的子詞單位。這個前處理步驟稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 詞性標註（POS Tagging）</li><li class="ok"><span class="k">(B)</span> 斷詞／分詞（Tokenization）</li><li><span class="k">(C)</span> 詞幹還原（Stemming）</li><li><span class="k">(D)</span> 命名實體辨識（NER）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>把連續文本切分成詞或子詞等基本處理單位，稱為斷詞（Tokenization），是幾乎所有 NLP 流程的第一步，中文因沒有空白分隔特別需要（指引 3.1 文本前處理）。(A) 詞性標註是在切好的詞上標名詞、動詞等語法類別；(C) 詞幹還原是把英文單字變化形還原成字根；(D) NER 是辨識人名、組織等實體，都在斷詞之後進行。</div></div>
+</article>
+<article class="q" id="延-中1-q9" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 9 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q3">衍生自 115-1 第 3 題 ↗</a></div>
+<p class="stem">某團隊要在數十億 token 的新聞語料上訓練 Word2Vec，目標是快速得到整體語意平滑的向量，主要關心的是常見詞的品質而非罕見詞。此情境下較適合的訓練架構為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> CBOW：以周圍詞預測中心詞，訓練較快</li><li><span class="k">(B)</span> Skip-gram：以中心詞預測周圍詞，對低頻詞較佳</li><li><span class="k">(C)</span> GloVe：以共現矩陣分解取代神經網路</li><li><span class="k">(D)</span> One-Hot：不需訓練即可得到向量</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>CBOW 把上下文詞平均後預測中心詞，每個訓練步驟計算量小、收斂快，整體語意較平滑，適合大語料且重視常見詞的場景；代價是低頻詞的向量品質較差（指引 3.1 Word2Vec：CBOW 與 Skip-gram 取捨）。(B) Skip-gram 對罕見詞較好但訓練較慢，與題目需求相反；(C) GloVe 不是 Word2Vec 的架構；(D) One-Hot 沒有語意資訊。</div></div>
+</article>
+<article class="q" id="延-中1-q10" data-sec="sec31" data-kind="B">
+<div class="qhead"><span class="num">第 10 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q3">衍生自 114-2 第 3 題 ↗</a></div>
+<p class="stem">某語言模型的預訓練方式是：給定前面所有詞，從左到右預測下一個詞，不會看到右側的上下文。下列何者正確描述此模型？</p>
+<ul class="opts"><li><span class="k">(A)</span> 遮罩語言模型，與 BERT 相同</li><li><span class="k">(B)</span> 對比學習模型，與 CLIP 相同</li><li class="ok"><span class="k">(C)</span> 自迴歸語言模型，與 GPT 系列相同</li><li><span class="k">(D)</span> 序列標註模型，與 NER 相同</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>逐詞由左至右預測下一個 token 是自迴歸（Autoregressive）語言模型的訓練目標，GPT 系列即採此方式，因此擅長生成（指引 3.1／3.3 語言模型的預訓練目標）。(A) BERT 的 MLM 是隨機遮罩並用「雙向」上下文還原，與單向生成不同；(B) 對比學習是把成對資料拉近的目標，用於 CLIP 等；(D) 序列標註是為每個 token 貼標籤，不是語言模型預訓練。</div></div>
+</article>
+<article class="q" id="延-中1-q11" data-sec="sec31" data-kind="A">
+<div class="qhead"><span class="num">第 11 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q17">衍生自 114-2 第 17 題 ↗</a></div>
+<p class="stem">某企業的大型語言模型常回答出「已經停售的產品規格」，而且無法回答上週才公告的新政策。在不重新訓練模型的前提下，導入 RAG 之所以能同時改善兩個問題，關鍵機制為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> RAG 會把模型參數量加大，記住更多知識</li><li><span class="k">(B)</span> RAG 以強化學習持續更新模型權重</li><li><span class="k">(C)</span> RAG 會自動過濾掉模型輸出中所有不確定的句子</li><li class="ok"><span class="k">(D)</span> 生成前先從可更新的文件庫檢索相關內容，作為上下文提供給模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>RAG（檢索增強生成）在回答前先用向量檢索從外部知識庫取出相關文件，再把這些內容放進提示讓模型依據它生成；知識庫可隨時更新，模型不必重訓，也因為有依據而減少幻覺（指引 3.1／3.3 RAG）。(A) RAG 不改變模型參數量；(B) RAG 不更新權重，這是微調或 RLHF 的做法；(C) RAG 沒有逐句過濾機制，它改善的是生成的依據。</div></div>
+</article>
+<article class="q" id="延-中1-q12" data-sec="sec31" data-kind="B">
+<div class="qhead"><span class="num">第 12 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q18">衍生自 114-2 第 18 題 ↗</a></div>
+<p class="stem">Transformer 的注意力計算在 Query 與 Key 點積後、進入 Softmax 之前，會先除以 √d_k（Key 的維度開根號）。這個縮放步驟的主要目的為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 讓每列注意力權重的總和恰好等於 1</li><li class="ok"><span class="k">(B)</span> 避免點積值過大使 Softmax 飽和、梯度消失</li><li><span class="k">(C)</span> 減少注意力層的參數量以加快訓練速度</li><li><span class="k">(D)</span> 讓模型能處理比訓練時更長的輸入序列</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>維度 d_k 越大，Q·K 點積的數值變異越大，Softmax 會被推到極端區域（幾乎 one-hot），梯度趨近 0 而難以訓練；除以 √d_k 把數值拉回合理範圍，這就是 Scaled Dot-Product Attention 的「Scaled」（指引 3.1 Transformer 自注意力）。(A) 權重總和為 1 是 Softmax 本身的性質，與縮放無關；(C) 縮放不改變參數量；(D) 序列長度上限由位置編碼與記憶體決定。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec32"><h2 class="chap">3.2 電腦視覺技術與應用（CV） <small>12 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec32">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec32">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q13" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 13 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q7">衍生自 114-2 第 7 題 ↗</a></div>
+<p class="stem">某物件偵測模型在 IoU 閾值 0.75 時 mAP 為 0.42，團隊改以 IoU 閾值 0.5 重新評估。在模型與測試資料都不變的情況下，mAP 最可能如何變化？為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 上升，因為判定「命中」的重疊門檻放寬，更多預測框被算成正確</li><li><span class="k">(B)</span> 下降，因為閾值變低代表評估更嚴格</li><li><span class="k">(C)</span> 不變，因為 mAP 與 IoU 閾值無關</li><li><span class="k">(D)</span> 上升，因為模型在低閾值下會重新訓練</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>IoU 閾值是「預測框與真實框重疊多少才算偵測成功」的門檻；從 0.75 降到 0.5 代表標準放寬，原本因框不夠準而被判為錯的預測現在被算成命中，Precision 與 Recall 都傾向提高，mAP 隨之上升（指引 3.2 物件偵測評估：IoU 與 mAP）。(B) 把方向說反；(C) mAP 必須指定 IoU 閾值才有意義（如 mAP@0.5）；(D) 評估不涉及重新訓練。</div></div>
+</article>
+<article class="q" id="延-中1-q14" data-sec="sec32" data-kind="D">
+<div class="qhead"><span class="num">第 14 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q7">衍生自 114-2 第 7 題 ↗</a></div>
+<p class="stem">某瑕疵偵測模型對一張影像輸出一個預測框，真實標註框如附件（座標為左上與右下角的像素位置）。請計算兩者的 IoU 約為多少？</p>
+<div class="fig"><pre>真實框（Ground Truth）：左上 (10, 10)、右下 (50, 50)
+預測框（Prediction）  ：左上 (30, 30)、右下 (70, 70)</pre></div>
+<ul class="opts"><li><span class="k">(A)</span> 約 0.25</li><li><span class="k">(B)</span> 約 0.33</li><li class="ok"><span class="k">(C)</span> 約 0.14</li><li><span class="k">(D)</span> 約 0.50</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>兩框各為 40×40＝1,600 像素；交集區域為 (30,30)–(50,50)，即 20×20＝400；聯集＝1,600＋1,600−400＝2,800；IoU＝400／2,800≈0.143（指引 3.2 IoU＝交集面積／聯集面積）。(A) 0.25 是把交集除以單一框面積（400／1,600）；(B) 0.33 是誤把聯集算成 1,200；(D) 0.50 是把邊長重疊比例（20／40）當成面積比例。</div></div>
+</article>
+<article class="q" id="延-中1-q15" data-sec="sec32" data-kind="B">
+<div class="qhead"><span class="num">第 15 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q8">衍生自 114-2 第 8 題 ↗</a></div>
+<p class="stem">在 CNN 中，於卷積層之後加入 2×2 的 Max-Pooling 層，其主要作用為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把特徵轉成總和為 1 的機率分佈，用於分類輸出</li><li><span class="k">(B)</span> 增加特徵圖的通道數以提升表徵能力</li><li><span class="k">(C)</span> 學習新的卷積核權重以抽取更高階特徵</li><li class="ok"><span class="k">(D)</span> 縮小特徵圖的空間尺寸、保留區域內最顯著的特徵，並提高對小幅平移的容忍度</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Max-Pooling 在每個區域只保留最大值，使特徵圖的長寬縮小（降低運算量與參數）、保留最強的響應，並讓特徵對物件位置的小幅移動較不敏感（指引 3.2 CNN 的池化層）。(A) 機率分佈是 Softmax 的功能；(B) 池化不改變通道數；(C) 池化層沒有可學習的權重，不會抽取新特徵。</div></div>
+</article>
+<article class="q" id="延-中1-q16" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 16 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q6">衍生自 115-1 第 6 題 ↗</a></div>
+<p class="stem">某農業公司用衛星影像估算各區塊的作物覆蓋面積，需要知道影像中每個像素是「作物、裸地或水體」，但不需要區分相鄰的兩塊田是不是同一塊。最適合的技術為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 實例分割（Instance Segmentation）</li><li class="ok"><span class="k">(B)</span> 語義分割（Semantic Segmentation）</li><li><span class="k">(C)</span> 物件偵測（Object Detection）</li><li><span class="k">(D)</span> 影像分類（Image Classification）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>逐像素標出所屬類別、但不區分同類的不同個體，正是語義分割的定義；面積估算只需要像素級類別（指引 3.2 影像分割：語義分割 vs 實例分割）。(A) 實例分割會額外為每個個體建立獨立遮罩，此處不需要；(C) 物件偵測只給出邊界框，無法精確算面積；(D) 影像分類只對整張影像給一個標籤。</div></div>
+</article>
+<article class="q" id="延-中1-q17" data-sec="sec32" data-kind="B">
+<div class="qhead"><span class="num">第 17 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q7">衍生自 115-1 第 7 題 ↗</a></div>
+<p class="stem">某停車場管理系統需要即時數出場內車輛數量並框出每輛車的位置，但不需要車輛的精確輪廓遮罩。最符合需求且運算成本最低的技術為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 物件偵測（Object Detection）</li><li><span class="k">(B)</span> 實例分割（Instance Segmentation）</li><li><span class="k">(C)</span> 語義分割（Semantic Segmentation）</li><li><span class="k">(D)</span> 全景分割（Panoptic Segmentation）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>物件偵測輸出每個物件的類別與邊界框，足以計數並定位，且比各種分割任務的運算成本低（指引 3.2 物件偵測與分割的差異）。(B) 實例分割會產生像素級遮罩，題目明說不需要；(C) 語義分割不區分個體，無法數車；(D) 全景分割同時做語義與實例分割，成本最高且超出需求。</div></div>
+</article>
+<article class="q" id="延-中1-q18" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 18 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q10">衍生自 115-1 第 10 題 ↗</a></div>
+<p class="stem">某醫院要從病理切片中偵測極小的病灶，準確率是第一優先，而且影像可在夜間離線批次處理、不要求即時。在 YOLO 與 Faster R-CNN 之間，較合理的選擇與理由為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> YOLO，單階段架構直接回歸框與類別，對小物件更準確</li><li><span class="k">(B)</span> YOLO，離線批次處理只能採用單階段的偵測模型</li><li class="ok"><span class="k">(C)</span> Faster R-CNN，兩階段先產候選區再分類較精準，速度非瓶頸</li><li><span class="k">(D)</span> 兩者相同，都以 CNN 骨幹抽特徵，精準度沒有差異</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>Faster R-CNN 先由 RPN 產生候選區域再逐一分類與修正框，精準度通常較高、對小物件較友善，代價是速度慢；題目不要求即時、重視準確率，正好符合（指引 3.2 YOLO 單階段 vs Faster R-CNN 兩階段）。(A) 單階段模型的優勢是速度，對小物件反而較弱；(B) 批次處理與單／雙階段無關；(D) 兩者流程設計不同，表現並不相同。</div></div>
+</article>
+<article class="q" id="延-中1-q19" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 19 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q8">衍生自 115-1 第 8 題 ↗</a></div>
+<p class="stem">某團隊訓練的二元影像分類器 ROC 曲線幾乎貼著對角線，AUC 約 0.5。這代表什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型分類能力極佳，幾乎沒有誤判</li><li class="ok"><span class="k">(B)</span> 模型的判別能力與隨機猜測相當</li><li><span class="k">(C)</span> 模型的假陽率為 0</li><li><span class="k">(D)</span> 模型只需調整閾值就能達到完美分類</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>ROC 對角線代表在任何閾值下 TPR 都等於 FPR，即模型對正負類的排序沒有鑑別力；AUC＝0.5 就是隨機猜測的水準（指引 3.2 ROC／AUC 評估）。(A) 極佳的模型曲線會貼近左上角、AUC 接近 1；(C) 假陽率為 0 的點在 ROC 左側邊界，不是對角線；(D) 調整閾值只是沿著同一條曲線移動，無法改善排序能力。</div></div>
+</article>
+<article class="q" id="延-中1-q20" data-sec="sec32" data-kind="D">
+<div class="qhead"><span class="num">第 20 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q9">衍生自 115-1 第 9 題 ↗</a></div>
+<p class="stem">某瑕疵檢測模型在 1,000 張測試影像上的混淆矩陣如附件（陽性＝瑕疵）。該模型的精確率（Precision）與召回率（Recall）分別為多少？</p>
+<div class="fig"><table><tr><th></th><th>預測：瑕疵</th><th>預測：正常</th></tr><tr><td>實際：瑕疵</td><td>180</td><td>60</td></tr><tr><td>實際：正常</td><td>20</td><td>740</td></tr></table></div>
+<ul class="opts"><li><span class="k">(A)</span> Precision 0.75、Recall 0.90</li><li><span class="k">(B)</span> Precision 0.92、Recall 0.75</li><li><span class="k">(C)</span> Precision 0.90、Recall 0.92</li><li class="ok"><span class="k">(D)</span> Precision 0.90、Recall 0.75</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>TP＝180、FP＝20、FN＝60、TN＝740。Precision＝TP／(TP＋FP)＝180／200＝0.90；Recall＝TP／(TP＋FN)＝180／240＝0.75（指引 3.2 混淆矩陣與評估指標）。(A) 把兩個指標對調；(B) 0.92 是 Accuracy＝(180＋740)／1,000，不是 Precision；(C) 同樣誤用 Accuracy 當 Recall。</div></div>
+</article>
+<article class="q" id="延-中1-q21" data-sec="sec32" data-kind="B">
+<div class="qhead"><span class="num">第 21 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q32">衍生自 115-1 第 32 題 ↗</a></div>
+<p class="stem">某 CNN 影像分類模型在最後一層卷積後接 Flatten 與一個很大的全連接層，參數量龐大且容易過擬合。若想大幅減少分類頭的參數並維持效能，常見的替代做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 在 Flatten 後再加兩層更大的全連接層以提升容量</li><li><span class="k">(B)</span> 把所有卷積核尺寸改成 1×1 以減少卷積參數</li><li class="ok"><span class="k">(C)</span> 改用全域平均池化把每張特徵圖壓成一個值再接輸出層</li><li><span class="k">(D)</span> 把 Softmax 移到最後一層卷積之前先做正規化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>全域平均池化把每個通道的特徵圖平均成單一數值，輸出向量長度只等於通道數，省去展平後巨大的全連接層參數，也有正則化效果（指引 3.2 CNN 架構：池化與全連接層）。(A) 反而增加參數；(B) 1×1 卷積是調整通道數的技巧，不解決分類頭的參數問題；(D) Softmax 是輸出層的機率轉換，放在卷積前沒有意義。</div></div>
+</article>
+<article class="q" id="延-中1-q22" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 22 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q34">衍生自 114-2 第 34 題 ↗</a></div>
+<p class="stem">某電商想為上架商品照片自動加上「服飾、家電、食品」其中一個類別標籤，不需要知道物品在圖中的位置或輪廓。最合適的電腦視覺任務為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 影像分類（Image Classification）</li><li><span class="k">(B)</span> 物件偵測（Object Detection）</li><li><span class="k">(C)</span> 實例分割（Instance Segmentation）</li><li><span class="k">(D)</span> 全景分割（Panoptic Segmentation）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>對整張影像輸出一個類別標籤是影像分類的任務；題目明確不需要位置與輪廓資訊，用更複雜的任務只會增加標註與運算成本（指引 3.2 電腦視覺任務階層：分類→偵測→分割）。(B) 物件偵測額外輸出邊界框；(C) 實例分割輸出每個物件的像素遮罩；(D) 全景分割同時標出所有像素的類別與個體。</div></div>
+</article>
+<article class="q" id="延-中1-q23" data-sec="sec32" data-kind="A">
+<div class="qhead"><span class="num">第 23 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q36">衍生自 115-1 第 36 題 ↗</a></div>
+<p class="stem">以 ImageNet 預訓練的 CNN 做遷移學習時，常見做法是凍結前面幾層卷積層、只訓練後面的層。凍結底層的主要理由為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 底層的參數量最大，訓練成本最高</li><li><span class="k">(B)</span> 底層學到的是特定類別的語意特徵，不能改動</li><li><span class="k">(C)</span> 底層凍結後模型推論速度會加快</li><li class="ok"><span class="k">(D)</span> 底層學到的是邊緣、紋理等通用特徵，跨任務可直接重用</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>CNN 淺層卷積核學到的是邊緣、角點、紋理等低階通用特徵，幾乎所有影像任務都適用，因此可以直接沿用；越深層的特徵越任務專屬，才需要在新資料上微調（指引 3.2 遷移學習）。(A) 參數量通常集中在深層與全連接層；(B) 類別語意特徵在深層而非底層；(C) 凍結只影響訓練時的梯度計算，推論速度不變。</div></div>
+</article>
+<article class="q" id="延-中1-q24" data-sec="sec32" data-kind="B">
+<div class="qhead"><span class="num">第 24 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q7">衍生自 114-2 第 7 題 ↗</a></div>
+<p class="stem">某物件偵測系統把「判定為物件」的置信度閾值從 0.7 調低到 0.3。在其他條件不變下，Precision 與 Recall 最可能如何變化？</p>
+<ul class="opts"><li><span class="k">(A)</span> Precision 上升、Recall 下降</li><li class="ok"><span class="k">(B)</span> Precision 下降、Recall 上升</li><li><span class="k">(C)</span> 兩者同時上升</li><li><span class="k">(D)</span> 兩者都不變，閾值只影響推論速度</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>閾值調低代表更多低信心的預測也被輸出：原本漏掉的真實物件更容易被抓到（Recall 上升），但誤報也跟著增加（Precision 下降）；這就是 Precision–Recall 的取捨（指引 3.2 評估指標）。(A) 是把閾值調高時的變化；(C) 兩者同時上升需要模型本身變好，單靠調閾值做不到；(D) 閾值直接改變輸出內容，不是只影響速度。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec33"><h2 class="chap">3.3 生成式 AI 技術與應用 <small>12 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec33">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec33">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q25" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 25 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q2">衍生自 115-1 第 2 題 ↗</a></div>
+<p class="stem">某公司想把一個 70B 參數的大型語言模型「教」給一個 7B 的小模型，讓小模型模仿大模型的輸出分佈，以便部署在資源有限的邊緣伺服器。這種做法稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 低秩適配（LoRA）：加入低秩矩陣微調</li><li><span class="k">(B)</span> 剪枝（Pruning）：移除不重要的權重</li><li><span class="k">(C)</span> 量化（Quantization）：降低權重的數值精度</li><li class="ok"><span class="k">(D)</span> 知識蒸餾（Knowledge Distillation）：以教師模型訓練學生模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>知識蒸餾由大型「教師模型」產生軟標籤或輸出分佈，訓練小型「學生模型」去逼近，得到參數量小得多但行為相近的模型（指引 3.3 模型壓縮：蒸餾、剪枝、量化）。(A) LoRA 是在原模型上加少量可訓練參數做微調，模型大小不變；(B) 剪枝是刪除同一模型內的低重要性權重；(C) 量化是把權重從 FP32 降為 INT8 等低精度，不會產生另一個小模型。</div></div>
+</article>
+<article class="q" id="延-中1-q26" data-sec="sec33" data-kind="B">
+<div class="qhead"><span class="num">第 26 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q2">衍生自 115-1 第 2 題 ↗</a></div>
+<p class="stem">工程師分析微調後的 Transformer，發現大量權重數值接近 0、對輸出幾乎沒有貢獻，希望直接移除這些連接以縮小模型並加速推論。這種技術稱為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 剪枝（Pruning）</li><li><span class="k">(B)</span> 知識蒸餾（Knowledge Distillation）</li><li><span class="k">(C)</span> 提示微調（Prompt Tuning）</li><li><span class="k">(D)</span> 稀疏注意力（Sparse Attention）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>剪枝依權重重要性（常用絕對值大小）移除低貢獻的連接或整個神經元／通道，減少參數量與運算量，之後通常再微調以恢復精度（指引 3.3 模型壓縮）。(B) 蒸餾是另外訓練一個小模型；(C) 提示微調只學習輸入端的軟提示，不動模型結構；(D) 稀疏注意力限制每個 token 只關注部分位置，改的是注意力計算模式而非權重數量。</div></div>
+</article>
+<article class="q" id="延-中1-q27" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 27 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q13">衍生自 115-1 第 13 題 ↗</a></div>
+<p class="stem">某企業租用的 LLM 服務不允許修改模型權重，但允許在輸入序列前加入一段可訓練的連續向量，並用企業資料學習這段向量來引導模型輸出格式。這對應哪一種客製化方法？</p>
+<ul class="opts"><li><span class="k">(A)</span> 全參數微調（Full Fine-Tuning）</li><li><span class="k">(B)</span> 知識蒸餾（Knowledge Distillation）</li><li class="ok"><span class="k">(C)</span> 提示微調（Prompt Tuning）</li><li><span class="k">(D)</span> 從頭預訓練（Pre-training from scratch）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>提示微調凍結整個模型，只在輸入端加入可學習的「軟提示」向量並用資料訓練它，以極少參數改變模型行為，正符合「不能動權重、只能調整輸入表示」的限制（指引 3.3 LLM 客製化：Prompt Tuning 與 Fine-Tuning 的差異）。(A) 全參數微調需要更新模型權重；(B) 蒸餾會產生新模型；(D) 從頭預訓練成本最高且同樣需要訓練權重。</div></div>
+</article>
+<article class="q" id="延-中1-q28" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 28 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q14">衍生自 115-1 第 14 題 ↗</a></div>
+<p class="stem">某團隊用醫療問答資料對通用 LLM 做全參數監督微調，醫療題答對率大幅上升，但原本答得很好的一般常識與程式問題明顯退步。此現象稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模式崩潰（Mode Collapse）</li><li class="ok"><span class="k">(B)</span> 災難性遺忘（Catastrophic Forgetting）</li><li><span class="k">(C)</span> 資料漂移（Data Drift）</li><li><span class="k">(D)</span> 過度平滑（Over-smoothing）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>在新任務上更新全部權重時，覆蓋掉先前學到的知識，導致舊任務能力退化，就是災難性遺忘；常見對策是凍結多數參數只微調少量模組（如 LoRA）、混入原始資料或降低更新幅度（指引 3.3 微調風險）。(A) 模式崩潰是 GAN 生成器只產出少數樣式的問題；(C) 資料漂移指部署後輸入分佈改變；(D) 過度平滑是圖神經網路層數過深時節點表示趨同的現象。</div></div>
+</article>
+<article class="q" id="延-中1-q29" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 29 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q20">衍生自 114-2 第 20 題 ↗</a></div>
+<p class="stem">某團隊訓練 GAN 生成商品圖，訓練損失看起來正常收斂，但生成器不論輸入什麼隨機向量，幾乎都輸出同樣的三、四種圖案。此現象稱為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 模式崩潰（Mode Collapse）</li><li><span class="k">(B)</span> 梯度消失（Vanishing Gradient）</li><li><span class="k">(C)</span> 過擬合（Overfitting）</li><li><span class="k">(D)</span> 災難性遺忘（Catastrophic Forgetting）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>生成器只覆蓋真實資料分佈中的少數模式、缺乏多樣性，就是模式崩潰，是 GAN 對抗訓練不穩定的典型症狀；常見對策有改用 Wasserstein 損失（WGAN）、梯度懲罰等（指引 3.3 GAN 的訓練問題）。(B) 梯度消失表現為訓練停滯而非輸出單一化；(C) 過擬合是記住訓練樣本而非只輸出幾種圖案；(D) 災難性遺忘發生在微調新任務時。</div></div>
+</article>
+<article class="q" id="延-中1-q30" data-sec="sec33" data-kind="B">
+<div class="qhead"><span class="num">第 30 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q38">衍生自 114-2 第 38 題 ↗</a></div>
+<p class="stem">使用擴散模型生成影像時，設計師把 CFG（Classifier-Free Guidance）係數從 3 調高到 15。在其他設定不變下，生成結果最可能出現什麼變化？</p>
+<ul class="opts"><li><span class="k">(A)</span> 取樣步數自動減少，生成速度變快</li><li><span class="k">(B)</span> 影像解析度提高，細節更銳利</li><li><span class="k">(C)</span> 輸出更多樣、更有創意，但偏離提示</li><li class="ok"><span class="k">(D)</span> 更貼近提示語描述，但多樣性降低、可能過度飽和</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>CFG 係數控制「條件（提示）」對去噪方向的影響強度：值越高，生成越強烈地服從提示語，代價是樣本多樣性下降、顏色對比過強甚至失真；值低則較自由但可能偏離提示（指引 3.3 擴散模型的生成控制）。(A) 取樣步數是獨立參數；(B) 解析度由模型與潛在空間大小決定；(C) 把方向說反了。</div></div>
+</article>
+<article class="q" id="延-中1-q31" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 31 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q9">衍生自 114-2 第 9 題 ↗</a></div>
+<p class="stem">某團隊為客訴情緒分類資料做文字增強以擴充訓練集。下列哪一種增強方式最可能改變原句語意、導致標籤與內容不一致而損害模型？</p>
+<ul class="opts"><li><span class="k">(A)</span> 用同義詞替換句中的一般名詞</li><li class="ok"><span class="k">(B)</span> 隨機刪除句中的否定詞，如「不」「沒有」</li><li><span class="k">(C)</span> 以反向翻譯重寫整句</li><li><span class="k">(D)</span> 隨機交換句中兩個相鄰的語助詞</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>否定詞直接決定情緒極性，「不滿意」刪掉「不」就變成「滿意」，標籤與內容矛盾，增強後的資料分佈偏離原始資料，模型反而學壞（指引 3.3 資料增強須維持語意一致）。(A) 同義詞替換通常保留語意；(C) 反向翻譯是常見且語意保留度高的增強法；(D) 語助詞位置對情緒極性影響很小。</div></div>
+</article>
+<article class="q" id="延-中1-q32" data-sec="sec33" data-kind="D">
+<div class="qhead"><span class="num">第 32 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q21">衍生自 115-1 第 21 題 ↗</a></div>
+<p class="stem">某 RAG 客服系統每次查詢的輸入 token 組成如附件。工程師做了三項調整：檢索區塊改為 5 筆、每筆約 400 tokens；對話歷史改以摘要壓縮至約 2,000 tokens；System Prompt 維持不變。調整後每次查詢的輸入 token 約為原本的多少？</p>
+<div class="fig"><pre>調整前每次查詢的輸入：
+  System Prompt            約   500 tokens
+  檢索區塊 10 筆 × 600     約 6,000 tokens
+  對話歷史                 約 8,000 tokens</pre></div>
+<ul class="opts"><li><span class="k">(A)</span> 約 50%</li><li><span class="k">(B)</span> 約 40%</li><li class="ok"><span class="k">(C)</span> 約 31%</li><li><span class="k">(D)</span> 約 20%</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>調整前合計 500＋6,000＋8,000＝14,500 tokens；調整後 500＋5×400＋2,000＝4,500 tokens；4,500／14,500≈0.31，約為原本的 31%，成本降幅超過六成（指引 3.3 LLM 應用的 token 成本管理）。(A) 50% 是只壓縮對話歷史而未減少檢索區塊的結果（500＋6,000＋2,000＝8,500≈59%）附近的誤估；(B) 40% 低估了歷史壓縮的效果；(D) 20% 高估了降幅。</div></div>
+</article>
+<article class="q" id="延-中1-q33" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 33 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q16">衍生自 115-1 第 16 題 ↗</a></div>
+<p class="stem">在 ReAct 框架的 Agent 迴圈「Thought → Action → Observation」中，「Observation」指的是什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> Agent 對使用者問題的最終回答</li><li><span class="k">(B)</span> Agent 內部推理的文字說明</li><li class="ok"><span class="k">(C)</span> 工具被呼叫後回傳給 Agent 的結果</li><li><span class="k">(D)</span> System Prompt 中對工具用法的描述</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>ReAct 讓模型交替進行推理（Thought）與行動（Action，呼叫工具），工具執行後的輸出就是 Observation，模型再根據它進行下一輪推理，直到產生答案（指引 3.3 AI Agent 與 ReAct）。(A) 最終回答是迴圈結束後的 Answer；(B) 推理說明是 Thought；(D) 工具描述屬於提示設定，不是每輪觀察到的結果。</div></div>
+</article>
+<article class="q" id="延-中1-q34" data-sec="sec33" data-kind="B">
+<div class="qhead"><span class="num">第 34 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q40">衍生自 114-2 第 40 題 ↗</a></div>
+<p class="stem">某設計公司需要生成高解析度、細節逼真的產品渲染圖，可以接受每張圖生成需要數十秒，但無法接受訓練過程不穩定、需要反覆調參。三類生成模型中最符合的是？</p>
+<ul class="opts"><li><span class="k">(A)</span> GAN：生成快但對抗訓練不穩定</li><li class="ok"><span class="k">(B)</span> 擴散模型：訓練穩定、品質高，但逐步去噪使生成較慢</li><li><span class="k">(C)</span> VAE：訓練穩定但樣本偏模糊</li><li><span class="k">(D)</span> N-gram 模型：以統計方式生成</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>擴散模型以逐步加噪與去噪學習資料分佈，訓練目標是簡單的回歸損失，穩定性遠優於 GAN，生成品質與多樣性高，缺點是需要多步取樣、生成較慢，而題目可接受慢（指引 3.3／5.1 生成式模型比較）。(A) GAN 生成速度快但訓練不穩、易模式崩潰，與題目限制衝突；(C) VAE 樣本平滑、細節較弱，不符高品質需求；(D) N-gram 是文字統計模型，不能生成影像。</div></div>
+</article>
+<article class="q" id="延-中1-q35" data-sec="sec33" data-kind="A">
+<div class="qhead"><span class="num">第 35 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q17">衍生自 114-2 第 17 題 ↗</a></div>
+<p class="stem">某法規問答 RAG 系統檢索回來的段落常與問題「字面相似」卻答非所問，例如問「罰則」卻取回只提到同一條號的「定義」段落。下列哪一項改善最直接針對這個檢索品質問題？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把生成階段的 max_tokens 調大，讓模型有空間回答得更完整</li><li><span class="k">(B)</span> 改用參數量更大、推理能力更強的語言模型來生成答案</li><li><span class="k">(C)</span> 把向量資料庫換成查詢速度更快的近似最近鄰索引</li><li class="ok"><span class="k">(D)</span> 加入重排序模型，依相關性重新排序候選段落</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>向量相似度只衡量語意表面接近程度，重排序模型（如 Cross-Encoder）會把查詢與每個候選段落一起讀，依實際相關性重新排序，能把「只是字面相似」的段落往後排，直接提升檢索品質（指引 3.3 RAG 檢索階段的挑戰）。(A)(B) 都在生成階段，檢索錯了再強的模型也會被誤導；(C) 索引只影響速度，不影響相關性判斷。</div></div>
+</article>
+<article class="q" id="延-中1-q36" data-sec="sec33" data-kind="B">
+<div class="qhead"><span class="num">第 36 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q2">衍生自 115-1 第 2 題 ↗</a></div>
+<p class="stem">某團隊要讓 Transformer 處理數萬 token 的長篇合約，但標準自注意力的計算與記憶體隨序列長度呈平方成長。下列哪一種做法直接針對這個瓶頸？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 稀疏注意力：讓每個 token 只關注部分位置</li><li><span class="k">(B)</span> 知識蒸餾：訓練更小的學生模型</li><li><span class="k">(C)</span> 低秩適配：加入低秩矩陣微調</li><li><span class="k">(D)</span> 提高 CFG 係數：加強條件引導</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>標準自注意力要計算所有 token 兩兩之間的關聯，複雜度 O(n²)；稀疏注意力限制每個 token 只關注局部視窗或少數全域位置，把複雜度降到接近線性，是處理長序列的常見做法（指引 3.3 長序列處理）。(B) 蒸餾縮小模型但注意力複雜度不變；(C) LoRA 處理的是微調成本；(D) CFG 是擴散模型的生成參數，與序列長度無關。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec34"><h2 class="chap">3.4 多模態人工智慧應用 <small>12 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec34">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec34">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q37" data-sec="sec34" data-kind="A">
+<div class="qhead"><span class="num">第 37 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q35">衍生自 114-2 第 35 題 ↗</a></div>
+<p class="stem">某媒體公司用 CLIP 對未標註的新聞照片做零樣本分類，類別為「體育、政治、娛樂」。實際的分類流程最接近下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 用三個類別各 1,000 張影像微調影像編碼器</li><li class="ok"><span class="k">(B)</span> 把三個類別寫成文字提示，計算影像嵌入與各提示嵌入的相似度，取最高者</li><li><span class="k">(C)</span> 先用 OCR 讀出照片中的文字再做文本分類</li><li><span class="k">(D)</span> 用 K-means 把影像分成三群再人工命名</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>CLIP 把影像與文字映射到同一嵌入空間，零樣本分類就是把每個候選類別寫成句子（如「一張體育的照片」），編碼後與影像嵌入算餘弦相似度，最相似的類別即預測結果，不需任何標註影像（指引 3.4 CLIP 與零樣本能力）。(A) 微調需要標註資料，就不是零樣本；(C) 多數照片沒有可讀文字；(D) 分群是非監督方法，無法直接對應指定類別。</div></div>
+</article>
+<article class="q" id="延-中1-q38" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 38 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">下列哪一個系統「不」屬於多模態 AI 的範疇？</p>
+<ul class="opts"><li><span class="k">(A)</span> 輸入胸腔 X 光影像與病歷文字，輸出風險分數</li><li><span class="k">(B)</span> 輸入語音指令與鏡頭影像，控制機器手臂</li><li class="ok"><span class="k">(C)</span> 同時支援中文、英文、日文的純文字客服機器人</li><li><span class="k">(D)</span> 依商品照片與文字描述產生推薦清單</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>多模態指同時處理兩種以上「資料型態」（文字、影像、語音、感測訊號）；不同語言仍然都是文字，屬於單一模態的多語言系統（指引 3.4 多模態定義與常見模態）。(A) 影像＋文字；(B) 語音＋影像；(D) 影像＋文字，三者都整合了不同模態的資料。</div></div>
+</article>
+<article class="q" id="延-中1-q39" data-sec="sec34" data-kind="A">
+<div class="qhead"><span class="num">第 39 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q17">衍生自 115-1 第 17 題 ↗</a></div>
+<p class="stem">某工廠的設備預測維護系統整合「設備外觀照片」與「振動感測器每秒數百筆的連續讀數」。針對振動讀數這個模態，較合適的專屬模型為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> LSTM 或一維時序卷積網路</li><li><span class="k">(B)</span> 二維 CNN，如 ResNet</li><li><span class="k">(C)</span> TF-IDF 加邏輯迴歸</li><li><span class="k">(D)</span> BERT 文字編碼器</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>振動讀數是隨時間連續變化的序列資料，LSTM／GRU 等遞迴網路或沿時間軸的一維卷積（Temporal CNN）最適合捕捉其時間依賴（指引 3.4 各模態對應的專屬網路）。(B) 二維 CNN 適合影像的空間結構；(C) TF-IDF 是文本表示方法；(D) BERT 處理的是文字序列，不是數值感測訊號。</div></div>
+</article>
+<article class="q" id="延-中1-q40" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 40 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">多模態 AI 的技術演進可分為三個階段。相較於早期「把各模態特徵直接拼接後丟給 SVM」的做法，當前以 Transformer 為核心的統一架構最主要的進步為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 不再需要 GPU 即可訓練</li><li><span class="k">(B)</span> 完全不需要標註資料</li><li><span class="k">(C)</span> 每個模態都改用獨立的 CNN 處理</li><li class="ok"><span class="k">(D)</span> 以自注意力做多層次的跨模態語意對齊與融合</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引把演進分為：早期特徵拼接＋傳統機器學習（無法語意對齊）、深度學習各模態專屬網路＋融合層、當前 Transformer 與自注意力驅動的統一架構（如 Flamingo、BLIP-2），能在多個層次對齊並融合視覺與語言（指引 3.4 技術演進三階段）。(A) 現代多模態模型反而更依賴 GPU／TPU；(B) 仍需要圖文配對等資料，只是可用自監督方式；(C) 各模態獨立 CNN／RNN 是第二階段的特徵。</div></div>
+</article>
+<article class="q" id="延-中1-q41" data-sec="sec34" data-kind="B">
+<div class="qhead"><span class="num">第 41 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q50">衍生自 115-1 第 50 題 ↗</a></div>
+<p class="stem">某自駕車感知系統把雷達點雲與相機影像在「輸入層」就串接成一個張量，再送進單一網路學習。這種融合方式稱為什麼？其主要風險為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 晚期融合；風險是各模態在特徵層完全無法互相補充</li><li><span class="k">(B)</span> 模型集成；風險是多個模型同時推論使延遲加倍</li><li class="ok"><span class="k">(C)</span> 早期融合；需嚴格對齊，單一模態品質差會污染整體</li><li><span class="k">(D)</span> 遷移學習；風險是微調後發生災難性遺忘</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>在資料或輸入層就把不同模態合併再學習，是早期融合（Early Fusion）；它能學到模態間的低階互動，但要求各模態精確同步對齊，且任一模態有雜訊或缺失都會直接影響整個網路（指引 3.4 感測資料融合：早期 vs 晚期）。(A) 晚期融合是各模態分別預測後再整合結果；(B) 集成是多個完整模型投票；(D) 遷移學習是沿用預訓練權重，與融合層級無關。</div></div>
+</article>
+<article class="q" id="延-中1-q42" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 42 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某語音客服系統的處理流程為：先把使用者的語音轉成文字，再理解語意並決定回應，最後把回應文字轉成語音播放。三個步驟依序對應的技術為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> ASR → NLU → TTS</li><li><span class="k">(B)</span> TTS → NLU → ASR</li><li><span class="k">(C)</span> NLU → ASR → TTS</li><li><span class="k">(D)</span> OCR → NLU → ASR</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>語音模態的整合流程是自動語音辨識（ASR，如 Whisper）把語音轉文字 → 自然語言理解（NLU，如 BERT／GPT）判讀語意 → 文字轉語音（TTS）輸出回應（指引 3.4 語音模態整合流程）。(B)(C) 把順序弄反，TTS 是輸出端、ASR 是輸入端；(D) OCR 是從影像辨識文字，不處理語音。</div></div>
+</article>
+<article class="q" id="延-中1-q43" data-sec="sec34" data-kind="A">
+<div class="qhead"><span class="num">第 43 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q18">衍生自 115-1 第 18 題 ↗</a></div>
+<p class="stem">CLIP 訓練時使用約 4 億對圖文資料與「對比損失」。這個損失函數的訓練目標為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 讓影像編碼器重建原始像素</li><li><span class="k">(B)</span> 讓文字編碼器預測被遮罩的詞</li><li><span class="k">(C)</span> 讓模型為每張圖產生一句描述</li><li class="ok"><span class="k">(D)</span> 把成對的圖文嵌入拉近、不成對的推遠</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>對比學習在一批資料中把真正配對的影像與文字嵌入相似度最大化、其他錯誤配對的相似度最小化，使兩個模態落在共同的語意空間，這是 CLIP 跨模態對齊與零樣本能力的來源（指引 3.4 CLIP 與跨模態表示學習）。(A) 重建像素是自編碼器的目標；(B) 遮罩預測是 BERT 的 MLM；(C) 產生描述是影像描述生成（captioning）模型，CLIP 訓練不做這件事。</div></div>
+</article>
+<article class="q" id="延-中1-q44" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 44 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某研究團隊整合會議錄音與錄影做情緒分析，發現音訊與影像的時間軸因取樣率不同而無法逐幀對應。針對這種「時間對齊」問題，指引列出的典型對策為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 改用更大的語言模型</li><li class="ok"><span class="k">(B)</span> 以動態時間規整（DTW）做時序對齊</li><li><span class="k">(C)</span> 刪除影像模態只分析音訊</li><li><span class="k">(D)</span> 把兩個模態都轉成文字再合併</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>多模態資料常見的挑戰是時間與語意同步困難，動態時間規整（Dynamic Time Warping, DTW）能在時間軸上非線性地對齊兩段速度不同的序列，是指引列出的時序對齊對策（指引 3.4 風險與挑戰：資料對齊與標註）。(A) 語言模型與時間對齊無關；(C) 捨棄模態喪失多模態的價值；(D) 轉文字會丟失語調、表情等情緒線索。</div></div>
+</article>
+<article class="q" id="延-中1-q45" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 45 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某醫院的多模態系統整合 CT 影像、電子病歷與心電圖後，會自動產生一段文字診斷報告。若要評估「報告文字與醫師撰寫的參考報告有多接近」，指引建議的指標為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> ROUGE</li><li><span class="k">(B)</span> IoU</li><li><span class="k">(C)</span> WER（詞錯誤率）</li><li><span class="k">(D)</span> 假陽性率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>ROUGE 以生成文本與參考文本的 n-gram 重疊程度衡量摘要／報告生成品質，是指引在醫療多模態應用情境列出的報告評估指標（指引 3.4 應用情境與對應指標）。(B) IoU 用於影像區域重疊，如零售動線分析；(C) WER 用於語音辨識的轉寫準確度；(D) 假陽性率評估的是診斷分類結果，不是文字品質。</div></div>
+</article>
+<article class="q" id="延-中1-q46" data-sec="sec34" data-kind="A">
+<div class="qhead"><span class="num">第 46 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q21">衍生自 114-2 第 21 題 ↗</a></div>
+<p class="stem">某圖文商品搜尋模型在推論時遇到只有圖片、沒有文字描述的商品，工程師直接把文字輸入填成全零向量。這種做法最主要的風險為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型會拒絕執行推論</li><li><span class="k">(B)</span> 零向量會讓推論延遲大幅增加</li><li><span class="k">(C)</span> 零向量會自動被視為缺失並忽略</li><li class="ok"><span class="k">(D)</span> 零向量是訓練時未見過的輸入分佈，可能引入系統性偏差</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>模型從未在訓練中看過「文字模態全為零」的樣本，這種輸入落在訓練分佈之外，融合層會把它當成某種真實訊號處理，造成不可預期的偏差；較穩健的做法是訓練具模態缺失感知能力的模型（指引 3.4 多模態的模態缺失處理）。(A) 模型照樣會輸出，只是不可靠；(B) 向量內容不影響運算量；(C) 一般網路不會自動辨識零向量為缺失。</div></div>
+</article>
+<article class="q" id="延-中1-q47" data-sec="sec34" data-kind="C">
+<div class="qhead"><span class="num">第 47 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某零售業者想把圖文商品辨識模型部署到門市的邊緣裝置，但多模態模型體積大、推論慢。在不更換硬體下，指引建議的運算與部署對策為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把所有推論改到雲端集中處理</li><li class="ok"><span class="k">(B)</span> 模型壓縮（剪枝、量化、知識蒸餾）並搭配硬體加速工具</li><li><span class="k">(C)</span> 移除影像模態只保留文字以縮小模型</li><li><span class="k">(D)</span> 改用更大的模型以提高準確率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引針對多模態模型的運算與部署挑戰，列出模型壓縮（剪枝、量化、知識蒸餾）、LoRA、混合部署與硬體加速（TensorRT、OpenVINO）等對策，能在不換硬體下縮小模型並加速推論（指引 3.4 風險與未來趨勢：運算與部署）。(A) 題目要在邊緣裝置執行，上雲會增加延遲並違背需求；(C) 捨棄模態喪失多模態價值；(D) 更大的模型只會更慢。</div></div>
+</article>
+<article class="q" id="延-中1-q48" data-sec="sec34" data-kind="B">
+<div class="qhead"><span class="num">第 48 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q35">衍生自 114-2 第 35 題 ↗</a></div>
+<p class="stem">某博物館希望系統能為每件館藏照片「自動寫出一句自然語言描述」，而不是從固定的類別清單中挑選標籤。這屬於哪一種多模態任務？適合的模型類型為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 零樣本分類；用 CLIP 比對候選標籤</li><li><span class="k">(B)</span> 圖文檢索；用向量資料庫找最相近的文字</li><li class="ok"><span class="k">(C)</span> 影像描述生成；用 BLIP 等具生成能力的視覺語言模型</li><li><span class="k">(D)</span> 物件偵測；用 YOLO 框出物件後列出名稱</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>輸入影像、輸出一段新生成的文字，是影像描述生成（Image Captioning），需要具備文字生成能力的視覺語言模型，如指引提到的 BLIP／BLIP-2（指引 3.4 常見模型與工具）。(A) 零樣本分類只能在既有候選標籤中選，無法自由生成句子；(B) 檢索是找出既有文字，不產生新描述；(D) 物件偵測輸出的是物件名稱與框，不是完整句子。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec41"><h2 class="chap">4.1 AI 導入評估 <small>16 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec41">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec41">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q49" data-sec="sec41" data-kind="D">
+<div class="qhead"><span class="num">第 49 題</span><span class="kind kD">計算／程式題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某物流公司導入 AI 路線規劃系統，總投資成本 200 萬元，第一年因油料與人力節省帶來的投資回報為 260 萬元。依指引的 ROI 公式，第一年的投資報酬率為多少？</p>
+<ul class="opts"><li><span class="k">(A)</span> 130%，以回報除以成本計算</li><li><span class="k">(B)</span> 23%，以成本除以回報再取差額</li><li class="ok"><span class="k">(C)</span> 30%</li><li><span class="k">(D)</span> 60%，以回報減成本後除以回報</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>ROI＝（投資回報−投資成本）／投資成本×100%＝（260−200）／200＝30%（指引 4.1 財務評估指標）。(A) 130% 是回報÷成本，少減了成本；(B) 23% 是 (260−200)／260，分母用錯；(D) 60% 的分母應為投資成本而非回報，且 60／260 也不是 60%。</div></div>
+</article>
+<article class="q" id="延-中1-q50" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 50 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">在 AI 導入評估的第一步，顧問透過利益關係人訪談與流程觀察，分別畫出「現況流程（As-Is）」與「理想流程（To-Be）」。這麼做的主要目的為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 找出兩者的差距，據以辨識 AI 可介入的流程瓶頸與服務缺口</li><li><span class="k">(B)</span> 先把目前流程完整文件化，以便日後作為系統驗收的依據</li><li><span class="k">(C)</span> 向主管證明現有流程效率不佳，以爭取更多的導入預算</li><li><span class="k">(D)</span> 決定要採購哪一家供應商的 AI 平台與相關授權方案</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>As-Is／To-Be 差距分析是業務需求與痛點分析的核心手法：先看清現況，再描繪理想狀態，兩者的落差就是 AI 可以切入的目標流程（重複性高、規則清晰、數據驅動）、流程瓶頸或待提升的 KPI（指引 4.1 導入需求與可行性評估）。(B) 文件化只是副產品；(C) 評估的目的是客觀判斷價值，不是爭取預算；(D) 供應商選擇屬於導入規劃階段的導入模式決策。</div></div>
+</article>
+<article class="q" id="延-中1-q51" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 51 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某製造業評估多個候選流程是否適合導入 AI。依指引的著眼點，下列哪一類流程最適合優先作為 AI 導入目標？</p>
+<ul class="opts"><li><span class="k">(A)</span> 每年只發生一兩次、由資深主管憑經驗臨場判斷的策略決策</li><li><span class="k">(B)</span> 規則經常變動、過去沒有留下任何紀錄的臨時性專案</li><li><span class="k">(C)</span> 牽涉多方談判、需要大量人際溝通與情緒判斷的客戶協商</li><li class="ok"><span class="k">(D)</span> 每天重複執行、判斷規則清楚且已累積大量歷史資料的流程</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引指出適合作為 AI 目標的流程特徵是「重複性高、規則清晰、數據驅動」，這類流程有足夠資料可學習、效益也容易量化（指引 4.1 業務需求與痛點分析）。(A) 頻率低、缺乏資料；(B) 規則不穩且無紀錄，模型無從學起；(C) 高度依賴人際互動與情緒，目前仍不適合全面交給 AI。</div></div>
+</article>
+<article class="q" id="延-中1-q52" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 52 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某停車場業者的車牌辨識 POC 在白天表現優異，上線後夜間辨識率大幅下降。回頭檢查發現訓練資料幾乎全是白天拍攝的影像。這屬於技術可行性評估中資料品質的哪一個面向不足？</p>
+<ul class="opts"><li><span class="k">(A)</span> 一致性：同一車牌在不同影像中的標註格式不統一</li><li class="ok"><span class="k">(B)</span> 代表性：資料未涵蓋實際使用情境中的各種條件</li><li><span class="k">(C)</span> 完整性：部分影像的標註欄位缺漏或為空值</li><li><span class="k">(D)</span> 即時性：影像資料的蒐集時間距離上線已經太久</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>代表性指訓練資料能否反映實際部署環境的分佈；只有白天影像的資料集無法代表夜間場景，模型自然在夜間失效（指引 4.1 技術可行性初探：資料品質的完整性／一致性／代表性與標註）。(A) 一致性是指資料格式或定義的統一；(C) 完整性是缺漏值問題；(D) 即時性是資料是否夠新，與日夜場景無關。</div></div>
+</article>
+<article class="q" id="延-中1-q53" data-sec="sec41" data-kind="D">
+<div class="qhead"><span class="num">第 53 題</span><span class="kind kD">計算／程式題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某 AI 專案初期投資 100 萬元，預估未來三年每年各帶來 40 萬元淨現金流，折現率 10%。依指引的 NPV 公式，下列哪一個結論正確？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> NPV 略小於 0，依 NPV 準則此專案並不具投資價值</li><li><span class="k">(B)</span> NPV 約為 +20 萬元，因為三年現金流合計 120 萬元大於投資</li><li><span class="k">(C)</span> NPV 約為 +12 萬元，因為折現率 10% 只需扣除總額的一成</li><li><span class="k">(D)</span> NPV 無法計算，因為 NPV 公式只適用於單一期的現金流</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>NPV＝Σ每期現金流／(1＋折現率)^期數−初期投資＝40／1.1＋40／1.21＋40／1.331−100≈36.36＋33.06＋30.05−100≈−0.53 萬元，略為負值，代表考慮貨幣時間價值後回報不足以覆蓋投資（指引 4.1 財務評估指標：NPV 為正才具價值）。(B) 是未折現的簡單加總；(C) 折現是逐期以複利折算，不是總額扣一成；(D) NPV 本來就是對多期現金流加總。</div></div>
+</article>
+<article class="q" id="延-中1-q54" data-sec="sec41" data-kind="D">
+<div class="qhead"><span class="num">第 54 題</span><span class="kind kD">計算／程式題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某零售業 AI 客服專案初期投資 300 萬元，預估每年可節省人力成本 120 萬元。依指引的回收期（Payback Period）公式，回收期為多久？使用此指標時應注意什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 4 年；回收期已包含折現，可單獨作為投資決策依據</li><li><span class="k">(B)</span> 0.4 年；回收期越長代表風險越低</li><li><span class="k">(C)</span> 2.5 年；回收期越長越好，代表效益持續時間長</li><li class="ok"><span class="k">(D)</span> 2.5 年；但此指標未考慮貨幣時間價值，宜與 NPV 搭配</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>回收期＝初期投資成本／每年淨現金流＝300／120＝2.5 年；回收期越短代表資金風險越低，但它不考慮時間價值也不看回收後的現金流，指引因此建議與 NPV 搭配使用（指引 4.1 財務評估指標）。(A) 4 年算錯且回收期並未折現；(B) 0.4 是分子分母顛倒，且回收期越長風險越高；(C) 把回收期的解讀方向弄反。</div></div>
+</article>
+<article class="q" id="延-中1-q55" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 55 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">財務長在比較兩個 AI 專案時只看「回收期」指標。下列哪一項是回收期指標的主要限制？</p>
+<ul class="opts"><li><span class="k">(A)</span> 只能用於評估軟體類投資，硬體投資需改用 ROI</li><li class="ok"><span class="k">(B)</span> 未考慮貨幣的時間價值，也忽略回收期之後的現金流</li><li><span class="k">(C)</span> 需要預估未來十年以上的現金流，資料不易取得</li><li><span class="k">(D)</span> 計算過程必須先決定折現率，而折現率難以客觀設定</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>回收期只回答「多久能把本金拿回來」，不折現、也不計算回收之後還能賺多少，因此可能偏好短期回本但長期價值較低的專案，指引建議搭配 NPV（指引 4.1 財務評估指標：Payback Period 限制）。(A) 回收期不限投資類型；(C) 回收期只需要到回本為止的現金流；(D) 需要折現率的是 NPV，不是回收期。</div></div>
+</article>
+<article class="q" id="延-中1-q56" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 56 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">評估某企業的導入條件時發現：各部門對「客戶」的定義不同、同一筆資料在不同系統有不同數值、沒有人能說明某張報表的數據來源，也沒有存取權限的管理機制。這反映企業在哪一方面的成熟度不足？</p>
+<ul class="opts"><li><span class="k">(A)</span> 硬體運算資源：缺乏 GPU 伺服器與雲端平台的使用經驗</li><li><span class="k">(B)</span> 跨部門協作：沒有統一窗口與明確的專案負責人</li><li class="ok"><span class="k">(C)</span> 資料治理：資料正確性、可追溯性與權限控管未建立</li><li><span class="k">(D)</span> 預算支持：資源盤點與預算來源規劃尚未完成</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>資料治理（Data Governance）涵蓋資料的正確性、可追溯性與權限控管；定義不一致、數值矛盾、來源不明、無權限機制都是治理缺口，會直接影響 AI 專案的資料可用性（指引 4.1 組織成熟度：數位與資料成熟度）。(A) 題幹沒有提到運算資源；(B) 協作問題是組織面，題幹描述的是資料本身的狀態；(D) 預算與題幹現象無關。</div></div>
+</article>
+<article class="q" id="延-中1-q57" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 57 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某集團同時有三個部門各自嘗試導入 AI，彼此不知道對方進度、重複採購工具、資料也無法共享。依指引對組織條件的建議，最直接的改善做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 要求各部門暫停所有 AI 專案，等待外部顧問完成整體診斷</li><li><span class="k">(B)</span> 讓每個部門各自成立獨立的資料科學團隊並各自採購平台</li><li><span class="k">(C)</span> 先統一全集團的程式語言與深度學習框架，再討論其他問題</li><li class="ok"><span class="k">(D)</span> 設立 AI 專案辦公室或數位轉型小組作為統一窗口與推動責任單位</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引在團隊能力與跨部門協作中指出，應有統一窗口與專案負責人，並由 AI 專案辦公室或數位轉型小組擔任導入推動責任單位，才能協調資源、避免重複投資（指引 4.1 組織成熟度與導入條件盤點）。(A) 全面暫停過度保守且未解決協調問題；(B) 各自為政正是問題本身；(C) 技術框架統一不能解決組織層級的協調缺口。</div></div>
+</article>
+<article class="q" id="延-中1-q58" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 58 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某企業以 5×5 風險矩陣評估兩項風險：風險甲「發生可能性 2、影響程度 5」，風險乙「發生可能性 4、影響程度 2」。依指引的風險等級計算方式，應如何排序處理優先順序？</p>
+<ul class="opts"><li><span class="k">(A)</span> 風險乙優先，因為發生可能性較高，更可能真的發生</li><li><span class="k">(B)</span> 兩者相同，因為風險矩陣只看影響程度，兩者皆未達最高</li><li class="ok"><span class="k">(C)</span> 風險甲優先，因為風險等級 10 高於風險乙的 8</li><li><span class="k">(D)</span> 無法比較，風險矩陣只能用於判斷單一風險是否可接受</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>風險等級＝發生可能性×影響程度：甲＝2×5＝10，乙＝4×2＝8，甲的等級較高應優先處理；風險矩陣就是用來把風險依等級分為低（監控）、中（規劃對策）、高（優先處理或迴避）並排序（指引 4.1 風險矩陣與風險等級）。(A) 只看可能性忽略了影響；(B) 矩陣同時考慮兩個維度；(D) 風險矩陣的用途正是排序多項風險。</div></div>
+</article>
+<article class="q" id="延-中1-q59" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 59 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某銀行擔心 AI 客服系統上線後可能因故障造成營業損失，於是購買了 AI 系統故障保險，並在供應商合約中約定故障賠償條款。這屬於初步風險緩解中的哪一種機制？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 風險轉移：由第三方承擔潛在損失</li><li><span class="k">(B)</span> 風險迴避：不執行有風險的活動</li><li><span class="k">(C)</span> 風險接受：接受風險並持續監控</li><li><span class="k">(D)</span> 風險緩解：降低風險發生的機率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>保險與合約賠償條款都是把潛在損失交由第三方承擔，是指引列出的「保障機制與風險轉移」手段（指引 4.1 初步風險緩解；4.3 風險緩解策略之「轉移」）。(B) 迴避是乾脆不做，例如暫緩專案；(C) 接受是影響低時不採取行動只監控；(D) 緩解是主動降低發生機率或影響，例如資料清理、加密。</div></div>
+</article>
+<article class="q" id="延-中1-q60" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 60 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某公司要挑選一個流程進行 AI 概念驗證（POC）。依指引的 POC 條件設計原則，下列哪一個候選最「不」適合？</p>
+<ul class="opts"><li><span class="k">(A)</span> 客服部門的常見問題自動回覆，資料已整理好且主管大力支持</li><li class="ok"><span class="k">(B)</span> 一次涵蓋全公司所有部門流程、需串接全部核心系統的全面改造</li><li><span class="k">(C)</span> 倉儲的單一品項需求預測，資料齊全且範圍明確</li><li><span class="k">(D)</span> 單一產線的瑕疵影像檢測，有代表性且可在測試環境進行</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>POC 的條件是範圍清晰、風險可控、流程具代表性、資料與技術資源具初步條件、利益關係人支持度高；全公司全面改造範圍過大、風險不可控，違反 POC「小範圍驗證可行性」的本意（指引 4.1 概念驗證設計與評估）。(A)(C)(D) 都是範圍明確、資料具備、可在可控環境驗證的合適候選。</div></div>
+</article>
+<article class="q" id="延-中1-q61" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 61 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">POC 結束後，團隊除了比較準確率、處理速度與成本節省之外，也對使用者發放問卷、進行訪談並分析系統使用日誌。後面這一組方法屬於指引所稱的哪一類評估？</p>
+<ul class="opts"><li><span class="k">(A)</span> 量化評估：以數值指標與既有 KPI 比較</li><li class="ok"><span class="k">(B)</span> 質性評估：蒐集使用者感受與使用情形的回饋</li><li><span class="k">(C)</span> 財務評估：以 ROI、NPV 計算投資價值</li><li><span class="k">(D)</span> 技術可行性評估：檢視資料品質與系統整合</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引把 POC 的效能指標與回饋收集分為量化評估（準確率、處理速度、錯誤率、成本節省，與既有 KPI 比較）與質性評估（問卷、訪談、使用日誌），後者用來了解組織接受度與使用體驗（指引 4.1 POC 效能指標與回饋收集）。(A) 量化評估是前半段的數值指標；(C) 財務評估在可行性階段；(D) 技術可行性是 POC 之前的初探。</div></div>
+</article>
+<article class="q" id="延-中1-q62" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 62 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">指引將可解釋 AI（XAI）列為導入評估中因應黑箱風險的手段。下列何者「不是」XAI 的目標？</p>
+<ul class="opts"><li><span class="k">(A)</span> 增強使用者與主管對模型決策的信任</li><li><span class="k">(B)</span> 協助理解模型行為並發現潛在偏誤</li><li><span class="k">(C)</span> 支援法規遵循與稽核時的審查需求</li><li class="ok"><span class="k">(D)</span> 直接提升模型在測試集上的預測準確率</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引列出的 XAI 目標是增強信任、協助理解模型行為與偏誤、支援合規與審核，典型情境為醫療、金融、招聘與公部門；XAI 解釋的是「為什麼這樣預測」，本身不會改變或提升準確率（指引 4.1 風險與合規初探：可解釋 AI）。(A)(B)(C) 都是指引明列的目標。</div></div>
+</article>
+<article class="q" id="延-中1-q63" data-sec="sec41" data-kind="A">
+<div class="qhead"><span class="num">第 63 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q19">衍生自 115-1 第 19 題 ↗</a></div>
+<p class="stem">某保險公司的理賠審核 AI 完成 POC 後，報告只寫「模型準確率 95%」就宣稱導入可行。依指引對 POC 效能指標的要求，這份報告最主要的缺漏為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 沒有說明模型使用的演算法與超參數設定</li><li><span class="k">(B)</span> 沒有附上訓練過程中每個 epoch 的損失曲線</li><li class="ok"><span class="k">(C)</span> 沒有把結果與既有流程的 KPI 比較，無法證明預期效益</li><li><span class="k">(D)</span> 沒有列出開發團隊成員的學經歷與分工表</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引要求 POC 的量化評估須「與既有 KPI 比較」，例如審核時間縮短多少、錯誤率相對人工降低多少，才能驗證預期效益並判斷導入可行性；單一準確率數字無法回答「比現在好多少」（指引 4.1 POC 效能指標與初步導入可行性判斷）。(A)(B) 是技術細節，不是可行性判斷的核心；(D) 與效益驗證無關。</div></div>
+</article>
+<article class="q" id="延-中1-q64" data-sec="sec41" data-kind="C">
+<div class="qhead"><span class="num">第 64 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某企業導入 AI 排班系統時，現場主管認為「系統會取代我的判斷」而消極配合，資料也不願提供。依指引的風險分類，這屬於哪一類風險？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 組織文化與變革阻力：員工抗拒與數據信任度不足</li><li><span class="k">(B)</span> 法規遵循與資料隱私：個資蒐集未取得同意</li><li><span class="k">(C)</span> 技術風險與模型穩定性：模型輸出不確定</li><li><span class="k">(D)</span> 財務風險：投資回收期過長</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引在風險與合規初探中列出「組織文化與變革阻力」：組織變革引發員工抗拒、決策文化與數據信任度、跨部門配合問題，正是題幹描述的情況；對策通常是變革管理、溝通與培訓（指引 4.1 風險與合規初探）。(B) 題幹沒有個資議題；(C) 問題在人而非模型；(D) 題幹未提到財務。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec42"><h2 class="chap">4.2 AI 導入規劃 <small>16 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec42">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec42">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q65" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 65 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">指引強調 AI 導入規劃是高度依賴組織條件的策略性工作。下列何者「不是」指引列出的導入規劃核心原則？</p>
+<ul class="opts"><li><span class="k">(A)</span> 情境／目的導向：依產業特性與業務需求定義目標與範疇</li><li><span class="k">(B)</span> 資源盤點：確認資料、人力與預算與專案規模匹配</li><li><span class="k">(C)</span> 彈性調整：因應需求改變或技術瓶頸動態調整時程</li><li class="ok"><span class="k">(D)</span> 一次定案：規劃完成後即凍結範疇與時程，不再變更</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引列出的三項核心原則是情境／目的導向、資源盤點與彈性調整，並強調不同產業與部門的優先順序不同、須保持高度彈性；「一次定案不再變更」與彈性調整原則相反（指引 4.2 導入規劃的核心原則）。(A)(B)(C) 均為指引原文的三原則。</div></div>
+</article>
+<article class="q" id="延-中1-q66" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 66 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">AI 專案團隊中，負責從各系統收集資料、清理並整合成可供建模使用的資料集（ETL）的角色是？</p>
+<ul class="opts"><li><span class="k">(A)</span> AI 模型開發者</li><li class="ok"><span class="k">(B)</span> 資料工程師</li><li><span class="k">(C)</span> UI/UX 設計師</li><li><span class="k">(D)</span> 測試工程師</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引的人力資源角色定義中，資料工程師負責資料收集、清理與整合（ETL）；AI 模型開發者負責建模與訓練（TensorFlow／PyTorch）；UI/UX 設計師負責使用介面；測試工程師負責驗證效能與穩定性（指引 4.2 資源盤點與配置）。</div></div>
+</article>
+<article class="q" id="延-中1-q67" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 67 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某 AI 專案中，技術團隊聽不懂業務部門的需求、業務部門也不理解模型限制。依指引的角色定義，最應補強哪一個角色來連結兩邊？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 業務顧問</li><li><span class="k">(B)</span> 系統架構師</li><li><span class="k">(C)</span> 資料工程師</li><li><span class="k">(D)</span> Scrum Master</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引將業務顧問定義為「連結技術與業務」的角色，負責把業務需求轉譯成技術可執行的目標，並向業務端解釋技術限制（指引 4.2 人力資源角色與職責）。(B) 系統架構師負責技術架構與部署；(C) 資料工程師負責 ETL；(D) Scrum Master 是敏捷教練，負責移除團隊障礙，不是業務與技術的翻譯者。</div></div>
+</article>
+<article class="q" id="延-中1-q68" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 68 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">專案經理想知道「哪些任務一旦延誤，就會直接延後整個 AI 專案的完工日期」。依指引介紹的時程工具，應觀察什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> Product Backlog 中優先順序最高的項目</li><li><span class="k">(B)</span> WBS 中拆解層級最深的子任務</li><li class="ok"><span class="k">(C)</span> 甘特圖上的關鍵路徑（Critical Path）</li><li><span class="k">(D)</span> Sprint Backlog 中尚未完成的任務數</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>甘特圖以時間為橫軸、任務為縱軸，能呈現任務的時間安排、重疊區段與關鍵路徑；關鍵路徑上的任務沒有時間緩衝，任何延誤都會直接延後整體完工（指引 4.2 任務分解與時程設計：甘特圖）。(A) Backlog 優先順序代表價值高低，不代表時程依賴；(B) WBS 層級深淺與時程無關；(D) Sprint Backlog 只反映當前短衝的工作量。</div></div>
+</article>
+<article class="q" id="延-中1-q69" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 69 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">關於工作分解結構（WBS），下列描述何者正確？</p>
+<ul class="opts"><li><span class="k">(A)</span> 由下而上彙整各成員自行申報的待辦事項，再合併成專案總表</li><li class="ok"><span class="k">(B)</span> 由上而下把任務拆成子任務，各自定義責任、成果、資源與時長</li><li><span class="k">(C)</span> 以時間為橫軸、任務為縱軸，呈現各任務的起訖、重疊區段與關鍵路徑</li><li><span class="k">(D)</span> 每天固定 15 分鐘的站立會議，讓團隊同步進度並提出目前遇到的障礙</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>WBS 是由上而下的分解：把整個專案拆成可管理的子任務，並為每個子任務定義責任角色、預期成果、所需資源與預估時長，作為排程與資源配置的基礎（指引 4.2 任務分解與時程設計：WBS）。(A) 方向相反；(C) 是甘特圖的描述；(D) 是 Scrum 的 Daily Scrum。</div></div>
+</article>
+<article class="q" id="延-中1-q70" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 70 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">在 Scrum 框架中，負責維護 Product Backlog、決定功能優先順序並代表業務價值的角色是？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Product Owner</li><li><span class="k">(B)</span> Scrum Master</li><li><span class="k">(C)</span> Development Team</li><li><span class="k">(D)</span> Project Manager</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>Scrum 三角色中，Product Owner 維護 Product Backlog 並決定優先順序；Scrum Master 是敏捷教練，負責移除障礙、確保流程運作；Development Team 是跨職能的開發團隊（指引 4.2 Scrum 框架：三角色）。(D) Project Manager 是指引在人力資源角色中列出的專案負責人，不是 Scrum 定義的角色。</div></div>
+</article>
+<article class="q" id="延-中1-q71" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 71 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某 AI 團隊每個 Sprint 結束後都會開一場會議，檢討這兩週的協作方式與流程哪裡可以改進，而不是展示成果。這是 Scrum 的哪一項活動？</p>
+<ul class="opts"><li><span class="k">(A)</span> Sprint Planning</li><li><span class="k">(B)</span> Sprint Review</li><li class="ok"><span class="k">(C)</span> Sprint Retrospective</li><li><span class="k">(D)</span> Daily Scrum</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>Sprint Retrospective（回顧檢討）聚焦在團隊的流程與協作改善；Sprint Review（展示成果）則是向利害關係人展示本次 Sprint 的 Increment 並取得回饋（指引 4.2 Scrum 五活動）。(A) Sprint Planning 在 Sprint 開始時規劃工作；(D) Daily Scrum 是每日約 15 分鐘的進度同步站會。</div></div>
+</article>
+<article class="q" id="延-中1-q72" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 72 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">Scrum 的三項產出（Artifacts）中，代表每個 Sprint 結束時「可交付、可運作的成果」的是？</p>
+<ul class="opts"><li><span class="k">(A)</span> Product Backlog</li><li><span class="k">(B)</span> Sprint Backlog</li><li><span class="k">(C)</span> Burndown Chart</li><li class="ok"><span class="k">(D)</span> Increment</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>Scrum 三產出為 Product Backlog（產品待辦清單）、Sprint Backlog（本次 Sprint 的任務清單）與 Increment（本次 Sprint 完成的可交付成果）（指引 4.2 Scrum 框架：三產出）。(C) 燃盡圖是常用的進度視覺化工具，但不在指引列出的三產出之中。</div></div>
+</article>
+<article class="q" id="延-中1-q73" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 73 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某技術主導的 AI 團隊需要問題追蹤、自訂工作流程並支援 Scrum／Kanban，但團隊中非技術人員反映工具難上手。依指引的工具比較，這最符合哪一個工具的特性？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> JIRA</li><li><span class="k">(B)</span> Trello</li><li><span class="k">(C)</span> Notion</li><li><span class="k">(D)</span> Slack</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引的任務追蹤工具比較中，JIRA 的特性是問題追蹤、工作流自訂與敏捷支援，適合技術團隊主導的專案，缺點是非技術人員有學習曲線（指引 4.2 任務追蹤工具比較）。(B) Trello 是輕量看板，簡單易用但缺進階自動化；(C) Notion 與 (D) Slack 在指引中屬共用文件與溝通平台，不是任務追蹤工具。</div></div>
+</article>
+<article class="q" id="延-中1-q74" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 74 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">一個 4 人的 AI 原型小組想用最簡單的視覺化看板追蹤任務，不需要跨專案整合或複雜的依賴管理。依指引的比較，最合適的工具為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> JIRA：工作流自訂與敏捷支援完整</li><li><span class="k">(B)</span> Asana：任務分層與跨專案整合</li><li class="ok"><span class="k">(C)</span> Trello：輕量 Kanban 看板，簡單易用</li><li><span class="k">(D)</span> ClickUp：結合看板與結構化的中型專案工具</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引描述 Trello 為輕量看板（Kanban）、簡單易用且視覺化，適用小型團隊或初期原型，缺點是缺乏進階自動化與依賴管理，而題目正好不需要這些功能（指引 4.2 任務追蹤工具比較）。(A) JIRA 適合技術團隊主導且有學習曲線；(B) Asana 初期需花時間建立結構；(D) ClickUp 選項多、設定較複雜，適合中型專案。</div></div>
+</article>
+<article class="q" id="延-中1-q75" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 75 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某 20 人的貿易公司沒有任何 AI 技術人員，希望三個月內讓客服系統具備自動回覆功能，且預算有限。依指引的 AI 導入模式比較，最合適的模式為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 由內部技術團隊自行開發，以保留長期的技術自主與掌控力</li><li><span class="k">(B)</span> 委外給軟體公司開發客製化系統，以確保功能完全符合需求</li><li><span class="k">(C)</span> 先招募資料科學團隊並建置自有的模型訓練平台再開始導入</li><li class="ok"><span class="k">(D)</span> 選用現有的商業服務（Low-code／No-code）快速部署</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引比較三種導入模式：選用現有商業服務的優勢是快速部署、技術門檻低、靈活；代價是彈性有限、長期訂閱成本與資料隱私風險。無技術人力、時程短、預算有限的小公司最符合此模式（指引 4.2 AI 導入模式的選擇）。(A)(C) 需充足技術基礎與高初期投入；(B) 委外雖可行但時程與成本通常高於直接採用現成服務。</div></div>
+</article>
+<article class="q" id="延-中1-q76" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 76 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某金融機構要求客戶資料絕不能交給外部廠商，並希望長期掌握 AI 技術、持續依內部需求調整模型。依指引的導入模式比較，最適合的模式與其主要挑戰為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 選用現有商業服務；挑戰是功能彈性有限</li><li class="ok"><span class="k">(B)</span> 內部技術團隊開發；挑戰是需充足技術基礎與較高的初期投入</li><li><span class="k">(C)</span> 委外開發；挑戰是合約交付範圍與時程管理</li><li><span class="k">(D)</span> 混合模式；挑戰是雲端與地端同步困難</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>內部技術團隊開發的優勢是掌控力強、適應性高、保留技術自主，正符合資料不外流與長期調整的需求；挑戰則是需要充足技術基礎、初期成本高、招聘與設備投入大（指引 4.2 AI 導入模式的選擇）。(A) 商業服務有資料隱私風險；(C) 委外需把資料交給廠商，違反限制；(D) 混合部署是 5.2 的部署模式，不是導入模式。</div></div>
+</article>
+<article class="q" id="延-中1-q77" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 77 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某企業決定把 AI 系統委外給軟體公司開發。依指引，委外模式除了專業性與效率的優勢外，最需要特別注意的事項為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 必須先自行完成模型訓練，再交由廠商部署</li><li><span class="k">(B)</span> 需要自行採購 GPU 伺服器供廠商使用</li><li class="ok"><span class="k">(C)</span> 合約管理（交付範圍、時程）與資料安全風險</li><li><span class="k">(D)</span> 內部必須先招募完整的資料科學團隊</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引指出委外開發的考量是「需注意合約管理（交付範圍、時程）與資料安全風險」，因為核心工作與資料都交給外部，驗收標準與資料保護條款必須明確（指引 4.2 AI 導入模式的選擇）。(A)(B)(D) 都與委外模式「借助外部專業、縮短時程」的本質相反。</div></div>
+</article>
+<article class="q" id="延-中1-q78" data-sec="sec42" data-kind="A">
+<div class="qhead"><span class="num">第 78 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q23">衍生自 115-1 第 23 題 ↗</a></div>
+<p class="stem">依指引以甘特圖呈現的 AI 專案常見階段，下列哪一個順序正確？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型設計與訓練 → 問題定義與需求訪談 → 資料準備與標註 → 部署與落地 → 驗證測試</li><li class="ok"><span class="k">(B)</span> 問題定義與需求訪談 → 資料準備與標註 → 模型設計與訓練 → 驗證測試與反饋 → 部署與落地</li><li><span class="k">(C)</span> 資料準備與標註 → 部署與落地 → 模型設計與訓練 → 問題定義 → 驗證測試</li><li><span class="k">(D)</span> 驗證測試與反饋 → 問題定義 → 模型設計與訓練 → 資料準備 → 部署</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引列出的常見階段依序為：問題定義與需求訪談 → 資料準備與標註 → 模型設計與訓練 → 驗證測試與反饋 → 部署與落地；先弄清楚問題、再備資料、再建模、再驗證、最後上線（指引 4.2 任務分解與時程設計）。(A)(C)(D) 都把需求定義或資料準備放到建模甚至部署之後，順序顛倒。</div></div>
+</article>
+<article class="q" id="延-中1-q79" data-sec="sec42" data-kind="B">
+<div class="qhead"><span class="num">第 79 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q25">衍生自 115-1 第 25 題 ↗</a></div>
+<p class="stem">某團隊規劃推薦模型的 POC 驗證，目標設為「測試推薦模型是否提升銷售 5%」。依指引對 POC 驗證的建議，執行方式應為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 小範圍測試並快速迭代，每次迭代約 1–2 週，涵蓋資料準備到模型測試的全流程</li><li><span class="k">(B)</span> 一次在全部門市上線並觀察一整季，以取得最完整的統計資料</li><li><span class="k">(C)</span> 只在實驗室以歷史資料回測，不接觸真實使用者以避免風險</li><li><span class="k">(D)</span> 先完成所有功能開發再一次驗收，以減少反覆修改的成本</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引對 POC 驗證的要求是：設定明確目標、涵蓋資料準備到模型測試的全流程、以小範圍測試與快速迭代（Rapid Iteration，每次 1–2 週）進行，並同時看技術效能、商業價值與使用者回饋（指引 4.2 導入成果驗證與彙整）。(B) 範圍過大、週期過長；(C) 純回測無法驗證真實商業價值；(D) 與快速迭代精神相反。</div></div>
+</article>
+<article class="q" id="延-中1-q80" data-sec="sec42" data-kind="C">
+<div class="qhead"><span class="num">第 80 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引，導入規劃階段結束時應整合的成果文件「不」包含下列何者？</p>
+<ul class="opts"><li><span class="k">(A)</span> 導入規劃文件（Implementation Plan）與專案成果彙整報告</li><li><span class="k">(B)</span> 甘特圖與時程規劃、資源估算與成本預算表</li><li><span class="k">(C)</span> 利害關係人審查紀錄（Stakeholder Review）</li><li class="ok"><span class="k">(D)</span> 上線後的模型漂移監控儀表板與每日告警日誌</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引列出的規劃成果整合包含導入規劃文件、專案成果彙整報告、甘特圖與時程規劃、資源估算與成本預算表、利害關係人審查紀錄；模型漂移監控與告警是 5.2 部署後 MLOps 持續維運階段的產物，不是規劃階段文件（指引 4.2 規劃成果整合）。(A)(B)(C) 均為指引明列項目。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec43"><h2 class="chap">4.3 AI 風險管理 <small>14 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec43">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec43">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q81" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 81 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某信貸模型上線一年後，預測準確度逐季下滑。不論背後原因是輸入分佈改變還是特徵與違約的關係改變，指引把「模型預測準確度隨時間變差」這個現象本身稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 資料漂移（Data Drift）：輸入資料的分佈隨時間改變</li><li class="ok"><span class="k">(B)</span> 模型漂移（Model Drift）</li><li><span class="k">(C)</span> 概念漂移（Concept Drift）：資料背後的潛在關係隨時間改變</li><li><span class="k">(D)</span> 過擬合（Overfitting）：訓練表現佳但對未見資料無法正確預測</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引的漂移概念辨析：模型漂移指「模型預測準確度隨時間變差」，是結果層面的描述；資料漂移與概念漂移則是造成它的兩種原因（分別是輸入分佈改變、特徵與目標關係改變）（指引 4.3 漂移概念辨析）。(A)(C) 是原因而非現象本身；(D) 過擬合在訓練階段就存在，不是隨時間惡化的現象。</div></div>
+</article>
+<article class="q" id="延-中1-q82" data-sec="sec43" data-kind="A">
+<div class="qhead"><span class="num">第 82 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q48">衍生自 115-1 第 48 題 ↗</a></div>
+<p class="stem">某電商的流失預測模型上線後，分析發現使用者的平均訂單金額、瀏覽時段等輸入特徵的分佈與訓練時明顯不同，但「這些特徵與是否流失」的關係並未改變。依指引的辨析，這屬於哪一種漂移？</p>
+<ul class="opts"><li><span class="k">(A)</span> 概念漂移，因為使用者行為背後的潛在關係已經改變</li><li><span class="k">(B)</span> 模型漂移，因為是模型本身的參數隨時間退化</li><li><span class="k">(C)</span> 訓練與服務偏差，因為線上特徵處理與離線不一致</li><li class="ok"><span class="k">(D)</span> 資料漂移</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>輸入資料的分佈隨時間改變、而特徵與目標之間的關係不變，就是資料漂移（Data Drift）；若是關係本身改變才是概念漂移（指引 4.3 漂移概念辨析）。(A) 題幹明說關係未變；(B) 模型參數不會自己退化，是資料變了；(C) 訓練與服務偏差是工程上的特徵處理不一致，題幹沒有這個線索。</div></div>
+</article>
+<article class="q" id="延-中1-q83" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 83 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某歐洲客戶的貸款申請被 AI 系統自動拒絕，客戶依 GDPR 要求銀行安排人員重新審查該決定。這對應 GDPR 的哪一項權利？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 反對自動化決策權（第 22 條）</li><li><span class="k">(B)</span> 資料可攜權（第 20 條）：以機器可讀格式取得並轉移個資</li><li><span class="k">(C)</span> 刪除權／被遺忘權（第 17 條）：要求刪除其個人資料</li><li><span class="k">(D)</span> 查閱權（第 15 條）：要求於 30 日內提供所持有的個資</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>GDPR 第 22 條賦予資料主體不受純自動化決策約束的權利，可要求人工介入重新審查，對 AI 自動審核系統影響最直接（指引 4.3 法規與合規性評估：GDPR 主要權利）。(B) 可攜權是取得並轉移資料；(C) 刪除權是要求刪除資料；(D) 查閱權是取得企業持有的個資副本，都與「要求人工審查決策」不同。</div></div>
+</article>
+<article class="q" id="延-中1-q84" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 84 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某健身 App 的歐盟使用者要求業者以常見的機器可讀格式提供其運動紀錄，以便轉移到另一家服務。這是 GDPR 的哪一項權利？</p>
+<ul class="opts"><li><span class="k">(A)</span> 處理限制權（第 18 條）：要求暫停處理其資料</li><li><span class="k">(B)</span> 修正權（第 16 條）：要求更正不正確的個資</li><li class="ok"><span class="k">(C)</span> 資料可攜權（第 20 條）</li><li><span class="k">(D)</span> 同意原則（第 6 條）：處理須有明確且可撤回的同意</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>資料可攜權讓資料主體能以結構化、通用且機器可讀的格式取得自己的資料並轉移給其他服務提供者（指引 4.3 GDPR 主要權利與原則）。(A) 處理限制權是要求企業暫停處理；(B) 修正權是更正錯誤資料；(D) 同意原則是處理資料的合法基礎，不是取回資料的權利。</div></div>
+</article>
+<article class="q" id="延-中1-q85" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 85 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某保險公司的 AI 核保表單除了必要的健康資訊外，還要求填寫星座、血型與社群帳號，理由是「以後也許用得到」。這最直接違反 GDPR 的哪一項原則？</p>
+<ul class="opts"><li><span class="k">(A)</span> 問責制：企業須能證明其處理活動符合規範</li><li><span class="k">(B)</span> 資料保護影響評估：高風險處理前須先評估</li><li><span class="k">(C)</span> 同意原則：蒐集前須取得明確且可撤回的同意</li><li class="ok"><span class="k">(D)</span> 資料最小化原則</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>資料最小化（第 5 條）要求只蒐集與處理目的相關且必要的資料；為了「也許用得到」而蒐集星座、血型等與核保目的無關的資料，正是違反此原則（指引 4.3 GDPR 主要權利與原則）。(A) 問責制是證明合規的義務；(B) DPIA 是高風險處理前的評估程序；(C) 即使取得同意，蒐集不必要的資料仍違反最小化原則。</div></div>
+</article>
+<article class="q" id="延-中1-q86" data-sec="sec43" data-kind="B">
+<div class="qhead"><span class="num">第 86 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q24">衍生自 114-2 第 24 題 ↗</a></div>
+<p class="stem">某風控模型被發現只要對輸入特徵加上人眼難以察覺的微小擾動就會改判。若要在「模型訓練階段」直接提升模型對這類惡意擾動的抵抗力，應採取什麼方法？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 對抗樣本訓練（Adversarial Training）</li><li><span class="k">(B)</span> 在部署環境強化網路防火牆，阻擋未授權來源的連線請求</li><li><span class="k">(C)</span> 推論後加一層規則引擎，確保輸出不違反既有的業務硬性規定</li><li><span class="k">(D)</span> 對輸入做格式檢查與極端值過濾，先擋掉明顯異常的資料</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>對抗訓練把刻意生成的對抗樣本加入訓練集，讓模型學會在微小擾動下仍維持正確判斷，是從模型本身提升穩健性的方法（指引 4.3 技術層風險與 3.4 對抗訓練）。(B) 防火牆屬網路層，與模型脆弱性無關；(C) 規則引擎是輸出端的補救；(D) 前處理過濾擋得住極端值，但對抗擾動本來就設計成看起來正常，過濾不掉。</div></div>
+</article>
+<article class="q" id="延-中1-q87" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 87 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某公司用過去十年的錄取紀錄訓練履歷篩選模型，結果模型系統性地給女性求職者較低分數，因為過去錄取者以男性居多。這屬於指引列出的哪一種偏見來源？</p>
+<ul class="opts"><li><span class="k">(A)</span> 標註偏見（Labeling Bias）：標註人員主觀判斷造成的偏差</li><li><span class="k">(B)</span> 演算法偏見（Algorithmic Bias）：模型結構本身偏好特定群體</li><li class="ok"><span class="k">(C)</span> 歷史偏見（Historical Bias）</li><li><span class="k">(D)</span> 資料分布不均（Imbalanced Data）：各類別樣本數量差距懸殊</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>歷史偏見指訓練資料忠實反映了過去社會或組織的不公平決策，模型學起來後把這種不公平延續下去；此例的根源是過往錄取決策本身的偏頗（指引 4.3 偏見來源與類型）。(A) 標註偏見來自標註過程；(B) 演算法偏見來自模型設計；(D) 分布不均是數量比例問題，雖可能同時存在，但題幹強調的是「過去的錄取決策」。</div></div>
+</article>
+<article class="q" id="延-中1-q88" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 88 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某醫院的 AI 分診系統發生誤判造成病患延誤，事後調查卻發現沒有人能說明誰該為系統的決策負責，也沒有修正流程。這最直接違反四大 AI 倫理原則中的哪一項？</p>
+<ul class="opts"><li><span class="k">(A)</span> 透明度（Transparency）：對外說明模型的運作邏輯與決策依據</li><li class="ok"><span class="k">(B)</span> 問責性（Accountability）</li><li><span class="k">(C)</span> 公平性（Fairness）：避免對特定群體產生歧視性結果</li><li><span class="k">(D)</span> 可解釋性（Explainability）：提供足夠資訊讓使用者理解決策過程</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>問責性要求建立明確的責任體系，出錯時能快速識別並修正；「無人負責、無修正流程」正是問責機制缺失（指引 4.3 四大 AI 倫理原則）。(A) 透明度關乎是否公開說明；(C) 公平性關乎歧視；(D) 可解釋性關乎能否理解單一決策的理由，題幹的核心問題是責任歸屬。</div></div>
+</article>
+<article class="q" id="延-中1-q89" data-sec="sec43" data-kind="A">
+<div class="qhead"><span class="num">第 89 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q26">衍生自 115-1 第 26 題 ↗</a></div>
+<p class="stem">某平台在網站上公開說明其推薦系統使用了哪些資料、依據什麼邏輯排序，以及可能對使用者造成的影響。這主要落實四大 AI 倫理原則中的哪一項？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 透明度（Transparency）</li><li><span class="k">(B)</span> 可解釋性（Explainability）：針對每一筆推薦提供特徵貢獻說明</li><li><span class="k">(C)</span> 公平性（Fairness）：確保不同群體獲得相同品質的推薦</li><li><span class="k">(D)</span> 問責性（Accountability）：建立出錯時的責任歸屬與修正機制</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>透明度是對外說明模型運作邏輯、決策依據與可能結果；可解釋性則更進一步，針對個別決策提供讓使用者理解過程的資訊（指引 4.3 四大 AI 倫理原則）。題幹描述的是整體性的公開說明而非逐筆解釋，因此是透明度。(C)(D) 與題幹描述的「公開說明」無直接關係。</div></div>
+</article>
+<article class="q" id="延-中1-q90" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 90 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">監控顯示某模型存在小規模資料漂移，評估後僅影響約 1% 準確率，而修正它的成本遠高於損失。依指引的風險緩解策略分類，合理的處置為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 迴避：立即下架模型，直到漂移完全消失再重新上線</li><li><span class="k">(B)</span> 轉移：向保險公司投保以涵蓋漂移造成的潛在損失</li><li><span class="k">(C)</span> 緩解：重新蒐集資料並全面重訓，把漂移降到零</li><li class="ok"><span class="k">(D)</span> 接受：不採取行動，納入日常監控</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引對「接受（Acceptance）」的定義是影響低且控管不划算者，接受風險並持續監控，所舉例子正是「小規模資料漂移僅影響 1% 準確率，接受並日常監控」（指引 4.3 風險緩解策略與工具）。(A) 迴避用於風險過高的情況；(B) 轉移適用於可由第三方承擔的損失；(C) 緩解是最常見策略，但題幹已說明成本遠高於損失。</div></div>
+</article>
+<article class="q" id="延-中1-q91" data-sec="sec43" data-kind="B">
+<div class="qhead"><span class="num">第 91 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q25">衍生自 114-2 第 25 題 ↗</a></div>
+<p class="stem">某行銷部門的生成式 AI 已上線產出大量文案，法務希望在內容發布前就找出「可能與既有作品高度雷同」的輸出並標記複審。最直接對應此需求的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 重新建立訓練資料的授權驗證機制，從源頭排除未授權的資料來源</li><li class="ok"><span class="k">(B)</span> 對生成內容做語意相似度比對，自動標註疑似雷同的輸出</li><li><span class="k">(C)</span> 在訓練時加入差分隱私，避免模型記憶特定受保護的樣本</li><li><span class="k">(D)</span> 在模型輸出端嵌入浮水印，讓生成內容日後可被追溯來源</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>題目的需求是在「輸出端、發布前」偵測可能侵權的內容，語意相似度比對能把生成文案與既有作品庫比對並標註高相似者，交由人工複審（指引 4.3 侵權風險的管理）。(A) 是源頭預防，無法處理已上線模型的輸出；(C) 差分隱私針對的是隱私而非著作權；(D) 浮水印是為了事後證明內容由 AI 生成，不是比對是否雷同。</div></div>
+</article>
+<article class="q" id="延-中1-q92" data-sec="sec43" data-kind="B">
+<div class="qhead"><span class="num">第 92 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q32">衍生自 114-2 第 32 題 ↗</a></div>
+<p class="stem">某詐欺偵測模型上線後，真實標籤要兩個月後才會由調查結果確認，無法即時計算準確率。若希望從「模型輸出端」提早察覺效能可能異常，較合適的監控對象為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> GPU 使用率與記憶體佔用的波動幅度</li><li><span class="k">(B)</span> API 的平均回應時間與各百分位延遲</li><li class="ok"><span class="k">(C)</span> 模型預測置信度分佈隨時間的變化趨勢</li><li><span class="k">(D)</span> 每日請求數量與尖峰時段的流量曲線</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>在標籤延遲的情境下，預測置信度（機率）分佈的變化是常用的無標籤預警訊號：若模型輸出突然集中在不確定區間或整體分佈偏移，往往代表輸入已經改變；它與輸入端的 PSI 可互補（指引 4.3 MLOps 風險監控情境；5.2 模型監控）。(A)(B)(D) 都是系統資源或流量指標，反映服務健康而非模型品質。</div></div>
+</article>
+<article class="q" id="延-中1-q93" data-sec="sec43" data-kind="A">
+<div class="qhead"><span class="num">第 93 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q46">衍生自 114-2 第 46 題 ↗</a></div>
+<p class="stem">某零售預測系統的 MLOps 流程設定為：當監控到準確率下降超過門檻或偵測到資料漂移時，自動以最新資料重新訓練並更新模型。指引把這種機制稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 藍綠部署（Blue-Green Deployment）：兩套環境切換以降低停機風險</li><li><span class="k">(B)</span> 影子模式（Shadow Mode）：新模型與舊模型並行但不對外輸出</li><li class="ok"><span class="k">(C)</span> 自動重新訓練（Auto-retraining）</li><li><span class="k">(D)</span> 金絲雀發布（Canary Release）：先把少量流量導向新模型觀察</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引的 MLOps 風險監控情境列出模型漂移監控、資料漂移監控、效能異常警示與自動重新訓練（Auto-retraining）：偵測到效能下降或漂移時自動重訓並更新模型（指引 4.3 MLOps 風險監控情境）。(A)(D) 是部署與發布策略；(B) 影子模式是上線前的驗證方式，都不涉及自動重訓。</div></div>
+</article>
+<article class="q" id="延-中1-q94" data-sec="sec43" data-kind="C">
+<div class="qhead"><span class="num">第 94 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某企業想建立內部的 AI 倫理治理框架。依指引，下列哪一組做法最完整？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 成立跨領域倫理委員會、在部署前執行 AI 審查流程、辦理內部教育訓練，並對外溝通</li><li><span class="k">(B)</span> 把所有倫理判斷交給外部律師事務所，公司內部不另設審查流程與教育訓練</li><li><span class="k">(C)</span> 只在模型上線後收到客訴時才啟動審查，以免影響專案時程與資源配置</li><li><span class="k">(D)</span> 由資料科學團隊自行判斷倫理風險，不需納入法務、業務等其他部門意見</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引的企業內部倫理治理框架包含：倫理委員會（跨領域組成）、AI 審查流程（Ethical Review Process，部署前進行）、內部教育訓練，以及透明度與對外溝通（指引 4.3 偏見與倫理：企業內部倫理治理框架）。(B) 外包無法建立內部文化與流程；(C) 審查應在部署前而非事後；(D) 倫理審查需要跨領域觀點。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec51"><h2 class="chap">5.1 數據準備與模型選擇 <small>28 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec51">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec51">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q95" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 95 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q10">衍生自 114-2 第 10 題 ↗</a></div>
+<p class="stem">某產線的瑕疵率約 1%。一個「永遠預測為良品」的模型在測試集上準確率高達 99%，但完全抓不到任何瑕疵。若要讓評估指標反映模型抓瑕疵的能力，應改用什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> F1 分數或召回率</li><li><span class="k">(B)</span> 均方根誤差（RMSE），因為它對大誤差更敏感</li><li><span class="k">(C)</span> 準確率，但把測試集擴大到十萬筆以降低抽樣誤差</li><li><span class="k">(D)</span> 平均絕對誤差（MAE），因為它不受極端值影響</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>類別嚴重不平衡時準確率會被多數類主導，F1（精確率與召回率的調和平均）或召回率才能反映少數類（瑕疵）被找出的能力（指引 5.1／3.2 評估指標）。(B)(D) RMSE 與 MAE 是迴歸任務的誤差指標；(C) 擴大測試集不會改變「全猜良品也有 99%」的本質。</div></div>
+</article>
+<article class="q" id="延-中1-q96" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 96 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q10">衍生自 114-2 第 10 題 ↗</a></div>
+<p class="stem">某房仲公司建立房價預測模型，輸出為連續的金額。評估此模型時，下列哪一個指標最合適？</p>
+<ul class="opts"><li><span class="k">(A)</span> F1 分數，因為它同時兼顧精確率與召回率</li><li><span class="k">(B)</span> 混淆矩陣，因為它能呈現各類別的預測分佈</li><li class="ok"><span class="k">(C)</span> 均方根誤差（RMSE）</li><li><span class="k">(D)</span> ROC 曲線下面積（AUC），因為它不受閾值影響</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>房價是連續數值的迴歸問題，RMSE（或 MSE、MAE）衡量預測值與實際值的差距，是迴歸的標準評估指標（指引 5.1 模型選擇：監督式迴歸）。(A)(B)(D) 都是分類任務的評估工具，需要離散的類別標籤才能計算。</div></div>
+</article>
+<article class="q" id="延-中1-q97" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 97 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q11">衍生自 114-2 第 11 題 ↗</a></div>
+<p class="stem">某電信公司要對顧客使用行為分群，事先不知道應該分成幾群，資料中有不少異常帳號，而且各群在特徵空間中呈現不規則的帶狀分佈。最合適的分群演算法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> K-means，因為它計算快速且適合大規模資料</li><li class="ok"><span class="k">(B)</span> DBSCAN</li><li><span class="k">(C)</span> 線性迴歸，因為可以依預測值高低分群</li><li><span class="k">(D)</span> 階層式分群，但必須先指定要切成幾群</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>DBSCAN 以密度定義群集，不需預先給定群數、能找出任意形狀的群集，並把低密度區域的點標記為雜訊，正好處理「群數未知、形狀不規則、有異常值」三個條件（指引 5.1 演算法重點補充：K-means vs DBSCAN）。(A) K-means 需指定 K、假設球狀群、對異常值敏感；(C) 迴歸是監督式預測，不是分群；(D) 階層式分群不要求事先指定群數，但對不規則形狀與雜訊的處理不如 DBSCAN。</div></div>
+</article>
+<article class="q" id="延-中1-q98" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 98 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q11">衍生自 114-2 第 11 題 ↗</a></div>
+<p class="stem">關於 K-means 分群演算法的特性，下列敘述何者正確？</p>
+<ul class="opts"><li><span class="k">(A)</span> 不需要事先決定群集數量，演算法會自動找出最佳的 K</li><li><span class="k">(B)</span> 能自動辨識並排除離群值，不受異常資料影響</li><li><span class="k">(C)</span> 能找出任意形狀的群集，對帶狀或環狀分佈的資料表現優異</li><li class="ok"><span class="k">(D)</span> 須事先給定 K 值，且對初始中心點與異常值敏感</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引明列 K-means 的限制：必須事先指定 K、結果受初始中心點影響（常以多次隨機初始化改善）、對異常值敏感，且傾向找出球狀群集（指引 5.1 演算法重點補充）。(A)(B)(C) 描述的都是 DBSCAN 的優點：不需指定群數、標記雜訊、找任意形狀群集。</div></div>
+</article>
+<article class="q" id="延-中1-q99" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 99 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q30">衍生自 115-1 第 30 題 ↗</a></div>
+<p class="stem">某團隊對 50 個標準化後的感測器特徵做 PCA，報告指出「前兩個主成分的累積解釋變異比例為 85%」。這句話的正確解讀為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 前兩個主成分能正確分類 85% 的樣本</li><li class="ok"><span class="k">(B)</span> 前兩個主成分保留了原始資料 85% 的總變異</li><li><span class="k">(C)</span> 有 85% 的原始特徵與目標變數顯著相關</li><li><span class="k">(D)</span> 資料中有 85% 的樣本可以被視為正常、15% 為離群</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>PCA 依變異量大小排序主成分，解釋變異比例代表各主成分保留了多少原始資料的總變異；前兩個合計 85% 表示把 50 維壓到 2 維仍保留大部分資訊，常用來決定要保留幾個主成分（指引 5.1 降維：PCA 保留最大方差方向）。(A) PCA 是非監督方法，與分類正確率無關；(C) PCA 不看目標變數；(D) 與離群值比例無關。</div></div>
+</article>
+<article class="q" id="延-中1-q100" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 100 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q30">衍生自 115-1 第 30 題 ↗</a></div>
+<p class="stem">某團隊想在建模前快速篩掉與目標變數幾乎無線性關係的數值特徵，不想先訓練任何模型。依指引列出的特徵選擇方法，最直接的做法為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 計算各特徵與目標的皮爾森相關係數</li><li><span class="k">(B)</span> 對協方差矩陣做特徵值分解，取最大特徵值對應的方向</li><li><span class="k">(C)</span> 訓練 LASSO 迴歸，觀察哪些係數被壓到零</li><li><span class="k">(D)</span> 以隨機森林訓練後取特徵重要性排序</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>皮爾森相關係數是指引列出的特徵選擇方法之一，屬於不需訓練模型的過濾式方法，能快速衡量特徵與目標的線性關聯（指引 5.1 特徵選擇：資訊增益、皮爾森相關係數、L1 正則化）。(B) 是 PCA 的降維步驟，不看目標變數；(C)(D) 都需要先訓練模型，與題目「不想先訓練模型」不符。</div></div>
+</article>
+<article class="q" id="延-中1-q101" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 101 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q36">衍生自 114-2 第 36 題 ↗</a></div>
+<p class="stem">某團隊要調整 6 個超參數、每個有 10 個候選值（共一百萬種組合），但算力只夠訓練約 200 次。希望每次嘗試都能參考先前結果、把算力集中在有希望的區域。最合適的方法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 網格搜尋，依序窮舉全部組合直到算力用完為止</li><li><span class="k">(B)</span> 手動調整，由資深工程師憑經驗逐一嘗試</li><li><span class="k">(C)</span> 隨機搜尋，每次從參數空間均勻隨機抽樣一組</li><li class="ok"><span class="k">(D)</span> 貝葉斯優化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>貝葉斯優化根據歷次嘗試的結果建立代理模型，動態決定下一組最值得試的超參數，在預算有限時比窮舉與隨機更有效率（指引 5.1／考古題 e114b-q36 的超參數搜尋方法比較）。(A) 一百萬種組合無法窮舉，200 次只能覆蓋極小部分且沒有策略；(B) 不可重現且難以擴展；(C) 隨機搜尋比網格有效率，但每次抽樣彼此獨立，不會參考先前結果。</div></div>
+</article>
+<article class="q" id="延-中1-q102" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 102 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q41">衍生自 114-2 第 41 題 ↗</a></div>
+<p class="stem">某團隊想在同一份資料上「選出最佳超參數」並「得到不偏的泛化效能估計」。為避免測試資料間接參與選參造成的樂觀偏差，應採用什麼做法？</p>
+<ul class="opts"><li><span class="k">(A)</span> 直接在全部資料上做 5 折交叉驗證，取最佳折的分數作為估計</li><li><span class="k">(B)</span> 先用測試集挑超參數，再用訓練集報告效能</li><li class="ok"><span class="k">(C)</span> 巢狀交叉驗證：外層估計效能，內層選超參數</li><li><span class="k">(D)</span> 把學習率調低並增加訓練輪數，以降低估計的變異</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>巢狀交叉驗證（Nested CV）在每個外層折中再以內層交叉驗證選超參數，外層的測試折從未參與選參，因此得到的效能估計不會因資料洩漏而過度樂觀（指引 5.1／考古題 e114b-q41 延伸）。(A) 取最佳折本身就是樂觀偏差；(B) 用測試集選參正是洩漏；(D) 訓練設定與估計偏差無關。</div></div>
+</article>
+<article class="q" id="延-中1-q103" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 103 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q26">衍生自 114-2 第 26 題 ↗</a></div>
+<p class="stem">某零售預測模型有 300 個候選特徵，其中許多對目標沒有貢獻。團隊希望在訓練線性模型的同時「自動」把無用特徵的係數壓到 0，不另外跑特徵篩選流程。應採用什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> Ridge 迴歸（L2 正則化），把所有係數同比例縮小</li><li><span class="k">(B)</span> 主成分分析，把特徵轉成彼此獨立的主成分後再建模</li><li class="ok"><span class="k">(C)</span> LASSO 迴歸（L1 正則化）</li><li><span class="k">(D)</span> 皮爾森相關係數，先刪除與目標相關性低的特徵再建模</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>L1 正則化的懲罰項會把不重要特徵的係數剛好壓到 0，模型訓練完同時完成特徵選擇，指引也將 L1（Lasso）列為特徵選擇方法之一（指引 5.1 特徵選擇）。(A) L2 只縮小不歸零，無法剔除特徵；(B) PCA 產生的是特徵的線性組合，不是挑出原始特徵；(D) 是另外跑的篩選流程，與「訓練時自動完成」不符。</div></div>
+</article>
+<article class="q" id="延-中1-q104" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 104 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q27">衍生自 114-2 第 27 題 ↗</a></div>
+<p class="stem">某平台的伺服器日誌是逐筆事件紀錄（每筆含時間戳記與錯誤代碼）。團隊想產生「每台主機每 5 分鐘的錯誤次數」作為故障預測模型的特徵。這個特徵萃取步驟稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 獨熱編碼：把錯誤代碼轉成多個 0/1 欄位</li><li><span class="k">(B)</span> 標準化：把錯誤次數縮放成均值 0、標準差 1</li><li><span class="k">(C)</span> 資料去重：以主鍵移除重複的事件紀錄</li><li class="ok"><span class="k">(D)</span> 時間窗口聚合</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>把逐筆事件依固定時間窗口（Time Window）分組並計算統計量（次數、平均、最大值），是把事件流轉成時序特徵的標準做法，也是考古題中處理 JSON 日誌的關鍵步驟（指引 5.1 時間與結構特徵擴增）。(A) 獨熱編碼處理類別欄位；(B) 標準化是數值縮放；(C) 去重是清理步驟，都不會產生「每 5 分鐘次數」這種彙總特徵。</div></div>
+</article>
+<article class="q" id="延-中1-q105" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 105 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q28">衍生自 114-2 第 28 題 ↗</a></div>
+<p class="stem">某團隊把「縣市」欄位（台北＝1、台中＝2、高雄＝3…）直接以標籤編碼後丟進線性迴歸模型。這種做法最主要的問題為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 為無序類別引入不存在的大小與順序關係</li><li><span class="k">(B)</span> 標籤編碼會讓特徵維度暴增，造成記憶體不足</li><li><span class="k">(C)</span> 線性迴歸無法接受任何整數型態的輸入特徵</li><li><span class="k">(D)</span> 縣市名稱必須先做標準化才能轉成數字</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>縣市沒有先後或大小之分，標籤編碼卻讓模型以為「高雄（3）大於台北（1）」且距離有意義，線性模型會據此學出錯誤關係；無序類別應用獨熱編碼，標籤編碼適用於有順序的類別（指引 5.1 類別特徵處理）。(B) 維度暴增是獨熱編碼在類別很多時的問題；(C) 整數輸入本身沒問題；(D) 標準化針對數值特徵。</div></div>
+</article>
+<article class="q" id="延-中1-q106" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 106 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q28">衍生自 114-2 第 28 題 ↗</a></div>
+<p class="stem">某保險模型的「年齡」特徵與理賠率呈現非線性關係（年輕與年長族群較高、中年較低），且原始年齡含不少雜訊。下列哪一種處理最能幫助線性模型捕捉這種關係？</p>
+<ul class="opts"><li><span class="k">(A)</span> 直接刪除年齡特徵，避免非線性關係干擾模型</li><li class="ok"><span class="k">(B)</span> 把年齡離散化成若干年齡層（分桶）後再做獨熱編碼</li><li><span class="k">(C)</span> 對年齡取對數，讓分佈更接近常態</li><li><span class="k">(D)</span> 用 PCA 把年齡與其他特徵合併成主成分</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>把連續特徵分桶（離散化）成類別後獨熱編碼，線性模型可以為每個區間學到獨立的係數，自然表達 U 型等非線性關係，同時降低雜訊影響（指引 5.1 特徵工程：連續特徵離散化）。(A) 丟掉有用資訊；(C) 對數轉換仍是單調變換，無法表達先降後升；(D) PCA 不解決單一特徵的非線性關係。</div></div>
+</article>
+<article class="q" id="延-中1-q107" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 107 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q37">衍生自 115-1 第 37 題 ↗</a></div>
+<p class="stem">關於 SMOTE 處理類別不平衡的方式，下列敘述何者正確？</p>
+<ul class="opts"><li><span class="k">(A)</span> 隨機刪除多數類樣本，直到兩類數量相等為止</li><li><span class="k">(B)</span> 把多數類樣本重複複製多份以提高其權重</li><li><span class="k">(C)</span> 調整損失函數，讓少數類的錯誤受到更大的懲罰</li><li class="ok"><span class="k">(D)</span> 在少數類樣本與其鄰近樣本之間插值，合成新樣本</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>SMOTE（Synthetic Minority Over-sampling Technique）對每個少數類樣本找鄰近的少數類樣本，在兩者之間插值產生新的合成樣本，比單純複製更能增加多樣性（指引 5.1／考古題 e115a-q37 的過採樣方法）。(A) 是欠採樣（Under-sampling）；(B) 複製的是少數類才有意義，且單純複製不是 SMOTE；(C) 是模型層面的類別權重調整，不屬於資料前處理。</div></div>
+</article>
+<article class="q" id="延-中1-q108" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 108 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q38">衍生自 115-1 第 38 題 ↗</a></div>
+<p class="stem">某神經網路模型的輸入特徵中，「年收入」範圍是數十萬到數千萬、「年齡」只有 18 到 80，訓練時梯度更新不穩定且收斂緩慢。依指引，最適合的前處理為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 只保留年齡特徵，刪除數值範圍過大的年收入</li><li class="ok"><span class="k">(B)</span> 對特徵做標準化（Z-score），使均值為 0、標準差為 1</li><li><span class="k">(C)</span> 把兩個特徵都做獨熱編碼，轉成類別型態再輸入</li><li><span class="k">(D)</span> 對兩個特徵取平均後合併成一個新的綜合特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引指出標準化（Z-score）把特徵轉成均值 0、標準差 1，特別適合需要計算梯度的模型（如神經網路），能避免尺度差異過大的特徵主導梯度方向而使訓練不穩（指引 5.1 數值特徵轉換：正規化與標準化）。(A) 丟掉重要特徵；(C) 連續數值不應獨熱編碼；(D) 不同意義的特徵不能直接平均。</div></div>
+</article>
+<article class="q" id="延-中1-q109" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 109 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q38">衍生自 115-1 第 38 題 ↗</a></div>
+<p class="stem">某團隊以 IQR 法檢查「單筆訂單金額」是否為離群值。已知第一四分位數 Q1＝200、第三四分位數 Q3＝600。依常用的 1.5×IQR 規則，下列哪一筆金額會被判為離群值？</p>
+<ul class="opts"><li><span class="k">(A)</span> 1,100 元</li><li><span class="k">(B)</span> −50 元（退貨）</li><li class="ok"><span class="k">(C)</span> 1,300 元</li><li><span class="k">(D)</span> 150 元</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>IQR＝Q3−Q1＝400；上界＝Q3＋1.5×IQR＝600＋600＝1,200，下界＝Q1−1.5×IQR＝200−600＝−400。1,300 超過上界 1,200 被判為離群值（指引 5.1 異常值處理：Z-score、IQR）。(A) 1,100 與 (D) 150 都在界內；(B) −50 雖為負值但仍高於下界 −400，依此規則不算離群（它是否合理應由業務規則另行判斷）。</div></div>
+</article>
+<article class="q" id="延-中1-q110" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 110 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q38">衍生自 115-1 第 38 題 ↗</a></div>
+<p class="stem">某工廠的溫度感測器每分鐘回傳一筆讀數，偶爾因通訊中斷會連續缺漏兩三分鐘。考量溫度變化連續且平滑，依指引的缺失值處理方法，最合適的填補方式為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 前後值填補或插值法</li><li><span class="k">(B)</span> 整欄刪除，因為感測器資料一旦缺漏就不可信</li><li><span class="k">(C)</span> 以整年溫度的全體平均值填補所有缺漏</li><li><span class="k">(D)</span> 把缺漏的時間點標記為新的一類「異常」</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引列出的缺失值處理包含平均／中位數填補、前後值填補（Forward/Backward Fill）與插值法；對連續平滑的時序資料，用前後讀數填補或線性插值最能反映真實狀況（指引 5.1 資料清理：缺失值）。(B) 缺漏比例極低，整欄刪除過度；(C) 全年平均會抹平當下的溫度趨勢；(D) 缺漏不等於異常事件。</div></div>
+</article>
+<article class="q" id="延-中1-q111" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 111 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q45">衍生自 114-2 第 45 題 ↗</a></div>
+<p class="stem">某團隊想把高維的顧客特徵壓到二維「畫成散佈圖」，以肉眼觀察是否存在群集結構。資料中的群集呈現複雜的非線性形狀，用 PCA 畫出來全部疊在一起。依指引，較合適的工具為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> t-SNE 或 UMAP</li><li><span class="k">(B)</span> LASSO 迴歸，用 L1 正則化挑出兩個最重要的特徵</li><li><span class="k">(C)</span> 標準化後再做一次 PCA，取第三與第四主成分</li><li><span class="k">(D)</span> 資訊增益，選出對目標最有鑑別力的兩個特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引在降維方法中區分 PCA（線性，保留最大方差方向）與 t-SNE／UMAP（非線性，主要用於視覺化）；非線性的群集結構用 t-SNE／UMAP 投影到二維較能保留局部鄰近關係（指引 5.1 降維）。(B)(D) 是特徵選擇，挑兩個原始特徵通常無法呈現高維結構；(C) PCA 仍是線性投影，換主成分不解決非線性問題。</div></div>
+</article>
+<article class="q" id="延-中1-q112" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 112 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q31">衍生自 115-1 第 31 題 ↗</a></div>
+<p class="stem">某團隊用 KNN 對 300 維的使用者特徵做分類，效果很差；分析後發現高維下所有樣本之間的距離都差不多，「最近鄰」失去意義。最直接的改善做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把 K 值調大，讓更多鄰居參與投票以降低雜訊</li><li><span class="k">(B)</span> 改用歐氏距離以外的距離公式，例如曼哈頓距離</li><li><span class="k">(C)</span> 增加訓練樣本數到原本的十倍，以填滿高維空間</li><li class="ok"><span class="k">(D)</span> 先以 PCA 等方法降維再做 KNN</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>高維空間的維度詛咒使距離趨於相近，任何以距離為基礎的方法（KNN、DBSCAN）都會失效；先降維到保留主要資訊的低維空間，再計算距離，是最直接的對策（指引 5.1 降維；考古題 e115a-q31 延伸）。(A)(B) 不改變高維下距離無鑑別力的本質；(C) 高維空間需要的樣本數隨維度指數成長，十倍遠遠不夠。</div></div>
+</article>
+<article class="q" id="延-中1-q113" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 113 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q33">衍生自 115-1 第 33 題 ↗</a></div>
+<p class="stem">某自駕車團隊以模擬器產生大量雨天與濃霧的合成影像補充訓練集。使用合成資料時，最需要防範的主要風險為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 合成影像的檔案格式與真實影像不相容，無法一起訓練</li><li class="ok"><span class="k">(B)</span> 合成資料與真實資料的分佈有落差，模型學到模擬器的特徵而非真實場景</li><li><span class="k">(C)</span> 合成資料的版權屬於模擬器廠商，不能用於商業模型</li><li><span class="k">(D)</span> 合成影像的解析度一定高於真實影像，導致模型過擬合</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>合成資料的價值在於以可控條件補足稀缺場景，但若模擬器的光影、紋理與真實世界不一致，模型可能學到「模擬器風格」，在真實資料上泛化不佳；因此應與真實資料混合並在真實測試集上驗證（指引 5.1／考古題 e115a-q33 合成資料的角色）。(A)(D) 不是合成資料的本質問題；(C) 自行以模擬器生成的資料通常沒有這個限制。</div></div>
+</article>
+<article class="q" id="延-中1-q114" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 114 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q34">衍生自 115-1 第 34 題 ↗</a></div>
+<p class="stem">下列哪一種情境「最不需要」採用增量學習（Incremental Learning），用每月批次重新訓練即可？</p>
+<ul class="opts"><li><span class="k">(A)</span> 廣告點擊率預測，每天新增數百個使用者行為特徵</li><li><span class="k">(B)</span> 新聞推薦系統，熱門話題每小時都在改變</li><li class="ok"><span class="k">(C)</span> 年度設備折舊預測，特徵固定且資料每月才更新一次</li><li><span class="k">(D)</span> 即時詐欺偵測，攻擊手法每週都有新變化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>增量學習的價值在於資料或特徵頻繁變化、無法等待全量重訓的情境；特徵固定、資料變化緩慢且更新週期長的任務，定期批次重訓已足夠且更簡單穩定（指引 5.1／考古題 e115a-q34 延伸）。(A)(B)(D) 都是特徵或分佈快速變化、需要模型即時跟上的典型增量學習情境。</div></div>
+</article>
+<article class="q" id="延-中1-q115" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 115 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q44">衍生自 114-2 第 44 題 ↗</a></div>
+<p class="stem">某物流公司希望倉儲機器人透過不斷嘗試，依「完成揀貨得分、碰撞扣分」的回饋自行學出最佳的移動策略，沒有現成的正確路徑標籤可供監督。依指引的模型選擇表，應採用哪一類方法？</p>
+<ul class="opts"><li><span class="k">(A)</span> 監督式分類，如隨機森林或 SVM</li><li class="ok"><span class="k">(B)</span> 強化式學習，如 DQN 或 PPO</li><li><span class="k">(C)</span> 非監督式分群，如 K-means 或 DBSCAN</li><li><span class="k">(D)</span> 生成式模型，如 GAN 或擴散模型</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>強化學習由智能體（Agent）在狀態（State）下採取行動（Action）並依獎勵（Reward）調整策略，指引列出的應用情境包括自駕車控制與智慧倉儲物流（指引 5.1 模型選擇策略：強化式學習）。(A) 監督式需要正確答案的標籤；(C) 分群不產生決策策略；(D) 生成式模型學的是資料分佈，不是控制策略。</div></div>
+</article>
+<article class="q" id="延-中1-q116" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 116 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q44">衍生自 114-2 第 44 題 ↗</a></div>
+<p class="stem">某連鎖超市想預測「每家門市下個月的營業額」（連續數值）。依指引的模型選擇策略，應優先考慮哪一類演算法？</p>
+<ul class="opts"><li><span class="k">(A)</span> 邏輯迴歸、決策樹分類、KNN</li><li><span class="k">(B)</span> K-means、DBSCAN、階層式分群</li><li class="ok"><span class="k">(C)</span> 線性迴歸、隨機森林迴歸、梯度提升樹</li><li><span class="k">(D)</span> Q-learning、DQN、Policy Gradient</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>目標是連續數值，屬監督式迴歸問題，指引列出的常見演算法為線性迴歸、決策樹迴歸、隨機森林迴歸、梯度提升樹，應用情境即銷售量與房價預測（指引 5.1 模型選擇策略）。(A) 是分類演算法；(B) 是非監督分群；(D) 是強化學習方法。</div></div>
+</article>
+<article class="q" id="延-中1-q117" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 117 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q44">衍生自 114-2 第 44 題 ↗</a></div>
+<p class="stem">某電信公司要用表格型的客戶資料（合約類型、月費、客訴次數等）預測客戶「是否」會在下季流失，只需要預測結果、不需要生成虛擬樣本。依指引的模型選擇表，最合適的演算法類型為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 監督式分類，如隨機森林或梯度提升樹</li><li><span class="k">(B)</span> 變分自編碼器（VAE），學習資料的潛在分佈</li><li><span class="k">(C)</span> 生成對抗網路（GAN），以對抗訓練擬合資料分佈</li><li><span class="k">(D)</span> 卷積神經網路（CNN），抽取資料的局部特徵</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>「是否流失」是二元分類問題，指引列出的監督式分類演算法（邏輯迴歸、決策樹、隨機森林、SVM、KNN、梯度提升樹）應用情境正包含客戶流失預測；表格資料上樹模型通常表現穩定（指引 5.1 模型選擇策略）。(B)(C) 是生成式模型，題目明確不需要生成樣本；(D) CNN 適合影像等有空間結構的資料。</div></div>
+</article>
+<article class="q" id="延-中1-q118" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 118 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q35">衍生自 115-1 第 35 題 ↗</a></div>
+<p class="stem">依指引，下列哪一組全部屬於「特徵選擇（Feature Selection）」的方法？</p>
+<ul class="opts"><li><span class="k">(A)</span> PCA、t-SNE、UMAP</li><li><span class="k">(B)</span> 獨熱編碼、標籤編碼、標準化</li><li><span class="k">(C)</span> Z-score、IQR、Isolation Forest</li><li class="ok"><span class="k">(D)</span> 資訊增益、皮爾森相關係數、L1 正則化</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引在特徵選擇列出資訊增益（Information Gain）、皮爾森相關係數與 L1 正則化（Lasso）三種方法，都是從原始特徵中挑出有用子集（指引 5.1 資料標註與特徵工程）。(A) 是降維方法，產生新的合成特徵而非挑選原始特徵；(B) 是特徵編碼與縮放；(C) 是異常值偵測方法。</div></div>
+</article>
+<article class="q" id="延-中1-q119" data-sec="sec51" data-kind="C">
+<div class="qhead"><span class="num">第 119 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">某企業評估導入 AutoML 工具做自動特徵工程（如 H2O.ai、TPOT、AutoKeras）。下列何者「不是」指引所述自動特徵工程的優勢？</p>
+<ul class="opts"><li><span class="k">(A)</span> 加速特徵工程流程，縮短專案時程</li><li><span class="k">(B)</span> 降低對資料科學專業的技術門檻</li><li><span class="k">(C)</span> 自動創建、篩選特徵並偵測特徵間的互動作用</li><li class="ok"><span class="k">(D)</span> 保證產生的特徵都具備業務上的可解釋性</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引描述自動特徵工程可自動創建、篩選特徵與檢測互動作用，優勢是加速流程、降低門檻、提升效能；自動產生的組合特徵往往難以用業務語言解釋，可解釋性並不是它的優勢（指引 5.1 自動特徵工程）。(A)(B)(C) 均為指引所列的功能與優勢。</div></div>
+</article>
+<article class="q" id="延-中1-q120" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 120 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q28">衍生自 115-1 第 28 題 ↗</a></div>
+<p class="stem">在以 SHAP 解釋某申請人的信用風險預測（模型輸出為違約傾向）時，「負債比率」的 SHAP 值為 +1.8。此數值的正確解讀為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 相對基準值，把此人的輸出往「更可能違約」推了 1.8 單位</li><li><span class="k">(B)</span> 負債比率是整個訓練資料集中對違約預測影響最大的一個特徵</li><li><span class="k">(C)</span> 此人的違約機率因為負債比率這個特徵而恰好提高了 1.8%</li><li><span class="k">(D)</span> 負債比率與違約標籤之間的皮爾森相關係數等於 1.8</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>SHAP 值是針對單一樣本的特徵貢獻：正值表示該特徵相對於基準值（base value）把輸出往正方向（此處為違約傾向）推移，數值是輸出單位而非機率百分比（指引 5.1／考古題 e115a-q28）。(B) 單一樣本的 SHAP 值不代表全域重要性；(C) 輸出單位通常是 log-odds 等，不是機率百分點；(D) 相關係數介於 −1 到 1，不可能是 1.8。</div></div>
+</article>
+<article class="q" id="延-中1-q121" data-sec="sec51" data-kind="B">
+<div class="qhead"><span class="num">第 121 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q29">衍生自 115-1 第 29 題 ↗</a></div>
+<p class="stem">某銀行以梯度提升樹（XGBoost）建立表格資料的信用評分模型，需要對每筆申請快速產生各特徵的貢獻說明。下列哪一種可解釋性方法最合適？</p>
+<ul class="opts"><li><span class="k">(A)</span> Grad-CAM，透過梯度反向傳播產生類別關注區域</li><li><span class="k">(B)</span> LIME，以超像素擾動分析影像區塊的影響</li><li class="ok"><span class="k">(C)</span> SHAP TreeExplainer</li><li><span class="k">(D)</span> 注意力權重視覺化，呈現各 token 的關注程度</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>SHAP TreeExplainer 針對樹模型設計，能以多項式時間精確計算每個特徵的 Shapley 值，適合表格資料與大量即時解釋需求（指引 4.1／5.1 可解釋 AI 工具；考古題 e115a-q29 延伸）。(A) Grad-CAM 只適用 CNN 影像模型；(B) 超像素擾動是影像版 LIME 的做法；(D) 注意力視覺化用於 Transformer 等序列模型，樹模型沒有注意力機制。</div></div>
+</article>
+<article class="q" id="延-中1-q122" data-sec="sec51" data-kind="A">
+<div class="qhead"><span class="num">第 122 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q39">衍生自 114-2 第 39 題 ↗</a></div>
+<p class="stem">某團隊建立 ARIMA 銷售預測模型後，檢查殘差的自相關函數（ACF），發現所有時滯的自相關都不顯著、殘差看起來像白噪音。這代表什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 模型嚴重過擬合，應減少 p 與 q 的階數</li><li class="ok"><span class="k">(B)</span> 模型已充分捕捉資料的時間依賴結構</li><li><span class="k">(C)</span> 資料不具有任何時間序列特性，不應使用 ARIMA</li><li><span class="k">(D)</span> 模型配適不足，殘差中仍殘留未解釋的週期性</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>良好的 ARIMA 模型殘差應為白噪音：均值為 0、無自相關；ACF 在各時滯皆不顯著表示時間結構已被模型解釋完畢，是模型診斷通過的訊號（指引 5.1／考古題 e114b-q39 延伸）。(A) 殘差無自相關不等於過擬合；(C) 資料本身可能有強烈時序特性，只是已被模型捕捉；(D) 配適不足的表現是殘差在多個時滯仍顯著自相關，與題幹相反。</div></div>
+</article>
+</section>
+<section class="secgrp" id="sec-sec52"><h2 class="chap">5.2 AI 技術系統集成與部署 <small>28 題</small><a class="back" href="中級_科目1_人工智慧技術應用規劃.html#sec52">完整教材 ↗</a><a class="back" href="非官方補充教材_白話加強版_中級_科目1_人工智慧技術應用規劃.html#sec52">白話版 ↗</a></h2>
+<article class="q" id="延-中1-q123" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 123 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q13">衍生自 114-2 第 13 題 ↗</a></div>
+<p class="stem">某團隊希望把訓練好的模型、推論程式與所有相依套件封裝成一個可攜的映像檔，讓它在開發機、測試機與正式主機上的執行環境完全一致。最直接對應此需求的工具為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Kubernetes：負責多個容器的編排、資源調度與故障恢復</li><li class="ok"><span class="k">(B)</span> Docker</li><li><span class="k">(C)</span> MLflow：記錄實驗參數、指標並管理模型版本</li><li><span class="k">(D)</span> Prometheus：蒐集服務的延遲與錯誤率等監控指標</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>Docker 把應用程式與其依賴封裝成容器映像，確保跨平台執行環境一致，是指引「容器化與編排」中的容器化工具；Kubernetes 則負責在叢集上編排這些容器（指引 5.2 系統架構設計）。(A) Kubernetes 管理的是已容器化的服務；(C) MLflow 做實驗與模型版本管理；(D) Prometheus 是監控工具。</div></div>
+</article>
+<article class="q" id="延-中1-q124" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 124 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q13">衍生自 114-2 第 13 題 ↗</a></div>
+<p class="stem">某 MLOps 團隊發現同一份程式在不同時間訓練出的模型效果不同，追查後才知道訓練資料集被人更新過卻沒有紀錄。為了讓「資料集與模型檔」的每個版本都可追溯，指引列出的工具為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Kubernetes，透過 Pod 的版本標籤管理資料集</li><li><span class="k">(B)</span> Flask 或 FastAPI，以 API 版本號區分模型</li><li><span class="k">(C)</span> Grafana，以儀表板記錄資料更新的時間</li><li class="ok"><span class="k">(D)</span> DVC（Data Version Control）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引在模型版本控管列出 MLflow（管理 ML 全流程與實驗記錄）與 DVC（資料集與模型版本追蹤）；DVC 讓大型資料集與模型檔能像程式碼一樣以版本管理，確保訓練可重現（指引 5.2 MLOps 與持續維運）。(A) Kubernetes 管容器不管資料版本；(B) API 版本號只區分服務介面；(C) Grafana 是視覺化工具，不是版本控制。</div></div>
+</article>
+<article class="q" id="延-中1-q125" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 125 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q15">衍生自 114-2 第 15 題 ↗</a></div>
+<p class="stem">某團隊的線上推論服務與離線訓練各自計算「近 30 天購買次數」這個特徵，結果兩邊的定義逐漸不一致，造成線上效果變差。要讓線上與離線共用同一套特徵定義與版本，指引提到的 MLOps 元件為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Feature Store</li><li><span class="k">(B)</span> Model Registry，集中管理模型版本、訓練紀錄與部署狀態</li><li><span class="k">(C)</span> API Gateway，統一管理 API 的日誌與流量控管</li><li><span class="k">(D)</span> Service Mesh，統一管理跨雲服務的調用與資料同步</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>Feature Store 集中定義、儲存與提供特徵，讓訓練（離線）與推論（線上）讀取同一份特徵定義與版本，避免訓練與服務偏差（考古題 e114b-q15 的選項觀念；指引 5.2 MLOps）。(B) Model Registry 管理的是模型而非特徵；(C) API Gateway 處理流量與權限；(D) Service Mesh 處理服務間通訊，都與特徵一致性無關。</div></div>
+</article>
+<article class="q" id="延-中1-q126" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 126 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q29">衍生自 114-2 第 29 題 ↗</a></div>
+<p class="stem">在 MLOps 的 CI/CD 流程中，下列哪一項屬於「持續部署（CD）」而非「持續整合（CI）」的範疇？</p>
+<ul class="opts"><li><span class="k">(A)</span> 每次程式碼提交後自動執行單元測試與靜態程式碼分析</li><li><span class="k">(B)</span> 資料更新後自動觸發模型重新訓練並驗證準確率</li><li class="ok"><span class="k">(C)</span> 模型通過準確率門檻後自動部署到正式環境，並支援藍綠部署</li><li><span class="k">(D)</span> 合併前自動檢查程式碼風格與相依套件的版本衝突</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引定義 CI 為程式碼或資料變動時自動觸發訓練與測試（含單元測試與準確率驗證）；CD 則是通過門檻後自動部署，並支援 A/B 測試或藍綠部署（指引 5.2 CI/CD）。(A)(B)(D) 都在「整合與驗證」階段，屬於 CI。</div></div>
+</article>
+<article class="q" id="延-中1-q127" data-sec="sec52" data-kind="D">
+<div class="qhead"><span class="num">第 127 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q41">衍生自 115-1 第 41 題 ↗</a></div>
+<p class="stem">某推論服務以批次方式處理請求：每批 32 筆影像、每批耗時 160 毫秒，且 GPU 一次只處理一批。在持續滿載的情況下，此服務的吞吐量約為每秒多少筆？</p>
+<ul class="opts"><li><span class="k">(A)</span> 32 筆／秒</li><li><span class="k">(B)</span> 100 筆／秒</li><li><span class="k">(C)</span> 160 筆／秒</li><li class="ok"><span class="k">(D)</span> 200 筆／秒</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>每秒可處理 1,000／160＝6.25 批，每批 32 筆，吞吐量＝6.25×32＝200 筆／秒（指引 5.2 成效追蹤：系統層級 KPI 的吞吐量 Throughput）。(A) 32 是單批筆數，不是每秒處理量；(B) 100 是誤以每批 320 毫秒計算；(C) 160 是把毫秒數直接當成吞吐量。</div></div>
+</article>
+<article class="q" id="延-中1-q128" data-sec="sec52" data-kind="D">
+<div class="qhead"><span class="num">第 128 題</span><span class="kind kD">計算／程式題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q31">衍生自 114-2 第 31 題 ↗</a></div>
+<p class="stem">某推薦 API 尖峰需求為 3,000 QPS。壓力測試顯示單一服務實例最高可處理 250 QPS，但為了保留緩衝，團隊規定每個實例的目標使用率不超過 70%。至少需要部署幾個實例？</p>
+<ul class="opts"><li><span class="k">(A)</span> 12 個</li><li class="ok"><span class="k">(B)</span> 18 個</li><li><span class="k">(C)</span> 15 個</li><li><span class="k">(D)</span> 24 個</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>每個實例在 70% 使用率下可承擔 250×0.7＝175 QPS；3,000／175≈17.1，實例數必須取整數且不可低於需求，故至少 18 個（指引 5.2 可擴充與高可用性：水平擴展與自動擴縮的容量規劃）。(A) 12 是 3,000／250 的結果，沒有保留 30% 緩衝；(C) 15 仍只能承擔 2,625 QPS；(D) 24 超過需求，造成資源浪費。</div></div>
+</article>
+<article class="q" id="延-中1-q129" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 129 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q31">衍生自 114-2 第 31 題 ↗</a></div>
+<p class="stem">下列哪一項做法屬於「水平擴展（Horizontal Scaling）」？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把單一推論伺服器的 CPU 從 16 核升級到 64 核</li><li><span class="k">(B)</span> 把伺服器的記憶體從 64GB 擴充到 512GB</li><li class="ok"><span class="k">(C)</span> 增加服務實例的數量，並以負載平衡器分流請求</li><li><span class="k">(D)</span> 把推論模型從 FP32 量化成 INT8 以提升單機吞吐</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>水平擴展是增加「機器或實例的數量」並以負載平衡分配流量，可搭配自動擴縮應付尖峰、也避免單點故障；垂直擴展則是提升單一機器的規格，有硬體上限與單點風險（指引 5.2 容器化與編排：自動擴縮、負載平衡）。(A)(B) 是垂直擴展；(D) 是模型優化，不是擴展策略。</div></div>
+</article>
+<article class="q" id="延-中1-q130" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 130 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q30">衍生自 114-2 第 30 題 ↗</a></div>
+<p class="stem">某 AI 服務部署了兩個相同的推論實例，當主要實例故障時，系統會自動把流量切換到備援實例，使用者幾乎感覺不到中斷。這種機制稱為什麼？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 容錯切換（Failover）</li><li><span class="k">(B)</span> 滾動更新（Rolling Update），逐步以新版本取代舊版本的實例</li><li><span class="k">(C)</span> 金絲雀部署（Canary Deployment），先把少量流量導向新版本</li><li><span class="k">(D)</span> 負載平衡（Load Balancing），把請求平均分配到各實例</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引在可擴充與高可用性中列出冗餘部署（Redundancy）與容錯切換（Failover）：預先部署備援實例，故障時自動切換以維持服務可用（指引 5.2 系統架構設計）。(B)(C) 是版本更新與發布策略；(D) 負載平衡是平時分流，不是故障時的切換機制（雖然常一起使用）。</div></div>
+</article>
+<article class="q" id="延-中1-q131" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 131 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q47">衍生自 115-1 第 47 題 ↗</a></div>
+<p class="stem">某團隊同時維護兩套一模一樣的正式環境：目前對外服務的「藍」環境，以及部署了新版模型的「綠」環境。驗證完成後把流量一次切到綠環境，若有問題立即切回藍環境。這種部署策略稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 影子模式（Shadow Mode）</li><li><span class="k">(B)</span> 金絲雀部署（Canary Deployment）</li><li><span class="k">(C)</span> 熱更新（Hot Swap）</li><li class="ok"><span class="k">(D)</span> 藍綠部署（Blue-Green Deployment）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>藍綠部署維持兩套完整環境，透過切換流量來上線新版本，回滾只需把流量切回舊環境，停機時間近乎零，是指引在 CD 與模型更新中列出的策略（指引 5.2 CI/CD、模型更新與優化）。(A) 影子模式是新模型並行推論但不對外輸出；(B) 金絲雀是逐步放少量流量；(C) 熱更新是在不停止服務下替換模型檔。</div></div>
+</article>
+<article class="q" id="延-中1-q132" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 132 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q43">衍生自 115-1 第 43 題 ↗</a></div>
+<p class="stem">某銀行想在「完全不影響任何客戶」的前提下，比較新舊詐欺模型對真實線上流量的判斷差異，再決定是否上線。最合適的驗證策略為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 金絲雀發布：先把 5% 真實流量導向新模型並觀察業務指標</li><li class="ok"><span class="k">(B)</span> 影子模式（Shadow Mode）</li><li><span class="k">(C)</span> A/B 測試：把客戶隨機分成兩組，分別使用新舊模型</li><li><span class="k">(D)</span> 直接全量上線，但保留舊模型以便隨時回滾</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>影子模式讓新模型與舊模型同時對真實請求推論，但只有舊模型的結果會回傳給客戶，新模型輸出僅在後端記錄比較，因此零風險（考古題 e115a-q43 的選項觀念；指引 5.2 模型更新）。(A)(C) 都有部分客戶會實際接收新模型的結果；(D) 風險最高。</div></div>
+</article>
+<article class="q" id="延-中1-q133" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 133 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q44">衍生自 115-1 第 44 題 ↗</a></div>
+<p class="stem">某 AI 瑕疵檢測服務在判定為「嚴重瑕疵」時，需要主動把結果即時推送給下游的 MES 系統觸發停線，而不是等 MES 定期來查詢。依指引的 API 與平台接軌方式，最適合的機制為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Webhook：事件發生時由服務主動呼叫下游預先登錄的網址</li><li><span class="k">(B)</span> RESTful GET：由 MES 每秒輪詢一次檢測結果</li><li><span class="k">(C)</span> 批次檔案交換：每小時匯出 CSV 供 MES 讀取</li><li><span class="k">(D)</span> gRPC 串流：由 MES 持續保持連線等待結果</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引列出 RESTful API、gRPC 與 Webhooks 作為 API 與平台接軌的方式；Webhook 是「事件驅動的回呼」，由 AI 服務在事件發生時主動呼叫下游登錄的端點，最符合即時推送需求（指引 5.2 系統集成：API 與平台接軌）。(B) 輪詢有延遲且浪費資源；(C) 批次延遲太大；(D) gRPC 串流可行但需下游長期維持連線，比 Webhook 複雜。</div></div>
+</article>
+<article class="q" id="延-中1-q134" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 134 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q40">衍生自 115-1 第 40 題 ↗</a></div>
+<p class="stem">某車聯網專案在雲端用大量 GPU 訓練模型，再把模型下放到車上的運算單元做即時推論，兼顧算力、反應速度與資料保護。依指引的部署模式分類，這屬於哪一種？</p>
+<ul class="opts"><li><span class="k">(A)</span> 公有雲部署</li><li><span class="k">(B)</span> 私有雲部署</li><li class="ok"><span class="k">(C)</span> 混合部署（Hybrid）</li><li><span class="k">(D)</span> 純邊緣運算部署</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引的混合部署定義為「雲端訓練＋邊緣即時推論」，優勢是兼顧運算、反應速度與資料保護，挑戰是系統整合與同步機制（指引 5.2 部署模式）。(A)(B) 訓練與推論都在雲端，無法滿足車上即時反應；(D) 純邊緣缺乏大規模訓練的算力。</div></div>
+</article>
+<article class="q" id="延-中1-q135" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 135 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q40">衍生自 115-1 第 40 題 ↗</a></div>
+<p class="stem">某電信公司每天凌晨要對全部 800 萬名客戶計算一次流失分數，結果供隔天客服使用，不需要即時回應。下列哪一種推論方式最有效率？</p>
+<ul class="opts"><li><span class="k">(A)</span> 為每位客戶發送一個即時 REST 請求，逐筆取得分數</li><li class="ok"><span class="k">(B)</span> 批次推論：一次處理大量樣本，以提高吞吐量</li><li><span class="k">(C)</span> 部署到邊緣裝置，在客戶的手機上分別計算</li><li><span class="k">(D)</span> 改用串流處理，客戶每次操作時即時重算分數</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>批次推論把大量樣本一次送進模型，能充分利用 GPU 並行能力、吞吐量最高，適合不需即時回應的離線計算；即時推論則優化的是單筆延遲（考古題 e115a-q40 的選項觀念；指引 5.2 系統層級 KPI：延遲與吞吐量）。(A)(D) 為不需要即時的任務付出即時架構的成本；(C) 流失分數需要企業端資料，不適合在客戶裝置計算。</div></div>
+</article>
+<article class="q" id="延-中1-q136" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 136 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q41">衍生自 115-1 第 41 題 ↗</a></div>
+<p class="stem">某 GPU 推論服務的請求大多以單筆方式到達，GPU 使用率只有 40%、kernel 之間明顯閒置。在不更換硬體下，最能提升 GPU 利用率的做法為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把每個請求拆成更小的子請求，增加 kernel 的呼叫次數</li><li><span class="k">(B)</span> 把模型換成參數量更大的版本，讓每次運算更久</li><li><span class="k">(C)</span> 關閉負載平衡，讓所有請求集中到同一個行程</li><li class="ok"><span class="k">(D)</span> 動態批次：把短時間內到達的請求合併成一批再推論</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>GPU 擅長平行運算，小批次會讓運算單元大量閒置；動態批次（Dynamic Batching）把到達時間相近的請求合併成較大批次一起推論，能顯著提高利用率與吞吐量，代價是少量等待延遲（考古題 e115a-q41 延伸；指引 5.2 系統層級 KPI）。(A) 反而更零碎；(B) 以浪費算力換取使用率沒有意義；(C) 與批次大小無關。</div></div>
+</article>
+<article class="q" id="延-中1-q137" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 137 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q24">衍生自 115-1 第 24 題 ↗</a></div>
+<p class="stem">某推論 API 的延遲測試報告顯示「平均延遲 80 毫秒」，符合 100 毫秒的要求，但仍有不少使用者抱怨偶爾要等超過一秒。團隊應補看哪一項指標？</p>
+<ul class="opts"><li><span class="k">(A)</span> 每日請求總量，確認是否有流量異常的時段</li><li><span class="k">(B)</span> GPU 使用率，確認硬體是否已達到瓶頸</li><li class="ok"><span class="k">(C)</span> P95／P99 延遲百分位數</li><li><span class="k">(D)</span> 模型準確率，確認回應內容是否正確</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>平均值會被大量快速請求稀釋，無法反映尾端延遲；P95／P99 代表 95%／99% 的請求都在多少毫秒內完成，是指引在線上監控中列出的延遲百分位數指標，才能看出少數使用者遇到的長延遲（指引 5.2 模型監控：延遲；考古題 e115a-q49）。(A)(B) 可能是原因但不是衡量使用者體驗的指標；(D) 與延遲無關。</div></div>
+</article>
+<article class="q" id="延-中1-q138" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 138 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q24">衍生自 115-1 第 24 題 ↗</a></div>
+<p class="stem">某團隊在模型上線前刻意輸入格式錯誤、數值極端、甚至惡意構造的資料，觀察服務是否會當機或輸出荒謬結果。這屬於哪一種上線前測試？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 穩健性與安全性測試</li><li><span class="k">(B)</span> 延遲測試：評估從接收輸入到回傳結果的時間</li><li><span class="k">(C)</span> 公平性測試：比較不同族群的預測結果是否一致</li><li><span class="k">(D)</span> 負載測試：模擬高流量觀察系統的吞吐極限</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>針對異常或攻擊性輸入驗證模型與服務的穩定性與安全性，是考古題 e115a-q24 選項中描述的穩健性（Robustness）測試，與延遲、公平性、負載等測試各有不同目標（指引 5.2 部署前驗證）。(B) 看的是時間；(C) 看的是群體差異；(D) 看的是容量。</div></div>
+</article>
+<article class="q" id="延-中1-q139" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 139 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q49">衍生自 115-1 第 49 題 ↗</a></div>
+<p class="stem">依指引的三層級 KPI，推薦系統的「點擊率（CTR）」與分類模型的「F1-Score」屬於哪一個層級？</p>
+<ul class="opts"><li><span class="k">(A)</span> 系統層級，與推論延遲、吞吐量、可用率同類</li><li class="ok"><span class="k">(B)</span> 應用層級</li><li><span class="k">(C)</span> 業務層級，與轉換率、成本節省、ROI 同類</li><li><span class="k">(D)</span> 治理層級，與公平性、可解釋性同類</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引把成效追蹤分為系統層級（延遲、吞吐量、可用率、資源使用率）、應用層級（CTR、Accuracy、F1-Score、異常偵測精確度）與業務層級（轉換率、成本節省、客戶留存率、ROI）；CTR 與 F1 衡量的是模型在應用上的表現，屬應用層級（指引 5.2 成效追蹤與優化）。(D) 指引沒有「治理層級」這一層。</div></div>
+</article>
+<article class="q" id="延-中1-q140" data-sec="sec52" data-kind="C">
+<div class="qhead"><span class="num">第 140 題</span><span class="kind kC">缺口題</span><span class="src">依完整教材補題</span></div>
+<p class="stem">依指引建議的回饋週期（Feedback Loop），模型上線後的常態維運節奏為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 每小時重新訓練一次模型，並在每天凌晨重新部署最新版本</li><li><span class="k">(B)</span> 每季檢查一次整體效能，發現問題時才開始收集錯誤樣本與回饋</li><li><span class="k">(C)</span> 平時不主動檢視，只在使用者投訴或業務單位反映時才檢視效能</li><li class="ok"><span class="k">(D)</span> 每日監控效能、每週收集錯誤樣本、每月評估是否重訓</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>指引的回收週期為：每日監控效能、每週收集錯誤樣本與回饋、每月重新評估或確認 retraining，並建議採技術指標＋業務指標雙軌制（指引 5.2 成效追蹤與優化：回收週期）。(A) 頻率過高且缺乏評估依據；(B)(C) 頻率過低，無法及時發現漂移。</div></div>
+</article>
+<article class="q" id="延-中1-q141" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 141 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q46">衍生自 114-2 第 46 題 ↗</a></div>
+<p class="stem">某 MLOps 流程在偵測到準確率下降超過門檻後自動重訓出新模型，並在「不中斷線上服務」的情況下直接以新模型檔替換正在服務的舊模型。指引把這種替換方式稱為什麼？</p>
+<ul class="opts"><li><span class="k">(A)</span> 冷啟動（Cold Start）</li><li><span class="k">(B)</span> 資料分片（Data Sharding）</li><li class="ok"><span class="k">(C)</span> 熱更新（Hot Swap）</li><li><span class="k">(D)</span> 影子模式（Shadow Mode）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引在模型監控與回饋中描述：設定觸發門檻啟動再訓練管線後，以熱更新（Hot Swap）或滾動更新替換模型版本，服務不需停機（指引 5.2 MLOps 與持續維運）。(A) 冷啟動指系統或推薦模型缺乏歷史資料的起始狀態；(B) 資料分片是分散訓練資料的技巧；(D) 影子模式是上線前的並行驗證。</div></div>
+</article>
+<article class="q" id="延-中1-q142" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 142 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q22">衍生自 114-2 第 22 題 ↗</a></div>
+<p class="stem">監控系統已確認某信貸模型發生概念漂移：特徵與違約之間的關係已經改變。下列何者是最直接的「因應」措施（而非偵測手段）？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> 以近期帶有真實標籤的資料重新訓練模型</li><li><span class="k">(B)</span> 計算新舊輸入分佈之間的 KL 散度以確認偏移程度</li><li><span class="k">(C)</span> 對每個輸入特徵持續計算 PSI 並繪製趨勢圖</li><li><span class="k">(D)</span> 監控預測置信度分佈的變化並設定告警</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>概念漂移代表舊模型學到的關係已不適用，最直接的因應是用反映新關係的近期標籤資料重新訓練（或啟動自動重訓管線）；KL 散度、PSI、置信度監控都是「偵測」漂移的手段，不能修正模型（指引 5.2 模型監控與回饋；4.3 自動重新訓練）。</div></div>
+</article>
+<article class="q" id="延-中1-q143" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 143 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q39">衍生自 115-1 第 39 題 ↗</a></div>
+<p class="stem">某零售集團的 BI 團隊需要對「已清理、結構化的每日銷售彙總資料」執行大量 SQL 彙總查詢並產出報表，查詢效率是首要考量。依指引，這類資料最適合存放於何處？</p>
+<ul class="opts"><li><span class="k">(A)</span> 資料湖（Data Lake），以原始格式保存所有型態的資料</li><li><span class="k">(B)</span> 邊緣裝置的本機儲存，以降低查詢延遲</li><li><span class="k">(C)</span> 物件儲存服務，以檔案形式保存 CSV</li><li class="ok"><span class="k">(D)</span> 資料倉儲（Data Warehouse）</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>資料倉儲儲存經整理的結構化資料，針對 SQL 查詢與報表分析最佳化；資料湖則用於保存大量原始或非結構化資料供未來探索（指引 5.2 系統集成：資料來源與資料管線；考古題 e115a-q39）。(A) 資料湖查詢結構化資料的效率較差；(B)(C) 不具備彙總查詢的效能與管理能力。</div></div>
+</article>
+<article class="q" id="延-中1-q144" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 144 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q39">衍生自 115-1 第 39 題 ↗</a></div>
+<p class="stem">某平台想把原始的監視器影片、伺服器日誌與社群貼文「先全部保存下來」，日後再依不同專案需求探索與加工，目前還不知道會怎麼用。依指引，最適合的儲存架構為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> 資料倉儲，先設計好所有欄位的綱要再匯入</li><li class="ok"><span class="k">(B)</span> 資料湖（Data Lake）</li><li><span class="k">(C)</span> 關聯式資料庫，為每種資料建立獨立資料表</li><li><span class="k">(D)</span> Feature Store，直接把原始資料當成特徵儲存</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>資料湖以原始格式保存結構化與非結構化資料，不需事先定義綱要，適合「先存再說、日後探索」的情境；資料倉儲則要求結構化且用途明確（指引 5.2 資料來源與資料管線）。(A)(C) 要求事先定義結構，影片與貼文不適合；(D) Feature Store 存的是處理過的特徵，不是原始資料。</div></div>
+</article>
+<article class="q" id="延-中1-q145" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 145 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q29">衍生自 114-2 第 29 題 ↗</a></div>
+<p class="stem">相較於傳統軟體開發的 CI，依指引，MLOps 中 CI 最主要的不同之處為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> MLOps 的 CI 不需要單元測試，只需要準確率驗證</li><li><span class="k">(B)</span> MLOps 的 CI 只能由人工手動觸發，無法自動化</li><li class="ok"><span class="k">(C)</span> 除了程式碼變動，資料變動也會觸發訓練與準確率驗證</li><li><span class="k">(D)</span> MLOps 的 CI 不包含靜態程式碼分析</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引描述 MLOps 的 CI 為「程式碼／資料變動觸發訓練與測試，整合單元測試與準確率驗證」；資料是 ML 系統的一部分，資料變了模型行為就會變，因此 CI 的觸發條件與驗證項目都比傳統軟體多了資料與模型面（指引 5.2 CI/CD）。(A)(D) 傳統的測試項目仍然需要；(B) 自動觸發正是 CI 的精神。</div></div>
+</article>
+<article class="q" id="延-中1-q146" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 146 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e114b-q15">衍生自 114-2 第 15 題 ↗</a></div>
+<p class="stem">某團隊想把推論服務的延遲、錯誤率、吞吐量做成即時儀表板，並在錯誤率超過 5% 時自動發出警示。指引列出的監控工具組合為何？</p>
+<ul class="opts"><li class="ok"><span class="k">(A)</span> Prometheus＋Grafana</li><li><span class="k">(B)</span> Docker＋Kubernetes，以容器編排收集指標</li><li><span class="k">(C)</span> MLflow＋DVC，以實驗紀錄追蹤錯誤率</li><li><span class="k">(D)</span> Jira＋Confluence，以工單方式記錄異常</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 A</span></div><div class="exp"><span class="lab">解析</span>指引在模型監控與回饋中列出以 Prometheus＋Grafana 做可視化與預警：Prometheus 蒐集時序指標，Grafana 做儀表板並設定告警門檻（指引 5.2 MLOps 與持續維運）。(B) 是容器化與編排工具；(C) 是實驗與版本管理工具；(D) 是專案協作工具。</div></div>
+</article>
+<article class="q" id="延-中1-q147" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 147 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q22">衍生自 115-1 第 22 題 ↗</a></div>
+<p class="stem">某團隊每天進行數十次模型訓練實驗，需要系統化記錄每次的超參數、評估指標與產出的模型檔，以便日後比較並重現最佳結果。指引列出的工具為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> Kubernetes</li><li class="ok"><span class="k">(B)</span> MLflow</li><li><span class="k">(C)</span> FastAPI</li><li><span class="k">(D)</span> TensorRT</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引在模型版本控管中將 MLflow 定義為管理 ML 全流程與實驗記錄的工具，可追蹤每次實驗的參數、指標與模型產出（指引 5.2 MLOps 與持續維運）。(A) Kubernetes 做容器編排；(C) FastAPI 用來把模型封裝成 API；(D) TensorRT 是推論加速工具。</div></div>
+</article>
+<article class="q" id="延-中1-q148" data-sec="sec52" data-kind="B">
+<div class="qhead"><span class="num">第 148 題</span><span class="kind kB">翻正題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q22">衍生自 115-1 第 22 題 ↗</a></div>
+<p class="stem">某公司缺乏資料科學人力，希望由工具自動嘗試多種模型架構與超參數組合、自動選出表現最好的模型，以降低開發門檻。這對應的技術為何？</p>
+<ul class="opts"><li><span class="k">(A)</span> MLOps：建立訓練、部署與監控的自動化流程</li><li><span class="k">(B)</span> 在線學習：模型隨新資料即時更新</li><li><span class="k">(C)</span> Human-in-the-Loop：由人工回饋修正模型</li><li class="ok"><span class="k">(D)</span> AutoML</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 D</span></div><div class="exp"><span class="lab">解析</span>AutoML 自動化模型搜尋、超參數調整與特徵工程，降低建模的技術門檻，是指引在模型更新與優化中列出的手段之一（指引 5.2 模型更新與優化；5.1 自動特徵工程）。(A) MLOps 關注的是流程自動化與版本管理，不會自動幫你選模型；(B) 在線學習是更新方式；(C) HITL 是人工參與回饋。</div></div>
+</article>
+<article class="q" id="延-中1-q149" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 149 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q45">衍生自 115-1 第 45 題 ↗</a></div>
+<p class="stem">某公司把 AI 平台從單體架構拆成數十個微服務後，雖然各團隊能獨立部署，卻出現服務間介面不一致、追蹤一筆請求要跨多個服務、整體故障排查變困難的情況。這對應指引所述微服務架構的哪一項挑戰？</p>
+<ul class="opts"><li><span class="k">(A)</span> 無法隔離單一服務的錯誤，一個故障會拖垮全部</li><li><span class="k">(B)</span> 無法依各服務的負載分別調整資源</li><li class="ok"><span class="k">(C)</span> 介接標準化與分散式管理的複雜度</li><li><span class="k">(D)</span> 各團隊無法平行開發，必須等待彼此</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 C</span></div><div class="exp"><span class="lab">解析</span>指引指出微服務的優點是易隔離錯誤、跨團隊並行、彈性調整資源；挑戰則是介接標準化與分散式管理複雜度，題幹描述的介面不一致與跨服務追蹤正是後者（指引 5.2 系統架構設計：微服務架構）。(A)(B)(D) 都與微服務的優點相反，不是它的挑戰。</div></div>
+</article>
+<article class="q" id="延-中1-q150" data-sec="sec52" data-kind="A">
+<div class="qhead"><span class="num">第 150 題</span><span class="kind kA">變體題</span><a class="src" href="非官方補充教材_考古題詳解_中級_科目1_人工智慧技術應用規劃.html#e115a-q44">衍生自 115-1 第 44 題 ↗</a></div>
+<p class="stem">某 AI 推論 API 要開放給多個合作夥伴使用，需要驗證每個呼叫者的身份、依角色限制可用的功能，並記錄每筆呼叫的日誌與流量。依指引的安全與權限控管，應採用哪一組機制？</p>
+<ul class="opts"><li><span class="k">(A)</span> 把 API 金鑰直接寫在前端程式碼中，讓所有合作夥伴都能方便取得</li><li class="ok"><span class="k">(B)</span> OAuth2／JWT 驗證、角色權限分級，加上 API Gateway 日誌與流量控管</li><li><span class="k">(C)</span> 以 IP 白名單取代所有身份驗證機制，並關閉日誌記錄以提升服務效能</li><li><span class="k">(D)</span> 把推論服務直接暴露在公網，存取控制交由各合作夥伴自行負責管理</li></ul>
+<button class="reveal" type="button">顯示答案與解析</button>
+<div class="sol"><div class="ansline"><span class="ans">答案 B</span></div><div class="exp"><span class="lab">解析</span>指引的安全與權限控管列出 OAuth2／JWT 身份驗證、角色權限分級、API Gateways 的日誌與流量控管，三者合起來正好滿足身份驗證、授權與稽核需求（指引 5.2 系統集成：安全與權限控管）。(A) 金鑰外洩風險極高；(C) IP 白名單無法區分角色，且不應關閉日誌；(D) 完全沒有控管。</div></div>
+</article>
+</section>
+
+
+    <footer>
+      本頁為 <b>非官方補充教材</b>：題目由自製，以 iPAS 公告試題（考古題）的考點與 中級學習指引《人工智慧技術應用規劃》的內容為基礎擴展，<b>並非官方試題</b>，答案與解析為自行整理；若與官方學習指引、勘誤表或公告不符，以官方為準。
+    </footer>
+  </main>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, cb=document.getElementById('hide-ans');
+  cb.checked=root.hasAttribute('data-qxhide');
+  cb.addEventListener('change',function(){
+    if(cb.checked) root.setAttribute('data-qxhide',''); else root.removeAttribute('data-qxhide');
+    document.querySelectorAll('article.q').forEach(function(c){c.classList.remove('open');});
+    try{localStorage.setItem('ipas-qx-hide',cb.checked?'1':'0');}catch(e){}
+  });
+  document.addEventListener('click',function(ev){var b=ev.target.closest('button.reveal');if(b)b.closest('article.q').classList.add('open');});
+  var links=Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+  function onScroll(){var pos=window.scrollY+120,cur=null,best=-1;links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));a.classList.remove('active');if(!t)return;if(t.offsetTop<=pos&&t.offsetTop>best){best=t.offsetTop;cur=a;}});if(cur)cur.classList.add('active');}
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+<script src="glossary.js" defer></script>
+</body>
+</html>
