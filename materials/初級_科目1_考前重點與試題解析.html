@@ -276,7 +276,14 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <ul>
 <li><span class="term">人在迴圈（Human-in-the-loop）</span>：AI 每個決策皆須人類審核批准。<span class="term">人在迴圈上（Human-over-the-loop）</span>：人類日常監督、必要時即時介入。<span class="term">人在迴圈外（Human-out-of-the-loop / out-of-the-loop on exception）</span>：平時不參與、僅異常時接手。</li>
 <li><span class="term">AI 倫理五大核心原則</span>：透明性、公平性、隱私性、安全性、問責性。（無法理解判斷依據→違反透明性；對特定族群誤判偏高→違反公平性；未告知納入再訓練→違反隱私性。）</li>
-<li><span class="term">《人工智慧基本法》草案（2025/9 行政院通過）</span>：創新實驗環境主要參考歐盟<span class="term">監理沙盒（Regulatory Sandbox）</span>；遇歧視疑慮應先進行偏誤影響評估並建立可解釋與申訴機制。</li>
+<li><span class="term">《人工智慧基本法》（現行法）</span>：立法院 2025 年 12 月 23 日三讀，2026 年 1 月 14 日公布施行，全文 20 條；中央主管機關為<span class="term">國家科學及技術委員會</span>（<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093">全國法規資料庫全文</a>，以下條號依此）。
+<ul>
+<li><span class="term">七大原則（§4）</span>：永續發展與福祉、人類自主、隱私保護與資料治理、資安與安全、透明與可解釋、公平與不歧視、問責。</li>
+<li><span class="term">高風險應用（§5）</span>：經中央目的事業主管機關會商數位發展部認定為高風險應用者，<b>應明確標示注意事項或警語</b>；責任歸屬、救濟、補償或保險機制另見 §17。</li>
+<li><span class="term">風險分類與法規調適（§16、§18）</span>：數位發展部推動風險分類框架（v1.0，2026 年 7 月），各目的事業主管機關據以訂定風險管理規範；施行後 2 年內完成法規制（訂）修。</li>
+<li><span class="term">其他重點</span>：創新實驗環境（§11）、避免不必要的個資蒐集利用（§14）、勞動權益與技能落差（§15）、政府使用 AI 應做風險評估（§19）。</li>
+<li><span class="term">歷屆考題敘述（條文未明列）</span>：舊題以「草案」出題，答案為創新實驗環境參考歐盟<span class="term">監理沙盒（Regulatory Sandbox）</span>；遇歧視疑慮的情境題答案為進行偏誤影響評估並建立可解釋與申訴機制。條文本身並無「監理沙盒」「偏誤影響評估」「申訴機制」等用語，作答依題幹敘述。</li>
+</ul></li>
 <li><span class="term">數位發展部 AI 產品與系統評測中心</span>生成式 AI 評測項目包含：當責性、可靠性、隱私及資安、公平性、資安等（「互動性」「效率性」非評測項目）；LLM 安全性常見指標：事實正確性、偏見與歧視、惡意與濫用可能性（「資料複雜性」非指標）。</li>
 <li><span class="term">《金融機構運用人工智慧技術作業規範》</span>：須建立內部治理架構、指定專責單位、辦理人才培育、了解生成式 AI 運作、高階主管/委員會監督（「每日公布運作狀況」非要求）。與消費者互動須揭露：是否為 AI 自動完成、適用對象與用途範圍、是否提供替代方案/申訴管道（「原始程式碼/完整訓練資料」非必揭露）。</li>
 <li><span class="term">隱私保護技術</span>：聯邦學習（Federated Learning，資料不外流仍可跨機構學習）、差分隱私、資料匿名化/去識別化（去除直接識別資訊、轉換可識別欄位）、傳輸加密+雙方身分驗證（防中間人攻擊）。</li>
@@ -422,7 +429,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <li>(D) AI Ethics Review Board</li>
 </ul>
 <span class="ans">答案：B</span>
-<div class="exp"><span class="lab">解析</span>「創新實驗環境」即監理沙盒（Regulatory Sandbox），在受監管的安全環境中容許創新實驗，源自歐盟等地的制度設計。(A) 是資料保護影響評估、(C)(D) 非沙盒制度。</div>
+<div class="exp"><span class="lab">解析</span>「創新實驗環境」即監理沙盒（Regulatory Sandbox），在受監管的安全環境中容許創新實驗，源自歐盟等地的制度設計。(A) 是資料保護影響評估、(C)(D) 非沙盒制度。（註：本題依 2025 年草案出題；現行法已於 2026 年 1 月 14 日公布施行，第 11 條規定創新實驗環境，條文未使用「監理沙盒」一詞。）</div>
 </div>
 
 <div class="q" id="e114-q10">
@@ -2789,7 +2796,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:v
 <li>(D) 應依其風險程度，明確標示相關注意事項或警語</li>
 </ul>
 <span class="ans">答案：D</span>
-<div class="exp"><span class="lab">解析</span>《人工智慧基本法》對經認定的高風險 AI 應用，直接明文要求應依風險程度明確標示相關注意事項或警語，(D) 正確。(A) 第三方評估與定期重新驗證、(B) 上市前許可與展延、(C) 事前登錄與揭露模型技術資訊，都不是該法直接明定的提供者義務；題目問的是「直接明文要求」，不要自行延伸成他國的事前審查制度。</div>
+<div class="exp"><span class="lab">解析</span>《人工智慧基本法》第 5 條對經認定的高風險 AI 應用，直接明文要求應依風險程度明確標示相關注意事項或警語，(D) 正確。(A) 第三方評估與定期重新驗證、(B) 上市前許可與展延、(C) 事前登錄與揭露模型技術資訊，都不是該法直接明定的提供者義務；題目問的是「直接明文要求」，不要自行延伸成他國的事前審查制度。</div>
 </div>
 
 <div class="q" id="e115d-q5">
